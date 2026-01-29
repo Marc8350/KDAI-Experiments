@@ -1,2 +1,8 @@
-.venv
-datasets
+.env
+.venv/
+few-nerd_train/
+few-nerd_validation/
+few-nerd_test/
+*.pyc
+__pycache__/
+GoLLIE/

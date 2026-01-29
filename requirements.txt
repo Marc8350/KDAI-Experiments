@@ -1,1 +1,13 @@
-datasets<3.0.0
+transformers
+peft
+bitsandbytes
+numpy
+black
+Jinja2
+tqdm
+rich
+psutil
+datasets
+ruff
+wandb
+fschat
