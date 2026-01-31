@@ -25,7 +25,7 @@ def format_sentence(tokens, tags, label_names, target_label_idx=None):
     
     return " ".join(annotated_tokens)
 
-def collect_examples(ds, label_feature_name, num_examples=3):
+def collect_examples(ds, label_feature_name, num_examples=8):
     label_names = ds.features[label_feature_name].feature.names
     examples_dict = {}
     
@@ -78,13 +78,13 @@ def main():
     ds = load_from_disk(train_path)
     
     # Coarse Labels
-    coarse_examples = collect_examples(ds, 'ner_tags')
+    coarse_examples = collect_examples(ds, 'ner_tags', num_examples=8)
     with open('coarse_labels_examples.json', 'w') as f:
         json.dump(coarse_examples, f, indent=2)
     print("Saved coarse_labels_examples.json")
     
     # Fine Labels
-    fine_examples = collect_examples(ds, 'fine_ner_tags')
+    fine_examples = collect_examples(ds, 'fine_ner_tags', num_examples=8)
     with open('fine_labels_examples.json', 'w') as f:
         json.dump(fine_examples, f, indent=2)
     print("Saved fine_labels_examples.json")
