@@ -94,8 +94,8 @@ def download_data():
 def main():
     logging.info("Starting project setup...")
     
-    if not check_gollie():
-        sys.exit(1)
+    #if not check_gollie():
+    #    sys.exit(1)
         
     if not install_requirements():
         sys.exit(1)
