@@ -548,6 +548,255 @@ Requirements:
 
 
 # ============================================================================
+# Prompt Export Functions (Readable .md and Log Files)
+# ============================================================================
+
+def generate_sample_prompt(
+    variation: PromptVariation,
+    entity_types: List[str],
+    entity_definitions: Dict[str, str],
+    style: str = "code"
+) -> str:
+    """Generate a sample prompt for display/export purposes."""
+    sample_text = "Apple announced that Steve Jobs would present the new iPhone at WWDC in San Francisco."
+    
+    if style == "code":
+        return build_code_prompt(
+            text=sample_text,
+            entity_types=entity_types,
+            entity_definitions=entity_definitions,
+            variation=variation,
+            include_schema=True
+        )
+    else:
+        return build_nl_prompt(
+            text=sample_text,
+            entity_types=entity_types,
+            entity_definitions=entity_definitions,
+            variation=variation,
+            include_schema=True
+        )
+
+
+def save_prompt_as_markdown(
+    output_dir: str,
+    variation: PromptVariation,
+    entity_types: List[str],
+    entity_definitions: Dict[str, str],
+    style: str,
+    granularity: str
+):
+    """
+    Save a prompt variation as a readable markdown file.
+    
+    Args:
+        output_dir: Directory to save the file
+        variation: Prompt variation to save
+        entity_types: List of entity type names
+        entity_definitions: Entity type descriptions
+        style: 'code' or 'nl'
+        granularity: 'coarse' or 'fine'
+    """
+    from datetime import datetime
+    
+    # Generate the full prompt
+    sample_prompt = generate_sample_prompt(
+        variation, entity_types, entity_definitions, style
+    )
+    
+    # Create markdown content
+    style_name = "Code-Style (pl-func)" if style == "code" else "Natural Language (nl-sel)"
+    
+    md_content = f"""# CodeIE Prompt Variation: {variation.name}
+
+## Metadata
+- **Variation ID**: `{variation.id}`
+- **Style**: {style_name}
+- **Granularity**: {granularity}
+- **Entity Types**: {len(entity_types)}
+- **Generated**: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
+
+## Configuration
+
+"""
+    
+    if style == "code":
+        md_content += f"""| Property | Value |
+|----------|-------|
+| Function Name | `{variation.function_name}` |
+| Docstring | "{variation.docstring}" |
+| Entity Header | `{variation.entity_header}` |
+
+"""
+    else:
+        md_content += f"""| Property | Value |
+|----------|-------|
+| Text Prefix | `{variation.text_prefix[:50]}...` |
+| Entity Prompt | `{variation.entity_prompt}` |
+
+"""
+    
+    md_content += f"""## Entity Definitions
+
+The following entity types are included in this prompt:
+
+| Entity Type | Description |
+|-------------|-------------|
+"""
+    
+    for entity_type in entity_types:
+        desc = entity_definitions.get(entity_type, "")
+        md_content += f"| `{entity_type}` | {desc} |\n"
+    
+    md_content += f"""
+
+## Sample Prompt
+
+Below is a sample prompt generated with this variation:
+
+```python
+{sample_prompt}
+```
+
+## Usage
+
+To use this variation in experiments:
+
+```bash
+python run_codeie_experiments.py --granularity {granularity} --style {'pl' if style == 'code' else 'nl'} --variation {variation.id}
+```
+"""
+    
+    # Save markdown file
+    style_tag = "code" if style == "code" else "nl"
+    filename = f"{granularity}_{style_tag}_{variation.id}.md"
+    filepath = os.path.join(output_dir, filename)
+    
+    with open(filepath, 'w') as f:
+        f.write(md_content)
+    
+    return filepath
+
+
+def save_creation_log(
+    output_dir: str,
+    variation: PromptVariation,
+    entity_types: List[str],
+    entity_definitions: Dict[str, str],
+    style: str,
+    granularity: str,
+    base_prompt: str = None,
+    similarity_score: float = None
+):
+    """
+    Save a creation log file with metadata (matching GoLLIE format).
+    
+    Args:
+        output_dir: Directory to save the file
+        variation: Prompt variation
+        entity_types: List of entity type names
+        entity_definitions: Entity type descriptions
+        style: 'code' or 'nl'
+        granularity: 'coarse' or 'fine'
+        base_prompt: Original base prompt for similarity comparison
+        similarity_score: Cosine similarity to base prompt
+    """
+    from datetime import datetime
+    import time
+    
+    # Generate the prompt
+    sample_prompt = generate_sample_prompt(
+        variation, entity_types, entity_definitions, style
+    )
+    
+    # Build the log entry
+    log_entry = {
+        "variation_id": variation.id,
+        "variation_name": variation.name,
+        "style": "code" if style == "code" else "nl",
+        "granularity": granularity,
+        "entity_count": len(entity_types),
+        "model_name": "gemini-2.0-flash" if variation.id.startswith("llm_") else None,
+        "mode": "llm_paraphrase" if variation.id.startswith("llm_") else "predefined",
+        "configuration": {
+            "function_name": variation.function_name if style == "code" else None,
+            "docstring": variation.docstring if style == "code" else None,
+            "entity_header": variation.entity_header if style == "code" else None,
+            "text_prefix": variation.text_prefix if style == "nl" else None,
+            "entity_prompt": variation.entity_prompt if style == "nl" else None,
+        },
+        "entity_types": entity_types,
+        "entity_definitions": entity_definitions,
+        "generated_prompt": sample_prompt,
+        "similarity_to_base_prompt": similarity_score,
+        "similarity_measure": "Cosine Similarity / Faiss IndexFlatIP" if similarity_score else None,
+        "timestamp": time.strftime("%a %b %d %H:%M:%S %Y")
+    }
+    
+    # Remove None values for cleaner output
+    log_entry = {k: v for k, v in log_entry.items() if v is not None}
+    if log_entry.get("configuration"):
+        log_entry["configuration"] = {k: v for k, v in log_entry["configuration"].items() if v is not None}
+    
+    # Save log file
+    style_tag = "code" if style == "code" else "nl"
+    filename = f"{granularity}_{style_tag}_{variation.id}.json"
+    filepath = os.path.join(output_dir, filename)
+    
+    with open(filepath, 'w') as f:
+        json.dump(log_entry, f, indent=2)
+    
+    return filepath
+
+
+def calculate_prompt_similarity(prompt1: str, prompt2: str) -> float:
+    """
+    Calculate cosine similarity between two prompts using embeddings.
+    
+    Args:
+        prompt1: First prompt
+        prompt2: Second prompt
+    
+    Returns:
+        Cosine similarity score (0-1)
+    """
+    load_env()
+    
+    api_key = os.environ.get("GEMINI_API_KEY")
+    if not api_key:
+        return None
+    
+    try:
+        from google import genai
+        import numpy as np
+        
+        client = genai.Client(api_key=api_key)
+        
+        # Get embeddings
+        result1 = client.models.embed_content(
+            model="models/text-embedding-004",
+            contents=prompt1
+        )
+        result2 = client.models.embed_content(
+            model="models/text-embedding-004",
+            contents=prompt2
+        )
+        
+        v1 = np.array(result1.embeddings[0].values, dtype='float32')
+        v2 = np.array(result2.embeddings[0].values, dtype='float32')
+        
+        # Cosine similarity
+        v1 = v1 / np.linalg.norm(v1)
+        v2 = v2 / np.linalg.norm(v2)
+        
+        return float(np.dot(v1, v2))
+        
+    except Exception as e:
+        print(f"Error calculating similarity: {e}")
+        return None
+
+
+# ============================================================================
 # Main Script
 # ============================================================================
 
@@ -556,10 +805,20 @@ def save_variations(
     granularity: str,
     code_variations: List[PromptVariation],
     nl_variations: List[PromptVariation],
-    entity_definitions: Dict[str, str]
+    entity_definitions: Dict[str, str],
+    export_prompts: bool = True,
+    calculate_similarities: bool = False
 ):
-    """Save prompt variations to files."""
+    """Save prompt variations to files with optional prompt exports and logs."""
     os.makedirs(output_dir, exist_ok=True)
+    
+    entity_types = list(entity_definitions.keys())
+    
+    # Create subdirectory for readable prompts
+    prompts_dir = os.path.join(output_dir, "prompts")
+    logs_dir = os.path.join(output_dir, "logs")
+    os.makedirs(prompts_dir, exist_ok=True)
+    os.makedirs(logs_dir, exist_ok=True)
     
     # Save as Python module
     py_content = f'''"""
@@ -660,6 +919,72 @@ CODE_STYLE_VARIATIONS = {{
     with open(json_path, 'w') as f:
         json.dump(json_data, f, indent=2)
     print(f"Saved: {json_path}")
+    
+    # Export individual prompt files and logs if requested
+    if export_prompts:
+        print(f"\nExporting prompt files to: {prompts_dir}")
+        print(f"Exporting log files to: {logs_dir}")
+        
+        # Generate base prompt for similarity calculation
+        base_code_prompt = None
+        base_nl_prompt = None
+        
+        if code_variations:
+            base_code_prompt = generate_sample_prompt(
+                code_variations[0], entity_types, entity_definitions, "code"
+            )
+        if nl_variations:
+            base_nl_prompt = generate_sample_prompt(
+                nl_variations[0], entity_types, entity_definitions, "nl"
+            )
+        
+        # Export code-style variations
+        for var in code_variations:
+            # Save markdown prompt file
+            md_path = save_prompt_as_markdown(
+                prompts_dir, var, entity_types, entity_definitions, "code", granularity
+            )
+            
+            # Calculate similarity to base if requested
+            similarity = None
+            if calculate_similarities and base_code_prompt:
+                current_prompt = generate_sample_prompt(
+                    var, entity_types, entity_definitions, "code"
+                )
+                if var.id != code_variations[0].id:
+                    similarity = calculate_prompt_similarity(base_code_prompt, current_prompt)
+            
+            # Save log file
+            log_path = save_creation_log(
+                logs_dir, var, entity_types, entity_definitions,
+                "code", granularity, base_code_prompt, similarity
+            )
+            
+            print(f"  ✓ {var.id}: {os.path.basename(md_path)}, {os.path.basename(log_path)}")
+        
+        # Export NL-style variations
+        for var in nl_variations:
+            # Save markdown prompt file
+            md_path = save_prompt_as_markdown(
+                prompts_dir, var, entity_types, entity_definitions, "nl", granularity
+            )
+            
+            # Calculate similarity to base if requested
+            similarity = None
+            if calculate_similarities and base_nl_prompt:
+                current_prompt = generate_sample_prompt(
+                    var, entity_types, entity_definitions, "nl"
+                )
+                if var.id != nl_variations[0].id:
+                    similarity = calculate_prompt_similarity(base_nl_prompt, current_prompt)
+            
+            # Save log file
+            log_path = save_creation_log(
+                logs_dir, var, entity_types, entity_definitions,
+                "nl", granularity, base_nl_prompt, similarity
+            )
+            
+            print(f"  ✓ {var.id}: {os.path.basename(md_path)}, {os.path.basename(log_path)}")
 
 
 def main():
@@ -682,6 +1007,14 @@ def main():
         '--num_llm_variations', type=int, default=3,
         help="Number of LLM variations to generate"
     )
+    parser.add_argument(
+        '--calculate_similarities', action='store_true',
+        help="Calculate cosine similarity between variations (requires GEMINI_API_KEY)"
+    )
+    parser.add_argument(
+        '--no_export', action='store_true',
+        help="Skip exporting individual prompt .md and log .json files"
+    )
     
     args = parser.parse_args()
     
@@ -696,6 +1029,8 @@ def main():
     print(f"{'='*60}")
     print(f"Granularity: {args.granularity}")
     print(f"Entity types: {len(entity_definitions)}")
+    print(f"Export prompts: {not args.no_export}")
+    print(f"Calculate similarities: {args.calculate_similarities}")
     print(f"{'='*60}\n")
     
     # Get base variations
@@ -721,14 +1056,22 @@ def main():
         args.granularity,
         code_variations,
         nl_variations,
-        entity_definitions
+        entity_definitions,
+        export_prompts=not args.no_export,
+        calculate_similarities=args.calculate_similarities
     )
     
     print(f"\n{'='*60}")
     print("Generation complete!")
-    print(f"Output: {output_dir}")
+    print(f"Output directory: {output_dir}")
+    print(f"  - Python module: {args.granularity}_prompt_variations.py")
+    print(f"  - JSON config: {args.granularity}_variations.json")
+    if not args.no_export:
+        print(f"  - Prompts: prompts/")
+        print(f"  - Logs: logs/")
     print(f"{'='*60}")
 
 
 if __name__ == "__main__":
     main()
+
