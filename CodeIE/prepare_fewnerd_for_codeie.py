@@ -23,8 +23,14 @@ from typing import List, Dict, Tuple
 
 # Add project root to path
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+CODEIE_ROOT = os.path.dirname(os.path.abspath(__file__))
 if PROJECT_ROOT not in sys.path:
     sys.path.insert(0, PROJECT_ROOT)
+if CODEIE_ROOT not in sys.path:
+    sys.path.insert(0, CODEIE_ROOT)
+
+# Import RecordSchema from CodeIE
+from uie.extraction.record_schema import RecordSchema
 
 
 def convert_tags_to_entities(tokens: List[str], tags: List[int], tag_names: List[str]) -> List[Dict]:
@@ -135,81 +141,110 @@ def convert_sample(sample: Dict, tag_key: str, tag_names: List[str]) -> Dict:
     }
 
 
-def create_schema_files(output_dir: str, entity_types: List[str]):
+def create_schema_files(output_dir: str, entity_types: List[str]) -> RecordSchema:
     """
-    Create schema files required by CodeIE.
+    Create schema files required by CodeIE using the original 3-line format.
+    
+    Original format (each line is JSON):
+        Line 1: type_list (entity types)
+        Line 2: role_list (relation types, empty for NER)
+        Line 3: type_role_dict (mapping, empty for NER)
     
     Args:
         output_dir: Directory to save schema files
         entity_types: List of entity type names (excluding 'O')
+        
+    Returns:
+        RecordSchema object for use in sampling
     """
     os.makedirs(output_dir, exist_ok=True)
     
-    # entity.schema - one entity type per line
+    # Create RecordSchema object
+    type_list = entity_types
+    role_list = []  # Empty for NER
+    type_role_dict = {t: [] for t in entity_types}  # Empty mappings for NER
+    
+    schema = RecordSchema(
+        type_list=type_list,
+        role_list=role_list,
+        type_role_dict=type_role_dict
+    )
+    
+    # Write using the original 3-line format
+    # entity.schema follows the original format
     entity_schema_path = os.path.join(output_dir, 'entity.schema')
-    with open(entity_schema_path, 'w') as f:
-        for entity_type in entity_types:
-            f.write(f"{entity_type}\n")
+    schema.write_to_file(entity_schema_path)
     print(f"Created: {entity_schema_path}")
     
-    # record.schema - JSON format with type list and role info
-    record_schema = {
-        'type': entity_types,
-        'role': [],  # Empty for NER
-        'type_role': {t: [] for t in entity_types}
-    }
-    record_schema_path = os.path.join(output_dir, 'record.schema')
-    with open(record_schema_path, 'w') as f:
-        json.dump(record_schema, f, indent=2)
-    print(f"Created: {record_schema_path}")
+    return schema
 
 
 def stratified_sample(
     data: List[Dict],
-    entity_types: List[str],
+    record_schema: RecordSchema,
     num_shot: int,
-    seed: int = 42
+    seed: int = None,
+    min_len: int = None,
+    spot_key: str = 'spot'
 ) -> List[Dict]:
     """
     Perform stratified sampling to get N examples per entity type.
-    This is CodeIE's sampling strategy.
+    This matches the original CodeIE sampling strategy from sample_data_shot.py.
     
     Args:
-        data: List of samples
-        entity_types: List of entity types to sample
+        data: List of samples (in CodeIE format)
+        record_schema: RecordSchema object with valid type_list
         num_shot: Number of examples per type
-        seed: Random seed
+        seed: Random seed (if provided, shuffles data first)
+        min_len: Minimum token length (optional filter)
+        spot_key: Key to access entity types in samples ('spot' for NER)
         
     Returns:
-        List of sampled examples
+        List of sampled examples (may contain duplicates if same sample has multiple types)
     """
-    random.seed(seed)
+    # Match original: shuffle data if seed provided
+    if seed:
+        random.seed(seed)
+        random.shuffle(data)
     
     # Build index: entity_type -> list of sample indices that contain it
     type_to_indices = defaultdict(list)
-    for idx, sample in enumerate(data):
-        if not sample['spot']:  # Empty entity list
-            type_to_indices['NULL'].append(idx)
-        else:
-            for entity_type in set(sample['spot']):
-                type_to_indices[entity_type].append(idx)
+    exist_null = False
     
-    # Sample from each type
-    sampled_indices = set()
-    for entity_type in list(entity_types) + ['NULL']:
-        if entity_type not in type_to_indices:
-            continue
+    for idx, sample in enumerate(data):
+        # Check for NULL (no entities)
+        if sample[spot_key] == [] or not sample[spot_key]:
+            type_to_indices['NULL'].append(idx)
+            exist_null = True
+        else:
+            # For each entity type in the sample
+            for spot in sample[spot_key]:
+                # Validate against schema (matches original behavior)
+                if spot not in record_schema.type_list:
+                    continue
+                # Optional length filter
+                if min_len is not None and len(sample.get('tokens', [])) < min_len:
+                    continue
+                type_to_indices[spot].append(idx)
+    
+    if exist_null:
+        print(f'Note: Found samples with no entities (NULL)')
+    
+    # Sample from each type (matches original: allows duplicates)
+    sampled_data = []
+    for entity_type in type_to_indices:
         indices = type_to_indices[entity_type]
+        
         if len(indices) < num_shot:
             print(f"Warning: {entity_type} has only {len(indices)} samples (< {num_shot})")
-            sample_count = len(indices)
+            sampled_indices = indices  # Take all available
         else:
-            sample_count = num_shot
-        sampled = random.sample(indices, sample_count)
-        sampled_indices.update(sampled)
+            sampled_indices = random.sample(indices, num_shot)
+        
+        # Append samples (may result in duplicates, matching original behavior)
+        sampled_data.extend([data[i] for i in sampled_indices])
     
-    # Return sampled data in order
-    return [data[i] for i in sorted(sampled_indices)]
+    return sampled_data
 
 
 def save_data(data: List[Dict], filepath: str):
@@ -274,8 +309,8 @@ def main():
     
     print(f"Entity types ({len(entity_types)}): {entity_types}")
     
-    # Create schema files
-    create_schema_files(output_dir, entity_types)
+    # Create schema files and get RecordSchema object
+    record_schema = create_schema_files(output_dir, entity_types)
     
     # Convert datasets
     print("\nConverting training set...")
@@ -309,21 +344,25 @@ def main():
             shot_subdir = os.path.join(shot_dir, f'seed{seed}', f'{num_shot}shot')
             os.makedirs(shot_subdir, exist_ok=True)
             
-            # Sample training data
-            sampled = stratified_sample(train_data, entity_types, num_shot, seed=seed)
+            # Sample training data using RecordSchema (matches original CodeIE)
+            sampled = stratified_sample(
+                data=train_data.copy(),  # Copy since shuffle modifies in place
+                record_schema=record_schema,
+                num_shot=num_shot,
+                seed=seed
+            )
             save_data(sampled, os.path.join(shot_subdir, 'train.json'))
             
             # Copy val and test (unchanged)
             save_data(val_data, os.path.join(shot_subdir, 'val.json'))
             save_data(test_data, os.path.join(shot_subdir, 'test.json'))
             
-            # Copy schema files
-            for schema_file in ['entity.schema', 'record.schema']:
-                src = os.path.join(output_dir, schema_file)
-                dst = os.path.join(shot_subdir, schema_file)
-                if os.path.exists(src):
-                    import shutil
-                    shutil.copy(src, dst)
+            # Copy schema file
+            schema_src = os.path.join(output_dir, 'entity.schema')
+            schema_dst = os.path.join(shot_subdir, 'entity.schema')
+            if os.path.exists(schema_src):
+                import shutil
+                shutil.copy(schema_src, schema_dst)
     
     print(f"\n{'='*60}")
     print("Conversion complete!")
