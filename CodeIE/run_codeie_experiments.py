@@ -1,12 +1,16 @@
 """
-CodeIE Experiments Runner for FewNerd NER
+CodeIE Experiments Runner for FewNerd NER (Enhanced with Entity Schema)
 
 This script runs NER experiments using the CodeIE framework on FewNerd,
 parallel to the run_gollie_experiments.py script. It supports:
 - Multiple prompt variations (code-style and NL-style)
+- EXPLICIT entity type definitions in prompts (like GoLLIE)
 - Custom API endpoint (Qwen2.5-7B or compatible)
 - Stratified few-shot in-context learning examples from training set
 - Evaluation on test set with P/R/F1 metrics
+
+Key enhancement over original CodeIE: Prompts include explicit entity class
+definitions, giving the model clearer guidance about valid entity types.
 
 Usage:
     python run_codeie_experiments.py --granularity coarse --style pl --num_shots 5
@@ -37,16 +41,8 @@ if CODEIE_ROOT not in sys.path:
 
 from datasets import load_from_disk
 
-# Import prompt variations
-from prompt_variations import CODE_STYLE_VARIATIONS, NL_STYLE_VARIATIONS
-from prompt_variations.code_style_variations import CodeStyleConfig
-from prompt_variations.nl_style_variations import NLStyleConfig
-
 # Import custom API wrapper
 from src.api.custom_api_wrapper import CustomAPIWrapper
-
-# Import evaluation
-from src.eval.scorer import EntityScorer
 
 logging.basicConfig(
     level=logging.INFO,
@@ -71,9 +67,10 @@ class ExperimentConfig:
     seed: int = 1
     max_test_samples: Optional[int] = None  # Limit for testing
     
-    # Prompt style
+    # Prompt style and schema
     style: str = "pl"  # "pl" (code) or "nl" (natural language)
     variation: str = "v0_original"
+    include_schema: bool = True  # NEW: Whether to include entity schema in prompts
     
     # API settings
     api_base_url: str = os.getenv("CUSTOM_API_BASE_URL", "http://localhost:8000/v1")
@@ -89,42 +86,111 @@ class ExperimentConfig:
     output_dir: str = "CODEIE-results"
 
 
+def load_variations(granularity: str):
+    """Load prompt variations for the specified granularity."""
+    if granularity == "coarse":
+        from prompt_variations.coarse_prompt_variations import (
+            CODE_STYLE_VARIATIONS, NL_STYLE_VARIATIONS, ENTITY_DEFINITIONS
+        )
+    else:
+        # For fine-grained, generate if not exists
+        variations_path = os.path.join(
+            CODEIE_ROOT, 'prompt_variations', 'fine_prompt_variations.py'
+        )
+        if not os.path.exists(variations_path):
+            logging.info("Generating fine-grained variations...")
+            os.system(f"cd {CODEIE_ROOT} && python generate_codeie_prompt_variations.py --granularity fine")
+        
+        from prompt_variations.fine_prompt_variations import (
+            CODE_STYLE_VARIATIONS, NL_STYLE_VARIATIONS, ENTITY_DEFINITIONS
+        )
+    
+    return CODE_STYLE_VARIATIONS, NL_STYLE_VARIATIONS, ENTITY_DEFINITIONS
+
+
 # ============================================================================
-# Prompt Builders
+# Prompt Builders (Enhanced with Entity Schema)
 # ============================================================================
+
+def build_entity_schema_block(
+    entity_types: List[str],
+    entity_definitions: Dict[str, str],
+    style: str = "code"
+) -> str:
+    """
+    Build the entity schema block to include in prompts.
+    
+    Args:
+        entity_types: List of valid entity type names
+        entity_definitions: Dict mapping type to description
+        style: "code" or "nl"
+    
+    Returns:
+        Formatted schema block
+    """
+    if style == "code":
+        lines = []
+        for entity_type in entity_types:
+            if entity_type in entity_definitions:
+                desc = entity_definitions[entity_type]
+                lines.append(f'\t# "{entity_type}": {desc}')
+            else:
+                lines.append(f'\t# "{entity_type}"')
+        return '\n'.join(lines)
+    else:
+        return ', '.join(entity_types)
+
 
 def build_code_style_prompt(
     text: str,
     entities: List[Dict],
-    config: CodeStyleConfig,
+    config: Any,
+    entity_types: List[str],
+    entity_definitions: Dict[str, str],
+    include_schema: bool = True,
     include_output: bool = True
 ) -> str:
     """
-    Build a code-style (pl-func) prompt for NER.
+    Build a code-style (pl-func) prompt for NER with entity schema.
     
     Args:
         text: Input text
-        entities: List of entity dicts with 'text' and 'type' keys (for examples)
+        entities: List of entity dicts (for examples)
         config: Code style configuration
-        include_output: Whether to include entity appends (for examples) or not (for test)
+        entity_types: Valid entity type names
+        entity_definitions: Entity type descriptions
+        include_schema: Whether to include entity type definitions
+        include_output: Whether to include entity appends
     
     Returns:
         Formatted prompt string
     """
     lines = [
-        f'def {config.function_name}({config.function_input}):',
-        f'\t""" {config.docstring} . """',
-        f'\t{config.input_var} = "{text}"',
-        f'\t{config.list_var} = []',
-        f'\t# {config.inline_comment}',
+        f'def {config.function_name}(input_text):',
+        f'\t""" {config.docstring} """',
     ]
     
+    # Add entity schema block (key enhancement over original CodeIE)
+    if include_schema:
+        lines.append(f'\t{config.entity_header}')
+        schema_block = build_entity_schema_block(
+            entity_types, entity_definitions, style="code"
+        )
+        lines.append(schema_block)
+        lines.append('')  # Empty line after schema
+    
+    # Input and entity list
+    lines.append(f'\tinput_text = "{text}"')
+    lines.append('\tentity_list = []')
+    lines.append('\t# extracted named entities')
+    
+    # Add entity outputs for examples
     if include_output:
         for entity in entities:
             entity_text = entity.get('text', entity.get('span', ''))
             entity_type = entity.get('type', entity.get('label', ''))
             lines.append(
-                f'\t{config.list_var}.append({{"{config.entity_text_key}": "{entity_text}", "{config.entity_type_key}": "{entity_type}"}})'
+                f'\tentity_list.append({{"text": "{entity_text}", "type": "{entity_type}"}})'
             )
     
     return '\n'.join(lines)
@@ -133,22 +199,30 @@ def build_code_style_prompt(
 def build_nl_style_prompt(
     text: str,
     record: str,
-    config: NLStyleConfig,
+    config: Any,
+    entity_types: List[str],
+    include_schema: bool = True,
     include_output: bool = True
 ) -> str:
     """
-    Build a natural language style (nl-sel) prompt for NER.
+    Build a natural language style (nl-sel) prompt for NER with entity schema.
     
     Args:
         text: Input text
         record: SEL-format record string (for examples)
         config: NL style configuration
-        include_output: Whether to include record (for examples) or not (for test)
+        entity_types: Valid entity type names
+        include_schema: Whether to include schema in prompt
+        include_output: Whether to include record
     
     Returns:
         Formatted prompt string
     """
-    prompt = f'{config.input_prefix} "{text}" {config.input_suffix} {config.entity_prompt} '
+    schema_str = ', '.join(entity_types) if include_schema else ''
+    
+    # Format text_prefix with placeholders
+    prompt = config.text_prefix.format(text=text, schema=schema_str)
+    prompt += config.entity_prompt
     
     if include_output and record:
         prompt += record
@@ -166,18 +240,7 @@ def load_fewshot_examples(
     num_shots: int,
     seed: int
 ) -> List[Dict]:
-    """
-    Load few-shot examples from the stratified samples (from training data).
-    
-    Args:
-        data_dir: Base data directory
-        granularity: "coarse" or "fine"
-        num_shots: Number of shots
-        seed: Random seed used for sampling
-    
-    Returns:
-        List of example dictionaries
-    """
+    """Load few-shot examples from the stratified samples (from training data)."""
     shot_dir = os.path.join(
         data_dir,
         f"fewnerd_{granularity}_shot",
@@ -205,39 +268,43 @@ def load_fewshot_examples(
 def build_icl_prompt(
     examples: List[Dict],
     style: str,
-    variation_config: Any
+    variation_config: Any,
+    entity_types: List[str],
+    entity_definitions: Dict[str, str],
+    include_schema: bool = True
 ) -> str:
     """
     Build the in-context learning prompt from few-shot examples.
     
-    Args:
-        examples: List of example dictionaries
-        style: "pl" or "nl"
-        variation_config: Style-specific configuration
-    
-    Returns:
-        Concatenated ICL prompt string
+    Note: Schema is only included in the FIRST example to avoid redundancy.
     """
     prompt_parts = []
     
-    for example in examples:
+    for i, example in enumerate(examples):
         text = example['text']
         
+        # Only include schema in first example
+        use_schema = include_schema and (i == 0)
+        
         if style == "pl":
-            # Use spot_asoc for entities
             entities = example.get('spot_asoc', [])
             example_prompt = build_code_style_prompt(
                 text=text,
                 entities=entities,
                 config=variation_config,
+                entity_types=entity_types,
+                entity_definitions=entity_definitions,
+                include_schema=use_schema,
                 include_output=True
             )
-        else:  # nl style
+        else:
             record = example.get('record', '')
             example_prompt = build_nl_style_prompt(
                 text=text,
                 record=record,
                 config=variation_config,
+                entity_types=entity_types,
+                include_schema=use_schema,
                 include_output=True
             )
         
@@ -252,20 +319,8 @@ def build_icl_prompt(
 # Inference & Parsing
 # ============================================================================
 
-def run_inference(
-    prompt: str,
-    config: ExperimentConfig
-) -> str:
-    """
-    Run inference using the custom API.
-    
-    Args:
-        prompt: The full prompt (ICL + test input)
-        config: Experiment configuration
-    
-    Returns:
-        Generated completion text
-    """
+def run_inference(prompt: str, config: ExperimentConfig) -> str:
+    """Run inference using the custom API."""
     try:
         response = CustomAPIWrapper.call(
             prompt=prompt,
@@ -284,27 +339,15 @@ def run_inference(
         return ""
 
 
-def parse_code_style_output(
-    output: str,
-    entity_types: List[str]
-) -> List[Dict]:
-    """
-    Parse code-style output to extract entities.
-    
-    Args:
-        output: Generated code output
-        entity_types: Valid entity type names
-    
-    Returns:
-        List of extracted entity dictionaries
-    """
+def parse_code_style_output(output: str, entity_types: List[str]) -> List[Dict]:
+    """Parse code-style output to extract entities."""
     entities = []
     
     # Pattern to match entity_list.append({"text": "...", "type": "..."})
-    pattern = r'entity_list\.append\(\{["\']text["\']: ["\']([^"\']*)["\'], ["\']type["\']: ["\']([^"\']*)["\']'
+    pattern = r'entity_list\.append\(\{["\']text["\']:\s*["\']([^"\']*)["\'],\s*["\']type["\']:\s*["\']([^"\']*)["\']'
     
-    # Also try reverse order: {"type": "...", "text": "..."}
-    pattern_alt = r'entity_list\.append\(\{["\']type["\']: ["\']([^"\']*)["\'], ["\']text["\']: ["\']([^"\']*)["\']'
+    # Also try reverse order
+    pattern_alt = r'entity_list\.append\(\{["\']type["\']:\s*["\']([^"\']*)["\'],\s*["\']text["\']:\s*["\']([^"\']*)["\']'
     
     for match in re.finditer(pattern, output):
         text, entity_type = match.groups()
@@ -319,42 +362,19 @@ def parse_code_style_output(
     return entities
 
 
-def parse_nl_style_output(
-    output: str,
-    text: str,
-    entity_types: List[str]
-) -> List[Dict]:
-    """
-    Parse NL-style (SEL format) output to extract entities.
-    
-    This is more complex as it uses special tokens like <0>, <1>, <5>
-    which represent structure in the UIE format.
-    
-    Args:
-        output: Generated NL output
-        text: Original input text (for validation)
-        entity_types: Valid entity type names
-    
-    Returns:
-        List of extracted entity dictionaries
-    """
+def parse_nl_style_output(output: str, text: str, entity_types: List[str]) -> List[Dict]:
+    """Parse NL-style (SEL format) output to extract entities."""
     entities = []
     
-    # SEL format: <0> <0> type <5> span <1> <0> type <5> span <1> <1>
-    # Simplified parsing - extract type-span pairs
-    
-    # Remove outer markers and split by entity boundaries
+    # Clean up output
     output = output.replace('<extra_id_', '<').replace('>', '>')
     
     # Pattern for: <0> type <5> span <1>
     pattern = r'<0>\s*(\w+(?:\s+\w+)*)\s*<5>\s*([^<]+?)\s*<1>'
     
     for match in re.finditer(pattern, output):
-        entity_type = match.group(1).strip().lower()
+        entity_type = match.group(1).strip().lower().replace(' ', '-')
         entity_text = match.group(2).strip()
-        
-        # Normalize entity type
-        entity_type = entity_type.replace(' ', '-')
         
         if entity_type in entity_types and entity_text:
             entities.append({'text': entity_text, 'type': entity_type})
@@ -370,39 +390,14 @@ def evaluate_predictions(
     gold_list: List[List[Dict]],
     pred_list: List[List[Dict]]
 ) -> Dict[str, float]:
-    """
-    Evaluate predictions against gold standard.
-    
-    Args:
-        gold_list: List of gold entity lists per sample
-        pred_list: List of predicted entity lists per sample
-    
-    Returns:
-        Dictionary with precision, recall, F1 scores
-    """
-    # Convert to format expected by EntityScorer
-    gold_formatted = []
-    pred_formatted = []
-    
-    for gold_entities, pred_entities in zip(gold_list, pred_list):
-        # String-based matching (more lenient than offset-based)
-        gold_formatted.append({
-            'string': [(e['type'], e['text']) for e in gold_entities],
-            'offset': []  # Not using offset-based evaluation
-        })
-        pred_formatted.append({
-            'string': [(e['type'], e['text']) for e in pred_entities],
-            'offset': []
-        })
-    
-    # Manual F1 calculation
+    """Evaluate predictions against gold standard using string-based matching."""
     total_tp = 0
     total_gold = 0
     total_pred = 0
     
-    for gold, pred in zip(gold_formatted, pred_formatted):
-        gold_set = set(gold['string'])
-        pred_set = set(pred['string'])
+    for gold_entities, pred_entities in zip(gold_list, pred_list):
+        gold_set = set((e['type'], e['text']) for e in gold_entities)
+        pred_set = set((e['type'], e['text']) for e in pred_entities)
         
         tp = len(gold_set & pred_set)
         total_tp += tp
@@ -428,18 +423,14 @@ def evaluate_predictions(
 # ============================================================================
 
 def run_experiment(config: ExperimentConfig):
-    """
-    Run a complete NER experiment with CodeIE.
-    
-    Args:
-        config: Experiment configuration
-    """
+    """Run a complete NER experiment with CodeIE."""
     logging.info("="*60)
-    logging.info("CodeIE NER Experiment")
+    logging.info("CodeIE NER Experiment (Enhanced with Entity Schema)")
     logging.info("="*60)
     logging.info(f"Granularity: {config.granularity}")
     logging.info(f"Style: {config.style}")
     logging.info(f"Variation: {config.variation}")
+    logging.info(f"Include Schema: {config.include_schema}")
     logging.info(f"Shots: {config.num_shots}")
     logging.info(f"Seed: {config.seed}")
     logging.info("="*60)
@@ -447,6 +438,11 @@ def run_experiment(config: ExperimentConfig):
     # Setup output directory
     output_dir = os.path.join(CODEIE_ROOT, config.output_dir)
     os.makedirs(output_dir, exist_ok=True)
+    
+    # Load prompt variations and entity definitions
+    CODE_STYLE_VARIATIONS, NL_STYLE_VARIATIONS, ENTITY_DEFINITIONS = load_variations(
+        config.granularity
+    )
     
     # Get variation config
     if config.style == "pl":
@@ -458,16 +454,18 @@ def run_experiment(config: ExperimentConfig):
         if not variation_config:
             raise ValueError(f"Unknown NL-style variation: {config.variation}")
     
+    # Get entity types and definitions
+    entity_types = list(ENTITY_DEFINITIONS.keys())
+    entity_definitions = ENTITY_DEFINITIONS
+    
+    logging.info(f"Entity types ({len(entity_types)}): {entity_types}")
+    
     # Load test data
     tag_key = 'ner_tags' if config.granularity == 'coarse' else 'fine_ner_tags'
     test_path = os.path.join(PROJECT_ROOT, 'few-nerd_test')
     
     logging.info(f"Loading test data from: {test_path}")
     ds_test = load_from_disk(test_path)
-    tag_names = ds_test.features[tag_key].feature.names
-    entity_types = [t for t in tag_names if t != 'O']
-    
-    logging.info(f"Entity types: {entity_types}")
     
     # Load few-shot examples (from training data)
     data_dir = os.path.join(CODEIE_ROOT, config.data_dir)
@@ -486,16 +484,27 @@ def run_experiment(config: ExperimentConfig):
     icl_prompt = build_icl_prompt(
         examples=examples,
         style=config.style,
-        variation_config=variation_config
+        variation_config=variation_config,
+        entity_types=entity_types,
+        entity_definitions=entity_definitions,
+        include_schema=config.include_schema
     )
     
     logging.info(f"ICL prompt length: {len(icl_prompt)} characters")
     
+    # Show sample of the prompt for verification
+    logging.info("Sample ICL prompt (first 1000 chars):")
+    logging.info("-" * 40)
+    for line in icl_prompt[:1000].split('\n'):
+        logging.info(line)
+    logging.info("-" * 40)
+    
     # Prepare results storage
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    schema_tag = "with_schema" if config.include_schema else "no_schema"
     result_file = os.path.join(
         output_dir,
-        f"{config.granularity}_{config.style}_{config.variation}_{config.num_shots}shot_seed{config.seed}_{timestamp}.json"
+        f"{config.granularity}_{config.style}_{config.variation}_{schema_tag}_{config.num_shots}shot_seed{config.seed}_{timestamp}.json"
     )
     
     all_gold = []
@@ -508,6 +517,8 @@ def run_experiment(config: ExperimentConfig):
         num_samples = min(num_samples, config.max_test_samples)
     
     logging.info(f"Processing {num_samples} test samples...")
+    
+    tag_names = ds_test.features[tag_key].feature.names
     
     for i in range(num_samples):
         sample = ds_test[i]
@@ -534,12 +545,15 @@ def run_experiment(config: ExperimentConfig):
         if current_entity:
             gold_entities.append(current_entity)
         
-        # Build test prompt
+        # Build test prompt (no schema - already in ICL examples)
         if config.style == "pl":
             test_prompt = build_code_style_prompt(
                 text=text,
                 entities=[],
                 config=variation_config,
+                entity_types=entity_types,
+                entity_definitions=entity_definitions,
+                include_schema=False,  # Don't repeat schema for test input
                 include_output=False
             )
         else:
@@ -547,6 +561,8 @@ def run_experiment(config: ExperimentConfig):
                 text=text,
                 record="",
                 config=variation_config,
+                entity_types=entity_types,
+                include_schema=False,
                 include_output=False
             )
         
@@ -601,6 +617,7 @@ def run_experiment(config: ExperimentConfig):
                 'metrics': current_metrics,
                 'processed_count': len(sentence_results),
                 'timestamp': timestamp,
+                'entity_types': entity_types,
                 'sentences': sentence_results
             }
             with open(result_file, 'w') as f:
@@ -639,6 +656,8 @@ def main():
                         help="Prompt style: pl (code) or nl (natural language)")
     parser.add_argument('--variation', default='v0_original',
                         help="Prompt variation name")
+    parser.add_argument('--no_schema', action='store_true',
+                        help="Disable entity schema in prompts (original CodeIE behavior)")
     parser.add_argument('--run_all_variations', action='store_true',
                         help="Run all variations for the selected style")
     
@@ -666,6 +685,7 @@ def main():
         max_test_samples=args.max_test,
         style=args.style,
         variation=args.variation,
+        include_schema=not args.no_schema,
         max_tokens=args.max_tokens,
         temperature=args.temperature
     )
@@ -678,7 +698,8 @@ def main():
         config.model_name = args.model
     
     if args.run_all_variations:
-        # Run all variations for the selected style
+        # Load variations
+        CODE_STYLE_VARIATIONS, NL_STYLE_VARIATIONS, _ = load_variations(args.granularity)
         variations = CODE_STYLE_VARIATIONS if args.style == 'pl' else NL_STYLE_VARIATIONS
         
         all_results = {}
