@@ -64,11 +64,12 @@ guideline_modules = [
 MODEL_LOAD_PARAMS = {
     "inference": True,
     "model_weights_name_or_path": "HiTZ/GoLLIE-7B",
-    "quantization": None,
+    "quantization": 4, #For testing on Small GPU with less than 20 Gb Ram 
     "use_lora": False,
     "force_auto_device_map": True,
-    "use_flash_attention": True,
-    "torch_dtype": "bfloat16"
+    "use_flash_attention": False, # For testing on Colab
+    "torch_dtype": "bfloat16",
+    "USE_4BIT": True
 }
 
 GENERATE_PARAMS = {
