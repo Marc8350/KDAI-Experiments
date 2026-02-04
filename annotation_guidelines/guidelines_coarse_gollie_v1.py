@@ -3,43 +3,43 @@ from src.tasks.utils_typing import Entity, dataclass
 
 @dataclass
 class Art(Entity):
-    """Relates to imaginative productions and their titles, covering periodicals, cinema, stage plays, and serial programs."""
-    span: str  # For example: "National Geographic", "Pulp Fiction", "The Marriage of Figaro", "Breaking Bad"
+    """Includes artistic productions like periodicals, movies, theatrical productions, operas, broadcast programs, and musical pieces or bands."""
+    span: str  # For example: "Time", "The Seven Year Itch", "Imelda de ' Lambertazzi", "The Gale Storm Show : Oh , Susanna", "Hollywood Studio Symphony"
 
 @dataclass
 class Building(Entity):
-    """Identifies architectural structures and public facilities, including exhibition halls, transit terminals, and sports complexes."""
-    span: str  # For example: "The Louvre", "Heathrow Airport", "Madison Square Garden"
+    """Denotes artificial constructions, for instance, galleries, flight terminals, arenas, and designated architectural sites."""
+    span: str  # For instance: "Henry Ford Museum", "Sheremetyevo International Airport", "Boston Garden", "Communiplex"
 
 @dataclass
 class Event(Entity):
-    """Designates historical milestones, social transformations, organized gatherings, or specific performance spaces."""
-    span: str  # For example: "The French Revolution", "Woodstock", "Civil Rights Movement", "Abbey Road Studios"
+    """Relates to historical happenings, uprisings, societal movements, or particular arranged phases and occasions."""
+    span: str  # Representative cases: "French Revolution", "Eastwood Scoring Stage", "Bicentennial Boycott movement", "Masaryk Democratic Movement"
 
 @dataclass
 class Location(Entity):
-    """Describes geographic regions and political zones, encompassing sovereign states, cities, territories, and bodies of water."""
-    span: str  # For example: "Bavaria", "Kingdom of Thailand", "Pacific Ocean", "Scandinavia", "Kyoto"
+    """Consists of geographic units like nations, areas, urban centers, provinces, and distinct territories."""
+    span: str  # Including: "Republic of Croatia", "Mediterranean Basin", "Near East", "Cornwall", "Dearborn", "Michigan"
 
 @dataclass
 class Organization(Entity):
-    """Categorizes collective entities, such as multinational bodies, commercial enterprises, and professional sports franchises."""
-    span: str  # For example: "UNESCO", "Microsoft", "Real Madrid", "National Basketball Association"
+    """Pertains to corporations, groups, global organizations, athletic clubs, and corporate departments."""
+    span: str  # Illustrations: "IAEA", "Church 's Chicken", "Arsenal", "First Division", "Luc Alphand Aventures"
 
 @dataclass
 class Other(Entity):
-    """Captures entities not fitting primary labels, like molecular biology terms (proteins, sequences), spoken languages, and chemical substances."""
-    span: str  # For example: "Hemoglobin", "C-terminal", "SH3 domain", "Mandarin Chinese", "Plutonium"
+    """Covers varied categories including technical terminology, dialects, chemical substances, and legal statutes."""
+    span: str  # Like: "Amphiphysin", "N-terminal", "English", "uranium", "United States Freedom Support Act"
 
 @dataclass
 class Person(Entity):
-    """Refers to individual humans, whether they are historical figures, creators, or fictional personas."""
-    span: str  # For example: "Albert Einstein", "Virginia Woolf", "Steven Spielberg", "Sherlock Holmes", "Marie Curie"
+    """Identifies individual humans, encompassing actual, historical figures or imaginary personas."""
+    span: str  # Such as: "George Axelrod", "Richard Quine", "Gaetano Donizetti", "Deborah Lurie", "William Morshead"
 
 @dataclass
 class Product(Entity):
-    """Pertains to manufactured commodities, especially vehicle types, automotive prototypes, or specific mechanical apparatuses."""
-    span: str  # For example: "Tesla Model S", "Boeing 747", "Leica M6", "Ford Mustang"
+    """Concerns market commodities, automobile types, equipment, armaments, and additional fabricated products."""
+    span: str  # Cases like: "Rolls-Royce Phantom", "Corvettes - GT1 C6R", "Fairbottom Bobs", "ZU-23-2M Wróbel"
 
 ENTITY_DEFINITIONS: List[Entity] = [
     Art,

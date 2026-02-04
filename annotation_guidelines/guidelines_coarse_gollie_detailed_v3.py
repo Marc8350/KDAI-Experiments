@@ -3,43 +3,43 @@ from src.tasks.utils_typing import Entity, dataclass
 
 @dataclass
 class Art(Entity):
-    """Denotes titles of artistic productions and media, such as cinematic films, theatrical plays, periodicals, television broadcasts, and operatic works."""
-    span: str  # Such as: "Time", "The Seven Year Itch", "Imelda de ' Lambertazzi", "The Gale Storm Show: Oh, Susanna"
+    """Denotes artistic creations like movies, literature, periodicals, musical recordings, theatrical productions, and TV series."""
+    span: str  # Such as: "The Shawshank Redemption", "Time", "Bosch", "The Seven Year Itch", "L'Atlantide", "Imelda de' Lambertazzi"
 
 @dataclass
 class Building(Entity):
-    """Represents artificial constructions and various facilities, including athletic stadiums, museum buildings, and international airports."""
-    span: str  # Such as: "Henry Ford Museum", "Sheremetyevo International Airport", "Boston Garden"
+    """Includes constructed facilities and physical edifices, for instance, medical centers, arenas, air terminals, galleries, and sound studios."""
+    span: str  # Such as: "Boston Garden", "Henry Ford Museum", "Alpha Recording Studios", "Sheremetyevo International Airport", "Memorial Sloan-Kettering Cancer Center"
 
 @dataclass
 class Event(Entity):
-    """Includes specific organized happenings, historical incidents, social uprisings, revolutions, or particular performance stages."""
-    span: str  # Such as: "Iranian Constitutional Revolution", "Eastwood Scoring Stage", "Bicentennial Boycott movement"
+    """Categorizes planned happenings and historical milestones, encompassing athletic championships, sociopolitical shifts, uprisings, voting processes, and structured gatherings."""
+    span: str  # Such as: "World Cup", "French Revolution", "Union for a Popular Movement", "Stanley Cup", "March 1898 elections", "Eastwood Scoring Stage"
 
 @dataclass
 class Location(Entity):
-    """Covers geographic sites and geopolitical zones, such as nations, urban centers, territories, and aquatic bodies."""
-    span: str  # Such as: "Michigan", "Republic of Croatia", "Mediterranean Basin", "Near East", "Cornwall"
+    """Relates to terrestrial sites and geographic areas, such as nations, municipalities, provinces, specific hydrographic basins, or transport routes."""
+    span: str  # Such as: "Mediterranean Basin", "Croatia", "London", "Cornwall", "Victoria line", "Michigan", "Northern Europe"
 
 @dataclass
 class Organization(Entity):
-    """Pertains to organized associations of individuals, encompassing businesses, global agencies, athletic clubs, and professional leagues."""
-    span: str  # Such as: "IAEA", "Church's Chicken", "Texas Chicken", "Arsenal", "Tottenham"
+    """Identifies collective bodies and structured associations, including corporate entities, athletic clubs, state departments, armed forces, and global organizations."""
+    span: str  # Such as: "Warner Brothers", "IAEA", "French National Assembly", "Church's Chicken", "Arsenal", "Supreme Court", "4th Army"
 
 @dataclass
 class Other(Entity):
-    """Used for entities excluded from conventional classifications, such as chemical elements, spoken languages, and biological components like proteins or domains."""
-    span: str  # Such as: "Amphiphysin", "N-terminal", "BAR", "English", "uranium"
+    """Covers distinct entities falling outside standard classifications, such as biochemical compounds, chemical elements, statutory laws, awards, linguistics, and metaphysical ideas like astrological signs."""
+    span: str  # Such as: "p53 protein", "uranium", "Order of the Republic of Guinea", "Amphiphysin", "United States Freedom Support Act", "English", "Zodiac"
 
 @dataclass
 class Person(Entity):
-    """Identifies human individuals, which may include literary writers, historical personalities, film directors, and imaginary figures."""
-    span: str  # Such as: "George Axelrod", "Richard Quine", "Gaetano Donizetti", "Ellaline Terriss", "Edmund Payne"
+    """Specifies individual humans, whether actual or imaginary, encompassing their monikers and formal designations."""
+    span: str  # Such as: "Bette Davis", "George Axelrod", "Binion", "Richard Quine", "Gaetano Donizetti", "Mrs. Strong", "Jacqueline Bouvier Kennedy"
 
 @dataclass
 class Product(Entity):
-    """Concerns items produced via manufacturing, specifically focusing on car models, prototype vehicles, and particular mechanical devices."""
-    span: str  # Such as: "Rolls-Royce Phantom", "Rolls-Royce 100EX", "Corvettes-GT1 C6R", "Fairbottom Bobs"
+    """Represents commercial items and manufactured goods, such as specialized transportation models, armaments, industrial equipment, software, and computing hardware."""
+    span: str  # Such as: "Wikipedia", "Rolls-Royce Phantom", "PDP-1", "Corvettes", "Fairbottom Bobs", "ZU-23-2M Wróbel", "AR-15"
 
 ENTITY_DEFINITIONS: List[Entity] = [
     Art,

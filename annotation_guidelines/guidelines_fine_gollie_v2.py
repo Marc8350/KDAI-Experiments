@@ -3,333 +3,333 @@ from src.tasks.utils_typing import Entity, dataclass
 
 @dataclass
 class ArtBroadcastprogram(Entity):
-    """Identifies content broadcast over radio or television, such as talk segments, episodic series, and game shows."""
-    span: str  # e.g., "The Tonight Show", "The Simpsons", "MasterChef", "CSI: Miami", "Saturday Night Live"
+    """Covers radio broadcasts, television shows, and episodic programs across different formats, including talk shows, dating series, or mockumentaries."""
+    span: str  # Examples: "The Gale Storm Show", "12 Corazones", "Jonovision", "Trailer Park Boys", "3 Idiots"
 
 @dataclass
 class ArtFilm(Entity):
-    """Covers cinematic productions and motion pictures across all genres."""
-    span: str  # e.g., "Pulp Fiction", "Inception", "Parasite", "The Godfather"
+    """Denotes cinematic productions, encompassing feature films, motion pictures, adaptations, and television series."""
+    span: str  # Examples: "L'Atlantide", "The Shawshank Redemption", "Bosch", "Men in Her Diary"
 
 @dataclass
 class ArtMusic(Entity):
-    """Includes musical compositions like albums, individual tracks, bands, or orchestral arrangements."""
-    span: str  # e.g., "Bohemian Rhapsody", "The Beatles", "Dark Side of the Moon", "London Philharmonic Orchestra"
+    """Pertains to musical works such as songs, albums, symphonies, orchestras, and recorded performances."""
+    span: str  # Examples: "Hollywood Studio Symphony", "Atkinson, Danko and Ford", "Champion Lover", "Mass in C minor", "Altenberg Lieder"
 
 @dataclass
 class ArtOther(Entity):
-    """Captures diverse creative outputs not fitting standard categories, including sculptures or music videos."""
-    span: str  # e.g., "David by Michelangelo", "Thriller music video", "The Gates installation"
+    """Identifies miscellaneous artistic creations like music videos, sculptures, or fountains not categorized elsewhere."""
+    span: str  # Examples: "Venus de Milo", "The Today Show", "Bleed Like Me", "Cloud Gate"
 
 @dataclass
 class ArtPainting(Entity):
-    """Refers to visual art such as murals, canvas paintings, or specific artistic photography collections."""
-    span: str  # e.g., "The Starry Night", "Guernica", "The Scream", "Mona Lisa"
+    """Comprises visual arts like paintings and graffiti, as well as specific product lines such as camera lenses."""
+    span: str  # Examples: "Production/Reproduction", "Cofiwch Dryweryn", "Touit", "Loxia", "Batis", "Kamichama Karin"
 
 @dataclass
 class ArtWrittenart(Entity):
-    """Denotes literary works including novels, periodicals, theatrical plays, and operas."""
-    span: str  # e.g., "The Great Gatsby", "The New Yorker", "Hamlet", "War and Peace"
+    """Includes literary works, for instance, novels, magazines, academic papers, and scripts."""
+    span: str  # Examples: "Time", "The Seven Year Itch", "Imelda de ' Lambertazzi", "Rita Hayworth and Shawshank Redemption", "Writing, Teachers and Students in Graeco-Roman Egypt"
 
 @dataclass
 class BuildingAirport(Entity):
-    """Pertains to aviation hubs and flight terminals."""
-    span: str  # e.g., "John F. Kennedy International Airport", "Haneda Airport", "Charles de Gaulle Airport"
+    """Designates aviation hubs, including terminals and the broader airport infrastructure."""
+    span: str  # Examples: "Sheremetyevo International Airport", "London Luton Airport", "Newark Liberty International Airport", "Zhuhai Airport"
 
 @dataclass
 class BuildingHospital(Entity):
-    """Refers to medical institutions, specialized clinics, and healthcare centers."""
-    span: str  # e.g., "Mayo Clinic", "St. Jude Children's Research Hospital", "Massachusetts General Hospital"
+    """Signifies healthcare facilities like clinics, general hospitals, and specialized medical centers."""
+    span: str  # Examples: "Memorial Sloan-Kettering Cancer Center", "Yeungnam University Hospital", "Hokkaido University Hospital", "Huntington Hospital"
 
 @dataclass
 class BuildingHotel(Entity):
-    """Includes various lodging facilities and resort establishments."""
-    span: str  # e.g., "The Ritz-Carlton", "Burj Al Arab", "Marriott Marquis"
+    """Includes lodging establishments like hotels, resorts, and large-scale guest accommodations."""
+    span: str  # Examples: "The Standard Hotel", "Radisson Blu Sea Plaza Hotel", "Flamingo Hotel", "Hotel Sacher Salzburg"
 
 @dataclass
 class BuildingLibrary(Entity):
-    """Designates repositories of books, research archives, and public libraries."""
-    span: str  # e.g., "Library of Congress", "New York Public Library", "Bodleian Library"
+    """Refers to archival institutions and libraries at the state or national level."""
+    span: str  # Examples: "Bayerische Staatsbibliothek", "British Library", "Berlin State Library", "Edmon Low Library", "National Library of Laos"
 
 @dataclass
 class BuildingOther(Entity):
-    """Identifies miscellaneous physical constructions like shrines, museums, or recording spaces."""
-    span: str  # e.g., "The Louvre", "Guggenheim Museum", "Abbey Road Studios", "St. Peter's Basilica"
+    """Covers diverse structures such as recording studios, museums, community halls, mansions, and religious buildings."""
+    span: str  # Examples: "Henry Ford Museum", "Communiplex", "Alpha Recording Studios", "Church of England parish church of St John The Evangelist", "Palazzo Monte dei Poveri Vergognosi"
 
 @dataclass
 class BuildingRestaurant(Entity):
-    """Covers eateries, bistros, cafes, and snack bars."""
-    span: str  # e.g., "The French Laundry", "McDonald's", "Noma", "Starbucks"
+    """Represents eateries where meals are provided, like restaurants, delis, and dining facilities."""
+    span: str  # Examples: "Trumbull dining hall", "Carnegie Deli", "Fatburger", "Morrison's"
 
 @dataclass
 class BuildingSportsfacility(Entity):
-    """Refers to athletic arenas, stadiums, and multipurpose sports complexes."""
-    span: str  # e.g., "Wembley Stadium", "Madison Square Garden", "Camp Nou"
+    """Encompasses athletic venues, including sports arenas, stadiums, and specialized physical activity centers."""
+    span: str  # Examples: "Boston Garden", "Sports Center", "Glenn Warner Soccer Facility", "Scotiabank Place"
 
 @dataclass
 class BuildingTheater(Entity):
-    """Identifies venues for performance arts, including opera houses and playhouses."""
-    span: str  # e.g., "La Scala", "Sydney Opera House", "Royal Shakespeare Theatre"
+    """Refers to performance spaces such as opera houses and theaters."""
+    span: str  # Examples: "Sanders Theatre", "Pittsburgh Civic Light Opera", "National Paris Opera", "Whitehall Theatre"
 
 @dataclass
 class EventAttackBattleWarMilitaryconflict(Entity):
-    """Relates to armed hostilities, historic battles, and large-scale military campaigns."""
-    span: str  # e.g., "World War II", "Battle of Gettysburg", "Operation Desert Storm", "The Napoleonic Wars"
+    """Denotes armed conflicts, including wars, battles, and specific military offensives."""
+    span: str  # Examples: "Vietnam War", "Easter Offensive", "Operation Zipper", "Battle of Romani", "World War I"
 
 @dataclass
 class EventDisaster(Entity):
-    """Covers catastrophic occurrences, whether natural or resulting from human error."""
-    span: str  # e.g., "The Great Fire of London", "Hurricane Katrina", "Chernobyl Disaster"
+    """Identifies major catastrophes like aviation crashes, earthquakes, famines, or mining accidents."""
+    span: str  # Examples: "1693 Sicily earthquake", "1990s North Korean famine", "1912 North Mount Lyell Disaster", "Trigana Air Service Flight 267"
 
 @dataclass
 class EventElection(Entity):
-    """Pertains to the process of political voting, including referendums and parliamentary polls."""
-    span: str  # e.g., "2020 Presidential Election", "Brexit Referendum", "German Federal Election"
+    """Covers organized balloting processes, including by-elections and specific legislative terms."""
+    span: str  # Examples: "March 1898 elections", "Elections to the European Parliament", "1982 Mitcham and Morden by-election", "1997-2001 parliament"
 
 @dataclass
 class EventOther(Entity):
-    """Identifies various social movements or organized series of events not otherwise classified."""
-    span: str  # e.g., "The Renaissance", "Civil Rights Movement", "The Industrial Revolution"
+    """Includes miscellaneous occurrences like political movements or events held on professional stages."""
+    span: str  # Examples: "Eastwood Scoring Stage", "Masaryk Democratic Movement", "Union for a Popular Movement", "Haq Movement"
 
 @dataclass
 class EventProtest(Entity):
-    """Refers to organized public demonstrations, uprisings, and socio-political revolutions."""
-    span: str  # e.g., "The Arab Spring", "French Revolution", "The Salt March"
+    """Represents systematic social resistance, such as rebellions, boycotts, and revolutions."""
+    span: str  # Examples: "Iranian Constitutional Revolution", "Bicentennial Boycott", "Iranian revolution", "Irish Rebellion of 1798"
 
 @dataclass
 class EventSportsevent(Entity):
-    """Covers competitive tournaments, championships, and athletic matches."""
-    span: str  # e.g., "The Super Bowl", "Wimbledon", "The Olympic Games", "Tour de France"
+    """Pertains to athletic competitions, including tournaments, championships, and specific races."""
+    span: str  # Examples: "2021 Stanley Cup", "1958 World Cup", "2008 National Champions", "Round 3/Race 9"
 
 @dataclass
 class LocationGpe(Entity):
-    """Designates political regions such as sovereign nations, municipalities, and administrative states."""
-    span: str  # e.g., "Japan", "New York City", "Bavaria", "The European Union", "South Africa"
+    """Refers to geopolitical entities, for example, cities, countries, provinces, and states."""
+    span: str  # Examples: "Republic of Croatia", "Mediterranean Basin", "Near East", "Cornwall", "Dearborn", "Michigan"
 
 @dataclass
 class LocationBodiesofwater(Entity):
-    """Identifies aquatic features like oceans, reservoirs, rivers, and coastal areas."""
-    span: str  # e.g., "Pacific Ocean", "Lake Superior", "The Nile River", "Hoover Dam"
+    """Designates natural or artificial aquatic features like rivers, dams, lakes, and seas."""
+    span: str  # Examples: "Atatürk Dam Lake", "Arthur Kill", "Norfolk coast", "East China Sea", "Jordan River"
 
 @dataclass
 class LocationIsland(Entity):
-    """Refers to landmasses surrounded by water or island groups."""
-    span: str  # e.g., "Madagascar", "Hawaii", "The Philippines", "Tasmania"
+    """Denotes land surrounded by water, such as archipelagos, peninsulas, and islands."""
+    span: str  # Examples: "Samsat district", "Staten Island", "Laccadives", "Maldives", "Mainland", "Shetland"
 
 @dataclass
 class LocationMountain(Entity):
-    """Covers topographic peaks, mountain chains, and glacial formations."""
-    span: str  # e.g., "Mount Everest", "The Andes", "Kilimanjaro", "Matterhorn"
+    """Includes geographical elevations like mountain ranges, glaciers, and peaks."""
+    span: str  # Examples: "Ruweisat Ridge", "Salamander Glacier", "Mount Diablo", "K2", "Himalayan", "Karakoram"
 
 @dataclass
 class LocationOther(Entity):
-    """Designates geographic markers or transit routes like bridges and specific coordinate lines."""
-    span: str  # e.g., "Golden Gate Bridge", "The Equator", "Panama Canal", "38th Parallel"
+    """Represents various geographic points of interest, transit paths, or estates."""
+    span: str  # Examples: "Cartuther", "Victoria line", "Cley next the Sea", "Camino Palmero", "Big Meadows"
 
 @dataclass
 class LocationPark(Entity):
-    """Identifies protected nature reserves, city parks, and heritage sites."""
-    span: str  # e.g., "Yellowstone National Park", "Central Park", "Serengeti National Park"
+    """Signifies designated green spaces, including national parks, city parks, and historical districts."""
+    span: str  # Examples: "Gramercy Park", "Painted Desert Community Complex", "Shenandoah National Park", "Millennium Park"
 
 @dataclass
 class LocationRoadRailwayHighwayTransit(Entity):
-    """Pertains to transport infrastructure including thoroughfares, subway lines, and rail systems."""
-    span: str  # e.g., "Route 66", "The Orient Express", "Trans-Siberian Railway", "M1 Motorway"
+    """Covers transportation infrastructure, such as highways, railways, bridges, and transit routes."""
+    span: str  # Examples: "Newark-Elizabeth Rail Link", "Friern Barnet Road", "North Jersey Coast Line", "Outerbridge Crossing"
 
 @dataclass
 class OrganizationCompany(Entity):
-    """Refers to corporate entities, commercial firms, and business franchises."""
-    span: str  # e.g., "Apple Inc.", "Toyota Motor Corporation", "Amazon", "Coca-Cola"
+    """Refers to commercial enterprises, including record labels, corporate entities, and fast-food chains."""
+    span: str  # Examples: "Church's Chicken", "WHL", "Two Pesos, Inc.", "Taco Cabana, Inc.", "Warner Brothers"
 
 @dataclass
 class OrganizationEducation(Entity):
-    """Identifies learning institutions like universities, research colleges, and primary schools."""
-    span: str  # e.g., "Harvard University", "Oxford University", "Stanford", "Eton College"
+    """Includes academic institutions such as colleges, universities, and specific school departments."""
+    span: str  # Examples: "Belfast Royal Academy", "MIT", "Barnard College", "Latvia University of Life Sciences and Technologies"
 
 @dataclass
 class OrganizationGovernmentGovernmentagency(Entity):
-    """Denotes state institutions, legislative bodies, and judicial courts."""
-    span: str  # e.g., "The Pentagon", "U.S. Congress", "The Kremlin", "United Nations Security Council"
+    """Denotes governmental bodies, including legislative assemblies, courts, and law enforcement agencies."""
+    span: str  # Examples: "Supreme Court", "Congregazione dei Nobili", "Diet", "US Park Police", "US Postal Police"
 
 @dataclass
 class OrganizationMediaNewspaper(Entity):
-    """Includes journalism outlets, broadcasting networks, and magazine publishers."""
-    span: str  # e.g., "The New York Times", "BBC News", "Reuters", "National Geographic"
+    """Represents news organizations, including newspapers, digital platforms, magazines, and TV networks."""
+    span: str  # Examples: "Al Jazeera", "Clash", "TimeOut Melbourne", "Nickelodeon", "Wikipedia"
 
 @dataclass
 class OrganizationOther(Entity):
-    """Covers miscellaneous collective bodies like military divisions, NGOs, or international unions."""
-    span: str  # e.g., "The Red Cross", "NATO", "Amnesty International", "82nd Airborne Division"
+    """Covers miscellaneous groups like military units, international organizations, and non-profits."""
+    span: str  # Examples: "IAEA", "4th Army", "SS Division Nordland", "Defence Sector C"
 
 @dataclass
 class OrganizationPoliticalparty(Entity):
-    """Refers to political factions and organized interest groups."""
-    span: str  # e.g., "Democratic Party", "Labour Party", "African National Congress"
+    """Identifies organized political groups and parties."""
+    span: str  # Examples: "Shimpotō", "Kenseitō", "Al Wafa ' Islamic party", "National Liberal Party", "Republican"
 
 @dataclass
 class OrganizationReligion(Entity):
-    """Identifies faith-based groups, denominations, and ecclesiastical organizations."""
-    span: str  # e.g., "Anglican Church", "Sunni Islam", "The Vatican", "Sikhism"
+    """Pertains to religious affiliations, including denominations, schools, and faith traditions."""
+    span: str  # Examples: "Jewish", "Christian", "Episcopalians", "United Methodists", "United Church of Christ"
 
 @dataclass
 class OrganizationShoworganization(Entity):
-    """Denotes performance groups like musical bands, ensembles, and dance companies."""
-    span: str  # e.g., "Pink Floyd", "Vienna Philharmonic", "The Rolling Stones", "Bolshoi Ballet"
+    """Includes musical groups, symphony orchestras, and performing arts ensembles."""
+    span: str  # Examples: "Mr. Mister", "Yeah Yeah Yeahs", "Bochumer Symphoniker"
 
 @dataclass
 class OrganizationSportsleague(Entity):
-    """Refers to governing bodies for sports and professional leagues."""
-    span: str  # e.g., "NBA", "Premier League", "FIFA", "Major League Baseball"
+    """Refers to competitive sports leagues and their internal divisions."""
+    span: str  # Examples: "First Division", "China League One", "NHL", "Bundesliga"
 
 @dataclass
 class OrganizationSportsteam(Entity):
-    """Designates specific athletic clubs and national squads."""
-    span: str  # e.g., "Real Madrid", "New Zealand All Blacks", "Chicago Bulls", "Ferrari F1 Team"
+    """Represents athletic squads, national teams, and professional racing groups."""
+    span: str  # Examples: "Arsenal", "Tottenham", "Luc Alphand Aventures", "Swedish national men's ice hockey team", "Audi"
 
 @dataclass
 class OtherAstronomything(Entity):
-    """Covers celestial entities such as planets, stars, and astrological signs."""
-    span: str  # e.g., "Mars", "Alpha Centauri", "Andromeda Galaxy", "The Big Dipper"
+    """Designates astronomical entities and concepts like planets, constellations, and stars."""
+    span: str  # Examples: "Zodiac", "Algol", "42 Camelopardalis", "Sun", "Tandun III"
 
 @dataclass
 class OtherAward(Entity):
-    """Refers to formal honors, prizes, and decorative titles."""
-    span: str  # e.g., "Nobel Peace Prize", "Academy Award", "Pulitzer Prize", "Victoria Cross"
+    """Signifies honors and prizes awarded for accomplishments in fields like science, art, or public service."""
+    span: str  # Examples: "Order of the Republic of Guinea", "Grammy", "European Car of the Year", "Kodansha Manga Award"
 
 @dataclass
 class OtherBiologything(Entity):
-    """Identifies biological components like DNA sequences, specific proteins, or insect orders."""
-    span: str  # e.g., "Hemoglobin", "CRISPR", "Coleoptera", "Mitochondria"
+    """Includes biological elements such as genes, proteins, and taxonomic orders."""
+    span: str  # Examples: "Amphiphysin", "p53 protein", "Ismaridae", "G0 phase", "Rb"
 
 @dataclass
 class OtherChemicalthing(Entity):
-    """Denotes chemical substances, molecular compounds, and periodic elements."""
-    span: str  # e.g., "Methane", "Sodium Chloride", "Helium", "Glucose"
+    """Refers to chemical substances, including gases, compounds, and elements."""
+    span: str  # Examples: "uranium", "carbon dioxide", "sulfur", "Carbon monoxide"
 
 @dataclass
 class OtherCurrency(Entity):
-    """Refers to monetary units and financial denominations."""
-    span: str  # e.g., "US Dollar", "Euro", "Japanese Yen", "Bitcoin"
+    """Represents monetary units and specific currency names."""
+    span: str  # Examples: "Travancore Rupee", "$", "Rs 25 lac crore", "Aruban florin", "Netherlands Antillean guilder"
 
 @dataclass
 class OtherDisease(Entity):
-    """Covers medical ailments, viral infections, and chronic health conditions."""
-    span: str  # e.g., "Type 2 Diabetes", "Influenza", "Malaria", "Alzheimer's Disease"
+    """Covers medical ailments, including syndromes, diseases, and epidemics."""
+    span: str  # Examples: "French Dysentery Epidemic of 1779", "hypothyroidism", "bladder cancer", "Septic shock"
 
 @dataclass
 class OtherEducationaldegree(Entity):
-    """Identifies academic certifications and diplomas."""
-    span: str  # e.g., "Master of Business Administration", "Doctor of Philosophy", "Juris Doctor"
+    """Denotes academic qualifications, including diplomas and degrees."""
+    span: str  # Examples: "BSc ( Hons ) in physics", "Master of Visual Studies", "Bachelor of Education", "Ph.D .", "Medical Degree"
 
 @dataclass
 class OtherGod(Entity):
-    """Refers to deities, mythological figures, and creators in various faiths."""
-    span: str  # e.g., "Zeus", "Vishnu", "Odin", "Athena"
+    """Pertains to divine beings, deities, and sacred historical figures."""
+    span: str  # Examples: "El", "Raijin", "Fujin", "Baglamukhi", "Jesus"
 
 @dataclass
 class OtherLanguage(Entity):
-    """Designates specific human tongues and regional dialects."""
-    span: str  # e.g., "Mandarin Chinese", "Spanish", "Swahili", "Old English"
+    """Includes various languages and their respective linguistic families."""
+    span: str  # Examples: "Hebrew", "Breton-speaking", "Latin", "English", "Arabic"
 
 @dataclass
 class OtherLaw(Entity):
-    """Includes legal statutes, formal treaties, and constitutional acts."""
-    span: str  # e.g., "Magna Carta", "Treaty of Versailles", "Civil Rights Act of 1964"
+    """Refers to legal frameworks, including treaties, acts, and specific legislative sections."""
+    span: str  # Examples: "United States Freedom Support Act", "Thirty Years ' Peace", "Leahy–Smith America Invents Act", "Rush–Bagot Treaty"
 
 @dataclass
 class OtherLivingthing(Entity):
-    """Covers non-human biological life such as animal species and plants."""
-    span: str  # e.g., "African Elephant", "Giant Sequoia", "Honeybee", "Great White Shark"
+    """Represents non-human living organisms like plants, animals, and biological families."""
+    span: str  # Examples: "monkeys", "insects", "patchouli", "Rafflesiaceae", "zebras"
 
 @dataclass
 class OtherMedical(Entity):
-    """Pertains to clinical specialties, pharmacological drugs, and healthcare procedures."""
-    span: str  # e.g., "Cardiology", "Penicillin", "Chemotherapy", "Dermatology"
+    """Covers medical fields, pharmacological agents, and healthcare procedures."""
+    span: str  # Examples: "amitriptyline", "Pediatrics", "cryoprecipitate", "heart transplants"
 
 @dataclass
 class PersonActor(Entity):
-    """Identifies individuals known for acting in stage, screen, or voice productions."""
-    span: str  # e.g., "Meryl Streep", "Tom Hanks", "Viola Davis", "Robert De Niro"
+    """Refers to performers known for their roles in theater, film, or television."""
+    span: str  # Examples: "Ellaline Terriss", "Edmund Payne", "Tchéky Karyo", "Fernando Rey", "Bajpayee"
 
 @dataclass
 class PersonArtistAuthor(Entity):
-    """Refers to creative individuals such as painters, novelists, and poets."""
-    span: str  # e.g., "Pablo Picasso", "J.K. Rowling", "Maya Angelou", "Vincent van Gogh"
+    """Includes creative individuals such as authors, lyricists, composers, and writers."""
+    span: str  # Examples: "George Axelrod", "Gaetano Donizetti", "Deborah Lurie", "Stephen King", "Karen O"
 
 @dataclass
 class PersonAthlete(Entity):
-    """Covers professional competitors in any sporting discipline."""
-    span: str  # e.g., "Serena Williams", "Lionel Messi", "Michael Jordan", "Usain Bolt"
+    """Designates individuals in sports, including racers and professional players."""
+    span: str  # Examples: "Neville", "Tozawa", "Jaguar", "Bruno Zanoni", "Ernie Johnson"
 
 @dataclass
 class PersonDirector(Entity):
-    """Designates those who manage the creative vision of films or theater."""
-    span: str  # e.g., "Steven Spielberg", "Greta Gerwig", "Akira Kurosawa", "Alfred Hitchcock"
+    """Pertains to individuals directing theatrical productions, movies, or TV shows."""
+    span: str  # Examples: "Richard Quine", "Bob Swaim", "Frank Darabont", "Costner"
 
 @dataclass
 class PersonOther(Entity):
-    """Identifies people who fall outside specific professions, such as socialites or historical figures."""
-    span: str  # e.g., "Elon Musk", "Princess Diana", "Anne Frank", "Rosa Parks"
+    """Includes people not categorized by profession, such as character names or members of well-known families."""
+    span: str  # Examples: "Holden", "Olympia Elizabeth", "Wallis", "Rockefeller", "Binion"
 
 @dataclass
 class PersonPolitician(Entity):
-    """Refers to elected officials, heads of state, and political representatives."""
-    span: str  # e.g., "Winston Churchill", "Angela Merkel", "Nelson Mandela", "Barack Obama"
+    """Represents political figures and royalty, including presidents, monarchs, and legislators."""
+    span: str  # Examples: "Emeric", "William III", "Mary II", "Gillis Long", "Barack Obama"
 
 @dataclass
 class PersonScholar(Entity):
-    """Covers academics, scientists, and dedicated researchers."""
-    span: str  # e.g., "Albert Einstein", "Marie Curie", "Stephen Hawking", "Noam Chomsky"
+    """Refers to intellectuals, including researchers, professors, and scholars."""
+    span: str  # Examples: "Stedman", "Wurdack", "Davis", "Ted Robert Gurr"
 
 @dataclass
 class PersonSoldier(Entity):
-    """Identifies military personnel, generals, and combatants."""
-    span: str  # e.g., "George Patton", "Douglas MacArthur", "Joan of Arc"
+    """Signifies military members, including soldiers, commanders, and generals."""
+    span: str  # Examples: "Krukenberg", "Helmuth Weidling", "Bruno Loerzer", "Sir James Outram"
 
 @dataclass
 class ProductAirplane(Entity):
-    """Refers to specific models of fixed-wing aircraft or rotorcraft."""
-    span: str  # e.g., "Boeing 747", "Airbus A380", "Concorde", "Spitfire"
+    """Includes aircraft like helicopters, planes, and fighter jets."""
+    span: str  # Examples: "EC135T2 CPDS", "FGR.2s", "Mil Mi-58", "Su-30", "WC-135"
 
 @dataclass
 class ProductCar(Entity):
-    """Covers automotive models and vehicle series."""
-    span: str  # e.g., "Tesla Model S", "Ford Mustang", "Volkswagen Beetle", "Porsche 911"
+    """Refers to motor vehicles, encompassing specific car models and platforms."""
+    span: str  # Examples: "Rolls-Royce Phantom", "Corvettes", "Renault 12", "Lancia Thema 8.32"
 
 @dataclass
 class ProductFood(Entity):
-    """Identifies edible items, culinary ingredients, or specific plant varieties used for food."""
-    span: str  # e.g., "Quinoa", "Parmesan Cheese", "Saffron", "Granny Smith Apple"
+    """Represents culinary items, including food types, wines, and grape varieties."""
+    span: str  # Examples: "V. labrusca", "yakiniku", "red grape", "Merlot", "Cabernet Sauvignon"
 
 @dataclass
 class ProductGame(Entity):
-    """Designates interactive entertainment, including video games and board games."""
-    span: str  # e.g., "The Legend of Zelda", "Minecraft", "Chess", "Grand Theft Auto V"
+    """Covers games like RPGs, video games, and gaming hardware."""
+    span: str  # Examples: "Splinter Cell", "Airforce Delta", "RPG", "Game Boy Advance", "Game Boy Micro"
 
 @dataclass
 class ProductOther(Entity):
-    """Captures various manufactured goods, hardware components, or specialized equipment."""
-    span: str  # e.g., "iPhone 13", "Hubble Space Telescope", "PlayStation 5"
+    """Includes diverse products such as machine parts, hardware, and cryptographic tools."""
+    span: str  # Examples: "Fairbottom Bobs", "PDP-1", "X11", "SecurID 800"
 
 @dataclass
 class ProductShip(Entity):
-    """Refers to watercraft, naval vessels, and submarines."""
-    span: str  # e.g., "RMS Titanic", "USS Enterprise", "HMS Victory", "Santa Maria"
+    """Refers to watercraft, including submersibles, frigates, and landing ships."""
+    span: str  # Examples: "HMS Chinkara", "Congress", "Essex", "Embuscade", "Alvin"
 
 @dataclass
 class ProductSoftware(Entity):
-    """Identifies computer applications, operating systems, and digital tools."""
-    span: str  # e.g., "Microsoft Windows", "Linux", "Adobe Photoshop", "Google Chrome"
+    """Signifies computer software, including programming languages and applications."""
+    span: str  # Examples: "Wikipedia", "Apdf", "BIDS Helper", "micro-PROLOG", "SQL Server"
 
 @dataclass
 class ProductTrain(Entity):
-    """Covers locomotive models and high-speed rail vehicles."""
-    span: str  # e.g., "Shinkansen", "TGV", "Flying Scotsman", "Eurostar"
+    """Pertains to rail vehicles like locomotives and high-speed train models."""
+    span: str  # Examples: "High Speed Trains", "55022 Royal Scots Grey", "Lexus CT 200h", "Keystone Service"
 
 @dataclass
 class ProductWeapon(Entity):
-    """Designates military armament, firearms, and defense systems."""
-    span: str  # e.g., "AK-47", "M1 Abrams Tank", "Tomahawk Missile", "Excalibur"
+    """Includes military weaponry like artillery, rifles, and firearms."""
+    span: str  # Examples: "ZU-23-2M Wróbel", "AR-15", "ZSU-57-2", "40mm Bofors gun"
 
 ENTITY_DEFINITIONS: List[Entity] = [
     ArtBroadcastprogram,

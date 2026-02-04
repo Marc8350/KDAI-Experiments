@@ -233,13 +233,40 @@ def run_experiment(limit: int = None):
             # 2. Extract Gold Objects
             tags = sentence[tag_key]
             gold = []
+
+            current_class_name = None
+            current_span_tokens = []
+
             for token, tag_id in zip(tokens, tags):
                 label = names_ref[tag_id]
                 class_name = label_to_classname(label)
-                if class_name:
-                    entity_class = getattr(module, class_name, None)
+                
+                # Check if we have a valid entity class for this tag
+                entity_class = getattr(module, class_name, None) if class_name else None
+                
+                # If same class as strictly previous token, merge
+                if entity_class and class_name == current_class_name:
+                    current_span_tokens.append(token)
+                else:
+                    # Flush previous span if valid
+                    if current_class_name:
+                        prev_entity_class = getattr(module, current_class_name, None)
+                        if prev_entity_class:
+                           gold.append(prev_entity_class(span=" ".join(current_span_tokens)))
+                    
+                    # Start new span if valid class
                     if entity_class:
-                        gold.append(entity_class(span=token))
+                        current_class_name = class_name
+                        current_span_tokens = [token]
+                    else:
+                        current_class_name = None
+                        current_span_tokens = []
+            
+            # Flush the final span if exists
+            if current_class_name:
+                prev_entity_class = getattr(module, current_class_name, None)
+                if prev_entity_class:
+                    gold.append(prev_entity_class(span=" ".join(current_span_tokens)))
             
             # 3. Format Prompt
             formatted_text = template.render(

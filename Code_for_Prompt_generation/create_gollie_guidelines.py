@@ -22,8 +22,8 @@ def load_env():
 
 load_env()
 
-def generate_guidelines(input_file, output_file):
-    print(f"Processing {input_file} -> {output_file}...")
+def generate_guidelines(input_file, output_file, num_examples=4):
+    print(f"Processing {input_file} -> {output_file} (examples per class: {num_examples})...")
     
     if not os.path.exists(input_file):
         print(f"Error: Input file {input_file} not found.")
@@ -32,6 +32,11 @@ def generate_guidelines(input_file, output_file):
     with open(input_file, 'r') as f:
         data = json.load(f)
         
+    # Slice data to limit examples per class
+    sliced_data = {}
+    for label, examples in data.items():
+        sliced_data[label] = examples[:num_examples]
+
     schema_example = """
 from typing import List
 from src.tasks.utils_typing import Entity, dataclass
@@ -64,7 +69,7 @@ Requirements:
 4.  **Formatting**: The output must be valid Python code.
 
 Here is the input JSON data with labels and examples (entities are marked with #Label#):
-{json.dumps(data, indent=2)}
+{json.dumps(sliced_data, indent=2)}
 """
 
     api_key = os.environ.get("GEMINI_API_KEY")
@@ -118,7 +123,10 @@ Here is the input JSON data with labels and examples (entities are marked with #
         # Fallback without thinking config if that was the issue
         if "ThinkingConfig" in str(e) or "thinking" in str(e).lower():
              print("Retrying without thinking config...")
-             generate_content_config = types.GenerateContentConfig(response_mime_type="text/plain")
+             generate_content_config = types.GenerateContentConfig(
+                response_mime_type="text/plain",
+                temperature=0.0 # Low temperature for guidelines
+             )
              try:
                 response = client.models.generate_content(
                     model=model_id,
@@ -137,5 +145,10 @@ Here is the input JSON data with labels and examples (entities are marked with #
                  print(f"Error in fallback: {e2}")
 
 if __name__ == "__main__":
-    generate_guidelines('coarse_labels_examples.json', 'guidelines_coarse_gollie.py')
-    generate_guidelines('fine_labels_examples.json', 'guidelines_fine_gollie.py')
+    # Standard Guidelines (4 examples)
+    generate_guidelines('coarse_labels_examples.json', 'annotation_guidelines/guidelines_coarse_gollie.py', num_examples=4)
+    generate_guidelines('fine_labels_examples.json', 'annotation_guidelines/guidelines_fine_gollie.py', num_examples=4)
+    
+    # Detailed Guidelines Source (8 examples) - used for generating detailed variations
+    generate_guidelines('coarse_labels_examples.json', 'annotation_guidelines/guidelines_coarse_gollie_8_examples.py', num_examples=8)
+    generate_guidelines('fine_labels_examples.json', 'annotation_guidelines/guidelines_fine_gollie_8_examples.py', num_examples=8)

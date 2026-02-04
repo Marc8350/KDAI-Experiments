@@ -23,6 +23,7 @@ This repository contains experiments comparing **GoLLIE** and **CodeIE** framewo
 
 ---
 
+
 ## Overview
 
 This project investigates the effect of **annotation guideline paraphrasing** on zero-shot and few-shot NER performance. We leverage two state-of-the-art information extraction frameworks:
@@ -48,12 +49,12 @@ KDAI-Experiments/
 │   ├── guidelines_fine_gollie_v1.py         # Fine-grained variations
 │   └── *.json                               # Creation logs with similarity scores
 │
+
 ├── Code_for_Prompt_generation/     # Scripts for generating prompts and variations
 │   ├── generate_annotated_examples.py   # Extracts examples from Few-NERD
 │   ├── coarse_labels_examples.json      # 8 examples per coarse entity type
 │   ├── fine_labels_examples.json        # 8 examples per fine entity type
 │   ├── create_gollie_guidelines.py      # Generates base GoLLIE guidelines
-│   ├── paraphrase_guidelines.py         # Creates paraphrased variations
 │   └── generate_variations_v2.py        # Enhanced variation generator
 │
 ├── GoLLIE/                         # GoLLIE framework (submodule)
@@ -71,7 +72,7 @@ KDAI-Experiments/
 ├── few-nerd_test/                  # Few-NERD test split
 │
 ├── run_gollie_experiments.py       # Main GoLLIE experiment script
-├── Experiments.ipynb               # Colab-ready notebook
+├── Experiments.ipynb               # Notebook version not ready yet
 ├── requirements.txt                # Python dependencies
 └── README.md                       # This file
 ```
@@ -137,105 +138,32 @@ def collect_examples(ds, label_feature_name, num_examples=8):
 - `coarse_labels_examples.json` - 8 examples × 8 types = 64 examples
 - `fine_labels_examples.json` - 8 examples × 66 types = 528 examples
 
-### Base Guidelines Generation
+### Prompt Generation Pipeline
 
-Base annotation guidelines are generated using **`create_gollie_guidelines.py`**:
+The following flowchart illustrates how the prompt variations are created, ensuring a clear distinction between Standard (4-shot) and Detailed (8-shot) guidelines.
 
-#### Process
-
-1. **Load sampled examples** from JSON files
-2. **Use Gemini LLM** to generate Python dataclass definitions
-3. **Create structured entity schemas** with docstrings and example spans
-
-**LLM Prompt Template:**
-```
-You are an expert in defining Named Entity Recognition (NER) guidelines for GoLLIE.
-I have a dataset of entities with examples. 
-Please generate a Python file defining these entities using `dataclass` and inheriting from `Entity`.
-
-Requirements:
-1. Create a class for EACH label in the input JSON
-2. Convert label names to PascalCase (e.g., "art-film" -> "ArtFilm")
-3. The docstring should define the entity based on provided examples
-4. The `span` field should include a comment with representative examples
-5. Define `ENTITY_DEFINITIONS: List[Entity]` containing all classes
+```mermaid
+graph TD
+    A[Few-NERD Dataset] -->|generate_annotated_examples.py| B[examples.json<br>(8 examples/class)]
+    B -->|create_gollie_guidelines.py| C{Split & Generate}
+    C -->|Slice: First 4 Examples| D[Base Standard<br>guidelines_*.py<br>(4 Examples)]
+    C -->|Keep: All 8 Examples| E[Detailed Source<br>guidelines_*_8_examples.py<br>(8 Examples)]
+    D -->|generate_variations_v2.py<br>Mode: Standard| F[Standard Variations<br>v1, v2, v3<br>(4 Examples Paraphrased)]
+    E -->|generate_variations_v2.py<br>Mode: Detailed| G[Detailed Variations<br>detailed_v1, detailed_v2, detailed_v3<br>(8 Examples Paraphrased)]
 ```
 
-**Example Output (Coarse Guidelines):**
-```python
-from typing import List
-from src.tasks.utils_typing import Entity, dataclass
+#### 1. Example Extraction
+We extract 8 examples per class from the Few-NERD training set using `generate_annotated_examples.py`. These are saved to JSON files.
 
-@dataclass
-class Art(Entity):
-    """Refers to creative works and titles, including magazines, films, plays, 
-    operas, and television shows."""
-    span: str  # Such as: "Time", "The Seven Year Itch", "Imelda de'Lambertazzi"
+#### 2. Base Guidelines & Splitting
+`create_gollie_guidelines.py` reads the JSONs and generates two Python files per granularity:
+- **Base Guidelines (`guidelines_*.py`)**: Uses only the first **4 examples** per class. This serves as the primary baseline and source for standard variations.
+- **Detailed Source (`guidelines_*_8_examples.py`)**: Uses all **8 examples** per class. This serves as the rich source for detailed variations.
 
-@dataclass
-class Person(Entity):
-    """Refers to individual human beings, including historical figures, 
-    authors, directors, and fictional characters."""
-    span: str  # Such as: "George Axelrod", "Richard Quine", "Gaetano Donizetti"
-
-ENTITY_DEFINITIONS: List[Entity] = [Art, Building, Event, Location, ...]
-```
-
-### Prompt Variation Generation
-
-Prompt variations are generated using **`generate_variations_v2.py`** via LLM paraphrasing:
-
-#### Two Variation Modes
-
-| Mode | Description | Key Instruction |
-|------|-------------|-----------------|
-| **Standard** | Allows example substitution | "You ARE allowed to substitute examples with different, equally valid examples" |
-| **Detailed** | Preserves examples, improves clarity | "Base your paraphrase on content without adding new information" |
-
-#### Paraphrasing Process
-
-1. **Read base guidelines** from Python file
-2. **Send to Gemini LLM** with paraphrasing instructions
-3. **Generate 3 variations per mode** (6 total per granularity)
-4. **Calculate cosine similarity** using embeddings to ensure meaningful variation
-
-**Variation Generation Prompt (Standard Mode):**
-```
-Paraphrase the following prompt for automated data annotation.
-Key requirements:
-- Preserve the Annotation Task and structure
-- Use lexical substitutions and syntactic reordering for docstrings
-- You ARE allowed and encouraged to substitute examples
-- Return the FULL file content with modifications
-```
-
-**Quality Control:**
-- Uses FAISS + Gemini embeddings for cosine similarity
-- If similarity < 5%, regenerates the variation (max 3 retries)
-- Logs model configuration, timestamp, and similarity score
-
-**Example Creation Log (`guidelines_coarse_gollie_v1.json`):**
-```json
-{
-  "model_name": "gemini-3-flash-preview",
-  "mode": "standard",
-  "model_configuration": {
-    "temperature": 1.0,
-    "max_retries": 3,
-    "embedding_model": "models/text-embedding-004"
-  },
-  "similarity_to_base_prompt": 0.9551,
-  "similarity_measure": "Cosine Similarity / Faiss IndexFlatIP",
-  "timestamp": "Sat Jan 31 13:18:56 2026"
-}
-```
-
-#### Generated Variations Summary
-
-| Base File | Standard Variations | Detailed Variations |
-|-----------|---------------------|---------------------|
-| `guidelines_coarse_gollie.py` | v1, v2, v3 | detailed_v1, detailed_v2, detailed_v3 |
-| `guidelines_fine_gollie.py` | v1, v2, v3 | detailed_v1, detailed_v2, detailed_v3 |
+#### 3. Variation Generation
+`generate_variations_v2.py` uses Gemini to paraphrase the guidelines:
+- **Standard Variations (v1-v3)**: Derived from the 4-example Base Guidelines. The LLM is allowed to substitute examples.
+- **Detailed Variations (detailed_v1-v3)**: Derived from the 8-example Detailed Source. The LLM preserves the richer context of 8 examples.
 
 ---
 
@@ -426,16 +354,33 @@ python -m venv .venv
 source .venv/bin/activate  # Linux/Mac
 # or: .venv\Scripts\activate  # Windows
 
-# 3. Install dependencies
-pip install -r requirements.txt
+# 3. Run the setup_project.py to setup the the experiments. 
+python setup_project.py
 
-# 4. Install additional dependencies for GoLLIE
-pip install bitsandbytes accelerate
-
-# 5. (Optional) Install Flash Attention 2 for A100/L4 GPUs
-pip install flash-attn --no-build-isolation
+# 4. Before running the run_gollie_experiments.py please modify the configurations according to your system
+#For colab / T4 based systems you can use: 
+# Configurable parameters
+MODEL_LOAD_PARAMS = {
+    "inference": True,
+    "model_weights_name_or_path": "HiTZ/GoLLIE-7B",
+    "quantization": 4, #For testing on Small GPU with less than 20 Gb Ram 
+    "use_lora": False,
+    "force_auto_device_map": True,
+    "use_flash_attention": False, # For testing on Colab
+    "torch_dtype": "bfloat16",
+}
+#and for Cuda use if you have enough G RAM: 
+# Configurable parameters
+MODEL_LOAD_PARAMS = {
+    inference=True,
+    model_weights_name_or_path="HiTZ/GoLLIE-7B",
+    quantization=None,
+    use_lora=False,
+    force_auto_device_map=True,
+    use_flash_attention=True,
+    torch_dtype="bfloat16"
+}
 ```
-
 ### Environment Variables
 
 Create a `.env` file in the project root:
@@ -443,36 +388,21 @@ Create a `.env` file in the project root:
 ```bash
 # For prompt variation generation
 GEMINI_API_KEY=your_gemini_api_key_here
-
+#
+GIT_SET_URL=your_git_access_token # or remove the git functions from the code. 
 # For CodeIE experiments (if using custom API)
 CUSTOM_API_BASE_URL=http://localhost:8000/v1
 CUSTOM_API_KEY=not-needed
 CUSTOM_MODEL_NAME=qwen2.5-7b
 ```
 
-### Download Dataset
-
-```python
-# Run once to download and save the dataset
-from datasets import load_dataset
-dataset = load_dataset("DFKI-SLT/few-nerd", name='supervised')
-
-for split_name, split_dataset in dataset.items():
-    split_dataset.save_to_disk(f"few-nerd_{split_name}")
-```
-
-Or use the notebook cell in `Experiments.ipynb`.
 
 ### Running on Google Colab
 
-1. Open `Experiments.ipynb` in Colab
-2. Set configuration:
-   ```python
-   USE_4BIT = True        # Required for T4 GPUs
-   USE_FLASH_ATTN = False # Not supported on T4
-   ```
-3. Run all cells
-
+->  Use the terminal in colab to run the steps shown above with the modified model configuration. 
+```bash
+python run_gollie_experiments.py
+```
 ---
 
 ## Results
@@ -525,7 +455,7 @@ Results are saved in:
 ### Models
 
 4. **GoLLIE-7B**: [HiTZ/GoLLIE-7B](https://huggingface.co/HiTZ/GoLLIE-7B)
-5. **Code-LLama**: [codellama/CodeLlama-7b-hf](https://huggingface.co/codellama/CodeLlama-7b-hf)
+
 
 ---
 

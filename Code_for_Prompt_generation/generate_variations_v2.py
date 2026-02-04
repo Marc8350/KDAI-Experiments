@@ -62,7 +62,7 @@ FILE CONTENT:
 Key requirements:
 - Preserve the Annotation Task as well as the structure of the prompt.
 - Use lexical substitutions and syntactic reordering for the docstrings and descriptions.
-- You ARE allowed and encouraged to substitute the examples provided after the '#' or within the 'span' field comments with different, equally valid examples of that class.
+- Base your paraphrase on the content in the original prompt without adding new information.
 - You are allowed to rename the class comments in \"\"\" \"\"\" or after # .
 - Return the FULL file content with the modifications.
 
@@ -84,9 +84,9 @@ FILE CONTENT:
         text = text.split("```")[1].split("```")[0]
     return text.strip(), instruction
 
-def process_variation(file_path, var_index, mode="standard"):
+def process_variation(file_path, var_index, mode="standard", output_filename_base=None):
     mode_suffix = f"_{mode}" if mode != "standard" else ""
-    print(f"Generating {mode} variation {var_index} for {file_path}...")
+    print(f"Generating {mode} variation {var_index} from {file_path}...")
     with open(file_path, 'r') as f:
         original_content = f.read()
     
@@ -103,10 +103,16 @@ def process_variation(file_path, var_index, mode="standard"):
             break
         print(f"Similarity too low ({similarity:.4f}), retrying attempt {attempt+1}...")
     
-    # Save the variation
-    base_name = os.path.basename(file_path)
-    variation_filename = base_name.replace(".py", f"{mode_suffix}_v{var_index}.py")
+    # Determine output filename
     output_dir = os.path.dirname(file_path)
+    if output_filename_base:
+        # Use provided base name (e.g., 'guidelines_coarse_gollie') to construct 'guidelines_coarse_gollie_detailed_v1.py'
+        variation_filename = f"{output_filename_base}{mode_suffix}_v{var_index}.py"
+    else:
+        # Derive from input file name
+        base_name = os.path.basename(file_path)
+        variation_filename = base_name.replace(".py", f"{mode_suffix}_v{var_index}.py")
+        
     variation_path = os.path.join(output_dir, variation_filename)
     
     with open(variation_path, 'w') as f:
@@ -119,6 +125,7 @@ def process_variation(file_path, var_index, mode="standard"):
     log_data = {
         "model_name": MODEL_NAME,
         "mode": mode,
+        "source_file": file_path,
         "model_configuration": {
             "temperature": TEMPERATURE,
             "max_retries": max_retries,
@@ -134,20 +141,50 @@ def process_variation(file_path, var_index, mode="standard"):
         json.dump(log_data, f, indent=2)
         
     print(f"{mode.capitalize()} Variation {var_index} saved to {variation_path} (Similarity: {similarity:.4f})")
+    time.sleep(10) # Avoid rate limits
 
 if __name__ == "__main__":
-    files = [
-        "annotation-guidelines/guidelines_coarse_gollie.py",
-        "annotation-guidelines/guidelines_fine_gollie.py"
+    configs = [
+        {
+            "base_name": "guidelines_coarse_gollie",
+            "standard_source": "annotation_guidelines/guidelines_coarse_gollie.py",
+            "detailed_source": "annotation_guidelines/guidelines_coarse_gollie_8_examples.py"
+        },
+        {
+            "base_name": "guidelines_fine_gollie",
+            "standard_source": "annotation_guidelines/guidelines_fine_gollie.py",
+            "detailed_source": "annotation_guidelines/guidelines_fine_gollie_8_examples.py"
+        }
     ]
     
-    for f in files:
-        if os.path.exists(f):
-            # Generate 3 standard variations
+    for config in configs:
+        base_name = config["base_name"]
+        
+        # 1. Generate Standard Variations (from 4-shot base)
+        # Input: guidelines_coarse_gollie.py (4 examples)
+        # Output: guidelines_coarse_gollie_v1.py
+        if os.path.exists(config["standard_source"]):
             for i in range(1, 4):
-                process_variation(f, i, mode="standard")
-            # Generate 3 detailed variations
-            for i in range(1, 4):
-                process_variation(f, i, mode="detailed")
+                process_variation(
+                    config["standard_source"], 
+                    i, 
+                    mode="standard", 
+                    output_filename_base=base_name
+                )
         else:
-            print(f"File not found: {f}")
+            print(f"Standard source not found: {config['standard_source']}")
+
+        # 2. Generate Detailed Variations (from 8-shot source)
+        # Input: guidelines_coarse_gollie_8_examples.py (8 examples)
+        # Output: guidelines_coarse_gollie_detailed_v1.py (naming ignores the '8_examples' suffix because we pass base_name)
+        if os.path.exists(config["detailed_source"]):
+            for i in range(1, 4):
+                process_variation(
+                    config["detailed_source"], 
+                    i, 
+                    mode="detailed", 
+                    output_filename_base=base_name
+                )
+        else:
+            print(f"Detailed source not found: {config['detailed_source']}")
+
