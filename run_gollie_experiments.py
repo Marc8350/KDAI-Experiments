@@ -1,12 +1,18 @@
 import os
 import sys
+import torch
 import subprocess
 try:
     from dotenv import load_dotenv
+    load_dotenv()
 except ImportError:
     # If python-dotenv is not installed, we can't load .env automatically
     # but we can assume environment vars might be set otherwise.
     def load_dotenv(): pass
+
+# Set environment variable to optimize CUDA memory allocation on T4
+# This helps prevent OOM due to fragmentation without needing Flash Attention
+os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
 
 # Get the absolute path of the project root
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -49,7 +55,17 @@ from annotation_guidelines import (
     guidelines_fine_gollie_v3
 )
 
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    datefmt='%H:%M:%S'
+)
+# Silence only extremely noisy network libraries
+logging.getLogger("httpx").setLevel(logging.WARNING)
+logging.getLogger("urllib3").setLevel(logging.WARNING)
+# Suppress the "Setting pad_token_id to eos_token_id" warning
+import warnings
+warnings.filterwarnings("ignore", category=UserWarning, module="transformers.generation.utils")
 
 guideline_modules = [
     guidelines_coarse_gollie,
@@ -85,6 +101,8 @@ GENERATE_PARAMS = {
     "min_new_tokens": 0,
     "num_beams": 1,
     "num_return_sequences": 1,
+    "pad_token_id": 2, # Manually set to avoid the repetitive warning
+    "eos_token_id": 2,
 }
 
 class MyEntityScorer(SpanScorer):
@@ -215,7 +233,7 @@ def run_experiment(limit: int = None, enable_git: bool = True, resume: bool = Fa
     fine_names = ds.features["fine_ner_tags"].feature.names
 
     # Load model
-    logging.info(f"Loading model with params: {MODEL_LOAD_PARAMS}")
+    logging.info(f"Loading GoLLIE model ({MODEL_LOAD_PARAMS['model_weights_name_or_path']})...")
     model, tokenizer = load_model(**MODEL_LOAD_PARAMS)
 
     # Read template
@@ -228,8 +246,6 @@ def run_experiment(limit: int = None, enable_git: bool = True, resume: bool = Fa
         module_name = module.__name__
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         log_filename = os.path.join(RESULTS_DIR, f"{module_name}_{timestamp}.json")
-        
-        logging.info(f"Processing module: {module_name}")
         
         is_coarse = "coarse" in module_name
         tag_key = "ner_tags" if is_coarse else "fine_ner_tags"
@@ -401,10 +417,12 @@ def run_experiment(limit: int = None, enable_git: bool = True, resume: bool = Fa
             with open(log_filename, "w") as f:
                 json.dump(final_results, f, indent=4)
             
-            if i % 10 == 0:
-                logging.info(f"[{module_name}] Progress: {i} sentences saved to {log_filename}")
-                sync_results_to_git(f"Update results pending: {module_name} step {i}", enabled=enable_git)
+            if i % 50 == 0 and i > 0:
+                logging.info(f"[{module_name}] Processed {i} sentences...")
+                sync_results_to_git(f"Step {i}: {module_name}", enabled=enable_git)
 
+        # Clear GPU memory before starting the next module
+        torch.cuda.empty_cache()
         logging.info(f"Finished module {module_name}. Full results available at {log_filename}")
         sync_results_to_git(f"Completed module: {module_name}", enabled=enable_git)
 
