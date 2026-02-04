@@ -10,9 +10,10 @@ if PROJECT_ROOT not in sys.path:
 GOLLIE_PATH = os.path.join(PROJECT_ROOT, "GoLLIE")
 if GOLLIE_PATH not in sys.path:
     sys.path.append(GOLLIE_PATH)
+
+import re
 import json
 import logging
-import re
 import inspect
 import black
 from datetime import datetime
@@ -89,11 +90,23 @@ class MyEntityScorer(SpanScorer):
         return {"entities": output["spans"]}
 
 def label_to_classname(label):
+    """
+    Convert dataset label to PascalCase class name.
+    
+    Examples:
+        'art-broadcastprogram' -> 'ArtBroadcastprogram'
+        'location-GPE' -> 'LocationGpe'
+        'event-attack/battle/war/militaryconflict' -> 'EventAttackBattleWarMilitaryconflict'
+    """
     if label == "O":
         return None
-    # Split by both - and / and capitalize each part to match class names
-    parts = re.split(r'[-/]', label)
-    return "".join(p.capitalize() for p in parts)
+    
+    # Convert to lowercase first, then split by delimiters
+    label_lower = label.lower()
+    # Split by both - and / and capitalize first letter of each part
+    parts = re.split(r'[-/]', label_lower)
+    # Capitalize first letter of each part to create PascalCase
+    return "".join(part.capitalize() for part in parts if part)
 
 def run_experiment():
     """
