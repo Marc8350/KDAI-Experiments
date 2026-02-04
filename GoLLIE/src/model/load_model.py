@@ -475,7 +475,7 @@ def load_model(
                     logging.debug(f"Converting LoRA layer {name} to {torch_dtype}")
                     module = module.to(torch.bfloat16)
 
-    if not fsdp_training:
+    if not fsdp_training and not inference:
         for name, module in model.named_modules():
             if "norm" in name:
                 logging.debug(f"Converting layer {name} to {torch.float32}")

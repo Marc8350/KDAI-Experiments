@@ -470,7 +470,6 @@ Or use the notebook cell in `Experiments.ipynb`.
    ```python
    USE_4BIT = True        # Required for T4 GPUs
    USE_FLASH_ATTN = False # Not supported on T4
-   TEST_MODE = True       # For quick testing
    ```
 3. Run all cells
 
