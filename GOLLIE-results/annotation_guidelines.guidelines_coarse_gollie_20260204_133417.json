@@ -19,38 +19,70 @@
     },
     "overall_score": {
         "entities": {
-            "precision": 1.0,
-            "recall": 1.0,
-            "f1-score": 1.0,
+            "precision": 0.7692307692307693,
+            "recall": 0.6451612903225806,
+            "f1-score": 0.7017543859649122,
             "class_scores": {
                 "Building": {
                     "tp": 2,
                     "total_pos": 2,
-                    "total_pre": 2,
-                    "precision": 1.0,
+                    "total_pre": 3,
+                    "precision": 0.6666666666666666,
                     "recall": 1.0,
-                    "f1-score": 1.0
+                    "f1-score": 0.8
                 },
                 "Location": {
+                    "tp": 4,
+                    "total_pos": 6,
+                    "total_pre": 4,
+                    "precision": 1.0,
+                    "recall": 0.6666666666666666,
+                    "f1-score": 0.8
+                },
+                "Organization": {
+                    "tp": 7,
+                    "total_pos": 11,
+                    "total_pre": 10,
+                    "precision": 0.7,
+                    "recall": 0.6363636363636364,
+                    "f1-score": 0.6666666666666666
+                },
+                "Event": {
                     "tp": 1,
-                    "total_pos": 1,
-                    "total_pre": 1,
+                    "total_pos": 3,
+                    "total_pre": 2,
+                    "precision": 0.5,
+                    "recall": 0.3333333333333333,
+                    "f1-score": 0.4
+                },
+                "Product": {
+                    "tp": 2,
+                    "total_pos": 4,
+                    "total_pre": 3,
+                    "precision": 0.6666666666666666,
+                    "recall": 0.5,
+                    "f1-score": 0.5714285714285715
+                },
+                "Person": {
+                    "tp": 4,
+                    "total_pos": 4,
+                    "total_pre": 4,
                     "precision": 1.0,
                     "recall": 1.0,
                     "f1-score": 1.0
                 },
-                "Organization": {
-                    "tp": 1,
+                "Other": {
+                    "tp": 0,
                     "total_pos": 1,
-                    "total_pre": 1,
-                    "precision": 1.0,
-                    "recall": 1.0,
-                    "f1-score": 1.0
+                    "total_pre": 0,
+                    "precision": 0.0,
+                    "recall": 0.0,
+                    "f1-score": 0.0
                 }
             }
         }
     },
-    "processed_count": 1,
+    "processed_count": 11,
     "sentences": [
         {
             "index": 0,
@@ -97,6 +129,378 @@
                             "precision": 1.0,
                             "recall": 1.0,
                             "f1-score": 1.0
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "index": 1,
+            "timestamp": "2026-02-04T13:36:27.068457",
+            "text": "The final season of minor league play Elkin Memorial Park saw season attendance of 16,322 , an average of 299 per contest .",
+            "gold": [
+                "Location(span='Elkin Memorial Park')"
+            ],
+            "prediction": [
+                "Building(span='Elkin Memorial Park')"
+            ],
+            "score": {
+                "entities": {
+                    "precision": 0.0,
+                    "recall": 0.0,
+                    "f1-score": 0.0,
+                    "class_scores": {
+                        "Location": {
+                            "tp": 0,
+                            "total_pos": 1,
+                            "total_pre": 0,
+                            "precision": 0.0,
+                            "recall": 0.0,
+                            "f1-score": 0.0
+                        },
+                        "Building": {
+                            "tp": 0,
+                            "total_pos": 0,
+                            "total_pre": 1,
+                            "precision": 0.0,
+                            "recall": 0.0,
+                            "f1-score": 0.0
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "index": 2,
+            "timestamp": "2026-02-04T13:36:32.353540",
+            "text": "They finished the season 14\u201319 , 9\u20139 in C-USA play to finish in seventh place .",
+            "gold": [
+                "Event(span='C-USA play')"
+            ],
+            "prediction": [
+                "Organization(span='C-USA')"
+            ],
+            "score": {
+                "entities": {
+                    "precision": 0.0,
+                    "recall": 0.0,
+                    "f1-score": 0.0,
+                    "class_scores": {
+                        "Event": {
+                            "tp": 0,
+                            "total_pos": 1,
+                            "total_pre": 0,
+                            "precision": 0.0,
+                            "recall": 0.0,
+                            "f1-score": 0.0
+                        },
+                        "Organization": {
+                            "tp": 0,
+                            "total_pos": 0,
+                            "total_pre": 1,
+                            "precision": 0.0,
+                            "recall": 0.0,
+                            "f1-score": 0.0
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "index": 3,
+            "timestamp": "2026-02-04T13:36:38.650167",
+            "text": "The B-52 pilot , Major Larry G. Messinger , later recalled ,",
+            "gold": [
+                "Product(span='B-52')",
+                "Person(span='Larry G. Messinger')"
+            ],
+            "prediction": [
+                "Product(span='B-52')",
+                "Person(span='Larry G. Messinger')"
+            ],
+            "score": {
+                "entities": {
+                    "precision": 1.0,
+                    "recall": 1.0,
+                    "f1-score": 1.0,
+                    "class_scores": {
+                        "Product": {
+                            "tp": 1,
+                            "total_pos": 1,
+                            "total_pre": 1,
+                            "precision": 1.0,
+                            "recall": 1.0,
+                            "f1-score": 1.0
+                        },
+                        "Person": {
+                            "tp": 1,
+                            "total_pos": 1,
+                            "total_pre": 1,
+                            "precision": 1.0,
+                            "recall": 1.0,
+                            "f1-score": 1.0
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "index": 4,
+            "timestamp": "2026-02-04T13:36:44.357016",
+            "text": "The Austro-Hungarian Navy built and operated two classes of protected cruisers .",
+            "gold": [
+                "Organization(span='Austro-Hungarian Navy')"
+            ],
+            "prediction": [
+                "Organization(span='Austro-Hungarian Navy')"
+            ],
+            "score": {
+                "entities": {
+                    "precision": 1.0,
+                    "recall": 1.0,
+                    "f1-score": 1.0,
+                    "class_scores": {
+                        "Organization": {
+                            "tp": 1,
+                            "total_pos": 1,
+                            "total_pre": 1,
+                            "precision": 1.0,
+                            "recall": 1.0,
+                            "f1-score": 1.0
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "index": 5,
+            "timestamp": "2026-02-04T13:36:49.785647",
+            "text": "Elin Hilderbrand is an American writer mostly of romance novels .",
+            "gold": [
+                "Person(span='Elin Hilderbrand')",
+                "Location(span='American')"
+            ],
+            "prediction": [
+                "Person(span='Elin Hilderbrand')"
+            ],
+            "score": {
+                "entities": {
+                    "precision": 1.0,
+                    "recall": 0.5,
+                    "f1-score": 0.6666666666666666,
+                    "class_scores": {
+                        "Person": {
+                            "tp": 1,
+                            "total_pos": 1,
+                            "total_pre": 1,
+                            "precision": 1.0,
+                            "recall": 1.0,
+                            "f1-score": 1.0
+                        },
+                        "Location": {
+                            "tp": 0,
+                            "total_pos": 1,
+                            "total_pre": 0,
+                            "precision": 0.0,
+                            "recall": 0.0,
+                            "f1-score": 0.0
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "index": 6,
+            "timestamp": "2026-02-04T13:36:57.048328",
+            "text": "A prototype was fitted in the mid-'60s in a one-off DB5 extended 4 '' after the doors and driven by Marek personally , and a normally 6-cylinder Aston Martin DB7 was equipped with a V8 unit in 1998 .",
+            "gold": [
+                "Product(span=\"DB5 extended 4 ''\")",
+                "Person(span='Marek')",
+                "Product(span='Aston Martin DB7')",
+                "Product(span='V8 unit')"
+            ],
+            "prediction": [
+                "Product(span='DB5')",
+                "Person(span='Marek')",
+                "Product(span='Aston Martin DB7')"
+            ],
+            "score": {
+                "entities": {
+                    "precision": 0.6666666666666666,
+                    "recall": 0.5,
+                    "f1-score": 0.5714285714285715,
+                    "class_scores": {
+                        "Product": {
+                            "tp": 1,
+                            "total_pos": 3,
+                            "total_pre": 2,
+                            "precision": 0.5,
+                            "recall": 0.3333333333333333,
+                            "f1-score": 0.4
+                        },
+                        "Person": {
+                            "tp": 1,
+                            "total_pos": 1,
+                            "total_pre": 1,
+                            "precision": 1.0,
+                            "recall": 1.0,
+                            "f1-score": 1.0
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "index": 7,
+            "timestamp": "2026-02-04T13:37:07.403115",
+            "text": "He has caught the attention of major publications and media outlets such as CNN , The Huffington Post , Hypebeast , The Guardian , Juxtapoz Magazine , Daily Mail , NRDC , Aljazeera and Hi-Fructose Magazine .",
+            "gold": [
+                "Organization(span='CNN')",
+                "Organization(span='The Huffington Post')",
+                "Organization(span='Hypebeast')",
+                "Organization(span='The Guardian')",
+                "Organization(span='Juxtapoz Magazine')",
+                "Organization(span='Daily Mail , NRDC')",
+                "Organization(span='Aljazeera')",
+                "Organization(span='Hi-Fructose Magazine')"
+            ],
+            "prediction": [
+                "Organization(span='CNN')",
+                "Organization(span='The Huffington Post')",
+                "Organization(span='The Guardian')",
+                "Organization(span='NRDC')",
+                "Organization(span='Aljazeera')",
+                "Organization(span='Hi-Fructose Magazine')"
+            ],
+            "score": {
+                "entities": {
+                    "precision": 0.8333333333333334,
+                    "recall": 0.625,
+                    "f1-score": 0.7142857142857143,
+                    "class_scores": {
+                        "Organization": {
+                            "tp": 5,
+                            "total_pos": 8,
+                            "total_pre": 6,
+                            "precision": 0.8333333333333334,
+                            "recall": 0.625,
+                            "f1-score": 0.7142857142857143
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "index": 8,
+            "timestamp": "2026-02-04T13:37:11.890000",
+            "text": "The Cnidaria are a group of animals found exclusively in aquatic and mostly marine environments .",
+            "gold": [
+                "Other(span='Cnidaria')"
+            ],
+            "prediction": [],
+            "score": {
+                "entities": {
+                    "precision": 0.0,
+                    "recall": 0.0,
+                    "f1-score": 0.0,
+                    "class_scores": {
+                        "Other": {
+                            "tp": 0,
+                            "total_pos": 1,
+                            "total_pre": 0,
+                            "precision": 0.0,
+                            "recall": 0.0,
+                            "f1-score": 0.0
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "index": 9,
+            "timestamp": "2026-02-04T13:37:22.040633",
+            "text": "The Ninth suffered a serious defeat at the Battle of Camulodunum under Quintus Petillius Cerialis in the rebellion of Boudica ( 61 ) , when most of the foot-soldiers were killed in a disastrous attempt to relieve the besieged city of Camulodunum ( Colchester ) .",
+            "gold": [
+                "Event(span='Camulodunum')",
+                "Person(span='Quintus Petillius Cerialis')",
+                "Event(span='Boudica')",
+                "Location(span='Camulodunum')",
+                "Location(span='Colchester')"
+            ],
+            "prediction": [
+                "Event(span='Battle of Camulodunum')",
+                "Person(span='Quintus Petillius Cerialis')",
+                "Event(span='Boudica')",
+                "Location(span='Camulodunum')",
+                "Location(span='Colchester')"
+            ],
+            "score": {
+                "entities": {
+                    "precision": 0.8,
+                    "recall": 0.8,
+                    "f1-score": 0.8000000000000002,
+                    "class_scores": {
+                        "Event": {
+                            "tp": 1,
+                            "total_pos": 2,
+                            "total_pre": 2,
+                            "precision": 0.5,
+                            "recall": 0.5,
+                            "f1-score": 0.5
+                        },
+                        "Person": {
+                            "tp": 1,
+                            "total_pos": 1,
+                            "total_pre": 1,
+                            "precision": 1.0,
+                            "recall": 1.0,
+                            "f1-score": 1.0
+                        },
+                        "Location": {
+                            "tp": 2,
+                            "total_pos": 2,
+                            "total_pre": 2,
+                            "precision": 1.0,
+                            "recall": 1.0,
+                            "f1-score": 1.0
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "index": 10,
+            "timestamp": "2026-02-04T13:37:28.609224",
+            "text": "He is a Congressman representing Cajamarca for the period 2006\u20132011 , and belongs to the Union for Peru party .",
+            "gold": [
+                "Location(span='Cajamarca')",
+                "Organization(span='Peru party')"
+            ],
+            "prediction": [
+                "Location(span='Cajamarca')",
+                "Organization(span='Union for Peru')"
+            ],
+            "score": {
+                "entities": {
+                    "precision": 0.5,
+                    "recall": 0.5,
+                    "f1-score": 0.5,
+                    "class_scores": {
+                        "Location": {
+                            "tp": 1,
+                            "total_pos": 1,
+                            "total_pre": 1,
+                            "precision": 1.0,
+                            "recall": 1.0,
+                            "f1-score": 1.0
+                        },
+                        "Organization": {
+                            "tp": 0,
+                            "total_pos": 1,
+                            "total_pre": 1,
+                            "precision": 0.0,
+                            "recall": 0.0,
+                            "f1-score": 0.0
                         }
                     }
                 }
