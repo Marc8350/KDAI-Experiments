@@ -69,7 +69,7 @@ MODEL_LOAD_PARAMS = {
     "force_auto_device_map": True,
     "use_flash_attention": False, # For testing on Colab
     "torch_dtype": "bfloat16",
-    "USE_4BIT": True
+    "USE_4BIT": True # Just for testing
 }
 
 GENERATE_PARAMS = {
