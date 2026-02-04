@@ -1,6 +1,13 @@
 import os
 import sys
+
+# Set environment variable to optimize CUDA memory allocation
+# Must be set before importing torch to be effective
+os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
+os.environ["PYTORCH_ALLOC_CONF"] = "expandable_segments:True"
+
 import torch
+import gc
 import subprocess
 try:
     from dotenv import load_dotenv
@@ -9,10 +16,6 @@ except ImportError:
     # If python-dotenv is not installed, we can't load .env automatically
     # but we can assume environment vars might be set otherwise.
     def load_dotenv(): pass
-
-# Set environment variable to optimize CUDA memory allocation on T4
-# This helps prevent OOM due to fragmentation without needing Flash Attention
-os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
 
 # Get the absolute path of the project root
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -401,6 +404,9 @@ def run_experiment(limit: int = None, enable_git: bool = True, resume: bool = Fa
             }
             sentence_results.append(sentence_data)
             
+            # Explicitly free tensor memory
+            del model_input, model_output
+            
             # 7. Intermediate Saving (Avoid data loss on long runs)
             current_overall_score = scorer(reference=gold_per_module, predictions=predictions_per_module)
             
@@ -422,6 +428,7 @@ def run_experiment(limit: int = None, enable_git: bool = True, resume: bool = Fa
                 sync_results_to_git(f"Step {i}: {module_name}", enabled=enable_git)
 
         # Clear GPU memory before starting the next module
+        gc.collect()
         torch.cuda.empty_cache()
         logging.info(f"Finished module {module_name}. Full results available at {log_filename}")
         sync_results_to_git(f"Completed module: {module_name}", enabled=enable_git)
