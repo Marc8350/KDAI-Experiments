@@ -161,8 +161,10 @@ def setup_git_experiment_branch():
         logging.error(f"Git setup failed: {e}")
         return False
 
-def sync_results_to_git(message: str):
+def sync_results_to_git(message: str, enabled: bool = True):
     """Adds, commits, and pushes changes in the results directory."""
+    if not enabled:
+        return
     try:
         # Check if there are changes to commit
         status = subprocess.run("git status --porcelain GOLLIE-results/", shell=True, stdout=subprocess.PIPE, text=True)
@@ -176,7 +178,22 @@ def sync_results_to_git(message: str):
     except Exception as e:
         logging.warning(f"Git sync failed: {e}")
 
-def run_experiment(limit: int = None):
+def reconstruct_entities(entity_strings, module):
+    """Helper to reconstruct Entity objects from their string representation."""
+    entities = []
+    for s in entity_strings:
+        # Match format like Building(span='Grill Room')
+        # We use a non-greedy .*? for the span content to handle potential nested quotes if any (though span is usually simple)
+        match = re.match(r"(\w+)\(span='(.*)'\)", s)
+        if match:
+            class_name, span = match.groups()
+            entity_class = getattr(module, class_name, None)
+            if entity_class:
+                # Use class name as stored in module (PascalCase)
+                entities.append(entity_class(span=span))
+    return entities
+
+def run_experiment(limit: int = None, enable_git: bool = True, resume: bool = False):
     """
     Iterates over guideline modules and processes sentences from few-nerd_test.
     """
@@ -185,7 +202,8 @@ def run_experiment(limit: int = None):
     os.makedirs(RESULTS_DIR, exist_ok=True)
 
     # Initialize Git Branch
-    setup_git_experiment_branch()
+    if enable_git:
+        setup_git_experiment_branch()
 
     # Load dataset
     ds = load_from_disk("./few-nerd_test")
@@ -224,8 +242,44 @@ def run_experiment(limit: int = None):
         predictions_per_module = []
         sentence_results = []
 
-        # We might want to limit sentences for testing, but user said "iterate over the sentences"
+        # Resumability: Check for existing results
+        processed_ids = set()
+        if resume:
+            # Find the most recent result file for this module
+            existing_files = [f for f in os.listdir(RESULTS_DIR) if f.startswith(f"{module_name}_") and f.endswith(".json")]
+            if existing_files:
+                # Sort by filename (timestamp) to get the latest
+                latest_file = sorted(existing_files)[-1]
+                latest_path = os.path.join(RESULTS_DIR, latest_file)
+                try:
+                    with open(latest_path, "r") as f:
+                        prev_results = json.load(f)
+                    
+                    if prev_results.get("sentences"):
+                        sentence_results = prev_results["sentences"]
+                        # Collect all processed IDs
+                        for s in sentence_results:
+                            if "id" in s:
+                                processed_ids.add(s["id"])
+                            gold_per_module.append(reconstruct_entities(s["gold"], module))
+                            predictions_per_module.append(reconstruct_entities(s["prediction"], module))
+                        
+                        # Keep the old filename and timestamp to continue the same run record
+                        log_filename = latest_path
+                        timestamp = prev_results["timestamp"]
+                        
+                        logging.info(f"Resuming {module_name} with {len(processed_ids)} already processed samples from {latest_file}")
+                except Exception as e:
+                    logging.error(f"Failed to load previous results for {module_name}: {e}")
+
+        # Processing loop
         for i, sentence in enumerate(tqdm(ds, desc=f"Processing {module_name}", leave=False)):
+            sentence_id = sentence.get("id", str(i))
+            if resume and sentence_id in processed_ids:
+                continue
+            
+            if limit and len(sentence_results) >= limit:
+                break
             # 1. Prepare sentence text
             tokens = sentence["tokens"]
             text = " ".join(tokens)
@@ -322,6 +376,7 @@ def run_experiment(limit: int = None):
             # Log current sentence
             sentence_data = {
                 "index": i,
+                "id": sentence_id,
                 "timestamp": datetime.now().isoformat(),
                 "text": text,
                 "gold": [str(g) for g in gold],
@@ -348,14 +403,16 @@ def run_experiment(limit: int = None):
             
             if i % 10 == 0:
                 logging.info(f"[{module_name}] Progress: {i} sentences saved to {log_filename}")
-                sync_results_to_git(f"Update results pending: {module_name} step {i}")
+                sync_results_to_git(f"Update results pending: {module_name} step {i}", enabled=enable_git)
 
         logging.info(f"Finished module {module_name}. Full results available at {log_filename}")
-        sync_results_to_git(f"Completed module: {module_name}")
+        sync_results_to_git(f"Completed module: {module_name}", enabled=enable_git)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Run GoLLIE experiments.")
     parser.add_argument("--limit", type=int, default=None, help="Limit the number of sentences to process.")
+    parser.add_argument("--no-git", action="store_true", help="Disable git automation (branching/pushing).")
+    parser.add_argument("--resume", action="store_true", help="Resume experiment from existing results.")
     args = parser.parse_args()
     
-    run_experiment(limit=args.limit)
+    run_experiment(limit=args.limit, enable_git=not args.no_git, resume=args.resume)
