@@ -18,6 +18,7 @@ import inspect
 import black
 from datetime import datetime
 from tqdm import tqdm
+import argparse
 from typing import Dict, List, Type, Any
 from datasets import load_from_disk
 from src.model.load_model import load_model
@@ -69,7 +70,6 @@ MODEL_LOAD_PARAMS = {
     "force_auto_device_map": True,
     "use_flash_attention": False, # For testing on Colab
     "torch_dtype": "bfloat16",
-    "USE_4BIT": True # Just for testing
 }
 
 GENERATE_PARAMS = {
@@ -109,7 +109,7 @@ def label_to_classname(label):
     # Capitalize first letter of each part to create PascalCase
     return "".join(part.capitalize() for part in parts if part)
 
-def run_experiment():
+def run_experiment(limit: int = None):
     """
     Iterates over guideline modules and processes sentences from few-nerd_test.
     """
@@ -119,6 +119,10 @@ def run_experiment():
 
     # Load dataset
     ds = load_from_disk("./few-nerd_test")
+    if limit:
+        ds = ds.select(range(min(limit, len(ds))))
+        logging.info(f"Limiting dataset to {limit} sentences.")
+        
     coarse_names = ds.features["ner_tags"].feature.names
     fine_names = ds.features["fine_ner_tags"].feature.names
 
@@ -251,4 +255,8 @@ def run_experiment():
         logging.info(f"Finished module {module_name}. Full results available at {log_filename}")
 
 if __name__ == "__main__":
-    run_experiment()
+    parser = argparse.ArgumentParser(description="Run GoLLIE experiments.")
+    parser.add_argument("--limit", type=int, default=None, help="Limit the number of sentences to process.")
+    args = parser.parse_args()
+    
+    run_experiment(limit=args.limit)
