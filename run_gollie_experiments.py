@@ -12,6 +12,7 @@ if GOLLIE_PATH not in sys.path:
     sys.path.append(GOLLIE_PATH)
 import json
 from datetime import datetime
+from tqdm import tqdm
 from typing import Dict, List, Type, Any
 from datasets import load_from_disk
 from src.model.load_model import load_model
@@ -113,7 +114,7 @@ def run_experiment():
     with open(template_path, "rt") as f:
         template = Template(f.read())
 
-    for module in guideline_modules:
+    for module in tqdm(guideline_modules, desc="Processing modules"):
         module_name = module.__name__
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         log_filename = os.path.join(RESULTS_DIR, f"{module_name}_{timestamp}.json")
@@ -132,7 +133,7 @@ def run_experiment():
         sentence_results = []
 
         # We might want to limit sentences for testing, but user said "iterate over the sentences"
-        for i, sentence in enumerate(ds):
+        for i, sentence in enumerate(tqdm(ds, desc=f"Processing {module_name}", leave=False)):
             # 1. Prepare sentence text
             tokens = sentence["tokens"]
             text = " ".join(tokens)
