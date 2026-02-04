@@ -390,7 +390,7 @@ def load_model(
         device_map=device_map,
         max_memory=max_memory,
         quantization_config=bnb_config,
-        dtype=torch_dtype,
+        torch_dtype=torch_dtype,
         config=config,
         trust_remote_code=trust_remote_code,
     )

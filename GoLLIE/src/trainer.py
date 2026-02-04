@@ -1,6 +1,7 @@
 import bisect
 import logging
 import os
+import warnings
 from typing import Callable, Dict, List, Optional, Tuple, Union
 
 import torch
@@ -405,7 +406,7 @@ class ConcatDataset(Dataset[T_co]):
 
     @property
     def cummulative_sizes(self):
-        logging.warning("cummulative_sizes attribute is renamed to cumulative_sizes", DeprecationWarning, stacklevel=2)
+        warnings.warn("cummulative_sizes attribute is renamed to cumulative_sizes", DeprecationWarning, stacklevel=2)
         return self.cumulative_sizes
 
     def rotate_split(self):
