@@ -1,5 +1,12 @@
 import os
 import sys
+import subprocess
+try:
+    from dotenv import load_dotenv
+except ImportError:
+    # If python-dotenv is not installed, we can't load .env automatically
+    # but we can assume environment vars might be set otherwise.
+    def load_dotenv(): pass
 
 # Get the absolute path of the project root
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -109,6 +116,66 @@ def label_to_classname(label):
     # Capitalize first letter of each part to create PascalCase
     return "".join(part.capitalize() for part in parts if part)
 
+def setup_git_experiment_branch():
+    """Configures git and creates a new branch for the experiment run."""
+    try:
+        load_dotenv()
+        git_url = os.environ.get("GIT_SET_URL")
+        
+        # Check if we are in a git repo
+        if not os.path.isdir(".git"):
+            logging.warning("Not a git repository. Skipping git automation.")
+            return False
+
+        if git_url:
+            # Configure remote with token if provided
+             subprocess.run(f"git remote set-url origin {git_url}", shell=True, check=True)
+        else:
+            logging.info("GIT_SET_URL not set. Assuming existing git config is valid.")
+            
+        # Configure user if not set (common in Colab)
+        try:
+            subprocess.run("git config user.name", shell=True, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        except subprocess.CalledProcessError:
+             logging.info("Configuring git user for Colab...")
+             subprocess.run('git config --global user.email "experiment@colab.run"', shell=True)
+             subprocess.run('git config --global user.name "Colab Experiment"', shell=True)
+             
+        # Create unique branch for this run
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        branch_name = f"experiment-run-{timestamp}"
+        
+        # Create and checkout
+        subprocess.run(f"git checkout -b {branch_name}", shell=True, check=True)
+        
+        # Try to push upstream. If it fails (e.g. no permissions), we log it.
+        try:
+            subprocess.run(f"git push -u origin {branch_name}", shell=True, check=True)
+            logging.info(f"Initialized and pushed git branch: {branch_name}")
+            return True
+        except subprocess.CalledProcessError as e:
+            logging.error(f"Failed to push new branch {branch_name}: {e}")
+            return False
+            
+    except Exception as e:
+        logging.error(f"Git setup failed: {e}")
+        return False
+
+def sync_results_to_git(message: str):
+    """Adds, commits, and pushes changes in the results directory."""
+    try:
+        # Check if there are changes to commit
+        status = subprocess.run("git status --porcelain GOLLIE-results/", shell=True, stdout=subprocess.PIPE, text=True)
+        if not status.stdout.strip():
+            return # No changes
+            
+        subprocess.run("git add GOLLIE-results/", shell=True, check=True)
+        subprocess.run(f'git commit -m "{message}"', shell=True, check=True)
+        subprocess.run("git push", shell=True, check=True)
+        logging.info(f"Synced results to git: {message}")
+    except Exception as e:
+        logging.warning(f"Git sync failed: {e}")
+
 def run_experiment(limit: int = None):
     """
     Iterates over guideline modules and processes sentences from few-nerd_test.
@@ -116,6 +183,9 @@ def run_experiment(limit: int = None):
     # Create results directory
     RESULTS_DIR = "GOLLIE-results"
     os.makedirs(RESULTS_DIR, exist_ok=True)
+
+    # Initialize Git Branch
+    setup_git_experiment_branch()
 
     # Load dataset
     ds = load_from_disk("./few-nerd_test")
@@ -251,8 +321,10 @@ def run_experiment(limit: int = None):
             
             if i % 10 == 0:
                 logging.info(f"[{module_name}] Progress: {i} sentences saved to {log_filename}")
+                sync_results_to_git(f"Update results pending: {module_name} step {i}")
 
         logging.info(f"Finished module {module_name}. Full results available at {log_filename}")
+        sync_results_to_git(f"Completed module: {module_name}")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Run GoLLIE experiments.")
