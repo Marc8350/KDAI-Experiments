@@ -94,7 +94,7 @@ MODEL_LOAD_PARAMS = {
     "quantization": None, # No quantization (A100) 4 for t4 
     "use_lora": False,
     "force_auto_device_map": True,
-    "use_flash_attention": True, # Enabled for A100 and False to disable flash attention.
+    "use_flash_attention": False, # DIAGNOSTIC: Disabled to test if standard attention works
     "torch_dtype": "bfloat16",
 }
 
@@ -106,7 +106,6 @@ GENERATE_PARAMS = {
     "num_return_sequences": 1,
     "pad_token_id": 2, # Manually set to avoid the repetitive warning
     "eos_token_id": 2,
-    "use_cache": False,  # DIAGNOSTIC: Disable KV cache to test if it's causing the issue
 }
 
 class MyEntityScorer(SpanScorer):
