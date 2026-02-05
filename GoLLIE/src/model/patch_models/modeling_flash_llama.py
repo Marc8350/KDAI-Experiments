@@ -325,8 +325,6 @@ class LlamaAttention(nn.Module):
             scaling_factor = self.config.rope_scaling.get("factor", 1.0)
             
             if scaling_type != "linear":
-                import logging
-                logger = logging.get_logger(__name__)
                 logger.warning(f"Unexpected rope_scaling type: {scaling_type}. Expected 'linear'. Proceeding with factor {scaling_factor}")
 
         self.rotary_emb = FlashRotaryEmbedding(
