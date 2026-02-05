@@ -1,0 +1,121 @@
+{
+    "module": "annotation_guidelines.guidelines_fine_gollie_v3",
+    "timestamp": "20260204_154032",
+    "model_load_params": {
+        "inference": true,
+        "model_weights_name_or_path": "HiTZ/GoLLIE-7B",
+        "quantization": 4,
+        "use_lora": false,
+        "force_auto_device_map": true,
+        "use_flash_attention": false,
+        "torch_dtype": "bfloat16"
+    },
+    "generate_params": {
+        "max_new_tokens": 128,
+        "do_sample": false,
+        "min_new_tokens": 0,
+        "num_beams": 1,
+        "num_return_sequences": 1
+    },
+    "overall_score": {
+        "entities": {
+            "precision": 1.0,
+            "recall": 0.5,
+            "f1-score": 0.6666666666666666,
+            "class_scores": {
+                "BuildingOther": {
+                    "tp": 0,
+                    "total_pos": 1,
+                    "total_pre": 0,
+                    "precision": 0.0,
+                    "recall": 0.0,
+                    "f1-score": 0.0
+                },
+                "BuildingHotel": {
+                    "tp": 1,
+                    "total_pos": 1,
+                    "total_pre": 1,
+                    "precision": 1.0,
+                    "recall": 1.0,
+                    "f1-score": 1.0
+                },
+                "LocationGpe": {
+                    "tp": 0,
+                    "total_pos": 1,
+                    "total_pre": 0,
+                    "precision": 0.0,
+                    "recall": 0.0,
+                    "f1-score": 0.0
+                },
+                "OrganizationShoworganization": {
+                    "tp": 1,
+                    "total_pos": 1,
+                    "total_pre": 1,
+                    "precision": 1.0,
+                    "recall": 1.0,
+                    "f1-score": 1.0
+                }
+            }
+        }
+    },
+    "processed_count": 1,
+    "sentences": [
+        {
+            "index": 0,
+            "id": "0",
+            "timestamp": "2026-02-04T15:40:36.557169",
+            "text": "In the early 1930s the band moved to the Grill Room of the Taft Hotel in New York ; the band was renamed `` George Hall and His Hotel Taft Orchestra `` .",
+            "gold": [
+                "BuildingOther(span='Grill Room')",
+                "BuildingHotel(span='Taft Hotel')",
+                "LocationGpe(span='New York')",
+                "OrganizationShoworganization(span='George Hall and His Hotel Taft Orchestra')"
+            ],
+            "prediction": [
+                "BuildingHotel(span='Taft Hotel')",
+                "OrganizationShoworganization(span='George Hall and His Hotel Taft Orchestra')"
+            ],
+            "score": {
+                "entities": {
+                    "precision": 1.0,
+                    "recall": 0.5,
+                    "f1-score": 0.6666666666666666,
+                    "class_scores": {
+                        "BuildingOther": {
+                            "tp": 0,
+                            "total_pos": 1,
+                            "total_pre": 0,
+                            "precision": 0.0,
+                            "recall": 0.0,
+                            "f1-score": 0.0
+                        },
+                        "BuildingHotel": {
+                            "tp": 1,
+                            "total_pos": 1,
+                            "total_pre": 1,
+                            "precision": 1.0,
+                            "recall": 1.0,
+                            "f1-score": 1.0
+                        },
+                        "LocationGpe": {
+                            "tp": 0,
+                            "total_pos": 1,
+                            "total_pre": 0,
+                            "precision": 0.0,
+                            "recall": 0.0,
+                            "f1-score": 0.0
+                        },
+                        "OrganizationShoworganization": {
+                            "tp": 1,
+                            "total_pos": 1,
+                            "total_pre": 1,
+                            "precision": 1.0,
+                            "recall": 1.0,
+                            "f1-score": 1.0
+                        }
+                    }
+                }
+            }
+        }
+    ]
+}

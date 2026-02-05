@@ -1,17 +1,8 @@
 import os
 import sys
-
-# Set environment variable to optimize CUDA memory allocation
-# Must be set before importing torch to be effective
-os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
-os.environ["PYTORCH_ALLOC_CONF"] = "expandable_segments:True"
-
-import torch
-import gc
 import subprocess
 try:
     from dotenv import load_dotenv
-    load_dotenv()
 except ImportError:
     # If python-dotenv is not installed, we can't load .env automatically
     # but we can assume environment vars might be set otherwise.
@@ -58,17 +49,7 @@ from annotation_guidelines import (
     guidelines_fine_gollie_v3
 )
 
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s',
-    datefmt='%H:%M:%S'
-)
-# Silence only extremely noisy network libraries
-logging.getLogger("httpx").setLevel(logging.WARNING)
-logging.getLogger("urllib3").setLevel(logging.WARNING)
-# Suppress the "Setting pad_token_id to eos_token_id" warning
-import warnings
-warnings.filterwarnings("ignore", category=UserWarning, module="transformers.generation.utils")
+logging.basicConfig(level=logging.INFO)
 
 guideline_modules = [
     guidelines_coarse_gollie,
@@ -91,21 +72,30 @@ guideline_modules = [
 MODEL_LOAD_PARAMS = {
     "inference": True,
     "model_weights_name_or_path": "HiTZ/GoLLIE-7B",
-    "quantization": None, #For testing on Small GPU with less than 20 Gb Ram 
+    "quantization": 4, #For testing on Small GPU with less than 20 Gb Ram 
     "use_lora": False,
     "force_auto_device_map": True,
-    "use_flash_attention": True, # For testing on Colab
+    "use_flash_attention": False, # For testing on Colab
     "torch_dtype": "bfloat16",
 }
-
+'''
 GENERATE_PARAMS = {
     "max_new_tokens": 128,
     "do_sample": False,
     "min_new_tokens": 0,
     "num_beams": 1,
     "num_return_sequences": 1,
-    "pad_token_id": 2, # Manually set to avoid the repetitive warning
-    "eos_token_id": 2,
+}
+'''
+
+MODEL_LOAD_PARAMS = {
+    "inference": True,
+    "model_weights_name_or_path": "HiTZ/GoLLIE-7B",
+    "quantization": None,
+    "use_lora": False,
+    "force_auto_device_map": True,
+    "use_flash_attention": True,
+    "torch_dtype": "bfloat16"
 }
 
 class MyEntityScorer(SpanScorer):
@@ -236,7 +226,7 @@ def run_experiment(limit: int = None, enable_git: bool = True, resume: bool = Fa
     fine_names = ds.features["fine_ner_tags"].feature.names
 
     # Load model
-    logging.info(f"Loading GoLLIE model ({MODEL_LOAD_PARAMS['model_weights_name_or_path']})...")
+    logging.info(f"Loading model with params: {MODEL_LOAD_PARAMS}")
     model, tokenizer = load_model(**MODEL_LOAD_PARAMS)
 
     # Read template
@@ -249,6 +239,8 @@ def run_experiment(limit: int = None, enable_git: bool = True, resume: bool = Fa
         module_name = module.__name__
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         log_filename = os.path.join(RESULTS_DIR, f"{module_name}_{timestamp}.json")
+        
+        logging.info(f"Processing module: {module_name}")
         
         is_coarse = "coarse" in module_name
         tag_key = "ner_tags" if is_coarse else "fine_ner_tags"
@@ -404,9 +396,6 @@ def run_experiment(limit: int = None, enable_git: bool = True, resume: bool = Fa
             }
             sentence_results.append(sentence_data)
             
-            # Explicitly free tensor memory
-            del model_input, model_output
-            
             # 7. Intermediate Saving (Avoid data loss on long runs)
             current_overall_score = scorer(reference=gold_per_module, predictions=predictions_per_module)
             
@@ -423,13 +412,10 @@ def run_experiment(limit: int = None, enable_git: bool = True, resume: bool = Fa
             with open(log_filename, "w") as f:
                 json.dump(final_results, f, indent=4)
             
-            if i % 50 == 0 and i > 0:
-                logging.info(f"[{module_name}] Processed {i} sentences...")
-                sync_results_to_git(f"Step {i}: {module_name}", enabled=enable_git)
+            if i % 10 == 0:
+                logging.info(f"[{module_name}] Progress: {i} sentences saved to {log_filename}")
+                sync_results_to_git(f"Update results pending: {module_name} step {i}", enabled=enable_git)
 
-        # Clear GPU memory before starting the next module
-        gc.collect()
-        torch.cuda.empty_cache()
         logging.info(f"Finished module {module_name}. Full results available at {log_filename}")
         sync_results_to_git(f"Completed module: {module_name}", enabled=enable_git)
 

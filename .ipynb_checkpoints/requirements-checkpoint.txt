@@ -1,0 +1,20 @@
+# Core Dependencies
+torch>=2.0.0
+transformers>=4.38.0
+datasets>=2.14.0
+accelerate>=0.27.0
+bitsandbytes>=0.41.0
+peft>=0.8.0
+
+# Data Processing & Utilities
+tqdm>=4.66.0
+jinja2>=3.1.0
+black>=24.0.0
+python-dotenv>=1.0.0
+scipy>=1.11.0
+scikit-learn>=1.3.0
+sentencepiece>=0.1.99
+protobuf>=3.20.0
+
+# Optional / Specific to GoLLIE
+# flash-attn>=2.0.0  # Commented out as it requires specific hardware compilation
