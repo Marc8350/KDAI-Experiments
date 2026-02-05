@@ -374,6 +374,13 @@ def run_experiment(limit: int = None, enable_git: bool = True, resume: bool = Fa
             decoded_output = tokenizer.decode(model_output[0], skip_special_tokens=True)
             result_str = decoded_output.split("result =")[-1]
             
+            # Debug logging for the first few items
+            if i < 3:
+                logging.info(f"--- RAW OUTPUT DEBUG (Item {i}) ---")
+                logging.info(f"Raw Decoded: {decoded_output[:500]}...") # truncate for brevity
+                logging.info(f"Extracted Result Str: {result_str}")
+                logging.info("-------------------------------------")
+            
             try:
                 # AnnotationList.from_output expects a string that looks like [Entity(span='...'), ...]
                 # and a task_module name (the package where classes are defined)
@@ -383,6 +390,7 @@ def run_experiment(limit: int = None, enable_git: bool = True, resume: bool = Fa
                 )
             except Exception as e:
                 logging.error(f"Parsing failed for sentence {i}: {e}")
+                logging.error(f"Failed string was: {result_str}")
                 prediction = []
 
             # 6. Score individual sentence
