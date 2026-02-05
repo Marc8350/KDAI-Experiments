@@ -320,9 +320,14 @@ class LlamaAttention(nn.Module):
         if self.config.rope_scaling is None:
             scaling_factor = 1
         else:
-            scaling_type = self.config.rope_scaling["type"]
-            scaling_factor = self.config.rope_scaling["factor"]
-            assert scaling_type == "linear"
+            # Robustly get type and factor (handles both old and new transformers configs)
+            scaling_type = self.config.rope_scaling.get("type") or self.config.rope_scaling.get("rope_type") or "linear"
+            scaling_factor = self.config.rope_scaling.get("factor", 1.0)
+            
+            if scaling_type != "linear":
+                import logging
+                logger = logging.get_logger(__name__)
+                logger.warning(f"Unexpected rope_scaling type: {scaling_type}. Expected 'linear'. Proceeding with factor {scaling_factor}")
 
         self.rotary_emb = FlashRotaryEmbedding(
             self.head_dim,

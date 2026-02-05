@@ -91,10 +91,10 @@ guideline_modules = [
 MODEL_LOAD_PARAMS = {
     "inference": True,
     "model_weights_name_or_path": "HiTZ/GoLLIE-7B",
-    "quantization": 4, #For testing on Small GPU with less than 20 Gb Ram 
+    "quantization": None, # No quantization (A100) 4 for t4 
     "use_lora": False,
     "force_auto_device_map": True,
-    "use_flash_attention": False, # For testing on Colab
+    "use_flash_attention": True, # Enabled for A100 and False to disable flash attention.
     "torch_dtype": "bfloat16",
 }
 
