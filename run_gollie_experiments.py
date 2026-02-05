@@ -106,6 +106,7 @@ GENERATE_PARAMS = {
     "num_return_sequences": 1,
     "pad_token_id": 2, # Manually set to avoid the repetitive warning
     "eos_token_id": 2,
+    "use_cache": False,  # DIAGNOSTIC: Disable KV cache to test if it's causing the issue
 }
 
 class MyEntityScorer(SpanScorer):
