@@ -428,7 +428,7 @@ class LlamaAttention(nn.Module):
                 max_seqlen_k,
                 dropout_p=0.0,
                 softmax_scale=1.0 / self.norm_factor,
-                causal=(not has_layer_past),
+                causal=True,  # Always causal for autoregressive generation (fix for Flash Attention v2.1+)
                 return_attn_probs=output_attentions,
             )
 
@@ -447,7 +447,7 @@ class LlamaAttention(nn.Module):
                 kv,
                 dropout_p=0.0,
                 softmax_scale=1.0 / self.norm_factor,
-                causal=(not has_layer_past),
+                causal=True,  # Always causal for autoregressive generation (fix for Flash Attention v2.1+)
                 return_attn_probs=output_attentions,
             )
 
