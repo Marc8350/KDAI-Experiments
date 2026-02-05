@@ -101,7 +101,7 @@ MODEL_LOAD_PARAMS = {
 GENERATE_PARAMS = {
     "max_new_tokens": 128,
     "do_sample": False,
-    "min_new_tokens": 0,
+    "min_new_tokens": 5,
     "num_beams": 1,
     "num_return_sequences": 1,
     "pad_token_id": 2, # Manually set to avoid the repetitive warning
