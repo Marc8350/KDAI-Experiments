@@ -361,9 +361,15 @@ def run_experiment(limit: int = None, enable_git: bool = True, resume: bool = Fa
 
             # 4. Inference
             model_input = tokenizer(prompt, add_special_tokens=True, return_tensors="pt")
-            # Remove EOS token
-            model_input["input_ids"] = model_input["input_ids"][:, :-1]
-            model_input["attention_mask"] = model_input["attention_mask"][:, :-1]
+            
+            # Check if EOS token was added and remove it if present
+            last_token_id = model_input["input_ids"][0, -1].item()
+            if last_token_id == tokenizer.eos_token_id:
+                if i < 3: logging.info(f"Removing EOS token (id {last_token_id}) from prompt end.")
+                model_input["input_ids"] = model_input["input_ids"][:, :-1]
+                model_input["attention_mask"] = model_input["attention_mask"][:, :-1]
+            else:
+                 if i < 3: logging.info(f"Last token (id {last_token_id}) is NOT EOS (expected {tokenizer.eos_token_id}). NOT truncating.")
             
             model_output = model.generate(
                 **model_input.to(model.device),
