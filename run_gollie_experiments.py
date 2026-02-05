@@ -382,9 +382,18 @@ def run_experiment(limit: int = None, enable_git: bool = True, resume: bool = Fa
             
             # Debug logging for the first few items
             if i < 3:
+                input_len = model_input["input_ids"].shape[1]
+                output_len = model_output.shape[1]
+                new_tokens = output_len - input_len
                 logging.info(f"--- RAW OUTPUT DEBUG (Item {i}) ---")
-                logging.info(f"Raw Decoded: {decoded_output[:500]}...") # truncate for brevity
-                logging.info(f"Extracted Result Str: {result_str}")
+                logging.info(f"Input tokens: {input_len}, Output tokens: {output_len}, NEW tokens: {new_tokens}")
+                logging.info(f"'result =' in output: {'result =' in decoded_output}")
+                if result_str.strip():
+                    logging.info(f"Extracted Result Str: {result_str[:200]}")
+                else:
+                    # Show the END of the decoded output to see what's happening
+                    logging.info(f"Result is EMPTY! Last 500 chars of decoded output:")
+                    logging.info(decoded_output[-500:])
                 logging.info("-------------------------------------")
             
             try:
