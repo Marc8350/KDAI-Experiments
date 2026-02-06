@@ -125,7 +125,9 @@ class Orchestrator:
         variation: str
     ) -> Optional[Path]:
         """Get path to a specific prompt variation."""
-        base_name = f"{granularity}_{style}_3shot"
+        # Use granularity-specific shot count for base prompt name
+        shots = self.config["prompts"]["coarse_shots"] if granularity == "coarse" else self.config["prompts"]["fine_shots"]
+        base_name = f"{granularity}_{style}_{shots}shot"
         prompt_path = self.variations_dir / base_name / f"{variation}.txt"
         
         if prompt_path.exists():

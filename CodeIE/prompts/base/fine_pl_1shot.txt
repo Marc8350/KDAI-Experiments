@@ -1,0 +1,747 @@
+# Entity type definitions:
+# - ["art-broadcastprogram", "art-film", "art-music", "art-other", "art-painting", "art-writtenart", "building-airport", "building-hospital", "building-hotel", "building-library", "building-other", "building-restaurant", "building-sportsfacility", "building-theater", "event-attack/battle/war/militaryconflict", "event-disaster", "event-election", "event-other", "event-protest", "event-sportsevent", "location-GPE", "location-bodiesofwater", "location-island", "location-mountain", "location-other", "location-park", "location-road/railway/highway/transit", "organization-company", "organization-education", "organization-government/governmentagency", "organization-media/newspaper", "organization-other", "organization-politicalparty", "organization-religion", "organization-showorganization", "organization-sportsleague", "organization-sportsteam", "other-astronomything", "other-award", "other-biologything", "other-chemicalthing", "other-currency", "other-disease", "other-educationaldegree", "other-god", "other-language", "other-law", "other-livingthing", "other-medical", "person-actor", "person-artist/author", "person-athlete", "person-director", "person-other", "person-politician", "person-scholar", "person-soldier", "product-airplane", "product-car", "product-food", "product-game", "product-other", "product-ship", "product-software", "product-train", "product-weapon"]: Entities of type ["art-broadcastprogram", "art-film", "art-music", "art-other", "art-painting", "art-writtenart", "building-airport", "building-hospital", "building-hotel", "building-library", "building-other", "building-restaurant", "building-sportsfacility", "building-theater", "event-attack/battle/war/militaryconflict", "event-disaster", "event-election", "event-other", "event-protest", "event-sportsevent", "location-GPE", "location-bodiesofwater", "location-island", "location-mountain", "location-other", "location-park", "location-road/railway/highway/transit", "organization-company", "organization-education", "organization-government/governmentagency", "organization-media/newspaper", "organization-other", "organization-politicalparty", "organization-religion", "organization-showorganization", "organization-sportsleague", "organization-sportsteam", "other-astronomything", "other-award", "other-biologything", "other-chemicalthing", "other-currency", "other-disease", "other-educationaldegree", "other-god", "other-language", "other-law", "other-livingthing", "other-medical", "person-actor", "person-artist/author", "person-athlete", "person-director", "person-other", "person-politician", "person-scholar", "person-soldier", "product-airplane", "product-car", "product-food", "product-game", "product-other", "product-ship", "product-software", "product-train", "product-weapon"]
+# - []: Entities categorized as []
+# - {"art-broadcastprogram": [], "art-film": [], "art-music": [], "art-other": [], "art-painting": [], "art-writtenart": [], "building-airport": [], "building-hospital": [], "building-hotel": [], "building-library": [], "building-other": [], "building-restaurant": [], "building-sportsfacility": [], "building-theater": [], "event-attack/battle/war/militaryconflict": [], "event-disaster": [], "event-election": [], "event-other": [], "event-protest": [], "event-sportsevent": [], "location-GPE": [], "location-bodiesofwater": [], "location-island": [], "location-mountain": [], "location-other": [], "location-park": [], "location-road/railway/highway/transit": [], "organization-company": [], "organization-education": [], "organization-government/governmentagency": [], "organization-media/newspaper": [], "organization-other": [], "organization-politicalparty": [], "organization-religion": [], "organization-showorganization": [], "organization-sportsleague": [], "organization-sportsteam": [], "other-astronomything": [], "other-award": [], "other-biologything": [], "other-chemicalthing": [], "other-currency": [], "other-disease": [], "other-educationaldegree": [], "other-god": [], "other-language": [], "other-law": [], "other-livingthing": [], "other-medical": [], "person-actor": [], "person-artist/author": [], "person-athlete": [], "person-director": [], "person-other": [], "person-politician": [], "person-scholar": [], "person-soldier": [], "product-airplane": [], "product-car": [], "product-food": [], "product-game": [], "product-other": [], "product-ship": [], "product-software": [], "product-train": [], "product-weapon": []}: Entities of type {"art-broadcastprogram": [], "art-film": [], "art-music": [], "art-other": [], "art-painting": [], "art-writtenart": [], "building-airport": [], "building-hospital": [], "building-hotel": [], "building-library": [], "building-other": [], "building-restaurant": [], "building-sportsfacility": [], "building-theater": [], "event-attack/battle/war/militaryconflict": [], "event-disaster": [], "event-election": [], "event-other": [], "event-protest": [], "event-sportsevent": [], "location-GPE": [], "location-bodiesofwater": [], "location-island": [], "location-mountain": [], "location-other": [], "location-park": [], "location-road/railway/highway/transit": [], "organization-company": [], "organization-education": [], "organization-government/governmentagency": [], "organization-media/newspaper": [], "organization-other": [], "organization-politicalparty": [], "organization-religion": [], "organization-showorganization": [], "organization-sportsleague": [], "organization-sportsteam": [], "other-astronomything": [], "other-award": [], "other-biologything": [], "other-chemicalthing": [], "other-currency": [], "other-disease": [], "other-educationaldegree": [], "other-god": [], "other-language": [], "other-law": [], "other-livingthing": [], "other-medical": [], "person-actor": [], "person-artist/author": [], "person-athlete": [], "person-director": [], "person-other": [], "person-politician": [], "person-scholar": [], "person-soldier": [], "product-airplane": [], "product-car": [], "product-food": [], "product-game": [], "product-other": [], "product-ship": [], "product-software": [], "product-train": [], "product-weapon": []}
+
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "That 's why Martin started Atlas Comics ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Martin", "type": "person-other"})
+	entity_list.append({"text": "Atlas Comics", "type": "organization-company"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "During 1998 , SMG entered into a partnership agreement with another American based company , Anschutz Sports Holdings , to hold an equal share in the ownership of London Arena ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "SMG", "type": "location-GPE"})
+	entity_list.append({"text": "American", "type": "location-GPE"})
+	entity_list.append({"text": "Anschutz Sports Holdings", "type": "building-sportsfacility"})
+	entity_list.append({"text": "London Arena", "type": "building-sportsfacility"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "As operations began , Army Rangers embarked on a mission to protect the Haditha Dam from being destroyed by Iraqi forces ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Army Rangers", "type": "organization-other"})
+	entity_list.append({"text": "Haditha Dam", "type": "building-other"})
+	entity_list.append({"text": "Iraqi", "type": "location-GPE"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "In 1964 , Gilberto appeared in the films `` Get Yourself a College Girl `` and `` The Hanged Man `` ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Gilberto", "type": "person-artist/author"})
+	entity_list.append({"text": "Get Yourself a College Girl", "type": "art-film"})
+	entity_list.append({"text": "The Hanged Man", "type": "art-film"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "She was given a Cabinet position responsible for the Environment and Community Safety in 2007 and became Deputy Leader of the group in 2008 ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Environment and Community Safety", "type": "organization-government/governmentagency"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "DuMont 's partner , Thomas T. Goldsmith ( for whom the Washington , D.C. station WTTG was named ) , remained on Metromedia 's board of directors from this time all the way until Kluge sold the stations to the Fox Television Stations Group in 1986 , when the Fox network was formed ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "DuMont", "type": "person-other"})
+	entity_list.append({"text": "Thomas T. Goldsmith", "type": "person-other"})
+	entity_list.append({"text": "Washington , D.C. station WTTG", "type": "organization-other"})
+	entity_list.append({"text": "Fox Television Stations Group", "type": "organization-other"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "While at his alma mater ( 1945–58 ) , Harshman was also the head football coach from 1951 to 1957 , compiling a record , and also led the baseball team for the last five seasons ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Harshman", "type": "person-other"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "It is well known as the site of the main campus of the `` Universitat Autònoma de Barcelona `` ( at Bellaterra ) and hosts the ALBA ( synchrotron ) located in the Barcelona Synchrotron Park ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Universitat Autònoma de Barcelona", "type": "organization-education"})
+	entity_list.append({"text": "Bellaterra", "type": "location-GPE"})
+	entity_list.append({"text": "ALBA", "type": "event-other"})
+	entity_list.append({"text": "Barcelona Synchrotron Park", "type": "location-park"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "This story was recorded as part of the production block for the previous season but deliberately held over for Season Ten ."
+	entity_list = []
+	# extracted named entities
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "The historian Austin Woolrych describes Powick Bridge as having `` significance ... disproportionate to it scale '' : it proved that the Royalists had forces capable of standing up to and beating those of Parliament , and affected the morale of both armies leading up to the Battle of Edgehill a month later ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Austin Woolrych", "type": "person-scholar"})
+	entity_list.append({"text": "Powick Bridge", "type": "building-other"})
+	entity_list.append({"text": "Royalists", "type": "organization-other"})
+	entity_list.append({"text": "Parliament", "type": "organization-government/governmentagency"})
+	entity_list.append({"text": "Battle of Edgehill", "type": "event-attack/battle/war/militaryconflict"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "His effective actions earned him the Peruvian Cross from President Juan Velasco Alvarado and the U.S . awarded him the Legion of Merit ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Peruvian", "type": "location-GPE"})
+	entity_list.append({"text": "Juan Velasco Alvarado", "type": "person-politician"})
+	entity_list.append({"text": "U.S .", "type": "location-GPE"})
+	entity_list.append({"text": "Legion of Merit", "type": "other-award"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "It also requires a CRT television screen since the Zapper gun will not work with LCD or HDTV 's ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "CRT television screen", "type": "product-other"})
+	entity_list.append({"text": "Zapper gun", "type": "product-weapon"})
+	entity_list.append({"text": "LCD", "type": "product-other"})
+	entity_list.append({"text": "HDTV", "type": "product-other"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "The 2018–19 USC Trojans men 's basketball team represented the University of Southern California during the 2018–19 NCAA Division I men 's basketball season ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "USC Trojans", "type": "organization-sportsteam"})
+	entity_list.append({"text": "University of Southern California", "type": "organization-education"})
+	entity_list.append({"text": "NCAA", "type": "event-sportsevent"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "It was first attributed to the [ [ Veii ] ] an artist [ [ Vulca ] ] , who decorated the [ [ Temple of Jupiter ( Capitoline Hill ) | Temple of Jupiter Capitolinus ] ] , and then reattributed to an unknown Etruscan artist of around 480–470 BC ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Veii", "type": "person-artist/author"})
+	entity_list.append({"text": "Vulca", "type": "person-artist/author"})
+	entity_list.append({"text": "Temple of Jupiter", "type": "building-other"})
+	entity_list.append({"text": "Capitoline Hill", "type": "location-mountain"})
+	entity_list.append({"text": "Temple of Jupiter Capitolinus", "type": "building-other"})
+	entity_list.append({"text": "Etruscan", "type": "location-GPE"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "The latest update , titled , was released for Dreamcast in Japan in 1999 , and then internationally in 2000 , with the North American version released as Virtua Striker 2 ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Dreamcast", "type": "product-other"})
+	entity_list.append({"text": "Japan", "type": "location-GPE"})
+	entity_list.append({"text": "North American", "type": "location-other"})
+	entity_list.append({"text": "Virtua Striker 2", "type": "product-game"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "The 1957 Small Club World Cup was the sixth edition of the Small Club World Cup , a tournament held in Venezuela between 1952 and 1957 , and in 1963 and in 1965 ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Small Club World Cup", "type": "event-sportsevent"})
+	entity_list.append({"text": "Small Club World Cup", "type": "event-sportsevent"})
+	entity_list.append({"text": "Venezuela", "type": "location-GPE"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "While working on Club Nouveau at Aire LA Studios in Glendale , California , Chiarelli met mix engineer/mentor Craig Burbidge and worked on numerous hit records from artists such as Calloway , Chuckii Booker and Teddy Pendergrass ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Club Nouveau", "type": "organization-showorganization"})
+	entity_list.append({"text": "Aire LA Studios", "type": "organization-company"})
+	entity_list.append({"text": "Glendale", "type": "location-GPE"})
+	entity_list.append({"text": "California", "type": "location-GPE"})
+	entity_list.append({"text": "Chiarelli", "type": "person-other"})
+	entity_list.append({"text": "Craig Burbidge", "type": "person-other"})
+	entity_list.append({"text": "Calloway", "type": "person-other"})
+	entity_list.append({"text": "Chuckii Booker", "type": "person-other"})
+	entity_list.append({"text": "Teddy Pendergrass", "type": "person-other"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "As an Olympic Bronze medalist and Tour de France stage winner , Davis Phinney has celebrated the most victories of any cyclist in American history ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Olympic Bronze", "type": "other-award"})
+	entity_list.append({"text": "Tour de France", "type": "event-sportsevent"})
+	entity_list.append({"text": "Davis Phinney", "type": "person-athlete"})
+	entity_list.append({"text": "American", "type": "location-GPE"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "Newling 's other projects at Neal Street Productions have included UK and world premiere productions of David Lindsay Abaire 's award-winning Fuddy Meers ( 2004 ) , Anna in the Tropics ( 2004 ) , David Hare 's The Vertical Hour ( 2006 ) , a new stage version of All About My Mother ( 2007 ) adapted by Sam Adamson , The House of Special Purpose ( 2009 ) by Heidi Thomas and Richard Greenberg 's Three Days of Rain ( 2009 ) and most recently , The Moderate Soprano , starring Roger Allam and Nancy Carroll ( 2018 ) and Neal Street 's co-production of The Lehman Trilogy ( 2018 ) with the National Theatre ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Newling", "type": "person-director"})
+	entity_list.append({"text": "Neal Street Productions", "type": "organization-company"})
+	entity_list.append({"text": "UK", "type": "location-GPE"})
+	entity_list.append({"text": "David Lindsay Abaire", "type": "person-director"})
+	entity_list.append({"text": "Fuddy Meers", "type": "art-film"})
+	entity_list.append({"text": "Anna in the Tropics", "type": "art-film"})
+	entity_list.append({"text": "David Hare 's The Vertical Hour", "type": "art-film"})
+	entity_list.append({"text": "a new stage version of All About My Mother", "type": "art-film"})
+	entity_list.append({"text": "Sam Adamson", "type": "person-artist/author"})
+	entity_list.append({"text": "The House of Special Purpose", "type": "art-film"})
+	entity_list.append({"text": "Heidi Thomas", "type": "person-director"})
+	entity_list.append({"text": "Richard Greenberg", "type": "person-director"})
+	entity_list.append({"text": "Three Days of Rain", "type": "art-film"})
+	entity_list.append({"text": "The Moderate Soprano", "type": "art-writtenart"})
+	entity_list.append({"text": "Roger Allam", "type": "person-actor"})
+	entity_list.append({"text": "Nancy Carroll", "type": "person-actor"})
+	entity_list.append({"text": "Neal Street", "type": "person-director"})
+	entity_list.append({"text": "Lehman Trilogy", "type": "art-film"})
+	entity_list.append({"text": "National Theatre", "type": "building-theater"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "The Pulpit Commentary identifies a number of theologians ( De Wette , Baur , Weisse , Keim and others ) who `` have tried to prove from this that the evangelist was ignorant of Christ 's birth at Bethlehem `` , whereas Bengel argued that `` John takes [ this ] for granted as known from the other evangelists '' ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "The Pulpit Commentary", "type": "art-writtenart"})
+	entity_list.append({"text": "De Wette", "type": "person-scholar"})
+	entity_list.append({"text": "Baur", "type": "person-scholar"})
+	entity_list.append({"text": "Weisse", "type": "person-scholar"})
+	entity_list.append({"text": "Keim", "type": "person-scholar"})
+	entity_list.append({"text": "Christ", "type": "other-god"})
+	entity_list.append({"text": "Bethlehem", "type": "location-GPE"})
+	entity_list.append({"text": "Bengel", "type": "person-other"})
+	entity_list.append({"text": "John", "type": "person-artist/author"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "After achieving autonomy in 1965 , the Cook Islands elected Albert Henry of the Cook Islands Party as their first Prime Minister ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Cook Islands", "type": "location-island"})
+	entity_list.append({"text": "Albert Henry", "type": "person-politician"})
+	entity_list.append({"text": "Cook Islands Party", "type": "organization-politicalparty"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "Old English `` attercoppe '' ( meaning `` spider '' ) is derived from `` atter '' meaning `` poison '' and `` coppe '' meaning `` head '' ; the OE term is a loan from Old Norse language and survives in modern Danish as `` edderkop '' , spider ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Old English", "type": "other-language"})
+	entity_list.append({"text": "Old Norse language", "type": "other-language"})
+	entity_list.append({"text": "Danish", "type": "other-language"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "The child may develop congenital heart disease , growth retardation , microcephaly and intellectual disability as a result ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "congenital heart disease", "type": "other-disease"})
+	entity_list.append({"text": "growth retardation", "type": "other-disease"})
+	entity_list.append({"text": "microcephaly", "type": "other-disease"})
+	entity_list.append({"text": "intellectual disability", "type": "other-disease"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "A pilot for a `` Dynasty `` reboot for The CW was announced in September 2016 , and Sam Adegoke was cast as Jeff in May 2017 ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Dynasty", "type": "art-broadcastprogram"})
+	entity_list.append({"text": "The CW", "type": "organization-media/newspaper"})
+	entity_list.append({"text": "Sam Adegoke", "type": "person-actor"})
+	entity_list.append({"text": "Jeff", "type": "person-other"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "Ground and air searches concentrated on the Long Trail up as far as Glastenbury Mountain ( ten miles to the north ) , the trail 's various branches , and along Route 9 from Bennington to Brattleboro ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Long Trail", "type": "location-road/railway/highway/transit"})
+	entity_list.append({"text": "Glastenbury Mountain", "type": "location-mountain"})
+	entity_list.append({"text": "Route 9", "type": "location-road/railway/highway/transit"})
+	entity_list.append({"text": "Bennington", "type": "location-other"})
+	entity_list.append({"text": "Brattleboro", "type": "location-other"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "The Espionage Act of 1917 and the Sedition Act of 1918 were passed in response ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Espionage Act of 1917", "type": "other-law"})
+	entity_list.append({"text": "Sedition Act of 1918", "type": "other-law"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "Naftogaz received more than $ 6 billion of subsidies in domestic bonds from 2009 to 2012 as regulated gas prices and expensive Russian energy imports led to heavy losses ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Naftogaz", "type": "organization-company"})
+	entity_list.append({"text": "$", "type": "other-award"})
+	entity_list.append({"text": "Russian", "type": "location-GPE"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "The 1968 National Convention of the Republican Party of the United States was held at the Miami Beach Convention Center in Miami Beach , Dade County , Florida , from August 5 to August 8 , 1968 , to select the party 's nominee in the general election ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "1968 National Convention of the Republican Party of the United States", "type": "event-other"})
+	entity_list.append({"text": "Miami Beach Convention Center", "type": "building-other"})
+	entity_list.append({"text": "Miami Beach", "type": "location-GPE"})
+	entity_list.append({"text": "Dade County", "type": "location-GPE"})
+	entity_list.append({"text": "Florida", "type": "location-GPE"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "Both songs are available on the album `` Prismatic Infinity Carat `` ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Prismatic Infinity Carat", "type": "art-music"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "Similar in size to the Opel Rekord , the Senator was previously seen in Britain as the Vauxhall Royale , but with that model 's demise the Senator will be imported for approximately one year until the Vauxhall-badged version is launched ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Opel Rekord", "type": "product-car"})
+	entity_list.append({"text": "Senator", "type": "product-car"})
+	entity_list.append({"text": "Britain", "type": "location-GPE"})
+	entity_list.append({"text": "Vauxhall Royale", "type": "product-car"})
+	entity_list.append({"text": "Senator", "type": "product-car"})
+	entity_list.append({"text": "Vauxhall-badged", "type": "product-car"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "Examples of research libraries include the British Library , the Bodleian Library at Oxford University and the New York Public Library Main Branch on 42nd Street in Manhattan , State Public Scientific Technological Library of the Siberian Branch of the Russian Academy of Science ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "British Library", "type": "building-library"})
+	entity_list.append({"text": "Bodleian Library", "type": "building-library"})
+	entity_list.append({"text": "Oxford University", "type": "organization-education"})
+	entity_list.append({"text": "New York Public Library Main Branch", "type": "building-library"})
+	entity_list.append({"text": "42nd Street", "type": "location-road/railway/highway/transit"})
+	entity_list.append({"text": "Manhattan", "type": "location-GPE"})
+	entity_list.append({"text": "State Public Scientific Technological Library", "type": "building-library"})
+	entity_list.append({"text": "Siberian Branch", "type": "building-library"})
+	entity_list.append({"text": "Russian Academy of Science", "type": "organization-education"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "drummer Ian Herman and trombonist Jannie `` Hanepoot '' van Tonder who can both be heard on many albums from the Shifty Catalogue ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Ian Herman", "type": "person-artist/author"})
+	entity_list.append({"text": "Jannie `` Hanepoot '' van Tonder", "type": "person-artist/author"})
+	entity_list.append({"text": "Shifty", "type": "organization-company"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "At the Battle of Salamanca in July 1812 Lieutenant William Pearce of the 2nd battalion captured the French Imperial Eagle of the French 62nd Regiment ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Battle of Salamanca", "type": "event-attack/battle/war/militaryconflict"})
+	entity_list.append({"text": "William Pearce", "type": "person-soldier"})
+	entity_list.append({"text": "French", "type": "location-GPE"})
+	entity_list.append({"text": "French", "type": "location-GPE"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "As part of the Infuture art festival held at Ontario Place in September 2016 , the film was shown again at the Cinesphere ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Ontario Place", "type": "building-other"})
+	entity_list.append({"text": "Cinesphere", "type": "building-theater"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "Located at Shuangjiang Town on the northern bank of the Yangtze River , the new county is 162 miles from the Three Gorges Dam and 223 miles from Chongqing City ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Shuangjiang Town", "type": "location-GPE"})
+	entity_list.append({"text": "Yangtze River", "type": "location-bodiesofwater"})
+	entity_list.append({"text": "Three Gorges Dam", "type": "building-other"})
+	entity_list.append({"text": "Chongqing City", "type": "location-GPE"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "It and MS-DOS were identical products that eventually diverged starting with MS-DOS version 6.0 ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "MS-DOS", "type": "product-software"})
+	entity_list.append({"text": "MS-DOS version 6.0", "type": "product-software"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "In the 1955 film `` Interrupted Melody `` , which starred Eleanor Parker as Australian soprano Marjorie Lawrence , Eileen Farrell supplied the singing voice ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Interrupted Melody", "type": "art-film"})
+	entity_list.append({"text": "Eleanor Parker", "type": "person-actor"})
+	entity_list.append({"text": "Australian", "type": "location-GPE"})
+	entity_list.append({"text": "Marjorie Lawrence", "type": "person-other"})
+	entity_list.append({"text": "Eileen Farrell", "type": "person-actor"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "According to a 1971 NASA catalogue , `` al-Nasaq al-Yamānī `` or `` Nasak Yamani `` was the name for two stars : Delta Serpentis as `` Nasak Yamani I `` and Epsilon Serpentis as `` Nasak Yamani II `` ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "NASA", "type": "organization-government/governmentagency"})
+	entity_list.append({"text": "al-Nasaq al-Yamānī", "type": "other-livingthing"})
+	entity_list.append({"text": "Nasak Yamani", "type": "other-livingthing"})
+	entity_list.append({"text": "Delta Serpentis", "type": "other-astronomything"})
+	entity_list.append({"text": "Nasak Yamani I", "type": "other-livingthing"})
+	entity_list.append({"text": "Epsilon Serpentis", "type": "other-astronomything"})
+	entity_list.append({"text": "Nasak Yamani II", "type": "other-livingthing"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "Flying from Langley , the XB-15 arrived at Albrook Field in Panama on 10 April 1940 and immediately began classified bombing tests of canal lock protections , commanded by Haynes and including Captain Curtis LeMay as navigator and Lieutenant John B. Montgomery as bombardier ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Langley", "type": "location-GPE"})
+	entity_list.append({"text": "XB-15", "type": "product-weapon"})
+	entity_list.append({"text": "Albrook Field", "type": "building-airport"})
+	entity_list.append({"text": "Panama", "type": "location-GPE"})
+	entity_list.append({"text": "Haynes", "type": "person-soldier"})
+	entity_list.append({"text": "Captain Curtis LeMay", "type": "person-soldier"})
+	entity_list.append({"text": "Lieutenant John B. Montgomery", "type": "person-soldier"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "P53 , p63 , and p73 have similar features in their gene structures and functions but have also diverged evolutionarily ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "P53", "type": "other-biologything"})
+	entity_list.append({"text": "p63", "type": "other-biologything"})
+	entity_list.append({"text": "p73", "type": "other-biologything"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "Racing Hall of Fame inductee , Horatio Luro , at age three Go Marching won the first race of his career on March 7 , 1968 , at Florida 's Gulfstream Park when he ran on turf for the first time ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Horatio Luro", "type": "person-other"})
+	entity_list.append({"text": "Go Marching", "type": "other-livingthing"})
+	entity_list.append({"text": "Florida", "type": "location-GPE"})
+	entity_list.append({"text": "Gulfstream Park", "type": "location-park"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "Following a two-day solo flight , the Soyuz spacecraft docked with the Mir on March 16 ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Soyuz spacecraft", "type": "product-airplane"})
+	entity_list.append({"text": "Mir", "type": "product-airplane"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "German defences were strong , owing to Operation Cerberus and Operation Donnerkeil , a joint `` Kriegsmarine `` and `` Luftwaffe `` plan to enable the escape of `` Gneisenau `` , `` Scharnhorst `` and `` Prinz Eugen `` through the English Channel ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "German", "type": "location-GPE"})
+	entity_list.append({"text": "Operation Cerberus", "type": "event-attack/battle/war/militaryconflict"})
+	entity_list.append({"text": "Operation Donnerkeil", "type": "event-attack/battle/war/militaryconflict"})
+	entity_list.append({"text": "Kriegsmarine", "type": "organization-other"})
+	entity_list.append({"text": "Luftwaffe", "type": "organization-other"})
+	entity_list.append({"text": "Gneisenau", "type": "organization-other"})
+	entity_list.append({"text": "Scharnhorst", "type": "organization-other"})
+	entity_list.append({"text": "Prinz Eugen", "type": "organization-other"})
+	entity_list.append({"text": "English Channel", "type": "location-bodiesofwater"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "Python 3.3 no longer ever uses UTF-16 , instead an encoding that gives the most compact representation for the given string is chosen from ASCII/Latin-1 , UCS-2 , and UTF-32 ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Python 3.3", "type": "product-software"})
+	entity_list.append({"text": "UTF-16", "type": "product-software"})
+	entity_list.append({"text": "ASCII/Latin-1", "type": "product-other"})
+	entity_list.append({"text": "UCS-2", "type": "product-other"})
+	entity_list.append({"text": "UTF-32", "type": "product-other"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "During his first six months in Kyiv Viktor was forced to miss due to the FIFA disqualification ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Kyiv Viktor", "type": "person-athlete"})
+	entity_list.append({"text": "FIFA", "type": "organization-sportsleague"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "He supported the UK remaining within the European Union in the 2016 membership referendum ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "UK", "type": "location-GPE"})
+	entity_list.append({"text": "European Union", "type": "organization-other"})
+	entity_list.append({"text": "membership referendum", "type": "event-election"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "Martin has sourced the Massacre of Glencoe and Black Dinner as inspiration for the `` Red Wedding , '' a crucial twist in `` A Storm of Swords `` ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Martin", "type": "person-artist/author"})
+	entity_list.append({"text": "Massacre of Glencoe", "type": "art-writtenart"})
+	entity_list.append({"text": "Black Dinner", "type": "art-writtenart"})
+	entity_list.append({"text": "Red Wedding", "type": "art-writtenart"})
+	entity_list.append({"text": "A Storm of Swords", "type": "art-writtenart"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "The eastern section was operated every two hours by Deutsche Bahn with Alstom Coradia LINT diesel single-units ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Deutsche Bahn", "type": "organization-company"})
+	entity_list.append({"text": "Alstom Coradia LINT", "type": "product-train"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "In 1973 he completed his studies of German language and literature with the Magister Artium ( subject : `` Pragmatic and rhetorical elements in the language of city advertising `` ) ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "German", "type": "other-language"})
+	entity_list.append({"text": "Magister Artium", "type": "other-educationaldegree"})
+	entity_list.append({"text": "Pragmatic and rhetorical elements in the language of city advertising", "type": "art-writtenart"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "Furmint plays a similar role in the Slovakian wine region of Tokaj ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Furmint", "type": "product-food"})
+	entity_list.append({"text": "Slovakian", "type": "location-GPE"})
+	entity_list.append({"text": "Tokaj", "type": "location-GPE"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "Easter is celebrated with an Easter egg hunt and a raffle for prizes at The Ranch House bar and grill on the north side of town ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Ranch House", "type": "building-restaurant"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "The Roman emperor Justinian I 's name is sometimes applied to the whole series of plague epidemics in late Antiquity , as well as to the Plague of Justinian which struck the Eastern Roman Empire in the early 540s ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Roman", "type": "location-GPE"})
+	entity_list.append({"text": "Justinian I", "type": "person-politician"})
+	entity_list.append({"text": "Plague of Justinian", "type": "event-disaster"})
+	entity_list.append({"text": "Eastern Roman Empire", "type": "organization-government/governmentagency"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "The aftermath of the 1637 to 1638 Shimabara Rebellion led to a more severe government crackdown on Christianity within Japan , and in 1639 , the Matsumae clan executed 106 Japanese Christians who worked on the mountain mining gold ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Shimabara Rebellion", "type": "event-other"})
+	entity_list.append({"text": "Christianity", "type": "organization-religion"})
+	entity_list.append({"text": "Japan", "type": "location-GPE"})
+	entity_list.append({"text": "Japanese", "type": "location-GPE"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "Biotin Carboxyl Carrier Protein ( BCCP ) refers to proteins containing a biotin attachment domain that carry biotin and carboxybiotin throughout the ATP -dependent carboxylation by biotin-dependent carboxylases ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Biotin Carboxyl Carrier Protein", "type": "other-chemicalthing"})
+	entity_list.append({"text": "BCCP", "type": "other-chemicalthing"})
+	entity_list.append({"text": "ATP", "type": "other-chemicalthing"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "David Warren Tandy is a retired American Democratic Party politician in Louisville , Kentucky , he served as a member of the Louisville Metro Council , representing District 4 ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "David Warren Tandy", "type": "person-politician"})
+	entity_list.append({"text": "American Democratic Party", "type": "organization-politicalparty"})
+	entity_list.append({"text": "Louisville", "type": "location-GPE"})
+	entity_list.append({"text": "Kentucky", "type": "location-GPE"})
+	entity_list.append({"text": "Louisville Metro Council", "type": "organization-politicalparty"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "For people who have severe congenital protein C deficiency , protein C replacement therapies are available , which is indicated and approved for use in the United States and Europe for the prevention of purpura fulminans ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "congenital protein C deficiency", "type": "other-disease"})
+	entity_list.append({"text": "protein C replacement therapies", "type": "other-medical"})
+	entity_list.append({"text": "United States", "type": "location-GPE"})
+	entity_list.append({"text": "Europe", "type": "location-GPE"})
+	entity_list.append({"text": "purpura fulminans", "type": "other-disease"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "`` Crimson Alliance `` was released on September 7 , 2011 on Xbox LIVE Arcade for free as a freemium ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Crimson Alliance", "type": "product-game"})
+	entity_list.append({"text": "Xbox LIVE Arcade", "type": "product-software"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "Therefore , from January 1999 , 1 CFA franc is equivalent to € 0.00152449 ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "CFA franc", "type": "other-currency"})
+	entity_list.append({"text": "€", "type": "other-currency"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "The 44th annual event was held in July 2019 at the Grosvenor House Hotel in London , honouring music greats including Ed Sheeran , Sam Smith and Dua Lipa , and raised £835,000 ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Grosvenor House Hotel", "type": "building-hotel"})
+	entity_list.append({"text": "London", "type": "location-GPE"})
+	entity_list.append({"text": "Ed Sheeran", "type": "person-artist/author"})
+	entity_list.append({"text": "Sam Smith", "type": "person-artist/author"})
+	entity_list.append({"text": "Dua Lipa", "type": "person-artist/author"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "Recent examples have included a Messier Catalog booklet , poster showing comet C/2006 P1 ( McNaught ) and historical comets , a Skyguide listing upcoming sky events , a Telescope Buyer 's Guide ; a poster titled `` Atlas of Extrasolar Planets '' ; and a poster showing the life cycles of stars ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Messier Catalog booklet", "type": "organization-media/newspaper"})
+	entity_list.append({"text": "C/2006 P1", "type": "other-astronomything"})
+	entity_list.append({"text": "McNaught", "type": "other-astronomything"})
+	entity_list.append({"text": "Telescope Buyer 's Guide", "type": "organization-media/newspaper"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "The `` draco `` first appears on Trajan 's Column in Rome , a monument that depicts the Dacian wars of 101–102 AD and 105–106 AD ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "draco", "type": "art-other"})
+	entity_list.append({"text": "Trajan 's Column", "type": "art-other"})
+	entity_list.append({"text": "Rome", "type": "location-GPE"})
+	entity_list.append({"text": "Dacian", "type": "location-GPE"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "Brent Bradshaw is a television writer and performer who has contributed to such programs as The Man Show , The MTV Movie Awards , Comedy Central 's Crank Yankers , The Andy Milonakis Show , Adult Swim on Cartoon Network , and NBC 's Last Call with Carson Daly ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Brent Bradshaw", "type": "person-artist/author"})
+	entity_list.append({"text": "The Man Show", "type": "art-broadcastprogram"})
+	entity_list.append({"text": "The MTV Movie Awards", "type": "art-broadcastprogram"})
+	entity_list.append({"text": "Comedy Central 's Crank Yankers", "type": "art-broadcastprogram"})
+	entity_list.append({"text": "The Andy Milonakis Show , Adult Swim on Cartoon Network", "type": "art-broadcastprogram"})
+	entity_list.append({"text": "NBC", "type": "organization-media/newspaper"})
+	entity_list.append({"text": "Last Call", "type": "art-broadcastprogram"})
+	entity_list.append({"text": "Carson Daly", "type": "person-other"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "It houses an Atlantic 75 class lifeboat and a smaller D class lifeboat , both of which are launched by davit into the deep water adjoining the pier ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Atlantic 75", "type": "product-ship"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "Rykiel contributed to the interior decoration for the Hôtel de Crillon and the Hôtel Lutetia ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Rykiel", "type": "person-artist/author"})
+	entity_list.append({"text": "Hôtel de Crillon", "type": "building-hotel"})
+	entity_list.append({"text": "Hôtel Lutetia", "type": "building-hospital"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "The chorus performed their version of Swing Low , Sweet Chariot on the pitch in May 2012 at Twickenham Stadium For the England Rugby team vs . Barbarians 2012 Mid Year Test , and again for the same match in 2013 ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Swing Low", "type": "art-music"})
+	entity_list.append({"text": "Sweet Chariot", "type": "art-music"})
+	entity_list.append({"text": "Twickenham Stadium", "type": "building-sportsfacility"})
+	entity_list.append({"text": "England Rugby", "type": "organization-sportsteam"})
+	entity_list.append({"text": "Barbarians", "type": "organization-sportsteam"})
+	entity_list.append({"text": "Mid Year Test", "type": "event-sportsevent"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "The full title of the painting is Admonitions of the Court Instructress ( ) ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Admonitions of the Court Instructress", "type": "art-painting"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "The story is set in Revolutionary France in the closing years of the 18th century , during the period when the Directoire , led by Barras , held power ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Revolutionary France", "type": "event-protest"})
+	entity_list.append({"text": "Directoire", "type": "organization-politicalparty"})
+	entity_list.append({"text": "Barras", "type": "person-politician"})
+# END

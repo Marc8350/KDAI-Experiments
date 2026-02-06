@@ -1,0 +1,270 @@
+Entity types: ["art-broadcastprogram", "art-film", "art-music", "art-other", "art-painting", "art-writtenart", "building-airport", "building-hospital", "building-hotel", "building-library", "building-other", "building-restaurant", "building-sportsfacility", "building-theater", "event-attack/battle/war/militaryconflict", "event-disaster", "event-election", "event-other", "event-protest", "event-sportsevent", "location-GPE", "location-bodiesofwater", "location-island", "location-mountain", "location-other", "location-park", "location-road/railway/highway/transit", "organization-company", "organization-education", "organization-government/governmentagency", "organization-media/newspaper", "organization-other", "organization-politicalparty", "organization-religion", "organization-showorganization", "organization-sportsleague", "organization-sportsteam", "other-astronomything", "other-award", "other-biologything", "other-chemicalthing", "other-currency", "other-disease", "other-educationaldegree", "other-god", "other-language", "other-law", "other-livingthing", "other-medical", "person-actor", "person-artist/author", "person-athlete", "person-director", "person-other", "person-politician", "person-scholar", "person-soldier", "product-airplane", "product-car", "product-food", "product-game", "product-other", "product-ship", "product-software", "product-train", "product-weapon"], [], {"art-broadcastprogram": [], "art-film": [], "art-music": [], "art-other": [], "art-painting": [], "art-writtenart": [], "building-airport": [], "building-hospital": [], "building-hotel": [], "building-library": [], "building-other": [], "building-restaurant": [], "building-sportsfacility": [], "building-theater": [], "event-attack/battle/war/militaryconflict": [], "event-disaster": [], "event-election": [], "event-other": [], "event-protest": [], "event-sportsevent": [], "location-GPE": [], "location-bodiesofwater": [], "location-island": [], "location-mountain": [], "location-other": [], "location-park": [], "location-road/railway/highway/transit": [], "organization-company": [], "organization-education": [], "organization-government/governmentagency": [], "organization-media/newspaper": [], "organization-other": [], "organization-politicalparty": [], "organization-religion": [], "organization-showorganization": [], "organization-sportsleague": [], "organization-sportsteam": [], "other-astronomything": [], "other-award": [], "other-biologything": [], "other-chemicalthing": [], "other-currency": [], "other-disease": [], "other-educationaldegree": [], "other-god": [], "other-language": [], "other-law": [], "other-livingthing": [], "other-medical": [], "person-actor": [], "person-artist/author": [], "person-athlete": [], "person-director": [], "person-other": [], "person-politician": [], "person-scholar": [], "person-soldier": [], "product-airplane": [], "product-car": [], "product-food": [], "product-game": [], "product-other": [], "product-ship": [], "product-software": [], "product-train": [], "product-weapon": []}
+
+
+The text is : "That 's why Martin started Atlas Comics .".
+The named entities in the text: <0> person-other <5> Martin <1> ; <0> organization-company <5> Atlas Comics <1>
+----------------------------------------
+
+The text is : "During 1998 , SMG entered into a partnership agreement with another American based company , Anschutz Sports Holdings , to hold an equal share in the ownership of London Arena .".
+The named entities in the text: <0> location-GPE <5> SMG <1> ; <0> location-GPE <5> American <1> ; <0> building-sportsfacility <5> Anschutz Sports Holdings <1> ; <0> building-sportsfacility <5> London Arena <1>
+----------------------------------------
+
+The text is : "As operations began , Army Rangers embarked on a mission to protect the Haditha Dam from being destroyed by Iraqi forces .".
+The named entities in the text: <0> organization-other <5> Army Rangers <1> ; <0> building-other <5> Haditha Dam <1> ; <0> location-GPE <5> Iraqi <1>
+----------------------------------------
+
+The text is : "In 1964 , Gilberto appeared in the films `` Get Yourself a College Girl `` and `` The Hanged Man `` .".
+The named entities in the text: <0> person-artist/author <5> Gilberto <1> ; <0> art-film <5> Get Yourself a College Girl <1> ; <0> art-film <5> The Hanged Man <1>
+----------------------------------------
+
+The text is : "She was given a Cabinet position responsible for the Environment and Community Safety in 2007 and became Deputy Leader of the group in 2008 .".
+The named entities in the text: <0> organization-government/governmentagency <5> Environment and Community Safety <1>
+----------------------------------------
+
+The text is : "DuMont 's partner , Thomas T. Goldsmith ( for whom the Washington , D.C. station WTTG was named ) , remained on Metromedia 's board of directors from this time all the way until Kluge sold the stations to the Fox Television Stations Group in 1986 , when the Fox network was formed .".
+The named entities in the text: <0> person-other <5> DuMont <1> ; <0> person-other <5> Thomas T. Goldsmith <1> ; <0> organization-other <5> Washington , D.C. station WTTG <1> ; <0> organization-other <5> Fox Television Stations Group <1>
+----------------------------------------
+
+The text is : "While at his alma mater ( 1945–58 ) , Harshman was also the head football coach from 1951 to 1957 , compiling a record , and also led the baseball team for the last five seasons .".
+The named entities in the text: <0> person-other <5> Harshman <1>
+----------------------------------------
+
+The text is : "It is well known as the site of the main campus of the `` Universitat Autònoma de Barcelona `` ( at Bellaterra ) and hosts the ALBA ( synchrotron ) located in the Barcelona Synchrotron Park .".
+The named entities in the text: <0> organization-education <5> Universitat Autònoma de Barcelona <1> ; <0> location-GPE <5> Bellaterra <1> ; <0> event-other <5> ALBA <1> ; <0> location-park <5> Barcelona Synchrotron Park <1>
+----------------------------------------
+
+The text is : "This story was recorded as part of the production block for the previous season but deliberately held over for Season Ten .".
+The named entities in the text: <5> <1>
+----------------------------------------
+
+The text is : "The historian Austin Woolrych describes Powick Bridge as having `` significance ... disproportionate to it scale '' : it proved that the Royalists had forces capable of standing up to and beating those of Parliament , and affected the morale of both armies leading up to the Battle of Edgehill a month later .".
+The named entities in the text: <0> person-scholar <5> Austin Woolrych <1> ; <0> building-other <5> Powick Bridge <1> ; <0> organization-other <5> Royalists <1> ; <0> organization-government/governmentagency <5> Parliament <1> ; <0> event-attack/battle/war/militaryconflict <5> Battle of Edgehill <1>
+----------------------------------------
+
+The text is : "His effective actions earned him the Peruvian Cross from President Juan Velasco Alvarado and the U.S . awarded him the Legion of Merit .".
+The named entities in the text: <0> location-GPE <5> Peruvian <1> ; <0> person-politician <5> Juan Velasco Alvarado <1> ; <0> location-GPE <5> U.S . <1> ; <0> other-award <5> Legion of Merit <1>
+----------------------------------------
+
+The text is : "It also requires a CRT television screen since the Zapper gun will not work with LCD or HDTV 's .".
+The named entities in the text: <0> product-other <5> CRT television screen <1> ; <0> product-weapon <5> Zapper gun <1> ; <0> product-other <5> LCD <1> ; <0> product-other <5> HDTV <1>
+----------------------------------------
+
+The text is : "The 2018–19 USC Trojans men 's basketball team represented the University of Southern California during the 2018–19 NCAA Division I men 's basketball season .".
+The named entities in the text: <0> organization-sportsteam <5> USC Trojans <1> ; <0> organization-education <5> University of Southern California <1> ; <0> event-sportsevent <5> NCAA <1>
+----------------------------------------
+
+The text is : "It was first attributed to the [ [ Veii ] ] an artist [ [ Vulca ] ] , who decorated the [ [ Temple of Jupiter ( Capitoline Hill ) | Temple of Jupiter Capitolinus ] ] , and then reattributed to an unknown Etruscan artist of around 480–470 BC .".
+The named entities in the text: <0> person-artist/author <5> Veii <1> ; <0> person-artist/author <5> Vulca <1> ; <0> building-other <5> Temple of Jupiter <1> ; <0> location-mountain <5> Capitoline Hill <1> ; <0> building-other <5> Temple of Jupiter Capitolinus <1> ; <0> location-GPE <5> Etruscan <1>
+----------------------------------------
+
+The text is : "The latest update , titled , was released for Dreamcast in Japan in 1999 , and then internationally in 2000 , with the North American version released as Virtua Striker 2 .".
+The named entities in the text: <0> product-other <5> Dreamcast <1> ; <0> location-GPE <5> Japan <1> ; <0> location-other <5> North American <1> ; <0> product-game <5> Virtua Striker 2 <1>
+----------------------------------------
+
+The text is : "The 1957 Small Club World Cup was the sixth edition of the Small Club World Cup , a tournament held in Venezuela between 1952 and 1957 , and in 1963 and in 1965 .".
+The named entities in the text: <0> event-sportsevent <5> Small Club World Cup <1> ; <0> event-sportsevent <5> Small Club World Cup <1> ; <0> location-GPE <5> Venezuela <1>
+----------------------------------------
+
+The text is : "While working on Club Nouveau at Aire LA Studios in Glendale , California , Chiarelli met mix engineer/mentor Craig Burbidge and worked on numerous hit records from artists such as Calloway , Chuckii Booker and Teddy Pendergrass .".
+The named entities in the text: <0> organization-showorganization <5> Club Nouveau <1> ; <0> organization-company <5> Aire LA Studios <1> ; <0> location-GPE <5> Glendale <1> ; <0> location-GPE <5> California <1> ; <0> person-other <5> Chiarelli <1> ; <0> person-other <5> Craig Burbidge <1> ; <0> person-other <5> Calloway <1> ; <0> person-other <5> Chuckii Booker <1> ; <0> person-other <5> Teddy Pendergrass <1>
+----------------------------------------
+
+The text is : "As an Olympic Bronze medalist and Tour de France stage winner , Davis Phinney has celebrated the most victories of any cyclist in American history .".
+The named entities in the text: <0> other-award <5> Olympic Bronze <1> ; <0> event-sportsevent <5> Tour de France <1> ; <0> person-athlete <5> Davis Phinney <1> ; <0> location-GPE <5> American <1>
+----------------------------------------
+
+The text is : "Newling 's other projects at Neal Street Productions have included UK and world premiere productions of David Lindsay Abaire 's award-winning Fuddy Meers ( 2004 ) , Anna in the Tropics ( 2004 ) , David Hare 's The Vertical Hour ( 2006 ) , a new stage version of All About My Mother ( 2007 ) adapted by Sam Adamson , The House of Special Purpose ( 2009 ) by Heidi Thomas and Richard Greenberg 's Three Days of Rain ( 2009 ) and most recently , The Moderate Soprano , starring Roger Allam and Nancy Carroll ( 2018 ) and Neal Street 's co-production of The Lehman Trilogy ( 2018 ) with the National Theatre .".
+The named entities in the text: <0> person-director <5> Newling <1> ; <0> organization-company <5> Neal Street Productions <1> ; <0> location-GPE <5> UK <1> ; <0> person-director <5> David Lindsay Abaire <1> ; <0> art-film <5> Fuddy Meers <1> ; <0> art-film <5> Anna in the Tropics <1> ; <0> art-film <5> David Hare 's The Vertical Hour <1> ; <0> art-film <5> a new stage version of All About My Mother <1> ; <0> person-artist/author <5> Sam Adamson <1> ; <0> art-film <5> The House of Special Purpose <1> ; <0> person-director <5> Heidi Thomas <1> ; <0> person-director <5> Richard Greenberg <1> ; <0> art-film <5> Three Days of Rain <1> ; <0> art-writtenart <5> The Moderate Soprano <1> ; <0> person-actor <5> Roger Allam <1> ; <0> person-actor <5> Nancy Carroll <1> ; <0> person-director <5> Neal Street <1> ; <0> art-film <5> Lehman Trilogy <1> ; <0> building-theater <5> National Theatre <1>
+----------------------------------------
+
+The text is : "The Pulpit Commentary identifies a number of theologians ( De Wette , Baur , Weisse , Keim and others ) who `` have tried to prove from this that the evangelist was ignorant of Christ 's birth at Bethlehem `` , whereas Bengel argued that `` John takes [ this ] for granted as known from the other evangelists '' .".
+The named entities in the text: <0> art-writtenart <5> The Pulpit Commentary <1> ; <0> person-scholar <5> De Wette <1> ; <0> person-scholar <5> Baur <1> ; <0> person-scholar <5> Weisse <1> ; <0> person-scholar <5> Keim <1> ; <0> other-god <5> Christ <1> ; <0> location-GPE <5> Bethlehem <1> ; <0> person-other <5> Bengel <1> ; <0> person-artist/author <5> John <1>
+----------------------------------------
+
+The text is : "After achieving autonomy in 1965 , the Cook Islands elected Albert Henry of the Cook Islands Party as their first Prime Minister .".
+The named entities in the text: <0> location-island <5> Cook Islands <1> ; <0> person-politician <5> Albert Henry <1> ; <0> organization-politicalparty <5> Cook Islands Party <1>
+----------------------------------------
+
+The text is : "Old English `` attercoppe '' ( meaning `` spider '' ) is derived from `` atter '' meaning `` poison '' and `` coppe '' meaning `` head '' ; the OE term is a loan from Old Norse language and survives in modern Danish as `` edderkop '' , spider .".
+The named entities in the text: <0> other-language <5> Old English <1> ; <0> other-language <5> Old Norse language <1> ; <0> other-language <5> Danish <1>
+----------------------------------------
+
+The text is : "The child may develop congenital heart disease , growth retardation , microcephaly and intellectual disability as a result .".
+The named entities in the text: <0> other-disease <5> congenital heart disease <1> ; <0> other-disease <5> growth retardation <1> ; <0> other-disease <5> microcephaly <1> ; <0> other-disease <5> intellectual disability <1>
+----------------------------------------
+
+The text is : "A pilot for a `` Dynasty `` reboot for The CW was announced in September 2016 , and Sam Adegoke was cast as Jeff in May 2017 .".
+The named entities in the text: <0> art-broadcastprogram <5> Dynasty <1> ; <0> organization-media/newspaper <5> The CW <1> ; <0> person-actor <5> Sam Adegoke <1> ; <0> person-other <5> Jeff <1>
+----------------------------------------
+
+The text is : "Ground and air searches concentrated on the Long Trail up as far as Glastenbury Mountain ( ten miles to the north ) , the trail 's various branches , and along Route 9 from Bennington to Brattleboro .".
+The named entities in the text: <0> location-road/railway/highway/transit <5> Long Trail <1> ; <0> location-mountain <5> Glastenbury Mountain <1> ; <0> location-road/railway/highway/transit <5> Route 9 <1> ; <0> location-other <5> Bennington <1> ; <0> location-other <5> Brattleboro <1>
+----------------------------------------
+
+The text is : "The Espionage Act of 1917 and the Sedition Act of 1918 were passed in response .".
+The named entities in the text: <0> other-law <5> Espionage Act of 1917 <1> ; <0> other-law <5> Sedition Act of 1918 <1>
+----------------------------------------
+
+The text is : "Naftogaz received more than $ 6 billion of subsidies in domestic bonds from 2009 to 2012 as regulated gas prices and expensive Russian energy imports led to heavy losses .".
+The named entities in the text: <0> organization-company <5> Naftogaz <1> ; <0> other-award <5> $ <1> ; <0> location-GPE <5> Russian <1>
+----------------------------------------
+
+The text is : "The 1968 National Convention of the Republican Party of the United States was held at the Miami Beach Convention Center in Miami Beach , Dade County , Florida , from August 5 to August 8 , 1968 , to select the party 's nominee in the general election .".
+The named entities in the text: <0> event-other <5> 1968 National Convention of the Republican Party of the United States <1> ; <0> building-other <5> Miami Beach Convention Center <1> ; <0> location-GPE <5> Miami Beach <1> ; <0> location-GPE <5> Dade County <1> ; <0> location-GPE <5> Florida <1>
+----------------------------------------
+
+The text is : "Both songs are available on the album `` Prismatic Infinity Carat `` .".
+The named entities in the text: <0> art-music <5> Prismatic Infinity Carat <1>
+----------------------------------------
+
+The text is : "Similar in size to the Opel Rekord , the Senator was previously seen in Britain as the Vauxhall Royale , but with that model 's demise the Senator will be imported for approximately one year until the Vauxhall-badged version is launched .".
+The named entities in the text: <0> product-car <5> Opel Rekord <1> ; <0> product-car <5> Senator <1> ; <0> location-GPE <5> Britain <1> ; <0> product-car <5> Vauxhall Royale <1> ; <0> product-car <5> Senator <1> ; <0> product-car <5> Vauxhall-badged <1>
+----------------------------------------
+
+The text is : "Examples of research libraries include the British Library , the Bodleian Library at Oxford University and the New York Public Library Main Branch on 42nd Street in Manhattan , State Public Scientific Technological Library of the Siberian Branch of the Russian Academy of Science .".
+The named entities in the text: <0> building-library <5> British Library <1> ; <0> building-library <5> Bodleian Library <1> ; <0> organization-education <5> Oxford University <1> ; <0> building-library <5> New York Public Library Main Branch <1> ; <0> location-road/railway/highway/transit <5> 42nd Street <1> ; <0> location-GPE <5> Manhattan <1> ; <0> building-library <5> State Public Scientific Technological Library <1> ; <0> building-library <5> Siberian Branch <1> ; <0> organization-education <5> Russian Academy of Science <1>
+----------------------------------------
+
+The text is : "drummer Ian Herman and trombonist Jannie `` Hanepoot '' van Tonder who can both be heard on many albums from the Shifty Catalogue .".
+The named entities in the text: <0> person-artist/author <5> Ian Herman <1> ; <0> person-artist/author <5> Jannie `` Hanepoot '' van Tonder <1> ; <0> organization-company <5> Shifty <1>
+----------------------------------------
+
+The text is : "At the Battle of Salamanca in July 1812 Lieutenant William Pearce of the 2nd battalion captured the French Imperial Eagle of the French 62nd Regiment .".
+The named entities in the text: <0> event-attack/battle/war/militaryconflict <5> Battle of Salamanca <1> ; <0> person-soldier <5> William Pearce <1> ; <0> location-GPE <5> French <1> ; <0> location-GPE <5> French <1>
+----------------------------------------
+
+The text is : "As part of the Infuture art festival held at Ontario Place in September 2016 , the film was shown again at the Cinesphere .".
+The named entities in the text: <0> building-other <5> Ontario Place <1> ; <0> building-theater <5> Cinesphere <1>
+----------------------------------------
+
+The text is : "Located at Shuangjiang Town on the northern bank of the Yangtze River , the new county is 162 miles from the Three Gorges Dam and 223 miles from Chongqing City .".
+The named entities in the text: <0> location-GPE <5> Shuangjiang Town <1> ; <0> location-bodiesofwater <5> Yangtze River <1> ; <0> building-other <5> Three Gorges Dam <1> ; <0> location-GPE <5> Chongqing City <1>
+----------------------------------------
+
+The text is : "It and MS-DOS were identical products that eventually diverged starting with MS-DOS version 6.0 .".
+The named entities in the text: <0> product-software <5> MS-DOS <1> ; <0> product-software <5> MS-DOS version 6.0 <1>
+----------------------------------------
+
+The text is : "In the 1955 film `` Interrupted Melody `` , which starred Eleanor Parker as Australian soprano Marjorie Lawrence , Eileen Farrell supplied the singing voice .".
+The named entities in the text: <0> art-film <5> Interrupted Melody <1> ; <0> person-actor <5> Eleanor Parker <1> ; <0> location-GPE <5> Australian <1> ; <0> person-other <5> Marjorie Lawrence <1> ; <0> person-actor <5> Eileen Farrell <1>
+----------------------------------------
+
+The text is : "According to a 1971 NASA catalogue , `` al-Nasaq al-Yamānī `` or `` Nasak Yamani `` was the name for two stars : Delta Serpentis as `` Nasak Yamani I `` and Epsilon Serpentis as `` Nasak Yamani II `` .".
+The named entities in the text: <0> organization-government/governmentagency <5> NASA <1> ; <0> other-livingthing <5> al-Nasaq al-Yamānī <1> ; <0> other-livingthing <5> Nasak Yamani <1> ; <0> other-astronomything <5> Delta Serpentis <1> ; <0> other-livingthing <5> Nasak Yamani I <1> ; <0> other-astronomything <5> Epsilon Serpentis <1> ; <0> other-livingthing <5> Nasak Yamani II <1>
+----------------------------------------
+
+The text is : "Flying from Langley , the XB-15 arrived at Albrook Field in Panama on 10 April 1940 and immediately began classified bombing tests of canal lock protections , commanded by Haynes and including Captain Curtis LeMay as navigator and Lieutenant John B. Montgomery as bombardier .".
+The named entities in the text: <0> location-GPE <5> Langley <1> ; <0> product-weapon <5> XB-15 <1> ; <0> building-airport <5> Albrook Field <1> ; <0> location-GPE <5> Panama <1> ; <0> person-soldier <5> Haynes <1> ; <0> person-soldier <5> Captain Curtis LeMay <1> ; <0> person-soldier <5> Lieutenant John B. Montgomery <1>
+----------------------------------------
+
+The text is : "P53 , p63 , and p73 have similar features in their gene structures and functions but have also diverged evolutionarily .".
+The named entities in the text: <0> other-biologything <5> P53 <1> ; <0> other-biologything <5> p63 <1> ; <0> other-biologything <5> p73 <1>
+----------------------------------------
+
+The text is : "Racing Hall of Fame inductee , Horatio Luro , at age three Go Marching won the first race of his career on March 7 , 1968 , at Florida 's Gulfstream Park when he ran on turf for the first time .".
+The named entities in the text: <0> person-other <5> Horatio Luro <1> ; <0> other-livingthing <5> Go Marching <1> ; <0> location-GPE <5> Florida <1> ; <0> location-park <5> Gulfstream Park <1>
+----------------------------------------
+
+The text is : "Following a two-day solo flight , the Soyuz spacecraft docked with the Mir on March 16 .".
+The named entities in the text: <0> product-airplane <5> Soyuz spacecraft <1> ; <0> product-airplane <5> Mir <1>
+----------------------------------------
+
+The text is : "German defences were strong , owing to Operation Cerberus and Operation Donnerkeil , a joint `` Kriegsmarine `` and `` Luftwaffe `` plan to enable the escape of `` Gneisenau `` , `` Scharnhorst `` and `` Prinz Eugen `` through the English Channel .".
+The named entities in the text: <0> location-GPE <5> German <1> ; <0> event-attack/battle/war/militaryconflict <5> Operation Cerberus <1> ; <0> event-attack/battle/war/militaryconflict <5> Operation Donnerkeil <1> ; <0> organization-other <5> Kriegsmarine <1> ; <0> organization-other <5> Luftwaffe <1> ; <0> organization-other <5> Gneisenau <1> ; <0> organization-other <5> Scharnhorst <1> ; <0> organization-other <5> Prinz Eugen <1> ; <0> location-bodiesofwater <5> English Channel <1>
+----------------------------------------
+
+The text is : "Python 3.3 no longer ever uses UTF-16 , instead an encoding that gives the most compact representation for the given string is chosen from ASCII/Latin-1 , UCS-2 , and UTF-32 .".
+The named entities in the text: <0> product-software <5> Python 3.3 <1> ; <0> product-software <5> UTF-16 <1> ; <0> product-other <5> ASCII/Latin-1 <1> ; <0> product-other <5> UCS-2 <1> ; <0> product-other <5> UTF-32 <1>
+----------------------------------------
+
+The text is : "During his first six months in Kyiv Viktor was forced to miss due to the FIFA disqualification .".
+The named entities in the text: <0> person-athlete <5> Kyiv Viktor <1> ; <0> organization-sportsleague <5> FIFA <1>
+----------------------------------------
+
+The text is : "He supported the UK remaining within the European Union in the 2016 membership referendum .".
+The named entities in the text: <0> location-GPE <5> UK <1> ; <0> organization-other <5> European Union <1> ; <0> event-election <5> membership referendum <1>
+----------------------------------------
+
+The text is : "Martin has sourced the Massacre of Glencoe and Black Dinner as inspiration for the `` Red Wedding , '' a crucial twist in `` A Storm of Swords `` .".
+The named entities in the text: <0> person-artist/author <5> Martin <1> ; <0> art-writtenart <5> Massacre of Glencoe <1> ; <0> art-writtenart <5> Black Dinner <1> ; <0> art-writtenart <5> Red Wedding <1> ; <0> art-writtenart <5> A Storm of Swords <1>
+----------------------------------------
+
+The text is : "The eastern section was operated every two hours by Deutsche Bahn with Alstom Coradia LINT diesel single-units .".
+The named entities in the text: <0> organization-company <5> Deutsche Bahn <1> ; <0> product-train <5> Alstom Coradia LINT <1>
+----------------------------------------
+
+The text is : "In 1973 he completed his studies of German language and literature with the Magister Artium ( subject : `` Pragmatic and rhetorical elements in the language of city advertising `` ) .".
+The named entities in the text: <0> other-language <5> German <1> ; <0> other-educationaldegree <5> Magister Artium <1> ; <0> art-writtenart <5> Pragmatic and rhetorical elements in the language of city advertising <1>
+----------------------------------------
+
+The text is : "Furmint plays a similar role in the Slovakian wine region of Tokaj .".
+The named entities in the text: <0> product-food <5> Furmint <1> ; <0> location-GPE <5> Slovakian <1> ; <0> location-GPE <5> Tokaj <1>
+----------------------------------------
+
+The text is : "Easter is celebrated with an Easter egg hunt and a raffle for prizes at The Ranch House bar and grill on the north side of town .".
+The named entities in the text: <0> building-restaurant <5> Ranch House <1>
+----------------------------------------
+
+The text is : "The Roman emperor Justinian I 's name is sometimes applied to the whole series of plague epidemics in late Antiquity , as well as to the Plague of Justinian which struck the Eastern Roman Empire in the early 540s .".
+The named entities in the text: <0> location-GPE <5> Roman <1> ; <0> person-politician <5> Justinian I <1> ; <0> event-disaster <5> Plague of Justinian <1> ; <0> organization-government/governmentagency <5> Eastern Roman Empire <1>
+----------------------------------------
+
+The text is : "The aftermath of the 1637 to 1638 Shimabara Rebellion led to a more severe government crackdown on Christianity within Japan , and in 1639 , the Matsumae clan executed 106 Japanese Christians who worked on the mountain mining gold .".
+The named entities in the text: <0> event-other <5> Shimabara Rebellion <1> ; <0> organization-religion <5> Christianity <1> ; <0> location-GPE <5> Japan <1> ; <0> location-GPE <5> Japanese <1>
+----------------------------------------
+
+The text is : "Biotin Carboxyl Carrier Protein ( BCCP ) refers to proteins containing a biotin attachment domain that carry biotin and carboxybiotin throughout the ATP -dependent carboxylation by biotin-dependent carboxylases .".
+The named entities in the text: <0> other-chemicalthing <5> Biotin Carboxyl Carrier Protein <1> ; <0> other-chemicalthing <5> BCCP <1> ; <0> other-chemicalthing <5> ATP <1>
+----------------------------------------
+
+The text is : "David Warren Tandy is a retired American Democratic Party politician in Louisville , Kentucky , he served as a member of the Louisville Metro Council , representing District 4 .".
+The named entities in the text: <0> person-politician <5> David Warren Tandy <1> ; <0> organization-politicalparty <5> American Democratic Party <1> ; <0> location-GPE <5> Louisville <1> ; <0> location-GPE <5> Kentucky <1> ; <0> organization-politicalparty <5> Louisville Metro Council <1>
+----------------------------------------
+
+The text is : "For people who have severe congenital protein C deficiency , protein C replacement therapies are available , which is indicated and approved for use in the United States and Europe for the prevention of purpura fulminans .".
+The named entities in the text: <0> other-disease <5> congenital protein C deficiency <1> ; <0> other-medical <5> protein C replacement therapies <1> ; <0> location-GPE <5> United States <1> ; <0> location-GPE <5> Europe <1> ; <0> other-disease <5> purpura fulminans <1>
+----------------------------------------
+
+The text is : "`` Crimson Alliance `` was released on September 7 , 2011 on Xbox LIVE Arcade for free as a freemium .".
+The named entities in the text: <0> product-game <5> Crimson Alliance <1> ; <0> product-software <5> Xbox LIVE Arcade <1>
+----------------------------------------
+
+The text is : "Therefore , from January 1999 , 1 CFA franc is equivalent to € 0.00152449 .".
+The named entities in the text: <0> other-currency <5> CFA franc <1> ; <0> other-currency <5> € <1>
+----------------------------------------
+
+The text is : "The 44th annual event was held in July 2019 at the Grosvenor House Hotel in London , honouring music greats including Ed Sheeran , Sam Smith and Dua Lipa , and raised £835,000 .".
+The named entities in the text: <0> building-hotel <5> Grosvenor House Hotel <1> ; <0> location-GPE <5> London <1> ; <0> person-artist/author <5> Ed Sheeran <1> ; <0> person-artist/author <5> Sam Smith <1> ; <0> person-artist/author <5> Dua Lipa <1>
+----------------------------------------
+
+The text is : "Recent examples have included a Messier Catalog booklet , poster showing comet C/2006 P1 ( McNaught ) and historical comets , a Skyguide listing upcoming sky events , a Telescope Buyer 's Guide ; a poster titled `` Atlas of Extrasolar Planets '' ; and a poster showing the life cycles of stars .".
+The named entities in the text: <0> organization-media/newspaper <5> Messier Catalog booklet <1> ; <0> other-astronomything <5> C/2006 P1 <1> ; <0> other-astronomything <5> McNaught <1> ; <0> organization-media/newspaper <5> Telescope Buyer 's Guide <1>
+----------------------------------------
+
+The text is : "The `` draco `` first appears on Trajan 's Column in Rome , a monument that depicts the Dacian wars of 101–102 AD and 105–106 AD .".
+The named entities in the text: <0> art-other <5> draco <1> ; <0> art-other <5> Trajan 's Column <1> ; <0> location-GPE <5> Rome <1> ; <0> location-GPE <5> Dacian <1>
+----------------------------------------
+
+The text is : "Brent Bradshaw is a television writer and performer who has contributed to such programs as The Man Show , The MTV Movie Awards , Comedy Central 's Crank Yankers , The Andy Milonakis Show , Adult Swim on Cartoon Network , and NBC 's Last Call with Carson Daly .".
+The named entities in the text: <0> person-artist/author <5> Brent Bradshaw <1> ; <0> art-broadcastprogram <5> The Man Show <1> ; <0> art-broadcastprogram <5> The MTV Movie Awards <1> ; <0> art-broadcastprogram <5> Comedy Central 's Crank Yankers <1> ; <0> art-broadcastprogram <5> The Andy Milonakis Show , Adult Swim on Cartoon Network <1> ; <0> organization-media/newspaper <5> NBC <1> ; <0> art-broadcastprogram <5> Last Call <1> ; <0> person-other <5> Carson Daly <1>
+----------------------------------------
+
+The text is : "It houses an Atlantic 75 class lifeboat and a smaller D class lifeboat , both of which are launched by davit into the deep water adjoining the pier .".
+The named entities in the text: <0> product-ship <5> Atlantic 75 <1>
+----------------------------------------
+
+The text is : "Rykiel contributed to the interior decoration for the Hôtel de Crillon and the Hôtel Lutetia .".
+The named entities in the text: <0> person-artist/author <5> Rykiel <1> ; <0> building-hotel <5> Hôtel de Crillon <1> ; <0> building-hospital <5> Hôtel Lutetia <1>
+----------------------------------------
+
+The text is : "The chorus performed their version of Swing Low , Sweet Chariot on the pitch in May 2012 at Twickenham Stadium For the England Rugby team vs . Barbarians 2012 Mid Year Test , and again for the same match in 2013 .".
+The named entities in the text: <0> art-music <5> Swing Low <1> ; <0> art-music <5> Sweet Chariot <1> ; <0> building-sportsfacility <5> Twickenham Stadium <1> ; <0> organization-sportsteam <5> England Rugby <1> ; <0> organization-sportsteam <5> Barbarians <1> ; <0> event-sportsevent <5> Mid Year Test <1>
+----------------------------------------
+
+The text is : "The full title of the painting is Admonitions of the Court Instructress ( ) .".
+The named entities in the text: <0> art-painting <5> Admonitions of the Court Instructress <1>
+----------------------------------------
+
+The text is : "The story is set in Revolutionary France in the closing years of the 18th century , during the period when the Directoire , led by Barras , held power .".
+The named entities in the text: <0> event-protest <5> Revolutionary France <1> ; <0> organization-politicalparty <5> Directoire <1> ; <0> person-politician <5> Barras <1>
+----------------------------------------

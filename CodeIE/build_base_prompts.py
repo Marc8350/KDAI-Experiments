@@ -195,7 +195,7 @@ def build_base_prompts(
     
     # Build code-style (pl) prompt
     pl_prompt = build_code_style_prompt(examples, entity_types, entity_definitions)
-    pl_path = output_dir / f"{granularity}_pl_3shot.txt"
+    pl_path = output_dir / f"{granularity}_pl_{num_shots}shot.txt"
     with open(pl_path, 'w') as f:
         f.write(pl_prompt)
     outputs["pl"] = pl_path
@@ -203,7 +203,7 @@ def build_base_prompts(
     
     # Build NL-style prompt
     nl_prompt = build_nl_style_prompt(examples, entity_types)
-    nl_path = output_dir / f"{granularity}_nl_3shot.txt"
+    nl_path = output_dir / f"{granularity}_nl_{num_shots}shot.txt"
     with open(nl_path, 'w') as f:
         f.write(nl_prompt)
     outputs["nl"] = nl_path
@@ -236,10 +236,16 @@ def main():
         help="Granularities to process"
     )
     parser.add_argument(
-        "--num-shots",
+        "--coarse-shots",
         type=int,
         default=3,
-        help="Number of shots per class"
+        help="Number of shots per class for coarse (default: 3)"
+    )
+    parser.add_argument(
+        "--fine-shots",
+        type=int,
+        default=1,
+        help="Number of shots per class for fine (default: 1 due to 66 types)"
     )
     parser.add_argument(
         "--seed",
@@ -272,13 +278,15 @@ def main():
     all_outputs = {}
     
     for granularity in args.granularity:
-        logger.info(f"\nProcessing: {granularity}")
+        # Use granularity-specific shot count
+        num_shots = args.coarse_shots if granularity == "coarse" else args.fine_shots
+        logger.info(f"\nProcessing: {granularity} ({num_shots}-shot)")
         try:
             outputs = build_base_prompts(
                 data_dir=data_dir,
                 output_dir=output_dir,
                 granularity=granularity,
-                num_shots=args.num_shots,
+                num_shots=num_shots,
                 seed=args.seed
             )
             all_outputs[granularity] = outputs

@@ -1,63 +1,132 @@
 """
-Semantic Similarity Module
+Semantic Similarity Module using FAISS
 
 Computes semantic similarity between original and paraphrased prompts
-using sentence embeddings. Used to validate that paraphrases maintain
-the original meaning above a threshold (0.9 by default).
+using Google's text embedding API and FAISS IndexFlatIP for cosine similarity.
+This matches the GoLLIE paraphrasing implementation.
 """
 
+import os
 import logging
-from typing import List, Tuple
+from typing import List, Tuple, Optional
 import numpy as np
 
 logger = logging.getLogger(__name__)
 
-# Try to import sentence-transformers, fall back to basic similarity if not available
+# Try to import FAISS
 try:
-    from sentence_transformers import SentenceTransformer
-    SENTENCE_TRANSFORMERS_AVAILABLE = True
+    import faiss
+    FAISS_AVAILABLE = True
 except ImportError:
-    SENTENCE_TRANSFORMERS_AVAILABLE = False
-    logger.warning("sentence-transformers not available. Using basic text similarity.")
+    FAISS_AVAILABLE = False
+    logger.warning("faiss not available. Install with: pip install faiss-cpu")
+
+# Try to import Google GenAI for embeddings
+try:
+    from google import genai
+    GENAI_AVAILABLE = True
+except ImportError:
+    GENAI_AVAILABLE = False
+    logger.warning("google-genai not available. Install with: pip install google-genai")
 
 
 class SemanticSimilarity:
     """
-    Computes semantic similarity between prompts using sentence embeddings.
+    Computes semantic similarity between prompts using Google embeddings + FAISS.
     
-    Uses the 'all-MiniLM-L6-v2' model for efficient embedding computation.
-    Falls back to basic character-level similarity if sentence-transformers
-    is not installed.
+    Uses Google's text-embedding-004 model for embeddings and FAISS IndexFlatIP
+    for computing cosine similarity on normalized vectors.
+    
+    This matches the GoLLIE paraphrasing implementation.
     """
     
-    def __init__(self, model_name: str = "all-MiniLM-L6-v2"):
+    def __init__(
+        self, 
+        embedding_model: str = "models/text-embedding-004",
+        api_key: Optional[str] = None
+    ):
         """
         Initialize the similarity calculator.
         
         Args:
-            model_name: Name of the sentence-transformers model to use
+            embedding_model: Name of the Google embedding model to use
+            api_key: Google API key (defaults to GOOGLE_API_KEY env var)
         """
-        self.model_name = model_name
-        self.model = None
+        self.embedding_model = embedding_model
+        self.client = None
         
-        if SENTENCE_TRANSFORMERS_AVAILABLE:
-            try:
-                logger.info(f"Loading sentence-transformers model: {model_name}")
-                self.model = SentenceTransformer(model_name)
-                logger.info("Model loaded successfully")
-            except Exception as e:
-                logger.warning(f"Failed to load model: {e}. Using fallback.")
+        if GENAI_AVAILABLE and FAISS_AVAILABLE:
+            api_key = api_key or os.getenv("GOOGLE_API_KEY") or os.getenv("GEMINI_API_KEY")
+            if api_key:
+                try:
+                    self.client = genai.Client(api_key=api_key)
+                    logger.info(f"Initialized SemanticSimilarity with embedding model: {embedding_model}")
+                except Exception as e:
+                    logger.warning(f"Failed to initialize Google GenAI client: {e}")
+            else:
+                logger.warning("No API key found for embeddings")
+        else:
+            if not FAISS_AVAILABLE:
+                logger.warning("FAISS not available - using fallback similarity")
+            if not GENAI_AVAILABLE:
+                logger.warning("Google GenAI not available - using fallback similarity")
     
-    def _cosine_similarity(self, vec1: np.ndarray, vec2: np.ndarray) -> float:
-        """Compute cosine similarity between two vectors."""
-        dot_product = np.dot(vec1, vec2)
-        norm1 = np.linalg.norm(vec1)
-        norm2 = np.linalg.norm(vec2)
+    def _get_embedding(self, text: str) -> Optional[np.ndarray]:
+        """
+        Get embedding for a text using Google's embedding API.
         
-        if norm1 == 0 or norm2 == 0:
-            return 0.0
+        Args:
+            text: Text to embed
         
-        return float(dot_product / (norm1 * norm2))
+        Returns:
+            Numpy array of embedding values, or None if embedding fails
+        """
+        if self.client is None:
+            return None
+        
+        try:
+            # Truncate very long texts to avoid API limits
+            max_chars = 30000  # Google embedding API has limits
+            if len(text) > max_chars:
+                logger.warning(f"Truncating text from {len(text)} to {max_chars} chars for embedding")
+                text = text[:max_chars]
+            
+            result = self.client.models.embed_content(
+                model=self.embedding_model,
+                contents=text
+            )
+            return np.array(result.embeddings[0].values, dtype='float32')
+        
+        except Exception as e:
+            logger.error(f"Embedding failed: {e}")
+            return None
+    
+    def _faiss_cosine_similarity(self, v1: np.ndarray, v2: np.ndarray) -> float:
+        """
+        Compute cosine similarity using FAISS IndexFlatIP.
+        
+        FAISS IndexFlatIP computes inner product, which equals cosine similarity
+        when vectors are normalized.
+        
+        Args:
+            v1: First embedding vector
+            v2: Second embedding vector
+        
+        Returns:
+            Cosine similarity score (0 to 1)
+        """
+        # Normalize vectors for cosine similarity
+        v1 = v1 / np.linalg.norm(v1)
+        v2 = v2 / np.linalg.norm(v2)
+        
+        # Create FAISS index
+        d = v1.shape[0]
+        index = faiss.IndexFlatIP(d)
+        index.add(np.array([v1]))
+        
+        # Search for similarity
+        D, I = index.search(np.array([v2]), 1)
+        return float(D[0][0])
     
     def _basic_similarity(self, text1: str, text2: str) -> float:
         """
@@ -83,6 +152,9 @@ class SemanticSimilarity:
         """
         Compute semantic similarity between original and variation.
         
+        Uses Google embeddings + FAISS if available, otherwise falls back
+        to trigram-based Jaccard similarity.
+        
         Args:
             original: Original prompt text
             variation: Paraphrased prompt text
@@ -90,14 +162,15 @@ class SemanticSimilarity:
         Returns:
             Similarity score between 0 and 1
         """
-        if self.model is not None:
-            try:
-                embeddings = self.model.encode([original, variation])
-                return self._cosine_similarity(embeddings[0], embeddings[1])
-            except Exception as e:
-                logger.warning(f"Embedding failed: {e}. Using fallback.")
+        if self.client is not None and FAISS_AVAILABLE:
+            emb_original = self._get_embedding(original)
+            emb_variation = self._get_embedding(variation)
+            
+            if emb_original is not None and emb_variation is not None:
+                return self._faiss_cosine_similarity(emb_original, emb_variation)
         
         # Fallback to basic similarity
+        logger.debug("Using fallback trigram similarity")
         return self._basic_similarity(original, variation)
     
     def compute_batch_similarity(
@@ -115,20 +188,29 @@ class SemanticSimilarity:
         Returns:
             List of similarity scores
         """
-        if self.model is not None:
-            try:
-                all_texts = [original] + variations
-                embeddings = self.model.encode(all_texts)
-                original_embedding = embeddings[0]
+        if self.client is not None and FAISS_AVAILABLE:
+            emb_original = self._get_embedding(original)
+            
+            if emb_original is not None:
+                # Normalize original embedding once
+                emb_original = emb_original / np.linalg.norm(emb_original)
+                
+                # Create FAISS index with original
+                d = emb_original.shape[0]
+                index = faiss.IndexFlatIP(d)
+                index.add(np.array([emb_original]))
                 
                 similarities = []
-                for i, var_embedding in enumerate(embeddings[1:], 1):
-                    sim = self._cosine_similarity(original_embedding, var_embedding)
-                    similarities.append(sim)
+                for var in variations:
+                    emb_var = self._get_embedding(var)
+                    if emb_var is not None:
+                        emb_var = emb_var / np.linalg.norm(emb_var)
+                        D, I = index.search(np.array([emb_var]), 1)
+                        similarities.append(float(D[0][0]))
+                    else:
+                        similarities.append(self._basic_similarity(original, var))
                 
                 return similarities
-            except Exception as e:
-                logger.warning(f"Batch embedding failed: {e}. Using fallback.")
         
         # Fallback to basic similarity
         return [self._basic_similarity(original, var) for var in variations]

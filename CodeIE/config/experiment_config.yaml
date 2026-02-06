@@ -18,7 +18,14 @@ dataset:
 
 # Prompt settings
 prompts:
-  shots: 3  # Fixed at 3-shot per class
+  # Shot counts per entity class
+  # Fine-grained uses 1-shot due to 66 entity types (prompt size constraints)
+  coarse_shots: 3  # 8 types × 3 shots = 24 examples
+  fine_shots: 1    # 66 types × 1 shot = 66 examples
+  
+  # Maximum prompt size (approximate characters)
+  max_prompt_chars: 32000  # ~8k tokens
+  
   styles:
     - "pl"   # Code style (Python function)
     - "nl"   # Natural language style
