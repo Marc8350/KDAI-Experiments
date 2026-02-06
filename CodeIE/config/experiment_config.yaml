@@ -20,7 +20,7 @@ dataset:
 prompts:
   # Shot counts per entity class
   # Fine-grained uses 1-shot due to 66 entity types (prompt size constraints)
-  coarse_shots: 3  # 8 types × 3 shots = 24 examples
+  coarse_shots: 1  # 8 types × 1 shot = 8 examples
   fine_shots: 1    # 66 types × 1 shot = 66 examples
   
   # Maximum prompt size (approximate characters)

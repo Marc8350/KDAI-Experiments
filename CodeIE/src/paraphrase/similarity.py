@@ -42,7 +42,7 @@ class SemanticSimilarity:
     
     def __init__(
         self, 
-        embedding_model: str = "models/text-embedding-004",
+        embedding_model: str = "models/gemini-embedding-001",
         api_key: Optional[str] = None
     ):
         """

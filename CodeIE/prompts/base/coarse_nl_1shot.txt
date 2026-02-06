@@ -1,0 +1,38 @@
+Entity types: ["art", "building", "event", "location", "organization", "other", "person", "product"], [], {"art": [], "building": [], "event": [], "location": [], "organization": [], "other": [], "person": [], "product": []}
+
+
+The text is : "Between 30 January 1945 and 4 February she was outfitted at Philadelphia Navy Yard for special experimental work for the U.S Navy Bureau of Ships , and for the next five years carried out tests in the area of Cape May , New Jersey , and Cape Henlopen , Delaware .".
+The named entities in the text: <0> organization <5> Philadelphia Navy Yard <1> ; <0> organization <5> U.S Navy Bureau of Ships <1> ; <0> location <5> Cape May , New Jersey <1> ; <0> location <5> Cape Henlopen <1> ; <0> location <5> Delaware <1>
+----------------------------------------
+
+The text is : "The work of the Napier Commission and the Congested Districts Board , and the passing of the Crofting Act of 1886 helped , but social unrest continued .".
+The named entities in the text: <0> organization <5> Napier Commission <1> ; <0> organization <5> Congested Districts Board <1> ; <0> other <5> Crofting Act <1>
+----------------------------------------
+
+The text is : "The album was released on March 25 , 2008 , by Astralwerks Records It was the first album of new material that the group had released since `` Good Stuff `` in 1992 , although the band did record two new songs for their 1998 compilation album `` '' .".
+The named entities in the text: <0> organization <5> Astralwerks <1> ; <0> art <5> Good Stuff <1>
+----------------------------------------
+
+The text is : "In 1136 , King Fulk donated the castle to the Knights Hospitallers .".
+The named entities in the text: <0> person <5> Fulk <1> ; <0> building <5> Knights Hospitallers <1>
+----------------------------------------
+
+The text is : "Liddy was nominally in charge of the operation , but has since insisted that he was duped by both Dean and at least two of his subordinates , which included former CIA officers E. Howard Hunt and James McCord , the latter of whom was serving as then- CRP Security Coordinator after John Mitchell had by then resigned as Attorney General to become the CRP chairman .".
+The named entities in the text: <0> person <5> Liddy <1> ; <0> person <5> Dean <1> ; <0> person <5> E. Howard Hunt <1> ; <0> person <5> James McCord <1> ; <0> organization <5> CRP <1> ; <0> person <5> John Mitchell <1> ; <0> organization <5> CRP <1>
+----------------------------------------
+
+The text is : "Sperm development ( spermatogenesis ) and release of the egg from the ovaries ( ovulation ) may be impaired by hypogonadism , which , depending on the degree of severity , may result in partial or complete infertility .".
+The named entities in the text: <5> <1>
+----------------------------------------
+
+The text is : "During the Second World War , the sole Class 21 2-10-4 Texas type locomotive of the South African Railways ( SAR ) was often used to haul long and heavy military trains , troop trains and sometimes Italian prisoners-of-war to the military unit and prisoner-of-war camp at Sonderwater near Cullinan .".
+The named entities in the text: <0> event <5> Second World War <1> ; <0> product <5> Class 21 2-10-4 Texas type locomotive <1> ; <0> organization <5> South African Railways <1> ; <0> organization <5> SAR <1> ; <0> location <5> Italian <1> ; <0> location <5> Sonderwater <1> ; <0> location <5> Cullinan <1>
+----------------------------------------
+
+The text is : "`` Persib Bandung `` have rivalries with Persebaya Surabaya , PSM Makassar and PSMS Medan rooting from the Perserikatan era .".
+The named entities in the text: <0> organization <5> Persib Bandung <1> ; <0> organization <5> Persebaya Surabaya <1> ; <0> organization <5> PSM Makassar <1> ; <0> organization <5> PSMS Medan <1> ; <0> event <5> Perserikatan <1>
+----------------------------------------
+
+The text is : "Donahue was awarded 20 Emmy Awards during his broadcasting career , 10 for Outstanding Talk Show Host , and 10 for `` The Phil Donahue Show . ''".
+The named entities in the text: <0> person <5> Donahue <1> ; <0> other <5> Emmy <1> ; <0> other <5> Outstanding Talk Show Host <1> ; <0> other <5> The Phil Donahue Show <1>
+----------------------------------------

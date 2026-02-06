@@ -26,7 +26,7 @@ LANGUAGES = ["Chinese", "Spanish", "Turkish"]
 @dataclass
 class BackTranslationConfig:
     """Configuration for back-translation."""
-    model_name: str = "gemini-2.5-flash"
+    model_name: str = "gemini-2.0-flash"
     temperature: float = 0.1  # Lower temp for translation accuracy
     max_tokens: int = 4096
     similarity_threshold: float = 0.9
@@ -95,10 +95,10 @@ class BackTranslator:
         self.config = config or BackTranslationConfig()
         self.languages = LANGUAGES
         
-        # Get API key
-        api_key = self.config.api_key or os.getenv("GOOGLE_API_KEY")
+        # Get API key (check both GOOGLE_API_KEY and GEMINI_API_KEY)
+        api_key = self.config.api_key or os.getenv("GOOGLE_API_KEY") or os.getenv("GEMINI_API_KEY")
         if not api_key:
-            raise ValueError("GOOGLE_API_KEY environment variable not set")
+            raise ValueError("GOOGLE_API_KEY or GEMINI_API_KEY environment variable not set")
         
         # Initialize LLM
         self.llm = ChatGoogleGenerativeAI(
@@ -132,7 +132,18 @@ class BackTranslator:
         ]
         
         response = self.llm.invoke(messages)
-        translated = response.content.strip()
+        
+        # Handle different response formats - content can be a list or string
+        content = response.content
+        if isinstance(content, list):
+            translated = "\n".join(
+                str(block.get("text", block) if isinstance(block, dict) else block)
+                for block in content
+            )
+        else:
+            translated = str(content)
+        
+        translated = translated.strip()
         
         # Remove any markdown code block wrappers if present
         if translated.startswith("```"):
@@ -167,7 +178,18 @@ class BackTranslator:
         ]
         
         response = self.llm.invoke(messages)
-        translated = response.content.strip()
+        
+        # Handle different response formats - content can be a list or string
+        content = response.content
+        if isinstance(content, list):
+            translated = "\n".join(
+                str(block.get("text", block) if isinstance(block, dict) else block)
+                for block in content
+            )
+        else:
+            translated = str(content)
+        
+        translated = translated.strip()
         
         # Remove any markdown code block wrappers if present
         if translated.startswith("```"):

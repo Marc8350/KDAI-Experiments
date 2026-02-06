@@ -1,0 +1,103 @@
+# Entity type definitions:
+# - ["art", "building", "event", "location", "organization", "other", "person", "product"]: Entities of type ["art", "building", "event", "location", "organization", "other", "person", "product"]
+# - []: Entities of type []
+# - {"art": [], "building": [], "event": [], "location": [], "organization": [], "other": [], "person": [], "product": []}: Entities of type {"art": [], "building": [], "event": [], "location": [], "organization": [], "other": [], "person": [], "product": []}
+
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "Between 30 January 1945 and 4 February she was outfitted at Philadelphia Navy Yard for special experimental work for the U.S Navy Bureau of Ships , and for the next five years carried out tests in the area of Cape May , New Jersey , and Cape Henlopen , Delaware ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Philadelphia Navy Yard", "type": "organization"})
+	entity_list.append({"text": "U.S Navy Bureau of Ships", "type": "organization"})
+	entity_list.append({"text": "Cape May , New Jersey", "type": "location"})
+	entity_list.append({"text": "Cape Henlopen", "type": "location"})
+	entity_list.append({"text": "Delaware", "type": "location"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "The work of the Napier Commission and the Congested Districts Board , and the passing of the Crofting Act of 1886 helped , but social unrest continued ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Napier Commission", "type": "organization"})
+	entity_list.append({"text": "Congested Districts Board", "type": "organization"})
+	entity_list.append({"text": "Crofting Act", "type": "other"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "The album was released on March 25 , 2008 , by Astralwerks Records It was the first album of new material that the group had released since `` Good Stuff `` in 1992 , although the band did record two new songs for their 1998 compilation album `` '' ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Astralwerks", "type": "organization"})
+	entity_list.append({"text": "Good Stuff", "type": "art"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "In 1136 , King Fulk donated the castle to the Knights Hospitallers ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Fulk", "type": "person"})
+	entity_list.append({"text": "Knights Hospitallers", "type": "building"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "Liddy was nominally in charge of the operation , but has since insisted that he was duped by both Dean and at least two of his subordinates , which included former CIA officers E. Howard Hunt and James McCord , the latter of whom was serving as then- CRP Security Coordinator after John Mitchell had by then resigned as Attorney General to become the CRP chairman ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Liddy", "type": "person"})
+	entity_list.append({"text": "Dean", "type": "person"})
+	entity_list.append({"text": "E. Howard Hunt", "type": "person"})
+	entity_list.append({"text": "James McCord", "type": "person"})
+	entity_list.append({"text": "CRP", "type": "organization"})
+	entity_list.append({"text": "John Mitchell", "type": "person"})
+	entity_list.append({"text": "CRP", "type": "organization"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "Sperm development ( spermatogenesis ) and release of the egg from the ovaries ( ovulation ) may be impaired by hypogonadism , which , depending on the degree of severity , may result in partial or complete infertility ."
+	entity_list = []
+	# extracted named entities
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "During the Second World War , the sole Class 21 2-10-4 Texas type locomotive of the South African Railways ( SAR ) was often used to haul long and heavy military trains , troop trains and sometimes Italian prisoners-of-war to the military unit and prisoner-of-war camp at Sonderwater near Cullinan ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Second World War", "type": "event"})
+	entity_list.append({"text": "Class 21 2-10-4 Texas type locomotive", "type": "product"})
+	entity_list.append({"text": "South African Railways", "type": "organization"})
+	entity_list.append({"text": "SAR", "type": "organization"})
+	entity_list.append({"text": "Italian", "type": "location"})
+	entity_list.append({"text": "Sonderwater", "type": "location"})
+	entity_list.append({"text": "Cullinan", "type": "location"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "`` Persib Bandung `` have rivalries with Persebaya Surabaya , PSM Makassar and PSMS Medan rooting from the Perserikatan era ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Persib Bandung", "type": "organization"})
+	entity_list.append({"text": "Persebaya Surabaya", "type": "organization"})
+	entity_list.append({"text": "PSM Makassar", "type": "organization"})
+	entity_list.append({"text": "PSMS Medan", "type": "organization"})
+	entity_list.append({"text": "Perserikatan", "type": "event"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "Donahue was awarded 20 Emmy Awards during his broadcasting career , 10 for Outstanding Talk Show Host , and 10 for `` The Phil Donahue Show . ''"
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Donahue", "type": "person"})
+	entity_list.append({"text": "Emmy", "type": "other"})
+	entity_list.append({"text": "Outstanding Talk Show Host", "type": "other"})
+	entity_list.append({"text": "The Phil Donahue Show", "type": "other"})
+# END
