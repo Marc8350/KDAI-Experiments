@@ -1,0 +1,111 @@
+# CodeIE Experiment Configuration
+# ================================
+# This file configures the experiment parameters for running
+# NER experiments with various prompt variations.
+
+# Experiment settings
+experiment:
+  name: "codeie_fewnerd_ner"
+  description: "CodeIE NER experiments on Few-NERD dataset with prompt variations"
+  
+# Dataset settings
+dataset:
+  name: "few-nerd"
+  path: "few-nerd_test"  # HuggingFace dataset path
+  granularities:
+    - "coarse"
+    - "fine"
+
+# Prompt settings
+prompts:
+  shots: 3  # Fixed at 3-shot per class
+  styles:
+    - "pl"   # Code style (Python function)
+    - "nl"   # Natural language style
+  
+  # Variation types (6 per base prompt)
+  variations:
+    paraphrase:
+      - "paraphrase_v1"
+      - "paraphrase_v2"
+      - "paraphrase_v3"
+    back_translation:
+      - "backtrans_ch"  # Chinese
+      - "backtrans_sp"  # Spanish  
+      - "backtrans_tu"  # Turkish
+
+# Model configurations
+# Add or modify models here - the orchestrator will run all listed models
+models:
+  # Gemini via Google API
+  gemini_flash:
+    type: "google"
+    name: "gemini-2.5-flash"
+    api_key_env: "GOOGLE_API_KEY"
+    temperature: 0.0
+    max_tokens: 512
+    enabled: true
+    
+  gemini_flash_lite:
+    type: "google"
+    name: "gemini-2.5-flash-lite"
+    api_key_env: "GOOGLE_API_KEY"
+    temperature: 0.0
+    max_tokens: 512
+    enabled: false
+    
+  # Ollama models (local)
+  qwen_7b:
+    type: "ollama"
+    name: "qwen2.5:7b"
+    base_url: "http://localhost:11434"
+    temperature: 0.0
+    max_tokens: 512
+    enabled: false
+    
+  qwen_14b:
+    type: "ollama"
+    name: "qwen2.5:14b"
+    base_url: "http://localhost:11434"
+    temperature: 0.0
+    max_tokens: 512
+    enabled: false
+    
+  llama_8b:
+    type: "ollama"
+    name: "llama3.1:8b"
+    base_url: "http://localhost:11434"
+    temperature: 0.0
+    max_tokens: 512
+    enabled: false
+
+# Paraphrasing settings (for generating variations)
+paraphrase:
+  model: "gemini-2.5-flash"
+  temperature: 0.3
+  similarity_threshold: 0.9
+  languages:
+    - "Chinese"
+    - "Spanish"
+    - "Turkish"
+
+# Experiment execution settings
+execution:
+  max_samples: null  # null = all samples, or integer to limit
+  resume: true       # Resume from last checkpoint if available
+  save_interval: 10  # Save results every N samples
+  
+# Output settings
+output:
+  results_dir: "CODEIE-results"
+  save_raw_output: true
+  save_gold: true
+  save_predictions: true
+
+# Evaluation settings
+evaluation:
+  match_mode: "string"  # "string" or "offset"
+  metrics:
+    - "precision"
+    - "recall"
+    - "f1"

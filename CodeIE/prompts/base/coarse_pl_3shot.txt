@@ -1,0 +1,291 @@
+# Entity type definitions:
+# - art: A work of art including films, books, music, paintings, or other creative works.
+# - building: A named structure or building, such as a stadium, museum, or hotel.
+# - event: A named event such as a war, sports event, festival, or historical occurrence.
+# - location: A geographical location such as a city, country, continent, region, or landmark.
+# - organization: A named organization, institution, company, or group.
+# - other: Other named entities that don't fit into the above categories.
+# - person: A named individual, including fictional characters, historical figures, celebrities, and common people.
+# - product: A named commercial product, software, vehicle model, or branded item.
+
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "The MSW Program is being offered for full-time or part-time study in collaboration with the Faculty of Applied Health Sciences at the University of Waterloo ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "MSW", "type": "other"})
+	entity_list.append({"text": "University of Waterloo", "type": "organization"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "The work of the Napier Commission and the Congested Districts Board , and the passing of the Crofting Act of 1886 helped , but social unrest continued ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Napier Commission", "type": "organization"})
+	entity_list.append({"text": "Congested Districts Board", "type": "organization"})
+	entity_list.append({"text": "Crofting Act", "type": "other"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "On his way to London he came across the Parliamentary Forces and the Battle of Edgehill was fought on 23 October ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "London", "type": "location"})
+	entity_list.append({"text": "Parliamentary Forces", "type": "organization"})
+	entity_list.append({"text": "Battle of Edgehill", "type": "event"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "Fort Macleod , originally named Macleod , is a town in the southwest of the province of Alberta , Canada ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Fort Macleod", "type": "location"})
+	entity_list.append({"text": "Macleod", "type": "location"})
+	entity_list.append({"text": "Alberta", "type": "location"})
+	entity_list.append({"text": "Canada", "type": "location"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "The 1966 World Cup kicked off at Wembley on Monday , 11 July 1966 , with a match between England and Uruguay ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "World Cup", "type": "event"})
+	entity_list.append({"text": "Wembley", "type": "location"})
+	entity_list.append({"text": "England", "type": "location"})
+	entity_list.append({"text": "Uruguay", "type": "location"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "Mexican ranchera performer Vicente Fernández is the most nominated artist without a win with ten unsuccessful nominations ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Mexican", "type": "location"})
+	entity_list.append({"text": "Vicente Fernández", "type": "person"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "The first 27 floors of the building are the 4 Diamond Sheraton Hotel ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "4 Diamond Sheraton Hotel", "type": "building"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "The site is bounded by the Wyrley and Essington Canal and New Cross Hospital to the North and West , the recently built Wolverhampton Swimming and Fitness Centre to the South and Wednesfield Town to the East , which is easily accessed via a village link , consisting of an open plan amphitheatre style square , landscaped lawns and the newly built Wednesfield library ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Wyrley", "type": "location"})
+	entity_list.append({"text": "Essington Canal", "type": "location"})
+	entity_list.append({"text": "New Cross Hospital", "type": "building"})
+	entity_list.append({"text": "Wolverhampton Swimming and Fitness Centre", "type": "building"})
+	entity_list.append({"text": "Wednesfield Town", "type": "location"})
+	entity_list.append({"text": "Wednesfield library", "type": "building"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "Kowloon Shangri-La is a five-star hotel of the Hong Kong -based Shangri-La Hotels and Resorts group ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Kowloon Shangri-La", "type": "building"})
+	entity_list.append({"text": "Hong Kong", "type": "location"})
+	entity_list.append({"text": "Shangri-La Hotels and Resorts group", "type": "organization"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "In spring 2010 , he starred as the perverted and tyrannical Roman Emperor Caligula in Randy Weiner 's ( `` The Donkey Show `` ) and Alfred Preisser 's debaucherous Caligula Maximus , a new circus/musical/extravaganza at La MaMa ETC in the Ellen Stewart Theatre , to great critical acclaim ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Roman", "type": "location"})
+	entity_list.append({"text": "Caligula", "type": "person"})
+	entity_list.append({"text": "Randy Weiner", "type": "person"})
+	entity_list.append({"text": "The Donkey Show", "type": "art"})
+	entity_list.append({"text": "Alfred Preisser", "type": "person"})
+	entity_list.append({"text": "Caligula Maximus", "type": "art"})
+	entity_list.append({"text": "La MaMa ETC", "type": "building"})
+	entity_list.append({"text": "Ellen Stewart Theatre", "type": "building"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "Dog Chocolate 's side was entitled `` Or `` ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Dog Chocolate", "type": "organization"})
+	entity_list.append({"text": "Or", "type": "art"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "In February 2009 , Monaco expanded her dancing résumé with `` Peepshow `` , a burlesque act directed by Tony Award -winning director Jerry Mitchell , that plays at the Planet Hollywood Resort and Casino in Las Vegas ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Monaco", "type": "person"})
+	entity_list.append({"text": "Peepshow", "type": "art"})
+	entity_list.append({"text": "Tony Award", "type": "other"})
+	entity_list.append({"text": "Jerry Mitchell", "type": "person"})
+	entity_list.append({"text": "Planet Hollywood Resort and Casino", "type": "building"})
+	entity_list.append({"text": "Las Vegas", "type": "location"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "Judaism , Christianity , Islam , and the Baháʼí Faith are called Abrahamic religions because they all accept the tradition of the God ( known as Yahweh in Hebrew and Allah in Arabic ) that revealed himself to Abraham ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Judaism", "type": "organization"})
+	entity_list.append({"text": "Christianity", "type": "organization"})
+	entity_list.append({"text": "Islam", "type": "organization"})
+	entity_list.append({"text": "Baháʼí Faith", "type": "organization"})
+	entity_list.append({"text": "Abrahamic", "type": "person"})
+	entity_list.append({"text": "God", "type": "other"})
+	entity_list.append({"text": "Yahweh", "type": "other"})
+	entity_list.append({"text": "Hebrew", "type": "other"})
+	entity_list.append({"text": "Allah", "type": "other"})
+	entity_list.append({"text": "Arabic", "type": "other"})
+	entity_list.append({"text": "Abraham", "type": "person"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "Sacha Skarbek is a classically trained musician , taught by distinguished pianist Ronald Smith ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Sacha Skarbek", "type": "person"})
+	entity_list.append({"text": "Ronald Smith", "type": "person"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "Mishra chose the role of Nasir and Dhulia portrayed Ramadhir Singh ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Mishra", "type": "person"})
+	entity_list.append({"text": "Nasir", "type": "person"})
+	entity_list.append({"text": "Dhulia", "type": "person"})
+	entity_list.append({"text": "Ramadhir Singh", "type": "person"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "They rarely swim , despite having webbed feet , usually landing on water only to bathe ."
+	entity_list = []
+	# extracted named entities
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "During this period he gave few interviews and public lectures ."
+	entity_list = []
+	# extracted named entities
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "A new champion appears with his visor down ."
+	entity_list = []
+	# extracted named entities
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "The MiG-35 was entered in place of the prototype MiG-29OVT ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "MiG-35", "type": "product"})
+	entity_list.append({"text": "MiG-29OVT", "type": "product"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "The Basin Plan expanded to become the San Francisco Bay Region Basin Plan in 2004 ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Basin Plan", "type": "product"})
+	entity_list.append({"text": "San Francisco Bay Region Basin Plan", "type": "product"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "It resembled the Mikoyan MiG-15 and used the same cannon-armament and the Rolls-Royce Nene II engine ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Mikoyan MiG-15", "type": "product"})
+	entity_list.append({"text": "Rolls-Royce Nene II", "type": "product"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "On the outbreak of the First World War in August 1914 the Circuit of Britain aircraft was bought by the RNAS ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "First World War", "type": "event"})
+	entity_list.append({"text": "Britain", "type": "location"})
+	entity_list.append({"text": "RNAS", "type": "organization"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "is a light festival held in Kobe , Japan , every December since 1995 to commemorate the Great Hanshin earthquake of that year ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Kobe", "type": "location"})
+	entity_list.append({"text": "Japan", "type": "location"})
+	entity_list.append({"text": "Hanshin earthquake", "type": "event"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "Harwood is also a useful tailender who in the ING Cup once scored a 31-ball 50 ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Harwood", "type": "person"})
+	entity_list.append({"text": "ING Cup", "type": "event"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "sānzúwū are three-legged raven or ravens associated with the sun , or the ten suns , of which Houyi shot down nine ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "sānzúwū", "type": "other"})
+	entity_list.append({"text": "Houyi", "type": "person"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "Krodhi ( ) is a 1981 Indian Hindi -language film was directed by Subhash Ghai and stars Dharmendra , Shashi Kapoor , Zeenat Aman , Pran , and Premnath ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "Krodhi", "type": "art"})
+	entity_list.append({"text": "Indian", "type": "location"})
+	entity_list.append({"text": "Hindi", "type": "other"})
+	entity_list.append({"text": "Subhash Ghai", "type": "person"})
+	entity_list.append({"text": "Dharmendra", "type": "person"})
+	entity_list.append({"text": "Shashi Kapoor", "type": "person"})
+	entity_list.append({"text": "Zeenat Aman", "type": "person"})
+	entity_list.append({"text": "Pran", "type": "person"})
+	entity_list.append({"text": "Premnath", "type": "person"})
+# END
+
+def named_entity_recognition(input_text):
+	""" extract named entities from the input_text . """
+	input_text = "However , the pound sterling was decimalised in various British colonial territories before the United Kingdom ( and in several cases in line with William Brown 's proposal that the pound be divided into 1,000 parts , called mils ) ."
+	entity_list = []
+	# extracted named entities
+	entity_list.append({"text": "pound", "type": "other"})
+	entity_list.append({"text": "British", "type": "location"})
+	entity_list.append({"text": "the United Kingdom", "type": "location"})
+	entity_list.append({"text": "William Brown", "type": "person"})
+	entity_list.append({"text": "pound", "type": "other"})
+	entity_list.append({"text": "mils", "type": "other"})
+# END
