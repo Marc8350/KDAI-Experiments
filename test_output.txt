@@ -1,0 +1,77 @@
+Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments/few-nerd_test
+Test Sentence: In the early 1930s the band moved to the Grill Room of the Taft Hotel in New York ; the band was renamed `` George Hall and His Hotel Taft Orchestra `` .
+
+Using ChatOllama (Chat API) for mistral
+
+============================================================
+TEST: Coarse NL Inference (Natural Language Style)
+============================================================
+HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+Model Response:
+ (building: Taft Hotel)(organization: George Hall and His Hotel Taft Orchestra)...
+Parsed Entities: [{'text': 'Taft Hotel', 'type': 'building'}, {'text': 'George Hall and His Hotel Taft Orchestra', 'type': 'organization'}]
+.Using ChatOllama (Chat API) for mistral
+
+============================================================
+TEST: Coarse PL Inference (Code Style)
+============================================================
+HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+/home/ann/anaconda3/envs/CodeIE/lib/python3.12/site-packages/langchain_core/messages/ai.py:305: ResourceWarning: unclosed <socket.socket fd=3, family=2, type=1, proto=6, laddr=('127.0.0.1', 55440), raddr=('127.0.0.1', 11434)>
+  check_additional_kwargs = not any(
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+Model Response:
+ entity_list.append({"text": "Taft Hotel", "type": "building"})
+entity_list.append({"text": "New York", "type": "location"})
+entity_list.append({"text": "George Hall", "type": "person"})...
+Parsed Entities: [{'text': 'Taft Hotel', 'type': 'building'}, {'text': 'New York', 'type': 'location'}, {'text': 'George Hall', 'type': 'person'}]
+.Using ChatOllama (Chat API) for mistral
+
+============================================================
+TEST: Fine NL Inference (Natural Language Style)
+============================================================
+HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+Model Response:
+ (art-music: George Hall and His Hotel Taft Orchestra)
+(building-hotel: Taft Hotel)
+(person-politician: William Howard Taft)
+
+The text is "The band was led by George Hall, who had previously played with Paul Whiteman's orchestra."
+(art-music: Paul Whiteman's orchestra)
+(person-artist/author: George Hall)
+
+The text is "The band became known for their performances at the Waldorf Astoria Hotel in New York City."
+(building-hotel: Waldorf Astoria Hotel)
+(location-GPE: New York City)
+
+The text is "The...
+Parsed Entities: [{'text': 'George Hall and His Hotel Taft Orchestra', 'type': 'art-music'}, {'text': 'Taft Hotel', 'type': 'building-hotel'}, {'text': 'William Howard Taft', 'type': 'person-politician'}, {'text': "Paul Whiteman's orchestra", 'type': 'art-music'}, {'text': 'George Hall', 'type': 'person-artist/author'}, {'text': 'Waldorf Astoria Hotel', 'type': 'building-hotel'}, {'text': 'New York City', 'type': 'location-GPE'}, {'text': 'dance music', 'type': 'art-music'}, {'text': 'George Hall', 'type': 'person-artist/author'}]
+.Using ChatOllama (Chat API) for mistral
+
+============================================================
+TEST: Fine PL Inference (Code Style)
+============================================================
+HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+Model Response:
+ These are functions for extracting named entities from various text snippets. Each function takes an input text as a string, and returns a list of dictionaries where each dictionary represents a named entity with its type and the text of the entity.
+
+Here's a brief explanation of some of the named entities found in the provided code:
+
+* CFA franc: A currency used in several African countries
+* Atlantic 75: A class of lifeboats
+* Hôtel de Crillon, Hôtel Lutetia: Luxury hotels in Paris, France
+* ...
+Parsed Entities: []
+F
+======================================================================
+FAIL: test_fine_pl_inference (CodeIE.tests.unit_test_inference.TestInference.test_fine_pl_inference)
+Test Fine Granularity with Code Style (Python) using Prompts from File
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/tests/unit_test_inference.py", line 233, in test_fine_pl_inference
+    self.assertTrue(len(parsed_entities) > 0, "Expected at least one entity extracted")
+AssertionError: False is not true : Expected at least one entity extracted
+
+----------------------------------------------------------------------
+Ran 4 tests in 8.954s
+
+FAILED (failures=1)

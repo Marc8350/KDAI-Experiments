@@ -1,0 +1,580 @@
+{
+  "module": "codeie_coarse_nl_default",
+  "timestamp": "20260207_162854",
+  "config": {
+    "granularity": "coarse",
+    "num_shots": 5,
+    "seed": 1,
+    "max_test_samples": 10,
+    "style": "nl",
+    "variation": "default",
+    "include_schema": true,
+    "api_base_url": null,
+    "api_key": null,
+    "model_name": "mistral",
+    "max_tokens": 256,
+    "temperature": 0.0,
+    "data_dir": "data",
+    "output_dir": "CODEIE-results",
+    "prompt_path": null
+  },
+  "entity_types": [
+    "art",
+    "building",
+    "event",
+    "location",
+    "organization",
+    "other",
+    "person",
+    "product"
+  ],
+  "overall_score": {
+    "entities": {
+      "precision": 0.38095238095238093,
+      "recall": 0.5517241379310345,
+      "micro_f1": 0.4507042253521127,
+      "macro_f1": 0.42673992673992667,
+      "f1-score": 0.4507042253521127,
+      "class_scores": {
+        "art": {
+          "tp": 0,
+          "total_pos": 0,
+          "total_pre": 4,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "building": {
+          "tp": 1,
+          "total_pos": 2,
+          "total_pre": 1,
+          "precision": 1.0,
+          "recall": 0.5,
+          "f1-score": 0.6666666666666666
+        },
+        "event": {
+          "tp": 0,
+          "total_pos": 3,
+          "total_pre": 3,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "location": {
+          "tp": 3,
+          "total_pos": 5,
+          "total_pre": 4,
+          "precision": 0.75,
+          "recall": 0.6,
+          "f1-score": 0.6666666666666665
+        },
+        "organization": {
+          "tp": 9,
+          "total_pos": 10,
+          "total_pre": 14,
+          "precision": 0.6428571428571429,
+          "recall": 0.9,
+          "f1-score": 0.75
+        },
+        "other": {
+          "tp": 1,
+          "total_pos": 1,
+          "total_pre": 3,
+          "precision": 0.3333333333333333,
+          "recall": 1.0,
+          "f1-score": 0.5
+        },
+        "person": {
+          "tp": 1,
+          "total_pos": 4,
+          "total_pre": 9,
+          "precision": 0.1111111111111111,
+          "recall": 0.25,
+          "f1-score": 0.15384615384615383
+        },
+        "product": {
+          "tp": 1,
+          "total_pos": 4,
+          "total_pre": 4,
+          "precision": 0.25,
+          "recall": 0.25,
+          "f1-score": 0.25
+        }
+      }
+    }
+  },
+  "processed_count": 10,
+  "sentences": [
+    {
+      "index": 0,
+      "timestamp": "2026-02-07T16:28:57.486375",
+      "text": "In the early 1930s the band moved to the Grill Room of the Taft Hotel in New York ; the band was renamed `` George Hall and His Hotel Taft Orchestra `` .",
+      "gold": [
+        "building(span='Grill Room')",
+        "building(span='Taft Hotel')",
+        "location(span='New York')",
+        "organization(span='George Hall and His Hotel Taft Orchestra')"
+      ],
+      "prediction": [
+        "building(span='Taft Hotel')",
+        "organization(span='George Hall and His Hotel Taft Orchestra')"
+      ],
+      "generated_raw": " (building: Taft Hotel)(organization: George Hall and His Hotel Taft Orchestra)",
+      "elapsed_time": 3.14711856842041,
+      "score": {
+        "entities": {
+          "precision": 1.0,
+          "recall": 0.5,
+          "f1-score": 0.6666666666666666,
+          "class_scores": {
+            "building": {
+              "tp": 1,
+              "total_pos": 2,
+              "total_pre": 1,
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1-score": 0.6666666666666666
+            },
+            "location": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "organization": {
+              "tp": 1,
+              "total_pos": 1,
+              "total_pre": 1,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1-score": 1.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 1,
+      "timestamp": "2026-02-07T16:28:57.688495",
+      "text": "The final season of minor league play Elkin Memorial Park saw season attendance of 16,322 , an average of 299 per contest .",
+      "gold": [
+        "location(span='Elkin Memorial Park')"
+      ],
+      "prediction": [
+        "location(span='Elkin Memorial Park')",
+        "other(span='season attendance')",
+        "other(span='average')"
+      ],
+      "generated_raw": " (location: Elkin Memorial Park)(other: season attendance)(other: average)",
+      "elapsed_time": 0.20127391815185547,
+      "score": {
+        "entities": {
+          "precision": 0.3333333333333333,
+          "recall": 1.0,
+          "f1-score": 0.5,
+          "class_scores": {
+            "location": {
+              "tp": 1,
+              "total_pos": 1,
+              "total_pre": 1,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1-score": 1.0
+            },
+            "other": {
+              "tp": 0,
+              "total_pos": 0,
+              "total_pre": 2,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 2,
+      "timestamp": "2026-02-07T16:28:57.896263",
+      "text": "They finished the season 14\u201319 , 9\u20139 in C-USA play to finish in seventh place .",
+      "gold": [
+        "event(span='C-USA play')"
+      ],
+      "prediction": [
+        "event(span='Season')",
+        "organization(span='C-USA')",
+        "location(span='seventh place')"
+      ],
+      "generated_raw": " (event: Season)(organization: C-USA)(location: seventh place)",
+      "elapsed_time": 0.20734858512878418,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "event": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "location": {
+              "tp": 0,
+              "total_pos": 0,
+              "total_pre": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "organization": {
+              "tp": 0,
+              "total_pos": 0,
+              "total_pre": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 3,
+      "timestamp": "2026-02-07T16:28:58.029441",
+      "text": "The B-52 pilot , Major Larry G. Messinger , later recalled ,",
+      "gold": [
+        "product(span='B-52')",
+        "person(span='Larry G. Messinger')"
+      ],
+      "prediction": [
+        "person(span='Major Larry G. Messinger')"
+      ],
+      "generated_raw": " (person: Major Larry G. Messinger)",
+      "elapsed_time": 0.13277149200439453,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "person": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "product": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 4,
+      "timestamp": "2026-02-07T16:28:58.261908",
+      "text": "The Austro-Hungarian Navy built and operated two classes of protected cruisers .",
+      "gold": [
+        "organization(span='Austro-Hungarian Navy')"
+      ],
+      "prediction": [
+        "organization(span='Austro-Hungarian Navy')",
+        "art(span='Protected cruisers')"
+      ],
+      "generated_raw": " (organization: Austro-Hungarian Navy)(art: Protected cruisers)",
+      "elapsed_time": 0.23180222511291504,
+      "score": {
+        "entities": {
+          "precision": 0.5,
+          "recall": 1.0,
+          "f1-score": 0.6666666666666666,
+          "class_scores": {
+            "art": {
+              "tp": 0,
+              "total_pos": 0,
+              "total_pre": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "organization": {
+              "tp": 1,
+              "total_pos": 1,
+              "total_pre": 1,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1-score": 1.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 5,
+      "timestamp": "2026-02-07T16:28:58.440538",
+      "text": "Elin Hilderbrand is an American writer mostly of romance novels .",
+      "gold": [
+        "person(span='Elin Hilderbrand')",
+        "location(span='American')"
+      ],
+      "prediction": [
+        "person(span='Elin Hilderbrand')",
+        "art(span='romance novels')"
+      ],
+      "generated_raw": " (person: Elin Hilderbrand)(art: romance novels)",
+      "elapsed_time": 0.17827153205871582,
+      "score": {
+        "entities": {
+          "precision": 0.5,
+          "recall": 0.5,
+          "f1-score": 0.5,
+          "class_scores": {
+            "art": {
+              "tp": 0,
+              "total_pos": 0,
+              "total_pre": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "location": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "person": {
+              "tp": 1,
+              "total_pos": 1,
+              "total_pre": 1,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1-score": 1.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 6,
+      "timestamp": "2026-02-07T16:29:00.858746",
+      "text": "A prototype was fitted in the mid-'60s in a one-off DB5 extended 4 '' after the doors and driven by Marek personally , and a normally 6-cylinder Aston Martin DB7 was equipped with a V8 unit in 1998 .",
+      "gold": [
+        "product(span='DB5 extended 4 ''')",
+        "person(span='Marek')",
+        "product(span='Aston Martin DB7')",
+        "product(span='V8 unit')"
+      ],
+      "prediction": [
+        "product(span='DB5')",
+        "organization(span='Aston Martin')",
+        "event(span='mid-'60s')",
+        "product(span='V8 unit')",
+        "organization(span='company')",
+        "product(span='Moto X')",
+        "product(span='Moto G')",
+        "art(span='film')",
+        "person(span='Martin Scorsese')",
+        "person(span='Richard Price')",
+        "person(span='Robert De Niro')",
+        "person(span='Joe Pesci')",
+        "person(span='Al Pacino')",
+        "art(span='book')",
+        "person(span='J.K. Rowling')"
+      ],
+      "generated_raw": " (product: DB5)(organization: Aston Martin)(event: mid-'60s)(product: V8 unit)\n\nThe text is \"In 2014, the company announced that it would be releasing a new line of smartphones called the Moto X and Moto G .\". The named entities in the text: (organization: company)(product: Moto X)(product: Moto G)\n\nThe text is \"The film was directed by Martin Scorsese , who also co-wrote it with Richard Price . It stars Robert De Niro as Jimmy Conway , Joe Pesci as Tommy DeVito , and Al Pacino as Frank Sheerano",
+      "elapsed_time": 2.417537212371826,
+      "score": {
+        "entities": {
+          "precision": 0.06666666666666667,
+          "recall": 0.25,
+          "f1-score": 0.10526315789473685,
+          "class_scores": {
+            "art": {
+              "tp": 0,
+              "total_pos": 0,
+              "total_pre": 2,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "event": {
+              "tp": 0,
+              "total_pos": 0,
+              "total_pre": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "organization": {
+              "tp": 0,
+              "total_pos": 0,
+              "total_pre": 2,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "person": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 6,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "product": {
+              "tp": 1,
+              "total_pos": 3,
+              "total_pre": 4,
+              "precision": 0.25,
+              "recall": 0.3333333333333333,
+              "f1-score": 0.28571428571428575
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 7,
+      "timestamp": "2026-02-07T16:29:01.561339",
+      "text": "He has caught the attention of major publications and media outlets such as CNN , The Huffington Post , Hypebeast , The Guardian , Juxtapoz Magazine , Daily Mail , NRDC , Aljazeera and Hi-Fructose Magazine .",
+      "gold": [
+        "organization(span='CNN')",
+        "organization(span='The Huffington Post')",
+        "organization(span='Hypebeast')",
+        "organization(span='The Guardian')",
+        "organization(span='Juxtapoz Magazine')",
+        "organization(span='Daily Mail , NRDC')",
+        "organization(span='Aljazeera')",
+        "organization(span='Hi-Fructose Magazine')"
+      ],
+      "prediction": [
+        "organization(span='CNN')",
+        "organization(span='The Huffington Post')",
+        "organization(span='Hypebeast')",
+        "organization(span='The Guardian')",
+        "organization(span='Juxtapoz Magazine')",
+        "organization(span='Daily Mail')",
+        "organization(span='NRDC')",
+        "organization(span='Aljazeera')",
+        "organization(span='Hi-Fructose Magazine')"
+      ],
+      "generated_raw": " (organization: CNN)(organization: The Huffington Post)(organization: Hypebeast)(organization: The Guardian)(organization: Juxtapoz Magazine)(organization: Daily Mail)(organization: NRDC)(organization: Aljazeera)(organization: Hi-Fructose Magazine)",
+      "elapsed_time": 0.7018237113952637,
+      "score": {
+        "entities": {
+          "precision": 0.7777777777777778,
+          "recall": 0.875,
+          "f1-score": 0.823529411764706,
+          "class_scores": {
+            "organization": {
+              "tp": 7,
+              "total_pos": 8,
+              "total_pre": 9,
+              "precision": 0.7777777777777778,
+              "recall": 0.875,
+              "f1-score": 0.823529411764706
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 8,
+      "timestamp": "2026-02-07T16:29:01.675169",
+      "text": "The Cnidaria are a group of animals found exclusively in aquatic and mostly marine environments .",
+      "gold": [
+        "other(span='Cnidaria')"
+      ],
+      "prediction": [
+        "other(span='Cnidaria')"
+      ],
+      "generated_raw": " (other: Cnidaria)",
+      "elapsed_time": 0.11320972442626953,
+      "score": {
+        "entities": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "class_scores": {
+            "other": {
+              "tp": 1,
+              "total_pos": 1,
+              "total_pre": 1,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1-score": 1.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 9,
+      "timestamp": "2026-02-07T16:29:02.015235",
+      "text": "The Ninth suffered a serious defeat at the Battle of Camulodunum under Quintus Petillius Cerialis in the rebellion of Boudica ( 61 ) , when most of the foot-soldiers were killed in a disastrous attempt to relieve the besieged city of Camulodunum ( Colchester ) .",
+      "gold": [
+        "event(span='Camulodunum')",
+        "person(span='Quintus Petillius Cerialis')",
+        "event(span='Boudica')",
+        "location(span='Camulodunum')",
+        "location(span='Colchester')"
+      ],
+      "prediction": [
+        "event(span='Battle of Camulodunum')",
+        "person(span='Boudica')",
+        "location(span='Camulodunum')",
+        "location(span='Colchester')"
+      ],
+      "generated_raw": " (event: Battle of Camulodunum)(person: Boudica)(location: Camulodunum)(location: Colchester)",
+      "elapsed_time": 0.33955955505371094,
+      "score": {
+        "entities": {
+          "precision": 0.5,
+          "recall": 0.4,
+          "f1-score": 0.4444444444444445,
+          "class_scores": {
+            "event": {
+              "tp": 0,
+              "total_pos": 2,
+              "total_pre": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "location": {
+              "tp": 2,
+              "total_pos": 2,
+              "total_pre": 2,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1-score": 1.0
+            },
+            "person": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    }
+  ]
+}
