@@ -424,14 +424,13 @@ def parse_nl_style_output(output: str, text: str, entity_types: List[str]) -> Li
     entities = []
     
     # 1. Try parsing (type: text) format (New CodeIE format)
-    # Pattern: (type: text) or (type: text)(type: text)
-    # Regex to capture content inside parens
-    # We look for (TYPE: TEXT) where TYPE is in entity_types
+    # The model may output entities on multiple lines or with extra content
+    # Pattern matches (type: text) where text can contain anything except unbalanced parens
+    # We process line by line to handle multi-line outputs better
     
-    # Simple strategy: Find all (key: val) patterns
-    # pattern_new = r'\(([^:]+):\s*([^)]+)\)' # Too greedy if text contains ')'
-    # structured pattern: (type: text)
-    pattern_new = r'\(([\w\-\s]+):\s*(.+?)\)(?=\(|$)' 
+    # More robust pattern: Find all (key: value) patterns
+    # This pattern allows for entity types with hyphens and captures text until closing paren
+    pattern_new = r'\(([a-zA-Z][a-zA-Z0-9\-/]+):\s*([^)]+)\)'
     
     matches_new = list(re.finditer(pattern_new, output))
     if matches_new:
@@ -439,9 +438,15 @@ def parse_nl_style_output(output: str, text: str, entity_types: List[str]) -> Li
             entity_type = match.group(1).strip()
             entity_text = match.group(2).strip()
             
-            # Normalize type if needed (though prompt usually has exact type)
-            if entity_type in entity_types:
-                 entities.append({'text': entity_text, 'type': entity_type})
+            # Normalize: match entity type case-insensitively
+            matched_type = None
+            for et in entity_types:
+                if et.lower() == entity_type.lower():
+                    matched_type = et
+                    break
+            
+            if matched_type:
+                entities.append({'text': entity_text, 'type': matched_type})
         
         if entities:
             return entities
