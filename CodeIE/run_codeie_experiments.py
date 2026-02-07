@@ -14,8 +14,8 @@ Key enhancement over original CodeIE: Prompts include explicit entity class
 definitions, giving the model clearer guidance about valid entity types.
 
 Usage:
-    python run_codeie_experiments.py --granularity coarse --style pl --num_shots 5
-    python run_codeie_experiments.py --granularity fine --style nl --num_shots 3
+    python run_codeie_experiments.py --granularity coarse --style pl --model mistral
+    python run_codeie_experiments.py --granularity fine --style nl --model qwen2.5:7b
 
 Author: Adapted for seminar thesis
 """
@@ -66,14 +66,11 @@ class ExperimentConfig:
     """Configuration for a single experiment run."""
     # Dataset settings
     granularity: str = "coarse"  # "coarse" or "fine"
-    num_shots: int = 5
-    seed: int = 1
     max_test_samples: Optional[int] = None  # Limit for testing
     
-    # Prompt style and schema
+    # Prompt style
     style: str = "pl"  # "pl" (code) or "nl" (natural language)
-    variation: str = "v0_original"
-    include_schema: bool = True  # NEW: Whether to include entity schema in prompts
+    variation: str = "default"  # Variation name (if using dynamic prompts)
     
     # API settings
     api_base_url: Optional[str] = None
@@ -87,7 +84,7 @@ class ExperimentConfig:
     # Paths
     data_dir: str = "data"
     output_dir: str = "CODEIE-results"
-    prompt_path: Optional[str] = None  # NEW: Path to pre-generated prompt file
+    prompt_path: Optional[str] = None  # Path to pre-generated prompt file
 
 
 def load_variations(granularity: str):
@@ -485,9 +482,6 @@ def run_experiment(config: ExperimentConfig):
     logging.info(f"Granularity: {config.granularity}")
     logging.info(f"Style: {config.style}")
     logging.info(f"Variation: {config.variation}")
-    logging.info(f"Include Schema: {config.include_schema}")
-    logging.info(f"Shots: {config.num_shots}")
-    logging.info(f"Seed: {config.seed}")
     logging.info(f"Model: {config.model_name}")
     logging.info("="*60)
     
@@ -551,7 +545,6 @@ def run_experiment(config: ExperimentConfig):
     # Determine ICL prompt source (check base prompts first!)
     icl_prompt = None
     prompt_source = "dynamic"  # Track where prompt came from
-    actual_shots = config.num_shots  # Track actual number of shots
     
     # Option 1: Use explicitly provided prompt path
     if config.prompt_path and os.path.exists(config.prompt_path):
@@ -572,38 +565,15 @@ def run_experiment(config: ExperimentConfig):
             with open(base_prompt_file, 'r') as f:
                 icl_prompt = f.read()
             prompt_source = "base"
-            actual_shots = 1  # Base prompts are 1-shot
     
-    # Option 3: Build prompt from few-shot examples (only if no base prompt)
+    # No base prompt found - error out
     if icl_prompt is None:
-        logging.info("No base prompt found, loading few-shot examples to build prompt...")
-        data_dir = os.path.join(CODEIE_ROOT, config.data_dir)
-        examples = load_fewshot_examples(
-            data_dir=data_dir,
-            granularity=config.granularity,
-            num_shots=config.num_shots,
-            seed=config.seed
-        )
-        
-        if not examples:
-            logging.error("No few-shot examples found. Please run prepare_fewnerd_for_codeie.py first.")
-            logging.error("Or create base prompts in prompts/base/ directory.")
-            return
-        
-        logging.info("Building ICL prompt from examples...")
-        icl_prompt = build_icl_prompt(
-            examples=examples,
-            style=config.style,
-            variation_config=variation_config,
-            entity_types=entity_types,
-            entity_definitions=entity_definitions,
-            include_schema=config.include_schema
-        )
-        prompt_source = "dynamic"
-        actual_shots = len(examples)
+        logging.error(f"Base prompt not found: {base_prompt_file}")
+        logging.error("Please ensure prompts/base/ directory contains the required prompt files.")
+        logging.error(f"Expected file: {config.granularity}_{config.style}_1shot.txt")
+        return None
     
     logging.info(f"ICL prompt length: {len(icl_prompt)} characters")
-    logging.info(f"Prompt source: {prompt_source}, actual shots: {actual_shots}")
     
     # Show sample of the prompt for verification
     logging.info("Sample ICL prompt (first 1000 chars):")
@@ -612,13 +582,14 @@ def run_experiment(config: ExperimentConfig):
         logging.info(line)
     logging.info("-" * 40)
     
-    # Prepare results storage - use actual_shots in filename for accuracy
+    # Prepare results storage
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    schema_tag = "with_schema" if config.include_schema else "no_schema"
     model_tag = config.model_name or "default_model"
+    
+    # Filename format: simpler since base prompts are always 1-shot
     result_file = os.path.join(
         output_dir,
-        f"{config.granularity}_{config.style}_{prompt_source}_{actual_shots}shot_{model_tag}_{timestamp}.json"
+        f"{config.granularity}_{config.style}_{model_tag}_{timestamp}.json"
     )
     
     all_gold = []
@@ -810,20 +781,15 @@ def main():
     # Dataset settings
     parser.add_argument('--granularity', choices=['coarse', 'fine'], default='coarse',
                         help="Entity granularity")
-    parser.add_argument('--num_shots', type=int, default=5,
-                        help="Number of few-shot examples per entity type")
-    parser.add_argument('--seed', type=int, default=1,
-                        help="Random seed for few-shot sampling")
+    # num_shots and seed removed - base prompts are always 1-shot
     parser.add_argument('--max_test', type=int, default=None,
                         help="Maximum test samples (for debugging)")
     
     # Prompt settings
     parser.add_argument('--style', choices=['pl', 'nl'], default='pl',
                         help="Prompt style: pl (code) or nl (natural language)")
-    parser.add_argument('--variation', default='v0_original',
+    parser.add_argument('--variation', default='default',
                         help="Prompt variation name")
-    parser.add_argument('--no_schema', action='store_true',
-                        help="Disable entity schema in prompts (original CodeIE behavior)")
     parser.add_argument('--run_all_variations', action='store_true',
                         help="Run all variations for the selected style")
     
@@ -846,12 +812,9 @@ def main():
     # Build config
     config = ExperimentConfig(
         granularity=args.granularity,
-        num_shots=args.num_shots,
-        seed=args.seed,
         max_test_samples=args.max_test,
         style=args.style,
         variation=args.variation,
-        include_schema=not args.no_schema,
         max_tokens=args.max_tokens,
         temperature=args.temperature
     )
