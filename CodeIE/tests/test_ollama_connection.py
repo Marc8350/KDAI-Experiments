@@ -1,8 +1,9 @@
-
 import unittest
 import os
+import sys
 import logging
 import requests
+import argparse
 from dotenv import load_dotenv
 from langchain_ollama import ChatOllama, OllamaLLM
 from langchain_core.messages import HumanMessage
@@ -56,4 +57,15 @@ class TestOllamaModel(unittest.TestCase):
         self.assertGreater(len(response), 0)
 
 if __name__ == "__main__":
+    # Allow overriding model via command line: --model mistral
+    parser = argparse.ArgumentParser(add_help=False)
+    parser.add_argument('--model', type=str, default=None)
+    args, unknown = parser.parse_known_args()
+    
+    if args.model:
+        os.environ["CUSTOM_MODEL_NAME"] = args.model
+        print(f"Command line override: Model set to {args.model}")
+    
+    # Pass only unknown arguments to unittest
+    sys.argv = [sys.argv[0]] + unknown
     unittest.main()

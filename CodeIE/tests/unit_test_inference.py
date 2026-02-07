@@ -3,6 +3,7 @@ import unittest
 import os
 import sys
 import logging
+import argparse
 from pathlib import Path
 from datasets import load_from_disk
 from dotenv import load_dotenv
@@ -226,4 +227,15 @@ def named_entity_recognition(input_text):
         self.assertTrue(len(parsed_entities) > 0, "Expected at least one entity extracted")
 
 if __name__ == '__main__':
+    # Allow overriding model via command line: --model mistral
+    parser = argparse.ArgumentParser(add_help=False)
+    parser.add_argument('--model', type=str, default=None)
+    args, unknown = parser.parse_known_args()
+    
+    if args.model:
+        os.environ["CUSTOM_MODEL_NAME"] = args.model
+        logger.info(f"Command line override: Model set to {args.model}")
+    
+    # Pass only unknown arguments to unittest
+    sys.argv = [sys.argv[0]] + unknown
     unittest.main()
