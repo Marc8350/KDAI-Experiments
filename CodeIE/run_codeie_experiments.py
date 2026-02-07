@@ -5,7 +5,8 @@ This script runs NER experiments using the CodeIE framework on FewNerd,
 parallel to the run_gollie_experiments.py script. It supports:
 - Multiple prompt variations (code-style and NL-style)
 - EXPLICIT entity type definitions in prompts (like GoLLIE)
-- Custom API endpoint (Qwen2.5-7B or compatible)
+- Integration with Google Gemini (via LangChain)
+- Integration with Ollama (via LangChain)
 - Stratified few-shot in-context learning examples from training set
 - Evaluation on test set with P/R/F1 metrics
 
@@ -30,6 +31,11 @@ from datetime import datetime
 from typing import Dict, List, Any, Optional
 from dataclasses import dataclass, asdict
 
+# LangChain imports
+from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_ollama import ChatOllama
+from langchain_core.messages import HumanMessage
+
 # Setup paths
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CODEIE_ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -40,9 +46,6 @@ if CODEIE_ROOT not in sys.path:
     sys.path.insert(0, CODEIE_ROOT)
 
 from datasets import load_from_disk
-
-# Import custom API wrapper
-from src.api.custom_api_wrapper import CustomAPIWrapper
 
 logging.basicConfig(
     level=logging.INFO,
@@ -73,9 +76,9 @@ class ExperimentConfig:
     include_schema: bool = True  # NEW: Whether to include entity schema in prompts
     
     # API settings
-    api_base_url: str = os.getenv("CUSTOM_API_BASE_URL", "http://localhost:8000/v1")
-    api_key: str = os.getenv("CUSTOM_API_KEY", "not-needed")
-    model_name: str = os.getenv("CUSTOM_MODEL_NAME", "qwen2.5-7b")
+    api_base_url: Optional[str] = None
+    api_key: Optional[str] = None
+    model_name: Optional[str] = None
     
     # Generation settings
     max_tokens: int = 256
@@ -84,6 +87,7 @@ class ExperimentConfig:
     # Paths
     data_dir: str = "data"
     output_dir: str = "CODEIE-results"
+    prompt_path: Optional[str] = None  # NEW: Path to pre-generated prompt file
 
 
 def load_variations(granularity: str):
@@ -319,20 +323,60 @@ def build_icl_prompt(
 # Inference & Parsing
 # ============================================================================
 
-def run_inference(prompt: str, config: ExperimentConfig) -> str:
-    """Run inference using the custom API."""
-    try:
-        response = CustomAPIWrapper.call(
-            prompt=prompt,
-            max_tokens=config.max_tokens,
-            model=config.model_name,
-            temperature=config.temperature,
-            base_url=config.api_base_url,
-            api_key=config.api_key,
-            stop=[END, END_LINE, "\ndef ", "\n\ndef "]
-        )
+def get_llm_model(config: ExperimentConfig):
+    """
+    Factory to get the appropriate LangChain chat model based on config.
+    """
+    # Resolve parameters from config or environment variables
+    model_name = config.model_name or os.getenv("CUSTOM_MODEL_NAME", "qwen2.5-7b")
+    
+    # Resolve API Key
+    api_key = config.api_key
+    if not api_key:
+        api_key = os.getenv("CUSTOM_API_KEY") 
+        if not api_key:
+            api_key = "not-needed"
+
+    # Resolve Base URL (checking multiple env vars)
+    api_base_url = config.api_base_url
+    if not api_base_url:
+        api_base_url = os.getenv("CUSTOM_API_BASE_URL") or os.getenv("CUSTOM_API_BASE")
+        if not api_base_url:
+            api_base_url = "http://localhost:11434"
+
+    # Check if Google Model
+    if "gemini" in model_name.lower():
+        if not api_key or api_key == "not-needed":
+            # Try to find standard Google env var
+            api_key = os.getenv("GOOGLE_API_KEY") or os.getenv("GEMINI_API_KEY")
         
-        return CustomAPIWrapper.parse_response(response)
+        if not api_key:
+            logging.warning("No API key found for Google model. set CUSTOM_API_KEY or GOOGLE_API_KEY.")
+            
+        return ChatGoogleGenerativeAI(
+            model=model_name,
+            temperature=config.temperature,
+            google_api_key=api_key,
+            max_output_tokens=config.max_tokens,
+            convert_system_message_to_human=True # Sometimes needed for Gemini
+        )
+    
+    # Default to Ollama
+    return ChatOllama(
+        model=model_name,
+        temperature=config.temperature,
+        base_url=api_base_url,
+        num_predict=config.max_tokens
+    )
+
+def run_inference(prompt: str, llm_model, config: ExperimentConfig) -> str:
+    """Run inference using the LangChain model."""
+    try:
+        messages = [HumanMessage(content=prompt)]
+        stop = [END, END_LINE, "\ndef ", "\n\ndef "]
+        
+        response = llm_model.invoke(messages, stop=stop)
+        return response.content
         
     except Exception as e:
         logging.error(f"Inference failed: {e}")
@@ -363,16 +407,38 @@ def parse_code_style_output(output: str, entity_types: List[str]) -> List[Dict]:
 
 
 def parse_nl_style_output(output: str, text: str, entity_types: List[str]) -> List[Dict]:
-    """Parse NL-style (SEL format) output to extract entities."""
+    """Parse NL-style output to extract entities. Supports both SEL (<0> type <5> text) and (type: text) formats."""
     entities = []
     
-    # Clean up output
-    output = output.replace('<extra_id_', '<').replace('>', '>')
+    # 1. Try parsing (type: text) format (New CodeIE format)
+    # Pattern: (type: text) or (type: text)(type: text)
+    # Regex to capture content inside parens
+    # We look for (TYPE: TEXT) where TYPE is in entity_types
     
-    # Pattern for: <0> type <5> span <1>
+    # Simple strategy: Find all (key: val) patterns
+    # pattern_new = r'\(([^:]+):\s*([^)]+)\)' # Too greedy if text contains ')'
+    # structured pattern: (type: text)
+    pattern_new = r'\(([\w\-\s]+):\s*(.+?)\)(?=\(|$)' 
+    
+    matches_new = list(re.finditer(pattern_new, output))
+    if matches_new:
+        for match in matches_new:
+            entity_type = match.group(1).strip()
+            entity_text = match.group(2).strip()
+            
+            # Normalize type if needed (though prompt usually has exact type)
+            if entity_type in entity_types:
+                 entities.append({'text': entity_text, 'type': entity_type})
+        
+        if entities:
+            return entities
+
+    # 2. Fallback to parsing SEL format: <0> type <5> span <1> (Old format)
+    # Clean up output
+    output_clean = output.replace('<extra_id_', '<').replace('>', '>')
     pattern = r'<0>\s*(\w+(?:\s+\w+)*)\s*<5>\s*([^<]+?)\s*<1>'
     
-    for match in re.finditer(pattern, output):
+    for match in re.finditer(pattern, output_clean):
         entity_type = match.group(1).strip().lower().replace(' ', '-')
         entity_text = match.group(2).strip()
         
@@ -433,11 +499,15 @@ def run_experiment(config: ExperimentConfig):
     logging.info(f"Include Schema: {config.include_schema}")
     logging.info(f"Shots: {config.num_shots}")
     logging.info(f"Seed: {config.seed}")
+    logging.info(f"Model: {config.model_name}")
     logging.info("="*60)
     
     # Setup output directory
     output_dir = os.path.join(CODEIE_ROOT, config.output_dir)
     os.makedirs(output_dir, exist_ok=True)
+    
+    # Initialize the Model
+    llm_model = get_llm_model(config)
     
     # Load prompt variations and entity definitions
     CODE_STYLE_VARIATIONS, NL_STYLE_VARIATIONS, ENTITY_DEFINITIONS = load_variations(
@@ -468,27 +538,35 @@ def run_experiment(config: ExperimentConfig):
     ds_test = load_from_disk(test_path)
     
     # Load few-shot examples (from training data)
-    data_dir = os.path.join(CODEIE_ROOT, config.data_dir)
-    examples = load_fewshot_examples(
-        data_dir=data_dir,
-        granularity=config.granularity,
-        num_shots=config.num_shots,
-        seed=config.seed
-    )
-    
-    if not examples:
-        logging.error("No few-shot examples found. Please run prepare_fewnerd_for_codeie.py first.")
-        return
-    
-    # Build ICL prompt
-    icl_prompt = build_icl_prompt(
-        examples=examples,
-        style=config.style,
-        variation_config=variation_config,
-        entity_types=entity_types,
-        entity_definitions=entity_definitions,
-        include_schema=config.include_schema
-    )
+    # Only needed if building prompt dynamically
+    if not config.prompt_path:
+        data_dir = os.path.join(CODEIE_ROOT, config.data_dir)
+        examples = load_fewshot_examples(
+            data_dir=data_dir,
+            granularity=config.granularity,
+            num_shots=config.num_shots,
+            seed=config.seed
+        )
+        
+        if not examples:
+            logging.error("No few-shot examples found. Please run prepare_fewnerd_for_codeie.py first.")
+            return
+
+    # Build or Load ICL prompt
+    if config.prompt_path and os.path.exists(config.prompt_path):
+        logging.info(f"Loading pre-generated prompt from: {config.prompt_path}")
+        with open(config.prompt_path, 'r') as f:
+            icl_prompt = f.read()
+    else:
+        logging.info("Building ICL prompt from examples...")
+        icl_prompt = build_icl_prompt(
+            examples=examples,
+            style=config.style,
+            variation_config=variation_config,
+            entity_types=entity_types,
+            entity_definitions=entity_definitions,
+            include_schema=config.include_schema
+        )
     
     logging.info(f"ICL prompt length: {len(icl_prompt)} characters")
     
@@ -571,11 +649,19 @@ def run_experiment(config: ExperimentConfig):
         
         # Run inference
         start_time = time.time()
-        generated = run_inference(full_prompt, config)
+        generated = run_inference(full_prompt, llm_model, config)
         elapsed = time.time() - start_time
         
         # Parse output
         if config.style == "pl":
+            # Append generated output to prompt to provide context for parsing if needed, 
+            # but usually output is enough if it matches expected format.
+            # CodeIE parser might expect full code or just the appended part.
+            # Re-checking parse_code_style_output: it regexes for entity_list.append.
+            # So generated part is what matters.
+            # Wait, the parser regex is:
+            # entity_list.append({"text": "...", "type": "..."})
+            # Generated output from recent models usually continues the code.
             pred_entities = parse_code_style_output(
                 output=test_prompt + generated,
                 entity_types=entity_types

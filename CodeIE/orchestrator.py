@@ -165,7 +165,9 @@ class Orchestrator:
     
     def _get_all_variation_names(self) -> List[str]:
         """Get all expected variation names."""
-        return VARIATION_NAMES["paraphrase"] + VARIATION_NAMES["back_translation"]
+    def _get_all_variation_names(self) -> List[str]:
+        """Get all expected variation names."""
+        return ["base"] + VARIATION_NAMES["paraphrase"] + VARIATION_NAMES["back_translation"]
     
     def check_variations(self) -> List[VariationStatus]:
         """Check which variations exist and which are missing."""
@@ -180,6 +182,13 @@ class Orchestrator:
             missing = []
             
             for var_name in all_variations:
+                if var_name == "base":
+                    if base_path.exists():
+                        existing.append(var_name)
+                    else:
+                        missing.append(var_name)
+                    continue
+
                 var_path = var_dir / f"{var_name}.txt"
                 if var_path.exists():
                     existing.append(var_name)
@@ -252,6 +261,9 @@ class Orchestrator:
             
             # Generate paraphrase variations
             for var_name in VARIATION_NAMES["paraphrase"]:
+                if var_name == "base":
+                    continue
+
                 var_path = status.variations_dir / f"{var_name}.txt"
                 
                 if var_path.exists() and not force:
@@ -377,12 +389,19 @@ class Orchestrator:
                  if granularity == "coarse" 
                  else self.config["prompts"]["fine_shots"])
         base_name = f"{granularity}_{style}_{shots}shot"
-        prompt_path = self.variations_dir / base_name / f"{variation}.txt"
+        if variation == "base":
+            prompt_path = self.base_prompts_dir / f"{base_name}.txt"
+        else:
+            prompt_path = self.variations_dir / base_name / f"{variation}.txt"
         
         if prompt_path.exists():
             return prompt_path
         else:
-            logger.warning(f"Prompt not found: {prompt_path}")
+            if variation == "base":
+                logger.warning(f"Base prompt not found: {prompt_path}")
+                logger.warning("Please run build_base_prompts.py first.")
+            else:
+                logger.warning(f"Prompt not found: {prompt_path}")
             return None
     
     def generate_experiment_matrix(
@@ -452,7 +471,8 @@ class Orchestrator:
         config = ExperimentConfig(
             granularity=run.granularity,
             style=run.style,
-            variation=run.variation,
+            variation=run.variation if run.variation != "base" else "v0_original",  # Use default config for base
+            prompt_path=str(run.prompt_path),  # Pass the path to prompt file
             model_name=run.model_config["name"],
             max_tokens=run.model_config.get("max_tokens", 512),
             temperature=run.model_config.get("temperature", 0.0),
@@ -616,7 +636,8 @@ class Orchestrator:
         for status in statuses:
             check = "✓" if status.is_complete else "✗"
             logger.info(f"  [{check}] {status.base_name}")
-            logger.info(f"      Existing: {len(status.existing)}/6")
+            total_variations = len(self._get_all_variation_names())
+            logger.info(f"      Existing: {len(status.existing)}/{total_variations}")
             if status.missing:
                 logger.info(f"      Missing: {', '.join(status.missing)}")
         
@@ -630,7 +651,8 @@ class Orchestrator:
             logger.warning("  No models enabled! Enable models in config/experiment_config.yaml")
         
         # Count potential experiments
-        total_runs = len(models) * 4 * 6  # models × base_prompts × variations
+        total_variations = len(self._get_all_variation_names())
+        total_runs = len(models) * 4 * total_variations  # models × base_prompts × variations
         logger.info(f"\nPotential experiments: {total_runs}")
 
 

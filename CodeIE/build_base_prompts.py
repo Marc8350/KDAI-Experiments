@@ -46,6 +46,75 @@ COARSE_ENTITY_DEFINITIONS = {
     "other": "Other named entities that don't fit into the above categories."
 }
 
+FINE_ENTITY_DEFINITIONS = {
+    "art-broadcastprogram": "A named television or radio program.",
+    "art-film": "A named movie or film.",
+    "art-music": "A named song, album, or musical composition.",
+    "art-other": "Other works of art not covered by specific categories.",
+    "art-painting": "A named painting or visual artwork.",
+    "art-writtenart": "A named book, poem, essay, or other written work.",
+    "building-airport": "A named airport or airfield.",
+    "building-hospital": "A named hospital, clinic, or medical center.",
+    "building-hotel": "A named hotel, motel, or resort.",
+    "building-library": "A named library or archive.",
+    "building-other": "Other named buildings or structures.",
+    "building-restaurant": "A named restaurant, cafe, or bar.",
+    "building-sportsfacility": "A named stadium, arena, or sports complex.",
+    "building-theater": "A named theater or cinema.",
+    "event-attack/battle/war/militaryconflict": "A named military conflict, battle, or war.",
+    "event-disaster": "A named natural or man-made disaster.",
+    "event-election": "A named election or political campaign.",
+    "event-other": "Other named events.",
+    "event-protest": "A named protest, demonstration, or strike.",
+    "event-sportsevent": "A named sports competition or event.",
+    "location-GPE": "A geopolitical entity such as a city, state, country, or nation.",
+    "location-bodiesofwater": "A named ocean, sea, lake, river, or other body of water.",
+    "location-island": "A named island or archipelago.",
+    "location-mountain": "A named mountain, hill, or range.",
+    "location-other": "Other named locations.",
+    "location-park": "A named park, garden, or nature reserve.",
+    "location-road/railway/highway/transit": "A named street, road, highway, or transit line.",
+    "organization-company": "A named commercial company or business.",
+    "organization-education": "A named educational institution like a university or school.",
+    "organization-government/governmentagency": "A named government body or agency.",
+    "organization-media/newspaper": "A named media organization or publication.",
+    "organization-other": "Other named organizations.",
+    "organization-politicalparty": "A named political party.",
+    "organization-religion": "A named religious organization or group.",
+    "organization-showorganization": "A named performing arts group or organization.",
+    "organization-sportsleague": "A named sports league.",
+    "organization-sportsteam": "A named sports team.",
+    "other-astronomything": "A named astronomical object.",
+    "other-award": "A named award or honor.",
+    "other-biologything": "A named biological entity or species.",
+    "other-chemicalthing": "A named chemical substance or compound.",
+    "other-currency": "A named currency.",
+    "other-disease": "A named disease or medical condition.",
+    "other-educationaldegree": "A named academic degree.",
+    "other-god": "A named deity or mythological figure.",
+    "other-language": "A named language.",
+    "other-law": "A named law or legal statute.",
+    "other-livingthing": "A named living organism not covered elsewhere.",
+    "other-medical": "Other medical terms or entities.",
+    "person-actor": "A named actor or actress.",
+    "person-artist/author": "A named artist, writer, or creator.",
+    "person-athlete": "A named athlete or sports player.",
+    "person-director": "A named film or theater director.",
+    "person-other": "Other named individuals.",
+    "person-politician": "A named politician or government official.",
+    "person-scholar": "A named scholar, scientist, or academic.",
+    "person-soldier": "A named soldier or military personnel.",
+    "product-airplane": "A named aircraft model.",
+    "product-car": "A named automobile model.",
+    "product-food": "A named food or drink product.",
+    "product-game": "A named game or video game.",
+    "product-other": "Other commercial products.",
+    "product-ship": "A named ship or boat.",
+    "product-software": "A named software application or system.",
+    "product-train": "A named train model or locomotive.",
+    "product-weapon": "A named weapon or military equipment."
+}
+
 
 def load_fewshot_examples(data_dir: Path, granularity: str, num_shots: int = 3, seed: int = 42) -> List[Dict]:
     """Load few-shot examples from the stratified samples."""
@@ -69,7 +138,20 @@ def load_schema(data_dir: Path, granularity: str) -> List[str]:
     schema_path = data_dir / f"few-nerd-{granularity}" / "entity.schema"
     
     with open(schema_path, 'r') as f:
-        entity_types = [line.strip() for line in f if line.strip()]
+        # The schema file contains a JSON list on the first line
+        try:
+            first_line = f.readline().strip()
+            entity_types = json.loads(first_line)
+            if not isinstance(entity_types, list):
+                # Fallback or error if not a list
+                logger.warning(f"Schema first line is not a list: {first_line}")
+                # Try reading all lines non-empty if JSON parsing failed conceptually
+                f.seek(0)
+                entity_types = [line.strip() for line in f if line.strip()]
+        except json.JSONDecodeError:
+            # Fallback for plain text list (one per line)
+            f.seek(0)
+            entity_types = [line.strip() for line in f if line.strip()]
     
     return entity_types
 
@@ -82,39 +164,48 @@ def build_code_style_prompt(
     """
     Build a code-style (pl-func) prompt from examples.
     
-    Format follows CodeIE's structure2pl_func.py style.
+    Structure:
+    1. Role assignment
+    2. Annotation guidelines (in comments)
+    3. Examples (Function definition + entity extraction logic)
     """
     prompt_parts = []
     
-    # Build entity schema block
-    if entity_definitions:
-        schema_block = "# Entity type definitions:\n"
-        for etype in entity_types:
-            # For fine-grained, use the main category from coarse definitions
-            base_type = etype.split('-')[0] if '-' in etype else etype
-            desc = entity_definitions.get(base_type, f"Entities of type {etype}")
-            schema_block += f"# - {etype}: {desc}\n"
-        prompt_parts.append(schema_block)
+    # 1. Role Assignment
+    prompt_parts.append("# You are an expert Named Entity Recognition (NER) system specializing in extracting entities from text.")
     
-    # Add examples
-    for example in examples:
+    # 2. Annotation Guidelines
+    if entity_definitions:
+        guidelines = ["# Annotation Guidelines:", "# Extract named entities based on the following categories:"]
+        for etype in entity_types:
+            # Try exact match first, then fallback to base type
+            desc = entity_definitions.get(etype)
+            if not desc:
+                base_type = etype.split('-')[0] if '-' in etype else etype
+                desc = entity_definitions.get(base_type, f"Entities of type {etype}")
+            guidelines.append(f"# - {etype}: {desc}")
+        prompt_parts.append("\n".join(guidelines))
+    
+    # 3. Examples
+    for i, example in enumerate(examples, 1):
         text = example.get("text", "")
         entities = example.get("entity", [])
         
-        # Build function
+        # Build function structure
         func = f'''def named_entity_recognition(input_text):
-\t""" extract named entities from the input_text . """
-\tinput_text = \"{text}\"
-\tentity_list = []
-\t# extracted named entities'''
+    """ extract named entities from the input_text . """
+    input_text = "{text}"
+    entity_list = []'''
         
         # Add entity extractions
         for entity in entities:
             entity_text = entity.get("text", "")
             entity_type = entity.get("type", "")
-            func += f'\n\tentity_list.append({{"text": "{entity_text}", "type": "{entity_type}"}})'
+            func += f'\n    entity_list.append({{"text": "{entity_text}", "type": "{entity_type}"}})'
         
-        func += "\n# END"
+        # Close the example
+        # User example just showed appends, but for consistency we might want to ensure it looks like a block
+        # The user's example ended with the appends.
         prompt_parts.append(func)
     
     return "\n\n".join(prompt_parts)
@@ -122,38 +213,60 @@ def build_code_style_prompt(
 
 def build_nl_style_prompt(
     examples: List[Dict],
-    entity_types: List[str]
+    entity_types: List[str],
+    entity_definitions: Dict[str, str] = None
 ) -> str:
     """
     Build a natural language style (nl-sel) prompt from examples.
     
-    Format follows CodeIE's structure2nl_sel.py style with SEL format.
+    Structure:
+    1. Role assignment
+    2. Annotation guidelines (text)
+    3. Examples (Text + Entity list in ((type: text)) format)
     """
     prompt_parts = []
     
-    # Add schema info
-    schema_str = ", ".join(entity_types)
-    header = f"Entity types: {schema_str}\n"
-    prompt_parts.append(header)
+    # 1. Role Assignment
+    prompt_parts.append("You are an expert Named Entity Recognition (NER) system specializing in extracting entities from text.")
     
-    # Add examples in SEL format
+    # 2. Annotation Guidelines
+    guidelines = ["Annotation Guidelines:", "Extract named entities based on the following categories:"]
+    
+    if entity_definitions:
+        for etype in entity_types:
+            # Try exact match first, then fallback to base type
+            desc = entity_definitions.get(etype)
+            if not desc:
+                base_type = etype.split('-')[0] if '-' in etype else etype
+                desc = entity_definitions.get(base_type, f"Entities of type {etype}")
+            guidelines.append(f"- {etype}: {desc}")
+    else:
+        guidelines.append(", ".join(entity_types))
+        
+    prompt_parts.append("\n".join(guidelines))
+    
+    # 3. Examples
     for example in examples:
         text = example.get("text", "")
-        spot_asoc = example.get("spot_asoc", [])
+        entities = example.get("entity", [])
         
-        # Build SEL-format output
-        # Format: <0> type <5> span <1> ; <0> type <5> span <1>
-        sel_parts = []
-        for item in spot_asoc:
-            label = item.get("label", "")
-            span = item.get("span", "")
-            sel_parts.append(f"<0> {label} <5> {span} <1>")
+        # Build Output Format: ((type: text)(type: text))
+        entity_strs = []
+        for entity in entities:
+            entity_text = entity.get("text", "")
+            entity_type = entity.get("type", "")
+            entity_strs.append(f"({entity_type}: {entity_text})")
         
-        sel_output = " ; ".join(sel_parts) if sel_parts else "<5> <1>"
+        if not entity_strs:
+            # Handle empty entities if necessary, though 1-shot per class usually implies entities exist.
+            # Using empty parens or something else? User didn't specify empty case.
+            # Assuming typical CodeIE empty behavior or just empty list string.
+            output_str = "" 
+        else:
+            output_str = "".join(entity_strs)
         
-        example_block = f'''The text is : "{text}".
-The named entities in the text: {sel_output}
-----------------------------------------'''
+        # Format: The text is "Steve became CEO of Apple in 1998 .". The named entities in the text:
+        example_block = f'''The text is "{text}". The named entities in the text: {output_str}'''
         prompt_parts.append(example_block)
     
     return "\n\n".join(prompt_parts)
@@ -182,14 +295,8 @@ def build_base_prompts(
     if granularity == "coarse":
         entity_definitions = COARSE_ENTITY_DEFINITIONS
     else:
-        # For fine-grained, create definitions based on coarse categories
-        entity_definitions = {}
-        for etype in entity_types:
-            base_type = etype.split('-')[0] if '-' in etype else etype
-            entity_definitions[etype] = COARSE_ENTITY_DEFINITIONS.get(
-                base_type, 
-                f"Entities categorized as {etype}"
-            )
+        # Use fine-grained definitions
+        entity_definitions = FINE_ENTITY_DEFINITIONS
     
     outputs = {}
     
@@ -202,7 +309,7 @@ def build_base_prompts(
     logger.info(f"Created: {pl_path}")
     
     # Build NL-style prompt
-    nl_prompt = build_nl_style_prompt(examples, entity_types)
+    nl_prompt = build_nl_style_prompt(examples, entity_types, entity_definitions)
     nl_path = output_dir / f"{granularity}_nl_{num_shots}shot.txt"
     with open(nl_path, 'w') as f:
         f.write(nl_prompt)
