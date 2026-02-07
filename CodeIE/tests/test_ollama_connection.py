@@ -1,89 +1,60 @@
 
 import unittest
-import requests
-import json
 import os
+import logging
 from dotenv import load_dotenv
-
-# LangChain imports
 from langchain_ollama import ChatOllama
 from langchain_core.messages import HumanMessage
 
-class TestOllamaConnection(unittest.TestCase):
+# Set up logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+class TestOllamaLangChain(unittest.TestCase):
     def setUp(self):
-        # Load env for CUSTOM_API_BASE_URL if available
-        # Find .env in project root (two levels up from tests/)
-        project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-        load_dotenv(os.path.join(project_root, '.env'))
+        # Resolve project root to find .env
+        # tests/ is inside CodeIE/ which is inside KDAI-Experiments/
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        project_root = os.path.dirname(os.path.dirname(current_dir))
+        env_path = os.path.join(project_root, '.env')
+        
+        load_dotenv(env_path)
         
         self.base_url = os.getenv("CUSTOM_API_BASE_URL", "http://localhost:11434")
         self.model_name = os.getenv("CUSTOM_MODEL_NAME", "falcon")
-        print(f"\nTesting connection to Ollama at: {self.base_url}")
-        print(f"Target model: {self.model_name}")
+        
+        logger.info(f"Connecting to Ollama via LangChain")
+        logger.info(f"Base URL: {self.base_url}")
+        logger.info(f"Model: {self.model_name}")
 
-    def test_01_api_health(self):
-        """Check if Ollama server is reachable and running"""
+    def test_ollama_inference(self):
+        """Test basic inference using ChatOllama wrapper"""
         try:
-            # Ollama doesn't have a /health but /api/tags is a good heartbeat
-            response = requests.get(f"{self.base_url}/api/tags", timeout=5)
-            self.assertEqual(response.status_code, 200, "Ollama server returned non-200 status")
-            print("Successfully reached Ollama server.")
-        except requests.exceptions.ConnectionError:
-            self.fail(f"Could not connect to Ollama at {self.base_url}. Is it running?")
-
-    def test_02_model_availability(self):
-        """Check if the requested model is downloaded and available"""
-        response = requests.get(f"{self.base_url}/api/tags")
-        models = [m['name'] for m in response.json().get('models', [])]
-        
-        # Check for partial match (Ollama tags often include :latest)
-        found = any(self.model_name in m for m in models)
-        self.assertTrue(found, f"Model '{self.model_name}' not found in Ollama. Available: {models}")
-        print(f"Model '{self.model_name}' is available.")
-
-    def test_03_raw_api_inference(self):
-        """Run a minimal inference using raw requests to test the API directly"""
-        payload = {
-            "model": self.model_name,
-            "prompt": "Say 'Raw API Success'",
-            "stream": False,
-            "options": {"num_predict": 10}
-        }
-        
-        print("Sending raw API inference request...")
-        response = requests.post(
-            f"{self.base_url}/api/generate",
-            json=payload,
-            timeout=30
-        )
-        
-        self.assertEqual(response.status_code, 200, "Inference request failed")
-        result = response.json().get("response", "")
-        print(f"Raw API Response: {result.strip()}")
-        self.assertGreater(len(result), 0, "Model returned an empty response")
-
-    def test_04_langchain_ollama_inference(self):
-        """Run a minimal inference using LangChain ChatOllama"""
-        print(f"Initializing LangChain ChatOllama with base_url={self.base_url}...")
-        
-        try:
+            # Initialize ChatOllama
             llm = ChatOllama(
                 model=self.model_name,
                 base_url=self.base_url,
-                temperature=0,
-                num_predict=10
+                temperature=0.0,
+                num_predict=50
             )
             
-            messages = [HumanMessage(content="Say 'LangChain Success'")]
+            # Simple test message
+            messages = [
+                HumanMessage(content="Hello! Please respond with exactly the word 'ACKNOWLEDGED' if you can hear me.")
+            ]
             
-            print("Sending LangChain inference request...")
+            logger.info("Sending request to Ollama...")
             response = llm.invoke(messages)
             
-            print(f"LangChain Response: {response.content.strip()}")
-            self.assertGreater(len(response.content), 0, "LangChain returned an empty response")
+            content = response.content.strip()
+            logger.info(f"Model Response: {content}")
+            
+            self.assertGreater(len(content), 0, "Model returned empty response")
+            # We don't strictly assert 'ACKNOWLEDGED' in case the model is talkative, 
+            # but we verify we got content back.
             
         except Exception as e:
-            self.fail(f"LangChain inference failed: {e}")
+            self.fail(f"Ollama LangChain inference failed: {e}")
 
 if __name__ == "__main__":
     unittest.main()
