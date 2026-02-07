@@ -1,7 +1,10 @@
-# You are an expert Named Entity Recognition (NER) system specializing in extracting entities from text.
+# TASK: Complete the Python code by adding entity_list.append() statements.
+# DO NOT explain the code. Just output the entity_list.append() lines.
 
-# Annotation Guidelines:
-# Extract named entities based on the following categories:
+# You are an expert Named Entity Recognition (NER) system specializing in extracting entities from text.
+# For each input_text, identify named entities and add them using entity_list.append().
+
+# Entity Types:
 # - art-broadcastprogram: A named television or radio program.
 # - art-film: A named movie or film.
 # - art-music: A named song, album, or musical composition.
@@ -68,6 +71,8 @@
 # - product-software: A named software application or system.
 # - product-train: A named train model or locomotive.
 # - product-weapon: A named weapon or military equipment.
+
+# Examples:
 
 def named_entity_recognition(input_text):
     """ extract named entities from the input_text . """

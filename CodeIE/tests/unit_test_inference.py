@@ -9,7 +9,7 @@ from datasets import load_from_disk
 from dotenv import load_dotenv
 
 # Set up logging
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.INFO, format='%(message)s')
 logger = logging.getLogger(__name__)
 
 # Add module to path
@@ -33,6 +33,37 @@ from run_codeie_experiments import (
     parse_nl_style_output
 )
 
+
+# ============================================================================
+# Custom Test Result to Track Results for Summary
+# ============================================================================
+
+class TestResultWithSummary(unittest.TestResult):
+    """Custom test result that tracks pass/fail for summary."""
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.successes = []
+        self.test_details = {}  # Store details for each test
+    
+    def addSuccess(self, test):
+        super().addSuccess(test)
+        self.successes.append(test)
+        self.test_details[str(test)] = {'status': 'PASSED', 'message': None}
+    
+    def addFailure(self, test, err):
+        super().addFailure(test, err)
+        self.test_details[str(test)] = {'status': 'FAILED', 'message': str(err[1])}
+    
+    def addError(self, test, err):
+        super().addError(test, err)
+        self.test_details[str(test)] = {'status': 'ERROR', 'message': str(err[1])}
+    
+    def addSkip(self, test, reason):
+        super().addSkip(test, reason)
+        self.test_details[str(test)] = {'status': 'SKIPPED', 'message': reason}
+
+
 class TestInference(unittest.TestCase):
     
     @classmethod
@@ -48,7 +79,7 @@ class TestInference(unittest.TestCase):
         cls.test_sample = ds_test[0]
         cls.tokens = cls.test_sample['tokens']
         cls.text = ' '.join(cls.tokens)
-        logger.info(f"Test Sentence: {cls.text}")
+        logger.info(f"Test Sentence: {cls.text}\n")
 
     def setUp(self):
         # Base config 
@@ -84,9 +115,21 @@ class TestInference(unittest.TestCase):
             except Exception as e:
                 self.fail(f"Failed to parse schema file {schema_path}: {e}")
 
+    def _build_pl_test_query(self, text: str) -> str:
+        """Build a code-style test query with clear instruction to continue code."""
+        # Add explicit instruction for code completion
+        return f'''
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "{text}"
+    entity_list = []
+    # Continue by adding entity_list.append statements for each named entity found:'''
+
     def test_coarse_pl_inference(self):
         """Test Coarse Granularity with Code Style (Python) using Prompts from File"""
-        logger.info("\n--- Testing Coarse PL Inference (File-based Prompt) ---")
+        logger.info("\n" + "="*60)
+        logger.info("TEST: Coarse PL Inference (Code Style)")
+        logger.info("="*60)
         self.config.granularity = "coarse"
         self.config.style = "pl"
         
@@ -101,18 +144,14 @@ class TestInference(unittest.TestCase):
         with open(prompt_path, 'r') as f:
             icl_prompt = f.read()
 
-        # 2. Construct Test Input (Manual Construction)
-        test_query = f'''
-def named_entity_recognition(input_text):
-    """ extract named entities from the input_text . """
-    input_text = "{self.text}"
-    entity_list = []'''
+        # 2. Construct Test Input with clear instruction
+        test_query = self._build_pl_test_query(self.text)
 
         full_prompt = icl_prompt + "\n" + test_query
         
         # 3. Run Inference
         response = run_inference(full_prompt, self.llm_model, self.config)
-        logger.info(f"Model Response:\n{response}")
+        logger.info(f"Model Response:\n{response[:500]}...")
 
         # 4. Parse & Validate
         full_output = test_query + response 
@@ -120,11 +159,13 @@ def named_entity_recognition(input_text):
         
         logger.info(f"Parsed Entities: {parsed_entities}")
         self.assertIsInstance(parsed_entities, list)
-        self.assertTrue(len(parsed_entities) > 0, "Expected at least one entity extracted (Model might be failing or 404ing)")
+        self.assertTrue(len(parsed_entities) > 0, "Expected at least one entity extracted (Model might not be following code format)")
 
     def test_coarse_nl_inference(self):
         """Test Coarse Granularity with NL Style (SEL) using Prompts from File"""
-        logger.info("\n--- Testing Coarse NL Inference (File-based Prompt) ---")
+        logger.info("\n" + "="*60)
+        logger.info("TEST: Coarse NL Inference (Natural Language Style)")
+        logger.info("="*60)
         self.config.granularity = "coarse"
         self.config.style = "nl"
 
@@ -146,7 +187,7 @@ def named_entity_recognition(input_text):
 
         # 3. Run Inference
         response = run_inference(full_prompt, self.llm_model, self.config)
-        logger.info(f"Model Response:\n{response}")
+        logger.info(f"Model Response:\n{response[:500]}...")
 
         # 4. Parse & Validate
         parsed_entities = parse_nl_style_output(response, self.text, entity_types)
@@ -157,7 +198,9 @@ def named_entity_recognition(input_text):
 
     def test_fine_pl_inference(self):
         """Test Fine Granularity with Code Style (Python) using Prompts from File"""
-        logger.info("\n--- Testing Fine PL Inference (File-based Prompt) ---")
+        logger.info("\n" + "="*60)
+        logger.info("TEST: Fine PL Inference (Code Style)")
+        logger.info("="*60)
         self.config.granularity = "fine"
         self.config.style = "pl"
 
@@ -172,18 +215,14 @@ def named_entity_recognition(input_text):
         with open(prompt_path, 'r') as f:
             icl_prompt = f.read()
 
-        # 2. Construct Test Input (Manual Construction)
-        test_query = f'''
-def named_entity_recognition(input_text):
-    """ extract named entities from the input_text . """
-    input_text = "{self.text}"
-    entity_list = []'''
+        # 2. Construct Test Input with clear instruction
+        test_query = self._build_pl_test_query(self.text)
 
         full_prompt = icl_prompt + "\n" + test_query
         
         # 3. Run Inference
         response = run_inference(full_prompt, self.llm_model, self.config)
-        logger.info(f"Model Response:\n{response}")
+        logger.info(f"Model Response:\n{response[:500]}...")
 
         # 4. Parse & Validate
         full_output = test_query + response 
@@ -195,7 +234,9 @@ def named_entity_recognition(input_text):
 
     def test_fine_nl_inference(self):
         """Test Fine Granularity with NL Style (SEL) using Prompts from File"""
-        logger.info("\n--- Testing Fine NL Inference (File-based Prompt) ---")
+        logger.info("\n" + "="*60)
+        logger.info("TEST: Fine NL Inference (Natural Language Style)")
+        logger.info("="*60)
         self.config.granularity = "fine"
         self.config.style = "nl"
         
@@ -217,7 +258,7 @@ def named_entity_recognition(input_text):
 
         # 3. Run Inference
         response = run_inference(full_prompt, self.llm_model, self.config)
-        logger.info(f"Model Response:\n{response}")
+        logger.info(f"Model Response:\n{response[:500]}...")
 
         # 4. Parse & Validate
         parsed_entities = parse_nl_style_output(response, self.text, entity_types)
@@ -225,6 +266,69 @@ def named_entity_recognition(input_text):
         logger.info(f"Parsed Entities: {parsed_entities}")
         self.assertIsInstance(parsed_entities, list)
         self.assertTrue(len(parsed_entities) > 0, "Expected at least one entity extracted")
+
+
+def print_summary(result: TestResultWithSummary):
+    """Print a clear summary of test results."""
+    print("\n")
+    print("=" * 70)
+    print("                        TEST RESULTS SUMMARY")
+    print("=" * 70)
+    
+    # Define test display names
+    test_names = {
+        'test_coarse_nl_inference': 'Coarse NL (Natural Language)',
+        'test_coarse_pl_inference': 'Coarse PL (Python Code)',
+        'test_fine_nl_inference': 'Fine NL (Natural Language)',
+        'test_fine_pl_inference': 'Fine PL (Python Code)',
+    }
+    
+    passed = 0
+    failed = 0
+    
+    print()
+    print(f"{'Test Name':<40} {'Status':<10} {'Details'}")
+    print("-" * 70)
+    
+    for test_id, details in result.test_details.items():
+        # Extract test method name from the test ID
+        method_name = test_id.split()[0]  # e.g., "test_coarse_pl_inference"
+        display_name = test_names.get(method_name, method_name)
+        
+        status = details['status']
+        
+        if status == 'PASSED':
+            status_str = "✅ PASSED"
+            passed += 1
+        elif status == 'FAILED':
+            status_str = "❌ FAILED"
+            failed += 1
+        elif status == 'ERROR':
+            status_str = "💥 ERROR"
+            failed += 1
+        else:
+            status_str = "⏭️  SKIPPED"
+        
+        # Truncate message if too long
+        message = details.get('message', '')
+        if message and len(message) > 30:
+            message = message[:30] + "..."
+        
+        print(f"{display_name:<40} {status_str:<10} {message}")
+    
+    print("-" * 70)
+    print()
+    print(f"Total: {passed + failed} | Passed: {passed} | Failed: {failed}")
+    print()
+    
+    if failed == 0:
+        print("🎉 ALL TESTS PASSED! 🎉")
+    else:
+        print(f"⚠️  {failed} test(s) failed. See details above.")
+    
+    print("=" * 70)
+    print()
+
 
 if __name__ == '__main__':
     # Allow overriding model via command line: --model mistral
@@ -236,6 +340,22 @@ if __name__ == '__main__':
         os.environ["CUSTOM_MODEL_NAME"] = args.model
         logger.info(f"Command line override: Model set to {args.model}")
     
-    # Pass only unknown arguments to unittest
-    sys.argv = [sys.argv[0]] + unknown
-    unittest.main()
+    # Create test suite
+    loader = unittest.TestLoader()
+    suite = loader.loadTestsFromTestCase(TestInference)
+    
+    # Run with custom result
+    result = TestResultWithSummary()
+    
+    print("\n" + "=" * 70)
+    print("          CODEIE INFERENCE UNIT TESTS")
+    print(f"          Model: {args.model or os.getenv('CUSTOM_MODEL_NAME', 'gemini-1.5-flash')}")
+    print("=" * 70)
+    
+    suite.run(result)
+    
+    # Print summary
+    print_summary(result)
+    
+    # Exit with appropriate code
+    sys.exit(0 if result.wasSuccessful() else 1)

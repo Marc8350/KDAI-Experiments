@@ -1,7 +1,10 @@
-# You are an expert Named Entity Recognition (NER) system specializing in extracting entities from text.
+# TASK: Complete the Python code by adding entity_list.append() statements.
+# DO NOT explain the code. Just output the entity_list.append() lines.
 
-# Annotation Guidelines:
-# Extract named entities based on the following categories:
+# You are an expert Named Entity Recognition (NER) system specializing in extracting entities from text.
+# For each input_text, identify named entities and add them using entity_list.append().
+
+# Entity Types:
 # - art: A work of art including films, books, music, paintings, or other creative works.
 # - building: A named structure or building, such as a stadium, museum, or hotel.
 # - event: A named event such as a war, sports event, festival, or historical occurrence.
@@ -11,6 +14,7 @@
 # - person: A named individual, including fictional characters, historical figures, celebrities, and common people.
 # - product: A named commercial product, software, vehicle model, or branded item.
 
+# Examples:
 def named_entity_recognition(input_text):
     """ extract named entities from the input_text . """
     input_text = "Between 30 January 1945 and 4 February she was outfitted at Philadelphia Navy Yard for special experimental work for the U.S Navy Bureau of Ships , and for the next five years carried out tests in the area of Cape May , New Jersey , and Cape Henlopen , Delaware ."

@@ -165,18 +165,26 @@ def build_code_style_prompt(
     Build a code-style (pl-func) prompt from examples.
     
     Structure:
-    1. Role assignment
-    2. Annotation guidelines (in comments)
-    3. Examples (Function definition + entity extraction logic)
+    1. Task instruction (explicit code completion directive)
+    2. Role assignment
+    3. Annotation guidelines (in comments)
+    4. Examples (Function definition + entity extraction logic)
     """
     prompt_parts = []
     
-    # 1. Role Assignment
-    prompt_parts.append("# You are an expert Named Entity Recognition (NER) system specializing in extracting entities from text.")
+    # 1. Task Instruction (CRITICAL for model to understand it should complete code)
+    prompt_parts.append("# TASK: Complete the Python code by adding entity_list.append() statements.")
+    prompt_parts.append("# DO NOT explain the code. Just output the entity_list.append() lines.")
+    prompt_parts.append("")
     
-    # 2. Annotation Guidelines
+    # 2. Role Assignment
+    prompt_parts.append("# You are an expert Named Entity Recognition (NER) system specializing in extracting entities from text.")
+    prompt_parts.append("# For each input_text, identify named entities and add them using entity_list.append().")
+    prompt_parts.append("")
+    
+    # 3. Annotation Guidelines  
     if entity_definitions:
-        guidelines = ["# Annotation Guidelines:", "# Extract named entities based on the following categories:"]
+        guidelines = ["# Entity Types:"]
         for etype in entity_types:
             # Try exact match first, then fallback to base type
             desc = entity_definitions.get(etype)
@@ -186,7 +194,10 @@ def build_code_style_prompt(
             guidelines.append(f"# - {etype}: {desc}")
         prompt_parts.append("\n".join(guidelines))
     
-    # 3. Examples
+    # Add Examples header
+    prompt_parts.append("\n# Examples:")
+    
+    # 4. Examples
     for i, example in enumerate(examples, 1):
         text = example.get("text", "")
         entities = example.get("entity", [])
@@ -203,12 +214,9 @@ def build_code_style_prompt(
             entity_type = entity.get("type", "")
             func += f'\n    entity_list.append({{"text": "{entity_text}", "type": "{entity_type}"}})'
         
-        # Close the example
-        # User example just showed appends, but for consistency we might want to ensure it looks like a block
-        # The user's example ended with the appends.
         prompt_parts.append(func)
     
-    return "\n\n".join(prompt_parts)
+    return "\n".join(prompt_parts)
 
 
 def build_nl_style_prompt(
