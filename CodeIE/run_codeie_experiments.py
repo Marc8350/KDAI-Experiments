@@ -548,9 +548,30 @@ def run_experiment(config: ExperimentConfig):
     logging.info(f"Loading test data from: {test_path}")
     ds_test = load_from_disk(test_path)
     
-    # Load few-shot examples (from training data)
-    # Only needed if building prompt dynamically
-    if not config.prompt_path:
+    # Determine ICL prompt source (check base prompts first!)
+    icl_prompt = None
+    
+    # Option 1: Use explicitly provided prompt path
+    if config.prompt_path and os.path.exists(config.prompt_path):
+        logging.info(f"Loading pre-generated prompt from: {config.prompt_path}")
+        with open(config.prompt_path, 'r') as f:
+            icl_prompt = f.read()
+    
+    # Option 2: Use base prompt files from prompts/base/
+    if icl_prompt is None:
+        base_prompt_file = os.path.join(
+            CODEIE_ROOT, "prompts", "base",
+            f"{config.granularity}_{config.style}_1shot.txt"
+        )
+        
+        if os.path.exists(base_prompt_file):
+            logging.info(f"Using base prompt from: {base_prompt_file}")
+            with open(base_prompt_file, 'r') as f:
+                icl_prompt = f.read()
+    
+    # Option 3: Build prompt from few-shot examples (only if no base prompt)
+    if icl_prompt is None:
+        logging.info("No base prompt found, loading few-shot examples to build prompt...")
         data_dir = os.path.join(CODEIE_ROOT, config.data_dir)
         examples = load_fewshot_examples(
             data_dir=data_dir,
@@ -561,34 +582,18 @@ def run_experiment(config: ExperimentConfig):
         
         if not examples:
             logging.error("No few-shot examples found. Please run prepare_fewnerd_for_codeie.py first.")
+            logging.error("Or create base prompts in prompts/base/ directory.")
             return
-
-    # Build or Load ICL prompt
-    if config.prompt_path and os.path.exists(config.prompt_path):
-        logging.info(f"Loading pre-generated prompt from: {config.prompt_path}")
-        with open(config.prompt_path, 'r') as f:
-            icl_prompt = f.read()
-    else:
-        # First, try to use base prompt files if available
-        base_prompt_file = os.path.join(
-            CODEIE_ROOT, "prompts", "base",
-            f"{config.granularity}_{config.style}_1shot.txt"
-        )
         
-        if os.path.exists(base_prompt_file):
-            logging.info(f"Loading base prompt from: {base_prompt_file}")
-            with open(base_prompt_file, 'r') as f:
-                icl_prompt = f.read()
-        else:
-            logging.info("Building ICL prompt from examples...")
-            icl_prompt = build_icl_prompt(
-                examples=examples,
-                style=config.style,
-                variation_config=variation_config,
-                entity_types=entity_types,
-                entity_definitions=entity_definitions,
-                include_schema=config.include_schema
-            )
+        logging.info("Building ICL prompt from examples...")
+        icl_prompt = build_icl_prompt(
+            examples=examples,
+            style=config.style,
+            variation_config=variation_config,
+            entity_types=entity_types,
+            entity_definitions=entity_definitions,
+            include_schema=config.include_schema
+        )
     
     logging.info(f"ICL prompt length: {len(icl_prompt)} characters")
     
