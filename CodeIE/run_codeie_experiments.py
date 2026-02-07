@@ -503,15 +503,37 @@ def run_experiment(config: ExperimentConfig):
         config.granularity
     )
     
-    # Get variation config
+    # Get variation config (with fallback handling)
     if config.style == "pl":
+        available_variations = list(CODE_STYLE_VARIATIONS.keys())
         variation_config = CODE_STYLE_VARIATIONS.get(config.variation)
         if not variation_config:
-            raise ValueError(f"Unknown code-style variation: {config.variation}")
+            # Try fallback to 'default'
+            if 'default' in CODE_STYLE_VARIATIONS:
+                logging.warning(f"Variation '{config.variation}' not found, using 'default' instead")
+                logging.info(f"Available PL variations: {available_variations}")
+                variation_config = CODE_STYLE_VARIATIONS['default']
+                config.variation = 'default'
+            else:
+                raise ValueError(
+                    f"Unknown code-style variation: {config.variation}. "
+                    f"Available: {available_variations}"
+                )
     else:
+        available_variations = list(NL_STYLE_VARIATIONS.keys())
         variation_config = NL_STYLE_VARIATIONS.get(config.variation)
         if not variation_config:
-            raise ValueError(f"Unknown NL-style variation: {config.variation}")
+            # Try fallback to 'default'
+            if 'default' in NL_STYLE_VARIATIONS:
+                logging.warning(f"Variation '{config.variation}' not found, using 'default' instead")
+                logging.info(f"Available NL variations: {available_variations}")
+                variation_config = NL_STYLE_VARIATIONS['default']
+                config.variation = 'default'
+            else:
+                raise ValueError(
+                    f"Unknown NL-style variation: {config.variation}. "
+                    f"Available: {available_variations}"
+                )
     
     # Get entity types and definitions
     entity_types = list(ENTITY_DEFINITIONS.keys())
@@ -547,15 +569,26 @@ def run_experiment(config: ExperimentConfig):
         with open(config.prompt_path, 'r') as f:
             icl_prompt = f.read()
     else:
-        logging.info("Building ICL prompt from examples...")
-        icl_prompt = build_icl_prompt(
-            examples=examples,
-            style=config.style,
-            variation_config=variation_config,
-            entity_types=entity_types,
-            entity_definitions=entity_definitions,
-            include_schema=config.include_schema
+        # First, try to use base prompt files if available
+        base_prompt_file = os.path.join(
+            CODEIE_ROOT, "prompts", "base",
+            f"{config.granularity}_{config.style}_1shot.txt"
         )
+        
+        if os.path.exists(base_prompt_file):
+            logging.info(f"Loading base prompt from: {base_prompt_file}")
+            with open(base_prompt_file, 'r') as f:
+                icl_prompt = f.read()
+        else:
+            logging.info("Building ICL prompt from examples...")
+            icl_prompt = build_icl_prompt(
+                examples=examples,
+                style=config.style,
+                variation_config=variation_config,
+                entity_types=entity_types,
+                entity_definitions=entity_definitions,
+                include_schema=config.include_schema
+            )
     
     logging.info(f"ICL prompt length: {len(icl_prompt)} characters")
     
