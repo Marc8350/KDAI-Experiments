@@ -361,13 +361,26 @@ def get_llm_model(config: ExperimentConfig):
             convert_system_message_to_human=True # Sometimes needed for Gemini
         )
     
-    # Default to Ollama (Using OllamaLLM/Completion API for broader model compatibility)
-    return OllamaLLM(
-        model=model_name,
-        temperature=config.temperature,
-        base_url=api_base_url,
-        num_predict=config.max_tokens
-    )
+    # Determine which Ollama wrapper to use
+    chat_models = ["mistral", "llama", "gemma", "chat", "instruct", "qwen", "phi3"]
+    use_chat_api = any(m in model_name.lower() for m in chat_models)
+    
+    if use_chat_api:
+        logging.info(f"Using ChatOllama (Chat API) for {model_name}")
+        return ChatOllama(
+            model=model_name,
+            temperature=config.temperature,
+            base_url=api_base_url,
+            num_predict=config.max_tokens
+        )
+    else:
+        logging.info(f"Using OllamaLLM (Completion API) for {model_name}")
+        return OllamaLLM(
+            model=model_name,
+            temperature=config.temperature,
+            base_url=api_base_url,
+            num_predict=config.max_tokens
+        )
 
 def run_inference(prompt: str, llm_model, config: ExperimentConfig) -> str:
     """Run inference using the LangChain model."""

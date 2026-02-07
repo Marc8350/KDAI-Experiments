@@ -2,16 +2,16 @@
 import unittest
 import os
 import logging
-import requests
 import json
 from dotenv import load_dotenv
-from langchain_ollama import OllamaLLM
+from langchain_ollama import ChatOllama, OllamaLLM
+from langchain_core.messages import HumanMessage
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-class TestOllamaLangChain(unittest.TestCase):
+class TestOllamaMistral(unittest.TestCase):
     def setUp(self):
         current_dir = os.path.dirname(os.path.abspath(__file__))
         project_root = os.path.dirname(os.path.dirname(current_dir))
@@ -19,49 +19,29 @@ class TestOllamaLangChain(unittest.TestCase):
         load_dotenv(env_path)
         
         self.base_url = os.getenv("CUSTOM_API_BASE_URL", "http://localhost:11434")
-        self.model_name = os.getenv("CUSTOM_MODEL_NAME", "falcon")
+        self.model_name = os.getenv("CUSTOM_MODEL_NAME", "mistral")
         
-        logger.info(f"--- Ollama NER Diagnostic ---")
+        logger.info(f"--- Ollama Model Switch Test ---")
+        logger.info(f"Targeting Model: {self.model_name}")
 
-    def test_01_verify_basic(self):
-        """Re-verify that basic prompt still works"""
+    def test_01_completion_interface(self):
+        """Test standard completion API"""
+        logger.info(f"Testing {self.model_name} with OllamaLLM...")
         llm = OllamaLLM(model=self.model_name, base_url=self.base_url)
-        response = llm.invoke("Why is the sky blue?")
-        logger.info(f"Basic Response length: {len(response)}")
+        response = llm.invoke("Why is the sky blue? Answer in 5 words.")
+        logger.info(f"LLM Response: '{response.strip()}'")
         self.assertGreater(len(response), 0)
 
-    def test_02_debug_ner_prompt(self):
-        """Test NER prompt and print RAW JSON if it fails"""
-        ner_prompt = "Extract organization entities:\nInput: Apple is based in Cupertino.\nOutput: [('Apple', 'organization')]\nInput: Microsoft is in Redmond.\nOutput:"
-        
-        logger.info("Testing NER prompt via LangChain...")
-        llm = OllamaLLM(model=self.model_name, base_url=self.base_url, temperature=0.0)
-        response = llm.invoke(ner_prompt)
-        
-        logger.info(f"NER Response (LangChain): '{response}'")
-        
-        if not response:
-            logger.warning("Empty response. Retrying with RAW API to see metadata...")
-            payload = {
-                "model": self.model_name,
-                "prompt": ner_prompt,
-                "stream": False,
-                "options": {"temperature": 0.0}
-            }
-            raw_resp = requests.post(f"{self.base_url}/api/generate", json=payload)
-            logger.info(f"Raw API Status: {raw_resp.status_code}")
-            try:
-                data = raw_resp.json()
-                logger.info(f"Raw API JSON Response:\n{json.dumps(data, indent=2)}")
-                
-                # Check why it stopped
-                if data.get("done") and data.get("eval_count") == 0:
-                    logger.error("Model stopped immediately without generating any tokens.")
-                    logger.error(f"Stop Reason: {data.get('done_reason')} | Context size: {len(data.get('context', []))}")
-            except:
-                logger.error(f"Raw API Text: {raw_resp.text}")
-
-        self.assertGreater(len(response), 0, "Model returned empty response for NER prompt")
+    def test_02_chat_interface(self):
+        """Test Chat API (Mistral should pass this)"""
+        logger.info(f"Testing {self.model_name} with ChatOllama...")
+        chat = ChatOllama(model=self.model_name, base_url=self.base_url)
+        messages = [HumanMessage(content="Extract organization: Microsoft is based in Redmond.")]
+        response = chat.invoke(messages)
+        content = response.content.strip()
+        logger.info(f"Chat Response: '{content}'")
+        self.assertGreater(len(content), 0)
+        self.assertIn("Microsoft", content)
 
 if __name__ == "__main__":
     unittest.main()
