@@ -197,10 +197,27 @@ def named_entity_recognition(input_text):
         self.assertTrue(len(parsed_entities) > 0, "Expected at least one entity extracted (Model might be failing or 404ing)")
 
     def test_fine_pl_inference(self):
-        """Test Fine Granularity with Code Style (Python) using Prompts from File"""
+        """Test Fine Granularity with Code Style (Python) using Prompts from File
+        
+        NOTE: This test may fail with chat models (e.g., mistral) on very long prompts.
+        Fine-grained PL has 66 entity types and 60+ examples, making the prompt ~680 lines.
+        Some models explain the code instead of completing it. This is expected behavior
+        and not a bug - consider using code-focused models (codellama, deepseek-coder) 
+        or NL style for fine-grained extraction with chat models.
+        """
         logger.info("\n" + "="*60)
         logger.info("TEST: Fine PL Inference (Code Style)")
         logger.info("="*60)
+        
+        # Check if we should skip for known problematic models
+        model_name = self.config.model_name.lower()
+        skip_models = ['mistral', 'llama', 'gemma']  # Models that struggle with long code prompts
+        
+        for skip_model in skip_models:
+            if skip_model in model_name and 'code' not in model_name:
+                logger.warning(f"⚠️  Fine PL test often fails with {model_name} due to very long prompt")
+                logger.warning("   Consider using NL style or a code-focused model for fine-grained extraction")
+        
         self.config.granularity = "fine"
         self.config.style = "pl"
 
@@ -230,7 +247,7 @@ def named_entity_recognition(input_text):
         
         logger.info(f"Parsed Entities: {parsed_entities}")
         self.assertIsInstance(parsed_entities, list)
-        self.assertTrue(len(parsed_entities) > 0, "Expected at least one entity extracted")
+        self.assertTrue(len(parsed_entities) > 0, "Expected at least one entity extracted (Fine PL often fails with chat models - try NL style or code-focused model)")
 
     def test_fine_nl_inference(self):
         """Test Fine Granularity with NL Style (SEL) using Prompts from File"""
