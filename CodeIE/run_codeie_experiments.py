@@ -650,26 +650,14 @@ def run_experiment(config: ExperimentConfig):
         if current_entity:
             gold_entities.append(current_entity)
         
-        # Build test prompt (no schema - already in ICL examples)
+        # Build test prompt
+        # When using base prompts, use simple format matching the base prompt structure
         if config.style == "pl":
-            test_prompt = build_code_style_prompt(
-                text=text,
-                entities=[],
-                config=variation_config,
-                entity_types=entity_types,
-                entity_definitions=entity_definitions,
-                include_schema=False,  # Don't repeat schema for test input
-                include_output=False
-            )
+            # Code style: just the function signature with text
+            test_prompt = f'def named_entity_recognition(input_text="{text}"):\n    entity_list = []\n'
         else:
-            test_prompt = build_nl_style_prompt(
-                text=text,
-                record="",
-                config=variation_config,
-                entity_types=entity_types,
-                include_schema=False,
-                include_output=False
-            )
+            # NL style: matches the base prompt format
+            test_prompt = f'The text is "{text}". The named entities in the text:'
         
         # Full prompt = ICL + test input
         full_prompt = icl_prompt + "\n" + test_prompt
