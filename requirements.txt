@@ -11,3 +11,9 @@ datasets
 ruff
 wandb
 fschat
+langchain-google-genai
+langchain-ollama
+langchain-core
+python-dotenv
+requests
+pydantic
