@@ -666,47 +666,103 @@ def run_experiment(config: ExperimentConfig):
         all_gold.append(gold_entities)
         all_pred.append(pred_entities)
         
+        # Calculate per-sentence score
+        sentence_eval = evaluate_ner([gold_entities], [pred_entities], entity_types)
+        
         sentence_result = {
             'index': i,
+            'timestamp': datetime.now().isoformat(),
             'text': text,
-            'gold': gold_entities,
-            'prediction': pred_entities,
-            'generated': generated[:500],  # Truncate for logging
-            'elapsed_time': elapsed
+            'gold': [f"{e['type']}(span='{e['text']}')" for e in gold_entities],
+            'prediction': [f"{e['type']}(span='{e['text']}')" for e in pred_entities],
+            'generated_raw': generated[:500],  # Truncate for logging
+            'elapsed_time': elapsed,
+            'score': {
+                'entities': {
+                    'precision': sentence_eval.micro_precision,
+                    'recall': sentence_eval.micro_recall,
+                    'f1-score': sentence_eval.micro_f1,
+                    'class_scores': {
+                        etype: {
+                            'tp': m.tp,
+                            'total_pos': m.support,  # Gold count for this type
+                            'total_pre': m.tp + m.fp,  # Predicted count for this type
+                            'precision': m.precision,
+                            'recall': m.recall,
+                            'f1-score': m.f1
+                        }
+                        for etype, m in sentence_eval.per_type_metrics.items()
+                        if m.support > 0 or m.tp + m.fp > 0  # Only include types with activity
+                    }
+                }
+            }
         }
         sentence_results.append(sentence_result)
         
         # Periodic logging and saving
         if (i + 1) % 10 == 0 or i == num_samples - 1:
-            current_metrics = evaluate_predictions(all_gold, all_pred)
+            current_eval = evaluate_ner(all_gold, all_pred, entity_types)
             logging.info(
                 f"Progress: {i+1}/{num_samples} | "
-                f"P: {current_metrics['precision']:.4f} | "
-                f"R: {current_metrics['recall']:.4f} | "
-                f"F1: {current_metrics['f1']:.4f}"
+                f"P: {current_eval.micro_precision:.4f} | "
+                f"R: {current_eval.micro_recall:.4f} | "
+                f"Micro-F1: {current_eval.micro_f1:.4f} | "
+                f"Macro-F1: {current_eval.macro_f1:.4f}"
             )
             
-            # Save intermediate results
+            # Build overall class scores
+            overall_class_scores = {
+                etype: {
+                    'tp': m.tp,
+                    'total_pos': m.support,
+                    'total_pre': m.tp + m.fp,
+                    'precision': m.precision,
+                    'recall': m.recall,
+                    'f1-score': m.f1
+                }
+                for etype, m in current_eval.per_type_metrics.items()
+                if m.support > 0 or m.tp + m.fp > 0
+            }
+            
+            # Save intermediate results (GoLLIE-compatible format)
             results = {
-                'config': asdict(config),
-                'metrics': current_metrics,
-                'processed_count': len(sentence_results),
+                'module': f"codeie_{config.granularity}_{config.style}_{config.variation}",
                 'timestamp': timestamp,
+                'config': asdict(config),
                 'entity_types': entity_types,
+                'overall_score': {
+                    'entities': {
+                        'precision': current_eval.micro_precision,
+                        'recall': current_eval.micro_recall,
+                        'micro_f1': current_eval.micro_f1,
+                        'macro_f1': current_eval.macro_f1,
+                        'f1-score': current_eval.micro_f1,  # Alias for compatibility
+                        'class_scores': overall_class_scores
+                    }
+                },
+                'processed_count': len(sentence_results),
                 'sentences': sentence_results
             }
             with open(result_file, 'w') as f:
                 json.dump(results, f, indent=2)
     
     # Final evaluation
-    final_metrics = evaluate_predictions(all_gold, all_pred)
+    final_eval = evaluate_ner(all_gold, all_pred, entity_types)
+    final_metrics = evaluate_predictions(all_gold, all_pred)  # For backwards compatibility
     
     logging.info("="*60)
     logging.info("Final Results")
     logging.info("="*60)
-    logging.info(f"Precision: {final_metrics['precision']:.4f}")
-    logging.info(f"Recall: {final_metrics['recall']:.4f}")
-    logging.info(f"F1: {final_metrics['f1']:.4f}")
+    logging.info(f"Precision:  {final_eval.micro_precision:.4f}")
+    logging.info(f"Recall:     {final_eval.micro_recall:.4f}")
+    logging.info(f"Micro F1:   {final_eval.micro_f1:.4f}")
+    logging.info(f"Macro F1:   {final_eval.macro_f1:.4f}")
+    logging.info("-"*40)
+    logging.info("Per-Type F1 Scores:")
+    for etype, m in sorted(final_eval.per_type_metrics.items()):
+        if m.support > 0:
+            logging.info(f"  {etype:<30} F1: {m.f1:.4f} (P: {m.precision:.4f}, R: {m.recall:.4f})")
+    logging.info("-"*40)
     logging.info(f"Results saved to: {result_file}")
     logging.info("="*60)
     
