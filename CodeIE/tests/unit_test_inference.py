@@ -1,4 +1,4 @@
-
+import json
 import unittest
 import os
 import sys
@@ -29,8 +29,7 @@ from run_codeie_experiments import (
     run_inference,
     get_llm_model,
     parse_code_style_output,
-    parse_nl_style_output,
-    load_variations
+    parse_nl_style_output
 )
 
 class TestInference(unittest.TestCase):
@@ -71,9 +70,18 @@ class TestInference(unittest.TestCase):
             self.fail(f"Failed to initialize model: {e}")
 
     def _get_entity_types(self, granularity):
-        """Helper to dynamically load entity types for a given granularity"""
-        _, _, entity_definitions = load_variations(granularity)
-        return list(entity_definitions.keys())
+        """Helper to dynamically load entity types for a given granularity from schema file"""
+        schema_path = CODEIE_ROOT / "data" / f"few-nerd-{granularity}" / "entity.schema"
+        if not schema_path.exists():
+            self.fail(f"Schema file not found: {schema_path}")
+            
+        with open(schema_path, 'r') as f:
+            try:
+                first_line = f.readline().strip()
+                entity_types = json.loads(first_line)
+                return entity_types
+            except Exception as e:
+                self.fail(f"Failed to parse schema file {schema_path}: {e}")
 
     def test_coarse_pl_inference(self):
         """Test Coarse Granularity with Code Style (Python) using Prompts from File"""
