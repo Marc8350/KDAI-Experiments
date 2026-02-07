@@ -1,0 +1,2 @@
+datetime,granularity,style,variation,model,n_samples,precision,recall,micro_f1,macro_f1,result_file
+2026-02-07 16:48:38,coarse,nl,default,mistral,100,0.3343,0.4836,0.3953,0.336,coarse_nl_default_mistral_20260207_164749.json
