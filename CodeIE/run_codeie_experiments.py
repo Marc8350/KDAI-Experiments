@@ -550,12 +550,15 @@ def run_experiment(config: ExperimentConfig):
     
     # Determine ICL prompt source (check base prompts first!)
     icl_prompt = None
+    prompt_source = "dynamic"  # Track where prompt came from
+    actual_shots = config.num_shots  # Track actual number of shots
     
     # Option 1: Use explicitly provided prompt path
     if config.prompt_path and os.path.exists(config.prompt_path):
         logging.info(f"Loading pre-generated prompt from: {config.prompt_path}")
         with open(config.prompt_path, 'r') as f:
             icl_prompt = f.read()
+        prompt_source = "custom"
     
     # Option 2: Use base prompt files from prompts/base/
     if icl_prompt is None:
@@ -568,6 +571,8 @@ def run_experiment(config: ExperimentConfig):
             logging.info(f"Using base prompt from: {base_prompt_file}")
             with open(base_prompt_file, 'r') as f:
                 icl_prompt = f.read()
+            prompt_source = "base"
+            actual_shots = 1  # Base prompts are 1-shot
     
     # Option 3: Build prompt from few-shot examples (only if no base prompt)
     if icl_prompt is None:
@@ -594,8 +599,11 @@ def run_experiment(config: ExperimentConfig):
             entity_definitions=entity_definitions,
             include_schema=config.include_schema
         )
+        prompt_source = "dynamic"
+        actual_shots = len(examples)
     
     logging.info(f"ICL prompt length: {len(icl_prompt)} characters")
+    logging.info(f"Prompt source: {prompt_source}, actual shots: {actual_shots}")
     
     # Show sample of the prompt for verification
     logging.info("Sample ICL prompt (first 1000 chars):")
@@ -604,12 +612,13 @@ def run_experiment(config: ExperimentConfig):
         logging.info(line)
     logging.info("-" * 40)
     
-    # Prepare results storage
+    # Prepare results storage - use actual_shots in filename for accuracy
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     schema_tag = "with_schema" if config.include_schema else "no_schema"
+    model_tag = config.model_name or "default_model"
     result_file = os.path.join(
         output_dir,
-        f"{config.granularity}_{config.style}_{config.variation}_{schema_tag}_{config.num_shots}shot_seed{config.seed}_{timestamp}.json"
+        f"{config.granularity}_{config.style}_{prompt_source}_{actual_shots}shot_{model_tag}_{timestamp}.json"
     )
     
     all_gold = []
