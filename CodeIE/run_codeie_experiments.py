@@ -25,6 +25,7 @@ import sys
 import json
 import time
 import re
+import csv
 import logging
 import argparse
 from datetime import datetime
@@ -55,6 +56,62 @@ logging.basicConfig(
 # Constants
 END = "# END"
 END_LINE = "\n----------------------------------------"
+EXPERIMENT_MATRIX_FILE = "experiment_matrix.csv"
+
+
+def update_experiment_matrix(
+    output_dir: str,
+    config: 'ExperimentConfig',
+    results: Dict,
+    result_file: str
+) -> None:
+    """Update the experiment matrix CSV with a new run's results."""
+    matrix_path = os.path.join(output_dir, EXPERIMENT_MATRIX_FILE)
+    
+    # Define columns
+    columns = [
+        'datetime',
+        'granularity',
+        'style', 
+        'variation',
+        'model',
+        'n_samples',
+        'precision',
+        'recall',
+        'micro_f1',
+        'macro_f1',
+        'result_file'
+    ]
+    
+    # Check if file exists
+    file_exists = os.path.exists(matrix_path)
+    
+    # Extract overall scores
+    overall = results.get('overall_score', {}).get('entities', {})
+    
+    # Prepare row
+    row = {
+        'datetime': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        'granularity': config.granularity,
+        'style': config.style,
+        'variation': config.variation or 'base',
+        'model': config.model_name or 'default',
+        'n_samples': results.get('processed_count', 0),
+        'precision': round(overall.get('precision', 0), 4),
+        'recall': round(overall.get('recall', 0), 4),
+        'micro_f1': round(overall.get('micro_f1', 0), 4),
+        'macro_f1': round(overall.get('macro_f1', 0), 4),
+        'result_file': os.path.basename(result_file)
+    }
+    
+    # Write to CSV
+    with open(matrix_path, 'a', newline='') as f:
+        writer = csv.DictWriter(f, fieldnames=columns)
+        if not file_exists:
+            writer.writeheader()
+        writer.writerow(row)
+    
+    logging.info(f"Updated experiment matrix: {matrix_path}")
 
 
 # ============================================================================
@@ -585,11 +642,12 @@ def run_experiment(config: ExperimentConfig):
     # Prepare results storage
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     model_tag = config.model_name or "default_model"
+    variation_tag = config.variation or "base"
     
-    # Filename format: simpler since base prompts are always 1-shot
+    # Filename includes: granularity, style, variation, model, timestamp
     result_file = os.path.join(
         output_dir,
-        f"{config.granularity}_{config.style}_{model_tag}_{timestamp}.json"
+        f"{config.granularity}_{config.style}_{variation_tag}_{model_tag}_{timestamp}.json"
     )
     
     all_gold = []
@@ -771,6 +829,20 @@ def run_experiment(config: ExperimentConfig):
     logging.info("-"*40)
     logging.info(f"Results saved to: {result_file}")
     logging.info("="*60)
+    
+    # Update experiment matrix CSV (appends to history)
+    final_results = {
+        'overall_score': {
+            'entities': {
+                'precision': final_eval.micro_precision,
+                'recall': final_eval.micro_recall,
+                'micro_f1': final_eval.micro_f1,
+                'macro_f1': final_eval.macro_f1
+            }
+        },
+        'processed_count': len(all_gold)
+    }
+    update_experiment_matrix(output_dir, config, final_results, result_file)
     
     return final_metrics
 
