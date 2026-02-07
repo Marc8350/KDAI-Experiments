@@ -33,7 +33,7 @@ from dataclasses import dataclass, asdict
 
 # LangChain imports
 from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain_ollama import ChatOllama
+from langchain_ollama import ChatOllama, OllamaLLM
 from langchain_core.messages import HumanMessage
 
 # Setup paths
@@ -361,8 +361,8 @@ def get_llm_model(config: ExperimentConfig):
             convert_system_message_to_human=True # Sometimes needed for Gemini
         )
     
-    # Default to Ollama
-    return ChatOllama(
+    # Default to Ollama (Using OllamaLLM/Completion API for broader model compatibility)
+    return OllamaLLM(
         model=model_name,
         temperature=config.temperature,
         base_url=api_base_url,
