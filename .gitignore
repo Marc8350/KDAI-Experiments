@@ -7,7 +7,4 @@ few-nerd_test/
 __pycache__/
 createpormpts.ipynb
 
-# CodeIE generated data (too large for git)
-CodeIE/data/
-CodeIE/CODEIE-results/
-CodeIE/prompt_variations/llm_generated/
+
