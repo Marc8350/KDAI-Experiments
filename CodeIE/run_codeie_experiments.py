@@ -465,41 +465,12 @@ def parse_nl_style_output(output: str, text: str, entity_types: List[str]) -> Li
     
     return entities
 
-
 # ============================================================================
 # Evaluation
 # ============================================================================
 
-def evaluate_predictions(
-    gold_list: List[List[Dict]],
-    pred_list: List[List[Dict]]
-) -> Dict[str, float]:
-    """Evaluate predictions against gold standard using string-based matching."""
-    total_tp = 0
-    total_gold = 0
-    total_pred = 0
-    
-    for gold_entities, pred_entities in zip(gold_list, pred_list):
-        gold_set = set((e['type'], e['text']) for e in gold_entities)
-        pred_set = set((e['type'], e['text']) for e in pred_entities)
-        
-        tp = len(gold_set & pred_set)
-        total_tp += tp
-        total_gold += len(gold_set)
-        total_pred += len(pred_set)
-    
-    precision = total_tp / total_pred if total_pred > 0 else 0
-    recall = total_tp / total_gold if total_gold > 0 else 0
-    f1 = 2 * precision * recall / (precision + recall) if (precision + recall) > 0 else 0
-    
-    return {
-        'precision': precision,
-        'recall': recall,
-        'f1': f1,
-        'tp': total_tp,
-        'gold_count': total_gold,
-        'pred_count': total_pred
-    }
+# Import from dedicated evaluation module for macro F1 support
+from evaluation import evaluate_predictions, evaluate_ner, EvaluationResult
 
 
 # ============================================================================
