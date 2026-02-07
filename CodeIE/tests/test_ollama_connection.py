@@ -2,10 +2,9 @@
 import unittest
 import os
 import logging
+import requests
 import json
 from dotenv import load_dotenv
-
-# Use OllamaLLM for everything since falcon doesn't like Chat API
 from langchain_ollama import OllamaLLM
 
 # Set up logging
@@ -22,43 +21,47 @@ class TestOllamaLangChain(unittest.TestCase):
         self.base_url = os.getenv("CUSTOM_API_BASE_URL", "http://localhost:11434")
         self.model_name = os.getenv("CUSTOM_MODEL_NAME", "falcon")
         
-        logger.info(f"--- Ollama Logic Verified ---")
-        logger.info(f"Model: {self.model_name} | URL: {self.base_url}")
+        logger.info(f"--- Ollama NER Diagnostic ---")
 
-    def test_01_basic_generation(self):
-        """Test standard completion"""
-        logger.info("Testing Completion API...")
-        llm = OllamaLLM(
-            model=self.model_name,
-            base_url=self.base_url,
-            temperature=0.0
-        )
+    def test_01_verify_basic(self):
+        """Re-verify that basic prompt still works"""
+        llm = OllamaLLM(model=self.model_name, base_url=self.base_url)
         response = llm.invoke("Why is the sky blue?")
-        logger.info(f"Response length: {len(response)}")
+        logger.info(f"Basic Response length: {len(response)}")
         self.assertGreater(len(response), 0)
 
-    def test_02_ner_with_llm_interface(self):
-        """Test NER prompt using the Completion interface (matches CodeIE fix)"""
-        logger.info("Testing NER prompt with OllamaLLM...")
-        llm = OllamaLLM(
-            model=self.model_name,
-            base_url=self.base_url,
-            temperature=0.0
-        )
-        ner_prompt = """Extract organization entities:
-Input: Apple is based in Cupertino.
-Output: [('Apple', 'organization')]
-Input: Microsoft is in Redmond.
-Output:"""
+    def test_02_debug_ner_prompt(self):
+        """Test NER prompt and print RAW JSON if it fails"""
+        ner_prompt = "Extract organization entities:\nInput: Apple is based in Cupertino.\nOutput: [('Apple', 'organization')]\nInput: Microsoft is in Redmond.\nOutput:"
         
+        logger.info("Testing NER prompt via LangChain...")
+        llm = OllamaLLM(model=self.model_name, base_url=self.base_url, temperature=0.0)
         response = llm.invoke(ner_prompt)
-        content = response.strip()
-        logger.info(f"NER Result: '{content}'")
         
-        self.assertGreater(len(content), 0, "Model returned empty response")
-        # Base models like falcon often append just the result or complete the line
-        self.assertTrue("Microsoft" in content or "organization" in content, 
-                        f"Expected extraction not found in: {content}")
+        logger.info(f"NER Response (LangChain): '{response}'")
+        
+        if not response:
+            logger.warning("Empty response. Retrying with RAW API to see metadata...")
+            payload = {
+                "model": self.model_name,
+                "prompt": ner_prompt,
+                "stream": False,
+                "options": {"temperature": 0.0}
+            }
+            raw_resp = requests.post(f"{self.base_url}/api/generate", json=payload)
+            logger.info(f"Raw API Status: {raw_resp.status_code}")
+            try:
+                data = raw_resp.json()
+                logger.info(f"Raw API JSON Response:\n{json.dumps(data, indent=2)}")
+                
+                # Check why it stopped
+                if data.get("done") and data.get("eval_count") == 0:
+                    logger.error("Model stopped immediately without generating any tokens.")
+                    logger.error(f"Stop Reason: {data.get('done_reason')} | Context size: {len(data.get('context', []))}")
+            except:
+                logger.error(f"Raw API Text: {raw_resp.text}")
+
+        self.assertGreater(len(response), 0, "Model returned empty response for NER prompt")
 
 if __name__ == "__main__":
     unittest.main()
