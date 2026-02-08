@@ -29,7 +29,7 @@ LANGUAGES = ["Chinese", "Spanish", "Turkish"]
 class BackTranslationConfig:
     """Configuration for back-translation."""
     model_name: str = "gemini-2.0-flash"
-    temperature: float = 0.1  # Lower temp for translation accuracy
+    temperature: float = 1.0  # Increased for more variation
     max_tokens: int = 4096
     max_tokens: int = 4096
     similarity_threshold: float = 0.9
@@ -37,27 +37,41 @@ class BackTranslationConfig:
     request_delay: float = 10.0  # Delay in seconds between requests to avoid rate limits
 
 
-TRANSLATE_TO_SYSTEM = """You are an expert translator. Your task is to translate prompts 
-used for NLP annotation tasks while preserving their exact functionality."""
+TRANSLATE_TO_SYSTEM = """"""
 
 
-TRANSLATE_TO_TEMPLATE = """Translate the following English prompt into {target_language}.
+TRANSLATE_TO_TEMPLATE = """### The Variable Technical Translator Prompt
 
-CRITICAL RULES:
-1. Keep all code syntax exactly as-is (function definitions, variable names, brackets, etc.)
-2. Keep all placeholders exactly as-is (e.g., {{text}}, {{input_text}}, {{entity_list}})
-3. Keep all JSON-like structures exactly as-is
-4. Only translate the natural language parts (docstrings, comments, instructions)
-5. Preserve line breaks and indentation
-6. SUPER CRITICAL: Do NOT translate entity type names like "person", "location", "organization", "building", "event", etc. Keep them exactly in English.
-7. Do not translate specific named entities if they appear in code strings (e.g. "Barack Obama").
+**Target Language:** {target_language}
 
-English prompt:
+**Task:** You are a technical localization expert. Translate the provided NLP NER prompt into the **Target Language**.
+
+**CRITICAL TRANSLATION MAP:**
+You must replace the following English structural phrases with their natural equivalents in the **Target Language**:
+
+1. "The text is:" ➔ [Translate this phrase]
+2. "The named entities in the text:" ➔ [Translate this phrase]
+3. "Annotation Guidelines:" ➔ [Translate this phrase]
+4. "Extract named entities based on the following categories:" ➔ [Translate this phrase]
+
+**STRICT RULES:**
+
+* **DO NOT TRANSLATE** these exact keys: `art`, `building`, `event`, `location`, `organization`, `other`, `person`, `product`. They must remain in English.
+* **TRANSLATE** the actual content of the sample sentences.
+* **TRANSLATE** the entity value inside the parentheses to match your translated sentence.
+* **FORMAT**: Keep the `(key: value)` structure exactly. Dont translate the key but the value as well. 
+
 ---
+
+**SOURCE PROMPT:**
+
 {prompt}
+
 ---
 
-Provide only the translated prompt in {target_language}, nothing else."""
+**Provide only the translated prompt in the Target Language, nothing else.**
+
+"""
 
 
 TRANSLATE_BACK_SYSTEM = """You are an expert translator. Your task is to translate prompts 

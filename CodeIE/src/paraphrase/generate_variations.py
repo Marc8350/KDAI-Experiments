@@ -144,7 +144,7 @@ def generate_variations_for_prompt(
     
     back_translator = BackTranslator(BackTranslationConfig(
         model_name=model_name,
-        temperature=0.1,
+        temperature=1.0,
         similarity_threshold=similarity_threshold,
         request_delay=request_delay
     ))
