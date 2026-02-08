@@ -1,0 +1,1623 @@
+============================================================
+Starting CodeIE Full Test Suite & Experiments
+Model: mistral (via Ollama)
+Timestamp: 20260208_163353
+Logging to: CodeIE/logs/full_run_mistral_20260208_163353.log
+============================================================
+
+>>> STEP 1: Running Inference Unit Tests
+------------------------------------------------------------
+Command line override: Model set to mistral
+Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments/few-nerd_test
+Test Sentence: In the early 1930s the band moved to the Grill Room of the Taft Hotel in New York ; the band was renamed `` George Hall and His Hotel Taft Orchestra `` .
+
+
+======================================================================
+          CODEIE INFERENCE UNIT TESTS
+          Model: mistral
+======================================================================
+
+
+======================================================================
+                        TEST RESULTS SUMMARY
+======================================================================
+
+Test Name                                Status     Details
+----------------------------------------------------------------------
+Coarse NL (Natural Language)             💥 ERROR    ExperimentConfig.__init__() go...
+Coarse PL (Python Code)                  💥 ERROR    ExperimentConfig.__init__() go...
+Fine NL (Natural Language)               💥 ERROR    ExperimentConfig.__init__() go...
+Fine PL (Python Code)                    💥 ERROR    ExperimentConfig.__init__() go...
+----------------------------------------------------------------------
+
+Total: 4 | Passed: 0 | Failed: 4
+
+⚠️  4 test(s) failed. See details above.
+======================================================================
+
+
+>>> STEP 2: Running Single Test Experiment (Coarse PL)
+------------------------------------------------------------
+2026-02-08 16:34:02,541 - INFO - ============================================================
+2026-02-08 16:34:02,541 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-08 16:34:02,541 - INFO - ============================================================
+2026-02-08 16:34:02,541 - INFO - Granularity: coarse
+2026-02-08 16:34:02,541 - INFO - Style: pl
+2026-02-08 16:34:02,541 - INFO - Variation: default
+2026-02-08 16:34:02,541 - INFO - Model: mistral
+2026-02-08 16:34:02,541 - INFO - ============================================================
+2026-02-08 16:34:02,541 - INFO - Using ChatOllama (Chat API) for mistral
+2026-02-08 16:34:02,581 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+2026-02-08 16:34:02,581 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments/few-nerd_test
+2026-02-08 16:34:02,588 - INFO - Using base prompt from: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/base/coarse_pl_1shot.txt
+2026-02-08 16:34:02,588 - INFO - ICL prompt length: 3554 characters
+2026-02-08 16:34:02,588 - INFO - Sample ICL prompt (first 1000 chars):
+2026-02-08 16:34:02,588 - INFO - ----------------------------------------
+2026-02-08 16:34:02,588 - INFO - # TASK: Complete the Python code by adding entity_list.append() statements.
+2026-02-08 16:34:02,588 - INFO - # DO NOT explain the code. Just output the entity_list.append() lines.
+2026-02-08 16:34:02,588 - INFO - 
+2026-02-08 16:34:02,588 - INFO - # You are an expert Named Entity Recognition (NER) system specializing in extracting entities from text.
+2026-02-08 16:34:02,588 - INFO - # For each input_text, identify named entities and add them using entity_list.append().
+2026-02-08 16:34:02,588 - INFO - 
+2026-02-08 16:34:02,588 - INFO - # Entity Types:
+2026-02-08 16:34:02,588 - INFO - # - art: A work of art including films, books, music, paintings, or other creative works.
+2026-02-08 16:34:02,588 - INFO - # - building: A named structure or building, such as a stadium, museum, or hotel.
+2026-02-08 16:34:02,588 - INFO - # - event: A named event such as a war, sports event, festival, or historical occurrence.
+2026-02-08 16:34:02,588 - INFO - # - location: A geographical location such as a city, country, continent, region, or landmark.
+2026-02-08 16:34:02,588 - INFO - # - organization: A named organization, institution, company, or group.
+2026-02-08 16:34:02,588 - INFO - # - other: Other named entities that don't fit into the above categories.
+2026-02-08 16:34:02,588 - INFO - # - person: A named individual, including fictional characters, historical figures, celebrities, and common people.
+2026-02-08 16:34:02,588 - INFO - # - product: A named co
+2026-02-08 16:34:02,588 - INFO - ----------------------------------------
+2026-02-08 16:34:02,588 - INFO - Processing 5 test samples...
+2026-02-08 16:34:05,453 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:05,734 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:06,007 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:06,280 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:06,764 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:06,994 - INFO - Progress: 5/5 | P: 0.5000 | R: 0.1111 | Micro-F1: 0.1818 | Macro-F1: 0.1667
+2026-02-08 16:34:06,995 - INFO - ============================================================
+2026-02-08 16:34:06,995 - INFO - Final Results
+2026-02-08 16:34:06,995 - INFO - ============================================================
+2026-02-08 16:34:06,995 - INFO - Precision:  0.5000
+2026-02-08 16:34:06,995 - INFO - Recall:     0.1111
+2026-02-08 16:34:06,995 - INFO - Micro F1:   0.1818
+2026-02-08 16:34:06,995 - INFO - Macro F1:   0.1667
+2026-02-08 16:34:06,995 - INFO - ----------------------------------------
+2026-02-08 16:34:06,995 - INFO - Per-Type F1 Scores:
+2026-02-08 16:34:06,996 - INFO -   building                       F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:34:06,996 - INFO -   event                          F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:34:06,996 - INFO -   location                       F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:34:06,996 - INFO -   organization                   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:34:06,996 - INFO -   person                         F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:34:06,996 - INFO -   product                        F1: 1.0000 (P: 1.0000, R: 1.0000)
+2026-02-08 16:34:06,996 - INFO - ----------------------------------------
+2026-02-08 16:34:06,996 - INFO - Results saved to: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/CODEIE-results/coarse_pl_default_mistral_20260208_163402.json
+2026-02-08 16:34:06,996 - INFO - ============================================================
+2026-02-08 16:34:06,996 - INFO - Updated experiment matrix: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/CODEIE-results/experiment_matrix.csv
+
+>>> STEP 3: Running Full Orchestrator (All Variations)
+------------------------------------------------------------
+2026-02-08 16:34:08,486 - INFO - Loaded environment from .env file
+2026-02-08 16:34:08,493 - INFO - Orchestrator initialized with config: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/config/experiment_config.yaml
+2026-02-08 16:34:08,493 - INFO - 
+############################################################
+2026-02-08 16:34:08,493 - INFO - # CodeIE Experiment Orchestrator
+2026-02-08 16:34:08,493 - INFO - # One-Stop Shop Pipeline
+2026-02-08 16:34:08,493 - INFO - ############################################################
+2026-02-08 16:34:08,493 - INFO - 
+[Step 1/3] Checking prompt variations...
+2026-02-08 16:34:08,493 - INFO -   Existing: 28/24
+2026-02-08 16:34:08,493 - INFO -   Missing: 0/24
+2026-02-08 16:34:08,493 - INFO - 
+[Step 2/3] Generating experiment matrix...
+2026-02-08 16:34:08,494 - INFO - Generated 28 experiment runs
+2026-02-08 16:34:08,494 - INFO -   Total experiments: 28
+2026-02-08 16:34:08,494 - INFO - 
+[Step 3/3] Running experiments...
+2026-02-08 16:34:08,494 - INFO - 
+[1/28] Starting: mistral_base_coarse_pl_base
+2026-02-08 16:34:08,494 - INFO - 
+============================================================
+2026-02-08 16:34:08,494 - INFO - Running: mistral_base_coarse_pl_base
+2026-02-08 16:34:08,494 - INFO -   Model: mistral
+2026-02-08 16:34:08,494 - INFO -   Granularity: coarse
+2026-02-08 16:34:08,494 - INFO -   Style: pl
+2026-02-08 16:34:08,494 - INFO -   Variation: base
+2026-02-08 16:34:08,494 - INFO -   Prompt: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/base/coarse_pl_1shot.txt
+2026-02-08 16:34:08,494 - INFO - ============================================================
+2026-02-08 16:34:12,917 - INFO - ============================================================
+2026-02-08 16:34:12,917 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-08 16:34:12,917 - INFO - ============================================================
+2026-02-08 16:34:12,917 - INFO - Granularity: coarse
+2026-02-08 16:34:12,917 - INFO - Style: pl
+2026-02-08 16:34:12,917 - INFO - Variation: v0_original
+2026-02-08 16:34:12,917 - INFO - Model: mistral
+2026-02-08 16:34:12,917 - INFO - ============================================================
+2026-02-08 16:34:12,917 - INFO - Using ChatOllama (Chat API) for mistral
+2026-02-08 16:34:12,961 - WARNING - Variation 'v0_original' not found, using 'default' instead
+2026-02-08 16:34:12,961 - INFO - Available PL variations: ['default']
+2026-02-08 16:34:12,961 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+2026-02-08 16:34:12,961 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments/few-nerd_test
+2026-02-08 16:34:12,966 - INFO - Loading pre-generated prompt from: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/base/coarse_pl_1shot.txt
+2026-02-08 16:34:12,966 - INFO - ICL prompt length: 3554 characters
+2026-02-08 16:34:12,966 - INFO - Sample ICL prompt (first 1000 chars):
+2026-02-08 16:34:12,967 - INFO - ----------------------------------------
+2026-02-08 16:34:12,967 - INFO - # TASK: Complete the Python code by adding entity_list.append() statements.
+2026-02-08 16:34:12,967 - INFO - # DO NOT explain the code. Just output the entity_list.append() lines.
+2026-02-08 16:34:12,967 - INFO - 
+2026-02-08 16:34:12,967 - INFO - # You are an expert Named Entity Recognition (NER) system specializing in extracting entities from text.
+2026-02-08 16:34:12,967 - INFO - # For each input_text, identify named entities and add them using entity_list.append().
+2026-02-08 16:34:12,967 - INFO - 
+2026-02-08 16:34:12,967 - INFO - # Entity Types:
+2026-02-08 16:34:12,967 - INFO - # - art: A work of art including films, books, music, paintings, or other creative works.
+2026-02-08 16:34:12,967 - INFO - # - building: A named structure or building, such as a stadium, museum, or hotel.
+2026-02-08 16:34:12,967 - INFO - # - event: A named event such as a war, sports event, festival, or historical occurrence.
+2026-02-08 16:34:12,967 - INFO - # - location: A geographical location such as a city, country, continent, region, or landmark.
+2026-02-08 16:34:12,967 - INFO - # - organization: A named organization, institution, company, or group.
+2026-02-08 16:34:12,967 - INFO - # - other: Other named entities that don't fit into the above categories.
+2026-02-08 16:34:12,967 - INFO - # - person: A named individual, including fictional characters, historical figures, celebrities, and common people.
+2026-02-08 16:34:12,967 - INFO - # - product: A named co
+2026-02-08 16:34:12,967 - INFO - ----------------------------------------
+2026-02-08 16:34:12,967 - INFO - Processing 10 test samples...
+2026-02-08 16:34:13,018 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:13,296 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:13,579 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:13,844 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:14,326 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:14,608 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:15,086 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:15,366 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:15,641 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:15,928 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:16,156 - INFO - Progress: 10/10 | P: 0.5000 | R: 0.0690 | Micro-F1: 0.1212 | Macro-F1: 0.0952
+2026-02-08 16:34:16,158 - INFO - ============================================================
+2026-02-08 16:34:16,158 - INFO - Final Results
+2026-02-08 16:34:16,158 - INFO - ============================================================
+2026-02-08 16:34:16,158 - INFO - Precision:  0.5000
+2026-02-08 16:34:16,158 - INFO - Recall:     0.0690
+2026-02-08 16:34:16,158 - INFO - Micro F1:   0.1212
+2026-02-08 16:34:16,158 - INFO - Macro F1:   0.0952
+2026-02-08 16:34:16,158 - INFO - ----------------------------------------
+2026-02-08 16:34:16,158 - INFO - Per-Type F1 Scores:
+2026-02-08 16:34:16,158 - INFO -   building                       F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:34:16,158 - INFO -   event                          F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:34:16,158 - INFO -   location                       F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:34:16,158 - INFO -   organization                   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:34:16,159 - INFO -   other                          F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:34:16,159 - INFO -   person                         F1: 0.3333 (P: 0.5000, R: 0.2500)
+2026-02-08 16:34:16,159 - INFO -   product                        F1: 0.3333 (P: 0.5000, R: 0.2500)
+2026-02-08 16:34:16,159 - INFO - ----------------------------------------
+2026-02-08 16:34:16,159 - INFO - Results saved to: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/CODEIE-results/coarse_pl_default_mistral_20260208_163412.json
+2026-02-08 16:34:16,159 - INFO - ============================================================
+2026-02-08 16:34:16,159 - INFO - Updated experiment matrix: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/CODEIE-results/experiment_matrix.csv
+2026-02-08 16:34:16,163 - INFO - 
+[2/28] Starting: mistral_base_coarse_pl_lexical_substitution
+2026-02-08 16:34:16,164 - INFO - 
+============================================================
+2026-02-08 16:34:16,164 - INFO - Running: mistral_base_coarse_pl_lexical_substitution
+2026-02-08 16:34:16,164 - INFO -   Model: mistral
+2026-02-08 16:34:16,164 - INFO -   Granularity: coarse
+2026-02-08 16:34:16,164 - INFO -   Style: pl
+2026-02-08 16:34:16,164 - INFO -   Variation: lexical_substitution
+2026-02-08 16:34:16,164 - INFO -   Prompt: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/coarse_pl_1shot/lexical_substitution.txt
+2026-02-08 16:34:16,164 - INFO - ============================================================
+2026-02-08 16:34:16,164 - INFO - ============================================================
+2026-02-08 16:34:16,164 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-08 16:34:16,164 - INFO - ============================================================
+2026-02-08 16:34:16,164 - INFO - Granularity: coarse
+2026-02-08 16:34:16,164 - INFO - Style: pl
+2026-02-08 16:34:16,164 - INFO - Variation: lexical_substitution
+2026-02-08 16:34:16,164 - INFO - Model: mistral
+2026-02-08 16:34:16,164 - INFO - ============================================================
+2026-02-08 16:34:16,164 - INFO - Using ChatOllama (Chat API) for mistral
+2026-02-08 16:34:16,234 - WARNING - Variation 'lexical_substitution' not found, using 'default' instead
+2026-02-08 16:34:16,234 - INFO - Available PL variations: ['default']
+2026-02-08 16:34:16,234 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+2026-02-08 16:34:16,234 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments/few-nerd_test
+2026-02-08 16:34:16,243 - INFO - Loading pre-generated prompt from: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/coarse_pl_1shot/lexical_substitution.txt
+2026-02-08 16:34:16,243 - INFO - ICL prompt length: 3703 characters
+2026-02-08 16:34:16,243 - INFO - Sample ICL prompt (first 1000 chars):
+2026-02-08 16:34:16,243 - INFO - ----------------------------------------
+2026-02-08 16:34:16,243 - INFO - # OBJECTIVE: Finish the Python script by inserting entity_list.append() commands.
+2026-02-08 16:34:16,243 - INFO - # NO explanations. Only print the entity_list.append() lines.
+2026-02-08 16:34:16,243 - INFO - 
+2026-02-08 16:34:16,243 - INFO - # You are a skilled Named Entity Recognition (NER) tool focused on mining entities from text.
+2026-02-08 16:34:16,244 - INFO - # For every input_text, detect named entities and append them to the entity_list.
+2026-02-08 16:34:16,244 - INFO - 
+2026-02-08 16:34:16,244 - INFO - # Classification Categories:
+2026-02-08 16:34:16,244 - INFO - # - art: A titled creative piece such as movies, literature, songs, artwork, or other artistic productions.
+2026-02-08 16:34:16,244 - INFO - # - building: A specific edifice or construction, like a stadium, gallery, or inn.
+2026-02-08 16:34:16,244 - INFO - # - event: A specific occasion like a conflict, athletic competition, gala, or historic incident.
+2026-02-08 16:34:16,244 - INFO - # - location: A geographic place like a town, nation, landmass, area, or point of interest.
+2026-02-08 16:34:16,244 - INFO - # - organization: A specific association, institute, enterprise, or team.
+2026-02-08 16:34:16,244 - INFO - # - other: Miscellaneous named entities that do not belong to the listed groups.
+2026-02-08 16:34:16,244 - INFO - # - person: A specific human, covering made-up figures, figures from history, stars, and ordinary individuals.
+2026-02-08 16:34:16,244 - INFO - # 
+2026-02-08 16:34:16,244 - INFO - ----------------------------------------
+2026-02-08 16:34:16,244 - INFO - Processing 10 test samples...
+2026-02-08 16:34:16,548 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:16,813 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:17,075 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:17,331 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:17,594 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:17,845 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:22,638 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:22,913 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:23,165 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:23,440 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:23,651 - INFO - Progress: 10/10 | P: 0.0000 | R: 0.0000 | Micro-F1: 0.0000 | Macro-F1: 0.0000
+2026-02-08 16:34:23,654 - INFO - ============================================================
+2026-02-08 16:34:23,655 - INFO - Final Results
+2026-02-08 16:34:23,655 - INFO - ============================================================
+2026-02-08 16:34:23,655 - INFO - Precision:  0.0000
+2026-02-08 16:34:23,655 - INFO - Recall:     0.0000
+2026-02-08 16:34:23,655 - INFO - Micro F1:   0.0000
+2026-02-08 16:34:23,655 - INFO - Macro F1:   0.0000
+2026-02-08 16:34:23,655 - INFO - ----------------------------------------
+2026-02-08 16:34:23,655 - INFO - Per-Type F1 Scores:
+2026-02-08 16:34:23,655 - INFO -   building                       F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:34:23,655 - INFO -   event                          F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:34:23,655 - INFO -   location                       F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:34:23,655 - INFO -   organization                   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:34:23,655 - INFO -   other                          F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:34:23,655 - INFO -   person                         F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:34:23,655 - INFO -   product                        F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:34:23,655 - INFO - ----------------------------------------
+2026-02-08 16:34:23,655 - INFO - Results saved to: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/CODEIE-results/coarse_pl_default_mistral_20260208_163416.json
+2026-02-08 16:34:23,655 - INFO - ============================================================
+2026-02-08 16:34:23,656 - INFO - Updated experiment matrix: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/CODEIE-results/experiment_matrix.csv
+2026-02-08 16:34:23,659 - INFO - 
+[3/28] Starting: mistral_base_coarse_pl_reodering
+2026-02-08 16:34:23,660 - INFO - 
+============================================================
+2026-02-08 16:34:23,660 - INFO - Running: mistral_base_coarse_pl_reodering
+2026-02-08 16:34:23,660 - INFO -   Model: mistral
+2026-02-08 16:34:23,660 - INFO -   Granularity: coarse
+2026-02-08 16:34:23,660 - INFO -   Style: pl
+2026-02-08 16:34:23,660 - INFO -   Variation: reodering
+2026-02-08 16:34:23,660 - INFO -   Prompt: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/coarse_pl_1shot/reodering.txt
+2026-02-08 16:34:23,660 - INFO - ============================================================
+2026-02-08 16:34:23,660 - INFO - ============================================================
+2026-02-08 16:34:23,660 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-08 16:34:23,660 - INFO - ============================================================
+2026-02-08 16:34:23,660 - INFO - Granularity: coarse
+2026-02-08 16:34:23,660 - INFO - Style: pl
+2026-02-08 16:34:23,660 - INFO - Variation: reodering
+2026-02-08 16:34:23,660 - INFO - Model: mistral
+2026-02-08 16:34:23,660 - INFO - ============================================================
+2026-02-08 16:34:23,660 - INFO - Using ChatOllama (Chat API) for mistral
+2026-02-08 16:34:23,723 - WARNING - Variation 'reodering' not found, using 'default' instead
+2026-02-08 16:34:23,723 - INFO - Available PL variations: ['default']
+2026-02-08 16:34:23,723 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+2026-02-08 16:34:23,723 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments/few-nerd_test
+2026-02-08 16:34:23,728 - INFO - Loading pre-generated prompt from: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/coarse_pl_1shot/reodering.txt
+2026-02-08 16:34:23,728 - INFO - ICL prompt length: 3554 characters
+2026-02-08 16:34:23,728 - INFO - Sample ICL prompt (first 1000 chars):
+2026-02-08 16:34:23,728 - INFO - ----------------------------------------
+2026-02-08 16:34:23,728 - INFO - # TASK: Complete the Python code by adding entity_list.append() statements.
+2026-02-08 16:34:23,728 - INFO - # DO NOT explain the code. Just output the entity_list.append() lines.
+2026-02-08 16:34:23,728 - INFO - 
+2026-02-08 16:34:23,728 - INFO - # You are an expert Named Entity Recognition (NER) system specializing in extracting entities from text.
+2026-02-08 16:34:23,728 - INFO - # For each input_text, identify named entities and add them using entity_list.append().
+2026-02-08 16:34:23,728 - INFO - 
+2026-02-08 16:34:23,728 - INFO - # Entity Types:
+2026-02-08 16:34:23,728 - INFO - # - person: A named individual, including fictional characters, historical figures, celebrities, and common people.
+2026-02-08 16:34:23,728 - INFO - # - organization: A named organization, institution, company, or group.
+2026-02-08 16:34:23,728 - INFO - # - location: A geographical location such as a city, country, continent, region, or landmark.
+2026-02-08 16:34:23,728 - INFO - # - event: A named event such as a war, sports event, festival, or historical occurrence.
+2026-02-08 16:34:23,728 - INFO - # - product: A named commercial product, software, vehicle model, or branded item.
+2026-02-08 16:34:23,728 - INFO - # - building: A named structure or building, such as a stadium, museum, or hotel.
+2026-02-08 16:34:23,728 - INFO - # - art: A work of art including films, books, music, paintings, or other creative works.
+2026-02-08 16:34:23,728 - INFO - # - other: Oth
+2026-02-08 16:34:23,728 - INFO - ----------------------------------------
+2026-02-08 16:34:23,728 - INFO - Processing 10 test samples...
+2026-02-08 16:34:24,027 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:24,299 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:24,570 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:24,838 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:25,330 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:25,590 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:26,432 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:26,703 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:26,960 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:27,238 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:27,458 - INFO - Progress: 10/10 | P: 0.1667 | R: 0.0345 | Micro-F1: 0.0571 | Macro-F1: 0.0408
+2026-02-08 16:34:27,460 - INFO - ============================================================
+2026-02-08 16:34:27,460 - INFO - Final Results
+2026-02-08 16:34:27,460 - INFO - ============================================================
+2026-02-08 16:34:27,460 - INFO - Precision:  0.1667
+2026-02-08 16:34:27,460 - INFO - Recall:     0.0345
+2026-02-08 16:34:27,460 - INFO - Micro F1:   0.0571
+2026-02-08 16:34:27,460 - INFO - Macro F1:   0.0408
+2026-02-08 16:34:27,460 - INFO - ----------------------------------------
+2026-02-08 16:34:27,460 - INFO - Per-Type F1 Scores:
+2026-02-08 16:34:27,460 - INFO -   building                       F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:34:27,460 - INFO -   event                          F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:34:27,460 - INFO -   location                       F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:34:27,460 - INFO -   organization                   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:34:27,460 - INFO -   other                          F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:34:27,460 - INFO -   person                         F1: 0.2857 (P: 0.3333, R: 0.2500)
+2026-02-08 16:34:27,460 - INFO -   product                        F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:34:27,460 - INFO - ----------------------------------------
+2026-02-08 16:34:27,460 - INFO - Results saved to: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/CODEIE-results/coarse_pl_default_mistral_20260208_163423.json
+2026-02-08 16:34:27,460 - INFO - ============================================================
+2026-02-08 16:34:27,461 - INFO - Updated experiment matrix: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/CODEIE-results/experiment_matrix.csv
+2026-02-08 16:34:27,464 - INFO - 
+[4/28] Starting: mistral_base_coarse_pl_sentence_reordering
+2026-02-08 16:34:27,466 - INFO - 
+============================================================
+2026-02-08 16:34:27,466 - INFO - Running: mistral_base_coarse_pl_sentence_reordering
+2026-02-08 16:34:27,466 - INFO -   Model: mistral
+2026-02-08 16:34:27,466 - INFO -   Granularity: coarse
+2026-02-08 16:34:27,466 - INFO -   Style: pl
+2026-02-08 16:34:27,466 - INFO -   Variation: sentence_reordering
+2026-02-08 16:34:27,466 - INFO -   Prompt: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/coarse_pl_1shot/sentence_reordering.txt
+2026-02-08 16:34:27,466 - INFO - ============================================================
+2026-02-08 16:34:27,466 - INFO - ============================================================
+2026-02-08 16:34:27,466 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-08 16:34:27,466 - INFO - ============================================================
+2026-02-08 16:34:27,466 - INFO - Granularity: coarse
+2026-02-08 16:34:27,466 - INFO - Style: pl
+2026-02-08 16:34:27,466 - INFO - Variation: sentence_reordering
+2026-02-08 16:34:27,466 - INFO - Model: mistral
+2026-02-08 16:34:27,466 - INFO - ============================================================
+2026-02-08 16:34:27,467 - INFO - Using ChatOllama (Chat API) for mistral
+2026-02-08 16:34:27,529 - WARNING - Variation 'sentence_reordering' not found, using 'default' instead
+2026-02-08 16:34:27,529 - INFO - Available PL variations: ['default']
+2026-02-08 16:34:27,529 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+2026-02-08 16:34:27,529 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments/few-nerd_test
+2026-02-08 16:34:27,535 - INFO - Loading pre-generated prompt from: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/coarse_pl_1shot/sentence_reordering.txt
+2026-02-08 16:34:27,535 - INFO - ICL prompt length: 3718 characters
+2026-02-08 16:34:27,535 - INFO - Sample ICL prompt (first 1000 chars):
+2026-02-08 16:34:27,535 - INFO - ----------------------------------------
+2026-02-08 16:34:27,535 - INFO - # TASK: Complete the Python code by adding entity_list.append() statements.
+2026-02-08 16:34:27,535 - INFO - # DO NOT explain the code. Just output the entity_list.append() lines.
+2026-02-08 16:34:27,535 - INFO - 
+2026-02-08 16:34:27,535 - INFO - # You are an expert Named Entity Recognition (NER) system capable of identifying entities within text.
+2026-02-08 16:34:27,535 - INFO - # For every input_text, find and add named entities using entity_list.append().
+2026-02-08 16:34:27,535 - INFO - 
+2026-02-08 16:34:27,535 - INFO - # Entity Types:
+2026-02-08 16:34:27,535 - INFO - # - art: Creative works that have a name, including music, books, films, paintings, etc.
+2026-02-08 16:34:27,535 - INFO - # - building: Named constructions or structures, for example, museums, stadiums, or hotels.
+2026-02-08 16:34:27,535 - INFO - # - event: Specific named occurrences like festivals, wars, historical events, or sports competitions.
+2026-02-08 16:34:27,535 - INFO - # - location: Geographical places including countries, cities, regions, landmarks, or continents.
+2026-02-08 16:34:27,535 - INFO - # - organization: Named groups, companies, institutions, or organizations.
+2026-02-08 16:34:27,535 - INFO - # - other: Named entities that do not fall into the specific categories listed above.
+2026-02-08 16:34:27,535 - INFO - # - person: Specific individuals, covering celebrities, historical figures, common people, and fictional char
+2026-02-08 16:34:27,535 - INFO - ----------------------------------------
+2026-02-08 16:34:27,535 - INFO - Processing 10 test samples...
+2026-02-08 16:34:27,820 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:28,094 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:28,363 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:28,630 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:28,895 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:29,163 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:29,462 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:29,736 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:30,003 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:30,284 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:30,515 - INFO - Progress: 10/10 | P: 0.0000 | R: 0.0000 | Micro-F1: 0.0000 | Macro-F1: 0.0000
+2026-02-08 16:34:30,516 - INFO - ============================================================
+2026-02-08 16:34:30,516 - INFO - Final Results
+2026-02-08 16:34:30,516 - INFO - ============================================================
+2026-02-08 16:34:30,516 - INFO - Precision:  0.0000
+2026-02-08 16:34:30,517 - INFO - Recall:     0.0000
+2026-02-08 16:34:30,517 - INFO - Micro F1:   0.0000
+2026-02-08 16:34:30,517 - INFO - Macro F1:   0.0000
+2026-02-08 16:34:30,517 - INFO - ----------------------------------------
+2026-02-08 16:34:30,517 - INFO - Per-Type F1 Scores:
+2026-02-08 16:34:30,517 - INFO -   building                       F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:34:30,517 - INFO -   event                          F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:34:30,517 - INFO -   location                       F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:34:30,517 - INFO -   organization                   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:34:30,517 - INFO -   other                          F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:34:30,517 - INFO -   person                         F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:34:30,517 - INFO -   product                        F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:34:30,517 - INFO - ----------------------------------------
+2026-02-08 16:34:30,517 - INFO - Results saved to: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/CODEIE-results/coarse_pl_default_mistral_20260208_163427.json
+2026-02-08 16:34:30,517 - INFO - ============================================================
+2026-02-08 16:34:30,517 - INFO - Updated experiment matrix: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/CODEIE-results/experiment_matrix.csv
+2026-02-08 16:34:30,521 - INFO - 
+[5/28] Starting: mistral_base_coarse_pl_backtrans_ch
+2026-02-08 16:34:30,521 - INFO - 
+============================================================
+2026-02-08 16:34:30,522 - INFO - Running: mistral_base_coarse_pl_backtrans_ch
+2026-02-08 16:34:30,522 - INFO -   Model: mistral
+2026-02-08 16:34:30,522 - INFO -   Granularity: coarse
+2026-02-08 16:34:30,522 - INFO -   Style: pl
+2026-02-08 16:34:30,522 - INFO -   Variation: backtrans_ch
+2026-02-08 16:34:30,522 - INFO -   Prompt: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/coarse_pl_1shot/backtrans_ch.txt
+2026-02-08 16:34:30,522 - INFO - ============================================================
+2026-02-08 16:34:30,522 - INFO - ============================================================
+2026-02-08 16:34:30,522 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-08 16:34:30,522 - INFO - ============================================================
+2026-02-08 16:34:30,522 - INFO - Granularity: coarse
+2026-02-08 16:34:30,522 - INFO - Style: pl
+2026-02-08 16:34:30,522 - INFO - Variation: backtrans_ch
+2026-02-08 16:34:30,522 - INFO - Model: mistral
+2026-02-08 16:34:30,522 - INFO - ============================================================
+2026-02-08 16:34:30,522 - INFO - Using ChatOllama (Chat API) for mistral
+2026-02-08 16:34:30,596 - WARNING - Variation 'backtrans_ch' not found, using 'default' instead
+2026-02-08 16:34:30,596 - INFO - Available PL variations: ['default']
+2026-02-08 16:34:30,596 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+2026-02-08 16:34:30,596 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments/few-nerd_test
+2026-02-08 16:34:30,603 - INFO - Loading pre-generated prompt from: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/coarse_pl_1shot/backtrans_ch.txt
+2026-02-08 16:34:30,603 - INFO - ICL prompt length: 3469 characters
+2026-02-08 16:34:30,603 - INFO - Sample ICL prompt (first 1000 chars):
+2026-02-08 16:34:30,603 - INFO - ----------------------------------------
+2026-02-08 16:34:30,603 - INFO - # Task: Complete the Python code by adding entity_list.append() statements.
+2026-02-08 16:34:30,603 - INFO - # Do not explain the code; simply output the entity_list.append() line.
+2026-02-08 16:34:30,603 - INFO - 
+2026-02-08 16:34:30,603 - INFO - # You are a professional Named Entity Recognition (NER) system, focusing on extracting entities from text.
+2026-02-08 16:34:30,603 - INFO - # For each input_text, identify the named entities and add them using entity_list.append().
+2026-02-08 16:34:30,603 - INFO - 
+2026-02-08 16:34:30,603 - INFO - # Entity types:
+2026-02-08 16:34:30,603 - INFO - # - art: Includes movies, books, music, paintings, or other creative works.
+2026-02-08 16:34:30,603 - INFO - # - building: Named buildings or structures, such as stadiums, museums, or hotels.
+2026-02-08 16:34:30,603 - INFO - # - event: Named events, such as wars, sports events, festivals, or historical events.
+2026-02-08 16:34:30,603 - INFO - # - location: Geographical locations such as cities, countries, continents, regions, or landmarks.
+2026-02-08 16:34:30,603 - INFO - # - organization: Named organizations, institutions, companies, or groups.
+2026-02-08 16:34:30,603 - INFO - # - other: Other named entities not belonging to the above categories.
+2026-02-08 16:34:30,603 - INFO - # - person: Named individuals, including fictional characters, historical figures, celebrities, and ordinary people.
+2026-02-08 16:34:30,603 - INFO - # - product: Named commerci
+2026-02-08 16:34:30,603 - INFO - ----------------------------------------
+2026-02-08 16:34:30,603 - INFO - Processing 10 test samples...
+2026-02-08 16:34:30,897 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:31,580 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:32,473 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:33,190 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:33,479 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:33,983 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:34,282 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:34,553 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:36,531 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:36,822 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:38,071 - INFO - Progress: 10/10 | P: 0.3636 | R: 0.2759 | Micro-F1: 0.3137 | Macro-F1: 0.3159
+2026-02-08 16:34:38,074 - INFO - ============================================================
+2026-02-08 16:34:38,074 - INFO - Final Results
+2026-02-08 16:34:38,074 - INFO - ============================================================
+2026-02-08 16:34:38,074 - INFO - Precision:  0.3636
+2026-02-08 16:34:38,074 - INFO - Recall:     0.2759
+2026-02-08 16:34:38,074 - INFO - Micro F1:   0.3137
+2026-02-08 16:34:38,074 - INFO - Macro F1:   0.3159
+2026-02-08 16:34:38,074 - INFO - ----------------------------------------
+2026-02-08 16:34:38,074 - INFO - Per-Type F1 Scores:
+2026-02-08 16:34:38,074 - INFO -   building                       F1: 0.6667 (P: 1.0000, R: 0.5000)
+2026-02-08 16:34:38,074 - INFO -   event                          F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:34:38,074 - INFO -   location                       F1: 0.5000 (P: 0.6667, R: 0.4000)
+2026-02-08 16:34:38,074 - INFO -   organization                   F1: 0.2667 (P: 0.4000, R: 0.2000)
+2026-02-08 16:34:38,074 - INFO -   other                          F1: 0.3333 (P: 0.2000, R: 1.0000)
+2026-02-08 16:34:38,074 - INFO -   person                         F1: 0.4444 (P: 0.4000, R: 0.5000)
+2026-02-08 16:34:38,075 - INFO -   product                        F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:34:38,075 - INFO - ----------------------------------------
+2026-02-08 16:34:38,075 - INFO - Results saved to: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/CODEIE-results/coarse_pl_default_mistral_20260208_163430.json
+2026-02-08 16:34:38,075 - INFO - ============================================================
+2026-02-08 16:34:38,075 - INFO - Updated experiment matrix: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/CODEIE-results/experiment_matrix.csv
+2026-02-08 16:34:38,078 - INFO - 
+[6/28] Starting: mistral_base_coarse_pl_backtrans_sp
+2026-02-08 16:34:38,078 - INFO - 
+============================================================
+2026-02-08 16:34:38,078 - INFO - Running: mistral_base_coarse_pl_backtrans_sp
+2026-02-08 16:34:38,078 - INFO -   Model: mistral
+2026-02-08 16:34:38,078 - INFO -   Granularity: coarse
+2026-02-08 16:34:38,078 - INFO -   Style: pl
+2026-02-08 16:34:38,078 - INFO -   Variation: backtrans_sp
+2026-02-08 16:34:38,078 - INFO -   Prompt: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/coarse_pl_1shot/backtrans_sp.txt
+2026-02-08 16:34:38,079 - INFO - ============================================================
+2026-02-08 16:34:38,079 - INFO - ============================================================
+2026-02-08 16:34:38,079 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-08 16:34:38,079 - INFO - ============================================================
+2026-02-08 16:34:38,079 - INFO - Granularity: coarse
+2026-02-08 16:34:38,079 - INFO - Style: pl
+2026-02-08 16:34:38,079 - INFO - Variation: backtrans_sp
+2026-02-08 16:34:38,079 - INFO - Model: mistral
+2026-02-08 16:34:38,079 - INFO - ============================================================
+2026-02-08 16:34:38,079 - INFO - Using ChatOllama (Chat API) for mistral
+2026-02-08 16:34:38,141 - WARNING - Variation 'backtrans_sp' not found, using 'default' instead
+2026-02-08 16:34:38,141 - INFO - Available PL variations: ['default']
+2026-02-08 16:34:38,141 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+2026-02-08 16:34:38,141 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments/few-nerd_test
+2026-02-08 16:34:38,145 - INFO - Loading pre-generated prompt from: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/coarse_pl_1shot/backtrans_sp.txt
+2026-02-08 16:34:38,146 - INFO - ICL prompt length: 3531 characters
+2026-02-08 16:34:38,146 - INFO - Sample ICL prompt (first 1000 chars):
+2026-02-08 16:34:38,146 - INFO - ----------------------------------------
+2026-02-08 16:34:38,146 - INFO - # TASK: Complete the Python code by adding entity_list.append() statements.
+2026-02-08 16:34:38,146 - INFO - # DO NOT explain the code. Only output the entity_list.append() lines.
+2026-02-08 16:34:38,146 - INFO - 
+2026-02-08 16:34:38,146 - INFO - # You are an expert Named Entity Recognition (NER) system specialized in extracting entities from text.
+2026-02-08 16:34:38,146 - INFO - # For each input_text, identify named entities and add them using entity_list.append().
+2026-02-08 16:34:38,146 - INFO - 
+2026-02-08 16:34:38,146 - INFO - # Entity types:
+2026-02-08 16:34:38,146 - INFO - # - art: An artwork that includes films, books, music, paintings, or other creative works.
+2026-02-08 16:34:38,146 - INFO - # - building: A named structure or building such as a stadium, museum, or hotel.
+2026-02-08 16:34:38,146 - INFO - # - event: A named event, such as a war, sporting event, festival, or historical occurrence.
+2026-02-08 16:34:38,146 - INFO - # - location: A geographic place such as a city, country, continent, region, or monument.
+2026-02-08 16:34:38,146 - INFO - # - organization: A named organization, institution, company, or group.
+2026-02-08 16:34:38,146 - INFO - # - other: Other named entities that do not fit the above categories.
+2026-02-08 16:34:38,146 - INFO - # - person: A named individual, including fictional characters, historical figures, celebrities, and ordinary people.
+2026-02-08 16:34:38,146 - INFO - # - product: A named commerc
+2026-02-08 16:34:38,146 - INFO - ----------------------------------------
+2026-02-08 16:34:38,146 - INFO - Processing 10 test samples...
+2026-02-08 16:34:38,435 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:38,715 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:38,973 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:39,247 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:39,756 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:40,018 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:40,498 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:40,776 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:41,051 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:41,328 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:41,539 - INFO - Progress: 10/10 | P: 0.2500 | R: 0.0345 | Micro-F1: 0.0606 | Macro-F1: 0.0476
+2026-02-08 16:34:41,541 - INFO - ============================================================
+2026-02-08 16:34:41,541 - INFO - Final Results
+2026-02-08 16:34:41,541 - INFO - ============================================================
+2026-02-08 16:34:41,541 - INFO - Precision:  0.2500
+2026-02-08 16:34:41,542 - INFO - Recall:     0.0345
+2026-02-08 16:34:41,542 - INFO - Micro F1:   0.0606
+2026-02-08 16:34:41,542 - INFO - Macro F1:   0.0476
+2026-02-08 16:34:41,542 - INFO - ----------------------------------------
+2026-02-08 16:34:41,542 - INFO - Per-Type F1 Scores:
+2026-02-08 16:34:41,542 - INFO -   building                       F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:34:41,542 - INFO -   event                          F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:34:41,542 - INFO -   location                       F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:34:41,542 - INFO -   organization                   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:34:41,542 - INFO -   other                          F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:34:41,542 - INFO -   person                         F1: 0.3333 (P: 0.5000, R: 0.2500)
+2026-02-08 16:34:41,542 - INFO -   product                        F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:34:41,542 - INFO - ----------------------------------------
+2026-02-08 16:34:41,542 - INFO - Results saved to: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/CODEIE-results/coarse_pl_default_mistral_20260208_163438.json
+2026-02-08 16:34:41,542 - INFO - ============================================================
+2026-02-08 16:34:41,542 - INFO - Updated experiment matrix: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/CODEIE-results/experiment_matrix.csv
+2026-02-08 16:34:41,545 - INFO - 
+[7/28] Starting: mistral_base_coarse_pl_backtrans_tu
+2026-02-08 16:34:41,545 - INFO - 
+============================================================
+2026-02-08 16:34:41,545 - INFO - Running: mistral_base_coarse_pl_backtrans_tu
+2026-02-08 16:34:41,545 - INFO -   Model: mistral
+2026-02-08 16:34:41,546 - INFO -   Granularity: coarse
+2026-02-08 16:34:41,546 - INFO -   Style: pl
+2026-02-08 16:34:41,546 - INFO -   Variation: backtrans_tu
+2026-02-08 16:34:41,546 - INFO -   Prompt: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/coarse_pl_1shot/backtrans_tu.txt
+2026-02-08 16:34:41,546 - INFO - ============================================================
+2026-02-08 16:34:41,546 - INFO - ============================================================
+2026-02-08 16:34:41,546 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-08 16:34:41,546 - INFO - ============================================================
+2026-02-08 16:34:41,546 - INFO - Granularity: coarse
+2026-02-08 16:34:41,546 - INFO - Style: pl
+2026-02-08 16:34:41,546 - INFO - Variation: backtrans_tu
+2026-02-08 16:34:41,546 - INFO - Model: mistral
+2026-02-08 16:34:41,546 - INFO - ============================================================
+2026-02-08 16:34:41,546 - INFO - Using ChatOllama (Chat API) for mistral
+2026-02-08 16:34:41,611 - WARNING - Variation 'backtrans_tu' not found, using 'default' instead
+2026-02-08 16:34:41,611 - INFO - Available PL variations: ['default']
+2026-02-08 16:34:41,611 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+2026-02-08 16:34:41,611 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments/few-nerd_test
+2026-02-08 16:34:41,617 - INFO - Loading pre-generated prompt from: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/coarse_pl_1shot/backtrans_tu.txt
+2026-02-08 16:34:41,617 - INFO - ICL prompt length: 3431 characters
+2026-02-08 16:34:41,617 - INFO - Sample ICL prompt (first 1000 chars):
+2026-02-08 16:34:41,617 - INFO - ----------------------------------------
+2026-02-08 16:34:41,617 - INFO - # TASK: Complete the Python code by adding entity_list.append() lines.
+2026-02-08 16:34:41,617 - INFO - # Do not explain the code. Only output the entity_list.append() lines.
+2026-02-08 16:34:41,617 - INFO - # You are an expert Named Entity Recognition (NER) system for extracting entities from text.
+2026-02-08 16:34:41,617 - INFO - # For each input_text, identify the named entities and add them using entity_list.append().
+2026-02-08 16:34:41,617 - INFO - 
+2026-02-08 16:34:41,617 - INFO - # Entity Types:
+2026-02-08 16:34:41,617 - INFO - # - art: A work of art, such as films, books, music, paintings, or other creative works.
+2026-02-08 16:34:41,617 - INFO - # - building: A named structure or building, such as a stadium, museum, or hotel.
+2026-02-08 16:34:41,617 - INFO - # - event: A named event, such as a war, sports event, festival, or historical occurrence.
+2026-02-08 16:34:41,618 - INFO - # - location: A geographic location such as a city, country, continent, region, or landmark.
+2026-02-08 16:34:41,618 - INFO - # - organization: A named organization, institution, company, or group.
+2026-02-08 16:34:41,618 - INFO - # - other: Other named entities that do not fit the above categories.
+2026-02-08 16:34:41,618 - INFO - # - person: A named individual, including fictional characters, historical figures, celebrities, and ordinary people.
+2026-02-08 16:34:41,618 - INFO - # - product: A named commercial product, 
+2026-02-08 16:34:41,618 - INFO - ----------------------------------------
+2026-02-08 16:34:41,618 - INFO - Processing 10 test samples...
+2026-02-08 16:34:41,883 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:41,964 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:42,848 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:43,123 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:43,604 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:44,102 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:44,573 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:44,860 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:45,130 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:45,395 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:45,623 - INFO - Progress: 10/10 | P: 0.3636 | R: 0.1379 | Micro-F1: 0.2000 | Macro-F1: 0.1926
+2026-02-08 16:34:45,625 - INFO - ============================================================
+2026-02-08 16:34:45,625 - INFO - Final Results
+2026-02-08 16:34:45,625 - INFO - ============================================================
+2026-02-08 16:34:45,625 - INFO - Precision:  0.3636
+2026-02-08 16:34:45,625 - INFO - Recall:     0.1379
+2026-02-08 16:34:45,625 - INFO - Micro F1:   0.2000
+2026-02-08 16:34:45,625 - INFO - Macro F1:   0.1926
+2026-02-08 16:34:45,625 - INFO - ----------------------------------------
+2026-02-08 16:34:45,625 - INFO - Per-Type F1 Scores:
+2026-02-08 16:34:45,625 - INFO -   building                       F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:34:45,625 - INFO -   event                          F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:34:45,625 - INFO -   location                       F1: 0.3333 (P: 1.0000, R: 0.2000)
+2026-02-08 16:34:45,625 - INFO -   organization                   F1: 0.1818 (P: 1.0000, R: 0.1000)
+2026-02-08 16:34:45,626 - INFO -   other                          F1: 0.5000 (P: 0.3333, R: 1.0000)
+2026-02-08 16:34:45,626 - INFO -   person                         F1: 0.3333 (P: 0.5000, R: 0.2500)
+2026-02-08 16:34:45,626 - INFO -   product                        F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:34:45,626 - INFO - ----------------------------------------
+2026-02-08 16:34:45,626 - INFO - Results saved to: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/CODEIE-results/coarse_pl_default_mistral_20260208_163441.json
+2026-02-08 16:34:45,626 - INFO - ============================================================
+2026-02-08 16:34:45,626 - INFO - Updated experiment matrix: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/CODEIE-results/experiment_matrix.csv
+2026-02-08 16:34:45,629 - INFO - 
+[8/28] Starting: mistral_base_coarse_nl_base
+2026-02-08 16:34:45,629 - INFO - 
+============================================================
+2026-02-08 16:34:45,629 - INFO - Running: mistral_base_coarse_nl_base
+2026-02-08 16:34:45,629 - INFO -   Model: mistral
+2026-02-08 16:34:45,629 - INFO -   Granularity: coarse
+2026-02-08 16:34:45,629 - INFO -   Style: nl
+2026-02-08 16:34:45,629 - INFO -   Variation: base
+2026-02-08 16:34:45,629 - INFO -   Prompt: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/base/coarse_nl_1shot.txt
+2026-02-08 16:34:45,630 - INFO - ============================================================
+2026-02-08 16:34:45,630 - INFO - ============================================================
+2026-02-08 16:34:45,630 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-08 16:34:45,630 - INFO - ============================================================
+2026-02-08 16:34:45,630 - INFO - Granularity: coarse
+2026-02-08 16:34:45,630 - INFO - Style: nl
+2026-02-08 16:34:45,630 - INFO - Variation: v0_original
+2026-02-08 16:34:45,630 - INFO - Model: mistral
+2026-02-08 16:34:45,630 - INFO - ============================================================
+2026-02-08 16:34:45,630 - INFO - Using ChatOllama (Chat API) for mistral
+2026-02-08 16:34:45,676 - WARNING - Variation 'v0_original' not found, using 'default' instead
+2026-02-08 16:34:45,676 - INFO - Available NL variations: ['default']
+2026-02-08 16:34:45,676 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+2026-02-08 16:34:45,676 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments/few-nerd_test
+2026-02-08 16:34:45,682 - INFO - Loading pre-generated prompt from: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/base/coarse_nl_1shot.txt
+2026-02-08 16:34:45,682 - INFO - ICL prompt length: 2268 characters
+2026-02-08 16:34:45,682 - INFO - Sample ICL prompt (first 1000 chars):
+2026-02-08 16:34:45,682 - INFO - ----------------------------------------
+2026-02-08 16:34:45,682 - INFO - You are an expert Named Entity Recognition (NER) system specializing in extracting entities from text.
+2026-02-08 16:34:45,682 - INFO - 
+2026-02-08 16:34:45,682 - INFO - Annotation Guidelines:
+2026-02-08 16:34:45,682 - INFO - Extract named entities based on the following categories:
+2026-02-08 16:34:45,682 - INFO - 
+2026-02-08 16:34:45,682 - INFO - * art: A named work of art including films, books, music, paintings, or other creative works.
+2026-02-08 16:34:45,682 - INFO - * building: A named structure or building, such as a stadium, museum, or hotel.
+2026-02-08 16:34:45,682 - INFO - * event: A named event such as a war, sports event, festival, or historical occurrence.
+2026-02-08 16:34:45,682 - INFO - * location: A geographical location such as a city, country, continent, region, or landmark.
+2026-02-08 16:34:45,682 - INFO - * organization: A named organization, institution, company, or group.
+2026-02-08 16:34:45,682 - INFO - * other: Other named entities that don't fit into the above categories.
+2026-02-08 16:34:45,682 - INFO - * person: A named individual, including fictional characters, historical figures, celebrities, and common people.
+2026-02-08 16:34:45,682 - INFO - * product: A named commercial product, software, vehicle model, or branded item.
+2026-02-08 16:34:45,682 - INFO - 
+2026-02-08 16:34:45,682 - INFO - The text is "The album was released on March 25 , 2008 . It was the first album of new material that the group had releas
+2026-02-08 16:34:45,682 - INFO - ----------------------------------------
+2026-02-08 16:34:45,683 - INFO - Processing 10 test samples...
+2026-02-08 16:34:45,872 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:46,163 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:46,414 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:46,781 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:46,920 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:47,133 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:47,319 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:47,874 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:48,381 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:49,037 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:49,549 - INFO - Progress: 10/10 | P: 0.1000 | R: 0.1034 | Micro-F1: 0.1017 | Macro-F1: 0.1952
+2026-02-08 16:34:49,551 - INFO - ============================================================
+2026-02-08 16:34:49,551 - INFO - Final Results
+2026-02-08 16:34:49,551 - INFO - ============================================================
+2026-02-08 16:34:49,551 - INFO - Precision:  0.1000
+2026-02-08 16:34:49,551 - INFO - Recall:     0.1034
+2026-02-08 16:34:49,551 - INFO - Micro F1:   0.1017
+2026-02-08 16:34:49,551 - INFO - Macro F1:   0.1952
+2026-02-08 16:34:49,551 - INFO - ----------------------------------------
+2026-02-08 16:34:49,551 - INFO - Per-Type F1 Scores:
+2026-02-08 16:34:49,551 - INFO -   building                       F1: 0.5000 (P: 0.5000, R: 0.5000)
+2026-02-08 16:34:49,551 - INFO -   event                          F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:34:49,552 - INFO -   location                       F1: 0.2000 (P: 0.2000, R: 0.2000)
+2026-02-08 16:34:49,552 - INFO -   organization                   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:34:49,552 - INFO -   other                          F1: 0.6667 (P: 0.5000, R: 1.0000)
+2026-02-08 16:34:49,552 - INFO -   person                         F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:34:49,552 - INFO -   product                        F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:34:49,552 - INFO - ----------------------------------------
+2026-02-08 16:34:49,552 - INFO - Results saved to: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/CODEIE-results/coarse_nl_default_mistral_20260208_163445.json
+2026-02-08 16:34:49,552 - INFO - ============================================================
+2026-02-08 16:34:49,552 - INFO - Updated experiment matrix: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/CODEIE-results/experiment_matrix.csv
+2026-02-08 16:34:49,555 - INFO - 
+[9/28] Starting: mistral_base_coarse_nl_lexical_substitution
+2026-02-08 16:34:49,557 - INFO - 
+============================================================
+2026-02-08 16:34:49,557 - INFO - Running: mistral_base_coarse_nl_lexical_substitution
+2026-02-08 16:34:49,557 - INFO -   Model: mistral
+2026-02-08 16:34:49,557 - INFO -   Granularity: coarse
+2026-02-08 16:34:49,557 - INFO -   Style: nl
+2026-02-08 16:34:49,557 - INFO -   Variation: lexical_substitution
+2026-02-08 16:34:49,557 - INFO -   Prompt: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/coarse_nl_1shot/lexical_substitution.txt
+2026-02-08 16:34:49,557 - INFO - ============================================================
+2026-02-08 16:34:49,557 - INFO - ============================================================
+2026-02-08 16:34:49,557 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-08 16:34:49,557 - INFO - ============================================================
+2026-02-08 16:34:49,557 - INFO - Granularity: coarse
+2026-02-08 16:34:49,557 - INFO - Style: nl
+2026-02-08 16:34:49,557 - INFO - Variation: lexical_substitution
+2026-02-08 16:34:49,557 - INFO - Model: mistral
+2026-02-08 16:34:49,557 - INFO - ============================================================
+2026-02-08 16:34:49,558 - INFO - Using ChatOllama (Chat API) for mistral
+2026-02-08 16:34:49,621 - WARNING - Variation 'lexical_substitution' not found, using 'default' instead
+2026-02-08 16:34:49,621 - INFO - Available NL variations: ['default']
+2026-02-08 16:34:49,621 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+2026-02-08 16:34:49,621 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments/few-nerd_test
+2026-02-08 16:34:49,627 - INFO - Loading pre-generated prompt from: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/coarse_nl_1shot/lexical_substitution.txt
+2026-02-08 16:34:49,627 - INFO - ICL prompt length: 2312 characters
+2026-02-08 16:34:49,627 - INFO - Sample ICL prompt (first 1000 chars):
+2026-02-08 16:34:49,627 - INFO - ----------------------------------------
+2026-02-08 16:34:49,627 - INFO - You are a skilled Named Entity Recognition (NER) tool focused on mining entities from text.
+2026-02-08 16:34:49,627 - INFO - 
+2026-02-08 16:34:49,627 - INFO - Annotation Rules:
+2026-02-08 16:34:49,627 - INFO - Identify named entities according to the classifications below:
+2026-02-08 16:34:49,627 - INFO - 
+2026-02-08 16:34:49,627 - INFO - * art: A titled creative piece such as movies, literature, songs, artwork, or other artistic productions.
+2026-02-08 16:34:49,627 - INFO - * building: A specific edifice or construction, like a stadium, gallery, or inn.
+2026-02-08 16:34:49,627 - INFO - * event: A specific occasion like a conflict, athletic competition, gala, or historic incident.
+2026-02-08 16:34:49,627 - INFO - * location: A geographic place like a town, nation, landmass, area, or point of interest.
+2026-02-08 16:34:49,627 - INFO - * organization: A specific association, institute, enterprise, or team.
+2026-02-08 16:34:49,627 - INFO - * other: Miscellaneous named entities that do not belong to the listed groups.
+2026-02-08 16:34:49,627 - INFO - * person: A specific human, covering made-up figures, figures from history, stars, and ordinary individuals.
+2026-02-08 16:34:49,627 - INFO - * product: A specific merchandise, computer program, car make, or trademarked good.
+2026-02-08 16:34:49,627 - INFO - 
+2026-02-08 16:34:49,627 - INFO - The text is "The record came out on March 25 , 2008 . It was the initial collection of fresh tracks the ba
+2026-02-08 16:34:49,627 - INFO - ----------------------------------------
+2026-02-08 16:34:49,627 - INFO - Processing 10 test samples...
+2026-02-08 16:34:49,816 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:50,102 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:50,605 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:51,015 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:51,154 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:51,301 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:51,502 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:52,215 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:52,723 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:53,431 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:54,106 - INFO - Progress: 10/10 | P: 0.1579 | R: 0.2069 | Micro-F1: 0.1791 | Macro-F1: 0.2438
+2026-02-08 16:34:54,109 - INFO - ============================================================
+2026-02-08 16:34:54,109 - INFO - Final Results
+2026-02-08 16:34:54,109 - INFO - ============================================================
+2026-02-08 16:34:54,109 - INFO - Precision:  0.1579
+2026-02-08 16:34:54,109 - INFO - Recall:     0.2069
+2026-02-08 16:34:54,109 - INFO - Micro F1:   0.1791
+2026-02-08 16:34:54,109 - INFO - Macro F1:   0.2438
+2026-02-08 16:34:54,109 - INFO - ----------------------------------------
+2026-02-08 16:34:54,109 - INFO - Per-Type F1 Scores:
+2026-02-08 16:34:54,109 - INFO -   building                       F1: 0.3333 (P: 0.2500, R: 0.5000)
+2026-02-08 16:34:54,109 - INFO -   event                          F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:34:54,109 - INFO -   location                       F1: 0.4000 (P: 0.4000, R: 0.4000)
+2026-02-08 16:34:54,110 - INFO -   organization                   F1: 0.1250 (P: 0.1667, R: 0.1000)
+2026-02-08 16:34:54,110 - INFO -   other                          F1: 0.6667 (P: 0.5000, R: 1.0000)
+2026-02-08 16:34:54,110 - INFO -   person                         F1: 0.1818 (P: 0.1429, R: 0.2500)
+2026-02-08 16:34:54,110 - INFO -   product                        F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:34:54,110 - INFO - ----------------------------------------
+2026-02-08 16:34:54,110 - INFO - Results saved to: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/CODEIE-results/coarse_nl_default_mistral_20260208_163449.json
+2026-02-08 16:34:54,110 - INFO - ============================================================
+2026-02-08 16:34:54,110 - INFO - Updated experiment matrix: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/CODEIE-results/experiment_matrix.csv
+2026-02-08 16:34:54,113 - INFO - 
+[10/28] Starting: mistral_base_coarse_nl_reodering
+2026-02-08 16:34:54,113 - INFO - 
+============================================================
+2026-02-08 16:34:54,113 - INFO - Running: mistral_base_coarse_nl_reodering
+2026-02-08 16:34:54,113 - INFO -   Model: mistral
+2026-02-08 16:34:54,113 - INFO -   Granularity: coarse
+2026-02-08 16:34:54,113 - INFO -   Style: nl
+2026-02-08 16:34:54,113 - INFO -   Variation: reodering
+2026-02-08 16:34:54,114 - INFO -   Prompt: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/coarse_nl_1shot/reodering.txt
+2026-02-08 16:34:54,114 - INFO - ============================================================
+2026-02-08 16:34:54,114 - INFO - ============================================================
+2026-02-08 16:34:54,114 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-08 16:34:54,114 - INFO - ============================================================
+2026-02-08 16:34:54,114 - INFO - Granularity: coarse
+2026-02-08 16:34:54,114 - INFO - Style: nl
+2026-02-08 16:34:54,114 - INFO - Variation: reodering
+2026-02-08 16:34:54,114 - INFO - Model: mistral
+2026-02-08 16:34:54,114 - INFO - ============================================================
+2026-02-08 16:34:54,114 - INFO - Using ChatOllama (Chat API) for mistral
+2026-02-08 16:34:54,178 - WARNING - Variation 'reodering' not found, using 'default' instead
+2026-02-08 16:34:54,178 - INFO - Available NL variations: ['default']
+2026-02-08 16:34:54,178 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+2026-02-08 16:34:54,178 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments/few-nerd_test
+2026-02-08 16:34:54,183 - INFO - Loading pre-generated prompt from: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/coarse_nl_1shot/reodering.txt
+2026-02-08 16:34:54,183 - INFO - ICL prompt length: 2271 characters
+2026-02-08 16:34:54,183 - INFO - Sample ICL prompt (first 1000 chars):
+2026-02-08 16:34:54,183 - INFO - ----------------------------------------
+2026-02-08 16:34:54,183 - INFO - Extract named entities based on the categories listed below. You are an expert Named Entity Recognition (NER) system specializing in extracting entities from text.
+2026-02-08 16:34:54,183 - INFO - 
+2026-02-08 16:34:54,183 - INFO - Annotation Guidelines:
+2026-02-08 16:34:54,183 - INFO - 
+2026-02-08 16:34:54,183 - INFO - * person: A named individual, including fictional characters, historical figures, celebrities, and common people.
+2026-02-08 16:34:54,183 - INFO - * organization: A named organization, institution, company, or group.
+2026-02-08 16:34:54,183 - INFO - * location: A geographical location such as a city, country, continent, region, or landmark.
+2026-02-08 16:34:54,183 - INFO - * event: A named event such as a war, sports event, festival, or historical occurrence.
+2026-02-08 16:34:54,183 - INFO - * product: A named commercial product, software, vehicle model, or branded item.
+2026-02-08 16:34:54,183 - INFO - * building: A named structure or building, such as a stadium, museum, or hotel.
+2026-02-08 16:34:54,183 - INFO - * art: A named work of art including films, books, music, paintings, or other creative works.
+2026-02-08 16:34:54,183 - INFO - * other: Other named entities that don't fit into the above categories.
+2026-02-08 16:34:54,183 - INFO - 
+2026-02-08 16:34:54,183 - INFO - The text is "Liddy was nominally in charge of the operation , but has since insisted that he was duped by his subordin
+2026-02-08 16:34:54,183 - INFO - ----------------------------------------
+2026-02-08 16:34:54,183 - INFO - Processing 10 test samples...
+2026-02-08 16:34:54,370 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:54,656 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:54,777 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:55,067 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:55,198 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:55,456 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:55,609 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:56,034 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:56,491 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:56,654 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:57,014 - INFO - Progress: 10/10 | P: 0.3333 | R: 0.1724 | Micro-F1: 0.2273 | Macro-F1: 0.2075
+2026-02-08 16:34:57,016 - INFO - ============================================================
+2026-02-08 16:34:57,016 - INFO - Final Results
+2026-02-08 16:34:57,016 - INFO - ============================================================
+2026-02-08 16:34:57,016 - INFO - Precision:  0.3333
+2026-02-08 16:34:57,016 - INFO - Recall:     0.1724
+2026-02-08 16:34:57,016 - INFO - Micro F1:   0.2273
+2026-02-08 16:34:57,016 - INFO - Macro F1:   0.2075
+2026-02-08 16:34:57,016 - INFO - ----------------------------------------
+2026-02-08 16:34:57,016 - INFO - Per-Type F1 Scores:
+2026-02-08 16:34:57,016 - INFO -   building                       F1: 0.5000 (P: 0.5000, R: 0.5000)
+2026-02-08 16:34:57,017 - INFO -   event                          F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:34:57,017 - INFO -   location                       F1: 0.5000 (P: 0.6667, R: 0.4000)
+2026-02-08 16:34:57,017 - INFO -   organization                   F1: 0.1667 (P: 0.5000, R: 0.1000)
+2026-02-08 16:34:57,017 - INFO -   other                          F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:34:57,017 - INFO -   person                         F1: 0.2857 (P: 0.3333, R: 0.2500)
+2026-02-08 16:34:57,017 - INFO -   product                        F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:34:57,017 - INFO - ----------------------------------------
+2026-02-08 16:34:57,017 - INFO - Results saved to: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/CODEIE-results/coarse_nl_default_mistral_20260208_163454.json
+2026-02-08 16:34:57,017 - INFO - ============================================================
+2026-02-08 16:34:57,017 - INFO - Updated experiment matrix: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/CODEIE-results/experiment_matrix.csv
+2026-02-08 16:34:57,020 - INFO - 
+[11/28] Starting: mistral_base_coarse_nl_sentence_reordering
+2026-02-08 16:34:57,021 - INFO - 
+============================================================
+2026-02-08 16:34:57,021 - INFO - Running: mistral_base_coarse_nl_sentence_reordering
+2026-02-08 16:34:57,021 - INFO -   Model: mistral
+2026-02-08 16:34:57,021 - INFO -   Granularity: coarse
+2026-02-08 16:34:57,021 - INFO -   Style: nl
+2026-02-08 16:34:57,021 - INFO -   Variation: sentence_reordering
+2026-02-08 16:34:57,021 - INFO -   Prompt: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/coarse_nl_1shot/sentence_reordering.txt
+2026-02-08 16:34:57,021 - INFO - ============================================================
+2026-02-08 16:34:57,021 - INFO - ============================================================
+2026-02-08 16:34:57,021 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-08 16:34:57,021 - INFO - ============================================================
+2026-02-08 16:34:57,021 - INFO - Granularity: coarse
+2026-02-08 16:34:57,021 - INFO - Style: nl
+2026-02-08 16:34:57,021 - INFO - Variation: sentence_reordering
+2026-02-08 16:34:57,021 - INFO - Model: mistral
+2026-02-08 16:34:57,021 - INFO - ============================================================
+2026-02-08 16:34:57,021 - INFO - Using ChatOllama (Chat API) for mistral
+2026-02-08 16:34:57,084 - WARNING - Variation 'sentence_reordering' not found, using 'default' instead
+2026-02-08 16:34:57,084 - INFO - Available NL variations: ['default']
+2026-02-08 16:34:57,084 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+2026-02-08 16:34:57,084 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments/few-nerd_test
+2026-02-08 16:34:57,088 - INFO - Loading pre-generated prompt from: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/coarse_nl_1shot/sentence_reordering.txt
+2026-02-08 16:34:57,088 - INFO - ICL prompt length: 2368 characters
+2026-02-08 16:34:57,088 - INFO - Sample ICL prompt (first 1000 chars):
+2026-02-08 16:34:57,088 - INFO - ----------------------------------------
+2026-02-08 16:34:57,088 - INFO - Your task is to act as an expert Named Entity Recognition (NER) system capable of identifying entities within text.
+2026-02-08 16:34:57,088 - INFO - 
+2026-02-08 16:34:57,088 - INFO - Annotation Guidelines:
+2026-02-08 16:34:57,088 - INFO - Identify and classify named entities according to the definitions below:
+2026-02-08 16:34:57,088 - INFO - 
+2026-02-08 16:34:57,088 - INFO - * art: Creative works that have a name, including music, books, films, paintings, etc.
+2026-02-08 16:34:57,088 - INFO - * building: Named constructions or structures, for example, museums, stadiums, or hotels.
+2026-02-08 16:34:57,088 - INFO - * event: Specific named occurrences like festivals, wars, historical events, or sports competitions.
+2026-02-08 16:34:57,088 - INFO - * location: Geographical places including countries, cities, regions, landmarks, or continents.
+2026-02-08 16:34:57,088 - INFO - * organization: Named groups, companies, institutions, or organizations.
+2026-02-08 16:34:57,088 - INFO - * other: Named entities that do not fall into the specific categories listed above.
+2026-02-08 16:34:57,088 - INFO - * person: Specific individuals, covering celebrities, historical figures, common people, and fictional characters.
+2026-02-08 16:34:57,088 - INFO - * product: Commercial items with names, such as software, vehicles, or branded goods.
+2026-02-08 16:34:57,088 - INFO - 
+2026-02-08 16:34:57,088 - INFO - The text is "On March 25, 2008, the group released th
+2026-02-08 16:34:57,088 - INFO - ----------------------------------------
+2026-02-08 16:34:57,088 - INFO - Processing 10 test samples...
+2026-02-08 16:34:57,278 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:57,568 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:57,818 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:58,466 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:58,594 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:58,855 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:59,056 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:34:59,703 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:35:00,230 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:35:00,742 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:35:01,186 - INFO - Progress: 10/10 | P: 0.1351 | R: 0.1724 | Micro-F1: 0.1515 | Macro-F1: 0.2234
+2026-02-08 16:35:01,188 - INFO - ============================================================
+2026-02-08 16:35:01,188 - INFO - Final Results
+2026-02-08 16:35:01,188 - INFO - ============================================================
+2026-02-08 16:35:01,188 - INFO - Precision:  0.1351
+2026-02-08 16:35:01,188 - INFO - Recall:     0.1724
+2026-02-08 16:35:01,188 - INFO - Micro F1:   0.1515
+2026-02-08 16:35:01,188 - INFO - Macro F1:   0.2234
+2026-02-08 16:35:01,188 - INFO - ----------------------------------------
+2026-02-08 16:35:01,188 - INFO - Per-Type F1 Scores:
+2026-02-08 16:35:01,188 - INFO -   building                       F1: 0.4000 (P: 0.3333, R: 0.5000)
+2026-02-08 16:35:01,188 - INFO -   event                          F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:35:01,188 - INFO -   location                       F1: 0.1818 (P: 0.1667, R: 0.2000)
+2026-02-08 16:35:01,188 - INFO -   organization                   F1: 0.1333 (P: 0.2000, R: 0.1000)
+2026-02-08 16:35:01,188 - INFO -   other                          F1: 0.6667 (P: 0.5000, R: 1.0000)
+2026-02-08 16:35:01,188 - INFO -   person                         F1: 0.1818 (P: 0.1429, R: 0.2500)
+2026-02-08 16:35:01,188 - INFO -   product                        F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:35:01,189 - INFO - ----------------------------------------
+2026-02-08 16:35:01,189 - INFO - Results saved to: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/CODEIE-results/coarse_nl_default_mistral_20260208_163457.json
+2026-02-08 16:35:01,189 - INFO - ============================================================
+2026-02-08 16:35:01,189 - INFO - Updated experiment matrix: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/CODEIE-results/experiment_matrix.csv
+2026-02-08 16:35:01,192 - INFO - 
+[12/28] Starting: mistral_base_coarse_nl_backtrans_ch
+2026-02-08 16:35:01,192 - INFO - 
+============================================================
+2026-02-08 16:35:01,193 - INFO - Running: mistral_base_coarse_nl_backtrans_ch
+2026-02-08 16:35:01,193 - INFO -   Model: mistral
+2026-02-08 16:35:01,193 - INFO -   Granularity: coarse
+2026-02-08 16:35:01,193 - INFO -   Style: nl
+2026-02-08 16:35:01,193 - INFO -   Variation: backtrans_ch
+2026-02-08 16:35:01,193 - INFO -   Prompt: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/coarse_nl_1shot/backtrans_ch.txt
+2026-02-08 16:35:01,193 - INFO - ============================================================
+2026-02-08 16:35:01,193 - INFO - ============================================================
+2026-02-08 16:35:01,193 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-08 16:35:01,193 - INFO - ============================================================
+2026-02-08 16:35:01,193 - INFO - Granularity: coarse
+2026-02-08 16:35:01,193 - INFO - Style: nl
+2026-02-08 16:35:01,193 - INFO - Variation: backtrans_ch
+2026-02-08 16:35:01,193 - INFO - Model: mistral
+2026-02-08 16:35:01,193 - INFO - ============================================================
+2026-02-08 16:35:01,193 - INFO - Using ChatOllama (Chat API) for mistral
+2026-02-08 16:35:01,256 - WARNING - Variation 'backtrans_ch' not found, using 'default' instead
+2026-02-08 16:35:01,257 - INFO - Available NL variations: ['default']
+2026-02-08 16:35:01,257 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+2026-02-08 16:35:01,257 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments/few-nerd_test
+2026-02-08 16:35:01,262 - INFO - Loading pre-generated prompt from: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/coarse_nl_1shot/backtrans_ch.txt
+2026-02-08 16:35:01,262 - INFO - ICL prompt length: 2094 characters
+2026-02-08 16:35:01,262 - INFO - Sample ICL prompt (first 1000 chars):
+2026-02-08 16:35:01,262 - INFO - ----------------------------------------
+2026-02-08 16:35:01,263 - INFO - You are a named entity recognition (NER) expert system specialized in extracting entities from text.
+2026-02-08 16:35:01,263 - INFO - 
+2026-02-08 16:35:01,263 - INFO - **Annotation guidelines:**  
+2026-02-08 16:35:01,263 - INFO - - **art**: a named work of art, including movies, books, music, paintings, or other creative works.  
+2026-02-08 16:35:01,263 - INFO - - **building**: a named structure or building, such as a stadium, museum, or hotel.  
+2026-02-08 16:35:01,263 - INFO - - **event**: a named event, such as a war, sports event, festival, or historical event.  
+2026-02-08 16:35:01,263 - INFO - - **location**: a geographic location, such as a city, country, continent, region, or landmark.  
+2026-02-08 16:35:01,263 - INFO - - **organization**: a named organization, institution, company, or group.  
+2026-02-08 16:35:01,263 - INFO - - **other**: other named entities not falling into the above categories.  
+2026-02-08 16:35:01,263 - INFO - - **person**: a named individual, including fictional characters, historical figures, celebrities, and ordinary people.  
+2026-02-08 16:35:01,263 - INFO - - **product**: a named commercial product, software, vehicle model, or branded item.
+2026-02-08 16:35:01,263 - INFO - 
+2026-02-08 16:35:01,263 - INFO - **Extract named entities according to the following categories:**
+2026-02-08 16:35:01,263 - INFO - 
+2026-02-08 16:35:01,263 - INFO - Text is `"This album was released on March 25, 2008. It is the grou
+2026-02-08 16:35:01,263 - INFO - ----------------------------------------
+2026-02-08 16:35:01,263 - INFO - Processing 10 test samples...
+2026-02-08 16:35:01,451 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:35:01,685 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:35:01,925 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:35:02,330 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:35:02,456 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:35:02,734 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:35:02,938 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:35:03,121 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:35:03,629 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:35:03,791 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:35:04,088 - INFO - Progress: 10/10 | P: 0.1250 | R: 0.0690 | Micro-F1: 0.0889 | Macro-F1: 0.0577
+2026-02-08 16:35:04,090 - INFO - ============================================================
+2026-02-08 16:35:04,090 - INFO - Final Results
+2026-02-08 16:35:04,090 - INFO - ============================================================
+2026-02-08 16:35:04,090 - INFO - Precision:  0.1250
+2026-02-08 16:35:04,090 - INFO - Recall:     0.0690
+2026-02-08 16:35:04,090 - INFO - Micro F1:   0.0889
+2026-02-08 16:35:04,090 - INFO - Macro F1:   0.0577
+2026-02-08 16:35:04,090 - INFO - ----------------------------------------
+2026-02-08 16:35:04,091 - INFO - Per-Type F1 Scores:
+2026-02-08 16:35:04,091 - INFO -   building                       F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:35:04,091 - INFO -   event                          F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:35:04,091 - INFO -   location                       F1: 0.2500 (P: 0.3333, R: 0.2000)
+2026-02-08 16:35:04,091 - INFO -   organization                   F1: 0.1538 (P: 0.3333, R: 0.1000)
+2026-02-08 16:35:04,091 - INFO -   other                          F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:35:04,091 - INFO -   person                         F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:35:04,091 - INFO -   product                        F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:35:04,091 - INFO - ----------------------------------------
+2026-02-08 16:35:04,091 - INFO - Results saved to: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/CODEIE-results/coarse_nl_default_mistral_20260208_163501.json
+2026-02-08 16:35:04,091 - INFO - ============================================================
+2026-02-08 16:35:04,091 - INFO - Updated experiment matrix: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/CODEIE-results/experiment_matrix.csv
+2026-02-08 16:35:04,093 - INFO - 
+[13/28] Starting: mistral_base_coarse_nl_backtrans_sp
+2026-02-08 16:35:04,094 - INFO - 
+============================================================
+2026-02-08 16:35:04,094 - INFO - Running: mistral_base_coarse_nl_backtrans_sp
+2026-02-08 16:35:04,094 - INFO -   Model: mistral
+2026-02-08 16:35:04,094 - INFO -   Granularity: coarse
+2026-02-08 16:35:04,094 - INFO -   Style: nl
+2026-02-08 16:35:04,094 - INFO -   Variation: backtrans_sp
+2026-02-08 16:35:04,094 - INFO -   Prompt: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/coarse_nl_1shot/backtrans_sp.txt
+2026-02-08 16:35:04,094 - INFO - ============================================================
+2026-02-08 16:35:04,094 - INFO - ============================================================
+2026-02-08 16:35:04,094 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-08 16:35:04,094 - INFO - ============================================================
+2026-02-08 16:35:04,094 - INFO - Granularity: coarse
+2026-02-08 16:35:04,094 - INFO - Style: nl
+2026-02-08 16:35:04,094 - INFO - Variation: backtrans_sp
+2026-02-08 16:35:04,095 - INFO - Model: mistral
+2026-02-08 16:35:04,095 - INFO - ============================================================
+2026-02-08 16:35:04,095 - INFO - Using ChatOllama (Chat API) for mistral
+2026-02-08 16:35:04,158 - WARNING - Variation 'backtrans_sp' not found, using 'default' instead
+2026-02-08 16:35:04,158 - INFO - Available NL variations: ['default']
+2026-02-08 16:35:04,158 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+2026-02-08 16:35:04,158 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments/few-nerd_test
+2026-02-08 16:35:04,163 - INFO - Loading pre-generated prompt from: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/coarse_nl_1shot/backtrans_sp.txt
+2026-02-08 16:35:04,164 - INFO - ICL prompt length: 2096 characters
+2026-02-08 16:35:04,164 - INFO - Sample ICL prompt (first 1000 chars):
+2026-02-08 16:35:04,164 - INFO - ----------------------------------------
+2026-02-08 16:35:04,164 - INFO - # Annotation guidelines:
+2026-02-08 16:35:04,164 - INFO - # Extract named entities based on the following categories:
+2026-02-08 16:35:04,164 - INFO - #
+2026-02-08 16:35:04,164 - INFO - # art: A named work of art including films, books, music, paintings, or other creative works.
+2026-02-08 16:35:04,164 - INFO - # building: A named structure or building, such as a stadium, museum, or hotel.
+2026-02-08 16:35:04,164 - INFO - # event: A named event such as a war, sports event, festival, or historical occurrence.
+2026-02-08 16:35:04,164 - INFO - # location: A geographical location such as a city, country, continent, region, or landmark.
+2026-02-08 16:35:04,164 - INFO - # organization: A named organization, institution, company, or group.
+2026-02-08 16:35:04,164 - INFO - # other: Other named entities that don't fit into the above categories.
+2026-02-08 16:35:04,164 - INFO - # person: A named individual, including fictional characters, historical figures, celebrities, and common people.
+2026-02-08 16:35:04,164 - INFO - # product: A named commercial product, software, vehicle model, or branded item.
+2026-02-08 16:35:04,164 - INFO - 
+2026-02-08 16:35:04,164 - INFO - Text: "The album was released on March 25, 2008. It was the first new‑material album the group had released since **Good Content** in 1992."
+2026-02-08 16:35:04,164 - INFO - Named entities in the text: (art: Good Content)
+2026-02-08 16:35:04,164 - INFO - 
+2026-02-08 16:35:04,164 - INFO - Text: "In 1136, the castle was
+2026-02-08 16:35:04,164 - INFO - ----------------------------------------
+2026-02-08 16:35:04,164 - INFO - Processing 10 test samples...
+2026-02-08 16:35:04,355 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:35:04,617 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:35:04,820 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:35:05,217 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:35:05,405 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:35:05,650 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:35:05,843 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:35:06,246 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:35:06,850 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:35:06,980 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:35:07,250 - INFO - Progress: 10/10 | P: 0.2222 | R: 0.1379 | Micro-F1: 0.1702 | Macro-F1: 0.1114
+2026-02-08 16:35:07,253 - INFO - ============================================================
+2026-02-08 16:35:07,253 - INFO - Final Results
+2026-02-08 16:35:07,253 - INFO - ============================================================
+2026-02-08 16:35:07,253 - INFO - Precision:  0.2222
+2026-02-08 16:35:07,253 - INFO - Recall:     0.1379
+2026-02-08 16:35:07,253 - INFO - Micro F1:   0.1702
+2026-02-08 16:35:07,253 - INFO - Macro F1:   0.1114
+2026-02-08 16:35:07,253 - INFO - ----------------------------------------
+2026-02-08 16:35:07,253 - INFO - Per-Type F1 Scores:
+2026-02-08 16:35:07,253 - INFO -   building                       F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:35:07,253 - INFO -   event                          F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:35:07,253 - INFO -   location                       F1: 0.2222 (P: 0.2500, R: 0.2000)
+2026-02-08 16:35:07,254 - INFO -   organization                   F1: 0.3077 (P: 0.6667, R: 0.2000)
+2026-02-08 16:35:07,254 - INFO -   other                          F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:35:07,254 - INFO -   person                         F1: 0.2500 (P: 0.2500, R: 0.2500)
+2026-02-08 16:35:07,254 - INFO -   product                        F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:35:07,254 - INFO - ----------------------------------------
+2026-02-08 16:35:07,254 - INFO - Results saved to: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/CODEIE-results/coarse_nl_default_mistral_20260208_163504.json
+2026-02-08 16:35:07,254 - INFO - ============================================================
+2026-02-08 16:35:07,254 - INFO - Updated experiment matrix: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/CODEIE-results/experiment_matrix.csv
+2026-02-08 16:35:07,257 - INFO - 
+[14/28] Starting: mistral_base_coarse_nl_backtrans_tu
+2026-02-08 16:35:07,257 - INFO - 
+============================================================
+2026-02-08 16:35:07,257 - INFO - Running: mistral_base_coarse_nl_backtrans_tu
+2026-02-08 16:35:07,257 - INFO -   Model: mistral
+2026-02-08 16:35:07,257 - INFO -   Granularity: coarse
+2026-02-08 16:35:07,257 - INFO -   Style: nl
+2026-02-08 16:35:07,257 - INFO -   Variation: backtrans_tu
+2026-02-08 16:35:07,257 - INFO -   Prompt: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/coarse_nl_1shot/backtrans_tu.txt
+2026-02-08 16:35:07,257 - INFO - ============================================================
+2026-02-08 16:35:07,258 - INFO - ============================================================
+2026-02-08 16:35:07,258 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-08 16:35:07,258 - INFO - ============================================================
+2026-02-08 16:35:07,258 - INFO - Granularity: coarse
+2026-02-08 16:35:07,258 - INFO - Style: nl
+2026-02-08 16:35:07,258 - INFO - Variation: backtrans_tu
+2026-02-08 16:35:07,258 - INFO - Model: mistral
+2026-02-08 16:35:07,258 - INFO - ============================================================
+2026-02-08 16:35:07,258 - INFO - Using ChatOllama (Chat API) for mistral
+2026-02-08 16:35:07,320 - WARNING - Variation 'backtrans_tu' not found, using 'default' instead
+2026-02-08 16:35:07,320 - INFO - Available NL variations: ['default']
+2026-02-08 16:35:07,320 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+2026-02-08 16:35:07,320 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments/few-nerd_test
+2026-02-08 16:35:07,326 - INFO - Loading pre-generated prompt from: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/coarse_nl_1shot/backtrans_tu.txt
+2026-02-08 16:35:07,326 - INFO - ICL prompt length: 2344 characters
+2026-02-08 16:35:07,326 - INFO - Sample ICL prompt (first 1000 chars):
+2026-02-08 16:35:07,326 - INFO - ----------------------------------------
+2026-02-08 16:35:07,326 - INFO - # You are a Named Entity Recognition (NER) system specialized in extracting entities from text.
+2026-02-08 16:35:07,326 - INFO - 
+2026-02-08 16:35:07,326 - INFO - # Description Guidelines:
+2026-02-08 16:35:07,326 - INFO - # Extract named entities according to the following categories:
+2026-02-08 16:35:07,326 - INFO - 
+2026-02-08 16:35:07,326 - INFO - # * art: A named artistic work such as a film, book, music, painting, or other creative piece.
+2026-02-08 16:35:07,326 - INFO - # * building: A named structure or building such as a stadium, museum, or hotel.
+2026-02-08 16:35:07,326 - INFO - # * event: A named event such as a war, sports event, festival, or historical event.
+2026-02-08 16:35:07,326 - INFO - # * location: A geographic location such as a city, country, continent, region, or monument.
+2026-02-08 16:35:07,326 - INFO - # * organization: A named organization, institution, company, or group.
+2026-02-08 16:35:07,326 - INFO - # * other: Named entities that do not fit the categories above.
+2026-02-08 16:35:07,326 - INFO - # * person: A named individual such as fictional characters, historical figures, celebrities, or ordinary people.
+2026-02-08 16:35:07,326 - INFO - # * product: A named commercial product, software, vehicle model, or branded item.
+2026-02-08 16:35:07,326 - INFO - 
+2026-02-08 16:35:07,326 - INFO - # The text is as follows: The album was released on March 25, 2008. The group had released its first album with new material
+2026-02-08 16:35:07,326 - INFO - ----------------------------------------
+2026-02-08 16:35:07,326 - INFO - Processing 10 test samples...
+2026-02-08 16:35:07,533 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:35:07,832 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:35:08,035 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:35:08,199 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:35:08,385 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:35:08,639 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:35:08,909 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:35:09,087 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:35:09,596 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:35:09,730 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:35:10,064 - INFO - Progress: 10/10 | P: 0.2857 | R: 0.2069 | Micro-F1: 0.2400 | Macro-F1: 0.2302
+2026-02-08 16:35:10,065 - INFO - ============================================================
+2026-02-08 16:35:10,065 - INFO - Final Results
+2026-02-08 16:35:10,065 - INFO - ============================================================
+2026-02-08 16:35:10,066 - INFO - Precision:  0.2857
+2026-02-08 16:35:10,066 - INFO - Recall:     0.2069
+2026-02-08 16:35:10,066 - INFO - Micro F1:   0.2400
+2026-02-08 16:35:10,066 - INFO - Macro F1:   0.2302
+2026-02-08 16:35:10,066 - INFO - ----------------------------------------
+2026-02-08 16:35:10,066 - INFO - Per-Type F1 Scores:
+2026-02-08 16:35:10,066 - INFO -   building                       F1: 0.6667 (P: 1.0000, R: 0.5000)
+2026-02-08 16:35:10,066 - INFO -   event                          F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:35:10,066 - INFO -   location                       F1: 0.4444 (P: 0.5000, R: 0.4000)
+2026-02-08 16:35:10,066 - INFO -   organization                   F1: 0.2500 (P: 0.3333, R: 0.2000)
+2026-02-08 16:35:10,066 - INFO -   other                          F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:35:10,066 - INFO -   person                         F1: 0.2500 (P: 0.2500, R: 0.2500)
+2026-02-08 16:35:10,066 - INFO -   product                        F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:35:10,066 - INFO - ----------------------------------------
+2026-02-08 16:35:10,066 - INFO - Results saved to: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/CODEIE-results/coarse_nl_default_mistral_20260208_163507.json
+2026-02-08 16:35:10,066 - INFO - ============================================================
+2026-02-08 16:35:10,066 - INFO - Updated experiment matrix: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/CODEIE-results/experiment_matrix.csv
+2026-02-08 16:35:10,070 - INFO - 
+[15/28] Starting: mistral_base_fine_pl_base
+2026-02-08 16:35:10,071 - INFO - 
+============================================================
+2026-02-08 16:35:10,071 - INFO - Running: mistral_base_fine_pl_base
+2026-02-08 16:35:10,072 - INFO -   Model: mistral
+2026-02-08 16:35:10,072 - INFO -   Granularity: fine
+2026-02-08 16:35:10,072 - INFO -   Style: pl
+2026-02-08 16:35:10,072 - INFO -   Variation: base
+2026-02-08 16:35:10,072 - INFO -   Prompt: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/base/fine_pl_1shot.txt
+2026-02-08 16:35:10,072 - INFO - ============================================================
+2026-02-08 16:35:10,072 - INFO - ============================================================
+2026-02-08 16:35:10,072 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-08 16:35:10,072 - INFO - ============================================================
+2026-02-08 16:35:10,072 - INFO - Granularity: fine
+2026-02-08 16:35:10,072 - INFO - Style: pl
+2026-02-08 16:35:10,072 - INFO - Variation: v0_original
+2026-02-08 16:35:10,072 - INFO - Model: mistral
+2026-02-08 16:35:10,072 - INFO - ============================================================
+2026-02-08 16:35:10,072 - INFO - Using ChatOllama (Chat API) for mistral
+2026-02-08 16:35:10,131 - WARNING - Variation 'v0_original' not found, using 'default' instead
+2026-02-08 16:35:10,131 - INFO - Available PL variations: ['default']
+2026-02-08 16:35:10,131 - INFO - Entity types (2): ['person-actor', 'dummy']
+2026-02-08 16:35:10,131 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments/few-nerd_test
+2026-02-08 16:35:10,137 - INFO - Loading pre-generated prompt from: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/base/fine_pl_1shot.txt
+2026-02-08 16:35:10,137 - INFO - ICL prompt length: 20930 characters
+2026-02-08 16:35:10,137 - INFO - Sample ICL prompt (first 1000 chars):
+2026-02-08 16:35:10,137 - INFO - ----------------------------------------
+2026-02-08 16:35:10,137 - INFO - # TASK: Complete the Python code by adding entity_list.append() statements.
+2026-02-08 16:35:10,137 - INFO - # DO NOT explain the code. Just output the entity_list.append() lines.
+2026-02-08 16:35:10,137 - INFO - 
+2026-02-08 16:35:10,137 - INFO - # You are an expert Named Entity Recognition (NER) system specializing in extracting entities from text.
+2026-02-08 16:35:10,137 - INFO - # For each input_text, identify named entities and add them using entity_list.append().
+2026-02-08 16:35:10,137 - INFO - 
+2026-02-08 16:35:10,137 - INFO - # Entity Types (Fine-grained):
+2026-02-08 16:35:10,137 - INFO - # - art-broadcastprogram, art-film, art-music, art-other, art-painting, art-writtenart
+2026-02-08 16:35:10,137 - INFO - # - building-airport, building-hospital, building-hotel, building-library, building-other, building-restaurant, building-sportsfacility, building-theater
+2026-02-08 16:35:10,137 - INFO - # - event-attack/battle/war/militaryconflict, event-disaster, event-election, event-other, event-protest, event-sportsevent
+2026-02-08 16:35:10,137 - INFO - # - location-GPE, location-bodiesofwater, location-island, location-mountain, location-other, location-park, location-road/railway/highway/transit
+2026-02-08 16:35:10,137 - INFO - # - organization-company, organization-education, organization-government/governmentagency, organization-media/news
+2026-02-08 16:35:10,137 - INFO - ----------------------------------------
+2026-02-08 16:35:10,137 - INFO - Processing 10 test samples...
+2026-02-08 16:35:11,253 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:35:14,486 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:35:17,590 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:35:20,507 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:35:22,367 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:35:26,351 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:35:29,434 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:35:34,460 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:35:36,990 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:35:40,086 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:35:41,102 - INFO - Progress: 10/10 | P: 0.0000 | R: 0.0000 | Micro-F1: 0.0000 | Macro-F1: 0.0000
+2026-02-08 16:35:41,105 - INFO - ============================================================
+2026-02-08 16:35:41,105 - INFO - Final Results
+2026-02-08 16:35:41,105 - INFO - ============================================================
+2026-02-08 16:35:41,105 - INFO - Precision:  0.0000
+2026-02-08 16:35:41,105 - INFO - Recall:     0.0000
+2026-02-08 16:35:41,105 - INFO - Micro F1:   0.0000
+2026-02-08 16:35:41,105 - INFO - Macro F1:   0.0000
+2026-02-08 16:35:41,105 - INFO - ----------------------------------------
+2026-02-08 16:35:41,105 - INFO - Per-Type F1 Scores:
+2026-02-08 16:35:41,105 - INFO -   building-hotel                 F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:35:41,105 - INFO -   building-other                 F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:35:41,105 - INFO -   event-attack/battle/war/militaryconflict F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:35:41,105 - INFO -   event-protest                  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:35:41,105 - INFO -   event-sportsevent              F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:35:41,105 - INFO -   location-GPE                   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:35:41,106 - INFO -   location-park                  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:35:41,106 - INFO -   organization-media/newspaper   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:35:41,106 - INFO -   organization-other             F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:35:41,106 - INFO -   organization-showorganization  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:35:41,106 - INFO -   other-livingthing              F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:35:41,106 - INFO -   person-artist/author           F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:35:41,106 - INFO -   person-other                   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:35:41,106 - INFO -   person-soldier                 F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:35:41,106 - INFO -   product-car                    F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:35:41,106 - INFO -   product-other                  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:35:41,106 - INFO - ----------------------------------------
+2026-02-08 16:35:41,106 - INFO - Results saved to: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/CODEIE-results/fine_pl_default_mistral_20260208_163510.json
+2026-02-08 16:35:41,106 - INFO - ============================================================
+2026-02-08 16:35:41,106 - INFO - Updated experiment matrix: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/CODEIE-results/experiment_matrix.csv
+2026-02-08 16:35:41,110 - INFO - 
+[16/28] Starting: mistral_base_fine_pl_lexical_substitution
+2026-02-08 16:35:41,110 - INFO - 
+============================================================
+2026-02-08 16:35:41,110 - INFO - Running: mistral_base_fine_pl_lexical_substitution
+2026-02-08 16:35:41,110 - INFO -   Model: mistral
+2026-02-08 16:35:41,110 - INFO -   Granularity: fine
+2026-02-08 16:35:41,110 - INFO -   Style: pl
+2026-02-08 16:35:41,110 - INFO -   Variation: lexical_substitution
+2026-02-08 16:35:41,110 - INFO -   Prompt: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/fine_pl_1shot/lexical_substitution.txt
+2026-02-08 16:35:41,110 - INFO - ============================================================
+2026-02-08 16:35:41,110 - INFO - ============================================================
+2026-02-08 16:35:41,110 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-08 16:35:41,110 - INFO - ============================================================
+2026-02-08 16:35:41,110 - INFO - Granularity: fine
+2026-02-08 16:35:41,110 - INFO - Style: pl
+2026-02-08 16:35:41,110 - INFO - Variation: lexical_substitution
+2026-02-08 16:35:41,110 - INFO - Model: mistral
+2026-02-08 16:35:41,110 - INFO - ============================================================
+2026-02-08 16:35:41,111 - INFO - Using ChatOllama (Chat API) for mistral
+2026-02-08 16:35:41,175 - WARNING - Variation 'lexical_substitution' not found, using 'default' instead
+2026-02-08 16:35:41,175 - INFO - Available PL variations: ['default']
+2026-02-08 16:35:41,175 - INFO - Entity types (2): ['person-actor', 'dummy']
+2026-02-08 16:35:41,175 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments/few-nerd_test
+2026-02-08 16:35:41,181 - INFO - Loading pre-generated prompt from: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/fine_pl_1shot/lexical_substitution.txt
+2026-02-08 16:35:41,181 - INFO - ICL prompt length: 20720 characters
+2026-02-08 16:35:41,181 - INFO - Sample ICL prompt (first 1000 chars):
+2026-02-08 16:35:41,181 - INFO - ----------------------------------------
+2026-02-08 16:35:41,181 - INFO - # TASK: Complete the Python code by adding entity_list.append() statements.
+2026-02-08 16:35:41,181 - INFO - # DO NOT explain the code. Just output the entity_list.append() lines.
+2026-02-08 16:35:41,181 - INFO - 
+2026-02-08 16:35:41,181 - INFO - # You are an expert Named Entity Recognition (NER) system specializing in extracting entities from text.
+2026-02-08 16:35:41,181 - INFO - # For each input_text, identify named entities and add them using entity_list.append().
+2026-02-08 16:35:41,181 - INFO - 
+2026-02-08 16:35:41,181 - INFO - # Entity Types (Fine-grained):
+2026-02-08 16:35:41,181 - INFO - # - art-broadcastprogram, art-film, art-music, art-other, art-painting, art-writtenart
+2026-02-08 16:35:41,181 - INFO - # - building-airport, building-hospital, building-hotel, building-library, building-other, building-restaurant, building-sportsfacility, building-theater
+2026-02-08 16:35:41,181 - INFO - # - event-attack/battle/war/militaryconflict, event-disaster, event-election, event-other, event-protest, event-sportsevent
+2026-02-08 16:35:41,181 - INFO - # - location-GPE, location-bodiesofwater, location-island, location-mountain, location-other, location-park, location-road/railway/highway/transit
+2026-02-08 16:35:41,181 - INFO - # - organization-company, organization-education, organization-government/governmentagency, organization-media/news
+2026-02-08 16:35:41,181 - INFO - ----------------------------------------
+2026-02-08 16:35:41,181 - INFO - Processing 10 test samples...
+2026-02-08 16:35:42,344 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:35:45,152 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:35:48,004 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:35:53,259 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:35:56,907 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:36:00,529 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:36:04,634 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:36:10,993 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:36:14,028 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:36:15,890 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:36:17,244 - INFO - Progress: 10/10 | P: 0.0000 | R: 0.0000 | Micro-F1: 0.0000 | Macro-F1: 0.0000
+2026-02-08 16:36:17,246 - INFO - ============================================================
+2026-02-08 16:36:17,246 - INFO - Final Results
+2026-02-08 16:36:17,246 - INFO - ============================================================
+2026-02-08 16:36:17,246 - INFO - Precision:  0.0000
+2026-02-08 16:36:17,247 - INFO - Recall:     0.0000
+2026-02-08 16:36:17,247 - INFO - Micro F1:   0.0000
+2026-02-08 16:36:17,247 - INFO - Macro F1:   0.0000
+2026-02-08 16:36:17,247 - INFO - ----------------------------------------
+2026-02-08 16:36:17,247 - INFO - Per-Type F1 Scores:
+2026-02-08 16:36:17,247 - INFO -   building-hotel                 F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:36:17,247 - INFO -   building-other                 F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:36:17,247 - INFO -   event-attack/battle/war/militaryconflict F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:36:17,247 - INFO -   event-protest                  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:36:17,247 - INFO -   event-sportsevent              F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:36:17,247 - INFO -   location-GPE                   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:36:17,247 - INFO -   location-park                  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:36:17,247 - INFO -   organization-media/newspaper   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:36:17,247 - INFO -   organization-other             F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:36:17,247 - INFO -   organization-showorganization  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:36:17,247 - INFO -   other-livingthing              F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:36:17,247 - INFO -   person-artist/author           F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:36:17,247 - INFO -   person-other                   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:36:17,247 - INFO -   person-soldier                 F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:36:17,247 - INFO -   product-car                    F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:36:17,247 - INFO -   product-other                  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:36:17,247 - INFO - ----------------------------------------
+2026-02-08 16:36:17,248 - INFO - Results saved to: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/CODEIE-results/fine_pl_default_mistral_20260208_163541.json
+2026-02-08 16:36:17,248 - INFO - ============================================================
+2026-02-08 16:36:17,248 - INFO - Updated experiment matrix: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/CODEIE-results/experiment_matrix.csv
+2026-02-08 16:36:17,251 - INFO - 
+[17/28] Starting: mistral_base_fine_pl_reodering
+2026-02-08 16:36:17,252 - INFO - 
+============================================================
+2026-02-08 16:36:17,252 - INFO - Running: mistral_base_fine_pl_reodering
+2026-02-08 16:36:17,252 - INFO -   Model: mistral
+2026-02-08 16:36:17,252 - INFO -   Granularity: fine
+2026-02-08 16:36:17,252 - INFO -   Style: pl
+2026-02-08 16:36:17,252 - INFO -   Variation: reodering
+2026-02-08 16:36:17,252 - INFO -   Prompt: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/fine_pl_1shot/reodering.txt
+2026-02-08 16:36:17,252 - INFO - ============================================================
+2026-02-08 16:36:17,252 - INFO - ============================================================
+2026-02-08 16:36:17,252 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-08 16:36:17,252 - INFO - ============================================================
+2026-02-08 16:36:17,252 - INFO - Granularity: fine
+2026-02-08 16:36:17,252 - INFO - Style: pl
+2026-02-08 16:36:17,252 - INFO - Variation: reodering
+2026-02-08 16:36:17,252 - INFO - Model: mistral
+2026-02-08 16:36:17,252 - INFO - ============================================================
+2026-02-08 16:36:17,252 - INFO - Using ChatOllama (Chat API) for mistral
+2026-02-08 16:36:17,315 - WARNING - Variation 'reodering' not found, using 'default' instead
+2026-02-08 16:36:17,315 - INFO - Available PL variations: ['default']
+2026-02-08 16:36:17,315 - INFO - Entity types (2): ['person-actor', 'dummy']
+2026-02-08 16:36:17,315 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments/few-nerd_test
+2026-02-08 16:36:17,321 - INFO - Loading pre-generated prompt from: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/fine_pl_1shot/reodering.txt
+2026-02-08 16:36:17,322 - INFO - ICL prompt length: 21716 characters
+2026-02-08 16:36:17,322 - INFO - Sample ICL prompt (first 1000 chars):
+2026-02-08 16:36:17,322 - INFO - ----------------------------------------
+2026-02-08 16:36:17,322 - INFO - # TASK: Complete the Python code by adding entity_list.append() statements.
+2026-02-08 16:36:17,322 - INFO - # DO NOT explain the code. Just output the entity_list.append() lines.
+2026-02-08 16:36:17,322 - INFO - 
+2026-02-08 16:36:17,322 - INFO - # As a specialized Named Entity Recognition (NER) system, your task is to extract entities from text.
+2026-02-08 16:36:17,322 - INFO - # For every input_text, detect named entities and append them to the entity_list.
+2026-02-08 16:36:17,322 - INFO - 
+2026-02-08 16:36:17,322 - INFO - # Fine-grained Entity Definitions:
+2026-02-08 16:36:17,322 - INFO - # - product-weapon, product-train, product-software, product-ship, product-other, product-game, product-food, product-car, product-airplane
+2026-02-08 16:36:17,322 - INFO - # - person-soldier, person-scholar, person-politician, person-other, person-director, person-athlete, person-artist/author, person-actor
+2026-02-08 16:36:17,322 - INFO - # - other-medical, other-livingthing, other-law, other-language, other-god, other-educationaldegree, other-disease, other-currency, other-chemicalthing, other-biologything, other-award, other-astronomything
+2026-02-08 16:36:17,322 - INFO - # - organization-sportsteam, organization-sportsleague, organization-showorganization, organization-religion, organization-politicalparty, organizat
+2026-02-08 16:36:17,322 - INFO - ----------------------------------------
+2026-02-08 16:36:17,322 - INFO - Processing 10 test samples...
+2026-02-08 16:36:18,474 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:36:23,249 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:36:25,679 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:36:29,494 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:36:32,547 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:36:36,474 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:36:38,316 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:36:40,349 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:36:46,737 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:36:48,980 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:36:49,845 - INFO - Progress: 10/10 | P: 0.0000 | R: 0.0000 | Micro-F1: 0.0000 | Macro-F1: 0.0000
+2026-02-08 16:36:49,847 - INFO - ============================================================
+2026-02-08 16:36:49,848 - INFO - Final Results
+2026-02-08 16:36:49,848 - INFO - ============================================================
+2026-02-08 16:36:49,848 - INFO - Precision:  0.0000
+2026-02-08 16:36:49,848 - INFO - Recall:     0.0000
+2026-02-08 16:36:49,848 - INFO - Micro F1:   0.0000
+2026-02-08 16:36:49,848 - INFO - Macro F1:   0.0000
+2026-02-08 16:36:49,848 - INFO - ----------------------------------------
+2026-02-08 16:36:49,848 - INFO - Per-Type F1 Scores:
+2026-02-08 16:36:49,848 - INFO -   building-hotel                 F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:36:49,848 - INFO -   building-other                 F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:36:49,848 - INFO -   event-attack/battle/war/militaryconflict F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:36:49,848 - INFO -   event-protest                  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:36:49,848 - INFO -   event-sportsevent              F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:36:49,848 - INFO -   location-GPE                   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:36:49,848 - INFO -   location-park                  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:36:49,848 - INFO -   organization-media/newspaper   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:36:49,848 - INFO -   organization-other             F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:36:49,848 - INFO -   organization-showorganization  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:36:49,848 - INFO -   other-livingthing              F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:36:49,848 - INFO -   person-artist/author           F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:36:49,848 - INFO -   person-other                   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:36:49,848 - INFO -   person-soldier                 F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:36:49,848 - INFO -   product-car                    F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:36:49,849 - INFO -   product-other                  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:36:49,849 - INFO - ----------------------------------------
+2026-02-08 16:36:49,849 - INFO - Results saved to: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/CODEIE-results/fine_pl_default_mistral_20260208_163617.json
+2026-02-08 16:36:49,849 - INFO - ============================================================
+2026-02-08 16:36:49,849 - INFO - Updated experiment matrix: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/CODEIE-results/experiment_matrix.csv
+2026-02-08 16:36:49,852 - INFO - 
+[18/28] Starting: mistral_base_fine_pl_sentence_reordering
+2026-02-08 16:36:49,853 - INFO - 
+============================================================
+2026-02-08 16:36:49,853 - INFO - Running: mistral_base_fine_pl_sentence_reordering
+2026-02-08 16:36:49,853 - INFO -   Model: mistral
+2026-02-08 16:36:49,853 - INFO -   Granularity: fine
+2026-02-08 16:36:49,853 - INFO -   Style: pl
+2026-02-08 16:36:49,853 - INFO -   Variation: sentence_reordering
+2026-02-08 16:36:49,853 - INFO -   Prompt: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/fine_pl_1shot/sentence_reordering.txt
+2026-02-08 16:36:49,853 - INFO - ============================================================
+2026-02-08 16:36:49,853 - INFO - ============================================================
+2026-02-08 16:36:49,853 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-08 16:36:49,853 - INFO - ============================================================
+2026-02-08 16:36:49,853 - INFO - Granularity: fine
+2026-02-08 16:36:49,853 - INFO - Style: pl
+2026-02-08 16:36:49,853 - INFO - Variation: sentence_reordering
+2026-02-08 16:36:49,853 - INFO - Model: mistral
+2026-02-08 16:36:49,853 - INFO - ============================================================
+2026-02-08 16:36:49,853 - INFO - Using ChatOllama (Chat API) for mistral
+2026-02-08 16:36:49,915 - WARNING - Variation 'sentence_reordering' not found, using 'default' instead
+2026-02-08 16:36:49,916 - INFO - Available PL variations: ['default']
+2026-02-08 16:36:49,916 - INFO - Entity types (2): ['person-actor', 'dummy']
+2026-02-08 16:36:49,916 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments/few-nerd_test
+2026-02-08 16:36:49,921 - INFO - Loading pre-generated prompt from: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/fine_pl_1shot/sentence_reordering.txt
+2026-02-08 16:36:49,921 - INFO - ICL prompt length: 21805 characters
+2026-02-08 16:36:49,921 - INFO - Sample ICL prompt (first 1000 chars):
+2026-02-08 16:36:49,921 - INFO - ----------------------------------------
+2026-02-08 16:36:49,921 - INFO - # ASSIGNMENT: Fill in the missing entity_list.append() lines in the Python script.
+2026-02-08 16:36:49,921 - INFO - # No code explanation needed. Simply print the required append statements.
+2026-02-08 16:36:49,921 - INFO - 
+2026-02-08 16:36:49,921 - INFO - # Acting as a specialist NER system, your goal is to pull entities from the text.
+2026-02-08 16:36:49,921 - INFO - # For every input string, detect the named entities and insert them into the list.
+2026-02-08 16:36:49,921 - INFO - 
+2026-02-08 16:36:49,921 - INFO - # Entity Definitions (Specific):
+2026-02-08 16:36:49,921 - INFO - # - art-broadcastprogram, art-film, art-music, art-other, art-painting, art-writtenart
+2026-02-08 16:36:49,921 - INFO - # - building-airport, building-hospital, building-hotel, building-library, building-other, building-restaurant, building-sportsfacility, building-theater
+2026-02-08 16:36:49,921 - INFO - # - event-attack/battle/war/militaryconflict, event-disaster, event-election, event-other, event-protest, event-sportsevent
+2026-02-08 16:36:49,921 - INFO - # - location-GPE, location-bodiesofwater, location-island, location-mountain, location-other, location-park, location-road/railway/highway/transit
+2026-02-08 16:36:49,921 - INFO - # - organization-company, organization-education, organization-government/governmentagency, organization-media/newspaper, organiza
+2026-02-08 16:36:49,921 - INFO - ----------------------------------------
+2026-02-08 16:36:49,922 - INFO - Processing 10 test samples...
+2026-02-08 16:36:51,076 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:36:54,426 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:36:59,267 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:37:03,567 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:37:07,881 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:37:10,818 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:37:13,256 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:37:16,201 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:37:19,157 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:37:21,237 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:37:22,184 - INFO - Progress: 10/10 | P: 0.0000 | R: 0.0000 | Micro-F1: 0.0000 | Macro-F1: 0.0000
+2026-02-08 16:37:22,186 - INFO - ============================================================
+2026-02-08 16:37:22,186 - INFO - Final Results
+2026-02-08 16:37:22,186 - INFO - ============================================================
+2026-02-08 16:37:22,187 - INFO - Precision:  0.0000
+2026-02-08 16:37:22,187 - INFO - Recall:     0.0000
+2026-02-08 16:37:22,187 - INFO - Micro F1:   0.0000
+2026-02-08 16:37:22,187 - INFO - Macro F1:   0.0000
+2026-02-08 16:37:22,187 - INFO - ----------------------------------------
+2026-02-08 16:37:22,187 - INFO - Per-Type F1 Scores:
+2026-02-08 16:37:22,187 - INFO -   building-hotel                 F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:37:22,187 - INFO -   building-other                 F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:37:22,187 - INFO -   event-attack/battle/war/militaryconflict F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:37:22,187 - INFO -   event-protest                  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:37:22,187 - INFO -   event-sportsevent              F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:37:22,187 - INFO -   location-GPE                   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:37:22,187 - INFO -   location-park                  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:37:22,187 - INFO -   organization-media/newspaper   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:37:22,187 - INFO -   organization-other             F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:37:22,187 - INFO -   organization-showorganization  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:37:22,187 - INFO -   other-livingthing              F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:37:22,187 - INFO -   person-artist/author           F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:37:22,187 - INFO -   person-other                   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:37:22,187 - INFO -   person-soldier                 F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:37:22,187 - INFO -   product-car                    F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:37:22,187 - INFO -   product-other                  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:37:22,187 - INFO - ----------------------------------------
+2026-02-08 16:37:22,188 - INFO - Results saved to: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/CODEIE-results/fine_pl_default_mistral_20260208_163649.json
+2026-02-08 16:37:22,188 - INFO - ============================================================
+2026-02-08 16:37:22,188 - INFO - Updated experiment matrix: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/CODEIE-results/experiment_matrix.csv
+2026-02-08 16:37:22,190 - INFO - 
+[19/28] Starting: mistral_base_fine_pl_backtrans_ch
+2026-02-08 16:37:22,191 - INFO - 
+============================================================
+2026-02-08 16:37:22,191 - INFO - Running: mistral_base_fine_pl_backtrans_ch
+2026-02-08 16:37:22,191 - INFO -   Model: mistral
+2026-02-08 16:37:22,191 - INFO -   Granularity: fine
+2026-02-08 16:37:22,191 - INFO -   Style: pl
+2026-02-08 16:37:22,191 - INFO -   Variation: backtrans_ch
+2026-02-08 16:37:22,191 - INFO -   Prompt: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/fine_pl_1shot/backtrans_ch.txt
+2026-02-08 16:37:22,191 - INFO - ============================================================
+2026-02-08 16:37:22,191 - INFO - ============================================================
+2026-02-08 16:37:22,191 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-08 16:37:22,191 - INFO - ============================================================
+2026-02-08 16:37:22,191 - INFO - Granularity: fine
+2026-02-08 16:37:22,191 - INFO - Style: pl
+2026-02-08 16:37:22,191 - INFO - Variation: backtrans_ch
+2026-02-08 16:37:22,191 - INFO - Model: mistral
+2026-02-08 16:37:22,191 - INFO - ============================================================
+2026-02-08 16:37:22,191 - INFO - Using ChatOllama (Chat API) for mistral
+2026-02-08 16:37:22,256 - WARNING - Variation 'backtrans_ch' not found, using 'default' instead
+2026-02-08 16:37:22,256 - INFO - Available PL variations: ['default']
+2026-02-08 16:37:22,256 - INFO - Entity types (2): ['person-actor', 'dummy']
+2026-02-08 16:37:22,256 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments/few-nerd_test
+2026-02-08 16:37:22,263 - INFO - Loading pre-generated prompt from: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/fine_pl_1shot/backtrans_ch.txt
+2026-02-08 16:37:22,263 - INFO - ICL prompt length: 21533 characters
+2026-02-08 16:37:22,263 - INFO - Sample ICL prompt (first 1000 chars):
+2026-02-08 16:37:22,263 - INFO - ----------------------------------------
+2026-02-08 16:37:22,263 - INFO - # Task: Complete the Python code by adding entity_list.append() statements. # No need to explain the code; only output the entity_list.append() statement lines. # You are a professional Named Entity Recognition (NER) system, specializing in extracting entities from text. # For each input text input_text, identify named entities and add them using entity_list.append().
+2026-02-08 16:37:22,263 - INFO - 
+2026-02-08 16:37:22,263 - INFO - # Entity Types (Fine-grained): # - Arts-Broadcast Program, Arts-Film, Arts-Music, Arts-Other, Arts-Painting, Arts-Literary Art # - Architecture-Airport, Architecture-Hospital, Architecture-Hotel, Architecture-Library, Architecture-Other, Architecture-Restaurant, Architecture-Sports Facility, Architecture-Theater
+2026-02-08 16:37:22,263 - INFO - # - Event-Attack/Campaign/War/Military Conflict, Event-Disaster, Event-Election, Event-Other, Event-Protest, Event-Sports Event # - Place-Geographic Location, Place-Body of Water, Place-Island, Place-Mountain Range, Place-Other, Place-Park, Place-Road/Railway/Highway/Transportation Hub
+2026-02-08 16:37:22,263 - INFO - # - Organization-Company, O
+2026-02-08 16:37:22,263 - INFO - ----------------------------------------
+2026-02-08 16:37:22,263 - INFO - Processing 10 test samples...
+2026-02-08 16:37:23,416 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:37:28,002 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:37:30,496 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:37:33,695 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:37:36,523 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:37:39,708 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:37:41,292 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:37:43,252 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:37:46,658 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:37:49,409 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:37:50,579 - INFO - Progress: 10/10 | P: 0.0000 | R: 0.0000 | Micro-F1: 0.0000 | Macro-F1: 0.0000
+2026-02-08 16:37:50,581 - INFO - ============================================================
+2026-02-08 16:37:50,581 - INFO - Final Results
+2026-02-08 16:37:50,581 - INFO - ============================================================
+2026-02-08 16:37:50,581 - INFO - Precision:  0.0000
+2026-02-08 16:37:50,582 - INFO - Recall:     0.0000
+2026-02-08 16:37:50,582 - INFO - Micro F1:   0.0000
+2026-02-08 16:37:50,582 - INFO - Macro F1:   0.0000
+2026-02-08 16:37:50,582 - INFO - ----------------------------------------
+2026-02-08 16:37:50,582 - INFO - Per-Type F1 Scores:
+2026-02-08 16:37:50,582 - INFO -   building-hotel                 F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:37:50,582 - INFO -   building-other                 F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:37:50,582 - INFO -   event-attack/battle/war/militaryconflict F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:37:50,582 - INFO -   event-protest                  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:37:50,582 - INFO -   event-sportsevent              F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:37:50,582 - INFO -   location-GPE                   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:37:50,582 - INFO -   location-park                  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:37:50,582 - INFO -   organization-media/newspaper   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:37:50,582 - INFO -   organization-other             F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:37:50,582 - INFO -   organization-showorganization  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:37:50,582 - INFO -   other-livingthing              F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:37:50,582 - INFO -   person-artist/author           F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:37:50,582 - INFO -   person-other                   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:37:50,582 - INFO -   person-soldier                 F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:37:50,582 - INFO -   product-car                    F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:37:50,582 - INFO -   product-other                  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 16:37:50,582 - INFO - ----------------------------------------
+2026-02-08 16:37:50,582 - INFO - Results saved to: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/CODEIE-results/fine_pl_default_mistral_20260208_163722.json
+2026-02-08 16:37:50,582 - INFO - ============================================================
+2026-02-08 16:37:50,583 - INFO - Updated experiment matrix: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/CODEIE-results/experiment_matrix.csv
+2026-02-08 16:37:50,585 - INFO - 
+[20/28] Starting: mistral_base_fine_pl_backtrans_sp
+2026-02-08 16:37:50,585 - INFO - 
+============================================================
+2026-02-08 16:37:50,586 - INFO - Running: mistral_base_fine_pl_backtrans_sp
+2026-02-08 16:37:50,586 - INFO -   Model: mistral
+2026-02-08 16:37:50,586 - INFO -   Granularity: fine
+2026-02-08 16:37:50,586 - INFO -   Style: pl
+2026-02-08 16:37:50,586 - INFO -   Variation: backtrans_sp
+2026-02-08 16:37:50,586 - INFO -   Prompt: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/fine_pl_1shot/backtrans_sp.txt
+2026-02-08 16:37:50,586 - INFO - ============================================================
+2026-02-08 16:37:50,586 - INFO - ============================================================
+2026-02-08 16:37:50,586 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-08 16:37:50,586 - INFO - ============================================================
+2026-02-08 16:37:50,586 - INFO - Granularity: fine
+2026-02-08 16:37:50,586 - INFO - Style: pl
+2026-02-08 16:37:50,586 - INFO - Variation: backtrans_sp
+2026-02-08 16:37:50,586 - INFO - Model: mistral
+2026-02-08 16:37:50,586 - INFO - ============================================================
+2026-02-08 16:37:50,586 - INFO - Using ChatOllama (Chat API) for mistral
+2026-02-08 16:37:50,650 - WARNING - Variation 'backtrans_sp' not found, using 'default' instead
+2026-02-08 16:37:50,650 - INFO - Available PL variations: ['default']
+2026-02-08 16:37:50,650 - INFO - Entity types (2): ['person-actor', 'dummy']
+2026-02-08 16:37:50,650 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments/few-nerd_test
+2026-02-08 16:37:50,655 - INFO - Loading pre-generated prompt from: /home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/fine_pl_1shot/backtrans_sp.txt
+2026-02-08 16:37:50,655 - INFO - ICL prompt length: 21044 characters
+2026-02-08 16:37:50,655 - INFO - Sample ICL prompt (first 1000 chars):
+2026-02-08 16:37:50,655 - INFO - ----------------------------------------
+2026-02-08 16:37:50,655 - INFO - # TASK: Complete the Python code by adding entity_list.append() statements. # DO NOT explain the code. Just write the entity_list.append() lines. # You are an expert system in named entity recognition (NER) specialized in extracting entities from text. # For each input_text, identify the named entities and add them using entity_list.append().
+2026-02-08 16:37:50,655 - INFO - 
+2026-02-08 16:37:50,655 - INFO - # Entity types (detailed): # - art-broadcastprogram, art-film, art-music, art-other, art-painting, art-writtenart # - building-airport, building-hospital, building-hotel, building-library, building-other, building-restaurant, building-sportsfacility, building-theater
+2026-02-08 16:37:50,655 - INFO - # - event-attack/battle/war/military conflict, event-disaster, event-elections, event-other, event-protest, event-sporting event # - location-GPE, location-body of water, location-island, location-mountain, location-other, location-park, location-road/rail/highway/transit
+2026-02-08 16:37:50,655 - INFO - # - organization-company, organization-education, organization-government/government agency, organization-media/n
+2026-02-08 16:37:50,655 - INFO - ----------------------------------------
+2026-02-08 16:37:50,655 - INFO - Processing 10 test samples...
+2026-02-08 16:37:51,811 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:37:53,707 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:37:57,936 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:38:01,111 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:38:03,898 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:38:07,218 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-08 16:38:09,432 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"

@@ -1,0 +1,485 @@
+{
+  "module": "codeie_coarse_pl_default",
+  "timestamp": "20260208_163423",
+  "config": {
+    "granularity": "coarse",
+    "max_test_samples": 10,
+    "style": "pl",
+    "variation": "default",
+    "api_base_url": null,
+    "api_key": null,
+    "model_name": "mistral",
+    "max_tokens": 512,
+    "temperature": 0.0,
+    "data_dir": "data",
+    "output_dir": "CODEIE-results",
+    "prompt_path": "/home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/coarse_pl_1shot/reodering.txt"
+  },
+  "entity_types": [
+    "art",
+    "building",
+    "event",
+    "location",
+    "organization",
+    "other",
+    "person",
+    "product"
+  ],
+  "overall_score": {
+    "entities": {
+      "precision": 0.16666666666666666,
+      "recall": 0.034482758620689655,
+      "micro_f1": 0.05714285714285715,
+      "macro_f1": 0.04081632653061225,
+      "f1-score": 0.05714285714285715,
+      "class_scores": {
+        "art": {
+          "tp": 0,
+          "total_pos": 0,
+          "total_pre": 1,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "building": {
+          "tp": 0,
+          "total_pos": 2,
+          "total_pre": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "event": {
+          "tp": 0,
+          "total_pos": 3,
+          "total_pre": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "location": {
+          "tp": 0,
+          "total_pos": 5,
+          "total_pre": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "organization": {
+          "tp": 0,
+          "total_pos": 10,
+          "total_pre": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "other": {
+          "tp": 0,
+          "total_pos": 1,
+          "total_pre": 2,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "person": {
+          "tp": 1,
+          "total_pos": 4,
+          "total_pre": 3,
+          "precision": 0.3333333333333333,
+          "recall": 0.25,
+          "f1-score": 0.28571428571428575
+        },
+        "product": {
+          "tp": 0,
+          "total_pos": 4,
+          "total_pre": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        }
+      }
+    }
+  },
+  "processed_count": 10,
+  "sentences": [
+    {
+      "index": 0,
+      "timestamp": "2026-02-08T16:34:24.254150",
+      "text": "In the early 1930s the band moved to the Grill Room of the Taft Hotel in New York ; the band was renamed `` George Hall and His Hotel Taft Orchestra `` .",
+      "gold": [
+        "building(span='Grill Room')",
+        "building(span='Taft Hotel')",
+        "location(span='New York')",
+        "organization(span='George Hall and His Hotel Taft Orchestra')"
+      ],
+      "prediction": [],
+      "generated_raw": " Here are the `entity_list.append()` statements for the provided examples:\n\n```python",
+      "elapsed_time": 0.5250177383422852,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "building": {
+              "tp": 0,
+              "total_pos": 2,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "location": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "organization": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 1,
+      "timestamp": "2026-02-08T16:34:24.518480",
+      "text": "The final season of minor league play Elkin Memorial Park saw season attendance of 16,322 , an average of 299 per contest .",
+      "gold": [
+        "location(span='Elkin Memorial Park')"
+      ],
+      "prediction": [],
+      "generated_raw": " Here are the `entity_list.append()` statements for the provided examples:\n\n```python",
+      "elapsed_time": 0.2637770175933838,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "location": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 2,
+      "timestamp": "2026-02-08T16:34:24.790593",
+      "text": "They finished the season 14\u201319 , 9\u20139 in C-USA play to finish in seventh place .",
+      "gold": [
+        "event(span='C-USA play')"
+      ],
+      "prediction": [],
+      "generated_raw": " Here are the `entity_list.append()` statements for the provided examples:\n\n```python",
+      "elapsed_time": 0.2717106342315674,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "event": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 3,
+      "timestamp": "2026-02-08T16:34:25.285424",
+      "text": "The B-52 pilot , Major Larry G. Messinger , later recalled ,",
+      "gold": [
+        "product(span='B-52')",
+        "person(span='Larry G. Messinger')"
+      ],
+      "prediction": [
+        "person(span='B-52 pilot')",
+        "person(span='Major Larry G. Messinger')"
+      ],
+      "generated_raw": " entity_list.append({\"text\": \"B-52 pilot\", \"type\": \"person\"})\nentity_list.append({\"text\": \"Major Larry G. Messinger\", \"type\": \"person\"})",
+      "elapsed_time": 0.49423837661743164,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "person": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 2,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "product": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 4,
+      "timestamp": "2026-02-08T16:34:25.550784",
+      "text": "The Austro-Hungarian Navy built and operated two classes of protected cruisers .",
+      "gold": [
+        "organization(span='Austro-Hungarian Navy')"
+      ],
+      "prediction": [],
+      "generated_raw": " Here are the `entity_list.append()` statements for the provided examples:\n\n```python",
+      "elapsed_time": 0.2647862434387207,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "organization": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 5,
+      "timestamp": "2026-02-08T16:34:26.375216",
+      "text": "Elin Hilderbrand is an American writer mostly of romance novels .",
+      "gold": [
+        "person(span='Elin Hilderbrand')",
+        "location(span='American')"
+      ],
+      "prediction": [
+        "person(span='Elin Hilderbrand')",
+        "other(span='American')",
+        "other(span='writer')",
+        "art(span='romance novels')"
+      ],
+      "generated_raw": " entity_list.append({\"text\": \"Elin Hilderbrand\", \"type\": \"person\"})\nentity_list.append({\"text\": \"American\", \"type\": \"other\"})\nentity_list.append({\"text\": \"writer\", \"type\": \"other\"})\nentity_list.append({\"text\": \"romance novels\", \"type\": \"art\"})",
+      "elapsed_time": 0.8238852024078369,
+      "score": {
+        "entities": {
+          "precision": 0.25,
+          "recall": 0.5,
+          "f1-score": 0.3333333333333333,
+          "class_scores": {
+            "art": {
+              "tp": 0,
+              "total_pos": 0,
+              "total_pre": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "location": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "other": {
+              "tp": 0,
+              "total_pos": 0,
+              "total_pre": 2,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "person": {
+              "tp": 1,
+              "total_pos": 1,
+              "total_pre": 1,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1-score": 1.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 6,
+      "timestamp": "2026-02-08T16:34:26.651287",
+      "text": "A prototype was fitted in the mid-'60s in a one-off DB5 extended 4 '' after the doors and driven by Marek personally , and a normally 6-cylinder Aston Martin DB7 was equipped with a V8 unit in 1998 .",
+      "gold": [
+        "product(span='DB5 extended 4 ''')",
+        "person(span='Marek')",
+        "product(span='Aston Martin DB7')",
+        "product(span='V8 unit')"
+      ],
+      "prediction": [],
+      "generated_raw": " Here are the `entity_list.append()` statements for the provided examples:\n\n```python",
+      "elapsed_time": 0.2753028869628906,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "person": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "product": {
+              "tp": 0,
+              "total_pos": 3,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 7,
+      "timestamp": "2026-02-08T16:34:26.923265",
+      "text": "He has caught the attention of major publications and media outlets such as CNN , The Huffington Post , Hypebeast , The Guardian , Juxtapoz Magazine , Daily Mail , NRDC , Aljazeera and Hi-Fructose Magazine .",
+      "gold": [
+        "organization(span='CNN')",
+        "organization(span='The Huffington Post')",
+        "organization(span='Hypebeast')",
+        "organization(span='The Guardian')",
+        "organization(span='Juxtapoz Magazine')",
+        "organization(span='Daily Mail , NRDC')",
+        "organization(span='Aljazeera')",
+        "organization(span='Hi-Fructose Magazine')"
+      ],
+      "prediction": [],
+      "generated_raw": " Here are the `entity_list.append()` statements for the provided examples:\n\n```python",
+      "elapsed_time": 0.271331787109375,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "organization": {
+              "tp": 0,
+              "total_pos": 8,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 8,
+      "timestamp": "2026-02-08T16:34:27.179650",
+      "text": "The Cnidaria are a group of animals found exclusively in aquatic and mostly marine environments .",
+      "gold": [
+        "other(span='Cnidaria')"
+      ],
+      "prediction": [],
+      "generated_raw": " Here are the `entity_list.append()` statements for the provided examples:\n\n```python",
+      "elapsed_time": 0.25603342056274414,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "other": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 9,
+      "timestamp": "2026-02-08T16:34:27.457776",
+      "text": "The Ninth suffered a serious defeat at the Battle of Camulodunum under Quintus Petillius Cerialis in the rebellion of Boudica ( 61 ) , when most of the foot-soldiers were killed in a disastrous attempt to relieve the besieged city of Camulodunum ( Colchester ) .",
+      "gold": [
+        "event(span='Camulodunum')",
+        "person(span='Quintus Petillius Cerialis')",
+        "event(span='Boudica')",
+        "location(span='Camulodunum')",
+        "location(span='Colchester')"
+      ],
+      "prediction": [],
+      "generated_raw": " Here are the `entity_list.append()` statements for the provided examples:\n\n```python",
+      "elapsed_time": 0.2776470184326172,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "event": {
+              "tp": 0,
+              "total_pos": 2,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "location": {
+              "tp": 0,
+              "total_pos": 2,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "person": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    }
+  ]
+}
