@@ -44,6 +44,15 @@ prompts:
 # Model configurations
 # Add or modify models here - the orchestrator will run all listed models
 models:
+  # Mistral via Ollama (Using default 'mistral' model name as it usually works well)
+  mistral_base:
+    type: "ollama"
+    name: "mistral"
+    base_url: "http://localhost:11434"
+    temperature: 0.0
+    max_tokens: 512
+    enabled: true
+
   # Falcon 3 via Ollama
   falcon3:
     type: "ollama"
@@ -51,7 +60,7 @@ models:
     base_url: "http://localhost:11434"
     temperature: 0.0
     max_tokens: 512
-    enabled: true
+    enabled: false
 
   # Gemini via Google API
   gemini_flash:
