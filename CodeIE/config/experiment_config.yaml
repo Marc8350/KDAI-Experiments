@@ -33,9 +33,9 @@ prompts:
   # Variation types (6 per base prompt)
   variations:
     paraphrase:
-      - "paraphrase_v1"
-      - "paraphrase_v2"
-      - "paraphrase_v3"
+      - "lexical_substitution"
+      - "reodering"
+      - "sentence_reordering"
     back_translation:
       - "backtrans_ch"  # Chinese
       - "backtrans_sp"  # Spanish  
@@ -44,6 +44,15 @@ prompts:
 # Model configurations
 # Add or modify models here - the orchestrator will run all listed models
 models:
+  # Falcon 3 via Ollama
+  falcon3:
+    type: "ollama"
+    name: "falcon3:latest"
+    base_url: "http://localhost:11434"
+    temperature: 0.0
+    max_tokens: 512
+    enabled: true
+
   # Gemini via Google API
   gemini_flash:
     type: "google"
@@ -51,54 +60,11 @@ models:
     api_key_env: "GOOGLE_API_KEY"
     temperature: 0.0
     max_tokens: 512
-    enabled: true
-    
-  gemini_flash_lite:
-    type: "google"
-    name: "gemini-2.5-flash-lite"
-    api_key_env: "GOOGLE_API_KEY"
-    temperature: 0.0
-    max_tokens: 512
     enabled: false
-    
-  # Ollama models (local)
-  qwen_7b:
-    type: "ollama"
-    name: "qwen2.5:7b"
-    base_url: "http://localhost:11434"
-    temperature: 0.0
-    max_tokens: 512
-    enabled: false
-    
-  qwen_14b:
-    type: "ollama"
-    name: "qwen2.5:14b"
-    base_url: "http://localhost:11434"
-    temperature: 0.0
-    max_tokens: 512
-    enabled: false
-    
-  llama_8b:
-    type: "ollama"
-    name: "llama3.1:8b"
-    base_url: "http://localhost:11434"
-    temperature: 0.0
-    max_tokens: 512
-    enabled: false
-
-# Paraphrasing settings (for generating variations)
-paraphrase:
-  model: "gemini-2.5-flash"
-  temperature: 0.3
-  similarity_threshold: 0.9
-  languages:
-    - "Chinese"
-    - "Spanish"
-    - "Turkish"
 
 # Experiment execution settings
 execution:
-  max_samples: null  # null = all samples, or integer to limit
+  max_samples: 10    # Run only first 10 sentences
   resume: true       # Resume from last checkpoint if available
   save_interval: 10  # Save results every N samples
   
