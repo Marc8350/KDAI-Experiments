@@ -23,6 +23,12 @@ PROJECT_ROOT = Path(__file__).parent.parent.parent.parent
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
+
 from CodeIE.src.paraphrase.paraphraser import DirectParaphraser, ParaphraseConfig
 from CodeIE.src.paraphrase.back_translator import BackTranslator, BackTranslationConfig
 from CodeIE.src.paraphrase.similarity import SemanticSimilarity
@@ -93,10 +99,12 @@ def generate_variations_for_prompt(
     prompt_style: str = "code",
     entity_types: Optional[List[str]] = None,
     similarity_threshold: float = 0.9,
-    max_retries: int = 3
+    max_retries: int = 3,
+    methods: List[str] = ["paraphrase", "back_translation"],
+    languages: List[str] = ["Chinese", "Spanish", "Turkish"]
 ) -> VariationLog:
     """
-    Generate all 6 variations for a single base prompt.
+    Generate variations for a single base prompt.
     
     Args:
         base_prompt_path: Path to the base prompt file
@@ -105,6 +113,8 @@ def generate_variations_for_prompt(
         entity_types: List of valid entity types
         similarity_threshold: Minimum similarity score to accept
         max_retries: Max retries for rejected variations
+        methods: List of methods to use ("paraphrase", "back_translation")
+        languages: List of languages for back-translation
     
     Returns:
         VariationLog with all generation results
@@ -135,116 +145,118 @@ def generate_variations_for_prompt(
     
     variations: List[VariationResult] = []
     
-    # Generate 3 paraphrase variations
-    logger.info("Generating paraphrase variations...")
-    for i in range(3):
-        retry_count = 0
-        accepted = False
-        
-        while not accepted and retry_count < max_retries:
-            try:
-                paraphrased = paraphraser.paraphrase(
-                    base_prompt, 
-                    prompt_style, 
-                    entity_types
-                )
-                
-                # Check similarity
-                score = similarity_calc.compute_similarity(base_prompt, paraphrased)
-                
-                if score >= similarity_threshold:
-                    accepted = True
-                    variation = VariationResult(
-                        name=f"paraphrase_v{i+1}",
-                        method="paraphrase",
-                        language=None,
-                        similarity_score=score,
-                        accepted=True,
-                        model_used=paraphraser.config.model_name,
-                        content=paraphrased
-                    )
-                    variations.append(variation)
-                    
-                    # Save to file
-                    save_variation(output_dir, variation.name, paraphrased)
-                    logger.info(f"  paraphrase_v{i+1}: similarity={score:.4f} ✓")
-                else:
-                    retry_count += 1
-                    logger.warning(f"  paraphrase_v{i+1} attempt {retry_count}: similarity={score:.4f} < {similarity_threshold} (retrying)")
-            
-            except Exception as e:
-                retry_count += 1
-                logger.error(f"  paraphrase_v{i+1} error: {e}")
-        
-        if not accepted:
-            logger.error(f"  paraphrase_v{i+1}: Failed after {max_retries} retries")
-            # Save the last attempt anyway with accepted=False
-            variations.append(VariationResult(
-                name=f"paraphrase_v{i+1}",
-                method="paraphrase",
-                language=None,
-                similarity_score=score if 'score' in locals() else 0.0,
-                accepted=False,
-                model_used=paraphraser.config.model_name,
-                content=paraphrased if 'paraphrased' in locals() else ""
-            ))
     
-    # Generate 3 back-translation variations
-    logger.info("Generating back-translation variations...")
-    languages = ["Chinese", "Spanish", "Turkish"]
-    
-    for lang in languages:
-        retry_count = 0
-        accepted = False
-        
-        while not accepted and retry_count < max_retries:
-            try:
-                intermediate, back_translated = back_translator.back_translate(
-                    base_prompt, lang
-                )
-                
-                # Check similarity
-                score = similarity_calc.compute_similarity(base_prompt, back_translated)
-                
-                lang_code = lang.lower()[:2]  # "ch", "sp", "tu"
-                
-                if score >= similarity_threshold:
-                    accepted = True
-                    variation = VariationResult(
-                        name=f"backtrans_{lang_code}",
-                        method="back_translation",
-                        language=lang,
-                        similarity_score=score,
-                        accepted=True,
-                        model_used=back_translator.config.model_name,
-                        content=back_translated,
-                        intermediate_content=intermediate
-                    )
-                    variations.append(variation)
-                    
-                    # Save to file
-                    save_variation(output_dir, variation.name, back_translated)
-                    logger.info(f"  backtrans_{lang_code}: similarity={score:.4f} ✓")
-                else:
-                    retry_count += 1
-                    logger.warning(f"  backtrans_{lang_code} attempt {retry_count}: similarity={score:.4f} < {similarity_threshold} (retrying)")
+    # Generate paraphrase variations
+    if "paraphrase" in methods:
+        logger.info("Generating paraphrase variations...")
+        for i in range(3):
+            retry_count = 0
+            accepted = False
             
-            except Exception as e:
-                retry_count += 1
-                logger.error(f"  backtrans_{lang_code} error: {e}")
+            while not accepted and retry_count < max_retries:
+                try:
+                    paraphrased = paraphraser.paraphrase(
+                        base_prompt, 
+                        prompt_style, 
+                        entity_types
+                    )
+                    
+                    # Check similarity
+                    score = similarity_calc.compute_similarity(base_prompt, paraphrased)
+                    
+                    if score >= similarity_threshold:
+                        accepted = True
+                        variation = VariationResult(
+                            name=f"paraphrase_v{i+1}",
+                            method="paraphrase",
+                            language=None,
+                            similarity_score=score,
+                            accepted=True,
+                            model_used=paraphraser.config.model_name,
+                            content=paraphrased
+                        )
+                        variations.append(variation)
+                        
+                        # Save to file
+                        save_variation(output_dir, variation.name, paraphrased)
+                        logger.info(f"  paraphrase_v{i+1}: similarity={score:.4f} ✓")
+                    else:
+                        retry_count += 1
+                        logger.warning(f"  paraphrase_v{i+1} attempt {retry_count}: similarity={score:.4f} < {similarity_threshold} (retrying)")
+                
+                except Exception as e:
+                    retry_count += 1
+                    logger.error(f"  paraphrase_v{i+1} error: {e}")
         
-        if not accepted:
-            logger.error(f"  backtrans_{lang_code}: Failed after {max_retries} retries")
-            variations.append(VariationResult(
-                name=f"backtrans_{lang_code}",
-                method="back_translation",
-                language=lang,
-                similarity_score=score if 'score' in locals() else 0.0,
-                accepted=False,
-                model_used=back_translator.config.model_name,
-                content=back_translated if 'back_translated' in locals() else "",
-                intermediate_content=intermediate if 'intermediate' in locals() else None
-            ))
+            if not accepted:
+                logger.error(f"  paraphrase_v{i+1}: Failed after {max_retries} retries")
+                # Save the last attempt anyway with accepted=False
+                variations.append(VariationResult(
+                    name=f"paraphrase_v{i+1}",
+                    method="paraphrase",
+                    language=None,
+                    similarity_score=score if 'score' in locals() else 0.0,
+                    accepted=False,
+                    model_used=paraphraser.config.model_name,
+                    content=paraphrased if 'paraphrased' in locals() else ""
+                ))
+    
+    # Generate back-translation variations
+    if "back_translation" in methods:
+        logger.info(f"Generating back-translation variations for {languages}...")
+        
+        for lang in languages:
+            retry_count = 0
+            accepted = False
+            
+            while not accepted and retry_count < max_retries:
+                try:
+                    intermediate, back_translated = back_translator.back_translate(
+                        base_prompt, lang
+                    )
+                    
+                    # Check similarity
+                    score = similarity_calc.compute_similarity(base_prompt, back_translated)
+                    
+                    lang_code = lang.lower()[:2]  # "ch", "sp", "tu"
+                    
+                    if score >= similarity_threshold:
+                        accepted = True
+                        variation = VariationResult(
+                            name=f"backtrans_{lang_code}",
+                            method="back_translation",
+                            language=lang,
+                            similarity_score=score,
+                            accepted=True,
+                            model_used=back_translator.config.model_name,
+                            content=back_translated,
+                            intermediate_content=intermediate
+                        )
+                        variations.append(variation)
+                        
+                        # Save to file
+                        save_variation(output_dir, variation.name, back_translated)
+                        logger.info(f"  backtrans_{lang_code}: similarity={score:.4f} ✓")
+                    else:
+                        retry_count += 1
+                        logger.warning(f"  backtrans_{lang_code} attempt {retry_count}: similarity={score:.4f} < {similarity_threshold} (retrying)")
+                
+                except Exception as e:
+                    retry_count += 1
+                    logger.error(f"  backtrans_{lang_code} error: {e}")
+        
+            if not accepted:
+                logger.error(f"  backtrans_{lang_code}: Failed after {max_retries} retries")
+                variations.append(VariationResult(
+                    name=f"backtrans_{lang_code}",
+                    method="back_translation",
+                    language=lang,
+                    similarity_score=score if 'score' in locals() else 0.0,
+                    accepted=False,
+                    model_used=back_translator.config.model_name,
+                    content=back_translated if 'back_translated' in locals() else "",
+                    intermediate_content=intermediate if 'intermediate' in locals() else None
+                ))
     
     # Create log
     accepted_count = sum(1 for v in variations if v.accepted)
@@ -272,7 +284,10 @@ def generate_all_variations(
     output_dir: Path,
     granularities: List[str] = ["coarse", "fine"],
     styles: List[str] = ["pl", "nl"],
-    similarity_threshold: float = 0.9
+    similarity_threshold: float = 0.9,
+    methods: List[str] = ["paraphrase", "back_translation"],
+    languages: List[str] = ["Chinese", "Spanish", "Turkish"],
+    shots: List[int] = [1, 3]
 ) -> Dict[str, VariationLog]:
     """
     Generate variations for all base prompts.
@@ -283,6 +298,9 @@ def generate_all_variations(
         granularities: List of granularities to process
         styles: List of styles to process
         similarity_threshold: Minimum similarity score
+        methods: List of methods to use
+        languages: List of languages to use
+        shots: List of shot counts to process
     
     Returns:
         Dict mapping prompt names to their variation logs
@@ -302,28 +320,33 @@ def generate_all_variations(
     
     for granularity in granularities:
         for style in styles:
-            prompt_name = f"{granularity}_{style}_3shot"
-            prompt_path = base_prompts_dir / f"{prompt_name}.txt"
+            for shot in shots:
+                prompt_name = f"{granularity}_{style}_{shot}shot"
+                prompt_path = base_prompts_dir / f"{prompt_name}.txt"
+                
+                if not prompt_path.exists():
+                    # Only warn if it's the only shot requested, otherwise silent skip common
+                    if len(shots) == 1:
+                        logger.warning(f"Base prompt not found: {prompt_path}")
+                    continue
+                
+                logger.info(f"\nProcessing: {prompt_name}")
+                logger.info("-" * 40)
+                
+                try:
+                    log = generate_variations_for_prompt(
+                        base_prompt_path=prompt_path,
+                        output_dir=output_dir,
+                        prompt_style=style,
+                        entity_types=entity_types.get(granularity),
+                        similarity_threshold=similarity_threshold,
+                        methods=methods,
+                        languages=languages
+                    )
+                    all_logs[prompt_name] = log
             
-            if not prompt_path.exists():
-                logger.warning(f"Base prompt not found: {prompt_path}")
-                continue
-            
-            logger.info(f"\nProcessing: {prompt_name}")
-            logger.info("-" * 40)
-            
-            try:
-                log = generate_variations_for_prompt(
-                    base_prompt_path=prompt_path,
-                    output_dir=output_dir,
-                    prompt_style=style,
-                    entity_types=entity_types.get(granularity),
-                    similarity_threshold=similarity_threshold
-                )
-                all_logs[prompt_name] = log
-            
-            except Exception as e:
-                logger.error(f"Failed to process {prompt_name}: {e}")
+                except Exception as e:
+                    logger.error(f"Failed to process {prompt_name}: {e}")
     
     # Save summary
     summary = {
@@ -386,6 +409,27 @@ if __name__ == "__main__":
         default=["pl", "nl"],
         help="Styles to process"
     )
+    parser.add_argument(
+        "--methods",
+        type=str,
+        nargs="+",
+        default=["paraphrase", "back_translation"],
+        help="Methods to use: paraphrase, back_translation"
+    )
+    parser.add_argument(
+        "--languages",
+        type=str,
+        nargs="+",
+        default=["Chinese", "Spanish", "Turkish"],
+        help="Languages for back-translation"
+    )
+    parser.add_argument(
+        "--shots",
+        type=int,
+        nargs="+",
+        default=[1, 3],
+        help="Shot counts to process (default: 1 3)"
+    )
     
     args = parser.parse_args()
     
@@ -397,5 +441,8 @@ if __name__ == "__main__":
         output_dir=output_dir,
         granularities=args.granularity,
         styles=args.style,
-        similarity_threshold=args.threshold
+        similarity_threshold=args.threshold,
+        methods=args.methods,
+        languages=args.languages,
+        shots=args.shots
     )

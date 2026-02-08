@@ -1,0 +1,29 @@
+You are a skilled Named Entity Recognition (NER) tool focused on mining entities from text.
+
+Annotation Rules:
+Identify named entities according to the classifications below:
+
+* art: A titled creative piece such as movies, literature, songs, artwork, or other artistic productions.
+* building: A specific edifice or construction, like a stadium, gallery, or inn.
+* event: A specific occasion like a conflict, athletic competition, gala, or historic incident.
+* location: A geographic place like a town, nation, landmass, area, or point of interest.
+* organization: A specific association, institute, enterprise, or team.
+* other: Miscellaneous named entities that do not belong to the listed groups.
+* person: A specific human, covering made-up figures, figures from history, stars, and ordinary individuals.
+* product: A specific merchandise, computer program, car make, or trademarked good.
+
+The text is "The record came out on March 25 , 2008 . It was the initial collection of fresh tracks the band had published since `Good Stuff` in 1992 .". The named entities in the text: (art: Good Stuff)
+
+The text is "The fortress was gifted to the Knights Hospitallers in 1136 .". The named entities in the text: (building: Knights Hospitallers)
+
+The text is "Throughout the Second World War , massive cargo was frequently transported to the army base and bivouac .". The named entities in the text: (event: Second World War)
+
+The text is "Over the subsequent five years , she performed trials in the region of Cape May , New Jersey .". The named entities in the text: (location: Cape May , New Jersey)
+
+The text is "From January 30 , 1945 , to February 4 , she underwent refitting at Philadelphia Navy Yard for unique pilot tasks .". The named entities in the text: (organization: Philadelphia Navy Yard)
+
+The text is "The enactment of the Crofting Act of 1886 assisted , yet public turmoil persisted .". The named entities in the text: (other: Crofting Act)
+
+The text is "Liddy was officially leading the mission , but has later claimed he was tricked by his underlings .". The named entities in the text: (person: Liddy)
+
+The text is "The only Class 21 2-10-4 Texas type locomotive was frequently utilized to pull massive weights .". The named entities in the text: (product: Class 21 2-10-4 Texas type locomotive)

@@ -2,29 +2,28 @@ You are an expert Named Entity Recognition (NER) system specializing in extracti
 
 Annotation Guidelines:
 Extract named entities based on the following categories:
-- art: A work of art including films, books, music, paintings, or other creative works.
-- building: A named structure or building, such as a stadium, museum, or hotel.
-- event: A named event such as a war, sports event, festival, or historical occurrence.
-- location: A geographical location such as a city, country, continent, region, or landmark.
-- organization: A named organization, institution, company, or group.
-- other: Other named entities that don't fit into the above categories.
-- person: A named individual, including fictional characters, historical figures, celebrities, and common people.
-- product: A named commercial product, software, vehicle model, or branded item.
 
-The text is "Between 30 January 1945 and 4 February she was outfitted at Philadelphia Navy Yard for special experimental work for the U.S Navy Bureau of Ships , and for the next five years carried out tests in the area of Cape May , New Jersey , and Cape Henlopen , Delaware .". The named entities in the text: (organization: Philadelphia Navy Yard)(organization: U.S Navy Bureau of Ships)(location: Cape May , New Jersey)(location: Cape Henlopen)(location: Delaware)
+* art: A named work of art including films, books, music, paintings, or other creative works.
+* building: A named structure or building, such as a stadium, museum, or hotel.
+* event: A named event such as a war, sports event, festival, or historical occurrence.
+* location: A geographical location such as a city, country, continent, region, or landmark.
+* organization: A named organization, institution, company, or group.
+* other: Other named entities that don't fit into the above categories.
+* person: A named individual, including fictional characters, historical figures, celebrities, and common people.
+* product: A named commercial product, software, vehicle model, or branded item.
 
-The text is "The work of the Napier Commission and the Congested Districts Board , and the passing of the Crofting Act of 1886 helped , but social unrest continued .". The named entities in the text: (organization: Napier Commission)(organization: Congested Districts Board)(other: Crofting Act)
+The text is "The album was released on March 25 , 2008 . It was the first album of new material that the group had released since `Good Stuff` in 1992 .". The named entities in the text: (art: Good Stuff)
 
-The text is "The album was released on March 25 , 2008 , by Astralwerks Records It was the first album of new material that the group had released since `` Good Stuff `` in 1992 , although the band did record two new songs for their 1998 compilation album `` '' .". The named entities in the text: (organization: Astralwerks)(art: Good Stuff)
+The text is "In 1136 , the castle was donated to the Knights Hospitallers .". The named entities in the text: (building: Knights Hospitallers)
 
-The text is "In 1136 , King Fulk donated the castle to the Knights Hospitallers .". The named entities in the text: (person: Fulk)(building: Knights Hospitallers)
+The text is "During the Second World War , heavy loads were often hauled to the military unit and camp .". The named entities in the text: (event: Second World War)
 
-The text is "Liddy was nominally in charge of the operation , but has since insisted that he was duped by both Dean and at least two of his subordinates , which included former CIA officers E. Howard Hunt and James McCord , the latter of whom was serving as then- CRP Security Coordinator after John Mitchell had by then resigned as Attorney General to become the CRP chairman .". The named entities in the text: (person: Liddy)(person: Dean)(person: E. Howard Hunt)(person: James McCord)(organization: CRP)(person: John Mitchell)(organization: CRP)
+The text is "For the next five years she carried out tests in the area of Cape May , New Jersey .". The named entities in the text: (location: Cape May , New Jersey)
 
-The text is "Sperm development ( spermatogenesis ) and release of the egg from the ovaries ( ovulation ) may be impaired by hypogonadism , which , depending on the degree of severity , may result in partial or complete infertility .". The named entities in the text: 
+The text is "Between 30 January 1945 and 4 February she was outfitted at Philadelphia Navy Yard for special experimental work .". The named entities in the text: (organization: Philadelphia Navy Yard)
 
-The text is "During the Second World War , the sole Class 21 2-10-4 Texas type locomotive of the South African Railways ( SAR ) was often used to haul long and heavy military trains , troop trains and sometimes Italian prisoners-of-war to the military unit and prisoner-of-war camp at Sonderwater near Cullinan .". The named entities in the text: (event: Second World War)(product: Class 21 2-10-4 Texas type locomotive)(organization: South African Railways)(organization: SAR)(location: Italian)(location: Sonderwater)(location: Cullinan)
+The text is "The passing of the Crofting Act of 1886 helped , but social unrest continued .". The named entities in the text: (other: Crofting Act)
 
-The text is "`` Persib Bandung `` have rivalries with Persebaya Surabaya , PSM Makassar and PSMS Medan rooting from the Perserikatan era .". The named entities in the text: (organization: Persib Bandung)(organization: Persebaya Surabaya)(organization: PSM Makassar)(organization: PSMS Medan)(event: Perserikatan)
+The text is "Liddy was nominally in charge of the operation , but has since insisted that he was duped by his subordinates .". The named entities in the text: (person: Liddy)
 
-The text is "Donahue was awarded 20 Emmy Awards during his broadcasting career , 10 for Outstanding Talk Show Host , and 10 for `` The Phil Donahue Show . ''". The named entities in the text: (person: Donahue)(other: Emmy)(other: Outstanding Talk Show Host)(other: The Phil Donahue Show)
+The text is "The sole Class 21 2-10-4 Texas type locomotive was often used to haul heavy loads .". The named entities in the text: (product: Class 21 2-10-4 Texas type locomotive)

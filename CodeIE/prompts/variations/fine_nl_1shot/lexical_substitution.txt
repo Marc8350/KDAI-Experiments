@@ -1,0 +1,203 @@
+You are a specialized Named Entity Recognition (NER) tool designed to identify specific entities in text.
+
+Annotation Guidelines:
+Extract named entities according to the categories below:
+
+* art-broadcastprogram: A titled radio or television show.
+* art-film: A named film or movie.
+* art-music: A titled album, song, or musical piece.
+* art-other: Artistic works not falling into specific categories.
+* art-painting: A named visual artwork or painting.
+* art-writtenart: A titled poem, book, essay, or literary work.
+* building-airport: A named airfield or airport.
+* building-hospital: A named clinic, hospital, or medical center.
+* building-hotel: A named resort, motel, or hotel.
+* building-library: A named archive or library.
+* building-other: Named structures or buildings not listed above.
+* building-restaurant: A named cafe, bar, or restaurant.
+* building-sportsfacility: A named arena, stadium, or sports complex.
+* building-theater: A named cinema or theater.
+* event-attack/battle/war/militaryconflict: A named war, battle, or military conflict.
+* event-disaster: A named man-made or natural disaster.
+* event-election: A named political campaign or election.
+* event-other: Other specific named events.
+* event-protest: A named strike, demonstration, or protest.
+* event-sportsevent: A named sports event or competition.
+* location-GPE: A geopolitical entity like a country, state, city, or nation.
+* location-bodiesofwater: A named sea, ocean, river, lake, or water body.
+* location-island: A named archipelago or island.
+* location-mountain: A named hill, mountain, or range.
+* location-other: Named locations not covered elsewhere.
+* location-park: A named garden, park, or nature reserve.
+* location-road/railway/highway/transit: A named highway, road, street, or transit line.
+* organization-company: A named business or commercial company.
+* organization-education: A named school or university.
+* organization-government/governmentagency: A named government agency or body.
+* organization-media/newspaper: A named publication or media organization.
+* organization-other: Named organizations not listed above.
+* organization-politicalparty: A named political party.
+* organization-religion: A named religious group or organization.
+* organization-showorganization: A named organization or performing arts group.
+* organization-sportsleague: A named sports league.
+* organization-sportsteam: A named sports team.
+* other-astronomything: A named astronomical object.
+* other-award: A named honor or award.
+* other-biologything: A named species or biological entity.
+* other-chemicalthing: A named compound or chemical substance.
+* other-currency: A named currency.
+* other-disease: A named medical condition or disease.
+* other-educationaldegree: A named academic degree.
+* other-god: A named mythological figure or deity.
+* other-language: A named language.
+* other-law: A named legal statute or law.
+* other-livingthing: A named living organism not fitting other categories.
+* other-medical: Named medical entities or terms.
+* person-actor: A named actress or actor.
+* person-artist/author: A named writer, artist, or creator.
+* person-athlete: A named sports player or athlete.
+* person-director: A named theater or film director.
+* person-other: Named individuals not covered elsewhere.
+* person-politician: A named government official or politician.
+* person-scholar: A named scientist, academic, or scholar.
+* person-soldier: A named military personnel or soldier.
+* product-airplane: A named aircraft model.
+* product-car: A named automobile model.
+* product-food: A named drink or food product.
+* product-game: A named video game or game.
+* product-other: Commercial products not listed above.
+* product-ship: A named boat or ship.
+* product-software: A named system or software application.
+* product-train: A named locomotive or train model.
+* product-weapon: A named military equipment or weapon.
+
+The text is "He helped with shows like The Man Show .". The named entities in the text: (art-broadcastprogram: The Man Show)
+
+The text is "In 1964 , the actor starred in the movie `Get Yourself a College Girl` .". The named entities in the text: (art-film: Get Yourself a College Girl)
+
+The text is "You can find the tracks on the `Prismatic Infinity Carat` album .". The named entities in the text: (art-music: Prismatic Infinity Carat)
+
+The text is "The `draco` is first seen on the city monument .". The named entities in the text: (art-other: draco)
+
+The text is "Admonitions of the Court Instructress is the complete title of the painting .". The named entities in the text: (art-painting: Admonitions of the Court Instructress)
+
+The text is "The writer found ideas for a major plot point in `A Storm of Swords` .". The named entities in the text: (art-writtenart: A Storm of Swords)
+
+The text is "Leaving the base , the aircraft reached Albrook Field on April 10 , 1940 .". The named entities in the text: (building-airport: Albrook Field)
+
+The text is "The designer helped decorate the interior of the Hôtel Lutetia .". The named entities in the text: (building-hospital: Hôtel Lutetia)
+
+The text is "Held in July 2019 , the 44th annual event took place at the Grosvenor House Hotel .". The named entities in the text: (building-hotel: Grosvenor House Hotel)
+
+The text is "The British Library is an example of a research library .". The named entities in the text: (building-library: British Library)
+
+The text is "Soldiers started a mission to stop the Haditha Dam from being destroyed .". The named entities in the text: (building-other: Haditha Dam)
+
+The text is "There is an Easter raffle at The Ranch House bar and grill .". The named entities in the text: (building-restaurant: Ranch House)
+
+The text is "The firm agreed to a partnership to own an equal part of London Arena .". The named entities in the text: (building-sportsfacility: London Arena)
+
+The text is "During the September 2016 festival , the movie screened again at the Cinesphere .". The named entities in the text: (building-theater: Cinesphere)
+
+The text is "In July 1812 , the lieutenant seized the flag during the Battle of Salamanca .". The named entities in the text: (event-attack/battle/war/militaryconflict: Battle of Salamanca)
+
+The text is "The title is occasionally used for the Plague of Justinian that hit the empire .". The named entities in the text: (event-disaster: Plague of Justinian)
+
+The text is "In the 2016 membership referendum , he backed staying in the union .". The named entities in the text: (event-election: membership referendum)
+
+The text is "A harsh crackdown followed the 1637–1638 Shimabara Rebellion .". The named entities in the text: (event-other: Shimabara Rebellion)
+
+The text is "The tale takes place in Revolutionary France at the end of the 18th century .". The named entities in the text: (event-protest: Revolutionary France)
+
+The text is "The athlete , a Tour de France stage winner and medalist , has seen many wins .". The named entities in the text: (event-sportsevent: Tour de France)
+
+The text is "It is famous for being the main campus location at Bellaterra .". The named entities in the text: (location-GPE: Bellaterra)
+
+The text is "The new county sits miles away on the north bank of the Yangtze River .". The named entities in the text: (location-bodiesofwater: Yangtze River)
+
+The text is "In 1965 , after gaining autonomy , the Cook Islands picked their first Prime Minister .". The named entities in the text: (location-island: Cook Islands)
+
+The text is "Searches by air and ground focused on the trail up to Glastenbury Mountain .". The named entities in the text: (location-mountain: Glastenbury Mountain)
+
+The text is "Ground searches focused on the path from Bennington .". The named entities in the text: (location-other: Bennington)
+
+The text is "On March 7 , 1968 , the horse won his debut race at Gulfstream Park .". The named entities in the text: (location-park: Gulfstream Park)
+
+The text is "Route 9 was the focus of the searches .". The named entities in the text: (location-road/railway/highway/transit: Route 9)
+
+The text is "This is the reason the creator founded Atlas Comics .". The named entities in the text: (organization-company: Atlas Comics)
+
+The text is "Research libraries include the facility at Oxford University .". The named entities in the text: (organization-education: Oxford University)
+
+The text is "In 2007 , she received a Cabinet role overseeing Environment and Community Safety .". The named entities in the text: (organization-government/governmentagency: Environment and Community Safety)
+
+The text is "In September 2016 , a reboot pilot for The CW was announced .". The named entities in the text: (organization-media/newspaper: The CW)
+
+The text is "Army Rangers started a mission to save the dam as operations commenced .". The named entities in the text: (organization-other: Army Rangers)
+
+The text is "He is a former politician for the American Democratic Party .". The named entities in the text: (organization-politicalparty: American Democratic Party)
+
+The text is "Following the rebellion , the government cracked down harder on Christianity .". The named entities in the text: (organization-religion: Christianity)
+
+The text is "The engineer met his mentor while working at the studio on Club Nouveau .". The named entities in the text: (organization-showorganization: Club Nouveau)
+
+The text is "The player missed his first six months because of the FIFA disqualification .". The named entities in the text: (organization-sportsleague: FIFA)
+
+The text is "The university was represented by the 2018–19 USC Trojans men 's basketball team .". The named entities in the text: (organization-sportsteam: USC Trojans)
+
+The text is "Recent samples include a poster displaying comet McNaught .". The named entities in the text: (other-astronomything: McNaught)
+
+The text is "He received the Legion of Merit for his effective actions .". The named entities in the text: (other-award: Legion of Merit)
+
+The text is "In terms of gene structure and function , P53 shares similar traits .". The named entities in the text: (other-biologything: P53)
+
+The text is "Substances are carried by the protein during the ATP -dependent carboxylation .". The named entities in the text: (other-chemicalthing: ATP)
+
+The text is "Consequently , starting January 1999 , 1 CFA franc equals the other currency .". The named entities in the text: (other-currency: CFA franc)
+
+The text is "Consequently , the child might develop congenital heart disease .". The named entities in the text: (other-disease: congenital heart disease)
+
+The text is "He finished his studies with a Magister Artium in 1973 .". The named entities in the text: (other-educationaldegree: Magister Artium)
+
+The text is "Theologians attempted to show the evangelist didn't know of Christ 's birth .". The named entities in the text: (other-god: Christ)
+
+The text is "The term `attercoppe` in Old English comes from other words .". The named entities in the text: (other-language: Old English)
+
+The text is "In response , the Espionage Act of 1917 was enacted .". The named entities in the text: (other-law: Espionage Act of 1917)
+
+The text is "Go Marching won his career 's first race at age three .". The named entities in the text: (other-livingthing: Go Marching)
+
+The text is "Protein C replacement therapies are available for those with severe deficiency .". The named entities in the text: (other-medical: protein C replacement therapies)
+
+The text is "In May 2017 , Sam Adegoke was cast as a character .". The named entities in the text: (person-actor: Sam Adegoke)
+
+The text is "Gilberto was in several movies in 1964 .". The named entities in the text: (person-artist/author: Gilberto)
+
+The text is "Davis Phinney , an Olympic Bronze medalist , has many victories .". The named entities in the text: (person-athlete: Davis Phinney)
+
+The text is "World premiere productions are among Newling 's other projects .". The named entities in the text: (person-director: Newling)
+
+The text is "This is why Martin launched the business .". The named entities in the text: (person-other: Martin)
+
+The text is "President Juan Velasco Alvarado gave him the cross for his effective actions .". The named entities in the text: (person-politician: Juan Velasco Alvarado)
+
+The text is "Austin Woolrych , the historian , notes the bridge 's significance .". The named entities in the text: (person-scholar: Austin Woolrych)
+
+The text is "Lieutenant William Pearce of the 2nd battalion took the flag at the battle in July 1812 .". The named entities in the text: (person-soldier: William Pearce)
+
+The text is "The Soyuz spacecraft docked with the station after a two-day solo flight .". The named entities in the text: (product-airplane: Soyuz spacecraft)
+
+The text is "Previously seen in the country , the new car is similar in size to the Opel Rekord .". The named entities in the text: (product-car: Opel Rekord)
+
+The text is "In the wine region , Furmint has a similar function .". The named entities in the text: (product-food: Furmint)
+
+The text is "On September 7 , 2011 , `Crimson Alliance` was released .". The named entities in the text: (product-game: Crimson Alliance)
+
+The text is "The 1999 update was released for Dreamcast .". The named entities in the text: (product-other: Dreamcast)
+
+The text is "It contains an Atlantic 75 class lifeboat .". The named entities in the text: (product-ship: Atlantic 75)
+
+The text is "Eventually diverging , it and MS-DOS were identical products .". The named entities in the text: (product-software: MS-DOS)
+
+The text is "Alstom Coradia LINT diesel single-units operated on the eastern section every two hours .". The named entities in the text: (product-train: Alstom Coradia LINT)
+
+The text is "Arriving at the airfield , the XB-15 flew from the base .". The named entities in the text: (product-weapon: XB-15)

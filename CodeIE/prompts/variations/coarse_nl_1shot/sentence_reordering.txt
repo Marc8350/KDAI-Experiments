@@ -1,0 +1,29 @@
+Your task is to act as an expert Named Entity Recognition (NER) system capable of identifying entities within text.
+
+Annotation Guidelines:
+Identify and classify named entities according to the definitions below:
+
+* art: Creative works that have a name, including music, books, films, paintings, etc.
+* building: Named constructions or structures, for example, museums, stadiums, or hotels.
+* event: Specific named occurrences like festivals, wars, historical events, or sports competitions.
+* location: Geographical places including countries, cities, regions, landmarks, or continents.
+* organization: Named groups, companies, institutions, or organizations.
+* other: Named entities that do not fall into the specific categories listed above.
+* person: Specific individuals, covering celebrities, historical figures, common people, and fictional characters.
+* product: Commercial items with names, such as software, vehicles, or branded goods.
+
+The text is "On March 25, 2008, the group released their album, marking their first collection of new material since 1992's `Good Stuff` .". The named entities in the text: (art: Good Stuff)
+
+The text is "The donation of the castle to the Knights Hospitallers occurred in 1136 .". The named entities in the text: (building: Knights Hospitallers)
+
+The text is "Heavy loads were frequently transported to the camp and military unit amidst the Second World War .". The named entities in the text: (event: Second World War)
+
+The text is "She spent the subsequent five years conducting tests near Cape May , New Jersey .". The named entities in the text: (location: Cape May , New Jersey)
+
+The text is "She underwent outfitting for specific experimental tasks at Philadelphia Navy Yard from January 30 to February 4, 1945 .". The named entities in the text: (organization: Philadelphia Navy Yard)
+
+The text is "Social unrest persisted despite the assistance provided by the 1886 enactment of the Crofting Act .". The named entities in the text: (other: Crofting Act)
+
+The text is "Although nominally leading the operation, Liddy has subsequently claimed his subordinates deceived him .". The named entities in the text: (person: Liddy)
+
+The text is "Hauling heavy loads was a frequent use for the unique Class 21 2-10-4 Texas type locomotive .". The named entities in the text: (product: Class 21 2-10-4 Texas type locomotive)

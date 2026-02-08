@@ -1,0 +1,412 @@
+# ASSIGNMENT: Fill in the missing entity_list.append() lines in the Python script.
+# No code explanation needed. Simply print the required append statements.
+
+# Acting as a specialist NER system, your goal is to pull entities from the text.
+# For every input string, detect the named entities and insert them into the list.
+
+# Entity Definitions (Specific):
+# - art-broadcastprogram, art-film, art-music, art-other, art-painting, art-writtenart
+# - building-airport, building-hospital, building-hotel, building-library, building-other, building-restaurant, building-sportsfacility, building-theater
+# - event-attack/battle/war/militaryconflict, event-disaster, event-election, event-other, event-protest, event-sportsevent
+# - location-GPE, location-bodiesofwater, location-island, location-mountain, location-other, location-park, location-road/railway/highway/transit
+# - organization-company, organization-education, organization-government/governmentagency, organization-media/newspaper, organization-other, organization-politicalparty, organization-religion, organization-showorganization, organization-sportsleague, organization-sportsteam
+# - other-astronomything, other-award, other-biologything, other-chemicalthing, other-currency, other-disease, other-educationaldegree, other-god, other-language, other-law, other-livingthing, other-medical
+# - person-actor, person-artist/author, person-athlete, person-director, person-other, person-politician, person-scholar, person-soldier
+# - product-airplane, product-car, product-food, product-game, product-other, product-ship, product-software, product-train, product-weapon
+
+# Samples:
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "The Man Show was one of the programs he worked on."
+    entity_list = []
+    entity_list.append({"text": "The Man Show", "type": "art-broadcastprogram"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "The actor's roles in 1964 included the movie `` Get Yourself a College Girl `` ."
+    entity_list = []
+    entity_list.append({"text": "Get Yourself a College Girl", "type": "art-film"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "You can listen to the tracks on the album `` Prismatic Infinity Carat `` ."
+    entity_list = []
+    entity_list.append({"text": "Prismatic Infinity Carat", "type": "art-music"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "The city monument features the initial appearance of the `` draco `` ."
+    entity_list = []
+    entity_list.append({"text": "draco", "type": "art-other"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "Admonitions of the Court Instructress is the complete name of the artwork."
+    entity_list = []
+    entity_list.append({"text": "Admonitions of the Court Instructress", "type": "art-painting"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "For a key plot point in `` A Storm of Swords `` , the author drew inspiration."
+    entity_list = []
+    entity_list.append({"text": "A Storm of Swords", "type": "art-writtenart"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "On April 10, 1940, the aircraft departed the base and reached Albrook Field ."
+    entity_list = []
+    entity_list.append({"text": "Albrook Field", "type": "building-airport"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "Interior designs for the Hôtel Lutetia were provided by the designer."
+    entity_list = []
+    entity_list.append({"text": "Hôtel Lutetia", "type": "building-hospital"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "The Grosvenor House Hotel hosted the 44th yearly gathering in July 2019."
+    entity_list = []
+    entity_list.append({"text": "Grosvenor House Hotel", "type": "building-hotel"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "A prominent research library is the British Library ."
+    entity_list = []
+    entity_list.append({"text": "British Library", "type": "building-library"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "A mission was launched by troops to save the Haditha Dam from destruction."
+    entity_list = []
+    entity_list.append({"text": "Haditha Dam", "type": "building-other"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "The Ranch House bar and grill hosts a raffle for prizes during Easter celebrations."
+    entity_list = []
+    entity_list.append({"text": "Ranch House", "type": "building-restaurant"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "To own an equal portion of London Arena , the firm formed a partnership."
+    entity_list = []
+    entity_list.append({"text": "London Arena", "type": "building-sportsfacility"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "The movie screened once more at the Cinesphere during the September 2016 festival."
+    entity_list = []
+    entity_list.append({"text": "Cinesphere", "type": "building-theater"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "During the Battle of Salamanca in July 1812, the flag was seized by the lieutenant."
+    entity_list = []
+    entity_list.append({"text": "Battle of Salamanca", "type": "event-attack/battle/war/militaryconflict"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "The epidemic striking the empire is occasionally called the Plague of Justinian ."
+    entity_list = []
+    entity_list.append({"text": "Plague of Justinian", "type": "event-disaster"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "In the 2016 membership referendum , he advocated for staying in the union."
+    entity_list = []
+    entity_list.append({"text": "membership referendum", "type": "event-election"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "A strict crackdown followed the Shimabara Rebellion of 1637 to 1638."
+    entity_list = []
+    entity_list.append({"text": "Shimabara Rebellion", "type": "event-other"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "The narrative takes place in late 18th-century Revolutionary France ."
+    entity_list = []
+    entity_list.append({"text": "Revolutionary France", "type": "event-protest"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "Numerous victories have been celebrated by the athlete, a Tour de France stage winner and medalist."
+    entity_list = []
+    entity_list.append({"text": "Tour de France", "type": "event-sportsevent"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "The location of the main campus at Bellaterra is well known."
+    entity_list = []
+    entity_list.append({"text": "Bellaterra", "type": "location-GPE"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "The new county lies miles away on the northern bank of the Yangtze River ."
+    entity_list = []
+    entity_list.append({"text": "Yangtze River", "type": "location-bodiesofwater"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "Upon gaining autonomy in 1965, the Cook Islands voted for their first Prime Minister."
+    entity_list = []
+    entity_list.append({"text": "Cook Islands", "type": "location-island"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "The trail extending to Glastenbury Mountain was the focus of air and ground searches."
+    entity_list = []
+    entity_list.append({"text": "Glastenbury Mountain", "type": "location-mountain"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "The route originating from Bennington was searched by ground teams."
+    entity_list = []
+    entity_list.append({"text": "Bennington", "type": "location-other"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "At Gulfstream Park on March 7, 1968, the horse achieved his first career win."
+    entity_list = []
+    entity_list.append({"text": "Gulfstream Park", "type": "location-park"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "The search efforts were focused along Route 9 ."
+    entity_list = []
+    entity_list.append({"text": "Route 9", "type": "location-road/railway/highway/transit"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "This motivated the creator to establish Atlas Comics ."
+    entity_list = []
+    entity_list.append({"text": "Atlas Comics", "type": "organization-company"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "The library at Oxford University is an example of a research facility."
+    entity_list = []
+    entity_list.append({"text": "Oxford University", "type": "organization-education"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "In 2007, a Cabinet role for Environment and Community Safety was assigned to her."
+    entity_list = []
+    entity_list.append({"text": "Environment and Community Safety", "type": "organization-government/governmentagency"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "In September 2016, The CW announced a pilot for the reboot."
+    entity_list = []
+    entity_list.append({"text": "The CW", "type": "organization-media/newspaper"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "Army Rangers began a mission to secure the dam as operations started."
+    entity_list = []
+    entity_list.append({"text": "Army Rangers", "type": "organization-other"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "The American Democratic Party politician is now retired."
+    entity_list = []
+    entity_list.append({"text": "American Democratic Party", "type": "organization-politicalparty"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "A stricter government crackdown on Christianity followed the rebellion."
+    entity_list = []
+    entity_list.append({"text": "Christianity", "type": "organization-religion"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "The engineer encountered his mentor at the studio while working on Club Nouveau ."
+    entity_list = []
+    entity_list.append({"text": "Club Nouveau", "type": "organization-showorganization"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "The player's first six months were missed because of the FIFA disqualification."
+    entity_list = []
+    entity_list.append({"text": "FIFA", "type": "organization-sportsleague"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "The university's representation was the 2018–19 USC Trojans men's basketball team."
+    entity_list = []
+    entity_list.append({"text": "USC Trojans", "type": "organization-sportsteam"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "A poster displaying the comet McNaught is one recent example."
+    entity_list = []
+    entity_list.append({"text": "McNaught", "type": "other-astronomything"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "The Legion of Merit was awarded to him for his effective actions."
+    entity_list = []
+    entity_list.append({"text": "Legion of Merit", "type": "other-award"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "Gene structures and functions in P53 share similar features."
+    entity_list = []
+    entity_list.append({"text": "P53", "type": "other-biologything"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "During the ATP -dependent carboxylation, the protein transports substances."
+    entity_list = []
+    entity_list.append({"text": "ATP", "type": "other-chemicalthing"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "Consequently, 1 CFA franc has been equal to the other currency since January 1999."
+    entity_list = []
+    entity_list.append({"text": "CFA franc", "type": "other-currency"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "As a result, the child is at risk for congenital heart disease ."
+    entity_list = []
+    entity_list.append({"text": "congenital heart disease", "type": "other-disease"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "He received his Magister Artium upon completing his studies in 1973."
+    entity_list = []
+    entity_list.append({"text": "Magister Artium", "type": "other-educationaldegree"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "The evangelist's ignorance of Christ 's birth was something theologians tried to prove."
+    entity_list = []
+    entity_list.append({"text": "Christ", "type": "other-god"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "Other terms are the source of the Old English word `` attercoppe ``."
+    entity_list = []
+    entity_list.append({"text": "Old English", "type": "other-language"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "The response was the passage of the Espionage Act of 1917 ."
+    entity_list = []
+    entity_list.append({"text": "Espionage Act of 1917", "type": "other-law"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "Go Marching secured his first career victory at the age of three."
+    entity_list = []
+    entity_list.append({"text": "Go Marching", "type": "other-livingthing"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "Patients with severe deficiency have access to protein C replacement therapies ."
+    entity_list = []
+    entity_list.append({"text": "protein C replacement therapies", "type": "other-medical"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "The character role was given to Sam Adegoke in May 2017."
+    entity_list = []
+    entity_list.append({"text": "Sam Adegoke", "type": "person-actor"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "Several films featured Gilberto in 1964."
+    entity_list = []
+    entity_list.append({"text": "Gilberto", "type": "person-artist/author"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "The most victories have been celebrated by Davis Phinney , an Olympic Bronze medalist."
+    entity_list = []
+    entity_list.append({"text": "Davis Phinney", "type": "person-athlete"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "World premiere productions are among the projects involving Newling ."
+    entity_list = []
+    entity_list.append({"text": "Newling", "type": "person-director"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "Martin launched the company for that reason."
+    entity_list = []
+    entity_list.append({"text": "Martin", "type": "person-other"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "The cross was awarded to him by President Juan Velasco Alvarado for his effective actions."
+    entity_list = []
+    entity_list.append({"text": "Juan Velasco Alvarado", "type": "person-politician"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "The significance of the bridge is described by historian Austin Woolrych ."
+    entity_list = []
+    entity_list.append({"text": "Austin Woolrych", "type": "person-scholar"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "The flag was captured by Lieutenant William Pearce of the 2nd battalion during the battle in July 1812."
+    entity_list = []
+    entity_list.append({"text": "William Pearce", "type": "person-soldier"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "The Soyuz spacecraft docked with the station following a two-day solo flight."
+    entity_list = []
+    entity_list.append({"text": "Soyuz spacecraft", "type": "product-airplane"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "Seen previously in the country, the new car is similar in size to the Opel Rekord ."
+    entity_list = []
+    entity_list.append({"text": "Opel Rekord", "type": "product-car"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "In the wine region, Furmint plays a comparable role."
+    entity_list = []
+    entity_list.append({"text": "Furmint", "type": "product-food"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "The release of `` Crimson Alliance `` happened on September 7, 2011."
+    entity_list = []
+    entity_list.append({"text": "Crimson Alliance", "type": "product-game"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "For Dreamcast , the latest update arrived in 1999."
+    entity_list = []
+    entity_list.append({"text": "Dreamcast", "type": "product-other"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "An Atlantic 75 class lifeboat is housed inside."
+    entity_list = []
+    entity_list.append({"text": "Atlantic 75", "type": "product-ship"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "Identical at first, it and MS-DOS eventually diverged as products."
+    entity_list = []
+    entity_list.append({"text": "MS-DOS", "type": "product-software"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "On the eastern section, Alstom Coradia LINT diesel single-units ran every two hours."
+    entity_list = []
+    entity_list.append({"text": "Alstom Coradia LINT", "type": "product-train"})
+
+def named_entity_recognition(input_text):
+    """ Identify specific entities within the provided input_text. """
+    input_text = "The XB-15 arrived at the airfield after flying from the base."
+    entity_list = []
+    entity_list.append({"text": "XB-15", "type": "product-weapon"})

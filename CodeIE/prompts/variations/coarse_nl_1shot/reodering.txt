@@ -1,0 +1,28 @@
+Extract named entities based on the categories listed below. You are an expert Named Entity Recognition (NER) system specializing in extracting entities from text.
+
+Annotation Guidelines:
+
+* person: A named individual, including fictional characters, historical figures, celebrities, and common people.
+* organization: A named organization, institution, company, or group.
+* location: A geographical location such as a city, country, continent, region, or landmark.
+* event: A named event such as a war, sports event, festival, or historical occurrence.
+* product: A named commercial product, software, vehicle model, or branded item.
+* building: A named structure or building, such as a stadium, museum, or hotel.
+* art: A named work of art including films, books, music, paintings, or other creative works.
+* other: Other named entities that don't fit into the above categories.
+
+The text is "Liddy was nominally in charge of the operation , but has since insisted that he was duped by his subordinates .". The named entities in the text: (person: Liddy)
+
+The text is "Between 30 January 1945 and 4 February she was outfitted at Philadelphia Navy Yard for special experimental work .". The named entities in the text: (organization: Philadelphia Navy Yard)
+
+The text is "For the next five years she carried out tests in the area of Cape May , New Jersey .". The named entities in the text: (location: Cape May , New Jersey)
+
+The text is "During the Second World War , heavy loads were often hauled to the military unit and camp .". The named entities in the text: (event: Second World War)
+
+The text is "The sole Class 21 2-10-4 Texas type locomotive was often used to haul heavy loads .". The named entities in the text: (product: Class 21 2-10-4 Texas type locomotive)
+
+The text is "In 1136 , the castle was donated to the Knights Hospitallers .". The named entities in the text: (building: Knights Hospitallers)
+
+The text is "The album was released on March 25 , 2008 . It was the first album of new material that the group had released since `Good Stuff` in 1992 .". The named entities in the text: (art: Good Stuff)
+
+The text is "The passing of the Crofting Act of 1886 helped , but social unrest continued .". The named entities in the text: (other: Crofting Act)

@@ -1,0 +1,64 @@
+# TASK: Complete the Python code by adding entity_list.append() statements.
+# DO NOT explain the code. Just output the entity_list.append() lines.
+
+# You are an expert Named Entity Recognition (NER) system capable of identifying entities within text.
+# For every input_text, find and add named entities using entity_list.append().
+
+# Entity Types:
+# - art: Creative works that have a name, including music, books, films, paintings, etc.
+# - building: Named constructions or structures, for example, museums, stadiums, or hotels.
+# - event: Specific named occurrences like festivals, wars, historical events, or sports competitions.
+# - location: Geographical places including countries, cities, regions, landmarks, or continents.
+# - organization: Named groups, companies, institutions, or organizations.
+# - other: Named entities that do not fall into the specific categories listed above.
+# - person: Specific individuals, covering celebrities, historical figures, common people, and fictional characters.
+# - product: Commercial items with names, such as software, vehicles, or branded goods.
+
+# Examples:
+def named_entity_recognition(input_text):
+    """ Identify and classify named entities in the input_text . """
+    input_text = "On March 25, 2008, the group released their album, marking their first collection of new material since 1992's `` Good Stuff `` ."
+    entity_list = []
+    entity_list.append({"text": "Good Stuff", "type": "art"})
+
+def named_entity_recognition(input_text):
+    """ Identify and classify named entities in the input_text . """
+    input_text = "The donation of the castle to the Knights Hospitallers occurred in 1136 ."
+    entity_list = []
+    entity_list.append({"text": "Knights Hospitallers", "type": "building"})
+
+def named_entity_recognition(input_text):
+    """ Identify and classify named entities in the input_text . """
+    input_text = "Heavy loads were frequently transported to the camp and military unit amidst the Second World War ."
+    entity_list = []
+    entity_list.append({"text": "Second World War", "type": "event"})
+
+def named_entity_recognition(input_text):
+    """ Identify and classify named entities in the input_text . """
+    input_text = "She spent the subsequent five years conducting tests near Cape May , New Jersey ."
+    entity_list = []
+    entity_list.append({"text": "Cape May , New Jersey", "type": "location"})
+
+def named_entity_recognition(input_text):
+    """ Identify and classify named entities in the input_text . """
+    input_text = "She underwent outfitting for specific experimental tasks at Philadelphia Navy Yard from January 30 to February 4, 1945 ."
+    entity_list = []
+    entity_list.append({"text": "Philadelphia Navy Yard", "type": "organization"})
+
+def named_entity_recognition(input_text):
+    """ Identify and classify named entities in the input_text . """
+    input_text = "Social unrest persisted despite the assistance provided by the 1886 enactment of the Crofting Act ."
+    entity_list = []
+    entity_list.append({"text": "Crofting Act", "type": "other"})
+
+def named_entity_recognition(input_text):
+    """ Identify and classify named entities in the input_text . """
+    input_text = "Although nominally leading the operation, Liddy has subsequently claimed his subordinates deceived him ."
+    entity_list = []
+    entity_list.append({"text": "Liddy", "type": "person"})
+
+def named_entity_recognition(input_text):
+    """ Identify and classify named entities in the input_text . """
+    input_text = "Hauling heavy loads was a frequent use for the unique Class 21 2-10-4 Texas type locomotive ."
+    entity_list = []
+    entity_list.append({"text": "Class 21 2-10-4 Texas type locomotive", "type": "product"})
