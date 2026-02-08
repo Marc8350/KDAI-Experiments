@@ -85,8 +85,6 @@ class TestInference(unittest.TestCase):
         # Base config 
         # API Env vars are automatically handled by get_llm_model if set in .env
         self.config = ExperimentConfig(
-            num_shots=1,
-            seed=42,
             # If CUSTOM_MODEL_NAME is in env, this will be overridden or used as default
             # Defaulting to gemini-1.5-flash as requested standard
             model_name=os.getenv("CUSTOM_MODEL_NAME", "gemini-1.5-flash"), 
