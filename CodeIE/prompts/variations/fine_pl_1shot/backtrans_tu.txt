@@ -1,0 +1,155 @@
+# TASK: Complete the Python code by adding entity_list.append() statements.
+# Do not provide code explanations. Only output the entity_list.append() lines.
+# You are an NER system specialized in extracting entities from texts.
+
+def extract_entities(input_text):
+    # Text:
+    input_text = "The Man Show contributed to the programs."
+    return {"text": "The Man Show", "type": "art-broadcastprogram"}
+
+def extract_entities(input_text):
+    # Text:
+    input_text = "In 1964, the actor appeared in the film \"Get Yourself a College Girl\"."
+    return {"text": "Get Yourself a College Girl", "type": "art-film"}
+
+def extract_entities(input_text):
+    # Text:
+    input_text = "Songs are available on the album \"Prismatic Infinity Carat\"."
+    return {"text": "Prismatic Infinity Carat", "type": "art-music"}
+
+def extract_entities(input_text):
+    # Text:
+    input_text = "\"draco\" first appears on the monument in the city."
+    return {"text": "draco", "type": "art-others"}
+
+def extract_entities(input_text):
+    # Text:
+    input_text = "The full title of the painting is \"Admonitions of the Court Instructress\"."
+    return {"text": "Admonitions of the Court Instructress", "type": "art-poetry"}
+
+def extract_entities(input_text):
+    # Text:
+    input_text = "The author drew inspiration from a pivotal moment for \"A Storm of Swords\"."
+    return {"text": "A Storm of Swords", "type": "art-instructional"}
+
+def extract_entities(input_text):
+    # Text:
+    input_text = "With a flight from the airport, the plane arrived at Albrook Field on April 10, 1940."
+    return {"text": "Albrook Field", "type": "art-others"}
+
+def extract_entities(input_text):
+    # Text:
+    input_text = "The designer contributed to the interior decor of Hôtel Lutetia."
+    return {"text": "Hôtel Lutetia", "type": "art-others"}
+
+def extract_entities(input_text):
+    # Text:
+    input_text = "The 44th annual event was held at Grosvenor House Hotel in July 2019."
+    return {"text": "Grosvenor House Hotel", "type": "art-others"}
+
+def extract_entities(input_text):
+    # Text:
+    input_text = "The British Library is among the examples of research libraries."
+    return {"text": "British Library", "type": "art-others"}
+
+def extract_entities(input_text):
+    # Text:
+    input_text = "The enclosure started a task to protect Haditha Dam from collapse."
+    return {"text": "Haditha Dam", "type": "art-others"}
+
+def extract_entities(input_text):
+    # Text:
+    input_text = "Easter is celebrated at The Ranch House bar and grill with a prize raffle."
+    return {"text": "The Ranch House", "type": "art-others"}
+
+def extract_entities(input_text):
+    # Text:
+    input_text = "The company entered into a partnership to split the ownership of London Arena equally."
+    return {"text": "London Arena", "type": "art-others"}
+
+def extract_entities(input_text):
+    # Text:
+    input_text = "As part of the festival held in September 2016, the film was shown again at Cinesphere."
+    return {"text": "Cinesphere", "type": "art-others"}
+
+def extract_entities(input_text):
+    # Text:
+    input_text = "In July 1812, during the Battle of Salamanca, the officer seized the flag."
+    return {"text": "Salamanca", "type": "art-others"}
+
+def extract_entities(input_text):
+    # Text:
+    input_text = "The plague is sometimes associated with the Justinian Plague that affected the empire."
+    return {"text": "Plague of Justinian", "type": "art-others"}
+
+def extract_entities(input_text):
+    # Text:
+    input_text = "Events made him worthy of a boot from President Juan Velasco Alvarado."
+    return {"text": "Juan Velasco Alvarado", "type": "art-others"}
+
+def extract_entities(input_text):
+    # Text:
+    input_text = "Historian Austin Woolrych defines the bridge as important."
+    return {"text": "bridge", "type": "art-others"}
+
+def extract_entities(input_text):
+    # Text:
+    input_text = "In July 1812, during the war, Captain William Pearce of the 2nd Battalion seized the flag."
+    return {"text": "William Pearce", "type": "art-others"}
+
+def extract_entities(input_text):
+    # Text:
+    input_text = "After a two-day solo flight, the Soyuz spacecraft docked with the station."
+    return {"text": "Soyuz", "type": "art-others"}
+
+def extract_entities(input_text):
+    # Text:
+    input_text = "In the same size as the Opel Rekord, the new car had previously been seen in the country."
+    return {"text": "Opel Rekord", "type": "art-others"}
+
+def extract_entities(input_text):
+    # Text:
+    input_text = "Furmint plays a similar role in the wine region."
+    return {"text": "Furmint", "type": "art-others"}
+
+def extract_entities(input_text):
+    # Text:
+    input_text = "\"Crimson Alliance\" was published on September 7, 2011."
+    return {"text": "Crimson Alliance", "type": "art-websitearticle"}
+
+def extract_entities(input_text):
+    # Text:
+    input_text = "The latest update was released for Dreamcast in 1999."
+    return {"text": "Dreamcast", "type": "art-websitearticle"}
+
+def extract_entities(input_text):
+    # Text:
+    input_text = "The Atlantic 75 class carries a lifeboat."
+    return {"text": "Atlantic 75", "type": "art-others"}
+
+def extract_entities(input_text):
+    # Text:
+    input_text = "They and MS-DOS were the same products that eventually separated."
+    return {"text": "MS-DOS", "type": "art-others"}
+
+def extract_entities(input_text):
+    # Text:
+    input_text = "The eastern section ran every two hours with Alstom Coradia LINT diesel single units."
+    return {"text": "Alstom Coradia LINT", "type": "art-others"}
+
+def extract_entities(input_text):
+    # Text:
+    input_text = "With a flight from the airport, XB-15 reached the airfield."
+    return {"text": "XB-15", "type": "art-others"}
+
+# ---
+# Advanced Entity Extraction Guide
+# Use the following guidelines to classify entities:
+
+# Text:
+# Entities:
+# Example:
+# Extract entities according to the following categories:
+#   - art-broadcastprogram, art-film, art-instructional, art-lecture, art-magazine, art-magazinearticle, art-movie, art-music, art-others, art-poetry, art-tvshow, art-video, art-website, art-websitearticle, art-websitevideo, art-websitevideoarticle, art-websitevideoarticle, art-websitevideoarticle, art-websitevideoarticle, art-websitevideoarticle, art-websitevideoarticle
+#   - ...
+# Note: Extract entities.

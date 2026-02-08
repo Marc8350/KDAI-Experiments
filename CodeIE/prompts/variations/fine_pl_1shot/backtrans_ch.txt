@@ -1,0 +1,488 @@
+**Text:**
+
+**Named entities in the text:**
+
+**Annotation guidelines:**
+
+Extract named entities based on the following categories:
+* Person
+* Organization
+* Location
+* Event
+* Date
+* Time
+* Product
+* Art work
+
+---
+
+### Example 1
+
+```python
+def nlp_task(input_text):
+    return {
+        'text': input_text,
+        'named_entities': input_text
+    }
+```
+
+**Text:**
+
+```python
+input_text = "He contributed to the program 'Men's Show'."
+```
+
+**Named entities:**
+
+```python
+return [
+    nlp_task(input_text),
+    {"text": "Men's Show", "type": "art-broadcastprogram"}
+]
+```
+
+### Example 2
+
+```python
+input_text = "In 1964, the actor appeared in the film 'Make Yourself a College Girl'."
+```
+
+```python
+return [
+    nlp_task(input_text),
+    {"text": "Make Yourself a College Girl", "type": "art-broadcastprogram"}
+]
+```
+
+### Example 3
+
+```python
+input_text = "These songs are included in the album 'Colorful Unlimited Kola'."
+```
+
+```python
+return [
+    nlp_task(input_text),
+    {"text": "Colorful Unlimited Kola", "type": "art-broadcastprogram"}
+]
+```
+
+### Example 4
+
+```python
+input_text = "The statue 'Dragon' first appeared on the city’s monument."
+```
+
+```python
+return [
+    nlp_task(input_text),
+    {"text": "Dragon", "type": "art-broadcastprogram"}
+]
+```
+
+### Example 5
+
+```python
+input_text = "The full title of this painting is 'Court Guidance Lady's Admonition'."
+```
+
+```python
+return [
+    nlp_task(input_text),
+    {"text": "Court Guidance Lady's Admonition", "type": "art-broadcastprogram"}
+]
+```
+
+### Example 6
+
+```python
+input_text = "The author drew inspiration from 'Sword Storm' to add a twist to a key plot point."
+```
+
+```python
+return [
+    nlp_task(input_text),
+    {"text": "Sword Storm", "type": "art-broadcastprogram"}
+]
+```
+
+### Example 7
+
+```python
+input_text = "The aircraft departed from the base and arrived at Albrook Airport on April 10, 1940."
+```
+
+```python
+return [
+    nlp_task(input_text),
+    {"text": "Albrook Airport", "type": "art-broadcastprogram"}
+]
+```
+
+### Example 8
+
+```python
+input_text = "The designer contributed to the interior decoration of Lucenia Hotel."
+```
+
+```python
+return [
+    nlp_task(input_text),
+    {"text": "Lucenia Hotel", "type": "building"}
+]
+```
+
+### Example 9
+
+```python
+input_text = "The 44th annual event took place in July 2019 at Grosvenor Hotel."
+```
+
+```python
+return [
+    nlp_task(input_text),
+    {"text": "Grosvenor Hotel", "type": "building"}
+]
+```
+
+### Example 10
+
+```python
+input_text = "Examples of research libraries include the British Library."
+```
+
+```python
+return [
+    nlp_task(input_text),
+    {"text": "British Library", "type": "building"}
+]
+```
+
+### Example 11
+
+```python
+input_text = "The troops began the mission to protect Hadita Dam from destruction."
+```
+
+```python
+return [
+    nlp_task(input_text),
+    {"text": "Hadita Dam", "type": "building"}
+]
+```
+
+### Example 12
+
+```python
+input_text = "Easter held a raffle at the Ranch House bar and grill."
+```
+
+```python
+return [
+    nlp_task(input_text),
+    {"text": "Ranch House", "type": "art-broadcastprogram"}
+]
+```
+
+### Example 13
+
+```python
+input_text = "The company entered a partnership, holding equal shares in the ownership of London Sports Arena."
+```
+
+```python
+return [
+    nlp_task(input_text),
+    {"text": "London Sports Arena", "type": "building"}
+]
+```
+
+### Example 14
+
+```python
+input_text = "In the July 1812 Salamanca Battle, a second lieutenant captured the flag."
+```
+
+```python
+return [
+    nlp_task(input_text),
+    {"text": "Salamanca Battle", "type": "building"}
+]
+```
+
+### Example 15
+
+```python
+input_text = "This name is sometimes used to refer to the Charles the Great plague of the empire."
+```
+
+```python
+return [
+    nlp_task(input_text),
+    {"text": "Charles the Great plague", "type": "art-broadcastprogram"}
+]
+```
+
+### Example 16
+
+```python
+input_text = "He supported the country staying in the Federation during the 2016 accession referendum."
+```
+
+```python
+return [
+    nlp_task(input_text),
+    {"text": "Accession referendum", "type": "art-broadcastprogram"}
+]
+```
+
+### Example 17
+
+```python
+input_text = "The aftermath of the Ibaraki Uprising of 1637‑1638 led to harsh suppression."
+```
+
+```python
+return [
+    nlp_task(input_text),
+    {"text": "Ibaraki Uprising", "type": "art-broadcastprogram"}
+]
+```
+
+### Example 18
+
+```python
+input_text = "The story takes place in late 18th‑century Revolutionary France."
+```
+
+```python
+return [
+    nlp_task(input_text),
+    {"text": "Revolutionary France", "type": "art-broadcastprogram"}
+]
+```
+
+### Example 19
+
+```python
+input_text = "As a medalist and Tour de France racer, he celebrated many victories."
+```
+
+```python
+return [
+    nlp_task(input_text),
+    {"text": "Tour de France", "type": "art-broadcastprogram"}
+]
+```
+
+### Example 20
+
+```python
+input_text = "It is known for being located at the main campus of Betaltra."
+```
+
+```python
+return [
+    nlp_task(input_text),
+    {"text": "Betaltra", "type": "art-broadcastprogram"}
+]
+```
+
+### Example 21
+
+```python
+input_text = "This new county on the north bank of the Yangtze River is a few miles from here."
+```
+
+```python
+return [
+    nlp_task(input_text),
+    {"text": "Yangtze River", "type": "art-broadcastprogram"}
+]
+```
+
+### Example 22
+
+```python
+input_text = "After achieving autonomy in 1965, the Cook Islands elected its first Prime Minister."
+```
+
+```python
+return [
+    nlp_task(input_text),
+    {"text": "Cook Islands", "type": "art-broadcastprogram"}
+]
+```
+
+### Example 23
+
+```python
+input_text = "Ground searches were focused on the Bennington route."
+```
+
+```python
+return [
+    nlp_task(input_text),
+    {"text": "Bennington", "type": "art-broadcastprogram"}
+]
+```
+
+### Example 24
+
+```python
+input_text = "The horse won its first career race on March 7, 1968, at Gulfstream Park."
+```
+
+```python
+return [
+    nlp_task(input_text),
+    {"text": "Gulfstream Park", "type": "art-broadcastprogram"}
+]
+```
+
+### Example 25
+
+```python
+input_text = "Because of this, the creator founded Atlas Comics."
+```
+
+```python
+return [
+    nlp_task(input_text),
+    {"text": "Atlas Comics", "type": "art-broadcastprogram"}
+]
+```
+
+### Example 26
+
+```python
+input_text = "She was appointed to the cabinet position responsible for environmental and community safety in 2007."
+```
+
+```python
+return [
+    nlp_task(input_text),
+    {"text": "environment and community safety", "type": "art-broadcastprogram"}
+]
+```
+
+### Example 26a
+
+```python
+input_text = "Recent examples include posters featuring the McNaught Comet."
+```
+
+```python
+return [
+    nlp_task(input_text),
+    {"text": "McNaught Comet", "type": "art-broadcastprogram"}
+]
+```
+
+### Example 26b
+
+```python
+input_text = "His effective actions earned him the Medal of Merit."
+```
+
+```python
+return [
+    nlp_task(input_text),
+    {"text": "Medal of Merit", "type": "art-broadcastprogram"}
+]
+```
+
+### Example 26c
+
+```python
+input_text = "P53 shares similar characteristics in gene structure and function."
+```
+
+```python
+return [
+    nlp_task(input_text),
+    {"text": "P53", "type": "art-broadcastprogram"}
+]
+```
+
+### Example 26d
+
+```python
+input_text = "The protein transports substances in an ATP‑dependent carboxylation process."
+```
+
+```python
+return [
+    nlp_task(input_text),
+    {"text": "ATP", "type": "art-broadcastprogram"}
+]
+```
+
+### Example 26e
+
+```python
+input_text = "Therefore, from January 1999, 1 CFA franc equals other currencies."
+```
+
+```python
+return [
+    nlp_task(input_text),
+    {"text": "CFA franc", "type": "art-broadcastprogram"}
+]
+```
+
+### Example 26f
+
+```python
+input_text = "The child may consequently develop congenital heart disease."
+```
+
+```python
+return [
+    nlp_task(input_text),
+    {"text": "Congenital heart disease", "type": "art-broadcastprogram"}
+]
+```
+
+### Example 26g
+
+```python
+input_text = "In 1973, he completed his Master's in Art."
+```
+
+```python
+return [
+    nlp_task(input_text),
+    {"text": "Master's in Art", "type": "art-broadcastprogram"}
+]
+```
+
+### Example 26h
+
+```python
+input_text = "The theologian attempted to prove that missionaries did not know of Christ's birth."
+```
+
+```python
+return [
+    nlp_task(input_text),
+    {"text": "Christ", "type": "art-broadcastprogram"}
+]
+```
+
+### Example 26i
+
+```python
+input_text = "Historian Austin Woolrich described the bridge as having significant importance."
+```
+
+```python
+return [
+    nlp_task(input_text),
+    {"text": "Austin Woolrich", "type": "art-broadcastprogram"}
+]
+```
+
+--- 
+
+**Note:** The type values (`"art-broadcastprogram"`, `"building"`, etc.) are the English category labels used for annotation.

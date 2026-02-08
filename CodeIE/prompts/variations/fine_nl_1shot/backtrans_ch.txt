@@ -1,0 +1,273 @@
+**Annotation Guidelines:**
+
+- **Annotation goal**: Identify all named entities in the text and label them with the corresponding category.  
+- **Named entity categories**: Extract named entities according to the following categories:
+
+  * **art-broadcastprogram**: a television or radio program  
+  * **art-film**: a movie  
+  * **art-music**: a song  
+  * **art-other**: other artistic works  
+  * **art-painting**: a painting  
+  * **art-writtenart**: a book  
+  * **building-airport**: airport  
+  * **building-hospital**: hospital  
+  * **building-hotel**: hotel  
+  * **building-library**: library  
+  * **building-other**: other building  
+  * **building-restaurant**: restaurant  
+  * **building-sportsfacility**: sports facility  
+  * **building-theater**: theater  
+  * **event-attack/battle/war/militaryconflict**: battle, conflict  
+  * **event-disaster**: disaster  
+  * **event-election**: election  
+  * **event-other**: other event  
+  * **event-protest**: protest  
+  * **event-sportsevent**: sports event  
+  * **location-bodiesofwater**: body of water  
+  * **location-GPE**: geopolitical entity  
+  * **location-island**: island  
+  * **location-mountain**: mountain  
+  * **location-other**: other location  
+  * **location-park**: park  
+  * **location-road/railway/highway/transit**: road, railway, transit  
+  * **organization-company**: company  
+  * **organization-education**: educational institution  
+  * **organization-government/governmentagency**: government or agency  
+  * **organization-media/newspaper**: media  
+  * **organization-other**: other organization  
+  * **organization-politicalparty**: political party  
+  * **organization-showorganization**: performing organization  
+  * **organization-sportsleague**: sports league  
+  * **organization-sportsteam**: sports team  
+  * **person-actor**: actor  
+  * **person-artist/author**: artist or author  
+  * **person-athlete**: athlete  
+  * **person-director**: director  
+  * **person-other**: other person  
+  * **person-politician**: politician  
+  * **person-scholar**: scholar  
+  * **person-soldier**: soldier  
+  * **other-award**: award  
+  * **other-biologything**: biological concept  
+  * **other-currency**: currency  
+  * **other-disease**: disease  
+  * **other-educationaldegree**: degree  
+  * **other-god**: religious concept  
+  * **other-language**: language  
+  * **other-law**: law  
+  * **other-astronomything**: astronomical concept  
+  * **other-chemicalthing**: chemical substance  
+  * **other-culture**: culture  
+  * **other-medical**: medical concept  
+  * **product-airplane**: aircraft  
+  * **product-car**: car  
+  * **product-food**: food  
+  * **product-game**: game  
+  * **product-ship**: ship  
+  * **product-software**: software  
+  * **product-train**: train  
+  * **product-weapon**: weapon  
+  * **product-other**: other product
+
+**Extract named entities according to the following categories:**
+
+**Text**  
+**Named entities in the text**  
+
+1. **Text is**: He contributed to programs such as The Man Show.  
+   **Named entities in the text are**: (art-broadcastprogram: 《The Man Show》)
+
+2. **Text is**: In 1964, an actor appeared in the film Get Yourself a College Girl.  
+   **Named entities in the text are**: (art-film: 《Get Yourself a College Girl》)
+
+3. **Text is**: These songs are included in the album Prismatic Infinity Carat.  
+   **Named entities in the text are**: (art-music: 《Prismatic Infinity Carat》)
+
+4. **Text is**: The term “draco” first appeared on a sculpture in this city.  
+   **Named entities in the text are**: (art-other: draco)
+
+5. **Text is**: The full title of this painting is Admonitions of the Court Instructress.  
+   **Named entities in the text are**: (art-painting: 《Admonitions of the Court Instructress》)
+
+6. **Text is**: The author drew inspiration for key plot points from A Storm of Swords.  
+   **Named entities in the text are**: (art-writtenart: 《A Storm of Swords》)
+
+7. **Text is**: Takeoff from the base, the aircraft arrived at Albrook Field on April 10, 1940.  
+   **Named entities in the text are**: (building-airport: Albrook Field)
+
+8. **Text is**: The designer contributed to the interior décor of Hôtel Lutetia.  
+   **Named entities in the text are**: (building-hospital: Hôtel Lutetia)
+
+9. **Text is**: The 44th annual event was held at Grosvenor House Hotel in July 2019.  
+   **Named entities in the text are**: (building-hotel: Grosvenor House Hotel)
+
+10. **Text is**: Examples of research libraries include the British Library.  
+    **Named entities in the text are**: (building-library: British Library)
+
+11. **Text is**: The troops embarked on a mission to protect Haditha Dam from destruction.  
+    **Named entities in the text are**: (building-other: Haditha Dam)
+
+12. **Text is**: Easter took place at the Ranch House bar and restaurant with a raffle.  
+    **Named entities in the text are**: (building-restaurant: Ranch House)
+
+13. **Text is**: The company partnered with London Arena, sharing equal ownership.  
+    **Named entities in the text are**: (building-sportsfacility: London Arena)
+
+14. **Text is**: Around the September 2016 festival, the film was re‑screened at Cinesphere.  
+    **Named entities in the text are**: (building-theater: Cinesphere)
+
+15. **Text is**: During the Battle of Salamanca in July 1812, a lieutenant seized a flag.  
+    **Named entities in the text are**: (event-attack/battle/war/militaryconflict: Battle of Salamanca)
+
+16. **Text is**: The name is sometimes used to refer to the Justinian Plague that destroyed an empire.  
+    **Named entities in the text are**: (event-disaster: Plague of Justinian)
+
+17. **Text is**: He supported his country’s membership in the alliance during the 2016 referendum.  
+    **Named entities in the text are**: (event-election: membership referendum)
+
+18. **Text is**: The aftermath of the Shimabara Rebellion in 1637‑1638 led to harsh suppression.  
+    **Named entities in the text are**: (event-other: Shimabara Rebellion)
+
+19. **Text is**: The story is set in Revolutionary France at the end of the 18th century.  
+    **Named entities in the text are**: (event-protest: Revolutionary France)
+
+20. **Text is**: As a medalist and Tour de France stage champion, the athlete celebrated multiple victories.  
+    **Named entities in the text are**: (event-sportsevent: Tour de France)
+
+21. **Text is**: It is known for its location at the main campus of Bellaterra.  
+    **Named entities in the text are**: (location-GPE: Bellaterra)
+
+22. **Text is**: The county lies on the north bank of the Yangtze River, a few miles away.  
+    **Named entities in the text are**: (location-bodiesofwater: Yangtze River)
+
+23. **Text is**: After gaining autonomy in 1965, the Cook Islands elected its first prime minister.  
+    **Named entities in the text are**: (location-island: Cook Islands)
+
+24. **Text is**: Ground and aerial searches focused on the route above the Glastenbury Mountain.  
+    **Named entities in the text are**: (location-mountain: Glastenbury Mountain)
+
+25. **Text is**: Ground searches focused on the route from Bennington.  
+    **Named entities in the text are**: (location-other: Bennington)
+
+26. **Text is**: The horse won its first career race at Gulfstream Park on March 7, 1968.  
+    **Named entities in the text are**: (location-park: Gulfstream Park)
+
+27. **Text is**: Searches concentrated along Route 9.  
+    **Named entities in the text are**: (location-road/railway/highway/transit: Route 9)
+
+28. **Text is**: This is why the creator founded Atlas Comics.  
+    **Named entities in the text are**: (organization-company: Atlas Comics)
+
+29. **Text is**: Examples of research libraries include Oxford University.  
+    **Named entities in the text are**: (organization-education: Oxford University)
+
+30. **Text is**: In 2007, she was appointed to a cabinet position overseeing environment and community safety.  
+    **Named entities in the text are**: (organization-government/governmentagency: Environment and Community Safety)
+
+31. **Text is**: In September 2016, The CW announced a revival of its pilot.  
+    **Named entities in the text are**: (organization-media/newspaper: The CW)
+
+32. **Text is**: When the action began, the Army Rangers embarked on a mission to protect the dam.  
+    **Named entities in the text are**: (organization-other: Army Rangers)
+
+33. **Text is**: He is a retired American Democratic Party politician.  
+    **Named entities in the text are**: (organization-politicalparty: American Democratic Party)
+
+34. **Text is**: The aftermath of the rebellion led the government to impose harsher suppression on Christianity.  
+    **Named entities in the text are**: (organization-religion: Christianity)
+
+35. **Text is**: While working in the studio, the engineer met his mentor at Club Nouveau.  
+    **Named entities in the text are**: (organization-showorganization: Club Nouveau)
+
+36. **Text is**: In his first six months, the player was forced to miss games due to FIFA disqualification.  
+    **Named entities in the text are**: (organization-sportsleague: FIFA)
+
+37. **Text is**: The USC Trojans men’s basketball team represented the university in 2018‑19.  
+    **Named entities in the text are**: (organization-sportsteam: USC Trojans)
+
+38. **Text is**: Recent examples include a poster depicting the comet McNaught.  
+    **Named entities in the text are**: (other-astronomything: McNaught)
+
+39. **Text is**: His effective actions earned him the Legion of Merit.  
+    **Named entities in the text are**: (other-award: Legion of Merit)
+
+40. **Text is**: P53 shows similar characteristics in gene structure and function.  
+    **Named entities in the text are**: (other-biologything: P53)
+
+41. **Text is**: The protein transports substances through ATP‑dependent carboxylation.  
+    **Named entities in the text are**: (other-chemicalthing: ATP)
+
+42. **Text is**: Since January 1999, 1 CFA franc has been equal to another currency.  
+    **Named entities in the text are**: (other-currency: CFA franc)
+
+43. **Text is**: The child may have developed congenital heart disease as a result.  
+    **Named entities in the text are**: (other-disease: congenital heart disease)
+
+44. **Text is**: In 1973, he completed his Magister Artium studies.  
+    **Named entities in the text are**: (other-educationaldegree: Magister Artium)
+
+45. **Text is**: The theologian tried to prove that the preacher did not know Christ’s birth.  
+    **Named entities in the text are**: (other-god: Christ)
+
+46. **Text is**: The Old English “attercoppe” derives from other words.  
+    **Named entities in the text are**: (other-language: Old English)
+
+47. **Text is**: The Espionage Act of 1917 was enacted in response to this.  
+    **Named entities in the text are**: (other-law: Espionage Act of 1917)
+
+48. **Text is**: At three years old, Go Marching achieved his first career win.  
+    **Named entities in the text are**: (other-livingthing: Go Marching)
+
+49. **Text is**: Protein C replacement therapy is available for those with severe deficiency.  
+    **Named entities in the text are**: (other-medical: protein C replacement therapies)
+
+50. **Text is**: Sam Adegoke was chosen for a role in May 2017.  
+    **Named entities in the text are**: (person-actor: Sam Adegoke)
+
+51. **Text is**: In 1964, Gilberto appeared in several films.  
+    **Named entities in the text are**: (person-artist/author: Gilberto)
+
+52. **Text is**: As an Olympic bronze medalist, Davis Phinney celebrated the most victories.  
+    **Named entities in the text are**: (person-athlete: Davis Phinney)
+
+53. **Text is**: Newling’s other projects include global premiere productions.  
+    **Named entities in the text are**: (person-director: Newling)
+
+54. **Text is**: This is why Martin founded the company.  
+    **Named entities in the text are**: (person-other: Martin)
+
+55. **Text is**: His effective actions earned him the cross awarded by President Juan Velasco Alvarado.  
+    **Named entities in the text are**: (person-politician: Juan Velasco Alvarado)
+
+56. **Text is**: Historian Austin Woolrych described the bridge as of great significance.  
+    **Named entities in the text are**: (person-scholar: Austin Woolrych)
+
+57. **Text is**: In the July 1812 battle, Lieutenant William Pearce of Company 2 seized a flag.  
+    **Named entities in the text are**: (person-soldier: William Pearce)
+
+58. **Text is**: After two days of solo flight, the Soyuz spacecraft docked with the space station.  
+    **Named entities in the text are**: (product-airplane: Soyuz spacecraft)
+
+59. **Text is**: Comparable in size to the Opel Rekord, the new car previously appeared in the country.  
+    **Named entities in the text are**: (product-car: Opel Rekord)
+
+60. **Text is**: Furmint plays a similar role in the wine region.  
+    **Named entities in the text are**: (product-food: Furmint)
+
+61. **Text is**: Crimson Alliance was released on September 7, 2021.  
+    **Named entities in the text are**: (product-game: Crimson Alliance)
+
+62. **Text is**: The latest update was released on the Dreamcast in 1999.  
+    **Named entities in the text are**: (product-other: Dreamcast)
+
+63. **Text is**: It is equipped with the Atlantic 75 lifeboat.  
+    **Named entities in the text are**: (product-ship: Atlantic 75)
+
+64. **Text is**: It is the same product as MS‑DOS, eventually diverging.  
+    **Named entities in the text are**: (product-software: MS‑DOS)
+
+65. **Text is**: The eastern section runs every two hours, using Alstom Coradia LINT diesel units.  
+    **Named entities in the text are**: (product-train: Alstom Coradia LINT)
+
+66. **Text is**: Takeoff from the base, the XB‑15 reached the airport.  
+    **Named entities in the text are**: (product-weapon: XB‑15)

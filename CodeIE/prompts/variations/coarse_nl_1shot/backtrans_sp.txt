@@ -1,0 +1,35 @@
+# Annotation guidelines:
+# Extract named entities based on the following categories:
+#
+# art: A named work of art including films, books, music, paintings, or other creative works.
+# building: A named structure or building, such as a stadium, museum, or hotel.
+# event: A named event such as a war, sports event, festival, or historical occurrence.
+# location: A geographical location such as a city, country, continent, region, or landmark.
+# organization: A named organization, institution, company, or group.
+# other: Other named entities that don't fit into the above categories.
+# person: A named individual, including fictional characters, historical figures, celebrities, and common people.
+# product: A named commercial product, software, vehicle model, or branded item.
+
+Text: "The album was released on March 25, 2008. It was the first new‑material album the group had released since **Good Content** in 1992."
+Named entities in the text: (art: Good Content)
+
+Text: "In 1136, the castle was donated to the **Knights of the Hospitallers**."
+Named entities in the text: (building: Knights of the Hospitallers)
+
+Text: "During **World War II**, heavy cargoes were often transported to the military unit and camp."
+Named entities in the text: (event: World War II)
+
+Text: "Over the next five years, it performed tests in the **Cape May, New Jersey** area."
+Named entities in the text: (location: Cape May, New Jersey)
+
+Text: "Between January 30, 1945 and February 4, it was outfitted at the **Philadelphia Naval Shipyard** for special experimental work."
+Named entities in the text: (organization: Philadelphia Naval Shipyard)
+
+Text: "The **Crofting Law** of 1886 helped, but social unrest continued."
+Named entities in the text: (other: Crofting Law)
+
+Text: "Liddy was nominally in charge of the operation, but has insisted since then that she was deceived by her subordinates."
+Named entities in the text: (person: Liddy)
+
+Text: "The only **Texas 2‑10‑4 Class 21 locomotive** was often used to transport heavy cargo."
+Named entities in the text: (product: Texas 2‑10‑4 Class 21 locomotive)
