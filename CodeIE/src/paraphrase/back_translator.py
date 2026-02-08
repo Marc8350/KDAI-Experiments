@@ -87,7 +87,7 @@ CRITICAL RULES:
 4. Only translate the natural language parts (docstrings, comments, instructions)
 5. Preserve line breaks and indentation
 6. SUPER CRITICAL: Do NOT translate entity type names like "person", "location", "organization", "building", "event", etc. Keep them exactly in English.
-7. Do not translate specific named entities if they appear in code strings (e.g. "Barack Obama").
+7. The entire translated document should only contain english contents and no remainders of the source language
 
 {source_language} prompt:
 ---
