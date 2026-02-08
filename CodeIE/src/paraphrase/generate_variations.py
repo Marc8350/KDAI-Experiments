@@ -158,7 +158,14 @@ def generate_variations_for_prompt(
     if "paraphrase" in methods:
         logger.info("Generating paraphrase variations...")
         for i in range(3):
-            logger.info(f"  Attempting paraphrase_v{i+1}")
+            variation_name = f"paraphrase_v{i+1}"
+            output_path = output_dir / f"{variation_name}.txt"
+            
+            if output_path.exists():
+                logger.info(f"  Skipping existing: {variation_name}")
+                continue
+
+            logger.info(f"  Attempting {variation_name}")
             try:
                 paraphrased = paraphraser.paraphrase(
                     base_prompt, 
@@ -203,8 +210,16 @@ def generate_variations_for_prompt(
         logger.info(f"Generating back-translation variations for {languages}...")
         
         for lang in languages:
+
             lang_code = lang.lower()[:2]
-            logger.info(f"  Attempting backtrans_{lang_code} (via {lang})")
+            variation_name = f"backtrans_{lang_code}"
+            output_path = output_dir / f"{variation_name}.txt"
+            
+            if output_path.exists():
+                logger.info(f"  Skipping existing: {variation_name}")
+                continue
+
+            logger.info(f"  Attempting {variation_name} (via {lang})")
             
             try:
                 intermediate, back_translated = back_translator.back_translate(

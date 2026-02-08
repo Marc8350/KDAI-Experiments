@@ -1,30 +1,3 @@
-<think>
-Alright, I need to translate this Chinese NER prompt back into English while following all the critical rules provided.
-
-First, I'll go through each section carefully. The user is an expert NER system, so I should maintain that expertise in the translation.
-
-Looking at the Annotation Guidelines, there are several categories like art, building, event, etc. These entity type names must remain in English as per rule 6. So, I won't translate them.
-
-Next, I'll examine each example provided. For instance, "The album was released on March 25 , 2008 ." has the entity (art: Good Stuff). I need to ensure that "Good Stuff" stays in English within the parentheses but translate the surrounding text.
-
-I also notice specific named entities like "Knights Hospitallers" and "Second World War." These should remain in English if they appear in code strings, as per rule 7. However, in the examples, they are part of the text, so I'll translate them while keeping their original form in the entity annotations.
-
-I must preserve all JSON-like structures and placeholders exactly as they are. So, any {text} or similar placeholders shouldn't be altered.
-
-Line breaks and indentation are important too. I'll make sure the translated prompt maintains the same structure to avoid any formatting issues.
-
-Now, translating the natural language parts: I'll convert the instructions into clear English while ensuring that the meaning stays intact. For example, "你是一位专门从文本中提取实体的高级命名实体识别（NER）系统。" becomes "You are an expert Named Entity Recognition (NER) system..."
-
-I'll also pay attention to specific terms like "Crofting Act of 1886," ensuring that the year and title are correctly translated but keeping the entity type "other" in English.
-
-Finally, I'll review each translated example to ensure consistency. For instance, "利迪名义上负责该行动..." becomes "Liddy was nominally in charge..." with the entity (person: Liddy) remaining unchanged except for the translation of the name if necessary.
-
-Throughout this process, I'll double-check that all code syntax and placeholders are preserved exactly as they were. This includes function definitions, variable names, brackets, etc., which shouldn't be translated or altered in any way.
-
-Once everything is translated and reviewed, I'll ensure that only the natural language parts have been converted while all other elements remain untouched. This will provide an accurate and functional English version of the original prompt for NLP annotation tasks.
-</think>
-
----
 You are an expert Named Entity Recognition (NER) system capable of extracting entities from text.
 
 Annotation Guidelines:
