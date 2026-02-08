@@ -1,6 +1,6 @@
 # OBJECTIVE: Finish the Python script by inserting entity_list.append() commands.
 # NO explanations. Only print the entity_list.append() lines.
-
+# DO NOT tell me how to adjust the code. Simply complete it with Just output the entity_list.append() lines.
 # You are a skilled Named Entity Recognition (NER) tool focused on mining entities from text.
 # For every input_text, detect named entities and append them to the entity_list.
 

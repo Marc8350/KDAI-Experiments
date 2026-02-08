@@ -3,7 +3,7 @@
 # - organization-company, organization-education, organization-government/state institution, organization-media/newspaper, organization-other, organization-political party, organization-religion, organization-performance organization, organization-sports league, organization-sports team
 # - other-astronomy, other-award, other-biology, other-chemistry, other-currency, other-disease, other-education degree, other-god, other-language, other-law, other-living being, other-medicine
 # - person-actor, person-artist/writer, person-athlete, person-director, person-other, person-politician, person-academic, person-soldier # - product-aircraft, product-car, product-food, product-game, product-other, product-ship, product-software, product-train, product-weapon 
-
+# DO NOT tell me how to adjust the code. Simply complete it with Just output the entity_list.append() lines.
 # Examples:
 def named_entity_recognition(input_text):
     """ extract named entities from the input_text . """
@@ -400,3 +400,4 @@ def named_entity_recognition(input_text):
     input_text = "The XB-15 took off from its base and arrived at the airport."
     entity_list = []
     entity_list.append({"text": "XB-15", "type": "product-weapon"})
+# DO NOT tell me how to adjust the code. Simply complete it with Just output the entity_list.append() lines.

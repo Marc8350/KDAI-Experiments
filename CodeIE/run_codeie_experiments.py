@@ -451,25 +451,46 @@ def run_inference(prompt: str, llm_model, config: ExperimentConfig) -> str:
 
 
 def parse_code_style_output(output: str, entity_types: List[str]) -> List[Dict]:
-    """Parse code-style output to extract entities."""
+    """Parse code-style output to extract entities, handling Markdown blocks."""
     entities = []
     
-    # Pattern to match entity_list.append({"text": "...", "type": "..."})
-    pattern = r'entity_list\.append\(\{["\']text["\']:\s*["\']([^"\']*)["\'],\s*["\']type["\']:\s*["\']([^"\']*)["\']'
+    # Clean up output: remove Markdown code blocks if present
+    clean_output = output
+    if "```" in output:
+        # Try to extract content inside ```python ... ``` or just ``` ... ```
+        code_blocks = re.findall(r'```(?:python)?(.*?)```', output, re.DOTALL)
+        if code_blocks:
+            clean_output = "\n".join(code_blocks)
+
+    # Regex patterns to match entity_list.append(...)
+    # 1. Standard: {"text": "...", "type": "..."}
+    # We use non-greedy matching .*? for content inside quotes to handle escaped quotes if simple
+    pattern = r'entity_list\.append\(\s*\{\s*["\']text["\']:\s*["\'](.*?)["\']\s*,\s*["\']type["\']:\s*["\'](.*?)["\']\s*\}\s*\)'
     
-    # Also try reverse order
-    pattern_alt = r'entity_list\.append\(\{["\']type["\']:\s*["\']([^"\']*)["\'],\s*["\']text["\']:\s*["\']([^"\']*)["\']'
-    
-    for match in re.finditer(pattern, output):
+    # 2. Reverse: {"type": "...", "text": "..."}
+    # Also handle alternate key ordering
+    pattern_alt = r'entity_list\.append\(\s*\{\s*["\']type["\']:\s*["\'](.*?)["\']\s*,\s*["\']text["\']:\s*["\'](.*?)["\']\s*\}\s*\)'
+
+    # Find matches in the cleaned output
+    # Using finditer allows us to process them in order
+    for match in re.finditer(pattern, clean_output):
         text, entity_type = match.groups()
         if entity_type in entity_types and text:
             entities.append({'text': text, 'type': entity_type})
-    
-    for match in re.finditer(pattern_alt, output):
+            
+    # Also check for the alternative format
+    for match in re.finditer(pattern_alt, clean_output):
         entity_type, text = match.groups()
         if entity_type in entity_types and text:
-            entities.append({'text': text, 'type': entity_type})
-    
+             # Check if this exact entity was already added
+            found = False
+            for e in entities:
+                if e['text'] == text and e['type'] == entity_type:
+                    found = True
+                    break
+            if not found:
+                entities.append({'text': text, 'type': entity_type})
+
     return entities
 
 

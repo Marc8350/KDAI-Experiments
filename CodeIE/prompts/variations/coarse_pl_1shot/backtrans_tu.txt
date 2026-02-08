@@ -2,7 +2,7 @@
 # Do not explain the code. Only output the entity_list.append() lines.
 # You are an expert Named Entity Recognition (NER) system for extracting entities from text.
 # For each input_text, identify the named entities and add them using entity_list.append().
-
+# DO NOT tell me how to adjust the code. Simply complete it with Just output the entity_list.append() lines.
 # Entity Types:
 # - art: A work of art, such as films, books, music, paintings, or other creative works.
 # - building: A named structure or building, such as a stadium, museum, or hotel.

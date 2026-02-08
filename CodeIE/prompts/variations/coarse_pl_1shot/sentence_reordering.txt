@@ -13,7 +13,7 @@
 # - other: Named entities that do not fall into the specific categories listed above.
 # - person: Specific individuals, covering celebrities, historical figures, common people, and fictional characters.
 # - product: Commercial items with names, such as software, vehicles, or branded goods.
-
+# DO NOT tell me how to adjust the code. Simply complete it with Just output the entity_list.append() lines.
 # Examples:
 def named_entity_recognition(input_text):
     """ Identify and classify named entities in the input_text . """

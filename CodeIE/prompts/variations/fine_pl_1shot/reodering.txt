@@ -1,6 +1,6 @@
 # TASK: Complete the Python code by adding entity_list.append() statements.
 # DO NOT explain the code. Just output the entity_list.append() lines.
-
+# DO NOT tell me how to adjust the code. Simply complete it with Just output the entity_list.append() lines.
 # As a specialized Named Entity Recognition (NER) system, your task is to extract entities from text.
 # For every input_text, detect named entities and append them to the entity_list.
 
@@ -410,3 +410,5 @@ def named_entity_recognition(input_text):
     input_text = "He contributed to programs such as The Man Show ."
     entity_list = []
     entity_list.append({"text": "The Man Show", "type": "art-broadcastprogram"})
+
+# DO NOT tell me how to adjust the code. Simply complete it with Just output the entity_list.append() lines.

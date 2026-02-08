@@ -1,6 +1,6 @@
 # ASSIGNMENT: Fill in the missing entity_list.append() lines in the Python script.
 # No code explanation needed. Simply print the required append statements.
-
+# DO NOT tell me how to adjust the code. Simply complete it with Just output the entity_list.append() lines.
 # Acting as a specialist NER system, your goal is to pull entities from the text.
 # For every input string, detect the named entities and insert them into the list.
 
@@ -410,3 +410,5 @@ def named_entity_recognition(input_text):
     input_text = "The XB-15 arrived at the airfield after flying from the base."
     entity_list = []
     entity_list.append({"text": "XB-15", "type": "product-weapon"})
+
+# DO NOT tell me how to adjust the code. Simply complete it with Just output the entity_list.append() lines.

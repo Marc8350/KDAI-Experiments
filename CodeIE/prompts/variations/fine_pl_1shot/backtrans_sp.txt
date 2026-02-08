@@ -1,5 +1,5 @@
 # TASK: Complete the Python code by adding entity_list.append() statements. # DO NOT explain the code. Just write the entity_list.append() lines. # You are an expert system in named entity recognition (NER) specialized in extracting entities from text. # For each input_text, identify the named entities and add them using entity_list.append().
-
+# DO NOT tell me how to adjust the code. Simply complete it with Just output the entity_list.append() lines.
 # Entity types (detailed): # - art-broadcastprogram, art-film, art-music, art-other, art-painting, art-writtenart # - building-airport, building-hospital, building-hotel, building-library, building-other, building-restaurant, building-sportsfacility, building-theater
 # - event-attack/battle/war/military conflict, event-disaster, event-elections, event-other, event-protest, event-sporting event # - location-GPE, location-body of water, location-island, location-mountain, location-other, location-park, location-road/rail/highway/transit
 # - organization-company, organization-education, organization-government/government agency, organization-media/newspaper, organization-other, organization-political party, organization-religion, organization-entertainment organization, organization-sports league, organization-sports team
@@ -402,3 +402,4 @@ def named_entity_recognition(input_text):
     input_text = "After taking off from the base, the XB-15 arrived at the airfield."
     entity_list = []
     entity_list.append({"text": "XB-15", "type": "product-weapon"})
+# DO NOT tell me how to adjust the code. Simply complete it with Just output the entity_list.append() lines.
