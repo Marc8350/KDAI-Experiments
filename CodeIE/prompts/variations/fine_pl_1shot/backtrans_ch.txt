@@ -1,488 +1,404 @@
-**Text:**
-
-**Named entities in the text:**
-
-**Annotation guidelines:**
-
-Extract named entities based on the following categories:
-* Person
-* Organization
-* Location
-* Event
-* Date
-* Time
-* Product
-* Art work
-
----
-
-### Example 1
-
-```python
-def nlp_task(input_text):
-    return {
-        'text': input_text,
-        'named_entities': input_text
-    }
-```
-
-**Text:**
-
-```python
-input_text = "He contributed to the program 'Men's Show'."
-```
-
-**Named entities:**
-
-```python
-return [
-    nlp_task(input_text),
-    {"text": "Men's Show", "type": "art-broadcastprogram"}
-]
-```
-
-### Example 2
-
-```python
-input_text = "In 1964, the actor appeared in the film 'Make Yourself a College Girl'."
-```
-
-```python
-return [
-    nlp_task(input_text),
-    {"text": "Make Yourself a College Girl", "type": "art-broadcastprogram"}
-]
-```
-
-### Example 3
-
-```python
-input_text = "These songs are included in the album 'Colorful Unlimited Kola'."
-```
-
-```python
-return [
-    nlp_task(input_text),
-    {"text": "Colorful Unlimited Kola", "type": "art-broadcastprogram"}
-]
-```
-
-### Example 4
-
-```python
-input_text = "The statue 'Dragon' first appeared on the city’s monument."
-```
-
-```python
-return [
-    nlp_task(input_text),
-    {"text": "Dragon", "type": "art-broadcastprogram"}
-]
-```
-
-### Example 5
-
-```python
-input_text = "The full title of this painting is 'Court Guidance Lady's Admonition'."
-```
-
-```python
-return [
-    nlp_task(input_text),
-    {"text": "Court Guidance Lady's Admonition", "type": "art-broadcastprogram"}
-]
-```
-
-### Example 6
-
-```python
-input_text = "The author drew inspiration from 'Sword Storm' to add a twist to a key plot point."
-```
-
-```python
-return [
-    nlp_task(input_text),
-    {"text": "Sword Storm", "type": "art-broadcastprogram"}
-]
-```
-
-### Example 7
-
-```python
-input_text = "The aircraft departed from the base and arrived at Albrook Airport on April 10, 1940."
-```
-
-```python
-return [
-    nlp_task(input_text),
-    {"text": "Albrook Airport", "type": "art-broadcastprogram"}
-]
-```
-
-### Example 8
-
-```python
-input_text = "The designer contributed to the interior decoration of Lucenia Hotel."
-```
-
-```python
-return [
-    nlp_task(input_text),
-    {"text": "Lucenia Hotel", "type": "building"}
-]
-```
-
-### Example 9
-
-```python
-input_text = "The 44th annual event took place in July 2019 at Grosvenor Hotel."
-```
-
-```python
-return [
-    nlp_task(input_text),
-    {"text": "Grosvenor Hotel", "type": "building"}
-]
-```
-
-### Example 10
-
-```python
-input_text = "Examples of research libraries include the British Library."
-```
-
-```python
-return [
-    nlp_task(input_text),
-    {"text": "British Library", "type": "building"}
-]
-```
-
-### Example 11
-
-```python
-input_text = "The troops began the mission to protect Hadita Dam from destruction."
-```
-
-```python
-return [
-    nlp_task(input_text),
-    {"text": "Hadita Dam", "type": "building"}
-]
-```
-
-### Example 12
-
-```python
-input_text = "Easter held a raffle at the Ranch House bar and grill."
-```
-
-```python
-return [
-    nlp_task(input_text),
-    {"text": "Ranch House", "type": "art-broadcastprogram"}
-]
-```
-
-### Example 13
-
-```python
-input_text = "The company entered a partnership, holding equal shares in the ownership of London Sports Arena."
-```
-
-```python
-return [
-    nlp_task(input_text),
-    {"text": "London Sports Arena", "type": "building"}
-]
-```
-
-### Example 14
-
-```python
-input_text = "In the July 1812 Salamanca Battle, a second lieutenant captured the flag."
-```
-
-```python
-return [
-    nlp_task(input_text),
-    {"text": "Salamanca Battle", "type": "building"}
-]
-```
-
-### Example 15
-
-```python
-input_text = "This name is sometimes used to refer to the Charles the Great plague of the empire."
-```
-
-```python
-return [
-    nlp_task(input_text),
-    {"text": "Charles the Great plague", "type": "art-broadcastprogram"}
-]
-```
-
-### Example 16
-
-```python
-input_text = "He supported the country staying in the Federation during the 2016 accession referendum."
-```
-
-```python
-return [
-    nlp_task(input_text),
-    {"text": "Accession referendum", "type": "art-broadcastprogram"}
-]
-```
-
-### Example 17
-
-```python
-input_text = "The aftermath of the Ibaraki Uprising of 1637‑1638 led to harsh suppression."
-```
-
-```python
-return [
-    nlp_task(input_text),
-    {"text": "Ibaraki Uprising", "type": "art-broadcastprogram"}
-]
-```
-
-### Example 18
-
-```python
-input_text = "The story takes place in late 18th‑century Revolutionary France."
-```
-
-```python
-return [
-    nlp_task(input_text),
-    {"text": "Revolutionary France", "type": "art-broadcastprogram"}
-]
-```
-
-### Example 19
-
-```python
-input_text = "As a medalist and Tour de France racer, he celebrated many victories."
-```
-
-```python
-return [
-    nlp_task(input_text),
-    {"text": "Tour de France", "type": "art-broadcastprogram"}
-]
-```
-
-### Example 20
-
-```python
-input_text = "It is known for being located at the main campus of Betaltra."
-```
-
-```python
-return [
-    nlp_task(input_text),
-    {"text": "Betaltra", "type": "art-broadcastprogram"}
-]
-```
-
-### Example 21
-
-```python
-input_text = "This new county on the north bank of the Yangtze River is a few miles from here."
-```
-
-```python
-return [
-    nlp_task(input_text),
-    {"text": "Yangtze River", "type": "art-broadcastprogram"}
-]
-```
-
-### Example 22
-
-```python
-input_text = "After achieving autonomy in 1965, the Cook Islands elected its first Prime Minister."
-```
-
-```python
-return [
-    nlp_task(input_text),
-    {"text": "Cook Islands", "type": "art-broadcastprogram"}
-]
-```
-
-### Example 23
-
-```python
-input_text = "Ground searches were focused on the Bennington route."
-```
-
-```python
-return [
-    nlp_task(input_text),
-    {"text": "Bennington", "type": "art-broadcastprogram"}
-]
-```
-
-### Example 24
-
-```python
-input_text = "The horse won its first career race on March 7, 1968, at Gulfstream Park."
-```
-
-```python
-return [
-    nlp_task(input_text),
-    {"text": "Gulfstream Park", "type": "art-broadcastprogram"}
-]
-```
-
-### Example 25
-
-```python
-input_text = "Because of this, the creator founded Atlas Comics."
-```
-
-```python
-return [
-    nlp_task(input_text),
-    {"text": "Atlas Comics", "type": "art-broadcastprogram"}
-]
-```
-
-### Example 26
-
-```python
-input_text = "She was appointed to the cabinet position responsible for environmental and community safety in 2007."
-```
-
-```python
-return [
-    nlp_task(input_text),
-    {"text": "environment and community safety", "type": "art-broadcastprogram"}
-]
-```
-
-### Example 26a
-
-```python
-input_text = "Recent examples include posters featuring the McNaught Comet."
-```
-
-```python
-return [
-    nlp_task(input_text),
-    {"text": "McNaught Comet", "type": "art-broadcastprogram"}
-]
-```
-
-### Example 26b
-
-```python
-input_text = "His effective actions earned him the Medal of Merit."
-```
-
-```python
-return [
-    nlp_task(input_text),
-    {"text": "Medal of Merit", "type": "art-broadcastprogram"}
-]
-```
-
-### Example 26c
-
-```python
-input_text = "P53 shares similar characteristics in gene structure and function."
-```
-
-```python
-return [
-    nlp_task(input_text),
-    {"text": "P53", "type": "art-broadcastprogram"}
-]
-```
-
-### Example 26d
-
-```python
-input_text = "The protein transports substances in an ATP‑dependent carboxylation process."
-```
-
-```python
-return [
-    nlp_task(input_text),
-    {"text": "ATP", "type": "art-broadcastprogram"}
-]
-```
-
-### Example 26e
-
-```python
-input_text = "Therefore, from January 1999, 1 CFA franc equals other currencies."
-```
-
-```python
-return [
-    nlp_task(input_text),
-    {"text": "CFA franc", "type": "art-broadcastprogram"}
-]
-```
-
-### Example 26f
-
-```python
-input_text = "The child may consequently develop congenital heart disease."
-```
-
-```python
-return [
-    nlp_task(input_text),
-    {"text": "Congenital heart disease", "type": "art-broadcastprogram"}
-]
-```
-
-### Example 26g
-
-```python
-input_text = "In 1973, he completed his Master's in Art."
-```
-
-```python
-return [
-    nlp_task(input_text),
-    {"text": "Master's in Art", "type": "art-broadcastprogram"}
-]
-```
-
-### Example 26h
-
-```python
-input_text = "The theologian attempted to prove that missionaries did not know of Christ's birth."
-```
-
-```python
-return [
-    nlp_task(input_text),
-    {"text": "Christ", "type": "art-broadcastprogram"}
-]
-```
-
-### Example 26i
-
-```python
-input_text = "Historian Austin Woolrich described the bridge as having significant importance."
-```
-
-```python
-return [
-    nlp_task(input_text),
-    {"text": "Austin Woolrich", "type": "art-broadcastprogram"}
-]
-```
-
---- 
-
-**Note:** The type values (`"art-broadcastprogram"`, `"building"`, etc.) are the English category labels used for annotation.
+# Task: Complete the Python code by adding entity_list.append() statements. # No need to explain the code; only output the entity_list.append() statement lines. # You are a professional Named Entity Recognition (NER) system, specializing in extracting entities from text. # For each input text input_text, identify named entities and add them using entity_list.append().
+
+# Entity Types (Fine-grained): # - Arts-Broadcast Program, Arts-Film, Arts-Music, Arts-Other, Arts-Painting, Arts-Literary Art # - Architecture-Airport, Architecture-Hospital, Architecture-Hotel, Architecture-Library, Architecture-Other, Architecture-Restaurant, Architecture-Sports Facility, Architecture-Theater
+# - Event-Attack/Campaign/War/Military Conflict, Event-Disaster, Event-Election, Event-Other, Event-Protest, Event-Sports Event # - Place-Geographic Location, Place-Body of Water, Place-Island, Place-Mountain Range, Place-Other, Place-Park, Place-Road/Railway/Highway/Transportation Hub
+# - Organization-Company, Organization-Educational Institution, Organization-Government/Government Agency, Organization-Media/Newspaper, Organization-Other, Organization-Political Party, Organization-Religious Group, Organization-Performance Group, Organization-Sports League, Organization-Sports Team
+# - Other-Astronomical Entities, Other-Awards, Other-Biological Entities, Other-Chemical Entities, Other-Currency, Other-Diseases, Other-Educational Degrees, Other-Deities, Other-Languages, Other-Law, Other-Organisms, Other-Medicine
+# - People - Actors, People - Artists/Writers, People - Athletes, People - Directors, People - Other, People - Politicians, People - Scholars, People - Military Personnel # - Products - Aircraft, Products - Automobiles, Products - Food, Products - Games, Products - Other, Products - Vessels, Products - Software, Products - Trains, Products - Weapons
+
+# Examples:
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "He has participated in the production of programs such as "Men's Show.""
+    entity_list = []
+    entity_list.append({"text": "Men's Fashion Show", "type": "art-broadcastprogram"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "In 1964, the actor starred in the film Finding a College Girl."
+    entity_list = []
+    entity_list.append({"text": "Find a college girl.", "type": "art-film"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "These songs are included in the album Prism Infinite Carat."
+    entity_list = []
+    entity_list.append({"text": "Prism Infinite Carat", "type": "art-music"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "The dragon first appeared on a monument in the city."
+    entity_list = []
+    entity_list.append({"text": "Dragon", "type": "art-other"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "The full title of this painting is The Admonition of the Court Ladies."
+    entity_list = []
+    entity_list.append({"text": "Admonition by the Court Officer", "type": "art-painting"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "The author drew inspiration from a pivotal turning point in "Berserk.""
+    entity_list = []
+    entity_list.append({"text": "Blade Storm", "type": "art-writtenart"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "The aircraft took off from the base and arrived at Albrook Field on April 10, 1940."
+    entity_list = []
+    entity_list.append({"text": "Albuquerque Airport", "type": "building-airport"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "The designer participated in the interior decoration design of the Lutetia Hotel."
+    entity_list = []
+    entity_list.append({"text": "Lu Taishi Hotel", "type": "building-hospital"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "The 44th Annual Event was held at the Grosvenor House Hotel in July 2019."
+    entity_list = []
+    entity_list.append({"text": "Grosvenor House Hotel", "type": "building-hotel"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "Examples of research libraries include the British Library."
+    entity_list = []
+    entity_list.append({"text": "British Library", "type": "building-library"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "The unit carried out an operation to protect the Haditha Dam from destruction."
+    entity_list = []
+    entity_list.append({"text": "Haditha Dam", "type": "building-other"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "During Easter, the Ranch Cabin Bar & Grill will host a raffle event."
+    entity_list = []
+    entity_list.append({"text": "Ranch Cabin", "type": "building-restaurant"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "The company has reached an agreement with its partners to jointly hold a 50% stake in the London Arena."
+    entity_list = []
+    entity_list.append({"text": "London Arena", "type": "building-sportsfacility"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "As part of the film festival held in September 2016, the film was screened once again at the Cinesphere theater."
+    entity_list = []
+    entity_list.append({"text": "Shadow Ball", "type": "building-theater"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "During the Battle of Salamanca in July 1812, this lieutenant captured the enemy's military standard."
+    entity_list = []
+    entity_list.append({"text": "Battle of Salamanca", "type": "event-attack/battle/war/militaryconflict"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "This name is sometimes also used to refer to the Justinian Plague that swept across the empire."
+    entity_list = []
+    entity_list.append({"text": "The Plague of Justinian", "type": "event-disaster"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "He supported the country's continued membership in the European Union during the 2016 membership referendum."
+    entity_list = []
+    entity_list.append({"text": "Member Referendum", "type": "event-election"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "The aftermath of the Shimabara Rebellion from 1637 to 1638 led to severe suppression."
+    entity_list = []
+    entity_list.append({"text": "The Shimabara Rebellion", "type": "event-other"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "The story takes place during the French Revolution in the late 18th century."
+    entity_list = []
+    entity_list.append({"text": "France during the Revolutionary Period", "type": "event-protest"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "As a medalist and stage winner of the Tour de France, this athlete has celebrated countless victories."
+    entity_list = []
+    entity_list.append({"text": "Tour de France", "type": "event-sportsevent"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "As is well known, this is the location of Bellatera's main campus."
+    entity_list = []
+    entity_list.append({"text": "Bellaterra", "type": "location-GPE"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "Xin County is situated on the northern bank of the Yangtze River, several miles away."
+    entity_list = []
+    entity_list.append({"text": "Yangtze River", "type": "location-bodiesofwater"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "After achieving self-government in 1965, the Cook Islands elected its first Prime Minister."
+    entity_list = []
+    entity_list.append({"text": "Cook Islands", "type": "location-island"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "Ground and aerial searches focused on the mountain road leading to Glastonbury Hill."
+    entity_list = []
+    entity_list.append({"text": "Glastonbury Tor", "type": "location-mountain"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "The ground search focused primarily on the roads along the Bennington route."
+    entity_list = []
+    entity_list.append({"text": "Bennett", "type": "location-other"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "This racehorse won its first career victory on March 7, 1968, at Gamble Creek Park."
+    entity_list = []
+    entity_list.append({"text": "Gulf Stream Park", "type": "location-park"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "The search operation is concentrated along Highway 9."
+    entity_list = []
+    entity_list.append({"text": "Route 9", "type": "location-road/railway/highway/transit"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "This is why the creators founded Atlas Comics."
+    entity_list = []
+    entity_list.append({"text": "Atlas Comics", "type": "organization-company"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "Examples of research libraries include the libraries of the University of Oxford."
+    entity_list = []
+    entity_list.append({"text": "University of Oxford", "type": "organization-education"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "In 2007, she was appointed to the Cabinet, responsible for environmental and community safety affairs."
+    entity_list = []
+    entity_list.append({"text": "Environmental and Community Safety", "type": "organization-government/governmentagency"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "In September 2016, The CW announced it would reboot The Flash and shoot a pilot episode."
+    entity_list = []
+    entity_list.append({"text": "CW Network", "type": "organization-media/newspaper"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "As the operation commenced, Army Rangers embarked on the mission to secure the dam."
+    entity_list = []
+    entity_list.append({"text": "Army Rangers", "type": "organization-other"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "He is a retired American Democratic politician."
+    entity_list = []
+    entity_list.append({"text": "Democratic Party of the United States", "type": "organization-politicalparty"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "The aftermath of the rebellion led to harsher government crackdowns on Christianity."
+    entity_list = []
+    entity_list.append({"text": "Christianity", "type": "organization-religion"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "During the production of Club Nouveau at the studio, the engineer met his mentor."
+    entity_list = []
+    entity_list.append({"text": "New Club", "type": "organization-showorganization"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "During the first six months after joining the club, the player was forced to miss matches due to a FIFA suspension."
+    entity_list = []
+    entity_list.append({"text": "International Football Association", "type": "organization-sportsleague"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "The 2018–19 USC Trojans men's basketball team represented the university in competition."
+    entity_list = []
+    entity_list.append({"text": "USC Trojans", "type": "organization-sportsteam"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "Recent examples include a poster depicting Comet McNaught."
+    entity_list = []
+    entity_list.append({"text": "McNaught", "type": "other-astronomything"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "His effective actions earned him the Medal of Merit."
+    entity_list = []
+    entity_list.append({"text": "Medal of Merit", "type": "other-award"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "The p53 gene exhibits similar characteristics in terms of gene structure and function."
+    entity_list = []
+    entity_list.append({"text": "Page 53", "type": "other-biologything"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "This protein transports substances throughout the body via ATP-dependent carboxylation."
+    entity_list = []
+    entity_list.append({"text": "ATP", "type": "other-chemicalthing"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "Therefore, since January 1999, the CFA franc has been equivalent to other currencies."
+    entity_list = []
+    entity_list.append({"text": "French franc", "type": "other-currency"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "The child may develop congenital heart disease as a result."
+    entity_list = []
+    entity_list.append({"text": "Congenital heart disease", "type": "other-disease"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "In 1973, he completed his studies with a Master of Arts degree."
+    entity_list = []
+    entity_list.append({"text": "Master of Arts", "type": "other-educationaldegree"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "Theologians have attempted to prove that the Gospel writers knew nothing about Christ's birth."
+    entity_list = []
+    entity_list.append({"text": "Christ", "type": "other-god"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "The Old English term "attercoppe" derives from other terms."
+    entity_list = []
+    entity_list.append({"text": "Old English", "type": "other-language"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "The Espionage Act of 1917 was enacted for this very purpose."
+    entity_list = []
+    entity_list.append({"text": "Espionage Act of 1917", "type": "other-law"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "At the age of three, "Charge Ahead" secured his first career victory."
+    entity_list = []
+    entity_list.append({"text": "Onward!", "type": "other-livingthing"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "For patients with severe deficiency, protein C replacement therapy may be administered."
+    entity_list = []
+    entity_list.append({"text": "Protein C Replacement Therapy", "type": "other-medical"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "Sam Adegoke was cast in the role in May 2017."
+    entity_list = []
+    entity_list.append({"text": "Sam Adeyigbe", "type": "person-actor"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "In 1964, Gilberto appeared in several films."
+    entity_list = []
+    entity_list.append({"text": "Gilberto", "type": "person-artist/author"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "As an Olympic bronze medalist, Davis Pini has celebrated the most victories."
+    entity_list = []
+    entity_list.append({"text": "Davis Finney", "type": "person-athlete"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "Other projects at Newlin include world premiere productions."
+    entity_list = []
+    entity_list.append({"text": "Neulim", "type": "person-director"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "This is why Martin founded the company."
+    entity_list = []
+    entity_list.append({"text": "Martin", "type": "person-other"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "His effective actions earned him the Cross of Merit awarded by President Juan Velasco Alvarado."
+    entity_list = []
+    entity_list.append({"text": "Juan Velasco Alvarado", "type": "person-politician"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "Historian Austin Woolrich described this bridge as being of great significance."
+    entity_list = []
+    entity_list.append({"text": "Austin Woolridge", "type": "person-scholar"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "During the campaign of July 1812, Lieutenant William Pierce of the Second Battalion captured the enemy's military standard."
+    entity_list = []
+    entity_list.append({"text": "William Pierce", "type": "person-soldier"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "After a two-day solo flight, the Soyuz spacecraft docked with the space station."
+    entity_list = []
+    entity_list.append({"text": "Soyuz spacecraft", "type": "product-airplane"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "This new vehicle is comparable in size to the Opel Rekord and has already been unveiled in the country."
+    entity_list = []
+    entity_list.append({"text": "Opel Rekord", "type": "product-car"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "Furminte plays a similar role in this wine region."
+    entity_list = []
+    entity_list.append({"text": "Fermont", "type": "product-food"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "The Crimson Alliance was released on September 7, 2011."
+    entity_list = []
+    entity_list.append({"text": "Crimson Alliance", "type": "product-game"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "The latest update for the Dreamcast was released in 1999."
+    entity_list = []
+    entity_list.append({"text": "Dreamcast", "type": "product-other"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "The vessel is equipped with one Atlantic 75 lifeboat."
+    entity_list = []
+    entity_list.append({"text": "Atlantic 75", "type": "product-ship"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "It was originally an identical product to MS-DOS, but later gradually diverged."
+    entity_list = []
+    entity_list.append({"text": "MS-DOS", "type": "product-software"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "The eastern section operates one train every two hours, using Alstom Coradia LINT diesel single-car trains."
+    entity_list = []
+    entity_list.append({"text": "Alstom Coradia LINT", "type": "product-train"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "After taking off from the base, the XB-15 arrived at the airport."
+    entity_list = []
+    entity_list.append({"text": "XB-15", "type": "product-weapon"})

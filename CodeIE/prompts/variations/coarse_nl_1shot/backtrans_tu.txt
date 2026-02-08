@@ -12,26 +12,26 @@
 # * person: A named individual such as fictional characters, historical figures, celebrities, or ordinary people.
 # * product: A named commercial product, software, vehicle model, or branded item.
 
-# The text is as follows: The album was released on March 25, 2008. The group had released its first album with new material called `İyi Şey` since 1992.
-# Named entities in the text: (art: `İyi Şey`)
+# The text is as follows: The album was released on March 25, 2008. The group had released its first album with new material called `Good Stuff` since 1992.
+# Named entities in the text: (art: `Good Stuff`)
 
 # The text is as follows: In the year 1136, the castle was donated to the Knights of the Holy Sanctuary.
-# Named entities in the text: (building: Kutsal Sığınak Şövalyeleri)
+# Named entities in the text: (building: Knights of the Holy Sanctuary)
 
 # The text is as follows: During World War II, heavy loads were frequently moved to military units and camps.
-# Named entities in the text: (event: İkinci Dünya Savaşı)
+# Named entities in the text: (event: World War II)
 
 # The text is as follows: Over the next five years, tests were conducted in the Cape May, New Jersey area.
 # Named entities in the text: (location: Cape May, New Jersey)
 
 # The text is as follows: From January 30, 1945 to February 4, the Philadelphia Naval Arsenal was equipped for special experimental work.
-# Named entities in the text: (organization: Philadelphia Donanma Zanaası)
+# Named entities in the text: (organization: Philadelphia Naval Arsenal)
 
 # The text is as follows: The passing of the 1886 Crofting Act helped, but social unrest continued.
-# Named entities in the text: (other: Crofting Yasası)
+# Named entities in the text: (other: 1886 Crofting Act)
 
 # The text is as follows: Liddy is nominally responsible for the operation, but claims to have been deceived by subordinates since then.
 # Named entities in the text: (person: Liddy)
 
 # The text is as follows: The single Class 21 2‑10‑4 Texas‑type locomotive was often used to transport heavy loads.
-# Named entities in the text: (product: Class 21 2‑10‑4 Texas tipi lokomotif)
+# Named entities in the text: (product: Class 21 2‑10‑4 Texas‑type locomotive)
