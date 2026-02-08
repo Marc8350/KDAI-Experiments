@@ -1,0 +1,3352 @@
+{
+  "module": "codeie_coarse_nl_default",
+  "timestamp": "20260207_164941",
+  "config": {
+    "granularity": "coarse",
+    "max_test_samples": 100,
+    "style": "nl",
+    "variation": "default",
+    "api_base_url": null,
+    "api_key": null,
+    "model_name": "falcon",
+    "max_tokens": 256,
+    "temperature": 0.0,
+    "data_dir": "data",
+    "output_dir": "CODEIE-results",
+    "prompt_path": null
+  },
+  "entity_types": [
+    "art",
+    "building",
+    "event",
+    "location",
+    "organization",
+    "other",
+    "person",
+    "product"
+  ],
+  "overall_score": {
+    "entities": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "micro_f1": 0.0,
+      "macro_f1": 0.0,
+      "f1-score": 0.0,
+      "class_scores": {
+        "art": {
+          "tp": 0,
+          "total_pos": 12,
+          "total_pre": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "building": {
+          "tp": 0,
+          "total_pos": 7,
+          "total_pre": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "event": {
+          "tp": 0,
+          "total_pos": 11,
+          "total_pre": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "location": {
+          "tp": 0,
+          "total_pos": 68,
+          "total_pre": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "organization": {
+          "tp": 0,
+          "total_pos": 62,
+          "total_pre": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "other": {
+          "tp": 0,
+          "total_pos": 18,
+          "total_pre": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "person": {
+          "tp": 0,
+          "total_pos": 48,
+          "total_pre": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "product": {
+          "tp": 0,
+          "total_pos": 18,
+          "total_pre": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        }
+      }
+    }
+  },
+  "processed_count": 100,
+  "sentences": [
+    {
+      "index": 0,
+      "timestamp": "2026-02-07T16:49:45.885513",
+      "text": "In the early 1930s the band moved to the Grill Room of the Taft Hotel in New York ; the band was renamed `` George Hall and His Hotel Taft Orchestra `` .",
+      "gold": [
+        "building(span='Grill Room')",
+        "building(span='Taft Hotel')",
+        "location(span='New York')",
+        "organization(span='George Hall and His Hotel Taft Orchestra')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 4.68488335609436,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "building": {
+              "tp": 0,
+              "total_pos": 2,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "location": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "organization": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 1,
+      "timestamp": "2026-02-07T16:49:47.851985",
+      "text": "The final season of minor league play Elkin Memorial Park saw season attendance of 16,322 , an average of 299 per contest .",
+      "gold": [
+        "location(span='Elkin Memorial Park')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9657020568847656,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "location": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 2,
+      "timestamp": "2026-02-07T16:49:49.831853",
+      "text": "They finished the season 14\u201319 , 9\u20139 in C-USA play to finish in seventh place .",
+      "gold": [
+        "event(span='C-USA play')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9793126583099365,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "event": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 3,
+      "timestamp": "2026-02-07T16:49:51.824590",
+      "text": "The B-52 pilot , Major Larry G. Messinger , later recalled ,",
+      "gold": [
+        "product(span='B-52')",
+        "person(span='Larry G. Messinger')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9921939373016357,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "person": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "product": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 4,
+      "timestamp": "2026-02-07T16:49:53.811773",
+      "text": "The Austro-Hungarian Navy built and operated two classes of protected cruisers .",
+      "gold": [
+        "organization(span='Austro-Hungarian Navy')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9865260124206543,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "organization": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 5,
+      "timestamp": "2026-02-07T16:49:55.782679",
+      "text": "Elin Hilderbrand is an American writer mostly of romance novels .",
+      "gold": [
+        "person(span='Elin Hilderbrand')",
+        "location(span='American')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9703359603881836,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "location": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "person": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 6,
+      "timestamp": "2026-02-07T16:49:57.807302",
+      "text": "A prototype was fitted in the mid-'60s in a one-off DB5 extended 4 '' after the doors and driven by Marek personally , and a normally 6-cylinder Aston Martin DB7 was equipped with a V8 unit in 1998 .",
+      "gold": [
+        "product(span='DB5 extended 4 ''')",
+        "person(span='Marek')",
+        "product(span='Aston Martin DB7')",
+        "product(span='V8 unit')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 2.017561197280884,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "person": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "product": {
+              "tp": 0,
+              "total_pos": 3,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 7,
+      "timestamp": "2026-02-07T16:49:59.805602",
+      "text": "He has caught the attention of major publications and media outlets such as CNN , The Huffington Post , Hypebeast , The Guardian , Juxtapoz Magazine , Daily Mail , NRDC , Aljazeera and Hi-Fructose Magazine .",
+      "gold": [
+        "organization(span='CNN')",
+        "organization(span='The Huffington Post')",
+        "organization(span='Hypebeast')",
+        "organization(span='The Guardian')",
+        "organization(span='Juxtapoz Magazine')",
+        "organization(span='Daily Mail , NRDC')",
+        "organization(span='Aljazeera')",
+        "organization(span='Hi-Fructose Magazine')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9972114562988281,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "organization": {
+              "tp": 0,
+              "total_pos": 8,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 8,
+      "timestamp": "2026-02-07T16:50:01.790444",
+      "text": "The Cnidaria are a group of animals found exclusively in aquatic and mostly marine environments .",
+      "gold": [
+        "other(span='Cnidaria')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9842979907989502,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "other": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 9,
+      "timestamp": "2026-02-07T16:50:03.820945",
+      "text": "The Ninth suffered a serious defeat at the Battle of Camulodunum under Quintus Petillius Cerialis in the rebellion of Boudica ( 61 ) , when most of the foot-soldiers were killed in a disastrous attempt to relieve the besieged city of Camulodunum ( Colchester ) .",
+      "gold": [
+        "event(span='Camulodunum')",
+        "person(span='Quintus Petillius Cerialis')",
+        "event(span='Boudica')",
+        "location(span='Camulodunum')",
+        "location(span='Colchester')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 2.0296692848205566,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "event": {
+              "tp": 0,
+              "total_pos": 2,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "location": {
+              "tp": 0,
+              "total_pos": 2,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "person": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 10,
+      "timestamp": "2026-02-07T16:50:05.803694",
+      "text": "He is a Congressman representing Cajamarca for the period 2006\u20132011 , and belongs to the Union for Peru party .",
+      "gold": [
+        "location(span='Cajamarca')",
+        "organization(span='Peru party')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9785130023956299,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "location": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "organization": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 11,
+      "timestamp": "2026-02-07T16:50:07.788344",
+      "text": "He was born in Wellingborough , Northamptonshire , where he attended Victoria Junior School , Westfield Boys School and Sir Christopher Hatton School .",
+      "gold": [
+        "location(span='Wellingborough')",
+        "location(span='Northamptonshire')",
+        "organization(span='Victoria Junior School')",
+        "organization(span='Westfield Boys School')",
+        "organization(span='Sir Christopher Hatton School')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9840819835662842,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "location": {
+              "tp": 0,
+              "total_pos": 2,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "organization": {
+              "tp": 0,
+              "total_pos": 3,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 12,
+      "timestamp": "2026-02-07T16:50:09.767864",
+      "text": "The lowest match aggregate in ODI history for England is 91 scored at the 1979 Cricket World Cup against Canada .",
+      "gold": [
+        "organization(span='England')",
+        "event(span='Cricket World Cup')",
+        "organization(span='Canada')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9787895679473877,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "event": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "organization": {
+              "tp": 0,
+              "total_pos": 2,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 13,
+      "timestamp": "2026-02-07T16:50:11.751397",
+      "text": "Somewhat hidden away by the Ben Cruachan range , it is usually climbed in conjunction with its neighbour Beinn Eunaich .",
+      "gold": [
+        "location(span='Ben Cruachan')",
+        "location(span='Beinn Eunaich')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.98282790184021,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "location": {
+              "tp": 0,
+              "total_pos": 2,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 14,
+      "timestamp": "2026-02-07T16:50:13.734050",
+      "text": "The 117-bed facility entirely comprised individual rooms , each with its own en-suite bathroom facilities .",
+      "gold": [],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9819509983062744,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {}
+        }
+      }
+    },
+    {
+      "index": 15,
+      "timestamp": "2026-02-07T16:50:15.717751",
+      "text": "Blavatsky ; this book can be considered the start of his argument for using the occult side of the nature to advance knowledge , science and medical practice .",
+      "gold": [],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.982802152633667,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {}
+        }
+      }
+    },
+    {
+      "index": 16,
+      "timestamp": "2026-02-07T16:50:17.709858",
+      "text": "Experimental GPX1 deficiency amplifies certain aspects of aging , namely endothelial dysfunction , vascular remodeling , and invasion of leukocytes in cardiovascular tissue .",
+      "gold": [],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9915745258331299,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {}
+        }
+      }
+    },
+    {
+      "index": 17,
+      "timestamp": "2026-02-07T16:50:19.681620",
+      "text": "Victor Cristaldo ( born 10 May 1967 ) is a retired Argentine -born Australia n professional footballer of Paraguay an descent .",
+      "gold": [
+        "person(span='Victor Cristaldo')",
+        "location(span='Argentine')",
+        "location(span='Australia')",
+        "location(span='Paraguay')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.970667839050293,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "location": {
+              "tp": 0,
+              "total_pos": 3,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "person": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 18,
+      "timestamp": "2026-02-07T16:50:21.687934",
+      "text": "During the Battle of Antietam on September 17 , 1862 , Wilkinson was injured and forced to serve the remainder of the war as an officer in the Veterans Reserve Corps .",
+      "gold": [
+        "event(span='Battle of Antietam')",
+        "person(span='Wilkinson')",
+        "organization(span='Veterans Reserve Corps')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 2.0056655406951904,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "event": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "organization": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "person": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 19,
+      "timestamp": "2026-02-07T16:50:23.676630",
+      "text": "The buildings were renovated into offices in the 1980s .",
+      "gold": [],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.988020896911621,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {}
+        }
+      }
+    },
+    {
+      "index": 20,
+      "timestamp": "2026-02-07T16:50:25.668926",
+      "text": "Perhaps the best known Ward LaFrance product was the P-80 `` Ambassador '' model of pumper , one of which was donated as product placement by the company to be used as the fictional Los Angeles County Fire Department Engine 51 on the 1970s television program `` Emergency !",
+      "gold": [
+        "organization(span='Ward LaFrance')",
+        "product(span='P-80 `` Ambassador ''')",
+        "organization(span='Los Angeles County Fire Department Engine 51')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9882676601409912,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "organization": {
+              "tp": 0,
+              "total_pos": 2,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "product": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 21,
+      "timestamp": "2026-02-07T16:50:27.635833",
+      "text": "Lawrence claims that she was given cash , whereas Stephens claims that his life was threatened .",
+      "gold": [
+        "person(span='Stephens')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9660420417785645,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "person": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 22,
+      "timestamp": "2026-02-07T16:50:29.634178",
+      "text": "Glutamine synthetase uses ammonia produced by nitrate reduction , amino acid degradation , and photorespiration .",
+      "gold": [
+        "other(span='Glutamine synthetase')",
+        "other(span='ammonia')",
+        "other(span='amino acid')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9976861476898193,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "other": {
+              "tp": 0,
+              "total_pos": 3,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 23,
+      "timestamp": "2026-02-07T16:50:31.621746",
+      "text": "Nintendo continued to sell the revised Wii model and the Wii Mini alongside the Wii U during the Wii U 's first release year .",
+      "gold": [
+        "organization(span='Nintendo')",
+        "product(span='Wii model')",
+        "product(span='Wii Mini')",
+        "product(span='Wii U')",
+        "product(span='Wii U')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.986612319946289,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "organization": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "product": {
+              "tp": 0,
+              "total_pos": 3,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 24,
+      "timestamp": "2026-02-07T16:50:33.604692",
+      "text": "Kenyon entered Maynooth Seminary in 1829 \u2013 the year of Catholic Emancipation .",
+      "gold": [
+        "person(span='Kenyon')",
+        "organization(span='Maynooth Seminary')",
+        "event(span='Catholic Emancipation')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9822437763214111,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "event": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "organization": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "person": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 25,
+      "timestamp": "2026-02-07T16:50:35.585504",
+      "text": "Dublin is also served by Weston Airport and other small facilities , by a range of helicopter operators , and the military and some State services use Casement Aerodrome nearby .",
+      "gold": [
+        "location(span='Dublin')",
+        "building(span='Weston Airport')",
+        "building(span='Casement Aerodrome')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9802522659301758,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "building": {
+              "tp": 0,
+              "total_pos": 2,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "location": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 26,
+      "timestamp": "2026-02-07T16:50:37.590617",
+      "text": "He went on to produce Kim Fowley and the BMX Bandits ( band ) Receiver Records ' album `` Hidden Agenda At the Thirteenth Not `` .",
+      "gold": [
+        "person(span='Kim Fowley')",
+        "organization(span='BMX Bandits')",
+        "organization(span='Receiver Records')",
+        "art(span='Hidden Agenda At the Thirteenth Not')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 2.004624366760254,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "art": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "organization": {
+              "tp": 0,
+              "total_pos": 2,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "person": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 27,
+      "timestamp": "2026-02-07T16:50:39.583984",
+      "text": "Many of the men were separated from their families and sent into the B.C .",
+      "gold": [],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9929547309875488,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {}
+        }
+      }
+    },
+    {
+      "index": 28,
+      "timestamp": "2026-02-07T16:50:41.607248",
+      "text": "The founder of K\u014deido ( the purveyors of Kibi dango ) authored a travel guide in 1895 , in which he claimed that Kibitsuhiko rolled with his own hand some kibi dango to give to Emperor Jimmu who stopped at Takayama Palace in Okayama .",
+      "gold": [
+        "organization(span='K\u014deido')",
+        "product(span='Kibi dango')",
+        "organization(span='Kibitsuhiko')",
+        "product(span='kibi dango')",
+        "person(span='Jimmu')",
+        "building(span='Takayama Palace')",
+        "location(span='Okayama')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 2.0227017402648926,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "building": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "location": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "organization": {
+              "tp": 0,
+              "total_pos": 2,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "person": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "product": {
+              "tp": 0,
+              "total_pos": 2,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 29,
+      "timestamp": "2026-02-07T16:50:43.576600",
+      "text": "It is developed by Golaem , a France -based software company ( created in Rennes in 2009 ) .",
+      "gold": [
+        "organization(span='Golaem')",
+        "location(span='France')",
+        "location(span='Rennes')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9686250686645508,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "location": {
+              "tp": 0,
+              "total_pos": 2,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "organization": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 30,
+      "timestamp": "2026-02-07T16:50:45.533161",
+      "text": "She has also written fiction and her work has gained awards .",
+      "gold": [],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9514679908752441,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {}
+        }
+      }
+    },
+    {
+      "index": 31,
+      "timestamp": "2026-02-07T16:50:47.529797",
+      "text": "Furthermore , the SFO offered to pay reasonable legal costs .",
+      "gold": [
+        "organization(span='the SFO')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.996131420135498,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "organization": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 32,
+      "timestamp": "2026-02-07T16:50:49.503297",
+      "text": "Team Orr scored four times on way to a 7\u20131 victory .",
+      "gold": [
+        "organization(span='Team Orr')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9728851318359375,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "organization": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 33,
+      "timestamp": "2026-02-07T16:50:51.504098",
+      "text": "Early communities began to appear at the beginning of the 19th century , including Lynchburg , Harrisburg , and Rightor 's Point ( modern Morgan 's Point ) in the 1820s .",
+      "gold": [
+        "location(span='Lynchburg')",
+        "location(span='Harrisburg')",
+        "location(span='Rightor 's Point')",
+        "location(span='Morgan 's Point')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 2.0000739097595215,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "location": {
+              "tp": 0,
+              "total_pos": 4,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 34,
+      "timestamp": "2026-02-07T16:50:53.500638",
+      "text": "Dorsa has a Bachelor of Music in Composition from California State University , Northridge in 2001 , Master of Music in Harpsichord Performance at Cal State Northridge in 2004 , and a Doctor of Musical Arts at the University of Michigan , Ann Arbor in 2008 .",
+      "gold": [
+        "person(span='Dorsa')",
+        "other(span='Bachelor of Music')",
+        "organization(span='California State University , Northridge')",
+        "other(span='Master of Music')",
+        "organization(span='Cal State Northridge')",
+        "other(span='Doctor of Musical Arts')",
+        "organization(span='University of Michigan')",
+        "location(span='Ann Arbor')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9957544803619385,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "location": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "organization": {
+              "tp": 0,
+              "total_pos": 3,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "other": {
+              "tp": 0,
+              "total_pos": 3,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "person": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 35,
+      "timestamp": "2026-02-07T16:50:55.482976",
+      "text": "She has since worked with homeless patients and holds the position of Management Consultant fo r MedAmerica .",
+      "gold": [
+        "organization(span='r MedAmerica')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9817428588867188,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "organization": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 36,
+      "timestamp": "2026-02-07T16:50:57.474008",
+      "text": "Conway is the hub of operations for Norfolk Southern in the Greater Pittsburgh area , featuring a hump yard and a crew change point for virtually all Pittsburgh and Fort Wayne Line trains .",
+      "gold": [
+        "location(span='Conway')",
+        "location(span='Norfolk Southern')",
+        "location(span='Greater Pittsburgh')",
+        "location(span='Pittsburgh')",
+        "location(span='Fort Wayne Line')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9902667999267578,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "location": {
+              "tp": 0,
+              "total_pos": 5,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 37,
+      "timestamp": "2026-02-07T16:50:59.447357",
+      "text": "Gonu caused strong gusty winds and torrential rainfall along Pakistan 's Arabian Sea coast from Karachi to Gwadar .",
+      "gold": [
+        "event(span='Gonu')",
+        "location(span='Pakistan 's Arabian Sea coast')",
+        "location(span='Karachi')",
+        "location(span='Gwadar')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.972804307937622,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "event": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "location": {
+              "tp": 0,
+              "total_pos": 3,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 38,
+      "timestamp": "2026-02-07T16:51:01.407649",
+      "text": "Pune lost the match 1\u20133 with all three goals coming after Amrinder came on .",
+      "gold": [
+        "organization(span='Pune')",
+        "person(span='Amrinder')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9597604274749756,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "organization": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "person": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 39,
+      "timestamp": "2026-02-07T16:51:03.401898",
+      "text": "His pupil Vadeebhasimha wrote in prose `` Gayachintamani `` and `` Kshatrachudamini `` based on poet Banas `` Kadambari `` and minister Chavundaraya wrote `` Charitarasara `` .",
+      "gold": [
+        "person(span='Vadeebhasimha')",
+        "art(span='Gayachintamani')",
+        "art(span='Kshatrachudamini')",
+        "person(span='Banas')",
+        "art(span='Kadambari')",
+        "person(span='Chavundaraya')",
+        "art(span='Charitarasara')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9932920932769775,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "art": {
+              "tp": 0,
+              "total_pos": 4,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "person": {
+              "tp": 0,
+              "total_pos": 3,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 40,
+      "timestamp": "2026-02-07T16:51:05.402067",
+      "text": "The Croal Irwell Regional Park Project Proposal to create a green artery from the centre of Manchester to the West Pennine Moors was announced in June 2003 supported by Salford , Bury and Bolton councils and the Red Rose Forest .",
+      "gold": [
+        "product(span='Croal Irwell Regional Park Project Proposal')",
+        "location(span='Manchester')",
+        "location(span='West Pennine Moors')",
+        "location(span='Salford')",
+        "location(span='Bury')",
+        "location(span='Bolton')",
+        "organization(span='Red Rose Forest')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9916667938232422,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "location": {
+              "tp": 0,
+              "total_pos": 5,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "organization": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "product": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 41,
+      "timestamp": "2026-02-07T16:51:07.416517",
+      "text": "In some versions , the eggplant is not grilled , but is instead boiled , resulting in a softer version that lacks the characteristic smoky flavor of the original dish .",
+      "gold": [
+        "other(span='eggplant')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 2.0133633613586426,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "other": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 42,
+      "timestamp": "2026-02-07T16:51:09.395137",
+      "text": "The peasantry was also aggrieved , and between 1846 and 1848 opposition to Sturdza intensified .",
+      "gold": [
+        "person(span='Sturdza')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9780175685882568,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "person": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 43,
+      "timestamp": "2026-02-07T16:51:11.380759",
+      "text": "Argentina 's Del Imaginario Discos also released the album in 2007 .",
+      "gold": [
+        "location(span='Argentina')",
+        "organization(span='Del Imaginario Discos')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9849343299865723,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "location": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "organization": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 44,
+      "timestamp": "2026-02-07T16:51:13.373059",
+      "text": "Moreover , Santa is actually innocent of the crime , which was instead masterminded by scheming relative Cousin Mel , who is mentioned briefly in the song but made into a gold-digging villainness in the special .",
+      "gold": [
+        "person(span='Santa')",
+        "person(span='Cousin Mel')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9912996292114258,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "person": {
+              "tp": 0,
+              "total_pos": 2,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 45,
+      "timestamp": "2026-02-07T16:51:15.362302",
+      "text": "The Newfoundland Reform Liberal Party was a leader-centred political party in Newfoundland and Labrador , Canada from 1975 to 1979 .",
+      "gold": [
+        "organization(span='Newfoundland Reform Liberal Party')",
+        "location(span='Newfoundland and Labrador')",
+        "location(span='Canada')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9886863231658936,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "location": {
+              "tp": 0,
+              "total_pos": 2,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "organization": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 46,
+      "timestamp": "2026-02-07T16:51:17.342422",
+      "text": "This led to the foundation by Maximilian III Joseph , Elector of Bavaria of the Bavarian Academy of Sciences and Humanities on 28 March 1759 .",
+      "gold": [
+        "person(span='Maximilian III Joseph , Elector of Bavaria')",
+        "organization(span='Bavarian Academy of Sciences and Humanities')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.979377031326294,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "organization": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "person": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 47,
+      "timestamp": "2026-02-07T16:51:19.343478",
+      "text": "The government announced a state funeral and a day of national mourning .",
+      "gold": [],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 2.0001542568206787,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {}
+        }
+      }
+    },
+    {
+      "index": 48,
+      "timestamp": "2026-02-07T16:51:21.312739",
+      "text": "Most of the town is actually a gated community called Orchid Island Golf and Beach Club .",
+      "gold": [
+        "location(span='Orchid Island Golf and Beach Club')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9687221050262451,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "location": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 49,
+      "timestamp": "2026-02-07T16:51:23.288439",
+      "text": "Hunt represents the 8th legislative district in Omaha , consisting of the midtown neighborhoods of Dundee , Benson , and Keystone .",
+      "gold": [
+        "person(span='Hunt')",
+        "location(span='Omaha')",
+        "location(span='Dundee')",
+        "location(span='Benson')",
+        "location(span='Keystone')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9752120971679688,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "location": {
+              "tp": 0,
+              "total_pos": 4,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "person": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 50,
+      "timestamp": "2026-02-07T16:51:25.265438",
+      "text": "It has been used to treat hypertension and cardiac failure , and to treat pre-eclampsia during pregnancy .",
+      "gold": [
+        "other(span='hypertension')",
+        "other(span='cardiac failure ,')",
+        "other(span='pre-eclampsia')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.971081018447876,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "other": {
+              "tp": 0,
+              "total_pos": 3,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 51,
+      "timestamp": "2026-02-07T16:51:27.250360",
+      "text": "Anhur is a playable character in the multiplayer online battle arena , `` SMITE '' .",
+      "gold": [
+        "other(span='Anhur')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9842584133148193,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "other": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 52,
+      "timestamp": "2026-02-07T16:51:29.234967",
+      "text": "Jamil was married to the daughter of Khalid Bakdash , a Syria n politician who was the Secretary-General of the Syrian Communist Party and the first communist to be an elected member of an Arab parliament in 1954 .",
+      "gold": [
+        "person(span='Jamil')",
+        "person(span='Khalid Bakdash')",
+        "location(span='Syria')",
+        "organization(span='Syrian Communist Party')",
+        "location(span='Arab')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.982940912246704,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "location": {
+              "tp": 0,
+              "total_pos": 2,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "organization": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "person": {
+              "tp": 0,
+              "total_pos": 2,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 53,
+      "timestamp": "2026-02-07T16:51:31.210708",
+      "text": "In C and C++ , macros provide the former , while provides the latter :",
+      "gold": [],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9725327491760254,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {}
+        }
+      }
+    },
+    {
+      "index": 54,
+      "timestamp": "2026-02-07T16:51:33.193923",
+      "text": "Tyrosine phosphorylation is the addition of a phosphate ( PO43\u2212 ) group to the amino acid tyrosine on a protein .",
+      "gold": [
+        "other(span='PO43\u2212')",
+        "other(span='amino acid tyrosine')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9826107025146484,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "other": {
+              "tp": 0,
+              "total_pos": 2,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 55,
+      "timestamp": "2026-02-07T16:51:35.164157",
+      "text": "In 1955 it began receiving an early model of the Boeing B-52 Stratofortress and upgraded to various models over the next 40 years .",
+      "gold": [
+        "product(span='Boeing B-52')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.969691514968872,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "product": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 56,
+      "timestamp": "2026-02-07T16:51:37.135806",
+      "text": "This collection contains material relating to sexual health issues from 1974-2007 .",
+      "gold": [],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9708070755004883,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {}
+        }
+      }
+    },
+    {
+      "index": 57,
+      "timestamp": "2026-02-07T16:51:39.184032",
+      "text": "However , in 1861 the prospect of secession by southern states after the 1860 presidential election removed this obstacle to political change .",
+      "gold": [],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 2.047402858734131,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {}
+        }
+      }
+    },
+    {
+      "index": 58,
+      "timestamp": "2026-02-07T16:51:41.158357",
+      "text": "Back to Basics focuses on genre classics , showing older movies and underground cult films , with occasional stabs at mainstream and newer genre pieces .",
+      "gold": [
+        "organization(span='Back to Basics')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9735593795776367,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "organization": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 59,
+      "timestamp": "2026-02-07T16:51:43.143832",
+      "text": "Internal conflicts , especially between Covaci and Baniciu , were making headlines in the media .",
+      "gold": [
+        "person(span='Covaci')",
+        "person(span='Baniciu')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.984790325164795,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "person": {
+              "tp": 0,
+              "total_pos": 2,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 60,
+      "timestamp": "2026-02-07T16:51:45.136160",
+      "text": "The main event of the evening featured `` Los Perros del Mal `` facing `` Los Psycho Circus `` in a six man tag team steel cage Hair vs .",
+      "gold": [
+        "art(span='Los Perros del Mal')",
+        "art(span='Los Psycho Circus')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9846303462982178,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "art": {
+              "tp": 0,
+              "total_pos": 2,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 61,
+      "timestamp": "2026-02-07T16:51:47.127880",
+      "text": "Allistair Pinsof of `` Destructoid `` , praised the game , saying the controls were as good as that of `` Super Metroid `` and `` Super Castlevania IV . ''",
+      "gold": [
+        "person(span='Allistair Pinsof')",
+        "organization(span='Destructoid')",
+        "product(span='Super Metroid')",
+        "product(span='Super Castlevania IV')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9911291599273682,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "organization": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "person": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "product": {
+              "tp": 0,
+              "total_pos": 2,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 62,
+      "timestamp": "2026-02-07T16:51:49.102198",
+      "text": "In particular , Reform Jews may be lampooned for their rejection of traditional Jewish beliefs .",
+      "gold": [
+        "organization(span='Jews')",
+        "organization(span='Jewish')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9736075401306152,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "organization": {
+              "tp": 0,
+              "total_pos": 2,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 63,
+      "timestamp": "2026-02-07T16:51:51.078362",
+      "text": "It was founded as a spin-off of Murphy Oil in 2013 .",
+      "gold": [
+        "organization(span='Murphy Oil')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9753127098083496,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "organization": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 64,
+      "timestamp": "2026-02-07T16:51:53.059682",
+      "text": "They used several features from a batch of A1 Pacifics they had built in 1924 .",
+      "gold": [
+        "product(span='A1 Pacifics')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.979935884475708,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "product": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 65,
+      "timestamp": "2026-02-07T16:51:55.048493",
+      "text": "At a festival , Siddhi saves Vin from being shot at by Rudra .",
+      "gold": [
+        "person(span='Siddhi')",
+        "person(span='Vin')",
+        "person(span='Rudra')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9880468845367432,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "person": {
+              "tp": 0,
+              "total_pos": 3,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 66,
+      "timestamp": "2026-02-07T16:51:57.041492",
+      "text": "Her brother ran unsuccessfully for the United States House of Representatives from upstate New York , in 1992 and 1994 .",
+      "gold": [
+        "organization(span='United States House of Representatives')",
+        "location(span='New York')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9924225807189941,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "location": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "organization": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 67,
+      "timestamp": "2026-02-07T16:51:59.025790",
+      "text": "The story had been adapted to the stage in 1939 at the Martin Beck Theater to great acclaim , but only ran for six performances because the production proved to be expensive .",
+      "gold": [
+        "building(span='Martin Beck Theater')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9834203720092773,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "building": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 68,
+      "timestamp": "2026-02-07T16:52:01.008199",
+      "text": "Loyalists recruited from Queens County , New York by Lieutenant Colonel Richard Hewlett for the 3rd battalion DeLancey 's Brigade had established a fortified position in early August on the central north shore of Long Island at Setauket , just across Long Island Sound from Fairfield .",
+      "gold": [
+        "location(span='Queens County')",
+        "location(span='New York')",
+        "person(span='Richard Hewlett')",
+        "organization(span='DeLancey 's Brigade')",
+        "location(span='Long Island')",
+        "location(span='Setauket')",
+        "location(span='Long Island Sound')",
+        "location(span='Fairfield')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9818241596221924,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "location": {
+              "tp": 0,
+              "total_pos": 6,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "organization": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "person": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 69,
+      "timestamp": "2026-02-07T16:52:02.985411",
+      "text": "In 1967 , the park was the gathering place for a peaceful anti-war rally .",
+      "gold": [],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9764914512634277,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {}
+        }
+      }
+    },
+    {
+      "index": 70,
+      "timestamp": "2026-02-07T16:52:04.966046",
+      "text": "game to have offline multiplayer and co-op .",
+      "gold": [],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.973478078842163,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {}
+        }
+      }
+    },
+    {
+      "index": 71,
+      "timestamp": "2026-02-07T16:52:06.948514",
+      "text": "USP42 has also been shown to deubiquitinate p53 and may be required for the ability of p53 to respond to stress .",
+      "gold": [
+        "other(span='USP42')",
+        "other(span='p53')",
+        "other(span='p53')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.981731653213501,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "other": {
+              "tp": 0,
+              "total_pos": 2,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 72,
+      "timestamp": "2026-02-07T16:52:08.918878",
+      "text": "It is operated by the Nhulunbuy Corporation .",
+      "gold": [
+        "organization(span='Nhulunbuy Corporation')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.969843864440918,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "organization": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 73,
+      "timestamp": "2026-02-07T16:52:10.911044",
+      "text": "Royal Malaysia Police Air Operations Force or `` Pasukan Gerakan Udara ( PGU ) '' is a special aviation unit of Royal Malaysia Police .",
+      "gold": [
+        "organization(span='Royal Malaysia Police Air Operations Force')",
+        "organization(span='Pasukan Gerakan Udara')",
+        "organization(span='PGU')",
+        "organization(span='Royal Malaysia Police')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9913914203643799,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "organization": {
+              "tp": 0,
+              "total_pos": 4,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 74,
+      "timestamp": "2026-02-07T16:52:12.885134",
+      "text": "It was produced by Richard D. Zanuck and David Brown .",
+      "gold": [
+        "person(span='Richard D. Zanuck')",
+        "person(span='David Brown')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9734911918640137,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "person": {
+              "tp": 0,
+              "total_pos": 2,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 75,
+      "timestamp": "2026-02-07T16:52:14.847472",
+      "text": "( 1979\u2013present ) .",
+      "gold": [],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9616906642913818,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {}
+        }
+      }
+    },
+    {
+      "index": 76,
+      "timestamp": "2026-02-07T16:52:16.850945",
+      "text": "The situation began to crystallise after 1961 when South Africa left the Commonwealth of Nations and so , under the rules of the day , its cricket board had to leave the International Cricket Conference ( ICC ) .",
+      "gold": [
+        "location(span='South Africa')",
+        "organization(span='Commonwealth of Nations')",
+        "organization(span='International Cricket Conference')",
+        "organization(span='ICC')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 2.002227783203125,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "location": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "organization": {
+              "tp": 0,
+              "total_pos": 3,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 77,
+      "timestamp": "2026-02-07T16:52:18.815249",
+      "text": "In January 1944 , the squadron was converted to special operations , joining No .",
+      "gold": [],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9636695384979248,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {}
+        }
+      }
+    },
+    {
+      "index": 78,
+      "timestamp": "2026-02-07T16:52:20.796482",
+      "text": "Puckrik travelled widely in her childhood due to her father 's military background .",
+      "gold": [
+        "person(span='Puckrik')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9807722568511963,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "person": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 79,
+      "timestamp": "2026-02-07T16:52:22.778118",
+      "text": "The festival is dedicated to world television and digital content and its creation and development .",
+      "gold": [],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9807963371276855,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {}
+        }
+      }
+    },
+    {
+      "index": 80,
+      "timestamp": "2026-02-07T16:52:24.776091",
+      "text": "A German teacher for much of her life , MacKeith also advocated for peace during the Aldermaston Marches in the 1950s and demonstrations against the Vietnam War in Grosvenor Square in the 1960s .",
+      "gold": [
+        "location(span='German')",
+        "person(span='MacKeith')",
+        "event(span='Aldermaston Marches')",
+        "event(span='Vietnam War')",
+        "location(span='Grosvenor Square')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.989152431488037,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "event": {
+              "tp": 0,
+              "total_pos": 2,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "location": {
+              "tp": 0,
+              "total_pos": 2,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "person": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 81,
+      "timestamp": "2026-02-07T16:52:26.757167",
+      "text": "Mediaite named her in a four-way tie among the `` Best TV Pundits `` of 2014 for bringing `` a comprehensive understanding to women 's health and justice issues that goes beyond the usual talking points . ''",
+      "gold": [
+        "person(span='Mediaite')",
+        "other(span='Best TV Pundits')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9804496765136719,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "other": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "person": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 82,
+      "timestamp": "2026-02-07T16:52:28.753079",
+      "text": "According to Steak ' n Shake archives , the restaurant 's founder , Gus Belt , applied for a trademark on the word in the 1930s .",
+      "gold": [
+        "art(span='Steak ' n Shake')",
+        "person(span='Gus Belt')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9951221942901611,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "art": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "person": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 83,
+      "timestamp": "2026-02-07T16:52:30.729125",
+      "text": "Alex Salmond ( leader of SNP ) has since made history by becoming the first First Minister of Scotland from a party other than Labour .",
+      "gold": [
+        "person(span='Alex Salmond')",
+        "organization(span='SNP')",
+        "location(span='Scotland')",
+        "organization(span='Labour')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9751522541046143,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "location": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "organization": {
+              "tp": 0,
+              "total_pos": 2,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "person": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 84,
+      "timestamp": "2026-02-07T16:52:32.716357",
+      "text": "The album featured remixes of `` Like It or Not `` and `` Tearing Me Up `` from artists like A-Trak , RAC , Joris Voorn , and Tale of Us .",
+      "gold": [
+        "art(span='Like It or Not')",
+        "art(span='Tearing Me Up')",
+        "person(span='A-Trak')",
+        "person(span='RAC')",
+        "person(span='Joris Voorn')",
+        "person(span='Tale of Us')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9866218566894531,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "art": {
+              "tp": 0,
+              "total_pos": 2,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "person": {
+              "tp": 0,
+              "total_pos": 4,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 85,
+      "timestamp": "2026-02-07T16:52:34.679466",
+      "text": "`` Patrick Morris `` sent out her own mayday call at 6:51 am and sank 35 minutes later .",
+      "gold": [
+        "product(span='Patrick Morris')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9625897407531738,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "product": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 86,
+      "timestamp": "2026-02-07T16:52:35.137624",
+      "text": "The same effects have also been seen in short pubertal boys .",
+      "gold": [],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 0.457470178604126,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {}
+        }
+      }
+    },
+    {
+      "index": 87,
+      "timestamp": "2026-02-07T16:52:37.108403",
+      "text": "Construction was modular so that some of the gold could be removed and melted for coin or bullion in times of severe financial hardship , to be replaced later when finances had recovered .",
+      "gold": [],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.970050573348999,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {}
+        }
+      }
+    },
+    {
+      "index": 88,
+      "timestamp": "2026-02-07T16:52:39.096183",
+      "text": "He has also performed and worked with many other Scandinavian artists such as Bj\u00f8rn Eidsv\u00e5g , Silje Nergaard , Oslo Gospel Choir , Espen Lind , Elizabeth Norberg-Schulz and Carola H\u00e4ggkvist .",
+      "gold": [
+        "person(span='Bj\u00f8rn Eidsv\u00e5g')",
+        "person(span='Silje Nergaard')",
+        "person(span='Oslo Gospel Choir')",
+        "person(span='Espen Lind')",
+        "person(span='Elizabeth Norberg-Schulz')",
+        "person(span='Carola H\u00e4ggkvist')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9871947765350342,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "person": {
+              "tp": 0,
+              "total_pos": 6,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 89,
+      "timestamp": "2026-02-07T16:52:41.063566",
+      "text": "Holy Trinity Church is a Church of England parish church at Bothenhampton , near Bridport in Dorset , England .",
+      "gold": [
+        "organization(span='Holy Trinity Church')",
+        "organization(span='Church of England')",
+        "location(span='Bothenhampton')",
+        "location(span='Bridport')",
+        "location(span='Dorset')",
+        "location(span='England')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9666869640350342,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "location": {
+              "tp": 0,
+              "total_pos": 4,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "organization": {
+              "tp": 0,
+              "total_pos": 2,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 90,
+      "timestamp": "2026-02-07T16:52:43.060109",
+      "text": "Kadavu Province is one of fourteen provinces of Fiji , and forms part of the Eastern Division , which also includes the provinces of Lau , Lomaiviti and Rotuma .",
+      "gold": [
+        "location(span='Kadavu Province')",
+        "location(span='Fiji')",
+        "location(span='Lau')",
+        "location(span='Lomaiviti')",
+        "location(span='Rotuma')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9872944355010986,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "location": {
+              "tp": 0,
+              "total_pos": 5,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 91,
+      "timestamp": "2026-02-07T16:52:45.040025",
+      "text": "Mike Moreton headed the team , joining TWR to run the XJ220 project .",
+      "gold": [
+        "person(span='Mike Moreton')",
+        "organization(span='TWR')",
+        "product(span='XJ220')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.978774070739746,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "organization": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "person": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "product": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 92,
+      "timestamp": "2026-02-07T16:52:47.031465",
+      "text": "Mary Weiss was one of the creators of The Real Live Brady Bunch at The Annoyance Theater , which led to a series of feature film remakes .",
+      "gold": [
+        "person(span='Mary Weiss')",
+        "organization(span='Real Live Brady Bunch')",
+        "building(span='Annoyance Theater')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9908523559570312,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "building": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "organization": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "person": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 93,
+      "timestamp": "2026-02-07T16:52:49.020134",
+      "text": "More than 100 sellers from Deidesheim and the surrounding area run stalls , which must stylistically fit into the market 's whole theme .",
+      "gold": [
+        "location(span='Deidesheim')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9878315925598145,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "location": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 94,
+      "timestamp": "2026-02-07T16:52:50.992102",
+      "text": "GX '' , and more .",
+      "gold": [],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9711534976959229,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {}
+        }
+      }
+    },
+    {
+      "index": 95,
+      "timestamp": "2026-02-07T16:52:53.011045",
+      "text": "It won the jury award for best feature Film at the TriMedia Film Festival in 2010 .",
+      "gold": [
+        "other(span='jury award for best feature Film')",
+        "event(span='TriMedia Film Festival')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 2.018447160720825,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "event": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "other": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 96,
+      "timestamp": "2026-02-07T16:52:54.993174",
+      "text": "Bitter Sweet & amp ; Twisted is rock band The Quireboys 's second studio album , released in 1993 .",
+      "gold": [
+        "art(span='Bitter Sweet & amp')",
+        "art(span='Twisted')",
+        "organization(span='The Quireboys')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9813730716705322,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "art": {
+              "tp": 0,
+              "total_pos": 2,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "organization": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 97,
+      "timestamp": "2026-02-07T16:52:57.000717",
+      "text": "The Papacy in central Italy maintained major cultural and political influence during the Catholic Reformation initiated by the conclusion of the Tridentine council ( resumed by the terms of the treaty ) .",
+      "gold": [
+        "event(span='Papacy')",
+        "organization(span='Catholic Reformation')",
+        "organization(span='Tridentine council')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 2.0067813396453857,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "event": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "organization": {
+              "tp": 0,
+              "total_pos": 2,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 98,
+      "timestamp": "2026-02-07T16:52:58.999626",
+      "text": "Both doors are mirror images of each other and each contain the bronze University seal .",
+      "gold": [
+        "product(span='bronze University seal')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9982328414916992,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "product": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 99,
+      "timestamp": "2026-02-07T16:53:00.973949",
+      "text": "In some cases , black community groups resisted the attacks , especially in Chicago and Washington , D.C .",
+      "gold": [
+        "location(span='Chicago')",
+        "location(span='Washington , D.C')"
+      ],
+      "prediction": [],
+      "generated_raw": "",
+      "elapsed_time": 1.9737672805786133,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "location": {
+              "tp": 0,
+              "total_pos": 2,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    }
+  ]
+}
