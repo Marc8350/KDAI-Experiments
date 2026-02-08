@@ -1,0 +1,637 @@
+{
+  "module": "codeie_coarse_nl_default",
+  "timestamp": "20260208_161727",
+  "config": {
+    "granularity": "coarse",
+    "max_test_samples": 10,
+    "style": "nl",
+    "variation": "default",
+    "api_base_url": null,
+    "api_key": null,
+    "model_name": "mistral",
+    "max_tokens": 512,
+    "temperature": 0.0,
+    "data_dir": "data",
+    "output_dir": "CODEIE-results",
+    "prompt_path": "/home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/base/coarse_nl_1shot.txt"
+  },
+  "entity_types": [
+    "art",
+    "building",
+    "event",
+    "location",
+    "organization",
+    "other",
+    "person",
+    "product"
+  ],
+  "overall_score": {
+    "entities": {
+      "precision": 0.1,
+      "recall": 0.10344827586206896,
+      "micro_f1": 0.10169491525423728,
+      "macro_f1": 0.19523809523809524,
+      "f1-score": 0.10169491525423728,
+      "class_scores": {
+        "art": {
+          "tp": 0,
+          "total_pos": 0,
+          "total_pre": 4,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "building": {
+          "tp": 1,
+          "total_pos": 2,
+          "total_pre": 2,
+          "precision": 0.5,
+          "recall": 0.5,
+          "f1-score": 0.5
+        },
+        "event": {
+          "tp": 0,
+          "total_pos": 3,
+          "total_pre": 3,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "location": {
+          "tp": 1,
+          "total_pos": 5,
+          "total_pre": 5,
+          "precision": 0.2,
+          "recall": 0.2,
+          "f1-score": 0.20000000000000004
+        },
+        "organization": {
+          "tp": 0,
+          "total_pos": 10,
+          "total_pre": 5,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "other": {
+          "tp": 1,
+          "total_pos": 1,
+          "total_pre": 2,
+          "precision": 0.5,
+          "recall": 1.0,
+          "f1-score": 0.6666666666666666
+        },
+        "person": {
+          "tp": 0,
+          "total_pos": 4,
+          "total_pre": 5,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "product": {
+          "tp": 0,
+          "total_pos": 4,
+          "total_pre": 4,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        }
+      }
+    }
+  },
+  "processed_count": 10,
+  "sentences": [
+    {
+      "index": 0,
+      "timestamp": "2026-02-08T16:17:28.157107",
+      "text": "In the early 1930s the band moved to the Grill Room of the Taft Hotel in New York ; the band was renamed `` George Hall and His Hotel Taft Orchestra `` .",
+      "gold": [
+        "building(span='Grill Room')",
+        "building(span='Taft Hotel')",
+        "location(span='New York')",
+        "organization(span='George Hall and His Hotel Taft Orchestra')"
+      ],
+      "prediction": [
+        "art(span='George Hall and His Hotel Taft Orchestra')",
+        "location(span='New York')",
+        "building(span='Taft Hotel')"
+      ],
+      "generated_raw": " (art: George Hall and His Hotel Taft Orchestra)\n(location: New York)\n(building: Taft Hotel)",
+      "elapsed_time": 0.4236435890197754,
+      "score": {
+        "entities": {
+          "precision": 0.6666666666666666,
+          "recall": 0.5,
+          "f1-score": 0.5714285714285715,
+          "class_scores": {
+            "art": {
+              "tp": 0,
+              "total_pos": 0,
+              "total_pre": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "building": {
+              "tp": 1,
+              "total_pos": 2,
+              "total_pre": 1,
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1-score": 0.6666666666666666
+            },
+            "location": {
+              "tp": 1,
+              "total_pos": 1,
+              "total_pre": 1,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1-score": 1.0
+            },
+            "organization": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 1,
+      "timestamp": "2026-02-08T16:17:28.401452",
+      "text": "The final season of minor league play Elkin Memorial Park saw season attendance of 16,322 , an average of 299 per contest .",
+      "gold": [
+        "location(span='Elkin Memorial Park')"
+      ],
+      "prediction": [
+        "art(span='Elkin Memorial Park')",
+        "location(span='Elkin')",
+        "product(span='Minor League Play')"
+      ],
+      "generated_raw": " (art: Elkin Memorial Park)\n(location: Elkin)\n(product: Minor League Play)",
+      "elapsed_time": 0.24390339851379395,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "art": {
+              "tp": 0,
+              "total_pos": 0,
+              "total_pre": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "location": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "product": {
+              "tp": 0,
+              "total_pos": 0,
+              "total_pre": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 2,
+      "timestamp": "2026-02-08T16:17:28.757464",
+      "text": "They finished the season 14\u201319 , 9\u20139 in C-USA play to finish in seventh place .",
+      "gold": [
+        "event(span='C-USA play')"
+      ],
+      "prediction": [
+        "event(span='They finished the season, C-USA play')",
+        "location(span='seventh place')",
+        "product(span='14\u201319, 9\u20139')"
+      ],
+      "generated_raw": " (event: They finished the season, C-USA play)\n(location: seventh place)\n(product: 14\u201319, 9\u20139)",
+      "elapsed_time": 0.3553950786590576,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "event": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "location": {
+              "tp": 0,
+              "total_pos": 0,
+              "total_pre": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "product": {
+              "tp": 0,
+              "total_pos": 0,
+              "total_pre": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 3,
+      "timestamp": "2026-02-08T16:17:28.882163",
+      "text": "The B-52 pilot , Major Larry G. Messinger , later recalled ,",
+      "gold": [
+        "product(span='B-52')",
+        "person(span='Larry G. Messinger')"
+      ],
+      "prediction": [
+        "person(span='Major Larry G. Messinger')"
+      ],
+      "generated_raw": " (person: Major Larry G. Messinger)",
+      "elapsed_time": 0.1241307258605957,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "person": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "product": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 4,
+      "timestamp": "2026-02-08T16:17:29.096769",
+      "text": "The Austro-Hungarian Navy built and operated two classes of protected cruisers .",
+      "gold": [
+        "organization(span='Austro-Hungarian Navy')"
+      ],
+      "prediction": [
+        "organization(span='Austro-Hungarian Navy, product: protected cruisers')"
+      ],
+      "generated_raw": " (organization: Austro-Hungarian Navy, product: protected cruisers)",
+      "elapsed_time": 0.2140965461730957,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "organization": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 5,
+      "timestamp": "2026-02-08T16:17:29.263212",
+      "text": "Elin Hilderbrand is an American writer mostly of romance novels .",
+      "gold": [
+        "person(span='Elin Hilderbrand')",
+        "location(span='American')"
+      ],
+      "prediction": [
+        "person(span='Elin Hilderbrand, art: romance novels')"
+      ],
+      "generated_raw": " (person: Elin Hilderbrand, art: romance novels)",
+      "elapsed_time": 0.16585898399353027,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "location": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "person": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 6,
+      "timestamp": "2026-02-08T16:17:29.797334",
+      "text": "A prototype was fitted in the mid-'60s in a one-off DB5 extended 4 '' after the doors and driven by Marek personally , and a normally 6-cylinder Aston Martin DB7 was equipped with a V8 unit in 1998 .",
+      "gold": [
+        "product(span='DB5 extended 4 ''')",
+        "person(span='Marek')",
+        "product(span='Aston Martin DB7')",
+        "product(span='V8 unit')"
+      ],
+      "prediction": [
+        "art(span='DB5, DB7')",
+        "product(span='Class 21 2-10-4 Texas type locomotive, Aston Martin DB7')",
+        "organization(span='Marek personally')",
+        "other(span='prototype, V8 unit')"
+      ],
+      "generated_raw": " (art: DB5, DB7)\n(product: Class 21 2-10-4 Texas type locomotive, Aston Martin DB7)\n(organization: Marek personally)\n(other: prototype, V8 unit)",
+      "elapsed_time": 0.5334963798522949,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "art": {
+              "tp": 0,
+              "total_pos": 0,
+              "total_pre": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "organization": {
+              "tp": 0,
+              "total_pos": 0,
+              "total_pre": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "other": {
+              "tp": 0,
+              "total_pos": 0,
+              "total_pre": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "person": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "product": {
+              "tp": 0,
+              "total_pos": 3,
+              "total_pre": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 7,
+      "timestamp": "2026-02-08T16:17:30.304351",
+      "text": "He has caught the attention of major publications and media outlets such as CNN , The Huffington Post , Hypebeast , The Guardian , Juxtapoz Magazine , Daily Mail , NRDC , Aljazeera and Hi-Fructose Magazine .",
+      "gold": [
+        "organization(span='CNN')",
+        "organization(span='The Huffington Post')",
+        "organization(span='Hypebeast')",
+        "organization(span='The Guardian')",
+        "organization(span='Juxtapoz Magazine')",
+        "organization(span='Daily Mail , NRDC')",
+        "organization(span='Aljazeera')",
+        "organization(span='Hi-Fructose Magazine')"
+      ],
+      "prediction": [
+        "person(span='He')",
+        "organization(span='CNN, The Huffington Post, Hypebeast, The Guardian, Juxtapoz Magazine, Daily Mail, NRDC, Aljazeera, Hi-Fructose Magazine')"
+      ],
+      "generated_raw": " (person: He)\n(organization: CNN, The Huffington Post, Hypebeast, The Guardian, Juxtapoz Magazine, Daily Mail, NRDC, Aljazeera, Hi-Fructose Magazine)",
+      "elapsed_time": 0.5063717365264893,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "organization": {
+              "tp": 0,
+              "total_pos": 8,
+              "total_pre": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "person": {
+              "tp": 0,
+              "total_pos": 0,
+              "total_pre": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 8,
+      "timestamp": "2026-02-08T16:17:30.909089",
+      "text": "The Cnidaria are a group of animals found exclusively in aquatic and mostly marine environments .",
+      "gold": [
+        "other(span='Cnidaria')"
+      ],
+      "prediction": [
+        "art(span='none')",
+        "building(span='none')",
+        "event(span='none')",
+        "location(span='none')",
+        "organization(span='none')",
+        "other(span='Cnidaria')",
+        "person(span='none')",
+        "product(span='Class 21 2-10-4 Texas type locomotive')"
+      ],
+      "generated_raw": " (art: none)\n(building: none)\n(event: none)\n(location: none)\n(organization: none)\n(other: Cnidaria)\n(person: none)\n(product: Class 21 2-10-4 Texas type locomotive)",
+      "elapsed_time": 0.6040973663330078,
+      "score": {
+        "entities": {
+          "precision": 0.125,
+          "recall": 1.0,
+          "f1-score": 0.2222222222222222,
+          "class_scores": {
+            "art": {
+              "tp": 0,
+              "total_pos": 0,
+              "total_pre": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "building": {
+              "tp": 0,
+              "total_pos": 0,
+              "total_pre": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "event": {
+              "tp": 0,
+              "total_pos": 0,
+              "total_pre": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "location": {
+              "tp": 0,
+              "total_pos": 0,
+              "total_pre": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "organization": {
+              "tp": 0,
+              "total_pos": 0,
+              "total_pre": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "other": {
+              "tp": 1,
+              "total_pos": 1,
+              "total_pre": 1,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1-score": 1.0
+            },
+            "person": {
+              "tp": 0,
+              "total_pos": 0,
+              "total_pre": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "product": {
+              "tp": 0,
+              "total_pos": 0,
+              "total_pre": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 9,
+      "timestamp": "2026-02-08T16:17:31.461504",
+      "text": "The Ninth suffered a serious defeat at the Battle of Camulodunum under Quintus Petillius Cerialis in the rebellion of Boudica ( 61 ) , when most of the foot-soldiers were killed in a disastrous attempt to relieve the besieged city of Camulodunum ( Colchester ) .",
+      "gold": [
+        "event(span='Camulodunum')",
+        "person(span='Quintus Petillius Cerialis')",
+        "event(span='Boudica')",
+        "location(span='Camulodunum')",
+        "location(span='Colchester')"
+      ],
+      "prediction": [
+        "event(span='Battle of Camulodunum, rebellion of Boudica')",
+        "location(span='Camulodunum, Colchester')",
+        "organization(span='Ninth')",
+        "person(span='Quintus Petillius Cerialis, Boudica')"
+      ],
+      "generated_raw": " (event: Battle of Camulodunum, rebellion of Boudica)\n(location: Camulodunum, Colchester)\n(organization: Ninth)\n(person: Quintus Petillius Cerialis, Boudica)",
+      "elapsed_time": 0.5514907836914062,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "event": {
+              "tp": 0,
+              "total_pos": 2,
+              "total_pre": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "location": {
+              "tp": 0,
+              "total_pos": 2,
+              "total_pre": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "organization": {
+              "tp": 0,
+              "total_pos": 0,
+              "total_pre": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "person": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    }
+  ]
+}

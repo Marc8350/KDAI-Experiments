@@ -1,0 +1,543 @@
+{
+  "module": "codeie_fine_pl_default",
+  "timestamp": "20260208_161926",
+  "config": {
+    "granularity": "fine",
+    "max_test_samples": 10,
+    "style": "pl",
+    "variation": "default",
+    "api_base_url": null,
+    "api_key": null,
+    "model_name": "mistral",
+    "max_tokens": 512,
+    "temperature": 0.0,
+    "data_dir": "data",
+    "output_dir": "CODEIE-results",
+    "prompt_path": "/home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/fine_pl_1shot/sentence_reordering.txt"
+  },
+  "entity_types": [
+    "person-actor",
+    "dummy"
+  ],
+  "overall_score": {
+    "entities": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "micro_f1": 0.0,
+      "macro_f1": 0.0,
+      "f1-score": 0.0,
+      "class_scores": {
+        "organization-showorganization": {
+          "tp": 0,
+          "total_pos": 1,
+          "total_pre": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "location-GPE": {
+          "tp": 0,
+          "total_pos": 4,
+          "total_pre": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "building-hotel": {
+          "tp": 0,
+          "total_pos": 1,
+          "total_pre": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "building-other": {
+          "tp": 0,
+          "total_pos": 1,
+          "total_pre": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "location-park": {
+          "tp": 0,
+          "total_pos": 1,
+          "total_pre": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "event-sportsevent": {
+          "tp": 0,
+          "total_pos": 1,
+          "total_pre": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "person-other": {
+          "tp": 0,
+          "total_pos": 2,
+          "total_pre": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "product-other": {
+          "tp": 0,
+          "total_pos": 2,
+          "total_pre": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "organization-other": {
+          "tp": 0,
+          "total_pos": 1,
+          "total_pre": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "person-artist/author": {
+          "tp": 0,
+          "total_pos": 1,
+          "total_pre": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "product-car": {
+          "tp": 0,
+          "total_pos": 2,
+          "total_pre": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "organization-media/newspaper": {
+          "tp": 0,
+          "total_pos": 8,
+          "total_pre": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "other-livingthing": {
+          "tp": 0,
+          "total_pos": 1,
+          "total_pre": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "event-protest": {
+          "tp": 0,
+          "total_pos": 1,
+          "total_pre": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "person-soldier": {
+          "tp": 0,
+          "total_pos": 1,
+          "total_pre": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "event-attack/battle/war/militaryconflict": {
+          "tp": 0,
+          "total_pos": 1,
+          "total_pre": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        }
+      }
+    }
+  },
+  "processed_count": 10,
+  "sentences": [
+    {
+      "index": 0,
+      "timestamp": "2026-02-08T16:19:29.476579",
+      "text": "In the early 1930s the band moved to the Grill Room of the Taft Hotel in New York ; the band was renamed `` George Hall and His Hotel Taft Orchestra `` .",
+      "gold": [
+        "building-other(span='Grill Room')",
+        "building-hotel(span='Taft Hotel')",
+        "location-GPE(span='New York')",
+        "organization-showorganization(span='George Hall and His Hotel Taft Orchestra')"
+      ],
+      "prediction": [],
+      "generated_raw": " This code defines a function named `named_entity_recognition` that takes an input text as a string. The function then processes the text to identify and classify named entities (people, organizations, locations, etc.) based on their types. The types are defined in the function as strings such as \"person-actor\", \"product-car\", \"person-politician\", etc.\n\nThe function does not actually perform any named entity recognition itself; it simply returns an empty list `[]` for the given input text. To us",
+      "elapsed_time": 3.1745827198028564,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "organization-showorganization": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "location-GPE": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "building-hotel": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "building-other": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 1,
+      "timestamp": "2026-02-08T16:19:34.063107",
+      "text": "The final season of minor league play Elkin Memorial Park saw season attendance of 16,322 , an average of 299 per contest .",
+      "gold": [
+        "location-park(span='Elkin Memorial Park')"
+      ],
+      "prediction": [],
+      "generated_raw": " This code defines a function called `named_entity_recognition` that takes in a string `input_text` as its argument. The function then processes the input text and identifies named entities within it, such as people, places, organizations, and other specific items. Each identified entity is added to a list called `entity_list`, with a corresponding type assigned to each one.\n\nThe code provides examples of various types of named entities, including:\n\n* People (e.g., \"Martin\", \"Sam Adegoke\", \"Will",
+      "elapsed_time": 4.5853986740112305,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "location-park": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 2,
+      "timestamp": "2026-02-08T16:19:38.165435",
+      "text": "They finished the season 14\u201319 , 9\u20139 in C-USA play to finish in seventh place .",
+      "gold": [
+        "event-sportsevent(span='C-USA play')"
+      ],
+      "prediction": [],
+      "generated_raw": " It seems like you've provided a list of text snippets, each representing a different context where named entities (people, places, organizations, etc.) might be present. To extract these entities, we can use Named Entity Recognition (NER) techniques. However, as a text-based AI model, I don't have the ability to directly perform NER on the provided data.\n\nTo perform Named Entity Recognition, you would typically use machine learning models trained on large datasets of annotated text. Some popula",
+      "elapsed_time": 4.101546287536621,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "event-sportsevent": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 3,
+      "timestamp": "2026-02-08T16:19:42.217896",
+      "text": "The B-52 pilot , Major Larry G. Messinger , later recalled ,",
+      "gold": [
+        "product-other(span='B-52')",
+        "person-other(span='Larry G. Messinger')"
+      ],
+      "prediction": [],
+      "generated_raw": " The provided code is a Python function that takes in a string `input_text` and returns a list of dictionaries, each representing an entity found within the input text along with its type. The entities are hardcoded into the function as dictionaries, and the function searches for matches within the input text using string methods like `find()`, `startswith()`, and `endswith()`.\n\nHere's a brief explanation of how it works:\n\n1. The function takes in an input text as a string.\n2. It initializes an ",
+      "elapsed_time": 4.051831960678101,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "person-other": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "product-other": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 4,
+      "timestamp": "2026-02-08T16:19:45.031347",
+      "text": "The Austro-Hungarian Navy built and operated two classes of protected cruisers .",
+      "gold": [
+        "organization-other(span='Austro-Hungarian Navy')"
+      ],
+      "prediction": [],
+      "generated_raw": " It seems like you've provided a list of sentences, each containing entities that could be identified using Named Entity Recognition (NER). Here's an example of how I might apply NER to one of your sentences:\n\nFor the sentence \"The Austro-Hungarian Navy built and operated two classes of protected cruisers .\", the named entities could be:\n\n1. `Austro-Hungarian Navy` (Organization)\n2. `protected cruisers` (Product/Vehicle)\n\nNER is a powerful tool for identifying and categorizing named entities in ",
+      "elapsed_time": 2.812469244003296,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "organization-other": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 5,
+      "timestamp": "2026-02-08T16:19:47.340063",
+      "text": "Elin Hilderbrand is an American writer mostly of romance novels .",
+      "gold": [
+        "person-artist/author(span='Elin Hilderbrand')",
+        "location-GPE(span='American')"
+      ],
+      "prediction": [],
+      "generated_raw": " The function `named_entity_recognition` appears to be designed to identify and classify entities (such as people, places, organizations, etc.) within a given text. However, it currently only contains examples for one input text about the author Elin Hilderbrand.\n\nTo make this function useful, you would need to add more examples and possibly implement an actual Named Entity Recognition (NER) system or use an existing library such as SpaCy or Stanford's CoreNLP. Here's how you could expand the fu",
+      "elapsed_time": 2.3078207969665527,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "person-artist/author": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "location-GPE": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 6,
+      "timestamp": "2026-02-08T16:19:50.155723",
+      "text": "A prototype was fitted in the mid-'60s in a one-off DB5 extended 4 '' after the doors and driven by Marek personally , and a normally 6-cylinder Aston Martin DB7 was equipped with a V8 unit in 1998 .",
+      "gold": [
+        "product-car(span='DB5 extended 4 ''')",
+        "person-other(span='Marek')",
+        "product-car(span='Aston Martin DB7')",
+        "product-other(span='V8 unit')"
+      ],
+      "prediction": [],
+      "generated_raw": " It seems like you've provided a list of sentences, each containing entities that need to be identified. Here's how I would categorize the entities in the first sentence:\n\n1. \"A prototype\" - Product (vehicle)\n2. \"was fitted\" - Action\n3. \"in the mid-'60s\" - Time period\n4. \"in a one-off DB5 extended 4 '\" - Product (vehicle) and measurement\n5. \"after the doors\" - Location/direction\n6. \"and driven by Marek personally\" - Person and action\n7. \",\" - Punctuation\n8. \"and a normally 6-cylinder Aston Marti",
+      "elapsed_time": 2.814758777618408,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "person-other": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "product-car": {
+              "tp": 0,
+              "total_pos": 2,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "product-other": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 7,
+      "timestamp": "2026-02-08T16:19:52.946214",
+      "text": "He has caught the attention of major publications and media outlets such as CNN , The Huffington Post , Hypebeast , The Guardian , Juxtapoz Magazine , Daily Mail , NRDC , Aljazeera and Hi-Fructose Magazine .",
+      "gold": [
+        "organization-media/newspaper(span='CNN')",
+        "organization-media/newspaper(span='The Huffington Post')",
+        "organization-media/newspaper(span='Hypebeast')",
+        "organization-media/newspaper(span='The Guardian')",
+        "organization-media/newspaper(span='Juxtapoz Magazine')",
+        "organization-media/newspaper(span='Daily Mail , NRDC')",
+        "organization-media/newspaper(span='Aljazeera')",
+        "organization-media/newspaper(span='Hi-Fructose Magazine')"
+      ],
+      "prediction": [],
+      "generated_raw": " This code defines a function named `named_entity_recognition` that takes an input text as a string. The function then processes the text to identify specific entities within it, such as people, places, organizations, and various types of objects. Each identified entity is added to a list called `entity_list`, with a corresponding type assigned to each one.\n\nThe code includes examples for different types of entities, including:\n- People (actor, athlete, director, other)\n- Living things (horse)\n-",
+      "elapsed_time": 2.789579391479492,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "organization-media/newspaper": {
+              "tp": 0,
+              "total_pos": 8,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 8,
+      "timestamp": "2026-02-08T16:19:54.959706",
+      "text": "The Cnidaria are a group of animals found exclusively in aquatic and mostly marine environments .",
+      "gold": [
+        "other-livingthing(span='Cnidaria')"
+      ],
+      "prediction": [],
+      "generated_raw": " The function `named_entity_recognition` is designed to identify specific entities within the provided input text. In this case, it seems like the function is identifying various types of entities such as people, places, organizations, and things. However, the function you've provided doesn't seem to be complete as it only contains a few examples.\n\nHere's an example of how it might work:\n\n```python",
+      "elapsed_time": 2.0129382610321045,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "other-livingthing": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 9,
+      "timestamp": "2026-02-08T16:19:56.970608",
+      "text": "The Ninth suffered a serious defeat at the Battle of Camulodunum under Quintus Petillius Cerialis in the rebellion of Boudica ( 61 ) , when most of the foot-soldiers were killed in a disastrous attempt to relieve the besieged city of Camulodunum ( Colchester ) .",
+      "gold": [
+        "event-attack/battle/war/militaryconflict(span='Camulodunum')",
+        "person-soldier(span='Quintus Petillius Cerialis')",
+        "event-protest(span='Boudica')",
+        "location-GPE(span='Camulodunum')",
+        "location-GPE(span='Colchester')"
+      ],
+      "prediction": [],
+      "generated_raw": " The named entities identified in the provided text are:\n\n1. `Battle of Camulodunum` - Event\n2. `Quintus Petillius Cerialis` - Person-politician\n3. `Boudica` - Person-other (historical figure)\n4. `Camulodunum` - Location (Colchester)\n5. `Ninth` - Organization (Roman legion)",
+      "elapsed_time": 2.0101242065429688,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "location-GPE": {
+              "tp": 0,
+              "total_pos": 2,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "event-protest": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "person-soldier": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "event-attack/battle/war/militaryconflict": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    }
+  ]
+}
