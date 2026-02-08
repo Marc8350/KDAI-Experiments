@@ -1,0 +1,64 @@
+# Task: Complete the Python code by adding entity_list.append() statements.
+# Do not explain the code; simply output the entity_list.append() line.
+
+# You are a professional Named Entity Recognition (NER) system, focusing on extracting entities from text.
+# For each input_text, identify the named entities and add them using entity_list.append().
+
+# Entity types:
+# - art: Includes movies, books, music, paintings, or other creative works.
+# - building: Named buildings or structures, such as stadiums, museums, or hotels.
+# - event: Named events, such as wars, sports events, festivals, or historical events.
+# - location: Geographical locations such as cities, countries, continents, regions, or landmarks.
+# - organization: Named organizations, institutions, companies, or groups.
+# - other: Other named entities not belonging to the above categories.
+# - person: Named individuals, including fictional characters, historical figures, celebrities, and ordinary people.
+# - product: Named commercial products, software, car models, or brand items.
+
+# Example:
+def named_entity_recognition(input_text):
+    """ Extract named entities from input_text. """
+    input_text = "This album was released on March 25, 2008. It is the first new material album released by the band since the 1992 release of 'Good Things'."
+    entity_list = []
+    entity_list.append({"text": "Good Things", "type": "art"})
+
+def named_entity_recognition(input_text):
+    """ Extract named entities from input_text. """
+    input_text = "In 1136, the castle was donated to the Knights Templar."
+    entity_list = []
+    entity_list.append({"text": "Knights Templar", "type": "building"})
+
+def named_entity_recognition(input_text):
+    """ Extract named entities from input_text. """
+    input_text = "During World War II, heavy items were frequently transported to military units and camps."
+    entity_list = []
+    entity_list.append({"text": "World War II", "type": "event"})
+
+def named_entity_recognition(input_text):
+    """ Extract named entities from input_text. """
+    input_text = "For the next five years, she conducted tests in the Cape May area of New Jersey."
+    entity_list = []
+    entity_list.append({"text": "Cape May, New Jersey", "type": "location"})
+
+def named_entity_recognition(input_text):
+    """ Extract named entities from input_text. """
+    input_text = "From January 30 to February 4, 1945, she performed special experimental work at the Philadelphia Naval Shipyard."
+    entity_list = []
+    entity_list.append({"text": "Philadelphia Naval Shipyard", "type": "organization"})
+
+def named_entity_recognition(input_text):
+    """ Extract named entities from input_text. """
+    input_text = "The passage of the 1886 Farm Bill was helpful, but social unrest continued."
+    entity_list = []
+    entity_list.append({"text": "Farm Bill", "type": "other"})
+
+def named_entity_recognition(input_text):
+    """ Extract named entities from input_text. """
+    input_text = "Liddy was nominally responsible for the operation, but since then he has insisted that he was deceived by subordinates."
+    entity_list = []
+    entity_list.append({"text": "Liddy", "type": "person"})
+
+def named_entity_recognition(input_text):
+    """ Extract named entities from input_text. """
+    input_text = "The only 21-2-10-4 Texas locomotive is frequently used to transport heavy cargo."
+    entity_list = []
+    entity_list.append({"text": "21-2-10-4 Texas locomotive", "type": "product"})

@@ -1,0 +1,62 @@
+# TASK: Complete the Python code by adding entity_list.append() lines.
+# Do not explain the code. Only output the entity_list.append() lines.
+# You are an expert Named Entity Recognition (NER) system for extracting entities from text.
+# For each input_text, identify the named entities and add them using entity_list.append().
+
+# Entity Types:
+# - art: A work of art, such as films, books, music, paintings, or other creative works.
+# - building: A named structure or building, such as a stadium, museum, or hotel.
+# - event: A named event, such as a war, sports event, festival, or historical occurrence.
+# - location: A geographic location such as a city, country, continent, region, or landmark.
+# - organization: A named organization, institution, company, or group.
+# - other: Other named entities that do not fit the above categories.
+# - person: A named individual, including fictional characters, historical figures, celebrities, and ordinary people.
+# - product: A named commercial product, software, vehicle model, or brand product.
+
+def named_entity_recognition(input_text):
+    """Extract named entities from the text."""
+    input_text = "The album was released on March 25, 2008. It was the first album of new material released by the group since 1992, titled 'Good Thing'."
+    entity_list = []
+    entity_list.append({"text": "Good Thing", "type": "art"})
+
+def named_entity_recognition(input_text):
+    """Extract named entities from the text."""
+    input_text = "In 1136, the castle was donated to the Knights Hospitaller."
+    entity_list = []
+    entity_list.append({"text": "Knights Hospitaller", "type": "building"})
+
+def named_entity_recognition(input_text):
+    """Extract named entities from the text."""
+    input_text = "During World War II, heavy loads were frequently transported to the military unit and the camp."
+    entity_list = []
+    entity_list.append({"text": "World War II", "type": "event"})
+
+def named_entity_recognition(input_text):
+    """Extract named entities from the text."""
+    input_text = "Over the next five years, tests were conducted in the Cape May, New Jersey region."
+    entity_list = []
+    entity_list.append({"text": "Cape May, New Jersey", "type": "location"})
+
+def named_entity_recognition(input_text):
+    """Extract named entities from the text."""
+    input_text = "Between January 30, 1945 and February 4, the Philadelphia Shipyard was equipped for special experimental work."
+    entity_list = []
+    entity_list.append({"text": "Philadelphia Shipyard", "type": "organization"})
+
+def named_entity_recognition(input_text):
+    """Extract named entities from the text."""
+    input_text = "The passing of the Crofting Act of 1886 helped, but social unrest continued."
+    entity_list = []
+    entity_list.append({"text": "Crofting Act", "type": "other"})
+
+def named_entity_recognition(input_text):
+    """Extract named entities from the text."""
+    input_text = "Liddy was nominally responsible for the operation, but has since claimed to have been defrauded by the lower layers."
+    entity_list = []
+    entity_list.append({"text": "Liddy", "type": "person"})
+
+def named_entity_recognition(input_text):
+    """Extract named entities from the text."""
+    input_text = "The Class 21 2-10-4 Texas-type locomotive was mainly used to haul heavy loads."
+    entity_list = []
+    entity_list.append({"text": "Class 21 2-10-4 Texas-type locomotive", "type": "product"})
