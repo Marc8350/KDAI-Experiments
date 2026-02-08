@@ -10,10 +10,12 @@ Languages: Chinese, Spanish, Turkish
 
 import os
 import logging
+import time
 from typing import List, Optional, Tuple
 from dataclasses import dataclass
 
 from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_ollama import ChatOllama
 from langchain_core.messages import HumanMessage, SystemMessage
 
 logger = logging.getLogger(__name__)
@@ -29,8 +31,10 @@ class BackTranslationConfig:
     model_name: str = "gemini-2.0-flash"
     temperature: float = 0.1  # Lower temp for translation accuracy
     max_tokens: int = 4096
+    max_tokens: int = 4096
     similarity_threshold: float = 0.9
     api_key: Optional[str] = None
+    request_delay: float = 10.0  # Delay in seconds between requests to avoid rate limits
 
 
 TRANSLATE_TO_SYSTEM = """You are an expert translator. Your task is to translate prompts 
@@ -97,19 +101,38 @@ class BackTranslator:
         
         # Get API key (check both GOOGLE_API_KEY and GEMINI_API_KEY)
         api_key = self.config.api_key or os.getenv("GOOGLE_API_KEY") or os.getenv("GEMINI_API_KEY")
-        if not api_key:
-            raise ValueError("GOOGLE_API_KEY or GEMINI_API_KEY environment variable not set")
         
-        # Initialize LLM
-        self.llm = ChatGoogleGenerativeAI(
-            model=self.config.model_name,
-            temperature=self.config.temperature,
-            max_output_tokens=self.config.max_tokens,
-            google_api_key=api_key
-        )
+        # Initialize LLM based on model name or availability of API key
+        if self.config.model_name.startswith("ollama/") or (not api_key and not self.config.model_name.startswith("gemini")):
+             # Use Ollama
+             model = self.config.model_name.replace("ollama/", "")
+             logger.info(f"Using Ollama with model: {model}")
+             self.llm = ChatOllama(
+                 model=model,
+                 temperature=self.config.temperature,
+                 num_ctx=self.config.max_tokens
+             )
+        else:
+            # Default to Google Gemini
+            if not api_key:
+                raise ValueError("GOOGLE_API_KEY or GEMINI_API_KEY environment variable not set for Gemini model")
+            
+            self.llm = ChatGoogleGenerativeAI(
+                model=self.config.model_name,
+                temperature=self.config.temperature,
+                max_output_tokens=self.config.max_tokens,
+                google_api_key=api_key
+            )
         
         logger.info(f"Initialized BackTranslator with model: {self.config.model_name}")
     
+    def _invoke_with_delay(self, messages):
+        """Invoke LLM with rate limiting delay."""
+        if self.config.request_delay > 0:
+            logger.info(f"Sleeping for {self.config.request_delay}s to respect rate limits...")
+            time.sleep(self.config.request_delay)
+        return self.llm.invoke(messages)
+
     def _translate_to(self, prompt: str, target_language: str) -> str:
         """
         Translate a prompt to the target language.
@@ -131,7 +154,7 @@ class BackTranslator:
             HumanMessage(content=user_message)
         ]
         
-        response = self.llm.invoke(messages)
+        response = self._invoke_with_delay(messages)
         
         # Handle different response formats - content can be a list or string
         content = response.content
@@ -177,7 +200,7 @@ class BackTranslator:
             HumanMessage(content=user_message)
         ]
         
-        response = self.llm.invoke(messages)
+        response = self._invoke_with_delay(messages)
         
         # Handle different response formats - content can be a list or string
         content = response.content

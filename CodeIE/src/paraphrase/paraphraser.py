@@ -7,10 +7,12 @@ while preserving the annotation task semantics and all placeholders.
 
 import os
 import logging
+import time
 from typing import List, Dict, Optional
 from dataclasses import dataclass, field
 
 from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_ollama import ChatOllama
 from langchain_core.messages import HumanMessage, SystemMessage
 
 logger = logging.getLogger(__name__)
@@ -24,7 +26,9 @@ class ParaphraseConfig:
     max_tokens: int = 4096
     num_variations: int = 3
     similarity_threshold: float = 0.9
+    similarity_threshold: float = 0.9
     api_key: Optional[str] = None
+    request_delay: float = 10.0  # Delay in seconds between requests to avoid rate limits
 
 
 PARAPHRASE_SYSTEM_PROMPT = """You are an expert at paraphrasing prompts for NLP annotation tasks.
@@ -84,19 +88,38 @@ class DirectParaphraser:
         
         # Get API key (check both GOOGLE_API_KEY and GEMINI_API_KEY)
         api_key = self.config.api_key or os.getenv("GOOGLE_API_KEY") or os.getenv("GEMINI_API_KEY")
-        if not api_key:
-            raise ValueError("GOOGLE_API_KEY or GEMINI_API_KEY environment variable not set")
         
-        # Initialize LLM
-        self.llm = ChatGoogleGenerativeAI(
-            model=self.config.model_name,
-            temperature=self.config.temperature,
-            max_output_tokens=self.config.max_tokens,
-            google_api_key=api_key
-        )
+        # Initialize LLM based on model name or availability of API key
+        if self.config.model_name.startswith("ollama/") or (not api_key and not self.config.model_name.startswith("gemini")):
+             # Use Ollama
+             model = self.config.model_name.replace("ollama/", "")
+             logger.info(f"Using Ollama with model: {model}")
+             self.llm = ChatOllama(
+                 model=model,
+                 temperature=self.config.temperature,
+                 num_ctx=self.config.max_tokens
+             )
+        else:
+            # Default to Google Gemini
+            if not api_key:
+                raise ValueError("GOOGLE_API_KEY or GEMINI_API_KEY environment variable not set for Gemini model")
+            
+            self.llm = ChatGoogleGenerativeAI(
+                model=self.config.model_name,
+                temperature=self.config.temperature,
+                max_output_tokens=self.config.max_tokens,
+                google_api_key=api_key
+            )
         
         logger.info(f"Initialized DirectParaphraser with model: {self.config.model_name}")
     
+    def _invoke_with_delay(self, messages):
+        """Invoke LLM with rate limiting delay."""
+        if self.config.request_delay > 0:
+            logger.info(f"Sleeping for {self.config.request_delay}s to respect rate limits...")
+            time.sleep(self.config.request_delay)
+        return self.llm.invoke(messages)
+
     def _build_output_mapping(self, prompt_style: str, entity_types: List[str]) -> str:
         """
         Build the output mapping description based on prompt style.
@@ -147,7 +170,7 @@ class DirectParaphraser:
         ]
         
         try:
-            response = self.llm.invoke(messages)
+            response = self._invoke_with_delay(messages)
             
             # Safe content extraction
             if isinstance(response.content, list):

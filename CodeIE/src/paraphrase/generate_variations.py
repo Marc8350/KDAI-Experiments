@@ -101,7 +101,9 @@ def generate_variations_for_prompt(
     similarity_threshold: float = 0.9,
     max_retries: int = 3,
     methods: List[str] = ["paraphrase", "back_translation"],
-    languages: List[str] = ["Chinese", "Spanish", "Turkish"]
+    languages: List[str] = ["Chinese", "Spanish", "Turkish"],
+    model_name: str = "gemini-2.0-flash",
+    request_delay: float = 10.0
 ) -> VariationLog:
     """
     Generate variations for a single base prompt.
@@ -115,6 +117,8 @@ def generate_variations_for_prompt(
         max_retries: Max retries for rejected variations
         methods: List of methods to use ("paraphrase", "back_translation")
         languages: List of languages for back-translation
+        model_name: Name of the LLM model to use
+        request_delay: Delay in seconds between API requests
     
     Returns:
         VariationLog with all generation results
@@ -131,14 +135,18 @@ def generate_variations_for_prompt(
     
     # Initialize components
     paraphraser = DirectParaphraser(ParaphraseConfig(
+        model_name=model_name,
         temperature=0.3,
         num_variations=3,
-        similarity_threshold=similarity_threshold
+        similarity_threshold=similarity_threshold,
+        request_delay=request_delay
     ))
     
     back_translator = BackTranslator(BackTranslationConfig(
+        model_name=model_name,
         temperature=0.1,
-        similarity_threshold=similarity_threshold
+        similarity_threshold=similarity_threshold,
+        request_delay=request_delay
     ))
     
     similarity_calc = SemanticSimilarity()
@@ -287,7 +295,9 @@ def generate_all_variations(
     similarity_threshold: float = 0.9,
     methods: List[str] = ["paraphrase", "back_translation"],
     languages: List[str] = ["Chinese", "Spanish", "Turkish"],
-    shots: List[int] = [1, 3]
+    shots: List[int] = [1, 3],
+    model_name: str = "gemini-2.0-flash",
+    request_delay: float = 10.0
 ) -> Dict[str, VariationLog]:
     """
     Generate variations for all base prompts.
@@ -301,6 +311,8 @@ def generate_all_variations(
         methods: List of methods to use
         languages: List of languages to use
         shots: List of shot counts to process
+        model_name: Name of the LLM model to use
+        request_delay: Delay in seconds between API requests
     
     Returns:
         Dict mapping prompt names to their variation logs
@@ -341,7 +353,9 @@ def generate_all_variations(
                         entity_types=entity_types.get(granularity),
                         similarity_threshold=similarity_threshold,
                         methods=methods,
-                        languages=languages
+                        languages=languages,
+                        model_name=model_name,
+                        request_delay=request_delay
                     )
                     all_logs[prompt_name] = log
             
@@ -430,6 +444,18 @@ if __name__ == "__main__":
         default=[1, 3],
         help="Shot counts to process (default: 1 3)"
     )
+    parser.add_argument(
+        "--model",
+        type=str,
+        default="gemini-2.0-flash",
+        help="Model to use (default: gemini-2.0-flash)"
+    )
+    parser.add_argument(
+        "--delay",
+        type=float,
+        default=10.0,
+        help="Delay between requests in seconds (default: 10.0)"
+    )
     
     args = parser.parse_args()
     
@@ -444,5 +470,7 @@ if __name__ == "__main__":
         similarity_threshold=args.threshold,
         methods=args.methods,
         languages=args.languages,
-        shots=args.shots
+        shots=args.shots,
+        model_name=args.model,
+        request_delay=args.delay
     )
