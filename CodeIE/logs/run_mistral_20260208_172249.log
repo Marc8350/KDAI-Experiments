@@ -1,0 +1,2268 @@
+2026-02-08 17:22:49,995 - INFO - Loaded environment from .env file
+2026-02-08 17:22:50,013 - INFO - Orchestrator initialized with config: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/config/experiment_config.yaml
+2026-02-08 17:22:50,013 - INFO - 
+############################################################
+2026-02-08 17:22:50,014 - INFO - # CodeIE Experiment Orchestrator
+2026-02-08 17:22:50,014 - INFO - # One-Stop Shop Pipeline
+2026-02-08 17:22:50,014 - INFO - ############################################################
+2026-02-08 17:22:50,014 - INFO - 
+[Step 1/3] Checking prompt variations...
+2026-02-08 17:22:50,014 - INFO -   Existing: 28/24
+2026-02-08 17:22:50,014 - INFO -   Missing: 0/24
+2026-02-08 17:22:50,014 - INFO - 
+[Step 2/3] Generating experiment matrix...
+2026-02-08 17:22:50,014 - INFO - Generated 28 experiment runs
+2026-02-08 17:22:50,014 - INFO -   Total experiments: 28
+2026-02-08 17:22:50,014 - INFO - 
+[Step 3/3] Running experiments...
+2026-02-08 17:22:50,015 - INFO - 
+[1/28] Starting: mistral_base_coarse_pl_base
+2026-02-08 17:22:50,015 - INFO - 
+============================================================
+2026-02-08 17:22:50,015 - INFO - Running: mistral_base_coarse_pl_base
+2026-02-08 17:22:50,015 - INFO -   Model: mistral
+2026-02-08 17:22:50,015 - INFO -   Granularity: coarse
+2026-02-08 17:22:50,015 - INFO -   Style: pl
+2026-02-08 17:22:50,015 - INFO -   Variation: base
+2026-02-08 17:22:50,015 - INFO -   Prompt: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/prompts/base/coarse_pl_1shot.txt
+2026-02-08 17:22:50,015 - INFO - ============================================================
+2026-02-08 17:22:54,029 - INFO - NumExpr defaulting to 8 threads.
+2026-02-08 17:22:54,544 - INFO - ============================================================
+2026-02-08 17:22:54,544 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-08 17:22:54,544 - INFO - ============================================================
+2026-02-08 17:22:54,545 - INFO - Granularity: coarse
+2026-02-08 17:22:54,545 - INFO - Style: pl
+2026-02-08 17:22:54,545 - INFO - Variation: v0_original
+2026-02-08 17:22:54,545 - INFO - Model: mistral
+2026-02-08 17:22:54,545 - INFO - ============================================================
+2026-02-08 17:22:54,545 - INFO - Using ChatOllama (Chat API) for mistral
+2026-02-08 17:22:54,579 - WARNING - Variation 'v0_original' not found, using 'default' instead
+2026-02-08 17:22:54,579 - INFO - Available PL variations: ['default']
+2026-02-08 17:22:54,579 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+2026-02-08 17:22:54,579 - INFO - Loading test data from: /Users/marcrodig/Development/kdai/KDAI-Experiments/few-nerd_test
+2026-02-08 17:22:54,642 - INFO - Loading pre-generated prompt from: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/prompts/base/coarse_pl_1shot.txt
+2026-02-08 17:22:54,642 - INFO - ICL prompt length: 3554 characters
+2026-02-08 17:22:54,642 - INFO - Sample ICL prompt (first 1000 chars):
+2026-02-08 17:22:54,642 - INFO - ----------------------------------------
+2026-02-08 17:22:54,642 - INFO - # TASK: Complete the Python code by adding entity_list.append() statements.
+2026-02-08 17:22:54,643 - INFO - # DO NOT explain the code. Just output the entity_list.append() lines.
+2026-02-08 17:22:54,643 - INFO - 
+2026-02-08 17:22:54,643 - INFO - # You are an expert Named Entity Recognition (NER) system specializing in extracting entities from text.
+2026-02-08 17:22:54,643 - INFO - # For each input_text, identify named entities and add them using entity_list.append().
+2026-02-08 17:22:54,643 - INFO - 
+2026-02-08 17:22:54,643 - INFO - # Entity Types:
+2026-02-08 17:22:54,643 - INFO - # - art: A work of art including films, books, music, paintings, or other creative works.
+2026-02-08 17:22:54,643 - INFO - # - building: A named structure or building, such as a stadium, museum, or hotel.
+2026-02-08 17:22:54,643 - INFO - # - event: A named event such as a war, sports event, festival, or historical occurrence.
+2026-02-08 17:22:54,643 - INFO - # - location: A geographical location such as a city, country, continent, region, or landmark.
+2026-02-08 17:22:54,643 - INFO - # - organization: A named organization, institution, company, or group.
+2026-02-08 17:22:54,643 - INFO - # - other: Other named entities that don't fit into the above categories.
+2026-02-08 17:22:54,643 - INFO - # - person: A named individual, including fictional characters, historical figures, celebrities, and common people.
+2026-02-08 17:22:54,643 - INFO - # - product: A named co
+2026-02-08 17:22:54,643 - INFO - ----------------------------------------
+2026-02-08 17:22:54,643 - INFO - Processing 10 test samples...
+2026-02-08 17:22:54,652 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:54,655 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:54,656 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:54,657 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:54,658 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:54,659 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:54,660 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:54,660 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:54,661 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:54,662 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:54,662 - INFO - Progress: 10/10 | P: 0.0000 | R: 0.0000 | Micro-F1: 0.0000 | Macro-F1: 0.0000
+2026-02-08 17:22:54,663 - INFO - ============================================================
+2026-02-08 17:22:54,663 - INFO - Final Results
+2026-02-08 17:22:54,663 - INFO - ============================================================
+2026-02-08 17:22:54,663 - INFO - Precision:  0.0000
+2026-02-08 17:22:54,663 - INFO - Recall:     0.0000
+2026-02-08 17:22:54,663 - INFO - Micro F1:   0.0000
+2026-02-08 17:22:54,663 - INFO - Macro F1:   0.0000
+2026-02-08 17:22:54,663 - INFO - ----------------------------------------
+2026-02-08 17:22:54,663 - INFO - Per-Type F1 Scores:
+2026-02-08 17:22:54,663 - INFO -   building                       F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:54,663 - INFO -   event                          F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:54,663 - INFO -   location                       F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:54,663 - INFO -   organization                   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:54,663 - INFO -   other                          F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:54,663 - INFO -   person                         F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:54,663 - INFO -   product                        F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:54,663 - INFO - ----------------------------------------
+2026-02-08 17:22:54,663 - INFO - Results saved to: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/CODEIE-results/coarse_pl_default_mistral_20260208_172254.json
+2026-02-08 17:22:54,663 - INFO - ============================================================
+2026-02-08 17:22:54,663 - INFO - Updated experiment matrix: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/CODEIE-results/experiment_matrix.csv
+2026-02-08 17:22:54,663 - INFO - 
+[2/28] Starting: mistral_base_coarse_pl_lexical_substitution
+2026-02-08 17:22:54,663 - INFO - 
+============================================================
+2026-02-08 17:22:54,663 - INFO - Running: mistral_base_coarse_pl_lexical_substitution
+2026-02-08 17:22:54,664 - INFO -   Model: mistral
+2026-02-08 17:22:54,664 - INFO -   Granularity: coarse
+2026-02-08 17:22:54,664 - INFO -   Style: pl
+2026-02-08 17:22:54,664 - INFO -   Variation: lexical_substitution
+2026-02-08 17:22:54,664 - INFO -   Prompt: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/prompts/variations/coarse_pl_1shot/lexical_substitution.txt
+2026-02-08 17:22:54,664 - INFO - ============================================================
+2026-02-08 17:22:54,664 - INFO - ============================================================
+2026-02-08 17:22:54,664 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-08 17:22:54,664 - INFO - ============================================================
+2026-02-08 17:22:54,664 - INFO - Granularity: coarse
+2026-02-08 17:22:54,664 - INFO - Style: pl
+2026-02-08 17:22:54,664 - INFO - Variation: lexical_substitution
+2026-02-08 17:22:54,664 - INFO - Model: mistral
+2026-02-08 17:22:54,664 - INFO - ============================================================
+2026-02-08 17:22:54,664 - INFO - Using ChatOllama (Chat API) for mistral
+2026-02-08 17:22:54,698 - WARNING - Variation 'lexical_substitution' not found, using 'default' instead
+2026-02-08 17:22:54,698 - INFO - Available PL variations: ['default']
+2026-02-08 17:22:54,698 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+2026-02-08 17:22:54,698 - INFO - Loading test data from: /Users/marcrodig/Development/kdai/KDAI-Experiments/few-nerd_test
+2026-02-08 17:22:54,704 - INFO - Loading pre-generated prompt from: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/prompts/variations/coarse_pl_1shot/lexical_substitution.txt
+2026-02-08 17:22:54,704 - INFO - ICL prompt length: 3703 characters
+2026-02-08 17:22:54,704 - INFO - Sample ICL prompt (first 1000 chars):
+2026-02-08 17:22:54,704 - INFO - ----------------------------------------
+2026-02-08 17:22:54,704 - INFO - # OBJECTIVE: Finish the Python script by inserting entity_list.append() commands.
+2026-02-08 17:22:54,704 - INFO - # NO explanations. Only print the entity_list.append() lines.
+2026-02-08 17:22:54,704 - INFO - 
+2026-02-08 17:22:54,704 - INFO - # You are a skilled Named Entity Recognition (NER) tool focused on mining entities from text.
+2026-02-08 17:22:54,704 - INFO - # For every input_text, detect named entities and append them to the entity_list.
+2026-02-08 17:22:54,704 - INFO - 
+2026-02-08 17:22:54,704 - INFO - # Classification Categories:
+2026-02-08 17:22:54,704 - INFO - # - art: A titled creative piece such as movies, literature, songs, artwork, or other artistic productions.
+2026-02-08 17:22:54,704 - INFO - # - building: A specific edifice or construction, like a stadium, gallery, or inn.
+2026-02-08 17:22:54,704 - INFO - # - event: A specific occasion like a conflict, athletic competition, gala, or historic incident.
+2026-02-08 17:22:54,704 - INFO - # - location: A geographic place like a town, nation, landmass, area, or point of interest.
+2026-02-08 17:22:54,704 - INFO - # - organization: A specific association, institute, enterprise, or team.
+2026-02-08 17:22:54,704 - INFO - # - other: Miscellaneous named entities that do not belong to the listed groups.
+2026-02-08 17:22:54,704 - INFO - # - person: A specific human, covering made-up figures, figures from history, stars, and ordinary individuals.
+2026-02-08 17:22:54,704 - INFO - # 
+2026-02-08 17:22:54,704 - INFO - ----------------------------------------
+2026-02-08 17:22:54,704 - INFO - Processing 10 test samples...
+2026-02-08 17:22:54,706 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:54,707 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:54,707 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:54,708 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:54,708 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:54,709 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:54,710 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:54,710 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:54,711 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:54,712 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:54,712 - INFO - Progress: 10/10 | P: 0.0000 | R: 0.0000 | Micro-F1: 0.0000 | Macro-F1: 0.0000
+2026-02-08 17:22:54,713 - INFO - ============================================================
+2026-02-08 17:22:54,713 - INFO - Final Results
+2026-02-08 17:22:54,713 - INFO - ============================================================
+2026-02-08 17:22:54,713 - INFO - Precision:  0.0000
+2026-02-08 17:22:54,713 - INFO - Recall:     0.0000
+2026-02-08 17:22:54,713 - INFO - Micro F1:   0.0000
+2026-02-08 17:22:54,713 - INFO - Macro F1:   0.0000
+2026-02-08 17:22:54,713 - INFO - ----------------------------------------
+2026-02-08 17:22:54,713 - INFO - Per-Type F1 Scores:
+2026-02-08 17:22:54,713 - INFO -   building                       F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:54,713 - INFO -   event                          F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:54,713 - INFO -   location                       F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:54,713 - INFO -   organization                   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:54,713 - INFO -   other                          F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:54,713 - INFO -   person                         F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:54,713 - INFO -   product                        F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:54,713 - INFO - ----------------------------------------
+2026-02-08 17:22:54,713 - INFO - Results saved to: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/CODEIE-results/coarse_pl_default_mistral_20260208_172254.json
+2026-02-08 17:22:54,713 - INFO - ============================================================
+2026-02-08 17:22:54,713 - INFO - Updated experiment matrix: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/CODEIE-results/experiment_matrix.csv
+2026-02-08 17:22:54,713 - INFO - 
+[3/28] Starting: mistral_base_coarse_pl_reodering
+2026-02-08 17:22:54,713 - INFO - 
+============================================================
+2026-02-08 17:22:54,713 - INFO - Running: mistral_base_coarse_pl_reodering
+2026-02-08 17:22:54,713 - INFO -   Model: mistral
+2026-02-08 17:22:54,713 - INFO -   Granularity: coarse
+2026-02-08 17:22:54,713 - INFO -   Style: pl
+2026-02-08 17:22:54,713 - INFO -   Variation: reodering
+2026-02-08 17:22:54,713 - INFO -   Prompt: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/prompts/variations/coarse_pl_1shot/reodering.txt
+2026-02-08 17:22:54,713 - INFO - ============================================================
+2026-02-08 17:22:54,713 - INFO - ============================================================
+2026-02-08 17:22:54,713 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-08 17:22:54,713 - INFO - ============================================================
+2026-02-08 17:22:54,713 - INFO - Granularity: coarse
+2026-02-08 17:22:54,713 - INFO - Style: pl
+2026-02-08 17:22:54,713 - INFO - Variation: reodering
+2026-02-08 17:22:54,713 - INFO - Model: mistral
+2026-02-08 17:22:54,713 - INFO - ============================================================
+2026-02-08 17:22:54,713 - INFO - Using ChatOllama (Chat API) for mistral
+2026-02-08 17:22:54,746 - WARNING - Variation 'reodering' not found, using 'default' instead
+2026-02-08 17:22:54,746 - INFO - Available PL variations: ['default']
+2026-02-08 17:22:54,746 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+2026-02-08 17:22:54,746 - INFO - Loading test data from: /Users/marcrodig/Development/kdai/KDAI-Experiments/few-nerd_test
+2026-02-08 17:22:54,751 - INFO - Loading pre-generated prompt from: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/prompts/variations/coarse_pl_1shot/reodering.txt
+2026-02-08 17:22:54,751 - INFO - ICL prompt length: 3554 characters
+2026-02-08 17:22:54,751 - INFO - Sample ICL prompt (first 1000 chars):
+2026-02-08 17:22:54,751 - INFO - ----------------------------------------
+2026-02-08 17:22:54,751 - INFO - # TASK: Complete the Python code by adding entity_list.append() statements.
+2026-02-08 17:22:54,751 - INFO - # DO NOT explain the code. Just output the entity_list.append() lines.
+2026-02-08 17:22:54,751 - INFO - 
+2026-02-08 17:22:54,751 - INFO - # You are an expert Named Entity Recognition (NER) system specializing in extracting entities from text.
+2026-02-08 17:22:54,751 - INFO - # For each input_text, identify named entities and add them using entity_list.append().
+2026-02-08 17:22:54,751 - INFO - 
+2026-02-08 17:22:54,751 - INFO - # Entity Types:
+2026-02-08 17:22:54,751 - INFO - # - person: A named individual, including fictional characters, historical figures, celebrities, and common people.
+2026-02-08 17:22:54,751 - INFO - # - organization: A named organization, institution, company, or group.
+2026-02-08 17:22:54,751 - INFO - # - location: A geographical location such as a city, country, continent, region, or landmark.
+2026-02-08 17:22:54,751 - INFO - # - event: A named event such as a war, sports event, festival, or historical occurrence.
+2026-02-08 17:22:54,751 - INFO - # - product: A named commercial product, software, vehicle model, or branded item.
+2026-02-08 17:22:54,751 - INFO - # - building: A named structure or building, such as a stadium, museum, or hotel.
+2026-02-08 17:22:54,751 - INFO - # - art: A work of art including films, books, music, paintings, or other creative works.
+2026-02-08 17:22:54,751 - INFO - # - other: Oth
+2026-02-08 17:22:54,751 - INFO - ----------------------------------------
+2026-02-08 17:22:54,751 - INFO - Processing 10 test samples...
+2026-02-08 17:22:54,753 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:54,753 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:54,755 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:54,756 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:54,757 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:54,758 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:54,760 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:54,761 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:54,762 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:54,763 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:54,763 - INFO - Progress: 10/10 | P: 0.0000 | R: 0.0000 | Micro-F1: 0.0000 | Macro-F1: 0.0000
+2026-02-08 17:22:54,764 - INFO - ============================================================
+2026-02-08 17:22:54,764 - INFO - Final Results
+2026-02-08 17:22:54,764 - INFO - ============================================================
+2026-02-08 17:22:54,764 - INFO - Precision:  0.0000
+2026-02-08 17:22:54,764 - INFO - Recall:     0.0000
+2026-02-08 17:22:54,764 - INFO - Micro F1:   0.0000
+2026-02-08 17:22:54,764 - INFO - Macro F1:   0.0000
+2026-02-08 17:22:54,764 - INFO - ----------------------------------------
+2026-02-08 17:22:54,764 - INFO - Per-Type F1 Scores:
+2026-02-08 17:22:54,764 - INFO -   building                       F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:54,764 - INFO -   event                          F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:54,764 - INFO -   location                       F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:54,764 - INFO -   organization                   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:54,764 - INFO -   other                          F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:54,764 - INFO -   person                         F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:54,764 - INFO -   product                        F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:54,764 - INFO - ----------------------------------------
+2026-02-08 17:22:54,764 - INFO - Results saved to: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/CODEIE-results/coarse_pl_default_mistral_20260208_172254.json
+2026-02-08 17:22:54,764 - INFO - ============================================================
+2026-02-08 17:22:54,764 - INFO - Updated experiment matrix: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/CODEIE-results/experiment_matrix.csv
+2026-02-08 17:22:54,764 - INFO - 
+[4/28] Starting: mistral_base_coarse_pl_sentence_reordering
+2026-02-08 17:22:54,764 - INFO - 
+============================================================
+2026-02-08 17:22:54,764 - INFO - Running: mistral_base_coarse_pl_sentence_reordering
+2026-02-08 17:22:54,764 - INFO -   Model: mistral
+2026-02-08 17:22:54,764 - INFO -   Granularity: coarse
+2026-02-08 17:22:54,764 - INFO -   Style: pl
+2026-02-08 17:22:54,764 - INFO -   Variation: sentence_reordering
+2026-02-08 17:22:54,764 - INFO -   Prompt: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/prompts/variations/coarse_pl_1shot/sentence_reordering.txt
+2026-02-08 17:22:54,764 - INFO - ============================================================
+2026-02-08 17:22:54,764 - INFO - ============================================================
+2026-02-08 17:22:54,764 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-08 17:22:54,764 - INFO - ============================================================
+2026-02-08 17:22:54,764 - INFO - Granularity: coarse
+2026-02-08 17:22:54,764 - INFO - Style: pl
+2026-02-08 17:22:54,764 - INFO - Variation: sentence_reordering
+2026-02-08 17:22:54,764 - INFO - Model: mistral
+2026-02-08 17:22:54,764 - INFO - ============================================================
+2026-02-08 17:22:54,764 - INFO - Using ChatOllama (Chat API) for mistral
+2026-02-08 17:22:54,796 - WARNING - Variation 'sentence_reordering' not found, using 'default' instead
+2026-02-08 17:22:54,796 - INFO - Available PL variations: ['default']
+2026-02-08 17:22:54,796 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+2026-02-08 17:22:54,796 - INFO - Loading test data from: /Users/marcrodig/Development/kdai/KDAI-Experiments/few-nerd_test
+2026-02-08 17:22:54,801 - INFO - Loading pre-generated prompt from: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/prompts/variations/coarse_pl_1shot/sentence_reordering.txt
+2026-02-08 17:22:54,802 - INFO - ICL prompt length: 3718 characters
+2026-02-08 17:22:54,802 - INFO - Sample ICL prompt (first 1000 chars):
+2026-02-08 17:22:54,802 - INFO - ----------------------------------------
+2026-02-08 17:22:54,802 - INFO - # TASK: Complete the Python code by adding entity_list.append() statements.
+2026-02-08 17:22:54,802 - INFO - # DO NOT explain the code. Just output the entity_list.append() lines.
+2026-02-08 17:22:54,802 - INFO - 
+2026-02-08 17:22:54,802 - INFO - # You are an expert Named Entity Recognition (NER) system capable of identifying entities within text.
+2026-02-08 17:22:54,802 - INFO - # For every input_text, find and add named entities using entity_list.append().
+2026-02-08 17:22:54,802 - INFO - 
+2026-02-08 17:22:54,802 - INFO - # Entity Types:
+2026-02-08 17:22:54,802 - INFO - # - art: Creative works that have a name, including music, books, films, paintings, etc.
+2026-02-08 17:22:54,802 - INFO - # - building: Named constructions or structures, for example, museums, stadiums, or hotels.
+2026-02-08 17:22:54,802 - INFO - # - event: Specific named occurrences like festivals, wars, historical events, or sports competitions.
+2026-02-08 17:22:54,802 - INFO - # - location: Geographical places including countries, cities, regions, landmarks, or continents.
+2026-02-08 17:22:54,802 - INFO - # - organization: Named groups, companies, institutions, or organizations.
+2026-02-08 17:22:54,802 - INFO - # - other: Named entities that do not fall into the specific categories listed above.
+2026-02-08 17:22:54,802 - INFO - # - person: Specific individuals, covering celebrities, historical figures, common people, and fictional char
+2026-02-08 17:22:54,802 - INFO - ----------------------------------------
+2026-02-08 17:22:54,802 - INFO - Processing 10 test samples...
+2026-02-08 17:22:54,805 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:54,808 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:54,809 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:54,810 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:54,811 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:54,812 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:54,813 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:54,814 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:54,815 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:54,815 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:54,815 - INFO - Progress: 10/10 | P: 0.0000 | R: 0.0000 | Micro-F1: 0.0000 | Macro-F1: 0.0000
+2026-02-08 17:22:54,816 - INFO - ============================================================
+2026-02-08 17:22:54,816 - INFO - Final Results
+2026-02-08 17:22:54,816 - INFO - ============================================================
+2026-02-08 17:22:54,816 - INFO - Precision:  0.0000
+2026-02-08 17:22:54,816 - INFO - Recall:     0.0000
+2026-02-08 17:22:54,816 - INFO - Micro F1:   0.0000
+2026-02-08 17:22:54,816 - INFO - Macro F1:   0.0000
+2026-02-08 17:22:54,816 - INFO - ----------------------------------------
+2026-02-08 17:22:54,816 - INFO - Per-Type F1 Scores:
+2026-02-08 17:22:54,816 - INFO -   building                       F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:54,816 - INFO -   event                          F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:54,816 - INFO -   location                       F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:54,816 - INFO -   organization                   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:54,816 - INFO -   other                          F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:54,816 - INFO -   person                         F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:54,816 - INFO -   product                        F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:54,816 - INFO - ----------------------------------------
+2026-02-08 17:22:54,816 - INFO - Results saved to: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/CODEIE-results/coarse_pl_default_mistral_20260208_172254.json
+2026-02-08 17:22:54,816 - INFO - ============================================================
+2026-02-08 17:22:54,816 - INFO - Updated experiment matrix: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/CODEIE-results/experiment_matrix.csv
+2026-02-08 17:22:54,816 - INFO - 
+[5/28] Starting: mistral_base_coarse_pl_backtrans_ch
+2026-02-08 17:22:54,816 - INFO - 
+============================================================
+2026-02-08 17:22:54,816 - INFO - Running: mistral_base_coarse_pl_backtrans_ch
+2026-02-08 17:22:54,816 - INFO -   Model: mistral
+2026-02-08 17:22:54,816 - INFO -   Granularity: coarse
+2026-02-08 17:22:54,816 - INFO -   Style: pl
+2026-02-08 17:22:54,816 - INFO -   Variation: backtrans_ch
+2026-02-08 17:22:54,816 - INFO -   Prompt: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/prompts/variations/coarse_pl_1shot/backtrans_ch.txt
+2026-02-08 17:22:54,816 - INFO - ============================================================
+2026-02-08 17:22:54,816 - INFO - ============================================================
+2026-02-08 17:22:54,816 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-08 17:22:54,816 - INFO - ============================================================
+2026-02-08 17:22:54,816 - INFO - Granularity: coarse
+2026-02-08 17:22:54,816 - INFO - Style: pl
+2026-02-08 17:22:54,816 - INFO - Variation: backtrans_ch
+2026-02-08 17:22:54,816 - INFO - Model: mistral
+2026-02-08 17:22:54,816 - INFO - ============================================================
+2026-02-08 17:22:54,817 - INFO - Using ChatOllama (Chat API) for mistral
+2026-02-08 17:22:54,849 - WARNING - Variation 'backtrans_ch' not found, using 'default' instead
+2026-02-08 17:22:54,849 - INFO - Available PL variations: ['default']
+2026-02-08 17:22:54,849 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+2026-02-08 17:22:54,849 - INFO - Loading test data from: /Users/marcrodig/Development/kdai/KDAI-Experiments/few-nerd_test
+2026-02-08 17:22:54,854 - INFO - Loading pre-generated prompt from: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/prompts/variations/coarse_pl_1shot/backtrans_ch.txt
+2026-02-08 17:22:54,855 - INFO - ICL prompt length: 3469 characters
+2026-02-08 17:22:54,855 - INFO - Sample ICL prompt (first 1000 chars):
+2026-02-08 17:22:54,855 - INFO - ----------------------------------------
+2026-02-08 17:22:54,855 - INFO - # Task: Complete the Python code by adding entity_list.append() statements.
+2026-02-08 17:22:54,855 - INFO - # Do not explain the code; simply output the entity_list.append() line.
+2026-02-08 17:22:54,855 - INFO - 
+2026-02-08 17:22:54,855 - INFO - # You are a professional Named Entity Recognition (NER) system, focusing on extracting entities from text.
+2026-02-08 17:22:54,855 - INFO - # For each input_text, identify the named entities and add them using entity_list.append().
+2026-02-08 17:22:54,855 - INFO - 
+2026-02-08 17:22:54,855 - INFO - # Entity types:
+2026-02-08 17:22:54,855 - INFO - # - art: Includes movies, books, music, paintings, or other creative works.
+2026-02-08 17:22:54,855 - INFO - # - building: Named buildings or structures, such as stadiums, museums, or hotels.
+2026-02-08 17:22:54,855 - INFO - # - event: Named events, such as wars, sports events, festivals, or historical events.
+2026-02-08 17:22:54,855 - INFO - # - location: Geographical locations such as cities, countries, continents, regions, or landmarks.
+2026-02-08 17:22:54,855 - INFO - # - organization: Named organizations, institutions, companies, or groups.
+2026-02-08 17:22:54,855 - INFO - # - other: Other named entities not belonging to the above categories.
+2026-02-08 17:22:54,855 - INFO - # - person: Named individuals, including fictional characters, historical figures, celebrities, and ordinary people.
+2026-02-08 17:22:54,855 - INFO - # - product: Named commerci
+2026-02-08 17:22:54,855 - INFO - ----------------------------------------
+2026-02-08 17:22:54,855 - INFO - Processing 10 test samples...
+2026-02-08 17:22:54,857 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:54,857 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:54,858 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:54,859 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:54,860 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:54,861 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:54,862 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:54,863 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:54,864 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:54,865 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:54,865 - INFO - Progress: 10/10 | P: 0.0000 | R: 0.0000 | Micro-F1: 0.0000 | Macro-F1: 0.0000
+2026-02-08 17:22:54,866 - INFO - ============================================================
+2026-02-08 17:22:54,866 - INFO - Final Results
+2026-02-08 17:22:54,866 - INFO - ============================================================
+2026-02-08 17:22:54,866 - INFO - Precision:  0.0000
+2026-02-08 17:22:54,866 - INFO - Recall:     0.0000
+2026-02-08 17:22:54,866 - INFO - Micro F1:   0.0000
+2026-02-08 17:22:54,866 - INFO - Macro F1:   0.0000
+2026-02-08 17:22:54,866 - INFO - ----------------------------------------
+2026-02-08 17:22:54,866 - INFO - Per-Type F1 Scores:
+2026-02-08 17:22:54,866 - INFO -   building                       F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:54,866 - INFO -   event                          F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:54,866 - INFO -   location                       F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:54,866 - INFO -   organization                   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:54,866 - INFO -   other                          F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:54,866 - INFO -   person                         F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:54,866 - INFO -   product                        F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:54,866 - INFO - ----------------------------------------
+2026-02-08 17:22:54,866 - INFO - Results saved to: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/CODEIE-results/coarse_pl_default_mistral_20260208_172254.json
+2026-02-08 17:22:54,866 - INFO - ============================================================
+2026-02-08 17:22:54,866 - INFO - Updated experiment matrix: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/CODEIE-results/experiment_matrix.csv
+2026-02-08 17:22:54,866 - INFO - 
+[6/28] Starting: mistral_base_coarse_pl_backtrans_sp
+2026-02-08 17:22:54,866 - INFO - 
+============================================================
+2026-02-08 17:22:54,866 - INFO - Running: mistral_base_coarse_pl_backtrans_sp
+2026-02-08 17:22:54,866 - INFO -   Model: mistral
+2026-02-08 17:22:54,866 - INFO -   Granularity: coarse
+2026-02-08 17:22:54,866 - INFO -   Style: pl
+2026-02-08 17:22:54,866 - INFO -   Variation: backtrans_sp
+2026-02-08 17:22:54,866 - INFO -   Prompt: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/prompts/variations/coarse_pl_1shot/backtrans_sp.txt
+2026-02-08 17:22:54,866 - INFO - ============================================================
+2026-02-08 17:22:54,866 - INFO - ============================================================
+2026-02-08 17:22:54,866 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-08 17:22:54,866 - INFO - ============================================================
+2026-02-08 17:22:54,866 - INFO - Granularity: coarse
+2026-02-08 17:22:54,866 - INFO - Style: pl
+2026-02-08 17:22:54,866 - INFO - Variation: backtrans_sp
+2026-02-08 17:22:54,866 - INFO - Model: mistral
+2026-02-08 17:22:54,866 - INFO - ============================================================
+2026-02-08 17:22:54,866 - INFO - Using ChatOllama (Chat API) for mistral
+2026-02-08 17:22:55,061 - WARNING - Variation 'backtrans_sp' not found, using 'default' instead
+2026-02-08 17:22:55,061 - INFO - Available PL variations: ['default']
+2026-02-08 17:22:55,062 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+2026-02-08 17:22:55,062 - INFO - Loading test data from: /Users/marcrodig/Development/kdai/KDAI-Experiments/few-nerd_test
+2026-02-08 17:22:55,074 - INFO - Loading pre-generated prompt from: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/prompts/variations/coarse_pl_1shot/backtrans_sp.txt
+2026-02-08 17:22:55,074 - INFO - ICL prompt length: 3531 characters
+2026-02-08 17:22:55,074 - INFO - Sample ICL prompt (first 1000 chars):
+2026-02-08 17:22:55,074 - INFO - ----------------------------------------
+2026-02-08 17:22:55,074 - INFO - # TASK: Complete the Python code by adding entity_list.append() statements.
+2026-02-08 17:22:55,074 - INFO - # DO NOT explain the code. Only output the entity_list.append() lines.
+2026-02-08 17:22:55,075 - INFO - 
+2026-02-08 17:22:55,075 - INFO - # You are an expert Named Entity Recognition (NER) system specialized in extracting entities from text.
+2026-02-08 17:22:55,075 - INFO - # For each input_text, identify named entities and add them using entity_list.append().
+2026-02-08 17:22:55,075 - INFO - 
+2026-02-08 17:22:55,075 - INFO - # Entity types:
+2026-02-08 17:22:55,075 - INFO - # - art: An artwork that includes films, books, music, paintings, or other creative works.
+2026-02-08 17:22:55,075 - INFO - # - building: A named structure or building such as a stadium, museum, or hotel.
+2026-02-08 17:22:55,075 - INFO - # - event: A named event, such as a war, sporting event, festival, or historical occurrence.
+2026-02-08 17:22:55,075 - INFO - # - location: A geographic place such as a city, country, continent, region, or monument.
+2026-02-08 17:22:55,075 - INFO - # - organization: A named organization, institution, company, or group.
+2026-02-08 17:22:55,075 - INFO - # - other: Other named entities that do not fit the above categories.
+2026-02-08 17:22:55,075 - INFO - # - person: A named individual, including fictional characters, historical figures, celebrities, and ordinary people.
+2026-02-08 17:22:55,075 - INFO - # - product: A named commerc
+2026-02-08 17:22:55,075 - INFO - ----------------------------------------
+2026-02-08 17:22:55,075 - INFO - Processing 10 test samples...
+2026-02-08 17:22:55,080 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,084 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,089 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,098 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,102 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,107 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,108 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,110 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,111 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,112 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,113 - INFO - Progress: 10/10 | P: 0.0000 | R: 0.0000 | Micro-F1: 0.0000 | Macro-F1: 0.0000
+2026-02-08 17:22:55,113 - INFO - ============================================================
+2026-02-08 17:22:55,113 - INFO - Final Results
+2026-02-08 17:22:55,113 - INFO - ============================================================
+2026-02-08 17:22:55,113 - INFO - Precision:  0.0000
+2026-02-08 17:22:55,113 - INFO - Recall:     0.0000
+2026-02-08 17:22:55,113 - INFO - Micro F1:   0.0000
+2026-02-08 17:22:55,113 - INFO - Macro F1:   0.0000
+2026-02-08 17:22:55,113 - INFO - ----------------------------------------
+2026-02-08 17:22:55,113 - INFO - Per-Type F1 Scores:
+2026-02-08 17:22:55,113 - INFO -   building                       F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,114 - INFO -   event                          F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,114 - INFO -   location                       F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,114 - INFO -   organization                   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,114 - INFO -   other                          F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,114 - INFO -   person                         F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,114 - INFO -   product                        F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,114 - INFO - ----------------------------------------
+2026-02-08 17:22:55,114 - INFO - Results saved to: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/CODEIE-results/coarse_pl_default_mistral_20260208_172255.json
+2026-02-08 17:22:55,114 - INFO - ============================================================
+2026-02-08 17:22:55,114 - INFO - Updated experiment matrix: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/CODEIE-results/experiment_matrix.csv
+2026-02-08 17:22:55,114 - INFO - 
+[7/28] Starting: mistral_base_coarse_pl_backtrans_tu
+2026-02-08 17:22:55,114 - INFO - 
+============================================================
+2026-02-08 17:22:55,114 - INFO - Running: mistral_base_coarse_pl_backtrans_tu
+2026-02-08 17:22:55,114 - INFO -   Model: mistral
+2026-02-08 17:22:55,114 - INFO -   Granularity: coarse
+2026-02-08 17:22:55,114 - INFO -   Style: pl
+2026-02-08 17:22:55,114 - INFO -   Variation: backtrans_tu
+2026-02-08 17:22:55,114 - INFO -   Prompt: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/prompts/variations/coarse_pl_1shot/backtrans_tu.txt
+2026-02-08 17:22:55,114 - INFO - ============================================================
+2026-02-08 17:22:55,114 - INFO - ============================================================
+2026-02-08 17:22:55,114 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-08 17:22:55,114 - INFO - ============================================================
+2026-02-08 17:22:55,114 - INFO - Granularity: coarse
+2026-02-08 17:22:55,114 - INFO - Style: pl
+2026-02-08 17:22:55,114 - INFO - Variation: backtrans_tu
+2026-02-08 17:22:55,114 - INFO - Model: mistral
+2026-02-08 17:22:55,114 - INFO - ============================================================
+2026-02-08 17:22:55,114 - INFO - Using ChatOllama (Chat API) for mistral
+2026-02-08 17:22:55,153 - WARNING - Variation 'backtrans_tu' not found, using 'default' instead
+2026-02-08 17:22:55,153 - INFO - Available PL variations: ['default']
+2026-02-08 17:22:55,153 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+2026-02-08 17:22:55,153 - INFO - Loading test data from: /Users/marcrodig/Development/kdai/KDAI-Experiments/few-nerd_test
+2026-02-08 17:22:55,160 - INFO - Loading pre-generated prompt from: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/prompts/variations/coarse_pl_1shot/backtrans_tu.txt
+2026-02-08 17:22:55,160 - INFO - ICL prompt length: 3431 characters
+2026-02-08 17:22:55,160 - INFO - Sample ICL prompt (first 1000 chars):
+2026-02-08 17:22:55,160 - INFO - ----------------------------------------
+2026-02-08 17:22:55,160 - INFO - # TASK: Complete the Python code by adding entity_list.append() lines.
+2026-02-08 17:22:55,160 - INFO - # Do not explain the code. Only output the entity_list.append() lines.
+2026-02-08 17:22:55,160 - INFO - # You are an expert Named Entity Recognition (NER) system for extracting entities from text.
+2026-02-08 17:22:55,160 - INFO - # For each input_text, identify the named entities and add them using entity_list.append().
+2026-02-08 17:22:55,160 - INFO - 
+2026-02-08 17:22:55,160 - INFO - # Entity Types:
+2026-02-08 17:22:55,160 - INFO - # - art: A work of art, such as films, books, music, paintings, or other creative works.
+2026-02-08 17:22:55,160 - INFO - # - building: A named structure or building, such as a stadium, museum, or hotel.
+2026-02-08 17:22:55,160 - INFO - # - event: A named event, such as a war, sports event, festival, or historical occurrence.
+2026-02-08 17:22:55,160 - INFO - # - location: A geographic location such as a city, country, continent, region, or landmark.
+2026-02-08 17:22:55,160 - INFO - # - organization: A named organization, institution, company, or group.
+2026-02-08 17:22:55,160 - INFO - # - other: Other named entities that do not fit the above categories.
+2026-02-08 17:22:55,160 - INFO - # - person: A named individual, including fictional characters, historical figures, celebrities, and ordinary people.
+2026-02-08 17:22:55,160 - INFO - # - product: A named commercial product, 
+2026-02-08 17:22:55,160 - INFO - ----------------------------------------
+2026-02-08 17:22:55,160 - INFO - Processing 10 test samples...
+2026-02-08 17:22:55,162 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,163 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,164 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,165 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,166 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,166 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,167 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,167 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,168 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,169 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,169 - INFO - Progress: 10/10 | P: 0.0000 | R: 0.0000 | Micro-F1: 0.0000 | Macro-F1: 0.0000
+2026-02-08 17:22:55,169 - INFO - ============================================================
+2026-02-08 17:22:55,169 - INFO - Final Results
+2026-02-08 17:22:55,169 - INFO - ============================================================
+2026-02-08 17:22:55,169 - INFO - Precision:  0.0000
+2026-02-08 17:22:55,169 - INFO - Recall:     0.0000
+2026-02-08 17:22:55,170 - INFO - Micro F1:   0.0000
+2026-02-08 17:22:55,170 - INFO - Macro F1:   0.0000
+2026-02-08 17:22:55,170 - INFO - ----------------------------------------
+2026-02-08 17:22:55,170 - INFO - Per-Type F1 Scores:
+2026-02-08 17:22:55,170 - INFO -   building                       F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,170 - INFO -   event                          F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,170 - INFO -   location                       F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,170 - INFO -   organization                   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,170 - INFO -   other                          F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,170 - INFO -   person                         F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,170 - INFO -   product                        F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,170 - INFO - ----------------------------------------
+2026-02-08 17:22:55,170 - INFO - Results saved to: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/CODEIE-results/coarse_pl_default_mistral_20260208_172255.json
+2026-02-08 17:22:55,170 - INFO - ============================================================
+2026-02-08 17:22:55,170 - INFO - Updated experiment matrix: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/CODEIE-results/experiment_matrix.csv
+2026-02-08 17:22:55,170 - INFO - 
+[8/28] Starting: mistral_base_coarse_nl_base
+2026-02-08 17:22:55,170 - INFO - 
+============================================================
+2026-02-08 17:22:55,170 - INFO - Running: mistral_base_coarse_nl_base
+2026-02-08 17:22:55,170 - INFO -   Model: mistral
+2026-02-08 17:22:55,170 - INFO -   Granularity: coarse
+2026-02-08 17:22:55,170 - INFO -   Style: nl
+2026-02-08 17:22:55,170 - INFO -   Variation: base
+2026-02-08 17:22:55,170 - INFO -   Prompt: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/prompts/base/coarse_nl_1shot.txt
+2026-02-08 17:22:55,170 - INFO - ============================================================
+2026-02-08 17:22:55,170 - INFO - ============================================================
+2026-02-08 17:22:55,170 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-08 17:22:55,170 - INFO - ============================================================
+2026-02-08 17:22:55,170 - INFO - Granularity: coarse
+2026-02-08 17:22:55,170 - INFO - Style: nl
+2026-02-08 17:22:55,170 - INFO - Variation: v0_original
+2026-02-08 17:22:55,170 - INFO - Model: mistral
+2026-02-08 17:22:55,170 - INFO - ============================================================
+2026-02-08 17:22:55,170 - INFO - Using ChatOllama (Chat API) for mistral
+2026-02-08 17:22:55,201 - WARNING - Variation 'v0_original' not found, using 'default' instead
+2026-02-08 17:22:55,201 - INFO - Available NL variations: ['default']
+2026-02-08 17:22:55,201 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+2026-02-08 17:22:55,201 - INFO - Loading test data from: /Users/marcrodig/Development/kdai/KDAI-Experiments/few-nerd_test
+2026-02-08 17:22:55,206 - INFO - Loading pre-generated prompt from: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/prompts/base/coarse_nl_1shot.txt
+2026-02-08 17:22:55,207 - INFO - ICL prompt length: 2268 characters
+2026-02-08 17:22:55,207 - INFO - Sample ICL prompt (first 1000 chars):
+2026-02-08 17:22:55,207 - INFO - ----------------------------------------
+2026-02-08 17:22:55,207 - INFO - You are an expert Named Entity Recognition (NER) system specializing in extracting entities from text.
+2026-02-08 17:22:55,207 - INFO - 
+2026-02-08 17:22:55,207 - INFO - Annotation Guidelines:
+2026-02-08 17:22:55,207 - INFO - Extract named entities based on the following categories:
+2026-02-08 17:22:55,207 - INFO - 
+2026-02-08 17:22:55,207 - INFO - * art: A named work of art including films, books, music, paintings, or other creative works.
+2026-02-08 17:22:55,207 - INFO - * building: A named structure or building, such as a stadium, museum, or hotel.
+2026-02-08 17:22:55,207 - INFO - * event: A named event such as a war, sports event, festival, or historical occurrence.
+2026-02-08 17:22:55,207 - INFO - * location: A geographical location such as a city, country, continent, region, or landmark.
+2026-02-08 17:22:55,207 - INFO - * organization: A named organization, institution, company, or group.
+2026-02-08 17:22:55,207 - INFO - * other: Other named entities that don't fit into the above categories.
+2026-02-08 17:22:55,207 - INFO - * person: A named individual, including fictional characters, historical figures, celebrities, and common people.
+2026-02-08 17:22:55,207 - INFO - * product: A named commercial product, software, vehicle model, or branded item.
+2026-02-08 17:22:55,207 - INFO - 
+2026-02-08 17:22:55,207 - INFO - The text is "The album was released on March 25 , 2008 . It was the first album of new material that the group had releas
+2026-02-08 17:22:55,207 - INFO - ----------------------------------------
+2026-02-08 17:22:55,207 - INFO - Processing 10 test samples...
+2026-02-08 17:22:55,209 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,210 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,211 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,213 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,215 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,217 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,218 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,219 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,221 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,222 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,222 - INFO - Progress: 10/10 | P: 0.0000 | R: 0.0000 | Micro-F1: 0.0000 | Macro-F1: 0.0000
+2026-02-08 17:22:55,223 - INFO - ============================================================
+2026-02-08 17:22:55,223 - INFO - Final Results
+2026-02-08 17:22:55,223 - INFO - ============================================================
+2026-02-08 17:22:55,223 - INFO - Precision:  0.0000
+2026-02-08 17:22:55,223 - INFO - Recall:     0.0000
+2026-02-08 17:22:55,223 - INFO - Micro F1:   0.0000
+2026-02-08 17:22:55,223 - INFO - Macro F1:   0.0000
+2026-02-08 17:22:55,223 - INFO - ----------------------------------------
+2026-02-08 17:22:55,223 - INFO - Per-Type F1 Scores:
+2026-02-08 17:22:55,223 - INFO -   building                       F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,223 - INFO -   event                          F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,223 - INFO -   location                       F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,223 - INFO -   organization                   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,223 - INFO -   other                          F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,223 - INFO -   person                         F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,223 - INFO -   product                        F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,223 - INFO - ----------------------------------------
+2026-02-08 17:22:55,223 - INFO - Results saved to: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/CODEIE-results/coarse_nl_default_mistral_20260208_172255.json
+2026-02-08 17:22:55,223 - INFO - ============================================================
+2026-02-08 17:22:55,223 - INFO - Updated experiment matrix: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/CODEIE-results/experiment_matrix.csv
+2026-02-08 17:22:55,223 - INFO - 
+[9/28] Starting: mistral_base_coarse_nl_lexical_substitution
+2026-02-08 17:22:55,223 - INFO - 
+============================================================
+2026-02-08 17:22:55,223 - INFO - Running: mistral_base_coarse_nl_lexical_substitution
+2026-02-08 17:22:55,223 - INFO -   Model: mistral
+2026-02-08 17:22:55,223 - INFO -   Granularity: coarse
+2026-02-08 17:22:55,223 - INFO -   Style: nl
+2026-02-08 17:22:55,223 - INFO -   Variation: lexical_substitution
+2026-02-08 17:22:55,223 - INFO -   Prompt: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/prompts/variations/coarse_nl_1shot/lexical_substitution.txt
+2026-02-08 17:22:55,223 - INFO - ============================================================
+2026-02-08 17:22:55,223 - INFO - ============================================================
+2026-02-08 17:22:55,223 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-08 17:22:55,223 - INFO - ============================================================
+2026-02-08 17:22:55,223 - INFO - Granularity: coarse
+2026-02-08 17:22:55,223 - INFO - Style: nl
+2026-02-08 17:22:55,223 - INFO - Variation: lexical_substitution
+2026-02-08 17:22:55,223 - INFO - Model: mistral
+2026-02-08 17:22:55,223 - INFO - ============================================================
+2026-02-08 17:22:55,223 - INFO - Using ChatOllama (Chat API) for mistral
+2026-02-08 17:22:55,258 - WARNING - Variation 'lexical_substitution' not found, using 'default' instead
+2026-02-08 17:22:55,258 - INFO - Available NL variations: ['default']
+2026-02-08 17:22:55,258 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+2026-02-08 17:22:55,258 - INFO - Loading test data from: /Users/marcrodig/Development/kdai/KDAI-Experiments/few-nerd_test
+2026-02-08 17:22:55,263 - INFO - Loading pre-generated prompt from: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/prompts/variations/coarse_nl_1shot/lexical_substitution.txt
+2026-02-08 17:22:55,264 - INFO - ICL prompt length: 2312 characters
+2026-02-08 17:22:55,264 - INFO - Sample ICL prompt (first 1000 chars):
+2026-02-08 17:22:55,264 - INFO - ----------------------------------------
+2026-02-08 17:22:55,264 - INFO - You are a skilled Named Entity Recognition (NER) tool focused on mining entities from text.
+2026-02-08 17:22:55,264 - INFO - 
+2026-02-08 17:22:55,264 - INFO - Annotation Rules:
+2026-02-08 17:22:55,264 - INFO - Identify named entities according to the classifications below:
+2026-02-08 17:22:55,264 - INFO - 
+2026-02-08 17:22:55,264 - INFO - * art: A titled creative piece such as movies, literature, songs, artwork, or other artistic productions.
+2026-02-08 17:22:55,264 - INFO - * building: A specific edifice or construction, like a stadium, gallery, or inn.
+2026-02-08 17:22:55,264 - INFO - * event: A specific occasion like a conflict, athletic competition, gala, or historic incident.
+2026-02-08 17:22:55,264 - INFO - * location: A geographic place like a town, nation, landmass, area, or point of interest.
+2026-02-08 17:22:55,264 - INFO - * organization: A specific association, institute, enterprise, or team.
+2026-02-08 17:22:55,264 - INFO - * other: Miscellaneous named entities that do not belong to the listed groups.
+2026-02-08 17:22:55,264 - INFO - * person: A specific human, covering made-up figures, figures from history, stars, and ordinary individuals.
+2026-02-08 17:22:55,264 - INFO - * product: A specific merchandise, computer program, car make, or trademarked good.
+2026-02-08 17:22:55,264 - INFO - 
+2026-02-08 17:22:55,264 - INFO - The text is "The record came out on March 25 , 2008 . It was the initial collection of fresh tracks the ba
+2026-02-08 17:22:55,264 - INFO - ----------------------------------------
+2026-02-08 17:22:55,264 - INFO - Processing 10 test samples...
+2026-02-08 17:22:55,265 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,266 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,267 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,268 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,269 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,271 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,272 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,273 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,273 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,274 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,274 - INFO - Progress: 10/10 | P: 0.0000 | R: 0.0000 | Micro-F1: 0.0000 | Macro-F1: 0.0000
+2026-02-08 17:22:55,275 - INFO - ============================================================
+2026-02-08 17:22:55,275 - INFO - Final Results
+2026-02-08 17:22:55,275 - INFO - ============================================================
+2026-02-08 17:22:55,275 - INFO - Precision:  0.0000
+2026-02-08 17:22:55,275 - INFO - Recall:     0.0000
+2026-02-08 17:22:55,275 - INFO - Micro F1:   0.0000
+2026-02-08 17:22:55,275 - INFO - Macro F1:   0.0000
+2026-02-08 17:22:55,275 - INFO - ----------------------------------------
+2026-02-08 17:22:55,275 - INFO - Per-Type F1 Scores:
+2026-02-08 17:22:55,275 - INFO -   building                       F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,275 - INFO -   event                          F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,275 - INFO -   location                       F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,275 - INFO -   organization                   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,275 - INFO -   other                          F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,275 - INFO -   person                         F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,275 - INFO -   product                        F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,275 - INFO - ----------------------------------------
+2026-02-08 17:22:55,275 - INFO - Results saved to: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/CODEIE-results/coarse_nl_default_mistral_20260208_172255.json
+2026-02-08 17:22:55,275 - INFO - ============================================================
+2026-02-08 17:22:55,275 - INFO - Updated experiment matrix: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/CODEIE-results/experiment_matrix.csv
+2026-02-08 17:22:55,275 - INFO - 
+[10/28] Starting: mistral_base_coarse_nl_reodering
+2026-02-08 17:22:55,275 - INFO - 
+============================================================
+2026-02-08 17:22:55,275 - INFO - Running: mistral_base_coarse_nl_reodering
+2026-02-08 17:22:55,275 - INFO -   Model: mistral
+2026-02-08 17:22:55,275 - INFO -   Granularity: coarse
+2026-02-08 17:22:55,275 - INFO -   Style: nl
+2026-02-08 17:22:55,275 - INFO -   Variation: reodering
+2026-02-08 17:22:55,275 - INFO -   Prompt: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/prompts/variations/coarse_nl_1shot/reodering.txt
+2026-02-08 17:22:55,275 - INFO - ============================================================
+2026-02-08 17:22:55,275 - INFO - ============================================================
+2026-02-08 17:22:55,275 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-08 17:22:55,275 - INFO - ============================================================
+2026-02-08 17:22:55,275 - INFO - Granularity: coarse
+2026-02-08 17:22:55,275 - INFO - Style: nl
+2026-02-08 17:22:55,275 - INFO - Variation: reodering
+2026-02-08 17:22:55,276 - INFO - Model: mistral
+2026-02-08 17:22:55,276 - INFO - ============================================================
+2026-02-08 17:22:55,276 - INFO - Using ChatOllama (Chat API) for mistral
+2026-02-08 17:22:55,308 - WARNING - Variation 'reodering' not found, using 'default' instead
+2026-02-08 17:22:55,308 - INFO - Available NL variations: ['default']
+2026-02-08 17:22:55,308 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+2026-02-08 17:22:55,308 - INFO - Loading test data from: /Users/marcrodig/Development/kdai/KDAI-Experiments/few-nerd_test
+2026-02-08 17:22:55,315 - INFO - Loading pre-generated prompt from: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/prompts/variations/coarse_nl_1shot/reodering.txt
+2026-02-08 17:22:55,315 - INFO - ICL prompt length: 2271 characters
+2026-02-08 17:22:55,315 - INFO - Sample ICL prompt (first 1000 chars):
+2026-02-08 17:22:55,315 - INFO - ----------------------------------------
+2026-02-08 17:22:55,315 - INFO - Extract named entities based on the categories listed below. You are an expert Named Entity Recognition (NER) system specializing in extracting entities from text.
+2026-02-08 17:22:55,315 - INFO - 
+2026-02-08 17:22:55,315 - INFO - Annotation Guidelines:
+2026-02-08 17:22:55,315 - INFO - 
+2026-02-08 17:22:55,315 - INFO - * person: A named individual, including fictional characters, historical figures, celebrities, and common people.
+2026-02-08 17:22:55,315 - INFO - * organization: A named organization, institution, company, or group.
+2026-02-08 17:22:55,315 - INFO - * location: A geographical location such as a city, country, continent, region, or landmark.
+2026-02-08 17:22:55,315 - INFO - * event: A named event such as a war, sports event, festival, or historical occurrence.
+2026-02-08 17:22:55,315 - INFO - * product: A named commercial product, software, vehicle model, or branded item.
+2026-02-08 17:22:55,315 - INFO - * building: A named structure or building, such as a stadium, museum, or hotel.
+2026-02-08 17:22:55,315 - INFO - * art: A named work of art including films, books, music, paintings, or other creative works.
+2026-02-08 17:22:55,315 - INFO - * other: Other named entities that don't fit into the above categories.
+2026-02-08 17:22:55,315 - INFO - 
+2026-02-08 17:22:55,315 - INFO - The text is "Liddy was nominally in charge of the operation , but has since insisted that he was duped by his subordin
+2026-02-08 17:22:55,315 - INFO - ----------------------------------------
+2026-02-08 17:22:55,315 - INFO - Processing 10 test samples...
+2026-02-08 17:22:55,317 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,318 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,318 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,319 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,320 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,322 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,323 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,325 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,326 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,327 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,327 - INFO - Progress: 10/10 | P: 0.0000 | R: 0.0000 | Micro-F1: 0.0000 | Macro-F1: 0.0000
+2026-02-08 17:22:55,328 - INFO - ============================================================
+2026-02-08 17:22:55,328 - INFO - Final Results
+2026-02-08 17:22:55,328 - INFO - ============================================================
+2026-02-08 17:22:55,328 - INFO - Precision:  0.0000
+2026-02-08 17:22:55,328 - INFO - Recall:     0.0000
+2026-02-08 17:22:55,328 - INFO - Micro F1:   0.0000
+2026-02-08 17:22:55,328 - INFO - Macro F1:   0.0000
+2026-02-08 17:22:55,328 - INFO - ----------------------------------------
+2026-02-08 17:22:55,328 - INFO - Per-Type F1 Scores:
+2026-02-08 17:22:55,328 - INFO -   building                       F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,328 - INFO -   event                          F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,328 - INFO -   location                       F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,328 - INFO -   organization                   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,328 - INFO -   other                          F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,328 - INFO -   person                         F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,328 - INFO -   product                        F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,328 - INFO - ----------------------------------------
+2026-02-08 17:22:55,328 - INFO - Results saved to: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/CODEIE-results/coarse_nl_default_mistral_20260208_172255.json
+2026-02-08 17:22:55,328 - INFO - ============================================================
+2026-02-08 17:22:55,329 - INFO - Updated experiment matrix: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/CODEIE-results/experiment_matrix.csv
+2026-02-08 17:22:55,329 - INFO - 
+[11/28] Starting: mistral_base_coarse_nl_sentence_reordering
+2026-02-08 17:22:55,329 - INFO - 
+============================================================
+2026-02-08 17:22:55,329 - INFO - Running: mistral_base_coarse_nl_sentence_reordering
+2026-02-08 17:22:55,329 - INFO -   Model: mistral
+2026-02-08 17:22:55,329 - INFO -   Granularity: coarse
+2026-02-08 17:22:55,329 - INFO -   Style: nl
+2026-02-08 17:22:55,329 - INFO -   Variation: sentence_reordering
+2026-02-08 17:22:55,329 - INFO -   Prompt: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/prompts/variations/coarse_nl_1shot/sentence_reordering.txt
+2026-02-08 17:22:55,329 - INFO - ============================================================
+2026-02-08 17:22:55,329 - INFO - ============================================================
+2026-02-08 17:22:55,329 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-08 17:22:55,329 - INFO - ============================================================
+2026-02-08 17:22:55,329 - INFO - Granularity: coarse
+2026-02-08 17:22:55,329 - INFO - Style: nl
+2026-02-08 17:22:55,329 - INFO - Variation: sentence_reordering
+2026-02-08 17:22:55,329 - INFO - Model: mistral
+2026-02-08 17:22:55,329 - INFO - ============================================================
+2026-02-08 17:22:55,329 - INFO - Using ChatOllama (Chat API) for mistral
+2026-02-08 17:22:55,363 - WARNING - Variation 'sentence_reordering' not found, using 'default' instead
+2026-02-08 17:22:55,363 - INFO - Available NL variations: ['default']
+2026-02-08 17:22:55,363 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+2026-02-08 17:22:55,363 - INFO - Loading test data from: /Users/marcrodig/Development/kdai/KDAI-Experiments/few-nerd_test
+2026-02-08 17:22:55,368 - INFO - Loading pre-generated prompt from: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/prompts/variations/coarse_nl_1shot/sentence_reordering.txt
+2026-02-08 17:22:55,368 - INFO - ICL prompt length: 2368 characters
+2026-02-08 17:22:55,368 - INFO - Sample ICL prompt (first 1000 chars):
+2026-02-08 17:22:55,368 - INFO - ----------------------------------------
+2026-02-08 17:22:55,368 - INFO - Your task is to act as an expert Named Entity Recognition (NER) system capable of identifying entities within text.
+2026-02-08 17:22:55,368 - INFO - 
+2026-02-08 17:22:55,368 - INFO - Annotation Guidelines:
+2026-02-08 17:22:55,368 - INFO - Identify and classify named entities according to the definitions below:
+2026-02-08 17:22:55,368 - INFO - 
+2026-02-08 17:22:55,368 - INFO - * art: Creative works that have a name, including music, books, films, paintings, etc.
+2026-02-08 17:22:55,368 - INFO - * building: Named constructions or structures, for example, museums, stadiums, or hotels.
+2026-02-08 17:22:55,368 - INFO - * event: Specific named occurrences like festivals, wars, historical events, or sports competitions.
+2026-02-08 17:22:55,368 - INFO - * location: Geographical places including countries, cities, regions, landmarks, or continents.
+2026-02-08 17:22:55,368 - INFO - * organization: Named groups, companies, institutions, or organizations.
+2026-02-08 17:22:55,368 - INFO - * other: Named entities that do not fall into the specific categories listed above.
+2026-02-08 17:22:55,368 - INFO - * person: Specific individuals, covering celebrities, historical figures, common people, and fictional characters.
+2026-02-08 17:22:55,368 - INFO - * product: Commercial items with names, such as software, vehicles, or branded goods.
+2026-02-08 17:22:55,368 - INFO - 
+2026-02-08 17:22:55,368 - INFO - The text is "On March 25, 2008, the group released th
+2026-02-08 17:22:55,368 - INFO - ----------------------------------------
+2026-02-08 17:22:55,368 - INFO - Processing 10 test samples...
+2026-02-08 17:22:55,370 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,371 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,371 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,372 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,373 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,374 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,375 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,375 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,376 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,377 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,377 - INFO - Progress: 10/10 | P: 0.0000 | R: 0.0000 | Micro-F1: 0.0000 | Macro-F1: 0.0000
+2026-02-08 17:22:55,378 - INFO - ============================================================
+2026-02-08 17:22:55,378 - INFO - Final Results
+2026-02-08 17:22:55,378 - INFO - ============================================================
+2026-02-08 17:22:55,378 - INFO - Precision:  0.0000
+2026-02-08 17:22:55,378 - INFO - Recall:     0.0000
+2026-02-08 17:22:55,378 - INFO - Micro F1:   0.0000
+2026-02-08 17:22:55,378 - INFO - Macro F1:   0.0000
+2026-02-08 17:22:55,378 - INFO - ----------------------------------------
+2026-02-08 17:22:55,378 - INFO - Per-Type F1 Scores:
+2026-02-08 17:22:55,378 - INFO -   building                       F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,378 - INFO -   event                          F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,378 - INFO -   location                       F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,378 - INFO -   organization                   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,378 - INFO -   other                          F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,378 - INFO -   person                         F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,378 - INFO -   product                        F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,378 - INFO - ----------------------------------------
+2026-02-08 17:22:55,378 - INFO - Results saved to: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/CODEIE-results/coarse_nl_default_mistral_20260208_172255.json
+2026-02-08 17:22:55,378 - INFO - ============================================================
+2026-02-08 17:22:55,378 - INFO - Updated experiment matrix: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/CODEIE-results/experiment_matrix.csv
+2026-02-08 17:22:55,378 - INFO - 
+[12/28] Starting: mistral_base_coarse_nl_backtrans_ch
+2026-02-08 17:22:55,378 - INFO - 
+============================================================
+2026-02-08 17:22:55,378 - INFO - Running: mistral_base_coarse_nl_backtrans_ch
+2026-02-08 17:22:55,378 - INFO -   Model: mistral
+2026-02-08 17:22:55,378 - INFO -   Granularity: coarse
+2026-02-08 17:22:55,378 - INFO -   Style: nl
+2026-02-08 17:22:55,378 - INFO -   Variation: backtrans_ch
+2026-02-08 17:22:55,378 - INFO -   Prompt: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/prompts/variations/coarse_nl_1shot/backtrans_ch.txt
+2026-02-08 17:22:55,378 - INFO - ============================================================
+2026-02-08 17:22:55,378 - INFO - ============================================================
+2026-02-08 17:22:55,378 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-08 17:22:55,378 - INFO - ============================================================
+2026-02-08 17:22:55,378 - INFO - Granularity: coarse
+2026-02-08 17:22:55,378 - INFO - Style: nl
+2026-02-08 17:22:55,378 - INFO - Variation: backtrans_ch
+2026-02-08 17:22:55,378 - INFO - Model: mistral
+2026-02-08 17:22:55,378 - INFO - ============================================================
+2026-02-08 17:22:55,378 - INFO - Using ChatOllama (Chat API) for mistral
+2026-02-08 17:22:55,411 - WARNING - Variation 'backtrans_ch' not found, using 'default' instead
+2026-02-08 17:22:55,411 - INFO - Available NL variations: ['default']
+2026-02-08 17:22:55,411 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+2026-02-08 17:22:55,411 - INFO - Loading test data from: /Users/marcrodig/Development/kdai/KDAI-Experiments/few-nerd_test
+2026-02-08 17:22:55,417 - INFO - Loading pre-generated prompt from: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/prompts/variations/coarse_nl_1shot/backtrans_ch.txt
+2026-02-08 17:22:55,417 - INFO - ICL prompt length: 2094 characters
+2026-02-08 17:22:55,417 - INFO - Sample ICL prompt (first 1000 chars):
+2026-02-08 17:22:55,417 - INFO - ----------------------------------------
+2026-02-08 17:22:55,417 - INFO - You are a named entity recognition (NER) expert system specialized in extracting entities from text.
+2026-02-08 17:22:55,417 - INFO - 
+2026-02-08 17:22:55,417 - INFO - **Annotation guidelines:**  
+2026-02-08 17:22:55,417 - INFO - - **art**: a named work of art, including movies, books, music, paintings, or other creative works.  
+2026-02-08 17:22:55,417 - INFO - - **building**: a named structure or building, such as a stadium, museum, or hotel.  
+2026-02-08 17:22:55,417 - INFO - - **event**: a named event, such as a war, sports event, festival, or historical event.  
+2026-02-08 17:22:55,417 - INFO - - **location**: a geographic location, such as a city, country, continent, region, or landmark.  
+2026-02-08 17:22:55,417 - INFO - - **organization**: a named organization, institution, company, or group.  
+2026-02-08 17:22:55,417 - INFO - - **other**: other named entities not falling into the above categories.  
+2026-02-08 17:22:55,417 - INFO - - **person**: a named individual, including fictional characters, historical figures, celebrities, and ordinary people.  
+2026-02-08 17:22:55,417 - INFO - - **product**: a named commercial product, software, vehicle model, or branded item.
+2026-02-08 17:22:55,417 - INFO - 
+2026-02-08 17:22:55,417 - INFO - **Extract named entities according to the following categories:**
+2026-02-08 17:22:55,417 - INFO - 
+2026-02-08 17:22:55,417 - INFO - Text is `"This album was released on March 25, 2008. It is the grou
+2026-02-08 17:22:55,417 - INFO - ----------------------------------------
+2026-02-08 17:22:55,417 - INFO - Processing 10 test samples...
+2026-02-08 17:22:55,419 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,420 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,421 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,421 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,422 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,423 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,424 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,425 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,425 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,426 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,426 - INFO - Progress: 10/10 | P: 0.0000 | R: 0.0000 | Micro-F1: 0.0000 | Macro-F1: 0.0000
+2026-02-08 17:22:55,427 - INFO - ============================================================
+2026-02-08 17:22:55,427 - INFO - Final Results
+2026-02-08 17:22:55,427 - INFO - ============================================================
+2026-02-08 17:22:55,427 - INFO - Precision:  0.0000
+2026-02-08 17:22:55,427 - INFO - Recall:     0.0000
+2026-02-08 17:22:55,427 - INFO - Micro F1:   0.0000
+2026-02-08 17:22:55,427 - INFO - Macro F1:   0.0000
+2026-02-08 17:22:55,427 - INFO - ----------------------------------------
+2026-02-08 17:22:55,427 - INFO - Per-Type F1 Scores:
+2026-02-08 17:22:55,427 - INFO -   building                       F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,427 - INFO -   event                          F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,427 - INFO -   location                       F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,427 - INFO -   organization                   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,427 - INFO -   other                          F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,427 - INFO -   person                         F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,427 - INFO -   product                        F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,427 - INFO - ----------------------------------------
+2026-02-08 17:22:55,427 - INFO - Results saved to: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/CODEIE-results/coarse_nl_default_mistral_20260208_172255.json
+2026-02-08 17:22:55,427 - INFO - ============================================================
+2026-02-08 17:22:55,427 - INFO - Updated experiment matrix: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/CODEIE-results/experiment_matrix.csv
+2026-02-08 17:22:55,427 - INFO - 
+[13/28] Starting: mistral_base_coarse_nl_backtrans_sp
+2026-02-08 17:22:55,427 - INFO - 
+============================================================
+2026-02-08 17:22:55,427 - INFO - Running: mistral_base_coarse_nl_backtrans_sp
+2026-02-08 17:22:55,427 - INFO -   Model: mistral
+2026-02-08 17:22:55,427 - INFO -   Granularity: coarse
+2026-02-08 17:22:55,427 - INFO -   Style: nl
+2026-02-08 17:22:55,427 - INFO -   Variation: backtrans_sp
+2026-02-08 17:22:55,427 - INFO -   Prompt: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/prompts/variations/coarse_nl_1shot/backtrans_sp.txt
+2026-02-08 17:22:55,427 - INFO - ============================================================
+2026-02-08 17:22:55,427 - INFO - ============================================================
+2026-02-08 17:22:55,427 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-08 17:22:55,427 - INFO - ============================================================
+2026-02-08 17:22:55,427 - INFO - Granularity: coarse
+2026-02-08 17:22:55,427 - INFO - Style: nl
+2026-02-08 17:22:55,427 - INFO - Variation: backtrans_sp
+2026-02-08 17:22:55,427 - INFO - Model: mistral
+2026-02-08 17:22:55,427 - INFO - ============================================================
+2026-02-08 17:22:55,427 - INFO - Using ChatOllama (Chat API) for mistral
+2026-02-08 17:22:55,459 - WARNING - Variation 'backtrans_sp' not found, using 'default' instead
+2026-02-08 17:22:55,459 - INFO - Available NL variations: ['default']
+2026-02-08 17:22:55,459 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+2026-02-08 17:22:55,459 - INFO - Loading test data from: /Users/marcrodig/Development/kdai/KDAI-Experiments/few-nerd_test
+2026-02-08 17:22:55,464 - INFO - Loading pre-generated prompt from: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/prompts/variations/coarse_nl_1shot/backtrans_sp.txt
+2026-02-08 17:22:55,464 - INFO - ICL prompt length: 2096 characters
+2026-02-08 17:22:55,464 - INFO - Sample ICL prompt (first 1000 chars):
+2026-02-08 17:22:55,464 - INFO - ----------------------------------------
+2026-02-08 17:22:55,464 - INFO - # Annotation guidelines:
+2026-02-08 17:22:55,464 - INFO - # Extract named entities based on the following categories:
+2026-02-08 17:22:55,464 - INFO - #
+2026-02-08 17:22:55,464 - INFO - # art: A named work of art including films, books, music, paintings, or other creative works.
+2026-02-08 17:22:55,464 - INFO - # building: A named structure or building, such as a stadium, museum, or hotel.
+2026-02-08 17:22:55,464 - INFO - # event: A named event such as a war, sports event, festival, or historical occurrence.
+2026-02-08 17:22:55,464 - INFO - # location: A geographical location such as a city, country, continent, region, or landmark.
+2026-02-08 17:22:55,464 - INFO - # organization: A named organization, institution, company, or group.
+2026-02-08 17:22:55,464 - INFO - # other: Other named entities that don't fit into the above categories.
+2026-02-08 17:22:55,464 - INFO - # person: A named individual, including fictional characters, historical figures, celebrities, and common people.
+2026-02-08 17:22:55,464 - INFO - # product: A named commercial product, software, vehicle model, or branded item.
+2026-02-08 17:22:55,464 - INFO - 
+2026-02-08 17:22:55,464 - INFO - Text: "The album was released on March 25, 2008. It was the first new‑material album the group had released since **Good Content** in 1992."
+2026-02-08 17:22:55,464 - INFO - Named entities in the text: (art: Good Content)
+2026-02-08 17:22:55,464 - INFO - 
+2026-02-08 17:22:55,464 - INFO - Text: "In 1136, the castle was
+2026-02-08 17:22:55,464 - INFO - ----------------------------------------
+2026-02-08 17:22:55,464 - INFO - Processing 10 test samples...
+2026-02-08 17:22:55,466 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,467 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,467 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,468 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,469 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,469 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,470 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,471 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,471 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,472 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,473 - INFO - Progress: 10/10 | P: 0.0000 | R: 0.0000 | Micro-F1: 0.0000 | Macro-F1: 0.0000
+2026-02-08 17:22:55,473 - INFO - ============================================================
+2026-02-08 17:22:55,473 - INFO - Final Results
+2026-02-08 17:22:55,473 - INFO - ============================================================
+2026-02-08 17:22:55,473 - INFO - Precision:  0.0000
+2026-02-08 17:22:55,474 - INFO - Recall:     0.0000
+2026-02-08 17:22:55,474 - INFO - Micro F1:   0.0000
+2026-02-08 17:22:55,474 - INFO - Macro F1:   0.0000
+2026-02-08 17:22:55,474 - INFO - ----------------------------------------
+2026-02-08 17:22:55,474 - INFO - Per-Type F1 Scores:
+2026-02-08 17:22:55,474 - INFO -   building                       F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,474 - INFO -   event                          F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,474 - INFO -   location                       F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,474 - INFO -   organization                   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,474 - INFO -   other                          F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,474 - INFO -   person                         F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,474 - INFO -   product                        F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,474 - INFO - ----------------------------------------
+2026-02-08 17:22:55,474 - INFO - Results saved to: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/CODEIE-results/coarse_nl_default_mistral_20260208_172255.json
+2026-02-08 17:22:55,474 - INFO - ============================================================
+2026-02-08 17:22:55,474 - INFO - Updated experiment matrix: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/CODEIE-results/experiment_matrix.csv
+2026-02-08 17:22:55,474 - INFO - 
+[14/28] Starting: mistral_base_coarse_nl_backtrans_tu
+2026-02-08 17:22:55,474 - INFO - 
+============================================================
+2026-02-08 17:22:55,474 - INFO - Running: mistral_base_coarse_nl_backtrans_tu
+2026-02-08 17:22:55,474 - INFO -   Model: mistral
+2026-02-08 17:22:55,474 - INFO -   Granularity: coarse
+2026-02-08 17:22:55,474 - INFO -   Style: nl
+2026-02-08 17:22:55,474 - INFO -   Variation: backtrans_tu
+2026-02-08 17:22:55,474 - INFO -   Prompt: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/prompts/variations/coarse_nl_1shot/backtrans_tu.txt
+2026-02-08 17:22:55,474 - INFO - ============================================================
+2026-02-08 17:22:55,474 - INFO - ============================================================
+2026-02-08 17:22:55,474 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-08 17:22:55,474 - INFO - ============================================================
+2026-02-08 17:22:55,474 - INFO - Granularity: coarse
+2026-02-08 17:22:55,474 - INFO - Style: nl
+2026-02-08 17:22:55,474 - INFO - Variation: backtrans_tu
+2026-02-08 17:22:55,474 - INFO - Model: mistral
+2026-02-08 17:22:55,474 - INFO - ============================================================
+2026-02-08 17:22:55,474 - INFO - Using ChatOllama (Chat API) for mistral
+2026-02-08 17:22:55,505 - WARNING - Variation 'backtrans_tu' not found, using 'default' instead
+2026-02-08 17:22:55,505 - INFO - Available NL variations: ['default']
+2026-02-08 17:22:55,505 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+2026-02-08 17:22:55,505 - INFO - Loading test data from: /Users/marcrodig/Development/kdai/KDAI-Experiments/few-nerd_test
+2026-02-08 17:22:55,511 - INFO - Loading pre-generated prompt from: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/prompts/variations/coarse_nl_1shot/backtrans_tu.txt
+2026-02-08 17:22:55,512 - INFO - ICL prompt length: 2344 characters
+2026-02-08 17:22:55,512 - INFO - Sample ICL prompt (first 1000 chars):
+2026-02-08 17:22:55,512 - INFO - ----------------------------------------
+2026-02-08 17:22:55,512 - INFO - # You are a Named Entity Recognition (NER) system specialized in extracting entities from text.
+2026-02-08 17:22:55,512 - INFO - 
+2026-02-08 17:22:55,512 - INFO - # Description Guidelines:
+2026-02-08 17:22:55,512 - INFO - # Extract named entities according to the following categories:
+2026-02-08 17:22:55,512 - INFO - 
+2026-02-08 17:22:55,512 - INFO - # * art: A named artistic work such as a film, book, music, painting, or other creative piece.
+2026-02-08 17:22:55,512 - INFO - # * building: A named structure or building such as a stadium, museum, or hotel.
+2026-02-08 17:22:55,512 - INFO - # * event: A named event such as a war, sports event, festival, or historical event.
+2026-02-08 17:22:55,512 - INFO - # * location: A geographic location such as a city, country, continent, region, or monument.
+2026-02-08 17:22:55,512 - INFO - # * organization: A named organization, institution, company, or group.
+2026-02-08 17:22:55,512 - INFO - # * other: Named entities that do not fit the categories above.
+2026-02-08 17:22:55,512 - INFO - # * person: A named individual such as fictional characters, historical figures, celebrities, or ordinary people.
+2026-02-08 17:22:55,512 - INFO - # * product: A named commercial product, software, vehicle model, or branded item.
+2026-02-08 17:22:55,512 - INFO - 
+2026-02-08 17:22:55,512 - INFO - # The text is as follows: The album was released on March 25, 2008. The group had released its first album with new material
+2026-02-08 17:22:55,512 - INFO - ----------------------------------------
+2026-02-08 17:22:55,512 - INFO - Processing 10 test samples...
+2026-02-08 17:22:55,514 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,515 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,515 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,516 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,517 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,518 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,519 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,519 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,520 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,521 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,521 - INFO - Progress: 10/10 | P: 0.0000 | R: 0.0000 | Micro-F1: 0.0000 | Macro-F1: 0.0000
+2026-02-08 17:22:55,522 - INFO - ============================================================
+2026-02-08 17:22:55,522 - INFO - Final Results
+2026-02-08 17:22:55,522 - INFO - ============================================================
+2026-02-08 17:22:55,522 - INFO - Precision:  0.0000
+2026-02-08 17:22:55,522 - INFO - Recall:     0.0000
+2026-02-08 17:22:55,522 - INFO - Micro F1:   0.0000
+2026-02-08 17:22:55,522 - INFO - Macro F1:   0.0000
+2026-02-08 17:22:55,522 - INFO - ----------------------------------------
+2026-02-08 17:22:55,522 - INFO - Per-Type F1 Scores:
+2026-02-08 17:22:55,522 - INFO -   building                       F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,522 - INFO -   event                          F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,522 - INFO -   location                       F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,522 - INFO -   organization                   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,522 - INFO -   other                          F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,522 - INFO -   person                         F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,522 - INFO -   product                        F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,522 - INFO - ----------------------------------------
+2026-02-08 17:22:55,522 - INFO - Results saved to: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/CODEIE-results/coarse_nl_default_mistral_20260208_172255.json
+2026-02-08 17:22:55,522 - INFO - ============================================================
+2026-02-08 17:22:55,522 - INFO - Updated experiment matrix: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/CODEIE-results/experiment_matrix.csv
+2026-02-08 17:22:55,522 - INFO - 
+[15/28] Starting: mistral_base_fine_pl_base
+2026-02-08 17:22:55,522 - INFO - 
+============================================================
+2026-02-08 17:22:55,522 - INFO - Running: mistral_base_fine_pl_base
+2026-02-08 17:22:55,522 - INFO -   Model: mistral
+2026-02-08 17:22:55,522 - INFO -   Granularity: fine
+2026-02-08 17:22:55,522 - INFO -   Style: pl
+2026-02-08 17:22:55,522 - INFO -   Variation: base
+2026-02-08 17:22:55,522 - INFO -   Prompt: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/prompts/base/fine_pl_1shot.txt
+2026-02-08 17:22:55,522 - INFO - ============================================================
+2026-02-08 17:22:55,522 - INFO - ============================================================
+2026-02-08 17:22:55,522 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-08 17:22:55,522 - INFO - ============================================================
+2026-02-08 17:22:55,522 - INFO - Granularity: fine
+2026-02-08 17:22:55,522 - INFO - Style: pl
+2026-02-08 17:22:55,522 - INFO - Variation: v0_original
+2026-02-08 17:22:55,522 - INFO - Model: mistral
+2026-02-08 17:22:55,522 - INFO - ============================================================
+2026-02-08 17:22:55,522 - INFO - Using ChatOllama (Chat API) for mistral
+2026-02-08 17:22:55,554 - WARNING - Variation 'v0_original' not found, using 'default' instead
+2026-02-08 17:22:55,554 - INFO - Available PL variations: ['default']
+2026-02-08 17:22:55,554 - INFO - Entity types (2): ['person-actor', 'dummy']
+2026-02-08 17:22:55,554 - INFO - Loading test data from: /Users/marcrodig/Development/kdai/KDAI-Experiments/few-nerd_test
+2026-02-08 17:22:55,559 - INFO - Loading pre-generated prompt from: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/prompts/base/fine_pl_1shot.txt
+2026-02-08 17:22:55,559 - INFO - ICL prompt length: 20930 characters
+2026-02-08 17:22:55,559 - INFO - Sample ICL prompt (first 1000 chars):
+2026-02-08 17:22:55,559 - INFO - ----------------------------------------
+2026-02-08 17:22:55,560 - INFO - # TASK: Complete the Python code by adding entity_list.append() statements.
+2026-02-08 17:22:55,560 - INFO - # DO NOT explain the code. Just output the entity_list.append() lines.
+2026-02-08 17:22:55,560 - INFO - 
+2026-02-08 17:22:55,560 - INFO - # You are an expert Named Entity Recognition (NER) system specializing in extracting entities from text.
+2026-02-08 17:22:55,560 - INFO - # For each input_text, identify named entities and add them using entity_list.append().
+2026-02-08 17:22:55,560 - INFO - 
+2026-02-08 17:22:55,560 - INFO - # Entity Types (Fine-grained):
+2026-02-08 17:22:55,560 - INFO - # - art-broadcastprogram, art-film, art-music, art-other, art-painting, art-writtenart
+2026-02-08 17:22:55,560 - INFO - # - building-airport, building-hospital, building-hotel, building-library, building-other, building-restaurant, building-sportsfacility, building-theater
+2026-02-08 17:22:55,560 - INFO - # - event-attack/battle/war/militaryconflict, event-disaster, event-election, event-other, event-protest, event-sportsevent
+2026-02-08 17:22:55,560 - INFO - # - location-GPE, location-bodiesofwater, location-island, location-mountain, location-other, location-park, location-road/railway/highway/transit
+2026-02-08 17:22:55,560 - INFO - # - organization-company, organization-education, organization-government/governmentagency, organization-media/news
+2026-02-08 17:22:55,560 - INFO - ----------------------------------------
+2026-02-08 17:22:55,560 - INFO - Processing 10 test samples...
+2026-02-08 17:22:55,561 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,562 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,563 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,564 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,565 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,565 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,566 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,567 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,568 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,569 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,569 - INFO - Progress: 10/10 | P: 0.0000 | R: 0.0000 | Micro-F1: 0.0000 | Macro-F1: 0.0000
+2026-02-08 17:22:55,571 - INFO - ============================================================
+2026-02-08 17:22:55,571 - INFO - Final Results
+2026-02-08 17:22:55,571 - INFO - ============================================================
+2026-02-08 17:22:55,571 - INFO - Precision:  0.0000
+2026-02-08 17:22:55,571 - INFO - Recall:     0.0000
+2026-02-08 17:22:55,571 - INFO - Micro F1:   0.0000
+2026-02-08 17:22:55,571 - INFO - Macro F1:   0.0000
+2026-02-08 17:22:55,571 - INFO - ----------------------------------------
+2026-02-08 17:22:55,571 - INFO - Per-Type F1 Scores:
+2026-02-08 17:22:55,571 - INFO -   building-hotel                 F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,571 - INFO -   building-other                 F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,571 - INFO -   event-attack/battle/war/militaryconflict F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,571 - INFO -   event-protest                  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,571 - INFO -   event-sportsevent              F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,571 - INFO -   location-GPE                   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,571 - INFO -   location-park                  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,571 - INFO -   organization-media/newspaper   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,571 - INFO -   organization-other             F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,571 - INFO -   organization-showorganization  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,571 - INFO -   other-livingthing              F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,571 - INFO -   person-artist/author           F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,571 - INFO -   person-other                   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,571 - INFO -   person-soldier                 F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,571 - INFO -   product-car                    F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,571 - INFO -   product-other                  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,571 - INFO - ----------------------------------------
+2026-02-08 17:22:55,571 - INFO - Results saved to: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/CODEIE-results/fine_pl_default_mistral_20260208_172255.json
+2026-02-08 17:22:55,571 - INFO - ============================================================
+2026-02-08 17:22:55,571 - INFO - Updated experiment matrix: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/CODEIE-results/experiment_matrix.csv
+2026-02-08 17:22:55,571 - INFO - 
+[16/28] Starting: mistral_base_fine_pl_lexical_substitution
+2026-02-08 17:22:55,572 - INFO - 
+============================================================
+2026-02-08 17:22:55,572 - INFO - Running: mistral_base_fine_pl_lexical_substitution
+2026-02-08 17:22:55,572 - INFO -   Model: mistral
+2026-02-08 17:22:55,572 - INFO -   Granularity: fine
+2026-02-08 17:22:55,572 - INFO -   Style: pl
+2026-02-08 17:22:55,572 - INFO -   Variation: lexical_substitution
+2026-02-08 17:22:55,572 - INFO -   Prompt: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/prompts/variations/fine_pl_1shot/lexical_substitution.txt
+2026-02-08 17:22:55,572 - INFO - ============================================================
+2026-02-08 17:22:55,572 - INFO - ============================================================
+2026-02-08 17:22:55,572 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-08 17:22:55,572 - INFO - ============================================================
+2026-02-08 17:22:55,572 - INFO - Granularity: fine
+2026-02-08 17:22:55,572 - INFO - Style: pl
+2026-02-08 17:22:55,572 - INFO - Variation: lexical_substitution
+2026-02-08 17:22:55,572 - INFO - Model: mistral
+2026-02-08 17:22:55,572 - INFO - ============================================================
+2026-02-08 17:22:55,572 - INFO - Using ChatOllama (Chat API) for mistral
+2026-02-08 17:22:55,605 - WARNING - Variation 'lexical_substitution' not found, using 'default' instead
+2026-02-08 17:22:55,605 - INFO - Available PL variations: ['default']
+2026-02-08 17:22:55,605 - INFO - Entity types (2): ['person-actor', 'dummy']
+2026-02-08 17:22:55,605 - INFO - Loading test data from: /Users/marcrodig/Development/kdai/KDAI-Experiments/few-nerd_test
+2026-02-08 17:22:55,610 - INFO - Loading pre-generated prompt from: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/prompts/variations/fine_pl_1shot/lexical_substitution.txt
+2026-02-08 17:22:55,610 - INFO - ICL prompt length: 20720 characters
+2026-02-08 17:22:55,610 - INFO - Sample ICL prompt (first 1000 chars):
+2026-02-08 17:22:55,610 - INFO - ----------------------------------------
+2026-02-08 17:22:55,610 - INFO - # TASK: Complete the Python code by adding entity_list.append() statements.
+2026-02-08 17:22:55,610 - INFO - # DO NOT explain the code. Just output the entity_list.append() lines.
+2026-02-08 17:22:55,610 - INFO - 
+2026-02-08 17:22:55,610 - INFO - # You are an expert Named Entity Recognition (NER) system specializing in extracting entities from text.
+2026-02-08 17:22:55,610 - INFO - # For each input_text, identify named entities and add them using entity_list.append().
+2026-02-08 17:22:55,610 - INFO - 
+2026-02-08 17:22:55,610 - INFO - # Entity Types (Fine-grained):
+2026-02-08 17:22:55,610 - INFO - # - art-broadcastprogram, art-film, art-music, art-other, art-painting, art-writtenart
+2026-02-08 17:22:55,610 - INFO - # - building-airport, building-hospital, building-hotel, building-library, building-other, building-restaurant, building-sportsfacility, building-theater
+2026-02-08 17:22:55,611 - INFO - # - event-attack/battle/war/militaryconflict, event-disaster, event-election, event-other, event-protest, event-sportsevent
+2026-02-08 17:22:55,611 - INFO - # - location-GPE, location-bodiesofwater, location-island, location-mountain, location-other, location-park, location-road/railway/highway/transit
+2026-02-08 17:22:55,611 - INFO - # - organization-company, organization-education, organization-government/governmentagency, organization-media/news
+2026-02-08 17:22:55,611 - INFO - ----------------------------------------
+2026-02-08 17:22:55,611 - INFO - Processing 10 test samples...
+2026-02-08 17:22:55,613 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,614 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,614 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,615 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,616 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,617 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,618 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,619 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,620 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,621 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,621 - INFO - Progress: 10/10 | P: 0.0000 | R: 0.0000 | Micro-F1: 0.0000 | Macro-F1: 0.0000
+2026-02-08 17:22:55,622 - INFO - ============================================================
+2026-02-08 17:22:55,622 - INFO - Final Results
+2026-02-08 17:22:55,622 - INFO - ============================================================
+2026-02-08 17:22:55,622 - INFO - Precision:  0.0000
+2026-02-08 17:22:55,622 - INFO - Recall:     0.0000
+2026-02-08 17:22:55,622 - INFO - Micro F1:   0.0000
+2026-02-08 17:22:55,622 - INFO - Macro F1:   0.0000
+2026-02-08 17:22:55,622 - INFO - ----------------------------------------
+2026-02-08 17:22:55,622 - INFO - Per-Type F1 Scores:
+2026-02-08 17:22:55,622 - INFO -   building-hotel                 F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,622 - INFO -   building-other                 F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,622 - INFO -   event-attack/battle/war/militaryconflict F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,622 - INFO -   event-protest                  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,622 - INFO -   event-sportsevent              F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,622 - INFO -   location-GPE                   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,622 - INFO -   location-park                  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,622 - INFO -   organization-media/newspaper   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,622 - INFO -   organization-other             F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,622 - INFO -   organization-showorganization  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,622 - INFO -   other-livingthing              F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,622 - INFO -   person-artist/author           F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,622 - INFO -   person-other                   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,622 - INFO -   person-soldier                 F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,622 - INFO -   product-car                    F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,622 - INFO -   product-other                  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,622 - INFO - ----------------------------------------
+2026-02-08 17:22:55,622 - INFO - Results saved to: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/CODEIE-results/fine_pl_default_mistral_20260208_172255.json
+2026-02-08 17:22:55,622 - INFO - ============================================================
+2026-02-08 17:22:55,622 - INFO - Updated experiment matrix: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/CODEIE-results/experiment_matrix.csv
+2026-02-08 17:22:55,622 - INFO - 
+[17/28] Starting: mistral_base_fine_pl_reodering
+2026-02-08 17:22:55,622 - INFO - 
+============================================================
+2026-02-08 17:22:55,622 - INFO - Running: mistral_base_fine_pl_reodering
+2026-02-08 17:22:55,622 - INFO -   Model: mistral
+2026-02-08 17:22:55,622 - INFO -   Granularity: fine
+2026-02-08 17:22:55,622 - INFO -   Style: pl
+2026-02-08 17:22:55,622 - INFO -   Variation: reodering
+2026-02-08 17:22:55,622 - INFO -   Prompt: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/prompts/variations/fine_pl_1shot/reodering.txt
+2026-02-08 17:22:55,622 - INFO - ============================================================
+2026-02-08 17:22:55,622 - INFO - ============================================================
+2026-02-08 17:22:55,622 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-08 17:22:55,622 - INFO - ============================================================
+2026-02-08 17:22:55,622 - INFO - Granularity: fine
+2026-02-08 17:22:55,622 - INFO - Style: pl
+2026-02-08 17:22:55,622 - INFO - Variation: reodering
+2026-02-08 17:22:55,622 - INFO - Model: mistral
+2026-02-08 17:22:55,622 - INFO - ============================================================
+2026-02-08 17:22:55,622 - INFO - Using ChatOllama (Chat API) for mistral
+2026-02-08 17:22:55,653 - WARNING - Variation 'reodering' not found, using 'default' instead
+2026-02-08 17:22:55,654 - INFO - Available PL variations: ['default']
+2026-02-08 17:22:55,654 - INFO - Entity types (2): ['person-actor', 'dummy']
+2026-02-08 17:22:55,654 - INFO - Loading test data from: /Users/marcrodig/Development/kdai/KDAI-Experiments/few-nerd_test
+2026-02-08 17:22:55,658 - INFO - Loading pre-generated prompt from: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/prompts/variations/fine_pl_1shot/reodering.txt
+2026-02-08 17:22:55,659 - INFO - ICL prompt length: 21716 characters
+2026-02-08 17:22:55,659 - INFO - Sample ICL prompt (first 1000 chars):
+2026-02-08 17:22:55,659 - INFO - ----------------------------------------
+2026-02-08 17:22:55,659 - INFO - # TASK: Complete the Python code by adding entity_list.append() statements.
+2026-02-08 17:22:55,659 - INFO - # DO NOT explain the code. Just output the entity_list.append() lines.
+2026-02-08 17:22:55,659 - INFO - 
+2026-02-08 17:22:55,659 - INFO - # As a specialized Named Entity Recognition (NER) system, your task is to extract entities from text.
+2026-02-08 17:22:55,659 - INFO - # For every input_text, detect named entities and append them to the entity_list.
+2026-02-08 17:22:55,659 - INFO - 
+2026-02-08 17:22:55,659 - INFO - # Fine-grained Entity Definitions:
+2026-02-08 17:22:55,659 - INFO - # - product-weapon, product-train, product-software, product-ship, product-other, product-game, product-food, product-car, product-airplane
+2026-02-08 17:22:55,659 - INFO - # - person-soldier, person-scholar, person-politician, person-other, person-director, person-athlete, person-artist/author, person-actor
+2026-02-08 17:22:55,659 - INFO - # - other-medical, other-livingthing, other-law, other-language, other-god, other-educationaldegree, other-disease, other-currency, other-chemicalthing, other-biologything, other-award, other-astronomything
+2026-02-08 17:22:55,659 - INFO - # - organization-sportsteam, organization-sportsleague, organization-showorganization, organization-religion, organization-politicalparty, organizat
+2026-02-08 17:22:55,659 - INFO - ----------------------------------------
+2026-02-08 17:22:55,659 - INFO - Processing 10 test samples...
+2026-02-08 17:22:55,662 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,663 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,664 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,665 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,666 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,666 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,667 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,668 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,669 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,670 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,670 - INFO - Progress: 10/10 | P: 0.0000 | R: 0.0000 | Micro-F1: 0.0000 | Macro-F1: 0.0000
+2026-02-08 17:22:55,671 - INFO - ============================================================
+2026-02-08 17:22:55,671 - INFO - Final Results
+2026-02-08 17:22:55,671 - INFO - ============================================================
+2026-02-08 17:22:55,671 - INFO - Precision:  0.0000
+2026-02-08 17:22:55,671 - INFO - Recall:     0.0000
+2026-02-08 17:22:55,671 - INFO - Micro F1:   0.0000
+2026-02-08 17:22:55,671 - INFO - Macro F1:   0.0000
+2026-02-08 17:22:55,671 - INFO - ----------------------------------------
+2026-02-08 17:22:55,671 - INFO - Per-Type F1 Scores:
+2026-02-08 17:22:55,671 - INFO -   building-hotel                 F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,671 - INFO -   building-other                 F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,671 - INFO -   event-attack/battle/war/militaryconflict F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,671 - INFO -   event-protest                  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,671 - INFO -   event-sportsevent              F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,671 - INFO -   location-GPE                   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,671 - INFO -   location-park                  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,671 - INFO -   organization-media/newspaper   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,671 - INFO -   organization-other             F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,671 - INFO -   organization-showorganization  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,671 - INFO -   other-livingthing              F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,671 - INFO -   person-artist/author           F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,671 - INFO -   person-other                   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,671 - INFO -   person-soldier                 F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,671 - INFO -   product-car                    F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,671 - INFO -   product-other                  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,671 - INFO - ----------------------------------------
+2026-02-08 17:22:55,671 - INFO - Results saved to: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/CODEIE-results/fine_pl_default_mistral_20260208_172255.json
+2026-02-08 17:22:55,671 - INFO - ============================================================
+2026-02-08 17:22:55,672 - INFO - Updated experiment matrix: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/CODEIE-results/experiment_matrix.csv
+2026-02-08 17:22:55,672 - INFO - 
+[18/28] Starting: mistral_base_fine_pl_sentence_reordering
+2026-02-08 17:22:55,672 - INFO - 
+============================================================
+2026-02-08 17:22:55,672 - INFO - Running: mistral_base_fine_pl_sentence_reordering
+2026-02-08 17:22:55,672 - INFO -   Model: mistral
+2026-02-08 17:22:55,672 - INFO -   Granularity: fine
+2026-02-08 17:22:55,672 - INFO -   Style: pl
+2026-02-08 17:22:55,672 - INFO -   Variation: sentence_reordering
+2026-02-08 17:22:55,672 - INFO -   Prompt: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/prompts/variations/fine_pl_1shot/sentence_reordering.txt
+2026-02-08 17:22:55,672 - INFO - ============================================================
+2026-02-08 17:22:55,672 - INFO - ============================================================
+2026-02-08 17:22:55,672 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-08 17:22:55,672 - INFO - ============================================================
+2026-02-08 17:22:55,672 - INFO - Granularity: fine
+2026-02-08 17:22:55,672 - INFO - Style: pl
+2026-02-08 17:22:55,672 - INFO - Variation: sentence_reordering
+2026-02-08 17:22:55,672 - INFO - Model: mistral
+2026-02-08 17:22:55,672 - INFO - ============================================================
+2026-02-08 17:22:55,672 - INFO - Using ChatOllama (Chat API) for mistral
+2026-02-08 17:22:55,702 - WARNING - Variation 'sentence_reordering' not found, using 'default' instead
+2026-02-08 17:22:55,703 - INFO - Available PL variations: ['default']
+2026-02-08 17:22:55,703 - INFO - Entity types (2): ['person-actor', 'dummy']
+2026-02-08 17:22:55,703 - INFO - Loading test data from: /Users/marcrodig/Development/kdai/KDAI-Experiments/few-nerd_test
+2026-02-08 17:22:55,707 - INFO - Loading pre-generated prompt from: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/prompts/variations/fine_pl_1shot/sentence_reordering.txt
+2026-02-08 17:22:55,707 - INFO - ICL prompt length: 21805 characters
+2026-02-08 17:22:55,707 - INFO - Sample ICL prompt (first 1000 chars):
+2026-02-08 17:22:55,707 - INFO - ----------------------------------------
+2026-02-08 17:22:55,707 - INFO - # ASSIGNMENT: Fill in the missing entity_list.append() lines in the Python script.
+2026-02-08 17:22:55,707 - INFO - # No code explanation needed. Simply print the required append statements.
+2026-02-08 17:22:55,707 - INFO - 
+2026-02-08 17:22:55,707 - INFO - # Acting as a specialist NER system, your goal is to pull entities from the text.
+2026-02-08 17:22:55,707 - INFO - # For every input string, detect the named entities and insert them into the list.
+2026-02-08 17:22:55,707 - INFO - 
+2026-02-08 17:22:55,707 - INFO - # Entity Definitions (Specific):
+2026-02-08 17:22:55,707 - INFO - # - art-broadcastprogram, art-film, art-music, art-other, art-painting, art-writtenart
+2026-02-08 17:22:55,707 - INFO - # - building-airport, building-hospital, building-hotel, building-library, building-other, building-restaurant, building-sportsfacility, building-theater
+2026-02-08 17:22:55,708 - INFO - # - event-attack/battle/war/militaryconflict, event-disaster, event-election, event-other, event-protest, event-sportsevent
+2026-02-08 17:22:55,708 - INFO - # - location-GPE, location-bodiesofwater, location-island, location-mountain, location-other, location-park, location-road/railway/highway/transit
+2026-02-08 17:22:55,708 - INFO - # - organization-company, organization-education, organization-government/governmentagency, organization-media/newspaper, organiza
+2026-02-08 17:22:55,708 - INFO - ----------------------------------------
+2026-02-08 17:22:55,708 - INFO - Processing 10 test samples...
+2026-02-08 17:22:55,709 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,710 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,711 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,712 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,713 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,714 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,714 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,715 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,716 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,717 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,717 - INFO - Progress: 10/10 | P: 0.0000 | R: 0.0000 | Micro-F1: 0.0000 | Macro-F1: 0.0000
+2026-02-08 17:22:55,717 - INFO - ============================================================
+2026-02-08 17:22:55,717 - INFO - Final Results
+2026-02-08 17:22:55,717 - INFO - ============================================================
+2026-02-08 17:22:55,717 - INFO - Precision:  0.0000
+2026-02-08 17:22:55,717 - INFO - Recall:     0.0000
+2026-02-08 17:22:55,718 - INFO - Micro F1:   0.0000
+2026-02-08 17:22:55,718 - INFO - Macro F1:   0.0000
+2026-02-08 17:22:55,718 - INFO - ----------------------------------------
+2026-02-08 17:22:55,718 - INFO - Per-Type F1 Scores:
+2026-02-08 17:22:55,718 - INFO -   building-hotel                 F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,718 - INFO -   building-other                 F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,718 - INFO -   event-attack/battle/war/militaryconflict F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,718 - INFO -   event-protest                  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,718 - INFO -   event-sportsevent              F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,718 - INFO -   location-GPE                   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,718 - INFO -   location-park                  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,718 - INFO -   organization-media/newspaper   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,718 - INFO -   organization-other             F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,718 - INFO -   organization-showorganization  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,718 - INFO -   other-livingthing              F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,718 - INFO -   person-artist/author           F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,718 - INFO -   person-other                   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,718 - INFO -   person-soldier                 F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,718 - INFO -   product-car                    F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,718 - INFO -   product-other                  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,718 - INFO - ----------------------------------------
+2026-02-08 17:22:55,718 - INFO - Results saved to: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/CODEIE-results/fine_pl_default_mistral_20260208_172255.json
+2026-02-08 17:22:55,718 - INFO - ============================================================
+2026-02-08 17:22:55,718 - INFO - Updated experiment matrix: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/CODEIE-results/experiment_matrix.csv
+2026-02-08 17:22:55,718 - INFO - 
+[19/28] Starting: mistral_base_fine_pl_backtrans_ch
+2026-02-08 17:22:55,718 - INFO - 
+============================================================
+2026-02-08 17:22:55,718 - INFO - Running: mistral_base_fine_pl_backtrans_ch
+2026-02-08 17:22:55,718 - INFO -   Model: mistral
+2026-02-08 17:22:55,718 - INFO -   Granularity: fine
+2026-02-08 17:22:55,718 - INFO -   Style: pl
+2026-02-08 17:22:55,718 - INFO -   Variation: backtrans_ch
+2026-02-08 17:22:55,718 - INFO -   Prompt: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/prompts/variations/fine_pl_1shot/backtrans_ch.txt
+2026-02-08 17:22:55,718 - INFO - ============================================================
+2026-02-08 17:22:55,718 - INFO - ============================================================
+2026-02-08 17:22:55,718 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-08 17:22:55,718 - INFO - ============================================================
+2026-02-08 17:22:55,718 - INFO - Granularity: fine
+2026-02-08 17:22:55,718 - INFO - Style: pl
+2026-02-08 17:22:55,718 - INFO - Variation: backtrans_ch
+2026-02-08 17:22:55,718 - INFO - Model: mistral
+2026-02-08 17:22:55,718 - INFO - ============================================================
+2026-02-08 17:22:55,718 - INFO - Using ChatOllama (Chat API) for mistral
+2026-02-08 17:22:55,750 - WARNING - Variation 'backtrans_ch' not found, using 'default' instead
+2026-02-08 17:22:55,750 - INFO - Available PL variations: ['default']
+2026-02-08 17:22:55,750 - INFO - Entity types (2): ['person-actor', 'dummy']
+2026-02-08 17:22:55,750 - INFO - Loading test data from: /Users/marcrodig/Development/kdai/KDAI-Experiments/few-nerd_test
+2026-02-08 17:22:55,755 - INFO - Loading pre-generated prompt from: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/prompts/variations/fine_pl_1shot/backtrans_ch.txt
+2026-02-08 17:22:55,756 - INFO - ICL prompt length: 21533 characters
+2026-02-08 17:22:55,756 - INFO - Sample ICL prompt (first 1000 chars):
+2026-02-08 17:22:55,756 - INFO - ----------------------------------------
+2026-02-08 17:22:55,756 - INFO - # Task: Complete the Python code by adding entity_list.append() statements. # No need to explain the code; only output the entity_list.append() statement lines. # You are a professional Named Entity Recognition (NER) system, specializing in extracting entities from text. # For each input text input_text, identify named entities and add them using entity_list.append().
+2026-02-08 17:22:55,756 - INFO - 
+2026-02-08 17:22:55,756 - INFO - # Entity Types (Fine-grained): # - Arts-Broadcast Program, Arts-Film, Arts-Music, Arts-Other, Arts-Painting, Arts-Literary Art # - Architecture-Airport, Architecture-Hospital, Architecture-Hotel, Architecture-Library, Architecture-Other, Architecture-Restaurant, Architecture-Sports Facility, Architecture-Theater
+2026-02-08 17:22:55,756 - INFO - # - Event-Attack/Campaign/War/Military Conflict, Event-Disaster, Event-Election, Event-Other, Event-Protest, Event-Sports Event # - Place-Geographic Location, Place-Body of Water, Place-Island, Place-Mountain Range, Place-Other, Place-Park, Place-Road/Railway/Highway/Transportation Hub
+2026-02-08 17:22:55,756 - INFO - # - Organization-Company, O
+2026-02-08 17:22:55,756 - INFO - ----------------------------------------
+2026-02-08 17:22:55,756 - INFO - Processing 10 test samples...
+2026-02-08 17:22:55,757 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,758 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,759 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,760 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,760 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,761 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,762 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,763 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,764 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,764 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,764 - INFO - Progress: 10/10 | P: 0.0000 | R: 0.0000 | Micro-F1: 0.0000 | Macro-F1: 0.0000
+2026-02-08 17:22:55,765 - INFO - ============================================================
+2026-02-08 17:22:55,765 - INFO - Final Results
+2026-02-08 17:22:55,765 - INFO - ============================================================
+2026-02-08 17:22:55,765 - INFO - Precision:  0.0000
+2026-02-08 17:22:55,765 - INFO - Recall:     0.0000
+2026-02-08 17:22:55,765 - INFO - Micro F1:   0.0000
+2026-02-08 17:22:55,765 - INFO - Macro F1:   0.0000
+2026-02-08 17:22:55,765 - INFO - ----------------------------------------
+2026-02-08 17:22:55,765 - INFO - Per-Type F1 Scores:
+2026-02-08 17:22:55,765 - INFO -   building-hotel                 F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,765 - INFO -   building-other                 F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,765 - INFO -   event-attack/battle/war/militaryconflict F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,765 - INFO -   event-protest                  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,765 - INFO -   event-sportsevent              F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,765 - INFO -   location-GPE                   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,765 - INFO -   location-park                  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,765 - INFO -   organization-media/newspaper   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,765 - INFO -   organization-other             F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,765 - INFO -   organization-showorganization  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,765 - INFO -   other-livingthing              F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,765 - INFO -   person-artist/author           F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,765 - INFO -   person-other                   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,765 - INFO -   person-soldier                 F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,766 - INFO -   product-car                    F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,766 - INFO -   product-other                  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,766 - INFO - ----------------------------------------
+2026-02-08 17:22:55,766 - INFO - Results saved to: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/CODEIE-results/fine_pl_default_mistral_20260208_172255.json
+2026-02-08 17:22:55,766 - INFO - ============================================================
+2026-02-08 17:22:55,766 - INFO - Updated experiment matrix: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/CODEIE-results/experiment_matrix.csv
+2026-02-08 17:22:55,766 - INFO - 
+[20/28] Starting: mistral_base_fine_pl_backtrans_sp
+2026-02-08 17:22:55,766 - INFO - 
+============================================================
+2026-02-08 17:22:55,766 - INFO - Running: mistral_base_fine_pl_backtrans_sp
+2026-02-08 17:22:55,766 - INFO -   Model: mistral
+2026-02-08 17:22:55,766 - INFO -   Granularity: fine
+2026-02-08 17:22:55,766 - INFO -   Style: pl
+2026-02-08 17:22:55,766 - INFO -   Variation: backtrans_sp
+2026-02-08 17:22:55,766 - INFO -   Prompt: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/prompts/variations/fine_pl_1shot/backtrans_sp.txt
+2026-02-08 17:22:55,766 - INFO - ============================================================
+2026-02-08 17:22:55,766 - INFO - ============================================================
+2026-02-08 17:22:55,766 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-08 17:22:55,766 - INFO - ============================================================
+2026-02-08 17:22:55,766 - INFO - Granularity: fine
+2026-02-08 17:22:55,766 - INFO - Style: pl
+2026-02-08 17:22:55,766 - INFO - Variation: backtrans_sp
+2026-02-08 17:22:55,766 - INFO - Model: mistral
+2026-02-08 17:22:55,766 - INFO - ============================================================
+2026-02-08 17:22:55,766 - INFO - Using ChatOllama (Chat API) for mistral
+2026-02-08 17:22:55,799 - WARNING - Variation 'backtrans_sp' not found, using 'default' instead
+2026-02-08 17:22:55,799 - INFO - Available PL variations: ['default']
+2026-02-08 17:22:55,799 - INFO - Entity types (2): ['person-actor', 'dummy']
+2026-02-08 17:22:55,799 - INFO - Loading test data from: /Users/marcrodig/Development/kdai/KDAI-Experiments/few-nerd_test
+2026-02-08 17:22:55,805 - INFO - Loading pre-generated prompt from: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/prompts/variations/fine_pl_1shot/backtrans_sp.txt
+2026-02-08 17:22:55,806 - INFO - ICL prompt length: 21044 characters
+2026-02-08 17:22:55,806 - INFO - Sample ICL prompt (first 1000 chars):
+2026-02-08 17:22:55,806 - INFO - ----------------------------------------
+2026-02-08 17:22:55,806 - INFO - # TASK: Complete the Python code by adding entity_list.append() statements. # DO NOT explain the code. Just write the entity_list.append() lines. # You are an expert system in named entity recognition (NER) specialized in extracting entities from text. # For each input_text, identify the named entities and add them using entity_list.append().
+2026-02-08 17:22:55,806 - INFO - 
+2026-02-08 17:22:55,806 - INFO - # Entity types (detailed): # - art-broadcastprogram, art-film, art-music, art-other, art-painting, art-writtenart # - building-airport, building-hospital, building-hotel, building-library, building-other, building-restaurant, building-sportsfacility, building-theater
+2026-02-08 17:22:55,806 - INFO - # - event-attack/battle/war/military conflict, event-disaster, event-elections, event-other, event-protest, event-sporting event # - location-GPE, location-body of water, location-island, location-mountain, location-other, location-park, location-road/rail/highway/transit
+2026-02-08 17:22:55,806 - INFO - # - organization-company, organization-education, organization-government/government agency, organization-media/n
+2026-02-08 17:22:55,806 - INFO - ----------------------------------------
+2026-02-08 17:22:55,806 - INFO - Processing 10 test samples...
+2026-02-08 17:22:55,820 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,825 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,831 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,868 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,872 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,878 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,883 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,886 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,889 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,891 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:55,891 - INFO - Progress: 10/10 | P: 0.0000 | R: 0.0000 | Micro-F1: 0.0000 | Macro-F1: 0.0000
+2026-02-08 17:22:55,893 - INFO - ============================================================
+2026-02-08 17:22:55,893 - INFO - Final Results
+2026-02-08 17:22:55,893 - INFO - ============================================================
+2026-02-08 17:22:55,893 - INFO - Precision:  0.0000
+2026-02-08 17:22:55,893 - INFO - Recall:     0.0000
+2026-02-08 17:22:55,893 - INFO - Micro F1:   0.0000
+2026-02-08 17:22:55,893 - INFO - Macro F1:   0.0000
+2026-02-08 17:22:55,894 - INFO - ----------------------------------------
+2026-02-08 17:22:55,894 - INFO - Per-Type F1 Scores:
+2026-02-08 17:22:55,894 - INFO -   building-hotel                 F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,894 - INFO -   building-other                 F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,894 - INFO -   event-attack/battle/war/militaryconflict F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,894 - INFO -   event-protest                  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,896 - INFO -   event-sportsevent              F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,896 - INFO -   location-GPE                   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,896 - INFO -   location-park                  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,896 - INFO -   organization-media/newspaper   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,897 - INFO -   organization-other             F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,897 - INFO -   organization-showorganization  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,897 - INFO -   other-livingthing              F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,897 - INFO -   person-artist/author           F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,897 - INFO -   person-other                   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,897 - INFO -   person-soldier                 F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,897 - INFO -   product-car                    F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,897 - INFO -   product-other                  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:55,897 - INFO - ----------------------------------------
+2026-02-08 17:22:55,897 - INFO - Results saved to: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/CODEIE-results/fine_pl_default_mistral_20260208_172255.json
+2026-02-08 17:22:55,897 - INFO - ============================================================
+2026-02-08 17:22:55,898 - INFO - Updated experiment matrix: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/CODEIE-results/experiment_matrix.csv
+2026-02-08 17:22:55,898 - INFO - 
+[21/28] Starting: mistral_base_fine_pl_backtrans_tu
+2026-02-08 17:22:55,899 - INFO - 
+============================================================
+2026-02-08 17:22:55,899 - INFO - Running: mistral_base_fine_pl_backtrans_tu
+2026-02-08 17:22:55,899 - INFO -   Model: mistral
+2026-02-08 17:22:55,899 - INFO -   Granularity: fine
+2026-02-08 17:22:55,899 - INFO -   Style: pl
+2026-02-08 17:22:55,899 - INFO -   Variation: backtrans_tu
+2026-02-08 17:22:55,899 - INFO -   Prompt: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/prompts/variations/fine_pl_1shot/backtrans_tu.txt
+2026-02-08 17:22:55,899 - INFO - ============================================================
+2026-02-08 17:22:55,900 - INFO - ============================================================
+2026-02-08 17:22:55,900 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-08 17:22:55,900 - INFO - ============================================================
+2026-02-08 17:22:55,901 - INFO - Granularity: fine
+2026-02-08 17:22:55,901 - INFO - Style: pl
+2026-02-08 17:22:55,901 - INFO - Variation: backtrans_tu
+2026-02-08 17:22:55,901 - INFO - Model: mistral
+2026-02-08 17:22:55,901 - INFO - ============================================================
+2026-02-08 17:22:55,902 - INFO - Using ChatOllama (Chat API) for mistral
+2026-02-08 17:22:56,032 - WARNING - Variation 'backtrans_tu' not found, using 'default' instead
+2026-02-08 17:22:56,032 - INFO - Available PL variations: ['default']
+2026-02-08 17:22:56,032 - INFO - Entity types (2): ['person-actor', 'dummy']
+2026-02-08 17:22:56,032 - INFO - Loading test data from: /Users/marcrodig/Development/kdai/KDAI-Experiments/few-nerd_test
+2026-02-08 17:22:56,043 - INFO - Loading pre-generated prompt from: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/prompts/variations/fine_pl_1shot/backtrans_tu.txt
+2026-02-08 17:22:56,044 - INFO - ICL prompt length: 20953 characters
+2026-02-08 17:22:56,044 - INFO - Sample ICL prompt (first 1000 chars):
+2026-02-08 17:22:56,044 - INFO - ----------------------------------------
+2026-02-08 17:22:56,044 - INFO - # TASK: Complete the Python code by adding entity_list.append() statements. # Do not explain the code. Only output the entity_list.append() lines. # You are a Named Entity Recognition (NER) system specialized in extracting entities from text. # For each input_text, identify the named entities and add them using entity_list.append(). # Entity Types (Fine-Grained): # - art-publicationprogram, art-film, art-music, art-other, art-painting, art-writtenart # - building-airport, building-hospital, building-hotel, building-library, building-other, building-restaurant, building-sports-facility, building-theater
+2026-02-08 17:22:56,044 - INFO - # - event-attack/battle/war/militaryconflict, event-disaster, event-election, event-other, event-protest, event-sportsevent # - location-GPE, location-bodiesofwater, location-island, location-mountain, location-other, location-park, location-road/railway/highway/transit
+2026-02-08 17:22:56,044 - INFO - # - organization-company, organization-education, organization-government/state institution, organization-media/newspap
+2026-02-08 17:22:56,044 - INFO - ----------------------------------------
+2026-02-08 17:22:56,044 - INFO - Processing 10 test samples...
+2026-02-08 17:22:56,046 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,049 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,051 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,053 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,054 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,056 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,060 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,063 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,065 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,066 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,066 - INFO - Progress: 10/10 | P: 0.0000 | R: 0.0000 | Micro-F1: 0.0000 | Macro-F1: 0.0000
+2026-02-08 17:22:56,067 - INFO - ============================================================
+2026-02-08 17:22:56,067 - INFO - Final Results
+2026-02-08 17:22:56,067 - INFO - ============================================================
+2026-02-08 17:22:56,067 - INFO - Precision:  0.0000
+2026-02-08 17:22:56,067 - INFO - Recall:     0.0000
+2026-02-08 17:22:56,067 - INFO - Micro F1:   0.0000
+2026-02-08 17:22:56,067 - INFO - Macro F1:   0.0000
+2026-02-08 17:22:56,067 - INFO - ----------------------------------------
+2026-02-08 17:22:56,067 - INFO - Per-Type F1 Scores:
+2026-02-08 17:22:56,067 - INFO -   building-hotel                 F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,067 - INFO -   building-other                 F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,067 - INFO -   event-attack/battle/war/militaryconflict F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,067 - INFO -   event-protest                  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,067 - INFO -   event-sportsevent              F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,067 - INFO -   location-GPE                   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,067 - INFO -   location-park                  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,067 - INFO -   organization-media/newspaper   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,067 - INFO -   organization-other             F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,067 - INFO -   organization-showorganization  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,067 - INFO -   other-livingthing              F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,067 - INFO -   person-artist/author           F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,067 - INFO -   person-other                   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,067 - INFO -   person-soldier                 F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,067 - INFO -   product-car                    F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,067 - INFO -   product-other                  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,067 - INFO - ----------------------------------------
+2026-02-08 17:22:56,067 - INFO - Results saved to: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/CODEIE-results/fine_pl_default_mistral_20260208_172256.json
+2026-02-08 17:22:56,067 - INFO - ============================================================
+2026-02-08 17:22:56,067 - INFO - Updated experiment matrix: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/CODEIE-results/experiment_matrix.csv
+2026-02-08 17:22:56,068 - INFO - 
+[22/28] Starting: mistral_base_fine_nl_base
+2026-02-08 17:22:56,068 - INFO - 
+============================================================
+2026-02-08 17:22:56,068 - INFO - Running: mistral_base_fine_nl_base
+2026-02-08 17:22:56,068 - INFO -   Model: mistral
+2026-02-08 17:22:56,068 - INFO -   Granularity: fine
+2026-02-08 17:22:56,068 - INFO -   Style: nl
+2026-02-08 17:22:56,068 - INFO -   Variation: base
+2026-02-08 17:22:56,068 - INFO -   Prompt: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/prompts/base/fine_nl_1shot.txt
+2026-02-08 17:22:56,068 - INFO - ============================================================
+2026-02-08 17:22:56,068 - INFO - ============================================================
+2026-02-08 17:22:56,068 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-08 17:22:56,068 - INFO - ============================================================
+2026-02-08 17:22:56,068 - INFO - Granularity: fine
+2026-02-08 17:22:56,068 - INFO - Style: nl
+2026-02-08 17:22:56,068 - INFO - Variation: v0_original
+2026-02-08 17:22:56,068 - INFO - Model: mistral
+2026-02-08 17:22:56,068 - INFO - ============================================================
+2026-02-08 17:22:56,068 - INFO - Using ChatOllama (Chat API) for mistral
+2026-02-08 17:22:56,106 - WARNING - Variation 'v0_original' not found, using 'default' instead
+2026-02-08 17:22:56,106 - INFO - Available NL variations: ['default']
+2026-02-08 17:22:56,106 - INFO - Entity types (2): ['person-actor', 'dummy']
+2026-02-08 17:22:56,106 - INFO - Loading test data from: /Users/marcrodig/Development/kdai/KDAI-Experiments/few-nerd_test
+2026-02-08 17:22:56,112 - INFO - Loading pre-generated prompt from: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/prompts/base/fine_nl_1shot.txt
+2026-02-08 17:22:56,112 - INFO - ICL prompt length: 14174 characters
+2026-02-08 17:22:56,113 - INFO - Sample ICL prompt (first 1000 chars):
+2026-02-08 17:22:56,113 - INFO - ----------------------------------------
+2026-02-08 17:22:56,113 - INFO - You are an expert Named Entity Recognition (NER) system specializing in extracting entities from text.
+2026-02-08 17:22:56,113 - INFO - 
+2026-02-08 17:22:56,113 - INFO - Annotation Guidelines:
+2026-02-08 17:22:56,113 - INFO - Extract named entities based on the following categories:
+2026-02-08 17:22:56,113 - INFO - 
+2026-02-08 17:22:56,113 - INFO - * art-broadcastprogram: A named television or radio program.
+2026-02-08 17:22:56,113 - INFO - * art-film: A named movie or film.
+2026-02-08 17:22:56,113 - INFO - * art-music: A named song, album, or musical composition.
+2026-02-08 17:22:56,113 - INFO - * art-other: Other works of art not covered by specific categories.
+2026-02-08 17:22:56,113 - INFO - * art-painting: A named painting or visual artwork.
+2026-02-08 17:22:56,113 - INFO - * art-writtenart: A named book, poem, essay, or other written work.
+2026-02-08 17:22:56,113 - INFO - * building-airport: A named airport or airfield.
+2026-02-08 17:22:56,113 - INFO - * building-hospital: A named hospital, clinic, or medical center.
+2026-02-08 17:22:56,113 - INFO - * building-hotel: A named hotel, motel, or resort.
+2026-02-08 17:22:56,113 - INFO - * building-library: A named library or archive.
+2026-02-08 17:22:56,113 - INFO - * building-other: Other named buildings or structures.
+2026-02-08 17:22:56,113 - INFO - * building-restaurant: A named restaurant, cafe, or bar.
+2026-02-08 17:22:56,113 - INFO - * building-sportsfacility: A named stadium, arena, or sports complex.
+2026-02-08 17:22:56,113 - INFO - * building-theater: A named theater or cinema.
+2026-02-08 17:22:56,113 - INFO - * event-attack/battle/war/mil
+2026-02-08 17:22:56,113 - INFO - ----------------------------------------
+2026-02-08 17:22:56,113 - INFO - Processing 10 test samples...
+2026-02-08 17:22:56,115 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,117 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,117 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,118 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,119 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,121 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,123 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,124 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,125 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,126 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,126 - INFO - Progress: 10/10 | P: 0.0000 | R: 0.0000 | Micro-F1: 0.0000 | Macro-F1: 0.0000
+2026-02-08 17:22:56,126 - INFO - ============================================================
+2026-02-08 17:22:56,126 - INFO - Final Results
+2026-02-08 17:22:56,126 - INFO - ============================================================
+2026-02-08 17:22:56,127 - INFO - Precision:  0.0000
+2026-02-08 17:22:56,127 - INFO - Recall:     0.0000
+2026-02-08 17:22:56,127 - INFO - Micro F1:   0.0000
+2026-02-08 17:22:56,127 - INFO - Macro F1:   0.0000
+2026-02-08 17:22:56,127 - INFO - ----------------------------------------
+2026-02-08 17:22:56,127 - INFO - Per-Type F1 Scores:
+2026-02-08 17:22:56,127 - INFO -   building-hotel                 F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,127 - INFO -   building-other                 F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,127 - INFO -   event-attack/battle/war/militaryconflict F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,127 - INFO -   event-protest                  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,127 - INFO -   event-sportsevent              F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,127 - INFO -   location-GPE                   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,127 - INFO -   location-park                  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,127 - INFO -   organization-media/newspaper   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,127 - INFO -   organization-other             F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,127 - INFO -   organization-showorganization  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,127 - INFO -   other-livingthing              F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,127 - INFO -   person-artist/author           F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,127 - INFO -   person-other                   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,127 - INFO -   person-soldier                 F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,127 - INFO -   product-car                    F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,127 - INFO -   product-other                  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,127 - INFO - ----------------------------------------
+2026-02-08 17:22:56,127 - INFO - Results saved to: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/CODEIE-results/fine_nl_default_mistral_20260208_172256.json
+2026-02-08 17:22:56,127 - INFO - ============================================================
+2026-02-08 17:22:56,127 - INFO - Updated experiment matrix: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/CODEIE-results/experiment_matrix.csv
+2026-02-08 17:22:56,127 - INFO - 
+[23/28] Starting: mistral_base_fine_nl_lexical_substitution
+2026-02-08 17:22:56,127 - INFO - 
+============================================================
+2026-02-08 17:22:56,127 - INFO - Running: mistral_base_fine_nl_lexical_substitution
+2026-02-08 17:22:56,127 - INFO -   Model: mistral
+2026-02-08 17:22:56,127 - INFO -   Granularity: fine
+2026-02-08 17:22:56,127 - INFO -   Style: nl
+2026-02-08 17:22:56,127 - INFO -   Variation: lexical_substitution
+2026-02-08 17:22:56,127 - INFO -   Prompt: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/prompts/variations/fine_nl_1shot/lexical_substitution.txt
+2026-02-08 17:22:56,127 - INFO - ============================================================
+2026-02-08 17:22:56,127 - INFO - ============================================================
+2026-02-08 17:22:56,127 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-08 17:22:56,127 - INFO - ============================================================
+2026-02-08 17:22:56,127 - INFO - Granularity: fine
+2026-02-08 17:22:56,127 - INFO - Style: nl
+2026-02-08 17:22:56,127 - INFO - Variation: lexical_substitution
+2026-02-08 17:22:56,127 - INFO - Model: mistral
+2026-02-08 17:22:56,127 - INFO - ============================================================
+2026-02-08 17:22:56,127 - INFO - Using ChatOllama (Chat API) for mistral
+2026-02-08 17:22:56,161 - WARNING - Variation 'lexical_substitution' not found, using 'default' instead
+2026-02-08 17:22:56,161 - INFO - Available NL variations: ['default']
+2026-02-08 17:22:56,161 - INFO - Entity types (2): ['person-actor', 'dummy']
+2026-02-08 17:22:56,161 - INFO - Loading test data from: /Users/marcrodig/Development/kdai/KDAI-Experiments/few-nerd_test
+2026-02-08 17:22:56,166 - INFO - Loading pre-generated prompt from: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/prompts/variations/fine_nl_1shot/lexical_substitution.txt
+2026-02-08 17:22:56,166 - INFO - ICL prompt length: 13917 characters
+2026-02-08 17:22:56,166 - INFO - Sample ICL prompt (first 1000 chars):
+2026-02-08 17:22:56,166 - INFO - ----------------------------------------
+2026-02-08 17:22:56,166 - INFO - You are a specialized Named Entity Recognition (NER) tool designed to identify specific entities in text.
+2026-02-08 17:22:56,166 - INFO - 
+2026-02-08 17:22:56,166 - INFO - Annotation Guidelines:
+2026-02-08 17:22:56,166 - INFO - Extract named entities according to the categories below:
+2026-02-08 17:22:56,166 - INFO - 
+2026-02-08 17:22:56,166 - INFO - * art-broadcastprogram: A titled radio or television show.
+2026-02-08 17:22:56,166 - INFO - * art-film: A named film or movie.
+2026-02-08 17:22:56,166 - INFO - * art-music: A titled album, song, or musical piece.
+2026-02-08 17:22:56,166 - INFO - * art-other: Artistic works not falling into specific categories.
+2026-02-08 17:22:56,166 - INFO - * art-painting: A named visual artwork or painting.
+2026-02-08 17:22:56,166 - INFO - * art-writtenart: A titled poem, book, essay, or literary work.
+2026-02-08 17:22:56,166 - INFO - * building-airport: A named airfield or airport.
+2026-02-08 17:22:56,167 - INFO - * building-hospital: A named clinic, hospital, or medical center.
+2026-02-08 17:22:56,167 - INFO - * building-hotel: A named resort, motel, or hotel.
+2026-02-08 17:22:56,167 - INFO - * building-library: A named archive or library.
+2026-02-08 17:22:56,167 - INFO - * building-other: Named structures or buildings not listed above.
+2026-02-08 17:22:56,167 - INFO - * building-restaurant: A named cafe, bar, or restaurant.
+2026-02-08 17:22:56,167 - INFO - * building-sportsfacility: A named arena, stadium, or sports complex.
+2026-02-08 17:22:56,167 - INFO - * building-theater: A named cinema or theater.
+2026-02-08 17:22:56,167 - INFO - * event-attack/battle/war/mi
+2026-02-08 17:22:56,167 - INFO - ----------------------------------------
+2026-02-08 17:22:56,167 - INFO - Processing 10 test samples...
+2026-02-08 17:22:56,168 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,169 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,171 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,172 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,173 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,174 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,175 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,175 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,176 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,177 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,177 - INFO - Progress: 10/10 | P: 0.0000 | R: 0.0000 | Micro-F1: 0.0000 | Macro-F1: 0.0000
+2026-02-08 17:22:56,178 - INFO - ============================================================
+2026-02-08 17:22:56,178 - INFO - Final Results
+2026-02-08 17:22:56,178 - INFO - ============================================================
+2026-02-08 17:22:56,178 - INFO - Precision:  0.0000
+2026-02-08 17:22:56,178 - INFO - Recall:     0.0000
+2026-02-08 17:22:56,178 - INFO - Micro F1:   0.0000
+2026-02-08 17:22:56,178 - INFO - Macro F1:   0.0000
+2026-02-08 17:22:56,178 - INFO - ----------------------------------------
+2026-02-08 17:22:56,178 - INFO - Per-Type F1 Scores:
+2026-02-08 17:22:56,178 - INFO -   building-hotel                 F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,178 - INFO -   building-other                 F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,178 - INFO -   event-attack/battle/war/militaryconflict F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,178 - INFO -   event-protest                  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,178 - INFO -   event-sportsevent              F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,178 - INFO -   location-GPE                   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,178 - INFO -   location-park                  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,178 - INFO -   organization-media/newspaper   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,178 - INFO -   organization-other             F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,178 - INFO -   organization-showorganization  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,178 - INFO -   other-livingthing              F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,178 - INFO -   person-artist/author           F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,178 - INFO -   person-other                   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,178 - INFO -   person-soldier                 F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,178 - INFO -   product-car                    F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,178 - INFO -   product-other                  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,178 - INFO - ----------------------------------------
+2026-02-08 17:22:56,178 - INFO - Results saved to: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/CODEIE-results/fine_nl_default_mistral_20260208_172256.json
+2026-02-08 17:22:56,178 - INFO - ============================================================
+2026-02-08 17:22:56,178 - INFO - Updated experiment matrix: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/CODEIE-results/experiment_matrix.csv
+2026-02-08 17:22:56,178 - INFO - 
+[24/28] Starting: mistral_base_fine_nl_reodering
+2026-02-08 17:22:56,178 - INFO - 
+============================================================
+2026-02-08 17:22:56,178 - INFO - Running: mistral_base_fine_nl_reodering
+2026-02-08 17:22:56,178 - INFO -   Model: mistral
+2026-02-08 17:22:56,178 - INFO -   Granularity: fine
+2026-02-08 17:22:56,178 - INFO -   Style: nl
+2026-02-08 17:22:56,178 - INFO -   Variation: reodering
+2026-02-08 17:22:56,178 - INFO -   Prompt: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/prompts/variations/fine_nl_1shot/reodering.txt
+2026-02-08 17:22:56,178 - INFO - ============================================================
+2026-02-08 17:22:56,178 - INFO - ============================================================
+2026-02-08 17:22:56,178 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-08 17:22:56,178 - INFO - ============================================================
+2026-02-08 17:22:56,178 - INFO - Granularity: fine
+2026-02-08 17:22:56,178 - INFO - Style: nl
+2026-02-08 17:22:56,178 - INFO - Variation: reodering
+2026-02-08 17:22:56,178 - INFO - Model: mistral
+2026-02-08 17:22:56,178 - INFO - ============================================================
+2026-02-08 17:22:56,179 - INFO - Using ChatOllama (Chat API) for mistral
+2026-02-08 17:22:56,212 - WARNING - Variation 'reodering' not found, using 'default' instead
+2026-02-08 17:22:56,213 - INFO - Available NL variations: ['default']
+2026-02-08 17:22:56,213 - INFO - Entity types (2): ['person-actor', 'dummy']
+2026-02-08 17:22:56,213 - INFO - Loading test data from: /Users/marcrodig/Development/kdai/KDAI-Experiments/few-nerd_test
+2026-02-08 17:22:56,217 - INFO - Loading pre-generated prompt from: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/prompts/variations/fine_nl_1shot/reodering.txt
+2026-02-08 17:22:56,218 - INFO - ICL prompt length: 14184 characters
+2026-02-08 17:22:56,218 - INFO - Sample ICL prompt (first 1000 chars):
+2026-02-08 17:22:56,218 - INFO - ----------------------------------------
+2026-02-08 17:22:56,218 - INFO - You are a specialized Named Entity Recognition (NER) system. Your task is to identify and extract named entities from text based on the specific categories defined below.
+2026-02-08 17:22:56,218 - INFO - 
+2026-02-08 17:22:56,218 - INFO - Annotation Guidelines:
+2026-02-08 17:22:56,218 - INFO - 
+2026-02-08 17:22:56,218 - INFO - * product-weapon: A named weapon or military equipment.
+2026-02-08 17:22:56,218 - INFO - * product-train: A named train model or locomotive.
+2026-02-08 17:22:56,218 - INFO - * product-software: A named software application or system.
+2026-02-08 17:22:56,218 - INFO - * product-ship: A named ship or boat.
+2026-02-08 17:22:56,218 - INFO - * product-other: Other commercial products.
+2026-02-08 17:22:56,218 - INFO - * product-game: A named game or video game.
+2026-02-08 17:22:56,218 - INFO - * product-food: A named food or drink product.
+2026-02-08 17:22:56,218 - INFO - * product-car: A named automobile model.
+2026-02-08 17:22:56,218 - INFO - * product-airplane: A named aircraft model.
+2026-02-08 17:22:56,218 - INFO - * person-soldier: A named soldier or military personnel.
+2026-02-08 17:22:56,218 - INFO - * person-scholar: A named scholar, scientist, or academic.
+2026-02-08 17:22:56,218 - INFO - * person-politician: A named politician or government official.
+2026-02-08 17:22:56,218 - INFO - * person-other: Other named individuals.
+2026-02-08 17:22:56,218 - INFO - * person-director: A named film or theater director.
+2026-02-08 17:22:56,218 - INFO - * person-athlete: A named athlete or sports player.
+2026-02-08 17:22:56,218 - INFO - * person-artist/author: A named artist, writer, or c
+2026-02-08 17:22:56,218 - INFO - ----------------------------------------
+2026-02-08 17:22:56,218 - INFO - Processing 10 test samples...
+2026-02-08 17:22:56,220 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,221 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,222 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,223 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,224 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,224 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,225 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,226 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,227 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,229 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,230 - INFO - Progress: 10/10 | P: 0.0000 | R: 0.0000 | Micro-F1: 0.0000 | Macro-F1: 0.0000
+2026-02-08 17:22:56,231 - INFO - ============================================================
+2026-02-08 17:22:56,231 - INFO - Final Results
+2026-02-08 17:22:56,231 - INFO - ============================================================
+2026-02-08 17:22:56,231 - INFO - Precision:  0.0000
+2026-02-08 17:22:56,231 - INFO - Recall:     0.0000
+2026-02-08 17:22:56,231 - INFO - Micro F1:   0.0000
+2026-02-08 17:22:56,231 - INFO - Macro F1:   0.0000
+2026-02-08 17:22:56,231 - INFO - ----------------------------------------
+2026-02-08 17:22:56,231 - INFO - Per-Type F1 Scores:
+2026-02-08 17:22:56,231 - INFO -   building-hotel                 F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,231 - INFO -   building-other                 F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,231 - INFO -   event-attack/battle/war/militaryconflict F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,231 - INFO -   event-protest                  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,231 - INFO -   event-sportsevent              F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,231 - INFO -   location-GPE                   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,231 - INFO -   location-park                  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,231 - INFO -   organization-media/newspaper   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,231 - INFO -   organization-other             F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,231 - INFO -   organization-showorganization  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,231 - INFO -   other-livingthing              F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,231 - INFO -   person-artist/author           F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,231 - INFO -   person-other                   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,231 - INFO -   person-soldier                 F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,231 - INFO -   product-car                    F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,231 - INFO -   product-other                  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,231 - INFO - ----------------------------------------
+2026-02-08 17:22:56,231 - INFO - Results saved to: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/CODEIE-results/fine_nl_default_mistral_20260208_172256.json
+2026-02-08 17:22:56,231 - INFO - ============================================================
+2026-02-08 17:22:56,231 - INFO - Updated experiment matrix: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/CODEIE-results/experiment_matrix.csv
+2026-02-08 17:22:56,231 - INFO - 
+[25/28] Starting: mistral_base_fine_nl_sentence_reordering
+2026-02-08 17:22:56,231 - INFO - 
+============================================================
+2026-02-08 17:22:56,231 - INFO - Running: mistral_base_fine_nl_sentence_reordering
+2026-02-08 17:22:56,231 - INFO -   Model: mistral
+2026-02-08 17:22:56,231 - INFO -   Granularity: fine
+2026-02-08 17:22:56,231 - INFO -   Style: nl
+2026-02-08 17:22:56,231 - INFO -   Variation: sentence_reordering
+2026-02-08 17:22:56,231 - INFO -   Prompt: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/prompts/variations/fine_nl_1shot/sentence_reordering.txt
+2026-02-08 17:22:56,231 - INFO - ============================================================
+2026-02-08 17:22:56,231 - INFO - ============================================================
+2026-02-08 17:22:56,231 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-08 17:22:56,231 - INFO - ============================================================
+2026-02-08 17:22:56,231 - INFO - Granularity: fine
+2026-02-08 17:22:56,231 - INFO - Style: nl
+2026-02-08 17:22:56,231 - INFO - Variation: sentence_reordering
+2026-02-08 17:22:56,231 - INFO - Model: mistral
+2026-02-08 17:22:56,231 - INFO - ============================================================
+2026-02-08 17:22:56,231 - INFO - Using ChatOllama (Chat API) for mistral
+2026-02-08 17:22:56,264 - WARNING - Variation 'sentence_reordering' not found, using 'default' instead
+2026-02-08 17:22:56,264 - INFO - Available NL variations: ['default']
+2026-02-08 17:22:56,264 - INFO - Entity types (2): ['person-actor', 'dummy']
+2026-02-08 17:22:56,264 - INFO - Loading test data from: /Users/marcrodig/Development/kdai/KDAI-Experiments/few-nerd_test
+2026-02-08 17:22:56,268 - INFO - Loading pre-generated prompt from: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/prompts/variations/fine_nl_1shot/sentence_reordering.txt
+2026-02-08 17:22:56,269 - INFO - ICL prompt length: 14483 characters
+2026-02-08 17:22:56,269 - INFO - Sample ICL prompt (first 1000 chars):
+2026-02-08 17:22:56,269 - INFO - ----------------------------------------
+2026-02-08 17:22:56,269 - INFO - You are a specialized Named Entity Recognition (NER) tool designed to identify and extract entities from text.
+2026-02-08 17:22:56,269 - INFO - 
+2026-02-08 17:22:56,269 - INFO - Annotation Guidelines:
+2026-02-08 17:22:56,269 - INFO - Extract named entities according to the following categories:
+2026-02-08 17:22:56,269 - INFO - 
+2026-02-08 17:22:56,269 - INFO - * art-broadcastprogram: A specific radio or television show.
+2026-02-08 17:22:56,269 - INFO - * art-film: A specific movie or film.
+2026-02-08 17:22:56,269 - INFO - * art-music: A specific song, album, or musical composition.
+2026-02-08 17:22:56,269 - INFO - * art-other: Artistic works not falling into the other specific categories.
+2026-02-08 17:22:56,269 - INFO - * art-painting: A specific visual artwork or painting.
+2026-02-08 17:22:56,269 - INFO - * art-writtenart: A specific book, essay, poem, or written work.
+2026-02-08 17:22:56,269 - INFO - * building-airport: A specific airfield or airport.
+2026-02-08 17:22:56,269 - INFO - * building-hospital: A specific clinic, hospital, or medical center.
+2026-02-08 17:22:56,269 - INFO - * building-hotel: A specific motel, resort, or hotel.
+2026-02-08 17:22:56,269 - INFO - * building-library: A specific archive or library.
+2026-02-08 17:22:56,269 - INFO - * building-other: Named structures or buildings not covered by other categories.
+2026-02-08 17:22:56,269 - INFO - * building-restaurant: A specific cafe, bar, or restaurant.
+2026-02-08 17:22:56,269 - INFO - * building-sportsfacility: A specific stadium, arena, or sports complex.
+2026-02-08 17:22:56,269 - INFO - * buil
+2026-02-08 17:22:56,269 - INFO - ----------------------------------------
+2026-02-08 17:22:56,269 - INFO - Processing 10 test samples...
+2026-02-08 17:22:56,271 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,272 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,273 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,274 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,274 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,275 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,276 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,276 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,277 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,278 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,278 - INFO - Progress: 10/10 | P: 0.0000 | R: 0.0000 | Micro-F1: 0.0000 | Macro-F1: 0.0000
+2026-02-08 17:22:56,279 - INFO - ============================================================
+2026-02-08 17:22:56,279 - INFO - Final Results
+2026-02-08 17:22:56,279 - INFO - ============================================================
+2026-02-08 17:22:56,279 - INFO - Precision:  0.0000
+2026-02-08 17:22:56,279 - INFO - Recall:     0.0000
+2026-02-08 17:22:56,279 - INFO - Micro F1:   0.0000
+2026-02-08 17:22:56,279 - INFO - Macro F1:   0.0000
+2026-02-08 17:22:56,279 - INFO - ----------------------------------------
+2026-02-08 17:22:56,279 - INFO - Per-Type F1 Scores:
+2026-02-08 17:22:56,279 - INFO -   building-hotel                 F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,279 - INFO -   building-other                 F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,279 - INFO -   event-attack/battle/war/militaryconflict F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,279 - INFO -   event-protest                  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,280 - INFO -   event-sportsevent              F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,280 - INFO -   location-GPE                   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,280 - INFO -   location-park                  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,280 - INFO -   organization-media/newspaper   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,280 - INFO -   organization-other             F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,280 - INFO -   organization-showorganization  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,280 - INFO -   other-livingthing              F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,280 - INFO -   person-artist/author           F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,280 - INFO -   person-other                   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,280 - INFO -   person-soldier                 F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,280 - INFO -   product-car                    F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,280 - INFO -   product-other                  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,280 - INFO - ----------------------------------------
+2026-02-08 17:22:56,280 - INFO - Results saved to: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/CODEIE-results/fine_nl_default_mistral_20260208_172256.json
+2026-02-08 17:22:56,280 - INFO - ============================================================
+2026-02-08 17:22:56,280 - INFO - Updated experiment matrix: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/CODEIE-results/experiment_matrix.csv
+2026-02-08 17:22:56,280 - INFO - 
+[26/28] Starting: mistral_base_fine_nl_backtrans_ch
+2026-02-08 17:22:56,280 - INFO - 
+============================================================
+2026-02-08 17:22:56,280 - INFO - Running: mistral_base_fine_nl_backtrans_ch
+2026-02-08 17:22:56,280 - INFO -   Model: mistral
+2026-02-08 17:22:56,280 - INFO -   Granularity: fine
+2026-02-08 17:22:56,280 - INFO -   Style: nl
+2026-02-08 17:22:56,280 - INFO -   Variation: backtrans_ch
+2026-02-08 17:22:56,280 - INFO -   Prompt: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/prompts/variations/fine_nl_1shot/backtrans_ch.txt
+2026-02-08 17:22:56,280 - INFO - ============================================================
+2026-02-08 17:22:56,280 - INFO - ============================================================
+2026-02-08 17:22:56,280 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-08 17:22:56,280 - INFO - ============================================================
+2026-02-08 17:22:56,280 - INFO - Granularity: fine
+2026-02-08 17:22:56,280 - INFO - Style: nl
+2026-02-08 17:22:56,280 - INFO - Variation: backtrans_ch
+2026-02-08 17:22:56,280 - INFO - Model: mistral
+2026-02-08 17:22:56,280 - INFO - ============================================================
+2026-02-08 17:22:56,280 - INFO - Using ChatOllama (Chat API) for mistral
+2026-02-08 17:22:56,312 - WARNING - Variation 'backtrans_ch' not found, using 'default' instead
+2026-02-08 17:22:56,312 - INFO - Available NL variations: ['default']
+2026-02-08 17:22:56,312 - INFO - Entity types (2): ['person-actor', 'dummy']
+2026-02-08 17:22:56,312 - INFO - Loading test data from: /Users/marcrodig/Development/kdai/KDAI-Experiments/few-nerd_test
+2026-02-08 17:22:56,316 - INFO - Loading pre-generated prompt from: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/prompts/variations/fine_nl_1shot/backtrans_ch.txt
+2026-02-08 17:22:56,317 - INFO - ICL prompt length: 13772 characters
+2026-02-08 17:22:56,317 - INFO - Sample ICL prompt (first 1000 chars):
+2026-02-08 17:22:56,317 - INFO - ----------------------------------------
+2026-02-08 17:22:56,317 - INFO - **Annotation Guidelines:**
+2026-02-08 17:22:56,317 - INFO - 
+2026-02-08 17:22:56,317 - INFO - - **Annotation goal**: Identify all named entities in the text and label them with the corresponding category.  
+2026-02-08 17:22:56,317 - INFO - - **Named entity categories**: Extract named entities according to the following categories:
+2026-02-08 17:22:56,317 - INFO - 
+2026-02-08 17:22:56,317 - INFO -   * **art-broadcastprogram**: a television or radio program  
+2026-02-08 17:22:56,317 - INFO -   * **art-film**: a movie  
+2026-02-08 17:22:56,317 - INFO -   * **art-music**: a song  
+2026-02-08 17:22:56,317 - INFO -   * **art-other**: other artistic works  
+2026-02-08 17:22:56,317 - INFO -   * **art-painting**: a painting  
+2026-02-08 17:22:56,317 - INFO -   * **art-writtenart**: a book  
+2026-02-08 17:22:56,317 - INFO -   * **building-airport**: airport  
+2026-02-08 17:22:56,317 - INFO -   * **building-hospital**: hospital  
+2026-02-08 17:22:56,317 - INFO -   * **building-hotel**: hotel  
+2026-02-08 17:22:56,317 - INFO -   * **building-library**: library  
+2026-02-08 17:22:56,317 - INFO -   * **building-other**: other building  
+2026-02-08 17:22:56,317 - INFO -   * **building-restaurant**: restaurant  
+2026-02-08 17:22:56,317 - INFO -   * **building-sportsfacility**: sports facility  
+2026-02-08 17:22:56,317 - INFO -   * **building-theater**: theater  
+2026-02-08 17:22:56,317 - INFO -   * **event-attack/battle/war/militaryconflict**: battle, conflict  
+2026-02-08 17:22:56,317 - INFO -   * **event-disaster**: disaster  
+2026-02-08 17:22:56,317 - INFO -   * **event-election**: election  
+2026-02-08 17:22:56,317 - INFO -   * **event-other**: other event  
+2026-02-08 17:22:56,317 - INFO -   * **event-protest**: protest  
+2026-02-08 17:22:56,317 - INFO -   * **event-sports
+2026-02-08 17:22:56,317 - INFO - ----------------------------------------
+2026-02-08 17:22:56,317 - INFO - Processing 10 test samples...
+2026-02-08 17:22:56,319 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,319 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,320 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,322 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,323 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,323 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,324 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,325 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,326 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,327 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,327 - INFO - Progress: 10/10 | P: 0.0000 | R: 0.0000 | Micro-F1: 0.0000 | Macro-F1: 0.0000
+2026-02-08 17:22:56,327 - INFO - ============================================================
+2026-02-08 17:22:56,327 - INFO - Final Results
+2026-02-08 17:22:56,328 - INFO - ============================================================
+2026-02-08 17:22:56,328 - INFO - Precision:  0.0000
+2026-02-08 17:22:56,328 - INFO - Recall:     0.0000
+2026-02-08 17:22:56,328 - INFO - Micro F1:   0.0000
+2026-02-08 17:22:56,328 - INFO - Macro F1:   0.0000
+2026-02-08 17:22:56,328 - INFO - ----------------------------------------
+2026-02-08 17:22:56,328 - INFO - Per-Type F1 Scores:
+2026-02-08 17:22:56,328 - INFO -   building-hotel                 F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,328 - INFO -   building-other                 F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,328 - INFO -   event-attack/battle/war/militaryconflict F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,328 - INFO -   event-protest                  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,328 - INFO -   event-sportsevent              F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,328 - INFO -   location-GPE                   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,328 - INFO -   location-park                  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,328 - INFO -   organization-media/newspaper   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,328 - INFO -   organization-other             F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,328 - INFO -   organization-showorganization  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,328 - INFO -   other-livingthing              F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,328 - INFO -   person-artist/author           F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,328 - INFO -   person-other                   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,328 - INFO -   person-soldier                 F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,328 - INFO -   product-car                    F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,328 - INFO -   product-other                  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,328 - INFO - ----------------------------------------
+2026-02-08 17:22:56,328 - INFO - Results saved to: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/CODEIE-results/fine_nl_default_mistral_20260208_172256.json
+2026-02-08 17:22:56,328 - INFO - ============================================================
+2026-02-08 17:22:56,328 - INFO - Updated experiment matrix: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/CODEIE-results/experiment_matrix.csv
+2026-02-08 17:22:56,328 - INFO - 
+[27/28] Starting: mistral_base_fine_nl_backtrans_sp
+2026-02-08 17:22:56,328 - INFO - 
+============================================================
+2026-02-08 17:22:56,328 - INFO - Running: mistral_base_fine_nl_backtrans_sp
+2026-02-08 17:22:56,328 - INFO -   Model: mistral
+2026-02-08 17:22:56,328 - INFO -   Granularity: fine
+2026-02-08 17:22:56,328 - INFO -   Style: nl
+2026-02-08 17:22:56,328 - INFO -   Variation: backtrans_sp
+2026-02-08 17:22:56,328 - INFO -   Prompt: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/prompts/variations/fine_nl_1shot/backtrans_sp.txt
+2026-02-08 17:22:56,328 - INFO - ============================================================
+2026-02-08 17:22:56,328 - INFO - ============================================================
+2026-02-08 17:22:56,328 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-08 17:22:56,328 - INFO - ============================================================
+2026-02-08 17:22:56,328 - INFO - Granularity: fine
+2026-02-08 17:22:56,328 - INFO - Style: nl
+2026-02-08 17:22:56,328 - INFO - Variation: backtrans_sp
+2026-02-08 17:22:56,328 - INFO - Model: mistral
+2026-02-08 17:22:56,328 - INFO - ============================================================
+2026-02-08 17:22:56,328 - INFO - Using ChatOllama (Chat API) for mistral
+2026-02-08 17:22:56,361 - WARNING - Variation 'backtrans_sp' not found, using 'default' instead
+2026-02-08 17:22:56,361 - INFO - Available NL variations: ['default']
+2026-02-08 17:22:56,361 - INFO - Entity types (2): ['person-actor', 'dummy']
+2026-02-08 17:22:56,361 - INFO - Loading test data from: /Users/marcrodig/Development/kdai/KDAI-Experiments/few-nerd_test
+2026-02-08 17:22:56,365 - INFO - Loading pre-generated prompt from: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/prompts/variations/fine_nl_1shot/backtrans_sp.txt
+2026-02-08 17:22:56,366 - INFO - ICL prompt length: 11498 characters
+2026-02-08 17:22:56,366 - INFO - Sample ICL prompt (first 1000 chars):
+2026-02-08 17:22:56,366 - INFO - ----------------------------------------
+2026-02-08 17:22:56,366 - INFO - **Annotation Guidelines:**  
+2026-02-08 17:22:56,366 - INFO - Extract named entities based on the following categories:
+2026-02-08 17:22:56,366 - INFO - 
+2026-02-08 17:22:56,366 - INFO - * art‑broadcastprogram: A named television or radio program.  
+2026-02-08 17:22:56,366 - INFO - * art‑film: A named movie or feature film.  
+2026-02-08 17:22:56,366 - INFO - * art‑music: A named song, album, or musical composition.  
+2026-02-08 17:22:56,366 - INFO - * art‑other: Other works of art not covered by specific categories.  
+2026-02-08 17:22:56,366 - INFO - * art‑painting: A named painting or visual artwork.  
+2026-02-08 17:22:56,366 - INFO - * art‑writtenart: A named book, poem, essay, or other written work.  
+2026-02-08 17:22:56,366 - INFO - * building‑airport: A named airport or airfield.  
+2026-02-08 17:22:56,366 - INFO - * building‑hospital: A named hospital, clinic, or medical center.  
+2026-02-08 17:22:56,366 - INFO - * building‑hotel: A named hotel, motel, or resort.  
+2026-02-08 17:22:56,366 - INFO - * building‑library: A named library or archive.  
+2026-02-08 17:22:56,366 - INFO - * building‑other: Other named buildings or structures.  
+2026-02-08 17:22:56,366 - INFO - * building‑restaurant: A named restaurant, cafe, or bar.  
+2026-02-08 17:22:56,366 - INFO - * building‑sportsfacility: A named stadium, arena, or sports complex.  
+2026-02-08 17:22:56,366 - INFO - * building‑theater: A named theater or cinema.  
+2026-02-08 17:22:56,366 - INFO - * event‑attack/battle/war/militaryconflict: A named military conflict, battle, or war.  
+2026-02-08 17:22:56,366 - INFO - * 
+2026-02-08 17:22:56,366 - INFO - ----------------------------------------
+2026-02-08 17:22:56,366 - INFO - Processing 10 test samples...
+2026-02-08 17:22:56,367 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,368 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,369 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,370 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,370 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,371 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,372 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,373 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,374 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,375 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,375 - INFO - Progress: 10/10 | P: 0.0000 | R: 0.0000 | Micro-F1: 0.0000 | Macro-F1: 0.0000
+2026-02-08 17:22:56,376 - INFO - ============================================================
+2026-02-08 17:22:56,376 - INFO - Final Results
+2026-02-08 17:22:56,376 - INFO - ============================================================
+2026-02-08 17:22:56,376 - INFO - Precision:  0.0000
+2026-02-08 17:22:56,376 - INFO - Recall:     0.0000
+2026-02-08 17:22:56,376 - INFO - Micro F1:   0.0000
+2026-02-08 17:22:56,376 - INFO - Macro F1:   0.0000
+2026-02-08 17:22:56,376 - INFO - ----------------------------------------
+2026-02-08 17:22:56,376 - INFO - Per-Type F1 Scores:
+2026-02-08 17:22:56,376 - INFO -   building-hotel                 F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,376 - INFO -   building-other                 F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,376 - INFO -   event-attack/battle/war/militaryconflict F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,376 - INFO -   event-protest                  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,376 - INFO -   event-sportsevent              F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,376 - INFO -   location-GPE                   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,376 - INFO -   location-park                  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,376 - INFO -   organization-media/newspaper   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,376 - INFO -   organization-other             F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,376 - INFO -   organization-showorganization  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,376 - INFO -   other-livingthing              F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,376 - INFO -   person-artist/author           F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,376 - INFO -   person-other                   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,376 - INFO -   person-soldier                 F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,376 - INFO -   product-car                    F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,376 - INFO -   product-other                  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,376 - INFO - ----------------------------------------
+2026-02-08 17:22:56,376 - INFO - Results saved to: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/CODEIE-results/fine_nl_default_mistral_20260208_172256.json
+2026-02-08 17:22:56,376 - INFO - ============================================================
+2026-02-08 17:22:56,376 - INFO - Updated experiment matrix: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/CODEIE-results/experiment_matrix.csv
+2026-02-08 17:22:56,376 - INFO - 
+[28/28] Starting: mistral_base_fine_nl_backtrans_tu
+2026-02-08 17:22:56,376 - INFO - 
+============================================================
+2026-02-08 17:22:56,376 - INFO - Running: mistral_base_fine_nl_backtrans_tu
+2026-02-08 17:22:56,376 - INFO -   Model: mistral
+2026-02-08 17:22:56,376 - INFO -   Granularity: fine
+2026-02-08 17:22:56,376 - INFO -   Style: nl
+2026-02-08 17:22:56,376 - INFO -   Variation: backtrans_tu
+2026-02-08 17:22:56,376 - INFO -   Prompt: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/prompts/variations/fine_nl_1shot/backtrans_tu.txt
+2026-02-08 17:22:56,376 - INFO - ============================================================
+2026-02-08 17:22:56,376 - INFO - ============================================================
+2026-02-08 17:22:56,376 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-08 17:22:56,376 - INFO - ============================================================
+2026-02-08 17:22:56,376 - INFO - Granularity: fine
+2026-02-08 17:22:56,376 - INFO - Style: nl
+2026-02-08 17:22:56,376 - INFO - Variation: backtrans_tu
+2026-02-08 17:22:56,376 - INFO - Model: mistral
+2026-02-08 17:22:56,376 - INFO - ============================================================
+2026-02-08 17:22:56,376 - INFO - Using ChatOllama (Chat API) for mistral
+2026-02-08 17:22:56,409 - WARNING - Variation 'backtrans_tu' not found, using 'default' instead
+2026-02-08 17:22:56,409 - INFO - Available NL variations: ['default']
+2026-02-08 17:22:56,409 - INFO - Entity types (2): ['person-actor', 'dummy']
+2026-02-08 17:22:56,409 - INFO - Loading test data from: /Users/marcrodig/Development/kdai/KDAI-Experiments/few-nerd_test
+2026-02-08 17:22:56,414 - INFO - Loading pre-generated prompt from: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/prompts/variations/fine_nl_1shot/backtrans_tu.txt
+2026-02-08 17:22:56,414 - INFO - ICL prompt length: 14238 characters
+2026-02-08 17:22:56,414 - INFO - Sample ICL prompt (first 1000 chars):
+2026-02-08 17:22:56,414 - INFO - ----------------------------------------
+2026-02-08 17:22:56,414 - INFO - **Annotation Guidelines:**
+2026-02-08 17:22:56,414 - INFO - Extract named entities based on the following categories:
+2026-02-08 17:22:56,414 - INFO - 
+2026-02-08 17:22:56,414 - INFO - *   art-broadcastprogram: A named television or radio program.
+2026-02-08 17:22:56,415 - INFO - *   art-film: A named movie or film.
+2026-02-08 17:22:56,415 - INFO - *   art-music: A named song, album, or musical composition.
+2026-02-08 17:22:56,415 - INFO - *   art-other: Other works of art not covered by specific categories.
+2026-02-08 17:22:56,415 - INFO - *   art-painting: A named painting or visual artwork.
+2026-02-08 17:22:56,415 - INFO - *   art-writtenart: A named book, poem, essay, or other written work.
+2026-02-08 17:22:56,415 - INFO - *   building-airport: A named airport or airfield.
+2026-02-08 17:22:56,415 - INFO - *   building-hospital: A named hospital, clinic, or medical center.
+2026-02-08 17:22:56,415 - INFO - *   building-hotel: A named hotel, motel, or resort.
+2026-02-08 17:22:56,415 - INFO - *   building-library: A named library or archive.
+2026-02-08 17:22:56,415 - INFO - *   building-other: Other named buildings or structures.
+2026-02-08 17:22:56,415 - INFO - *   building-restaurant: A named restaurant, cafe, or bar.
+2026-02-08 17:22:56,415 - INFO - *   building-sportsfacility: A named stadium, arena, or sports complex.
+2026-02-08 17:22:56,415 - INFO - *   building-theater: A named theater or cinema.
+2026-02-08 17:22:56,415 - INFO - *   event-attack/battle/war/militaryconflict: A named military conflict, battle, or war.
+2026-02-08 17:22:56,415 - INFO - *   event-di
+2026-02-08 17:22:56,415 - INFO - ----------------------------------------
+2026-02-08 17:22:56,415 - INFO - Processing 10 test samples...
+2026-02-08 17:22:56,416 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,417 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,417 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,418 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,419 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,420 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,421 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,422 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,423 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,424 - ERROR - Inference failed: [Errno 61] Connection refused
+2026-02-08 17:22:56,424 - INFO - Progress: 10/10 | P: 0.0000 | R: 0.0000 | Micro-F1: 0.0000 | Macro-F1: 0.0000
+2026-02-08 17:22:56,425 - INFO - ============================================================
+2026-02-08 17:22:56,425 - INFO - Final Results
+2026-02-08 17:22:56,425 - INFO - ============================================================
+2026-02-08 17:22:56,425 - INFO - Precision:  0.0000
+2026-02-08 17:22:56,425 - INFO - Recall:     0.0000
+2026-02-08 17:22:56,425 - INFO - Micro F1:   0.0000
+2026-02-08 17:22:56,425 - INFO - Macro F1:   0.0000
+2026-02-08 17:22:56,425 - INFO - ----------------------------------------
+2026-02-08 17:22:56,425 - INFO - Per-Type F1 Scores:
+2026-02-08 17:22:56,425 - INFO -   building-hotel                 F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,425 - INFO -   building-other                 F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,425 - INFO -   event-attack/battle/war/militaryconflict F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,425 - INFO -   event-protest                  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,425 - INFO -   event-sportsevent              F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,425 - INFO -   location-GPE                   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,425 - INFO -   location-park                  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,425 - INFO -   organization-media/newspaper   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,425 - INFO -   organization-other             F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,425 - INFO -   organization-showorganization  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,425 - INFO -   other-livingthing              F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,425 - INFO -   person-artist/author           F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,425 - INFO -   person-other                   F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,425 - INFO -   person-soldier                 F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,425 - INFO -   product-car                    F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,425 - INFO -   product-other                  F1: 0.0000 (P: 0.0000, R: 0.0000)
+2026-02-08 17:22:56,425 - INFO - ----------------------------------------
+2026-02-08 17:22:56,425 - INFO - Results saved to: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/CODEIE-results/fine_nl_default_mistral_20260208_172256.json
+2026-02-08 17:22:56,425 - INFO - ============================================================
+2026-02-08 17:22:56,425 - INFO - Updated experiment matrix: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/CODEIE-results/experiment_matrix.csv
+2026-02-08 17:22:56,426 - INFO - 
+============================================================
+2026-02-08 17:22:56,426 - INFO - Pipeline complete!
+2026-02-08 17:22:56,426 - INFO -   Completed: 28/28 runs
+2026-02-08 17:22:56,426 - INFO -   Results saved to: /Users/marcrodig/Development/kdai/KDAI-Experiments/CodeIE/CODEIE-results/batch_20260208_172250
+2026-02-08 17:22:56,426 - INFO - ============================================================
