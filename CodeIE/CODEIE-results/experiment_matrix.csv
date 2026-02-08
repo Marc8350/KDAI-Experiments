@@ -1,3 +1,21 @@
 datetime,granularity,style,variation,model,n_samples,precision,recall,micro_f1,macro_f1,result_file
 2026-02-07 16:48:38,coarse,nl,default,mistral,100,0.3343,0.4836,0.3953,0.336,coarse_nl_default_mistral_20260207_164749.json
 2026-02-07 16:53:00,coarse,nl,default,falcon,100,0.0,0.0,0.0,0.0,coarse_nl_default_falcon_20260207_164941.json
+2026-02-08 16:12:10,coarse,pl,default,falcon3:latest,10,0.0,0.0,0.0,0.0,coarse_pl_default_falcon3:latest_20260208_161201.json
+2026-02-08 16:12:17,coarse,pl,default,falcon3:latest,10,0.0,0.0,0.0,0.0,coarse_pl_default_falcon3:latest_20260208_161210.json
+2026-02-08 16:12:24,coarse,pl,default,falcon3:latest,10,0.0,0.0,0.0,0.0,coarse_pl_default_falcon3:latest_20260208_161217.json
+2026-02-08 16:12:30,coarse,pl,default,falcon3:latest,10,0.0,0.0,0.0,0.0,coarse_pl_default_falcon3:latest_20260208_161224.json
+2026-02-08 16:12:36,coarse,pl,default,falcon3:latest,10,0.0,0.0,0.0,0.0,coarse_pl_default_falcon3:latest_20260208_161230.json
+2026-02-08 16:12:43,coarse,pl,default,falcon3:latest,10,0.0,0.0,0.0,0.0,coarse_pl_default_falcon3:latest_20260208_161237.json
+2026-02-08 16:12:50,coarse,pl,default,falcon3:latest,10,0.0,0.0,0.0,0.0,coarse_pl_default_falcon3:latest_20260208_161243.json
+2026-02-08 16:12:53,coarse,nl,default,falcon3:latest,10,0.0,0.0,0.0,0.0,coarse_nl_default_falcon3:latest_20260208_161250.json
+2026-02-08 16:12:56,coarse,nl,default,falcon3:latest,10,0.0,0.0,0.0,0.0,coarse_nl_default_falcon3:latest_20260208_161253.json
+2026-02-08 16:12:59,coarse,nl,default,falcon3:latest,10,0.0,0.0,0.0,0.0,coarse_nl_default_falcon3:latest_20260208_161256.json
+2026-02-08 16:13:02,coarse,nl,default,falcon3:latest,10,0.0,0.0,0.0,0.0,coarse_nl_default_falcon3:latest_20260208_161259.json
+2026-02-08 16:13:09,coarse,nl,default,falcon3:latest,10,0.0,0.0,0.0,0.0,coarse_nl_default_falcon3:latest_20260208_161302.json
+2026-02-08 16:13:13,coarse,nl,default,falcon3:latest,10,0.0,0.0,0.0,0.0,coarse_nl_default_falcon3:latest_20260208_161309.json
+2026-02-08 16:13:16,coarse,nl,default,falcon3:latest,10,0.0,0.0,0.0,0.0,coarse_nl_default_falcon3:latest_20260208_161313.json
+2026-02-08 16:13:33,fine,pl,default,falcon3:latest,10,0.0,0.0,0.0,0.0,fine_pl_default_falcon3:latest_20260208_161316.json
+2026-02-08 16:13:51,fine,pl,default,falcon3:latest,10,0.0,0.0,0.0,0.0,fine_pl_default_falcon3:latest_20260208_161333.json
+2026-02-08 16:14:11,fine,pl,default,falcon3:latest,10,0.0,0.0,0.0,0.0,fine_pl_default_falcon3:latest_20260208_161351.json
+2026-02-08 16:14:28,fine,pl,default,falcon3:latest,10,0.0,0.0,0.0,0.0,fine_pl_default_falcon3:latest_20260208_161411.json
