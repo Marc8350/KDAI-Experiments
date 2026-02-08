@@ -1,6 +1,23 @@
 {
-  "generated_at": "2026-02-08T12:29:39.464740",
-  "total_prompts": 0,
+  "generated_at": "2026-02-08T12:51:55.603446",
+  "total_prompts": 4,
   "similarity_threshold": 0.9,
-  "prompts": {}
+  "prompts": {
+    "coarse_pl_1shot": {
+      "accepted": 0,
+      "rejected": 0
+    },
+    "coarse_nl_1shot": {
+      "accepted": 0,
+      "rejected": 0
+    },
+    "fine_pl_1shot": {
+      "accepted": 0,
+      "rejected": 0
+    },
+    "fine_nl_1shot": {
+      "accepted": 3,
+      "rejected": 0
+    }
+  }
 }
