@@ -1,0 +1,66 @@
+# Task: Complete the Python code by adding `entity_list.append()` statements.
+
+# Do not explain the code. Output only the `entity_list.append()` lines.
+
+# You are a professional Named Entity Recognition (NER) system focused on extracting entities from text.
+
+# For each `input_text`, identify named entities and add them using `entity_list.append()`.
+
+# Entity types:
+# - art: includes movies, books, music, paintings, or other creative works.
+# - building: structures or buildings named, such as arenas, museums, or hotels.
+# - event: events named, such as wars, sports events, festivals, or historical events.
+# - location: cities, countries, continents, regions, or landmark geographic locations.
+# - organization: organizations, institutions, companies, or groups named.
+# - other: named entities not belonging to the above categories.
+# - person: individuals named, including fictional characters, historical figures, celebrities, and ordinary people.
+# - product: commercial products, software, vehicle models, or branded items named.
+
+# Example:
+def named_entity_recognition(input_text):
+    """ Extract named entities from input_text. """
+    input_text = "专辑于2008年3月25日发行。这是该组合自1992年《好东西》以来首次发行的新材料专辑。"
+    entity_list = []
+    entity_list.append({"text": "好东西", "type": "art"})
+
+def named_entity_recognition(input_text):
+    """ Extract named entities from input_text. """
+    input_text = "1136年，城堡被捐赠给耶路撒冷医院骑士团。"
+    entity_list = []
+    entity_list.append({"text": "耶路撒冷医院骑士团", "type": "building"})
+
+def named_entity_recognition(input_text):
+    """ Extract named entities from input_text. """
+    input_text = "在第二次世界大战期间，重货常被运往军事单位和营地。"
+    entity_list = []
+    entity_list.append({"text": "第二次世界大战", "type": "event"})
+
+def named_entity_recognition(input_text):
+    """ Extract named entities from input_text. """
+    input_text = "在接下来的五年里，她在新泽西州卡普迈地区开展测试。"
+    entity_list = []
+    entity_list.append({"text": "新泽西州卡普迈", "type": "location"})
+
+def named_entity_recognition(input_text):
+    """ Extract named entities from input_text. """
+    input_text = "1945年1月30日至2月4日，她在费城海军船厂进行特殊实验工作。"
+    entity_list = []
+    entity_list.append({"text": "费城海军船厂", "type": "organization"})
+
+def named_entity_recognition(input_text):
+    """ Extract named entities from input_text. """
+    input_text = "1886年《克罗夫特法案》通过后，社会动荡仍在继续。"
+    entity_list = []
+    entity_list.append({"text": "克罗夫特法案", "type": "other"})
+
+def named_entity_recognition(input_text):
+    """ Extract named entities from input_text. """
+    input_text = "里迪名义上负责该行动，但自此以来一直坚持认为自己被下属欺骗。"
+    entity_list = []
+    entity_list.append({"text": "里迪", "type": "person"})
+
+def named_entity_recognition(input_text):
+    """ Extract named entities from input_text. """
+    input_text = "唯一的21 2-10-4德州型机车常被用来拉运重货。"
+    entity_list = []
+    entity_list.append({"text": "21 2-10-4德州型机车", "type": "product"})

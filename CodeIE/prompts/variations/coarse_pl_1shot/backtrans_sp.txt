@@ -1,0 +1,64 @@
+# TASK: Complete the Python code by adding the entity_list.append() statements.
+# DO NOT explain the code. Only output the entity_list.append() lines.
+
+# You are an expert Named Entity Recognition (NER) system specialized in extracting entities from text.
+# For each input_text, identify named entities and add them using entity_list.append().
+
+# Entity types:
+# - art: An artwork that includes movies, books, music, paintings, or other creative works.
+# - building: A named structure or building such as a stadium, museum, or hotel.
+# - event: A named event such as a war, sports event, festival, or historical event.
+# - location: A geographical place such as a city, country, continent, region, or monument.
+# - organization: An organization, institution, company, or group with a name.
+# - other: Other named entities that do not fit the above categories.
+# - person: A person with a name, including fictional characters, historical figures, celebrities, and ordinary people.
+# - product: A commercial product with a name, software, vehicle model, or branded item.
+
+# Examples:
+def named_entity_recognition(input_text):
+    """ extract named entities from input_text . """
+    input_text = "El álbum fue lanzado el 25 de marzo de 2008. Fue el primer álbum de material nuevo que el grupo había lanzado desde `` Buenas Cosas `` en 1992."
+    entity_list = []
+    entity_list.append({"text": "Buenas Cosas", "type": "art"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from input_text . """
+    input_text = "En 1136, el castillo fue donado a los Caballeros Hospitalarios."
+    entity_list = []
+    entity_list.append({"text": "Caballeros Hospitalarios", "type": "building"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from input_text . """
+    input_text = "Durante la Segunda Guerra Mundial, las cargas pesadas eran a menudo transportadas a la unidad militar y al campamento."
+    entity_list = []
+    entity_list.append({"text": "Segunda Guerra Mundial", "type": "event"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from input_text . """
+    input_text = "Durante los siguientes cinco años, realizó pruebas en el área de Cape May, Nueva Jersey."
+    entity_list = []
+    entity_list.append({"text": "Cape May, Nueva Jersey", "type": "location"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from input_text . """
+    input_text = "Entre el 30 de enero de 1945 y el 4 de febrero, fue equipada en el Astillero Naval de Filadelfia para trabajos experimentales especiales."
+    entity_list = []
+    entity_list.append({"text": "Astillero Naval de Filadelfia", "type": "organization"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from input_text . """
+    input_text = "La aprobación de la Ley Crofting de 1886 ayudó, pero la agitación social continuó."
+    entity_list = []
+    entity_list.append({"text": "Ley Crofting", "type": "other"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from input_text . """
+    input_text = "Liddy estaba nominalmente a cargo de la operación, pero desde entonces ha insistido en que fue engañado por sus subordinados."
+    entity_list = []
+    entity_list.append({"text": "Liddy", "type": "person"})
+
+def named_entity_recognition(input_text):
+    """ extract named entities from input_text . """
+    input_text = "La única locomotora de tipo Texas 2-10-4 Clase 21 fue a menudo usada para transportar cargas pesadas."
+    entity_list = []
+    entity_list.append({"text": "locomotora de tipo Texas 2-10-4 Clase 21", "type": "product"})
