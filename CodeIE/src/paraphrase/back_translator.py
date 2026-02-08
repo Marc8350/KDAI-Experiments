@@ -74,27 +74,30 @@ You must replace the following English structural phrases with their natural equ
 """
 
 
-TRANSLATE_BACK_SYSTEM = """You are an expert translator. Your task is to translate prompts 
-back to English while preserving their exact functionality."""
+TRANSLATE_BACK_SYSTEM = """"""
 
 
-TRANSLATE_BACK_TEMPLATE = """Translate the following {source_language} prompt back into English.
+TRANSLATE_BACK_TEMPLATE = """You are a technical localization expert. Your task is to translate a prompt from {source_language} back into English. 
 
-CRITICAL RULES:
-1. Keep all code syntax exactly as-is (function definitions, variable names, brackets, etc.)
-2. Keep all placeholders exactly as-is (e.g., {{text}}, {{input_text}}, {{entity_list}})
-3. Keep all JSON-like structures exactly as-is
-4. Only translate the natural language parts (docstrings, comments, instructions)
-5. Preserve line breaks and indentation
-6. SUPER CRITICAL: Do NOT translate entity type names like "person", "location", "organization", "building", "event", etc. Keep them exactly in English.
-7. The entire translated document should only contain english contents and no remainders of the source language
+**GOAL**: The final output must look exactly like an English NLP research prompt. No {source_language} should remain.
 
-{source_language} prompt:
+**CRITICAL TRANSLATION SCOPE:**
+1. **STRING VALUES**: You MUST translate the content of all string variables (e.g., the text inside `input_text = "..."` or `prompt = "..."`).
+2. **DICTIONARY VALUES**: You MUST translate the values associated with the "text" key in dictionary objects (e.g., {{ "text": "..." }}).
+3. **MAPPING**: Ensure the translated entity name in the `entity_list.append` line matches the translated sentence in the input variable (e.g., `input_text` or `prompt`).
+4. **PROSE**: Translate all comments (#), docstrings, and instructional headers.
+
+**STRICT PRESERVATION RULES (DO NOT CHANGE):**
+1. **LABEL LOCK**: Do NOT translate the entity types/categories (e.g., "person", "location", "organization", "building", "event", "art", "product", "other"). These are functional keys.
+2. **CODE STRUCTURE**: Keep all Python syntax, function names, variable names (`input_text`, `prompt`, `entity_list`), and indentation exactly as-is.
+3. **NO EXPLANATIONS**: Provide only the translated code and text. Do not add "Here is the translation" or any conversational filler.
+
+**SOURCE PROMPT TO TRANSLATE:**
 ---
 {prompt}
 ---
 
-Provide only the translated prompt in English, nothing else."""
+**Provide the English translation below:**"""
 
 
 class BackTranslator:
