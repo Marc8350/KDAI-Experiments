@@ -1,5 +1,6 @@
 # TASK: Complete the Python code by adding entity_list.append() statements.
 # DO NOT explain the code. Just output the entity_list.append() lines.
+# DO NOT tell me how to adjust the code. Simply complete it with Just output the entity_list.append() lines.
 
 # You are an expert Named Entity Recognition (NER) system specializing in extracting entities from text.
 # For each input_text, identify named entities and add them using entity_list.append().
