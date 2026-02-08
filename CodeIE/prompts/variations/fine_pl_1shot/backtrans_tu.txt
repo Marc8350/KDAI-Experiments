@@ -1,0 +1,99 @@
+<think>
+Okay, so I need to translate this query into English, but only provide the translated prompt and nothing else. Let me see what the user provided.
+
+The original text is in Turkish, and it's a repeated block of content that seems to be about translating examples for different categories like "Sanat (art)", "Bina (building)", etc. Each category has an example sentence and a translated output.
+
+First, I'll identify each section. It starts with a heading, then an example sentence in Turkish, followed by the translated output. My task is to translate this entire structure into English accurately.
+
+I notice that some terms are already in English within parentheses, like "Sanat (art)". So I need to ensure consistency, probably keeping those as they are but translating the rest.
+
+Let me start with the first section:
+
+1. **Sanat (art)**
+   - Örnek: "Tablo, 'The Starry Night', Van Gogh'un en ünlü eserlerinden biridir."
+     - Çevrilmiş Çıktı: "The Starry Night" -> "sanat-eser"
+
+Translating this would be:
+
+1. **Art**
+   - Example: "The painting, 'The Starry Night,' is one of Van Gogh's most famous works."
+     - Translated Output: "The Starry Night" -> "art-work"
+
+Wait, but in the original, it's "sanat-eser". I should keep that as is since it's a term. So maybe:
+
+1. **Art**
+   - Example: "The painting, 'The Starry Night,' is one of Van Gogh's most famous works."
+     - Translated Output: "The Starry Night" -> "art-work"
+
+I'll apply this structure to each section.
+
+Next, I need to ensure that all categories are translated correctly. For example, "Bina (building)" becomes "Building", and so on.
+
+I should also check for any specific terminology or proper nouns, like "Eiffel Kulesi" which is the Eiffel Tower in English.
+
+Another thing to note is consistency in translation. Terms like "kuruluş-örgüt" should be translated as "organization-institution" to maintain the structure.
+
+I'll proceed section by section, ensuring each part is accurately translated and that the formatting with bold and hyphens is preserved.
+
+Finally, I need to make sure there are no additional explanations or comments—just the translated prompt as per the user's instruction.
+</think>
+
+1. **Art**  
+   - Example: "The painting, 'The Starry Night,' is one of Van Gogh's most famous works."  
+     - Translated Output: "The Starry Night" -> "art-work"  
+
+2. **Building**  
+   - Example: "The Eiffel Tower is one of Paris' landmarks."  
+     - Translated Output: "Eiffel Tower" -> "building-structure"  
+
+3. **City**  
+   - Example: "Istanbul is one of Turkey's largest cities."  
+     - Translated Output: "Istanbul" -> "city"  
+
+4. **Country**  
+   - Example: "France is one of Europe's important countries."  
+     - Translated Output: "France" -> "country"  
+
+5. **Language**  
+   - Example: "English is one of the most widely spoken languages in the world."  
+     - Translated Output: "English" -> "language"  
+
+6. **Organization**  
+   - Example: "UN, the abbreviation for the United Nations."  
+     - Translated Output: "UN" -> "organization-institution"  
+
+7. **Object**  
+   - Example: "The table is one of the items found in the room."  
+     - Translated Output: "table" -> "object"  
+
+8. **Person**  
+   - Example: "Albert Einstein was a famous scientist."  
+     - Translated Output: "Albert Einstein" -> "person-scientist"  
+
+9. **Location**  
+   - Example: "Children are playing in the park."  
+     - Translated Output: "park" -> "location"  
+
+10. **Time**  
+    - Example: "The meeting will start at 15:00."  
+      - Translated Output: "15:00" -> "time-hour"  
+
+11. **Event**  
+    - Example: "The concert will take place tonight."  
+      - Translated Output: "concert" -> "event"  
+
+12. **Product**  
+    - Example: "The iPhone is one of Apple's most popular products."  
+      - Translated Output: "iPhone" -> "product-phone"  
+
+13. **Service**  
+    - Example: "The company provides customer support services."  
+      - Translated Output: "customer support" -> "service"  
+
+14. **Writing**  
+    - Example: "The book is the author's latest work."  
+      - Translated Output: "book" -> "writing-work"  
+
+15. **Social Media**  
+    - Example: "Instagram is one of the social media platforms."  
+      - Translated Output: "Instagram" -> "social-media-platform"

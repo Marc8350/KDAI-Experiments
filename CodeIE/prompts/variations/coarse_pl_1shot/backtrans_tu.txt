@@ -1,0 +1,96 @@
+<think>
+Alright, I need to translate this Turkish prompt back into English while preserving its exact functionality. Let me start by carefully reading through each part of the prompt to understand what needs to be translated and what should remain unchanged.
+
+First, there are several code examples provided. Each example is a Python function named `named_entity_recognition` which takes an `input_text`. The task is to add `entity_list.append()` statements to complete the code. I must ensure that all code syntax remains exactly as it is. That means function definitions, variable names like `entity_list`, and brackets should not be altered.
+
+Next, there are placeholders like `{text}` and `{input_text}` in the code. These need to stay exactly the same because they serve as variables within the functions. I shouldn't translate these placeholders since they're part of the code structure.
+
+Looking at the entity types listed, such as "art", "building", "event", etc., it's crucial that these remain in English. The rule specifies not to translate entity type names or specific named entities if they appear in code strings, like "Barack Obama". So, I'll leave all those as they are.
+
+The natural language parts include the docstrings and comments within each function. These need to be translated into Turkish accurately while preserving their meaning. For example, the docstring `" extract named entities from the input_text . "` should be translated to something like `" giriş metninden adlandırılmış varlıkları çıkarın . "`. I'll make sure that these translations are clear and maintain the original intent.
+
+I also need to preserve line breaks and indentation. This is important because Python relies on indentation for code structure, so any changes here could break the code functionality. I'll ensure that each translated docstring aligns correctly with its function definition.
+
+Now, looking at the examples provided in each function:
+
+1. The first example mentions "Good Stuff" as an album, which is of type "art". In Turkish, this would translate to `"İyi Şeyler"` and the entity type remains "art".
+2. The second example refers to "Knights Hospitallers" as a building. I'll translate that to `"Hastane Şövalyeleri"` but keep the entity type as "building".
+3. The third example talks about the "Second World War", which translates to `"İkinci Dünya Savaşı"` and remains under the "event" category.
+4. The fourth example has locations like "Cape May, New Jersey". I'll translate this to `"Cape May, New Jersey"` but keep it in English as per the rules since it's a specific location name.
+5. The fifth example mentions "Philadelphia Navy Yard", which is an organization. I'll translate that to `"Philadelphia Donanma Tersanesi"`.
+6. The sixth example refers to the "Crofting Act", which falls under "other". I'll translate this to `"Crofting Yasası"` but keep the entity type as "other".
+7. The seventh example is about a person named "Liddy", so I'll translate that to `"Liddy"` and keep the entity type as "person".
+8. The eighth example talks about a locomotive, which is a product. I'll translate the text accordingly while keeping the entity type as "product".
+
+I need to ensure that all these translations are accurate and maintain the context necessary for the NER task. It's also important to keep the structure of each function consistent after translation so that anyone reading it can understand what each part does without confusion.
+
+Finally, I'll review everything to make sure no code syntax was altered, placeholders remain unchanged, entity types are in English, and natural language parts are correctly translated into Turkish. This way, the translated prompt will serve its purpose effectively for NLP annotation tasks.
+</think>
+
+---
+# TASK: Complete the Python code by adding `entity_list.append()` statements.
+
+# CODE EXPLANATION. Only output the `entity_list.append()` lines.
+
+# Named Entity Recognition (NER) Expert: You are an expert system specialized in extracting entities from text.
+# For each input_text, identify the named entities and add them using entity_list.append().
+
+# Entity Types:
+# - art: A work of art such as films, books, music, paintings, or other creative works.
+# - building: A named structure or building like a stadium, museum, or hotel.
+# - event: A named event such as a war, sports event, festival, or historical occurrence.
+# - location: A geographical location such as a city, country, continent, region, or specified place.
+# - organization: A named organization, institution, company, or group.
+# - other: Other named entities that do not fit into the above categories.
+# - person: Named individuals including fictional characters, historical figures, celebrities, and ordinary people.
+# - product: Commercial products, software, vehicle models, or branded items.
+
+# Examples:
+def named_entity_recognition(input_text):
+    """Extract named entities from the input_text."""
+    input_text = "The album was released on March 25 , 2008 . It was the first album of new material that the group had released since `` Good Stuff `` in 1992 ."
+    entity_list = []
+    entity_list.append({"text": "Good Stuff", "type": "art"})
+
+def named_entity_recognition(input_text):
+    """Extract named entities from the input_text."""
+    input_text = "In 1136 , the castle was donated to the Knights Hospitallers ."
+    entity_list = []
+    entity_list.append({"text": "Knights Hospitallers", "type": "building"})
+
+def named_entity_recognition(input_text):
+    """Extract named entities from the input_text."""
+    input_text = "During the Second World War , heavy loads were often hauled to the military unit and camp ."
+    entity_list = []
+    entity_list.append({"text": "Second World War", "type": "event"})
+
+def named_entity_recognition(input_text):
+    """Extract named entities from the input_text."""
+    input_text = "For the next five years she carried out tests in the area of Cape May , New Jersey ."
+    entity_list = []
+    entity_list.append({"text": "Cape May , New Jersey", "type": "location"})
+
+def named_entity_recognition(input_text):
+    """Extract named entities from the input_text."""
+    input_text = "Between 30 January 1945 and 4 February she was outfitted at Philadelphia Navy Yard for special experimental work ."
+    entity_list = []
+    entity_list.append({"text": "Philadelphia Navy Yard", "type": "organization"})
+
+def named_entity_recognition(input_text):
+    """Extract named entities from the input_text."""
+    input_text = "The passing of the Crofting Act of 1886 helped , but social unrest continued ."
+    entity_list = []
+    entity_list.append({"text": "Crofting Act", "type": "other"})
+
+def named_entity_recognition(input_text):
+    """Extract named entities from the input_text."""
+    input_text = "Liddy was nominally in charge of the operation , but has since insisted that he was duped by his subordinates ."
+    entity_list = []
+    entity_list.append({"text": "Liddy", "type": "person"})
+
+def named_entity_recognition(input_text):
+    """Extract named entities from the input_text."""
+    input_text = "The sole Class 21 2-10-4 Texas type locomotive was often used to haul heavy loads ."
+    entity_list = []
+    entity_list.append({"text": "Class 21 2-10-4 Texas type locomotive", "type": "product"})
+---

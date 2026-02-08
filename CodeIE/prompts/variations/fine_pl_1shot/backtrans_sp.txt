@@ -1,0 +1,63 @@
+<think>
+Okay, so I need to translate this entire prompt into Spanish. Let me start by reading through it carefully to understand what's being asked.
+
+The user provided a long list of function definitions for named entity recognition (NER) in English and then instructed to provide only the translated prompt in Spanish, without anything else. My task is to take each of these examples and translate them accurately into Spanish while maintaining their structure and meaning.
+
+First, I notice that each example follows a specific format: there's an input text, followed by a function call with entity type. For instance:
+
+```python
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "Flying from the base , the XB-15 arrived at the airfield ."
+    entity_list.append({"text": "XB-15", "type": "product-weapon"})
+```
+
+I need to translate each `input_text` string and ensure that the function comments are also in Spanish. It's important to keep the code structure intact, only changing the text within the strings and comments.
+
+Let me start with the first example:
+
+1. **Original:**
+   ```python
+   def named_entity_recognition(input_text):
+       """ extract named entities from the input_text . """
+       input_text = "Flying from the base , the XB-15 arrived at the airfield ."
+       entity_list.append({"text": "XB-15", "type": "product-weapon"})
+   ```
+
+   **Translation:**
+   I'll translate the function comment and the input text. The rest of the code remains the same.
+
+2. Moving on to the next example:
+
+   ```python
+   def named_entity_recognition(input_text):
+       """ extract named entities from the input_text . """
+       input_text = "Similar in size to the Opel Rekord , the new car was previously seen in the country ."
+       entity_list.append({"text": "Opel Rekord", "type": "product-car"})
+   ```
+
+   **Translation:**
+   Again, translate the comment and the input string.
+
+I'll continue this process for each example. It's crucial to ensure that proper nouns like "XB-15" or "Opel Rekord" remain unchanged as they are specific terms. However, their context within the sentence should be accurately translated.
+
+Another point to consider is maintaining the correct terminology in Spanish for things like "product-weapon" which translates directly to "producto-arma". I need to ensure that all such tags are correctly translated without altering their meaning.
+
+I also notice that some input texts have specific terms related to biology, chemistry, or other fields. For example:
+
+```python
+def named_entity_recognition(input_text):
+    """ extract named entities from the input_text . """
+    input_text = "P53 has similar features in its gene structures and functions ."
+    entity_list.append({"text": "P53", "type": "other-biologything"})
+```
+
+Here, "P53" is a specific term that should remain as is, but the surrounding text needs accurate translation.
+
+I'll make sure to handle each of these cases carefully. Additionally, for names like "Sam Adegoke" or "Juan Velasco Alvarado", I need to ensure they are correctly translated if necessary, though often proper nouns remain unchanged in translation.
+
+It's also important to maintain the structure of lists and dictionaries within the code. The `entity_list.append` lines should have their strings translated but the syntax must stay correct to avoid any errors.
+
+I'll proceed methodically through each example, translating one at a time, checking for accuracy, and ensuring that the code remains functional in Spanish. This will involve a lot of repetition, but attention to detail is key here.
+
+Finally, after translating all examples, I'll review them to ensure consistency and correctness, making sure that each translated prompt accurately reflects its English counterpart both in structure and meaning.
