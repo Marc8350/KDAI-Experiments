@@ -163,11 +163,24 @@ class Orchestrator:
         
         return base_prompts
     
+
     def _get_all_variation_names(self) -> List[str]:
         """Get all expected variation names."""
-    def _get_all_variation_names(self) -> List[str]:
-        """Get all expected variation names."""
-        return ["base"] + VARIATION_NAMES["paraphrase"] + VARIATION_NAMES["back_translation"]
+        variations = ["base"]
+        
+        # Load from config
+        if "prompts" in self.config and "variations" in self.config["prompts"]:
+            vars_config = self.config["prompts"]["variations"]
+            if "paraphrase" in vars_config:
+                variations.extend(vars_config["paraphrase"])
+            if "back_translation" in vars_config:
+                variations.extend(vars_config["back_translation"])
+        else:
+             # Fallback to defaults if config is missing structure
+             variations.extend(VARIATION_NAMES["paraphrase"])
+             variations.extend(VARIATION_NAMES["back_translation"])
+             
+        return variations
     
     def check_variations(self) -> List[VariationStatus]:
         """Check which variations exist and which are missing."""

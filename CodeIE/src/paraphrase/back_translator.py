@@ -49,7 +49,8 @@ CRITICAL RULES:
 3. Keep all JSON-like structures exactly as-is
 4. Only translate the natural language parts (docstrings, comments, instructions)
 5. Preserve line breaks and indentation
-6. Do NOT translate entity type names like "person", "location", "organization"
+6. SUPER CRITICAL: Do NOT translate entity type names like "person", "location", "organization", "building", "event", etc. Keep them exactly in English.
+7. Do not translate specific named entities if they appear in code strings (e.g. "Barack Obama").
 
 English prompt:
 ---
@@ -71,7 +72,8 @@ CRITICAL RULES:
 3. Keep all JSON-like structures exactly as-is
 4. Only translate the natural language parts (docstrings, comments, instructions)
 5. Preserve line breaks and indentation
-6. Do NOT translate entity type names like "person", "location", "organization"
+6. SUPER CRITICAL: Do NOT translate entity type names like "person", "location", "organization", "building", "event", etc. Keep them exactly in English.
+7. Do not translate specific named entities if they appear in code strings (e.g. "Barack Obama").
 
 {source_language} prompt:
 ---

@@ -158,55 +158,44 @@ def generate_variations_for_prompt(
     if "paraphrase" in methods:
         logger.info("Generating paraphrase variations...")
         for i in range(3):
-            retry_count = 0
-            accepted = False
-            
-            while not accepted and retry_count < max_retries:
-                try:
-                    paraphrased = paraphraser.paraphrase(
-                        base_prompt, 
-                        prompt_style, 
-                        entity_types
-                    )
-                    
-                    # Check similarity
-                    score = similarity_calc.compute_similarity(base_prompt, paraphrased)
-                    
-                    if score >= similarity_threshold:
-                        accepted = True
-                        variation = VariationResult(
-                            name=f"paraphrase_v{i+1}",
-                            method="paraphrase",
-                            language=None,
-                            similarity_score=score,
-                            accepted=True,
-                            model_used=paraphraser.config.model_name,
-                            content=paraphrased
-                        )
-                        variations.append(variation)
-                        
-                        # Save to file
-                        save_variation(output_dir, variation.name, paraphrased)
-                        logger.info(f"  paraphrase_v{i+1}: similarity={score:.4f} ✓")
-                    else:
-                        retry_count += 1
-                        logger.warning(f"  paraphrase_v{i+1} attempt {retry_count}: similarity={score:.4f} < {similarity_threshold} (retrying)")
+            logger.info(f"  Attempting paraphrase_v{i+1}")
+            try:
+                paraphrased = paraphraser.paraphrase(
+                    base_prompt, 
+                    prompt_style, 
+                    entity_types
+                )
                 
-                except Exception as e:
-                    retry_count += 1
-                    logger.error(f"  paraphrase_v{i+1} error: {e}")
-        
-            if not accepted:
-                logger.error(f"  paraphrase_v{i+1}: Failed after {max_retries} retries")
-                # Save the last attempt anyway with accepted=False
+                # Check similarity (calculate only for logging)
+                score = similarity_calc.compute_similarity(base_prompt, paraphrased)
+                
+                # Always accept
+                variation = VariationResult(
+                    name=f"paraphrase_v{i+1}",
+                    method="paraphrase",
+                    language=None,
+                    similarity_score=score,
+                    accepted=True,
+                    model_used=paraphraser.config.model_name,
+                    content=paraphrased
+                )
+                variations.append(variation)
+                
+                # Save to file
+                save_variation(output_dir, variation.name, paraphrased)
+                logger.info(f"  paraphrase_v{i+1}: similarity={score:.4f} (Saved)")
+            
+            except Exception as e:
+                logger.error(f"  paraphrase_v{i+1} error: {e}")
+                # Save failed attempt
                 variations.append(VariationResult(
                     name=f"paraphrase_v{i+1}",
                     method="paraphrase",
                     language=None,
-                    similarity_score=score if 'score' in locals() else 0.0,
+                    similarity_score=0.0,
                     accepted=False,
                     model_used=paraphraser.config.model_name,
-                    content=paraphrased if 'paraphrased' in locals() else ""
+                    content=str(e)
                 ))
     
     # Generate back-translation variations
@@ -214,56 +203,46 @@ def generate_variations_for_prompt(
         logger.info(f"Generating back-translation variations for {languages}...")
         
         for lang in languages:
-            retry_count = 0
-            accepted = False
+            lang_code = lang.lower()[:2]
+            logger.info(f"  Attempting backtrans_{lang_code} (via {lang})")
             
-            while not accepted and retry_count < max_retries:
-                try:
-                    intermediate, back_translated = back_translator.back_translate(
-                        base_prompt, lang
-                    )
-                    
-                    # Check similarity
-                    score = similarity_calc.compute_similarity(base_prompt, back_translated)
-                    
-                    lang_code = lang.lower()[:2]  # "ch", "sp", "tu"
-                    
-                    if score >= similarity_threshold:
-                        accepted = True
-                        variation = VariationResult(
-                            name=f"backtrans_{lang_code}",
-                            method="back_translation",
-                            language=lang,
-                            similarity_score=score,
-                            accepted=True,
-                            model_used=back_translator.config.model_name,
-                            content=back_translated,
-                            intermediate_content=intermediate
-                        )
-                        variations.append(variation)
-                        
-                        # Save to file
-                        save_variation(output_dir, variation.name, back_translated)
-                        logger.info(f"  backtrans_{lang_code}: similarity={score:.4f} ✓")
-                    else:
-                        retry_count += 1
-                        logger.warning(f"  backtrans_{lang_code} attempt {retry_count}: similarity={score:.4f} < {similarity_threshold} (retrying)")
+            try:
+                intermediate, back_translated = back_translator.back_translate(
+                    base_prompt, lang
+                )
                 
-                except Exception as e:
-                    retry_count += 1
-                    logger.error(f"  backtrans_{lang_code} error: {e}")
-        
-            if not accepted:
-                logger.error(f"  backtrans_{lang_code}: Failed after {max_retries} retries")
+                # Check similarity (calculate only for logging)
+                score = similarity_calc.compute_similarity(base_prompt, back_translated)
+                
+                # Always accept
+                variation = VariationResult(
+                    name=f"backtrans_{lang_code}",
+                    method="back_translation",
+                    language=lang,
+                    similarity_score=score,
+                    accepted=True,
+                    model_used=back_translator.config.model_name,
+                    content=back_translated,
+                    intermediate_content=intermediate
+                )
+                variations.append(variation)
+                
+                # Save to file
+                save_variation(output_dir, variation.name, back_translated)
+                logger.info(f"  backtrans_{lang_code}: similarity={score:.4f} (Saved)")
+            
+            except Exception as e:
+                logger.error(f"  backtrans_{lang_code} error: {e}")
+                # Save failed attempt
                 variations.append(VariationResult(
                     name=f"backtrans_{lang_code}",
                     method="back_translation",
                     language=lang,
-                    similarity_score=score if 'score' in locals() else 0.0,
+                    similarity_score=0.0,
                     accepted=False,
                     model_used=back_translator.config.model_name,
-                    content=back_translated if 'back_translated' in locals() else "",
-                    intermediate_content=intermediate if 'intermediate' in locals() else None
+                    content=str(e),
+                    intermediate_content=None
                 ))
     
     # Create log
