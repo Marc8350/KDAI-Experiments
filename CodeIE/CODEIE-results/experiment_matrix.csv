@@ -120,3 +120,6 @@ datetime,granularity,style,variation,model,n_samples,precision,recall,micro_f1,m
 2026-02-10 13:05:47,coarse,pl,default,default,1,0.0,0.0,0.0,0.0,coarse_pl_default_default_model_20260210_130547.json
 2026-02-10 13:06:48,coarse,pl,default,mistral,1,0.0,0.0,0.0,0.0,coarse_pl_default_mistral_20260210_130645.json
 2026-02-10 13:07:24,coarse,pl,default,mistral,1,0.0,0.0,0.0,0.0,coarse_pl_default_mistral_20260210_130723.json
+2026-02-10 13:12:10,coarse,pl,default,flacon3:7b,1,0.0,0.0,0.0,0.0,coarse_pl_default_flacon3:7b_20260210_131210.json
+2026-02-10 13:17:52,coarse,pl,default,falcon3:7b,1,0.0,0.0,0.0,0.0,coarse_pl_default_falcon3:7b_20260210_131752.json
+2026-02-10 13:34:22,coarse,pl,default,falcon3:7b,1,0.0,0.0,0.0,0.0,coarse_pl_default_falcon3:7b_20260210_133422.json
