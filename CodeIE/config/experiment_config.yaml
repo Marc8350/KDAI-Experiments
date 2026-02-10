@@ -60,6 +60,16 @@ models:
     base_url: "http://localhost:11434"
     temperature: 0.0
     max_tokens: 512
+    enabled: false
+  
+
+  # Qwen2.5:7b via Ollama 
+  quen2.5:
+    type: "ollama"
+    name: "qwen2.5:7b"
+    base_url: "http://localhost:11434"
+    temperature: 0.0
+    max_tokens: 512
     enabled: true
 
   # Gemini via Google API
