@@ -92,7 +92,7 @@ models:
 
 # Experiment execution settings
 execution:
-  max_samples: 4    # Run only first 10 sentences
+  max_samples: 3765    # Run only first 10 sentences
   resume: true       # Resume from last checkpoint if available
   save_interval: 10  # Save results every N samples
   
