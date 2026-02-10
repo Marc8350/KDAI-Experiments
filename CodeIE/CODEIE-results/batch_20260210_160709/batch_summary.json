@@ -1,0 +1,624 @@
+{
+  "timestamp": "20260210_160709",
+  "total_runs": 28,
+  "completed_runs": 28,
+  "config_path": "/home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/config/experiment_config.yaml",
+  "results": [
+    {
+      "run": {
+        "run_id": "qwen2.5_coarse_pl_base",
+        "granularity": "coarse",
+        "style": "pl",
+        "variation": "base",
+        "model_id": "qwen2.5",
+        "model_name": "qwen2.5:7b",
+        "prompt_path": "/home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/base/coarse_pl_1shot.txt",
+        "status": "completed"
+      },
+      "result": {
+        "precision": 0.6666666666666666,
+        "recall": 0.5,
+        "f1": 0.5714285714285715,
+        "micro_f1": 0.5714285714285715,
+        "macro_f1": 0.3333333333333333,
+        "tp": 2,
+        "gold_count": 4,
+        "pred_count": 3
+      }
+    },
+    {
+      "run": {
+        "run_id": "qwen2.5_coarse_pl_lexical_substitution",
+        "granularity": "coarse",
+        "style": "pl",
+        "variation": "lexical_substitution",
+        "model_id": "qwen2.5",
+        "model_name": "qwen2.5:7b",
+        "prompt_path": "/home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/coarse_pl_1shot/lexical_substitution.txt",
+        "status": "completed"
+      },
+      "result": {
+        "precision": 0.6666666666666666,
+        "recall": 0.5,
+        "f1": 0.5714285714285715,
+        "micro_f1": 0.5714285714285715,
+        "macro_f1": 0.3333333333333333,
+        "tp": 2,
+        "gold_count": 4,
+        "pred_count": 3
+      }
+    },
+    {
+      "run": {
+        "run_id": "qwen2.5_coarse_pl_reodering",
+        "granularity": "coarse",
+        "style": "pl",
+        "variation": "reodering",
+        "model_id": "qwen2.5",
+        "model_name": "qwen2.5:7b",
+        "prompt_path": "/home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/coarse_pl_1shot/reodering.txt",
+        "status": "completed"
+      },
+      "result": {
+        "precision": 0.6666666666666666,
+        "recall": 0.5,
+        "f1": 0.5714285714285715,
+        "micro_f1": 0.5714285714285715,
+        "macro_f1": 0.3333333333333333,
+        "tp": 2,
+        "gold_count": 4,
+        "pred_count": 3
+      }
+    },
+    {
+      "run": {
+        "run_id": "qwen2.5_coarse_pl_sentence_reordering",
+        "granularity": "coarse",
+        "style": "pl",
+        "variation": "sentence_reordering",
+        "model_id": "qwen2.5",
+        "model_name": "qwen2.5:7b",
+        "prompt_path": "/home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/coarse_pl_1shot/sentence_reordering.txt",
+        "status": "completed"
+      },
+      "result": {
+        "precision": 0.5,
+        "recall": 0.25,
+        "f1": 0.3333333333333333,
+        "micro_f1": 0.3333333333333333,
+        "macro_f1": 0.2222222222222222,
+        "tp": 1,
+        "gold_count": 4,
+        "pred_count": 2
+      }
+    },
+    {
+      "run": {
+        "run_id": "qwen2.5_coarse_pl_backtrans_ch",
+        "granularity": "coarse",
+        "style": "pl",
+        "variation": "backtrans_ch",
+        "model_id": "qwen2.5",
+        "model_name": "qwen2.5:7b",
+        "prompt_path": "/home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/coarse_pl_1shot/backtrans_ch.txt",
+        "status": "completed"
+      },
+      "result": {
+        "precision": 1.0,
+        "recall": 0.75,
+        "f1": 0.8571428571428571,
+        "micro_f1": 0.8571428571428571,
+        "macro_f1": 0.6666666666666666,
+        "tp": 3,
+        "gold_count": 4,
+        "pred_count": 3
+      }
+    },
+    {
+      "run": {
+        "run_id": "qwen2.5_coarse_pl_backtrans_sp",
+        "granularity": "coarse",
+        "style": "pl",
+        "variation": "backtrans_sp",
+        "model_id": "qwen2.5",
+        "model_name": "qwen2.5:7b",
+        "prompt_path": "/home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/coarse_pl_1shot/backtrans_sp.txt",
+        "status": "completed"
+      },
+      "result": {
+        "precision": 1.0,
+        "recall": 0.75,
+        "f1": 0.8571428571428571,
+        "micro_f1": 0.8571428571428571,
+        "macro_f1": 0.6666666666666666,
+        "tp": 3,
+        "gold_count": 4,
+        "pred_count": 3
+      }
+    },
+    {
+      "run": {
+        "run_id": "qwen2.5_coarse_pl_backtrans_tu",
+        "granularity": "coarse",
+        "style": "pl",
+        "variation": "backtrans_tu",
+        "model_id": "qwen2.5",
+        "model_name": "qwen2.5:7b",
+        "prompt_path": "/home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/coarse_pl_1shot/backtrans_tu.txt",
+        "status": "completed"
+      },
+      "result": {
+        "precision": 1.0,
+        "recall": 0.75,
+        "f1": 0.8571428571428571,
+        "micro_f1": 0.8571428571428571,
+        "macro_f1": 0.6666666666666666,
+        "tp": 3,
+        "gold_count": 4,
+        "pred_count": 3
+      }
+    },
+    {
+      "run": {
+        "run_id": "qwen2.5_coarse_nl_base",
+        "granularity": "coarse",
+        "style": "nl",
+        "variation": "base",
+        "model_id": "qwen2.5",
+        "model_name": "qwen2.5:7b",
+        "prompt_path": "/home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/base/coarse_nl_1shot.txt",
+        "status": "completed"
+      },
+      "result": {
+        "precision": 1.0,
+        "recall": 0.75,
+        "f1": 0.8571428571428571,
+        "micro_f1": 0.8571428571428571,
+        "macro_f1": 0.8888888888888888,
+        "tp": 3,
+        "gold_count": 4,
+        "pred_count": 3
+      }
+    },
+    {
+      "run": {
+        "run_id": "qwen2.5_coarse_nl_lexical_substitution",
+        "granularity": "coarse",
+        "style": "nl",
+        "variation": "lexical_substitution",
+        "model_id": "qwen2.5",
+        "model_name": "qwen2.5:7b",
+        "prompt_path": "/home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/coarse_nl_1shot/lexical_substitution.txt",
+        "status": "completed"
+      },
+      "result": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "micro_f1": 0.0,
+        "macro_f1": 0.0,
+        "tp": 0,
+        "gold_count": 4,
+        "pred_count": 3
+      }
+    },
+    {
+      "run": {
+        "run_id": "qwen2.5_coarse_nl_reodering",
+        "granularity": "coarse",
+        "style": "nl",
+        "variation": "reodering",
+        "model_id": "qwen2.5",
+        "model_name": "qwen2.5:7b",
+        "prompt_path": "/home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/coarse_nl_1shot/reodering.txt",
+        "status": "completed"
+      },
+      "result": {
+        "precision": 0.3333333333333333,
+        "recall": 0.25,
+        "f1": 0.28571428571428575,
+        "micro_f1": 0.28571428571428575,
+        "macro_f1": 0.3333333333333333,
+        "tp": 1,
+        "gold_count": 4,
+        "pred_count": 3
+      }
+    },
+    {
+      "run": {
+        "run_id": "qwen2.5_coarse_nl_sentence_reordering",
+        "granularity": "coarse",
+        "style": "nl",
+        "variation": "sentence_reordering",
+        "model_id": "qwen2.5",
+        "model_name": "qwen2.5:7b",
+        "prompt_path": "/home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/coarse_nl_1shot/sentence_reordering.txt",
+        "status": "completed"
+      },
+      "result": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "micro_f1": 0.0,
+        "macro_f1": 0.0,
+        "tp": 0,
+        "gold_count": 4,
+        "pred_count": 4
+      }
+    },
+    {
+      "run": {
+        "run_id": "qwen2.5_coarse_nl_backtrans_ch",
+        "granularity": "coarse",
+        "style": "nl",
+        "variation": "backtrans_ch",
+        "model_id": "qwen2.5",
+        "model_name": "qwen2.5:7b",
+        "prompt_path": "/home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/coarse_nl_1shot/backtrans_ch.txt",
+        "status": "completed"
+      },
+      "result": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "micro_f1": 0.0,
+        "macro_f1": 0.0,
+        "tp": 0,
+        "gold_count": 4,
+        "pred_count": 1
+      }
+    },
+    {
+      "run": {
+        "run_id": "qwen2.5_coarse_nl_backtrans_sp",
+        "granularity": "coarse",
+        "style": "nl",
+        "variation": "backtrans_sp",
+        "model_id": "qwen2.5",
+        "model_name": "qwen2.5:7b",
+        "prompt_path": "/home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/coarse_nl_1shot/backtrans_sp.txt",
+        "status": "completed"
+      },
+      "result": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "micro_f1": 0.0,
+        "macro_f1": 0.0,
+        "tp": 0,
+        "gold_count": 4,
+        "pred_count": 3
+      }
+    },
+    {
+      "run": {
+        "run_id": "qwen2.5_coarse_nl_backtrans_tu",
+        "granularity": "coarse",
+        "style": "nl",
+        "variation": "backtrans_tu",
+        "model_id": "qwen2.5",
+        "model_name": "qwen2.5:7b",
+        "prompt_path": "/home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/coarse_nl_1shot/backtrans_tu.txt",
+        "status": "completed"
+      },
+      "result": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "micro_f1": 0.0,
+        "macro_f1": 0.0,
+        "tp": 0,
+        "gold_count": 4,
+        "pred_count": 0
+      }
+    },
+    {
+      "run": {
+        "run_id": "qwen2.5_fine_pl_base",
+        "granularity": "fine",
+        "style": "pl",
+        "variation": "base",
+        "model_id": "qwen2.5",
+        "model_name": "qwen2.5:7b",
+        "prompt_path": "/home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/base/fine_pl_1shot.txt",
+        "status": "completed"
+      },
+      "result": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "micro_f1": 0.0,
+        "macro_f1": 0.0,
+        "tp": 0,
+        "gold_count": 4,
+        "pred_count": 0
+      }
+    },
+    {
+      "run": {
+        "run_id": "qwen2.5_fine_pl_lexical_substitution",
+        "granularity": "fine",
+        "style": "pl",
+        "variation": "lexical_substitution",
+        "model_id": "qwen2.5",
+        "model_name": "qwen2.5:7b",
+        "prompt_path": "/home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/fine_pl_1shot/lexical_substitution.txt",
+        "status": "completed"
+      },
+      "result": {
+        "precision": 0.5,
+        "recall": 0.25,
+        "f1": 0.3333333333333333,
+        "micro_f1": 0.3333333333333333,
+        "macro_f1": 0.25,
+        "tp": 1,
+        "gold_count": 4,
+        "pred_count": 2
+      }
+    },
+    {
+      "run": {
+        "run_id": "qwen2.5_fine_pl_reodering",
+        "granularity": "fine",
+        "style": "pl",
+        "variation": "reodering",
+        "model_id": "qwen2.5",
+        "model_name": "qwen2.5:7b",
+        "prompt_path": "/home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/fine_pl_1shot/reodering.txt",
+        "status": "completed"
+      },
+      "result": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "micro_f1": 0.0,
+        "macro_f1": 0.0,
+        "tp": 0,
+        "gold_count": 4,
+        "pred_count": 0
+      }
+    },
+    {
+      "run": {
+        "run_id": "qwen2.5_fine_pl_sentence_reordering",
+        "granularity": "fine",
+        "style": "pl",
+        "variation": "sentence_reordering",
+        "model_id": "qwen2.5",
+        "model_name": "qwen2.5:7b",
+        "prompt_path": "/home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/fine_pl_1shot/sentence_reordering.txt",
+        "status": "completed"
+      },
+      "result": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "micro_f1": 0.0,
+        "macro_f1": 0.0,
+        "tp": 0,
+        "gold_count": 4,
+        "pred_count": 0
+      }
+    },
+    {
+      "run": {
+        "run_id": "qwen2.5_fine_pl_backtrans_ch",
+        "granularity": "fine",
+        "style": "pl",
+        "variation": "backtrans_ch",
+        "model_id": "qwen2.5",
+        "model_name": "qwen2.5:7b",
+        "prompt_path": "/home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/fine_pl_1shot/backtrans_ch.txt",
+        "status": "completed"
+      },
+      "result": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "micro_f1": 0.0,
+        "macro_f1": 0.0,
+        "tp": 0,
+        "gold_count": 4,
+        "pred_count": 0
+      }
+    },
+    {
+      "run": {
+        "run_id": "qwen2.5_fine_pl_backtrans_sp",
+        "granularity": "fine",
+        "style": "pl",
+        "variation": "backtrans_sp",
+        "model_id": "qwen2.5",
+        "model_name": "qwen2.5:7b",
+        "prompt_path": "/home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/fine_pl_1shot/backtrans_sp.txt",
+        "status": "completed"
+      },
+      "result": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "micro_f1": 0.0,
+        "macro_f1": 0.0,
+        "tp": 0,
+        "gold_count": 4,
+        "pred_count": 0
+      }
+    },
+    {
+      "run": {
+        "run_id": "qwen2.5_fine_pl_backtrans_tu",
+        "granularity": "fine",
+        "style": "pl",
+        "variation": "backtrans_tu",
+        "model_id": "qwen2.5",
+        "model_name": "qwen2.5:7b",
+        "prompt_path": "/home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/fine_pl_1shot/backtrans_tu.txt",
+        "status": "completed"
+      },
+      "result": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "micro_f1": 0.0,
+        "macro_f1": 0.0,
+        "tp": 0,
+        "gold_count": 4,
+        "pred_count": 0
+      }
+    },
+    {
+      "run": {
+        "run_id": "qwen2.5_fine_nl_base",
+        "granularity": "fine",
+        "style": "nl",
+        "variation": "base",
+        "model_id": "qwen2.5",
+        "model_name": "qwen2.5:7b",
+        "prompt_path": "/home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/base/fine_nl_1shot.txt",
+        "status": "completed"
+      },
+      "result": {
+        "precision": 1.0,
+        "recall": 0.25,
+        "f1": 0.4,
+        "micro_f1": 0.4,
+        "macro_f1": 0.25,
+        "tp": 1,
+        "gold_count": 4,
+        "pred_count": 1
+      }
+    },
+    {
+      "run": {
+        "run_id": "qwen2.5_fine_nl_lexical_substitution",
+        "granularity": "fine",
+        "style": "nl",
+        "variation": "lexical_substitution",
+        "model_id": "qwen2.5",
+        "model_name": "qwen2.5:7b",
+        "prompt_path": "/home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/fine_nl_1shot/lexical_substitution.txt",
+        "status": "completed"
+      },
+      "result": {
+        "precision": 0.5,
+        "recall": 0.25,
+        "f1": 0.3333333333333333,
+        "micro_f1": 0.3333333333333333,
+        "macro_f1": 0.25,
+        "tp": 1,
+        "gold_count": 4,
+        "pred_count": 2
+      }
+    },
+    {
+      "run": {
+        "run_id": "qwen2.5_fine_nl_reodering",
+        "granularity": "fine",
+        "style": "nl",
+        "variation": "reodering",
+        "model_id": "qwen2.5",
+        "model_name": "qwen2.5:7b",
+        "prompt_path": "/home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/fine_nl_1shot/reodering.txt",
+        "status": "completed"
+      },
+      "result": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "micro_f1": 0.0,
+        "macro_f1": 0.0,
+        "tp": 0,
+        "gold_count": 4,
+        "pred_count": 0
+      }
+    },
+    {
+      "run": {
+        "run_id": "qwen2.5_fine_nl_sentence_reordering",
+        "granularity": "fine",
+        "style": "nl",
+        "variation": "sentence_reordering",
+        "model_id": "qwen2.5",
+        "model_name": "qwen2.5:7b",
+        "prompt_path": "/home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/fine_nl_1shot/sentence_reordering.txt",
+        "status": "completed"
+      },
+      "result": {
+        "precision": 0.5,
+        "recall": 0.25,
+        "f1": 0.3333333333333333,
+        "micro_f1": 0.3333333333333333,
+        "macro_f1": 0.25,
+        "tp": 1,
+        "gold_count": 4,
+        "pred_count": 2
+      }
+    },
+    {
+      "run": {
+        "run_id": "qwen2.5_fine_nl_backtrans_ch",
+        "granularity": "fine",
+        "style": "nl",
+        "variation": "backtrans_ch",
+        "model_id": "qwen2.5",
+        "model_name": "qwen2.5:7b",
+        "prompt_path": "/home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/fine_nl_1shot/backtrans_ch.txt",
+        "status": "completed"
+      },
+      "result": {
+        "precision": 0.3333333333333333,
+        "recall": 0.25,
+        "f1": 0.28571428571428575,
+        "micro_f1": 0.28571428571428575,
+        "macro_f1": 0.25,
+        "tp": 1,
+        "gold_count": 4,
+        "pred_count": 3
+      }
+    },
+    {
+      "run": {
+        "run_id": "qwen2.5_fine_nl_backtrans_sp",
+        "granularity": "fine",
+        "style": "nl",
+        "variation": "backtrans_sp",
+        "model_id": "qwen2.5",
+        "model_name": "qwen2.5:7b",
+        "prompt_path": "/home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/fine_nl_1shot/backtrans_sp.txt",
+        "status": "completed"
+      },
+      "result": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "micro_f1": 0.0,
+        "macro_f1": 0.0,
+        "tp": 0,
+        "gold_count": 4,
+        "pred_count": 0
+      }
+    },
+    {
+      "run": {
+        "run_id": "qwen2.5_fine_nl_backtrans_tu",
+        "granularity": "fine",
+        "style": "nl",
+        "variation": "backtrans_tu",
+        "model_id": "qwen2.5",
+        "model_name": "qwen2.5:7b",
+        "prompt_path": "/home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/fine_nl_1shot/backtrans_tu.txt",
+        "status": "completed"
+      },
+      "result": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "micro_f1": 0.0,
+        "macro_f1": 0.0,
+        "tp": 0,
+        "gold_count": 4,
+        "pred_count": 0
+      }
+    }
+  ]
+}
