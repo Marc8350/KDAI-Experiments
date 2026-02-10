@@ -442,7 +442,7 @@ def run_inference(prompt: str, llm_model, config: ExperimentConfig) -> str:
     try:
         messages = [HumanMessage(content=prompt)]
         # Add common stop sequences to keep output clean
-        stop = [END, END_LINE, "\ndef ", "\n\ndef ", "# TASK:", "# You are an expert"]
+        stop = [END, END_LINE, "\ndef ", "\n\ndef "]
         
         response = llm_model.invoke(messages, stop=stop)
         return response.content
