@@ -1,0 +1,363 @@
+{
+  "module": "codeie_fine_pl_sentence_reordering",
+  "timestamp": "20260210_193109",
+  "config": {
+    "granularity": "fine",
+    "max_test_samples": 4,
+    "style": "pl",
+    "variation": "sentence_reordering",
+    "api_base_url": "http://localhost:11434",
+    "api_key": null,
+    "model_name": "qwen2.5:7b",
+    "max_tokens": 512,
+    "temperature": 0.0,
+    "data_dir": "data",
+    "output_dir": "CODEIE-results/batch_20260210_193030",
+    "matrix_dir": "CODEIE-results",
+    "prompt_path": "/home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/fine_pl_1shot/sentence_reordering.txt",
+    "quiet": true,
+    "skip_matrix_update": true
+  },
+  "entity_types": [
+    "art-broadcastprogram",
+    "art-film",
+    "art-music",
+    "art-other",
+    "art-painting",
+    "art-writtenart",
+    "building-airport",
+    "building-hospital",
+    "building-hotel",
+    "building-library",
+    "building-other",
+    "building-restaurant",
+    "building-sportsfacility",
+    "building-theater",
+    "event-attack/battle/war/militaryconflict",
+    "event-disaster",
+    "event-election",
+    "event-other",
+    "event-protest",
+    "event-sportsevent",
+    "location-GPE",
+    "location-bodiesofwater",
+    "location-island",
+    "location-mountain",
+    "location-other",
+    "location-park",
+    "location-road/railway/highway/transit",
+    "organization-company",
+    "organization-education",
+    "organization-government/governmentagency",
+    "organization-media/newspaper",
+    "organization-other",
+    "organization-politicalparty",
+    "organization-religion",
+    "organization-showorganization",
+    "organization-sportsleague",
+    "organization-sportsteam",
+    "other-astronomything",
+    "other-award",
+    "other-biologything",
+    "other-chemicalthing",
+    "other-currency",
+    "other-disease",
+    "other-educationaldegree",
+    "other-god",
+    "other-language",
+    "other-law",
+    "other-livingthing",
+    "other-medical",
+    "person-actor",
+    "person-artist/author",
+    "person-athlete",
+    "person-director",
+    "person-other",
+    "person-politician",
+    "person-scholar",
+    "person-soldier",
+    "product-airplane",
+    "product-car",
+    "product-food",
+    "product-game",
+    "product-other",
+    "product-ship",
+    "product-software",
+    "product-train",
+    "product-weapon"
+  ],
+  "overall_score": {
+    "entities": {
+      "precision": 0.2,
+      "recall": 0.125,
+      "micro_f1": 0.15384615384615385,
+      "macro_f1": 0.125,
+      "f1-score": 0.15384615384615385,
+      "class_scores": {
+        "building-hotel": {
+          "tp": 1,
+          "total_pos": 1,
+          "total_pre": 1,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0
+        },
+        "building-other": {
+          "tp": 0,
+          "total_pos": 1,
+          "total_pre": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "event-sportsevent": {
+          "tp": 0,
+          "total_pos": 1,
+          "total_pre": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "location-GPE": {
+          "tp": 0,
+          "total_pos": 1,
+          "total_pre": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "location-park": {
+          "tp": 0,
+          "total_pos": 1,
+          "total_pre": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "organization-showorganization": {
+          "tp": 0,
+          "total_pos": 1,
+          "total_pre": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "person-other": {
+          "tp": 0,
+          "total_pos": 1,
+          "total_pre": 2,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "product-airplane": {
+          "tp": 0,
+          "total_pos": 0,
+          "total_pre": 1,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "product-other": {
+          "tp": 0,
+          "total_pos": 1,
+          "total_pre": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "product-weapon": {
+          "tp": 0,
+          "total_pos": 0,
+          "total_pre": 1,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        }
+      }
+    }
+  },
+  "processed_count": 4,
+  "sentences": [
+    {
+      "index": 0,
+      "timestamp": "2026-02-10T19:31:11.649943",
+      "text": "In the early 1930s the band moved to the Grill Room of the Taft Hotel in New York ; the band was renamed `` George Hall and His Hotel Taft Orchestra `` .",
+      "gold": [
+        "building-other(span='Grill Room')",
+        "building-hotel(span='Taft Hotel')",
+        "location-GPE(span='New York')",
+        "organization-showorganization(span='George Hall and His Hotel Taft Orchestra')"
+      ],
+      "prediction": [
+        "building-hotel(span='Taft Hotel')",
+        "person-other(span='George Hall and His Hotel Taft Orchestra')"
+      ],
+      "generated_raw": "    entity_list.append({\"Taft Hotel\", \"product-hotel\"})\n    entity_list.append({\"George Hall and His Hotel Taft Orchestra\", \"person-other\"})",
+      "elapsed_time": 2.646423578262329,
+      "score": {
+        "entities": {
+          "precision": 0.5,
+          "recall": 0.25,
+          "f1-score": 0.3333333333333333,
+          "class_scores": {
+            "building-hotel": {
+              "tp": 1,
+              "total_pos": 1,
+              "total_pre": 1,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1-score": 1.0
+            },
+            "building-other": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "location-GPE": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "organization-showorganization": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "person-other": {
+              "tp": 0,
+              "total_pos": 0,
+              "total_pre": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 1,
+      "timestamp": "2026-02-10T19:31:14.126609",
+      "text": "The final season of minor league play Elkin Memorial Park saw season attendance of 16,322 , an average of 299 per contest .",
+      "gold": [
+        "location-park(span='Elkin Memorial Park')"
+      ],
+      "prediction": [
+        "product-airplane(span='Elkin Memorial Park')"
+      ],
+      "generated_raw": "```python\nentity_list.append({\"Elkin Memorial Park\", \"product-venue\"})\n```",
+      "elapsed_time": 2.475395917892456,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "location-park": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "product-airplane": {
+              "tp": 0,
+              "total_pos": 0,
+              "total_pre": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 2,
+      "timestamp": "2026-02-10T19:31:16.233794",
+      "text": "They finished the season 14\u201319 , 9\u20139 in C-USA play to finish in seventh place .",
+      "gold": [
+        "event-sportsevent(span='C-USA play')"
+      ],
+      "prediction": [],
+      "generated_raw": "```python",
+      "elapsed_time": 2.1058197021484375,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "event-sportsevent": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 3,
+      "timestamp": "2026-02-10T19:31:18.633149",
+      "text": "The B-52 pilot , Major Larry G. Messinger , later recalled ,",
+      "gold": [
+        "product-other(span='B-52')",
+        "person-other(span='Larry G. Messinger')"
+      ],
+      "prediction": [
+        "product-weapon(span='B-52')",
+        "person-other(span='Major Larry G. Messinger')"
+      ],
+      "generated_raw": "```python\nentity_list.append({\"B-52\", \"product-weapon\"})\nentity_list.append({\"Major Larry G. Messinger\", \"person-other\"})\n```",
+      "elapsed_time": 2.398200035095215,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "person-other": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "product-other": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "product-weapon": {
+              "tp": 0,
+              "total_pos": 0,
+              "total_pre": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    }
+  ]
+}

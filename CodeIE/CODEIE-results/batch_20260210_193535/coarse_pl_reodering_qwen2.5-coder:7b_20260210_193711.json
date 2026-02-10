@@ -1,0 +1,286 @@
+{
+  "module": "codeie_coarse_pl_reodering",
+  "timestamp": "20260210_193711",
+  "config": {
+    "granularity": "coarse",
+    "max_test_samples": 4,
+    "style": "pl",
+    "variation": "reodering",
+    "api_base_url": "http://localhost:11434",
+    "api_key": null,
+    "model_name": "qwen2.5-coder:7b",
+    "max_tokens": 512,
+    "temperature": 0.0,
+    "data_dir": "data",
+    "output_dir": "CODEIE-results/batch_20260210_193535",
+    "matrix_dir": "CODEIE-results",
+    "prompt_path": "/home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/coarse_pl_1shot/reodering.txt",
+    "quiet": true,
+    "skip_matrix_update": true
+  },
+  "entity_types": [
+    "art",
+    "building",
+    "event",
+    "location",
+    "organization",
+    "other",
+    "person",
+    "product"
+  ],
+  "overall_score": {
+    "entities": {
+      "precision": 0.4444444444444444,
+      "recall": 0.5,
+      "micro_f1": 0.47058823529411764,
+      "macro_f1": 0.41111111111111115,
+      "f1-score": 0.47058823529411764,
+      "class_scores": {
+        "building": {
+          "tp": 2,
+          "total_pos": 2,
+          "total_pre": 3,
+          "precision": 0.6666666666666666,
+          "recall": 1.0,
+          "f1-score": 0.8
+        },
+        "event": {
+          "tp": 0,
+          "total_pos": 1,
+          "total_pre": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "location": {
+          "tp": 1,
+          "total_pos": 2,
+          "total_pre": 1,
+          "precision": 1.0,
+          "recall": 0.5,
+          "f1-score": 0.6666666666666666
+        },
+        "organization": {
+          "tp": 0,
+          "total_pos": 1,
+          "total_pre": 1,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "other": {
+          "tp": 0,
+          "total_pos": 0,
+          "total_pre": 2,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "person": {
+          "tp": 0,
+          "total_pos": 1,
+          "total_pre": 1,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "product": {
+          "tp": 1,
+          "total_pos": 1,
+          "total_pre": 1,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0
+        }
+      }
+    }
+  },
+  "processed_count": 4,
+  "sentences": [
+    {
+      "index": 0,
+      "timestamp": "2026-02-10T19:37:13.086905",
+      "text": "In the early 1930s the band moved to the Grill Room of the Taft Hotel in New York ; the band was renamed `` George Hall and His Hotel Taft Orchestra `` .",
+      "gold": [
+        "building(span='Grill Room')",
+        "building(span='Taft Hotel')",
+        "location(span='New York')",
+        "organization(span='George Hall and His Hotel Taft Orchestra')"
+      ],
+      "prediction": [
+        "building(span='Grill Room')",
+        "building(span='Taft Hotel')",
+        "location(span='New York')",
+        "other(span='George Hall and His Hotel Taft Orchestra')"
+      ],
+      "generated_raw": "```python\nentity_list.append({\"text\": \"Grill Room\", \"type\": \"building\"})\nentity_list.append({\"text\": \"Taft Hotel\", \"type\": \"building\"})\nentity_list.append({\"text\": \"New York\", \"type\": \"location\"})\nentity_list.append({\"text\": \"George Hall and His Hotel Taft Orchestra\", \"type\": \"other\"})\n```",
+      "elapsed_time": 1.4048044681549072,
+      "score": {
+        "entities": {
+          "precision": 0.75,
+          "recall": 0.75,
+          "f1-score": 0.75,
+          "class_scores": {
+            "building": {
+              "tp": 2,
+              "total_pos": 2,
+              "total_pre": 2,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1-score": 1.0
+            },
+            "location": {
+              "tp": 1,
+              "total_pos": 1,
+              "total_pre": 1,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1-score": 1.0
+            },
+            "organization": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "other": {
+              "tp": 0,
+              "total_pos": 0,
+              "total_pre": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 1,
+      "timestamp": "2026-02-10T19:37:13.390949",
+      "text": "The final season of minor league play Elkin Memorial Park saw season attendance of 16,322 , an average of 299 per contest .",
+      "gold": [
+        "location(span='Elkin Memorial Park')"
+      ],
+      "prediction": [
+        "building(span='Elkin Memorial Park')"
+      ],
+      "generated_raw": "```python\nentity_list.append({\"text\": \"Elkin Memorial Park\", \"type\": \"building\"})\n```",
+      "elapsed_time": 0.30320310592651367,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "building": {
+              "tp": 0,
+              "total_pos": 0,
+              "total_pre": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "location": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 2,
+      "timestamp": "2026-02-10T19:37:13.846617",
+      "text": "They finished the season 14\u201319 , 9\u20139 in C-USA play to finish in seventh place .",
+      "gold": [
+        "event(span='C-USA play')"
+      ],
+      "prediction": [
+        "other(span='season')",
+        "organization(span='C-USA')"
+      ],
+      "generated_raw": "```python\nentity_list.append({\"text\": \"season\", \"type\": \"other\"})\nentity_list.append({\"text\": \"C-USA\", \"type\": \"organization\"})\n```",
+      "elapsed_time": 0.4547920227050781,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "event": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "organization": {
+              "tp": 0,
+              "total_pos": 0,
+              "total_pre": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "other": {
+              "tp": 0,
+              "total_pos": 0,
+              "total_pre": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 3,
+      "timestamp": "2026-02-10T19:37:14.335731",
+      "text": "The B-52 pilot , Major Larry G. Messinger , later recalled ,",
+      "gold": [
+        "product(span='B-52')",
+        "person(span='Larry G. Messinger')"
+      ],
+      "prediction": [
+        "product(span='B-52')",
+        "person(span='Major Larry G. Messinger')"
+      ],
+      "generated_raw": "```python\nentity_list.append({\"text\": \"B-52\", \"type\": \"product\"})\nentity_list.append({\"text\": \"Major Larry G. Messinger\", \"type\": \"person\"})\n```",
+      "elapsed_time": 0.4884622097015381,
+      "score": {
+        "entities": {
+          "precision": 0.5,
+          "recall": 0.5,
+          "f1-score": 0.5,
+          "class_scores": {
+            "person": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "product": {
+              "tp": 1,
+              "total_pos": 1,
+              "total_pre": 1,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1-score": 1.0
+            }
+          }
+        }
+      }
+    }
+  ]
+}
