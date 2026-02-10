@@ -582,22 +582,37 @@ def parse_code_style_output(output: str, entity_types: List[str]) -> List[Dict]:
         r'entity_list\.append\(\s*dict\(\s*type\s*=\s*["\'](.*?)["\']\s*,\s*text\s*=\s*["\'](.*?)["\']\s*\)\s*\)',
         # Even more robust JSON-like: {"text": "...", "type": "..."}
         r'\{\s*["\']text["\']\s*:\s*["\'](.*?)["\']\s*,\s*["\']type["\']\s*:\s*["\'](.*?)["\']\s*\}',
-        r'\{\s*["\']type["\']\s*:\s*["\'](.*?)["\']\s*,\s*["\']text["\']\s*:\s*["\'](.*?)["\']\s*\}'
+        r'\{\s*["\']type["\']\s*:\s*["\'](.*?)["\']\s*,\s*["\']text["\']\s*:\s*["\'](.*?)["\']\s*\}',
+        # Set-based syntax: {"text", "type"} or {"type", "text"}
+        # Captures two strings in a set-like structure
+        r'entity_list\.append\(\s*\{\s*["\'](.*?)["\']\s*,\s*["\'](.*?)["\']\s*\}\s*\)'
     ]
 
     for p in patterns:
         for match in re.finditer(p, clean_output):
             groups = match.groups()
+            
+            # For set syntax, we don't know order, so we have to guess
+            # Strategy: Check if one of the groups matches a valid entity type
+            if "{" in p and "text" not in p: 
+                val1, val2 = groups
+                # Check if val1 is type
+                if match_entity_type(val1, entity_types):
+                    etype, text = val1, val2
+                # Check if val2 is type
+                elif match_entity_type(val2, entity_types):
+                    etype, text = val2, val1
+                else:
+                    # Heuristic: Uppercase/spaces usually mean text; lowercase/hyphens usually mean type
+                    # But safer to fail if we can't identify a type
+                    continue
             # Determine which group is text and which is type based on pattern structure
-            if "type" in p.split("text")[0]: # type comes first
+            elif "type" in p.split("text")[0]: # type comes first
                 etype, text = groups
             else: # text comes first
                 text, etype = groups
             
             # Normalize and check type
-            etype = etype.strip().lower()
-            text = text.strip()
-            
             matched_type = match_entity_type(etype, entity_types)
             
             if matched_type and text:
@@ -619,10 +634,7 @@ def parse_nl_style_output(output: str, text: str, entity_types: List[str]) -> Li
         line = line.strip()
         if not line: continue
         
-        # Match "type: text" or "* type: text"
-        # Handles optional leading symbols like *, -, •
-        # STRICT ANCHORING: Must match start of line to avoid capturing "(type: val)" inside text
-        m = re.match(r'^(?:[*•-]\s*)?([a-zA-Z0-9\-/]+):\s*(.*)', line)
+        m = re.match(r'^(?:[*•-]\s*)?(?:\*\*)?([a-zA-Z0-9\-/]+)(?:\*\*)?:\s*(.*)', line)
         if m:
             etype_raw = m.group(1).strip()
             etext = m.group(2).strip()

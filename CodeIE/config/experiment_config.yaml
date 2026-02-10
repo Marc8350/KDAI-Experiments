@@ -72,6 +72,15 @@ models:
     max_tokens: 512
     enabled: true
 
+  # Qwen2.5-Coder:7b via Ollama
+  qwen2.5-coder:
+    type: "ollama"
+    name: "qwen2.5-coder:7b"
+    base_url: "http://localhost:11434"
+    temperature: 0.0
+    max_tokens: 512
+    enabled: true
+
   # Gemini via Google API
   gemini_flash:
     type: "google"
@@ -83,7 +92,7 @@ models:
 
 # Experiment execution settings
 execution:
-  max_samples: 1    # Run only first 10 sentences
+  max_samples: 5    # Run only first 10 sentences
   resume: true       # Resume from last checkpoint if available
   save_interval: 10  # Save results every N samples
   
