@@ -144,26 +144,28 @@ class ExperimentConfig:
     prompt_path: Optional[str] = None  # Path to pre-generated prompt file
 
 
-def load_variations(granularity: str):
-    """Load prompt variations for the specified granularity."""
-    if granularity == "coarse":
-        from prompt_variations.coarse_prompt_variations import (
-            CODE_STYLE_VARIATIONS, NL_STYLE_VARIATIONS, ENTITY_DEFINITIONS
-        )
-    else:
-        # For fine-grained, generate if not exists
-        variations_path = os.path.join(
-            CODEIE_ROOT, 'prompt_variations', 'fine_prompt_variations.py'
-        )
-        if not os.path.exists(variations_path):
-            logging.info("Generating fine-grained variations...")
-            os.system(f"cd {CODEIE_ROOT} && python generate_codeie_prompt_variations.py --granularity fine")
-        
-        from prompt_variations.fine_prompt_variations import (
-            CODE_STYLE_VARIATIONS, NL_STYLE_VARIATIONS, ENTITY_DEFINITIONS
-        )
+def load_variations(granularity: str, style: str):
+    """
+    Discovery of all available variations for a given granularity and style.
+    Looks in prompts/base/ and prompts/variations/{granularity}_{style}_1shot/
+    """
+    variations = {"default": "base"} # 'default' always maps to the base prompt
     
-    return CODE_STYLE_VARIATIONS, NL_STYLE_VARIATIONS, ENTITY_DEFINITIONS
+    # 1. Check variations directory
+    var_dir = os.path.join(CODEIE_ROOT, "prompts", "variations", f"{granularity}_{style}_1shot")
+    if os.path.exists(var_dir):
+        for f in os.listdir(var_dir):
+            if f.endswith(".txt"):
+                var_name = f.replace(".txt", "")
+                variations[var_name] = os.path.join(var_dir, f)
+                
+    # 2. Get Entity Definitions (still needed for schema building)
+    if granularity == "coarse":
+        from prompt_variations.coarse_prompt_variations import ENTITY_DEFINITIONS
+    else:
+        from prompt_variations.fine_prompt_variations import ENTITY_DEFINITIONS
+        
+    return variations, ENTITY_DEFINITIONS
 
 
 # ============================================================================
@@ -240,7 +242,7 @@ def build_code_style_prompt(
     # Input and entity list
     lines.append(f'\tinput_text = "{text}"')
     lines.append('\tentity_list = []')
-    lines.append('\t# extracted named entities')
+    lines.append('\t# Continue by adding entity_list.append statements for each named entity found:')
     
     # Add entity outputs for examples
     if include_output:
@@ -323,7 +325,7 @@ def load_fewshot_examples(
     return examples
 
 
-def build_icl_prompt(
+def build_base_prompt(
     examples: List[Dict],
     style: str,
     variation_config: Any,
@@ -332,7 +334,7 @@ def build_icl_prompt(
     include_schema: bool = True
 ) -> str:
     """
-    Build the in-context learning prompt from few-shot examples.
+    Build the few-shot base prompt from examples.
     
     Note: Schema is only included in the FIRST example to avoid redundancy.
     """
@@ -351,7 +353,6 @@ def build_icl_prompt(
                 entities=entities,
                 config=variation_config,
                 entity_types=entity_types,
-                entity_definitions=entity_definitions,
                 include_schema=use_schema,
                 include_output=True
             )
@@ -440,7 +441,8 @@ def run_inference(prompt: str, llm_model, config: ExperimentConfig) -> str:
     """Run inference using the LangChain model."""
     try:
         messages = [HumanMessage(content=prompt)]
-        stop = [END, END_LINE, "\ndef ", "\n\ndef "]
+        # Add common stop sequences to keep output clean
+        stop = [END, END_LINE, "\ndef ", "\n\ndef ", "# TASK:", "# You are an expert"]
         
         response = llm_model.invoke(messages, stop=stop)
         return response.content
@@ -463,13 +465,16 @@ def parse_code_style_output(output: str, entity_types: List[str]) -> List[Dict]:
             clean_output = "\n".join(code_blocks)
 
     # Regex patterns to match entity_list.append(...)
+    # Improved patterns: handles varying whitespace, quote types, and key order
     # 1. Standard: {"text": "...", "type": "..."}
-    # We use non-greedy matching .*? for content inside quotes to handle escaped quotes if simple
-    pattern = r'entity_list\.append\(\s*\{\s*["\']text["\']:\s*["\'](.*?)["\']\s*,\s*["\']type["\']:\s*["\'](.*?)["\']\s*\}\s*\)'
+    pattern = r'entity_list\.append\(\s*\{\s*["\']text["\']\s*:\s*["\'](.*?)["\']\s*,\s*["\']type["\']\s*:\s*["\'](.*?)["\']\s*(?:,\s*.*?)?\}\s*\)'
     
     # 2. Reverse: {"type": "...", "text": "..."}
-    # Also handle alternate key ordering
-    pattern_alt = r'entity_list\.append\(\s*\{\s*["\']type["\']:\s*["\'](.*?)["\']\s*,\s*["\']text["\']:\s*["\'](.*?)["\']\s*\}\s*\)'
+    pattern_alt = r'entity_list\.append\(\s*\{\s*["\']type["\']\s*:\s*["\'](.*?)["\']\s*,\s*["\']text["\']\s*:\s*["\'](.*?)["\']\s*(?:,\s*.*?)?\}\s*\)'
+
+    # 3. Handle dict() constructor if it appears
+    pattern_dict = r'entity_list\.append\(\s*dict\(\s*text\s*=\s*["\'](.*?)["\']\s*,\s*type\s*=\s*["\'](.*?)["\']\s*\)\s*\)'
+    pattern_dict_alt = r'entity_list\.append\(\s*dict\(\s*type\s*=\s*["\'](.*?)["\']\s*,\s*text\s*=\s*["\'](.*?)["\']\s*\)\s*\)'
 
     # Find matches in the cleaned output
     # Using finditer allows us to process them in order
@@ -490,6 +495,17 @@ def parse_code_style_output(output: str, entity_types: List[str]) -> List[Dict]:
                     break
             if not found:
                 entities.append({'text': text, 'type': entity_type})
+
+    # Add dict matches
+    for match in re.finditer(pattern_dict, clean_output):
+        text, entity_type = match.groups()
+        if entity_type in entity_types and text:
+            entities.append({'text': text, 'type': entity_type})
+
+    for match in re.finditer(pattern_dict_alt, clean_output):
+        entity_type, text = match.groups()
+        if entity_type in entity_types and text:
+            entities.append({'text': text, 'type': entity_type})
 
     return entities
 
@@ -570,47 +586,15 @@ def run_experiment(config: ExperimentConfig):
     # Initialize the Model
     llm_model = get_llm_model(config)
     
-    # Load prompt variations and entity definitions
-    CODE_STYLE_VARIATIONS, NL_STYLE_VARIATIONS, ENTITY_DEFINITIONS = load_variations(
-        config.granularity
+    # Discovery of available variations and entity definitions
+    available_variations, ENTITY_DEFINITIONS = load_variations(
+        config.granularity, config.style
     )
     
-    # Get variation config (with fallback handling)
-    if config.style == "pl":
-        available_variations = list(CODE_STYLE_VARIATIONS.keys())
-        variation_config = CODE_STYLE_VARIATIONS.get(config.variation)
-        if not variation_config:
-            # Try fallback to 'default'
-            if 'default' in CODE_STYLE_VARIATIONS:
-                logging.warning(f"Variation '{config.variation}' not found, using 'default' instead")
-                logging.info(f"Available PL variations: {available_variations}")
-                variation_config = CODE_STYLE_VARIATIONS['default']
-                config.variation = 'default'
-            else:
-                raise ValueError(
-                    f"Unknown code-style variation: {config.variation}. "
-                    f"Available: {available_variations}"
-                )
-    else:
-        available_variations = list(NL_STYLE_VARIATIONS.keys())
-        variation_config = NL_STYLE_VARIATIONS.get(config.variation)
-        if not variation_config:
-            # Try fallback to 'default'
-            if 'default' in NL_STYLE_VARIATIONS:
-                logging.warning(f"Variation '{config.variation}' not found, using 'default' instead")
-                logging.info(f"Available NL variations: {available_variations}")
-                variation_config = NL_STYLE_VARIATIONS['default']
-                config.variation = 'default'
-            else:
-                raise ValueError(
-                    f"Unknown NL-style variation: {config.variation}. "
-                    f"Available: {available_variations}"
-                )
-    
-    # Get entity types and definitions
     entity_types = list(ENTITY_DEFINITIONS.keys())
     entity_definitions = ENTITY_DEFINITIONS
     
+    logging.info(f"Discovered variations: {list(available_variations.keys())}")
     logging.info(f"Entity types ({len(entity_types)}): {entity_types}")
     
     # Load test data
@@ -620,43 +604,53 @@ def run_experiment(config: ExperimentConfig):
     logging.info(f"Loading test data from: {test_path}")
     ds_test = load_from_disk(test_path)
     
-    # Determine ICL prompt source (check base prompts first!)
-    icl_prompt = None
-    prompt_source = "dynamic"  # Track where prompt came from
+    # Determine Prompt Source using discovered variations
+    base_prompt = None
+    prompt_source = "dynamic" 
     
-    # Option 1: Use explicitly provided prompt path
+    # Strategy 1: Explicitly provided prompt path
     if config.prompt_path and os.path.exists(config.prompt_path):
-        logging.info(f"Loading pre-generated prompt from: {config.prompt_path}")
+        logging.info(f"Loading custom prompt from: {config.prompt_path}")
         with open(config.prompt_path, 'r') as f:
-            icl_prompt = f.read()
+            base_prompt = f.read()
         prompt_source = "custom"
     
-    # Option 2: Use base prompt files from prompts/base/
-    if icl_prompt is None:
-        base_prompt_file = os.path.join(
-            CODEIE_ROOT, "prompts", "base",
-            f"{config.granularity}_{config.style}_1shot.txt"
-        )
-        
-        if os.path.exists(base_prompt_file):
-            logging.info(f"Using base prompt from: {base_prompt_file}")
-            with open(base_prompt_file, 'r') as f:
-                icl_prompt = f.read()
-            prompt_source = "base"
+    # Strategy 2: Use discovered variation (including 'default' as 'base')
+    if base_prompt is None:
+        var_path = available_variations.get(config.variation)
+        if var_path == "base":
+            # Map 'default' to binary base files
+            patterns = [
+                f"{config.granularity}_{config.style}_1shot.txt",
+                f"{config.granularity}_{config.style}.txt"
+            ]
+            for p in patterns:
+                base_file = os.path.join(CODEIE_ROOT, "prompts", "base", p)
+                if os.path.exists(base_file):
+                    logging.info(f"Using base prompt: {base_file}")
+                    with open(base_file, 'r') as f:
+                        base_prompt = f.read()
+                    prompt_source = "base"
+                    break
+        elif var_path and os.path.exists(var_path):
+            logging.info(f"Using variations directory prompt: {var_path}")
+            with open(var_path, 'r') as f:
+                base_prompt = f.read()
+            prompt_source = f"variation:{config.variation}"
+        else:
+            logging.error(f"Variation '{config.variation}' not found in discovery.")
+            return None
     
-    # No base prompt found - error out
-    if icl_prompt is None:
-        logging.error(f"Base prompt not found: {base_prompt_file}")
-        logging.error("Please ensure prompts/base/ directory contains the required prompt files.")
-        logging.error(f"Expected file: {config.granularity}_{config.style}_1shot.txt")
+    if base_prompt is None:
+        logging.error("No suitable prompt file found in prompts/base/ or prompts/variations/")
         return None
     
-    logging.info(f"ICL prompt length: {len(icl_prompt)} characters")
+    logging.info(f"Base prompt loaded (Length: {len(base_prompt)})")
     
     # Show sample of the prompt for verification
-    logging.info("Sample ICL prompt (first 1000 chars):")
+    logging.info("Sample base prompt (first 1000 chars):")
     logging.info("-" * 40)
-    for line in icl_prompt[:1000].split('\n'):
+    for line in base_prompt[:1000].split('\n'):
         logging.info(line)
     logging.info("-" * 40)
     
@@ -709,17 +703,22 @@ def run_experiment(config: ExperimentConfig):
         if current_entity:
             gold_entities.append(current_entity)
         
-        # Build test prompt
-        # When using base prompts, use simple format matching the base prompt structure
+        # Build test prompt dynamically for the current sentence
         if config.style == "pl":
-            # Code style: just the function signature with text
-            test_prompt = f'def named_entity_recognition(input_text="{text}"):\n    entity_list = []\n'
+            # Code style: matches working unit test format with docstring and trigger comment
+            test_prompt = (
+                f'def named_entity_recognition(input_text):\n'
+                f'    """ extract named entities from the input_text . """\n'
+                f'    input_text = "{text}"\n'
+                f'    entity_list = []\n'
+                f'    # Continue by adding entity_list.append statements for each named entity found:'
+            )
         else:
             # NL style: matches the base prompt format
             test_prompt = f'The text is "{text}". The named entities in the text:'
-        
-        # Full prompt = ICL + test input
-        full_prompt = icl_prompt + "\n" + test_prompt
+
+        # Full prompt = few-shot context + test input
+        full_prompt = base_prompt + "\n" + test_prompt
         
         # Run inference
         start_time = time.time()
@@ -920,9 +919,8 @@ def main():
         config.model_name = args.model
     
     if args.run_all_variations:
-        # Load variations
-        CODE_STYLE_VARIATIONS, NL_STYLE_VARIATIONS, _ = load_variations(args.granularity)
-        variations = CODE_STYLE_VARIATIONS if args.style == 'pl' else NL_STYLE_VARIATIONS
+        # Discover all variations for this style
+        variations, _ = load_variations(args.granularity, args.style)
         
         all_results = {}
         for var_name in variations.keys():
