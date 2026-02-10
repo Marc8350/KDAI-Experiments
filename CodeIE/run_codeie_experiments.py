@@ -445,7 +445,9 @@ def run_inference(prompt: str, llm_model, config: ExperimentConfig) -> str:
         stop = [END, END_LINE, "\ndef ", "\n\ndef "]
         
         response = llm_model.invoke(messages, stop=stop)
-        return response.content
+        if hasattr(response, 'content'):
+            return response.content
+        return str(response)
         
     except Exception as e:
         logging.error(f"Inference failed: {e}")

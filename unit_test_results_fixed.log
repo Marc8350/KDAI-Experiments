@@ -1,0 +1,64 @@
+Command line override: Model set to falcon3:latest
+Loading test data from: /Users/marcrodig/Development/kdai/KDAI-Experiments/few-nerd_test
+Test Sentence: In the early 1930s the band moved to the Grill Room of the Taft Hotel in New York ; the band was renamed `` George Hall and His Hotel Taft Orchestra `` .
+
+Using OllamaLLM (Completion API) for falcon3:latest
+
+============================================================
+TEST: Coarse NL Inference (Natural Language Style)
+============================================================
+Inference failed: [Errno 61] Connection refused
+Model Response:
+...
+Parsed Entities: []
+Using OllamaLLM (Completion API) for falcon3:latest
+
+============================================================
+TEST: Coarse PL Inference (Code Style)
+============================================================
+Inference failed: [Errno 61] Connection refused
+Model Response:
+...
+Parsed Entities: []
+Using OllamaLLM (Completion API) for falcon3:latest
+
+============================================================
+TEST: Fine NL Inference (Natural Language Style)
+============================================================
+Inference failed: [Errno 61] Connection refused
+Model Response:
+...
+Parsed Entities: []
+Using OllamaLLM (Completion API) for falcon3:latest
+
+============================================================
+TEST: Fine PL Inference (Code Style)
+============================================================
+Inference failed: [Errno 61] Connection refused
+Model Response:
+...
+Parsed Entities: []
+
+======================================================================
+          CODEIE INFERENCE UNIT TESTS
+          Model: falcon3:latest
+======================================================================
+
+
+======================================================================
+                        TEST RESULTS SUMMARY
+======================================================================
+
+Test Name                                Status     Details
+----------------------------------------------------------------------
+Coarse NL (Natural Language)             ❌ FAILED   False is not true : Expected a...
+Coarse PL (Python Code)                  ❌ FAILED   False is not true : Expected a...
+Fine NL (Natural Language)               ❌ FAILED   False is not true : Expected a...
+Fine PL (Python Code)                    ❌ FAILED   False is not true : Expected a...
+----------------------------------------------------------------------
+
+Total: 4 | Passed: 0 | Failed: 4
+
+⚠️  4 test(s) failed. See details above.
+======================================================================
+
