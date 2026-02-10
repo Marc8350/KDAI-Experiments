@@ -1,0 +1,68 @@
+Command line override: Model set to falcon3:7b
+Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments/few-nerd_test
+Test Sentence: In the early 1930s the band moved to the Grill Room of the Taft Hotel in New York ; the band was renamed `` George Hall and His Hotel Taft Orchestra `` .
+
+Using OllamaLLM (Completion API) for falcon3:7b
+
+============================================================
+TEST: Coarse NL Inference (Natural Language Style)
+============================================================
+HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 404 Not Found"
+Inference failed: model 'falcon3:7b' not found (status code: 404)
+Model Response:
+...
+Parsed Entities: []
+Using OllamaLLM (Completion API) for falcon3:7b
+
+============================================================
+TEST: Coarse PL Inference (Code Style)
+============================================================
+HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 404 Not Found"
+Inference failed: model 'falcon3:7b' not found (status code: 404)
+Model Response:
+...
+Parsed Entities: []
+Using OllamaLLM (Completion API) for falcon3:7b
+
+============================================================
+TEST: Fine NL Inference (Natural Language Style)
+============================================================
+HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 404 Not Found"
+Inference failed: model 'falcon3:7b' not found (status code: 404)
+Model Response:
+...
+Parsed Entities: []
+Using OllamaLLM (Completion API) for falcon3:7b
+
+============================================================
+TEST: Fine PL Inference (Code Style)
+============================================================
+HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 404 Not Found"
+Inference failed: model 'falcon3:7b' not found (status code: 404)
+Model Response:
+...
+Parsed Entities: []
+
+======================================================================
+          CODEIE INFERENCE UNIT TESTS
+          Model: falcon3:7b
+======================================================================
+
+
+======================================================================
+                        TEST RESULTS SUMMARY
+======================================================================
+
+Test Name                                Status     Details
+----------------------------------------------------------------------
+Coarse NL (Natural Language)             ❌ FAILED   False is not true : Expected a...
+Coarse PL (Python Code)                  ❌ FAILED   False is not true : Expected a...
+Fine NL (Natural Language)               ❌ FAILED   False is not true : Expected a...
+Fine PL (Python Code)                    ❌ FAILED   False is not true : Expected a...
+----------------------------------------------------------------------
+
+Total: 4 | Passed: 0 | Failed: 4
+
+⚠️  4 test(s) failed. See details above.
+======================================================================
+
