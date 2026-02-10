@@ -49,7 +49,7 @@ from concurrent.futures import ProcessPoolExecutor, as_completed
 from dataclasses import asdict
 from run_codeie_experiments import run_experiment, ExperimentConfig, update_experiment_matrix
 
-def run_experiment_task(run_config_dict: Dict, run_id: str) -> Dict:
+def run_experiment_task(run_config_dict: Dict, run_id: str, progress_queue=None) -> Dict:
     """Worker task to run experiment in a separate process."""
     try:
         # Reconstruct config
@@ -68,7 +68,7 @@ def run_experiment_task(run_config_dict: Dict, run_id: str) -> Dict:
         # Run experiment (skipping matrix update to avoid race conditions)
         config.skip_matrix_update = True
         
-        metrics = run_experiment(config)
+        metrics = run_experiment(config, progress_queue=progress_queue)
         return {"run_id": run_id, "status": "completed", "result": metrics}
     except Exception as e:
         # Log the full traceback for debugging
@@ -644,6 +644,30 @@ class Orchestrator:
         start_time = time.time()
         
         from tqdm import tqdm
+        from multiprocessing import Manager
+        import threading
+        
+        # Create a manager for shared queue
+        manager = Manager()
+        progress_queue = manager.Queue()
+        
+        # Calculate total samples
+        max_samples_per_run = self.config["execution"].get("max_samples", 0)
+        total_samples = len(runs) * max_samples_per_run
+        
+        # Progress bar updater thread
+        def update_pbar(queue, total):
+            with tqdm(total=total, desc="Total Progress (Samples)", unit="sample") as pbar:
+                while True:
+                    item = queue.get()
+                    if item is None: # Sentinel
+                        break
+                    pbar.update(item)
+        
+        # Start progress thread
+        pbar_thread = threading.Thread(target=update_pbar, args=(progress_queue, total_samples))
+        pbar_thread.daemon = True
+        pbar_thread.start()
         
         # Prepare tasks
         future_to_run = {}
@@ -681,15 +705,14 @@ class Orchestrator:
                     "skip_matrix_update": True # Explicitly set true for worker
                 }
                 
-                future = executor.submit(run_experiment_task, config_dict, run.run_id)
+                future = executor.submit(run_experiment_task, config_dict, run.run_id, progress_queue)
                 future_to_run[future] = run
                 
             # Process results as they complete
             completed_count = 0
             
-            # Using tqdm for progress bar
-            with tqdm(total=len(runs), desc="Running Experiments", unit="run") as pbar:
-                for future in as_completed(future_to_run):
+            # Process results as they complete
+            for future in as_completed(future_to_run):
                     run = future_to_run[future]
                     completed_count += 1
                     
@@ -749,7 +772,11 @@ class Orchestrator:
                             "result": {"error": str(e)}
                         })
                     
-                    pbar.update(1)
+
+        
+        # Signal progress thread to stop
+        progress_queue.put(None)
+        pbar_thread.join()
 
         # Save batch summary
         summary = {

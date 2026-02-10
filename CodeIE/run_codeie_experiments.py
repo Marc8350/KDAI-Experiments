@@ -687,7 +687,7 @@ from evaluation import evaluate_predictions, evaluate_ner, EvaluationResult
 # Main Experiment Loop
 # ============================================================================
 
-def run_experiment(config: ExperimentConfig):
+def run_experiment(config: ExperimentConfig, progress_queue=None):
     """Run a complete NER experiment with CodeIE."""
     if config.quiet:
         # Suppress logging for all loggers except for the root if needed,
@@ -873,6 +873,10 @@ def run_experiment(config: ExperimentConfig):
         # Store results
         all_gold.append(gold_entities)
         all_pred.append(pred_entities)
+        
+        # Update progress
+        if progress_queue:
+            progress_queue.put(1)
         
         # Calculate per-sentence score
         sentence_eval = evaluate_ner([gold_entities], [pred_entities], entity_types)
