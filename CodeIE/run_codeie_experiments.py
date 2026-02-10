@@ -495,12 +495,33 @@ def parse_code_style_output(output: str, entity_types: List[str]) -> List[Dict]:
             etype = etype.strip().lower()
             text = text.strip()
             
-            # Find closest matching entity type
+            # Find closest matching entity type with robust fallback
             matched_type = None
+            etype_norm = etype.lower().replace("_", "-")
+            
+            # 1. Exact or normalized match
             for t in entity_types:
-                if t.lower() == etype or t.lower() == etype.replace("_", "-") or t.lower() == etype.replace("-", "_"):
+                if t.lower() == etype_norm:
                     matched_type = t
                     break
+            
+            # 2. Fallback: If model hallucinated the parent (e.g., 'product-hotel' instead of 'building-hotel')
+            # we check if the sub-type suffix matches any valid type suffix
+            if not matched_type and "-" in etype_norm:
+                suffix = etype_norm.split("-")[-1]
+                for t in entity_types:
+                    if t.lower().endswith("-" + suffix):
+                        matched_type = t
+                        break
+            
+            # 3. Final Fallback: Check if the base category alone matches
+            if not matched_type:
+                base_cat = etype_norm.split("-")[0]
+                for t in entity_types:
+                    if t.lower().startswith(base_cat + "-"):
+                         # Pick the first one as a reasonable best-guess if the model was vague
+                        matched_type = t
+                        break
             
             if matched_type and text:
                 # Avoid duplicates
@@ -542,7 +563,8 @@ def parse_nl_style_output(output: str, text: str, entity_types: List[str]) -> Li
         return entities
 
     # 2. Try parsing (type: text) format
-    pattern_paren = r'\(([a-zA-Z][a-zA-Z0-9\-/]+):\s*([^)]+)\)'
+    # Non-greedy match for text inside parens to avoid capturing trailing content
+    pattern_paren = r'\(([a-zA-Z][a-zA-Z0-9\-/]+):\s*([^)]+?)\)'
     for match in re.finditer(pattern_paren, output):
         etype_raw = match.group(1).strip()
         etext = match.group(2).strip()
