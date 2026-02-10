@@ -474,8 +474,8 @@ class Orchestrator:
         
         runs = []
         
-        for model_id, model_config in models.items():
-            for granularity, style, variation in product(granularities, styles, variations):
+        for granularity, style, variation in product(granularities, styles, variations):
+            for model_id, model_config in models.items():
                 prompt_path = self._get_prompt_path(granularity, style, variation)
                 
                 if prompt_path is None:
@@ -643,6 +643,8 @@ class Orchestrator:
         all_results = []
         start_time = time.time()
         
+        from tqdm import tqdm
+        
         # Prepare tasks
         future_to_run = {}
         
@@ -684,68 +686,70 @@ class Orchestrator:
                 
             # Process results as they complete
             completed_count = 0
-            for future in as_completed(future_to_run):
-                run = future_to_run[future]
-                completed_count += 1
-                
-                try:
-                    result_data = future.result()
+            
+            # Using tqdm for progress bar
+            with tqdm(total=len(runs), desc="Running Experiments", unit="run") as pbar:
+                for future in as_completed(future_to_run):
+                    run = future_to_run[future]
+                    completed_count += 1
                     
-                    if result_data["status"] == "completed":
-                        metrics = result_data["result"]
-                        self.completed_runs.append(run.run_id)
-                        run.status = "completed"
+                    try:
+                        result_data = future.result()
                         
-                        if not quiet:
-                            logger.info(f"Completed: {run.run_id}")
+                        if result_data["status"] == "completed":
+                            metrics = result_data["result"]
+                            self.completed_runs.append(run.run_id)
+                            run.status = "completed"
+                            
+                            # Log completion even if quiet is not on (verbose logging) 
+                            # But if quiet, tqdm handles the UI.
+                            if not quiet:
+                                logger.info(f"Completed: {run.run_id}")
+                            
+                            # Handle Matrix Update in Main Process
+                            result_file = metrics.get('result_file')
+                            if result_file and os.path.exists(result_file):
+                                try:
+                                    with open(result_file, 'r') as f:
+                                        final_results_data = json.load(f)
+                                    
+                                    # Reconstruct config for update function
+                                    temp_config = ExperimentConfig(
+                                        granularity=run.granularity,
+                                        style=run.style,
+                                        variation=run.variation,
+                                        model_name=run.model_config["name"]
+                                    )
+                                    
+                                    # Use matrix_dir from config or default
+                                    matrix_save_dir = self.results_dir
+                                    update_experiment_matrix(str(matrix_save_dir), temp_config, final_results_data, result_file)
+                                    
+                                except Exception as e:
+                                    logger.error(f"Failed to update matrix for {run.run_id}: {e}")
+                            
+                            all_results.append({
+                                "run": run.to_dict(),
+                                "result": metrics
+                            })
+                            
                         else:
-                            # Simple progress update
-                            sys.stdout.write(f"\rProgress: [{completed_count}/{len(runs)}] Completed: {run.run_id[:40]:<40}")
-                            sys.stdout.flush()
-                        
-                        # Handle Matrix Update in Main Process
-                        result_file = metrics.get('result_file')
-                        if result_file and os.path.exists(result_file):
-                            try:
-                                with open(result_file, 'r') as f:
-                                    final_results_data = json.load(f)
-                                
-                                # Reconstruct config for update function
-                                # We need 'granularity' and 'style' primarily
-                                temp_config = ExperimentConfig(
-                                    granularity=run.granularity,
-                                    style=run.style,
-                                    variation=run.variation,
-                                    model_name=run.model_config["name"]
-                                )
-                                
-                                # Use matrix_dir from config or default
-                                matrix_save_dir = self.results_dir
-                                update_experiment_matrix(str(matrix_save_dir), temp_config, final_results_data, result_file)
-                                
-                            except Exception as e:
-                                logger.error(f"Failed to update matrix for {run.run_id}: {e}")
-                        
+                            run.status = "failed"
+                            error_msg = result_data.get("error", "Unknown error")
+                            logger.error(f"Failed: {run.run_id} - {error_msg}")
+                            all_results.append({
+                                "run": run.to_dict(),
+                                "result": {"error": error_msg}
+                            })
+                            
+                    except Exception as e:
+                        logger.error(f"Exception for {run.run_id}: {e}")
                         all_results.append({
                             "run": run.to_dict(),
-                            "result": metrics
+                            "result": {"error": str(e)}
                         })
-                        
-                    else:
-                        run.status = "failed"
-                        error_msg = result_data.get("error", "Unknown error")
-                        logger.error(f"Failed: {run.run_id} - {error_msg}")
-                        all_results.append({
-                            "run": run.to_dict(),
-                            "result": {"error": error_msg}
-                        })
-                        
-                except Exception as e:
-                    logger.error(f"Exception for {run.run_id}: {e}")
-                    all_results.append({
-                        "run": run.to_dict(),
-                        "result": {"error": str(e)}
-                    })
+                    
+                    pbar.update(1)
 
         # Save batch summary
         summary = {
