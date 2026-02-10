@@ -1,51 +1,51 @@
-Command line override: Model set to falcon3:7b
+Command line override: Model set to falcon3:latest
 Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments/few-nerd_test
 Test Sentence: In the early 1930s the band moved to the Grill Room of the Taft Hotel in New York ; the band was renamed `` George Hall and His Hotel Taft Orchestra `` .
 
-Using OllamaLLM (Completion API) for falcon3:7b
+Using OllamaLLM (Completion API) for falcon3:latest
 
 ============================================================
 TEST: Coarse NL Inference (Natural Language Style)
 ============================================================
-HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 404 Not Found"
-Inference failed: model 'falcon3:7b' not found (status code: 404)
+HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+Inference failed: 'str' object has no attribute 'content'
 Model Response:
 ...
 Parsed Entities: []
-Using OllamaLLM (Completion API) for falcon3:7b
+Using OllamaLLM (Completion API) for falcon3:latest
 
 ============================================================
 TEST: Coarse PL Inference (Code Style)
 ============================================================
-HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 404 Not Found"
-Inference failed: model 'falcon3:7b' not found (status code: 404)
+HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+Inference failed: 'str' object has no attribute 'content'
 Model Response:
 ...
 Parsed Entities: []
-Using OllamaLLM (Completion API) for falcon3:7b
+Using OllamaLLM (Completion API) for falcon3:latest
 
 ============================================================
 TEST: Fine NL Inference (Natural Language Style)
 ============================================================
-HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 404 Not Found"
-Inference failed: model 'falcon3:7b' not found (status code: 404)
+HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+Inference failed: 'str' object has no attribute 'content'
 Model Response:
 ...
 Parsed Entities: []
-Using OllamaLLM (Completion API) for falcon3:7b
+Using OllamaLLM (Completion API) for falcon3:latest
 
 ============================================================
 TEST: Fine PL Inference (Code Style)
 ============================================================
-HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 404 Not Found"
-Inference failed: model 'falcon3:7b' not found (status code: 404)
+HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+Inference failed: 'str' object has no attribute 'content'
 Model Response:
 ...
 Parsed Entities: []
 
 ======================================================================
           CODEIE INFERENCE UNIT TESTS
-          Model: falcon3:7b
+          Model: falcon3:latest
 ======================================================================
 
 
