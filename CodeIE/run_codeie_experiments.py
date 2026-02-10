@@ -202,6 +202,7 @@ class ExperimentConfig:
     matrix_dir: Optional[str] = None  # Directory where experiment_matrix.csv should be saved
     prompt_path: Optional[str] = None  # Path to pre-generated prompt file
     quiet: bool = False  # Suppress non-critical logging
+    skip_matrix_update: bool = False  # Skip updating the central experiment matrix CSV
 
 
 def load_variations(granularity: str, style: str):
@@ -1012,8 +1013,10 @@ def run_experiment(config: ExperimentConfig):
     # Ensure matrix directory exists
     os.makedirs(matrix_save_dir, exist_ok=True)
     
-    update_experiment_matrix(matrix_save_dir, config, final_results, result_file)
+    if not config.skip_matrix_update:
+        update_experiment_matrix(matrix_save_dir, config, final_results, result_file)
     
+    final_metrics['result_file'] = result_file
     return final_metrics
 
 

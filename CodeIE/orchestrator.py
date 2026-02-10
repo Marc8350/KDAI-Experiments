@@ -45,6 +45,38 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+from concurrent.futures import ProcessPoolExecutor, as_completed
+from dataclasses import asdict
+from run_codeie_experiments import run_experiment, ExperimentConfig, update_experiment_matrix
+
+def run_experiment_task(run_config_dict: Dict, run_id: str) -> Dict:
+    """Worker task to run experiment in a separate process."""
+    try:
+        # Reconstruct config
+        config = ExperimentConfig(**run_config_dict)
+        
+        # Set environment variables for API access consistency
+        if config.model_name:
+            os.environ["CUSTOM_MODEL_NAME"] = config.model_name
+        if config.api_base_url:
+            os.environ["CUSTOM_API_BASE"] = config.api_base_url
+        if config.api_key:
+            os.environ["CUSTOM_API_KEY"] = config.api_key
+            if "gemini" in (config.model_name or "").lower():
+                os.environ["GOOGLE_API_KEY"] = config.api_key
+        
+        # Run experiment (skipping matrix update to avoid race conditions)
+        config.skip_matrix_update = True
+        
+        metrics = run_experiment(config)
+        return {"run_id": run_id, "status": "completed", "result": metrics}
+    except Exception as e:
+        # Log the full traceback for debugging
+        import traceback
+        traceback.print_exc()
+        return {"run_id": run_id, "status": "failed", "error": str(e)}
+
+
 
 # Load .env file
 def load_env():
@@ -517,6 +549,7 @@ class Orchestrator:
             run.status = "failed"
             return {"error": str(e)}
     
+
     def run_all(
         self,
         filter_model: Optional[str] = None,
@@ -525,7 +558,8 @@ class Orchestrator:
         filter_variation: Optional[str] = None,
         dry_run: bool = False,
         skip_generation: bool = False,
-        quiet: bool = False
+        quiet: bool = False,
+        max_workers: int = 2 # Default to 2 for the requested "2 models"
     ) -> Dict[str, Any]:
         """
         Run the complete pipeline.
@@ -537,13 +571,14 @@ class Orchestrator:
             filter_variation: Only run this variation
             dry_run: If True, only print what would be run
             skip_generation: If True, skip variation generation check
+            max_workers: Number of parallel processes
         
         Returns:
             Summary of all experiment results
         """
         logger.info(f"\n{'#'*60}")
         logger.info(f"# CodeIE Experiment Orchestrator")
-        logger.info(f"# One-Stop Shop Pipeline")
+        logger.info(f"# One-Stop Shop Pipeline (Parallel Execution)")
         logger.info(f"{'#'*60}")
         
         # Step 1: Check and generate variations
@@ -593,50 +628,125 @@ class Orchestrator:
             logger.setLevel(logging.WARNING)
             # Suppress other loggers
             logging.getLogger("run_codeie_experiments").setLevel(logging.WARNING)
-            print(f"\n[Step 3/3] Running {len(runs)} experiments in quiet mode...")
+            print(f"\n[Step 3/3] Running {len(runs)} experiments in quiet mode (Parallel: {max_workers})...")
         else:
-            logger.info("\n[Step 3/3] Running experiments...")
+            logger.info(f"\n[Step 3/3] Running experiments (Parallel workers: {max_workers})...")
         
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         batch_results_dir = self.results_dir / f"batch_{timestamp}"
         batch_results_dir.mkdir(parents=True, exist_ok=True)
         
+        # Relative paths for config
+        batch_rel_dir = str(batch_results_dir.relative_to(CODEIE_ROOT))
+        matrix_root_dir = str(self.results_dir.relative_to(CODEIE_ROOT))
+        
         all_results = []
         start_time = time.time()
         
-        for i, run in enumerate(runs, 1):
-            if not quiet:
-                logger.info(f"\n[{i}/{len(runs)}] Starting: {run.run_id}")
-            else:
-                elapsed = time.time() - start_time
-                avg_time = elapsed / (i - 1) if i > 1 else 0
-                remaining = (len(runs) - (i - 1)) * avg_time if i > 1 else 0
-                eta_str = time.strftime("%H:%M:%S", time.gmtime(remaining)) if i > 1 else "Estimating..."
-                sys.stdout.write(f"\rProgress: [{i}/{len(runs)}] | Running: {run.run_id[:40]:<40} | ETA: {eta_str}")
-                sys.stdout.flush()
-            
-            try:
-                # Pass the relative path for the current batch to the experiment
-                batch_rel_dir = str(batch_results_dir.relative_to(CODEIE_ROOT))
-                # Central matrix should be in the root results_dir
-                matrix_root_dir = str(self.results_dir.relative_to(CODEIE_ROOT))
-                result = self.run_single_experiment(run, output_dir_override=batch_rel_dir, matrix_dir_override=matrix_root_dir, quiet=quiet)
-                all_results.append({
-                    "run": run.to_dict(),
-                    "result": result
-                })
-                self.completed_runs.append(run.run_id)
-                
-            except KeyboardInterrupt:
-                logger.warning("\nInterrupted by user. Saving progress...")
-                break
-            except Exception as e:
-                logger.error(f"Unexpected error: {e}")
-                all_results.append({
-                    "run": run.to_dict(),
-                    "result": {"error": str(e)}
-                })
+        # Prepare tasks
+        future_to_run = {}
         
+        with ProcessPoolExecutor(max_workers=max_workers) as executor:
+            for i, run in enumerate(runs, 1):
+                # Prepare config values
+                # Logic copied/adapted from run_single_experiment
+                
+                # Resolve API Key/URL for config
+                api_key = None
+                api_base_url = None
+                
+                if run.model_config["type"] == "google":
+                    api_key_env = run.model_config.get("api_key_env", "GOOGLE_API_KEY")
+                    api_key = os.getenv(api_key_env) or os.getenv("GEMINI_API_KEY")
+                elif run.model_config["type"] == "ollama":
+                    api_base_url = run.model_config.get("base_url", "http://localhost:11434")
+                
+                # Create config dict
+                config_dict = {
+                    "granularity": run.granularity,
+                    "style": run.style,
+                    "variation": run.variation if run.variation != "base" else "v0_original",
+                    "prompt_path": str(run.prompt_path),
+                    "model_name": run.model_config["name"],
+                    "max_tokens": run.model_config.get("max_tokens", 512),
+                    "temperature": run.model_config.get("temperature", 0.0),
+                    "max_test_samples": self.config["execution"].get("max_samples"),
+                    "output_dir": batch_rel_dir,
+                    "matrix_dir": matrix_root_dir,
+                    "quiet": quiet,
+                    "api_key": api_key,
+                    "api_base_url": api_base_url,
+                    "skip_matrix_update": True # Explicitly set true for worker
+                }
+                
+                future = executor.submit(run_experiment_task, config_dict, run.run_id)
+                future_to_run[future] = run
+                
+            # Process results as they complete
+            completed_count = 0
+            for future in as_completed(future_to_run):
+                run = future_to_run[future]
+                completed_count += 1
+                
+                try:
+                    result_data = future.result()
+                    
+                    if result_data["status"] == "completed":
+                        metrics = result_data["result"]
+                        self.completed_runs.append(run.run_id)
+                        run.status = "completed"
+                        
+                        if not quiet:
+                            logger.info(f"Completed: {run.run_id}")
+                        else:
+                            # Simple progress update
+                            sys.stdout.write(f"\rProgress: [{completed_count}/{len(runs)}] Completed: {run.run_id[:40]:<40}")
+                            sys.stdout.flush()
+                        
+                        # Handle Matrix Update in Main Process
+                        result_file = metrics.get('result_file')
+                        if result_file and os.path.exists(result_file):
+                            try:
+                                with open(result_file, 'r') as f:
+                                    final_results_data = json.load(f)
+                                
+                                # Reconstruct config for update function
+                                # We need 'granularity' and 'style' primarily
+                                temp_config = ExperimentConfig(
+                                    granularity=run.granularity,
+                                    style=run.style,
+                                    variation=run.variation,
+                                    model_name=run.model_config["name"]
+                                )
+                                
+                                # Use matrix_dir from config or default
+                                matrix_save_dir = self.results_dir
+                                update_experiment_matrix(str(matrix_save_dir), temp_config, final_results_data, result_file)
+                                
+                            except Exception as e:
+                                logger.error(f"Failed to update matrix for {run.run_id}: {e}")
+                        
+                        all_results.append({
+                            "run": run.to_dict(),
+                            "result": metrics
+                        })
+                        
+                    else:
+                        run.status = "failed"
+                        error_msg = result_data.get("error", "Unknown error")
+                        logger.error(f"Failed: {run.run_id} - {error_msg}")
+                        all_results.append({
+                            "run": run.to_dict(),
+                            "result": {"error": error_msg}
+                        })
+                        
+                except Exception as e:
+                    logger.error(f"Exception for {run.run_id}: {e}")
+                    all_results.append({
+                        "run": run.to_dict(),
+                        "result": {"error": str(e)}
+                    })
+
         # Save batch summary
         summary = {
             "timestamp": timestamp,
@@ -769,6 +879,12 @@ def main():
         action="store_true",
         help="Only show critical warnings, progress, and remaining time"
     )
+    parser.add_argument(
+        "--max-workers",
+        type=int,
+        default=2,
+        help="Number of parallel workers (default: 2)"
+    )
     
     args = parser.parse_args()
     
@@ -807,7 +923,8 @@ def main():
         filter_variation=args.variation,
         dry_run=args.dry_run,
         skip_generation=args.skip_generation,
-        quiet=args.quiet
+        quiet=args.quiet,
+        max_workers=args.max_workers
     )
 
 
