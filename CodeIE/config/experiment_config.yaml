@@ -51,7 +51,7 @@ models:
     base_url: "http://localhost:11434"
     temperature: 0.0
     max_tokens: 512
-    enabled: true
+    enabled: false
 
   # Falcon 3 via Ollama
   falcon3:
@@ -60,7 +60,7 @@ models:
     base_url: "http://localhost:11434"
     temperature: 0.0
     max_tokens: 512
-    enabled: false
+    enabled: true
 
   # Gemini via Google API
   gemini_flash:
@@ -73,7 +73,7 @@ models:
 
 # Experiment execution settings
 execution:
-  max_samples: 10    # Run only first 10 sentences
+  max_samples: 1    # Run only first 10 sentences
   resume: true       # Resume from last checkpoint if available
   save_interval: 10  # Save results every N samples
   
