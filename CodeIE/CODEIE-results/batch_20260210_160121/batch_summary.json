@@ -1,0 +1,233 @@
+{
+  "timestamp": "20260210_160121",
+  "total_runs": 28,
+  "completed_runs": 15,
+  "config_path": "/home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/config/experiment_config.yaml",
+  "results": [
+    {
+      "run": {
+        "run_id": "quen2.5_coarse_pl_base",
+        "granularity": "coarse",
+        "style": "pl",
+        "variation": "base",
+        "model_id": "quen2.5",
+        "model_name": "qwen2.5:7b",
+        "prompt_path": "/home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/base/coarse_pl_1shot.txt",
+        "status": "failed"
+      },
+      "result": {
+        "error": "[Errno 2] No such file or directory: 'CODEIE-results/experiment_matrix.csv'"
+      }
+    },
+    {
+      "run": {
+        "run_id": "quen2.5_coarse_pl_lexical_substitution",
+        "granularity": "coarse",
+        "style": "pl",
+        "variation": "lexical_substitution",
+        "model_id": "quen2.5",
+        "model_name": "qwen2.5:7b",
+        "prompt_path": "/home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/coarse_pl_1shot/lexical_substitution.txt",
+        "status": "failed"
+      },
+      "result": {
+        "error": "[Errno 2] No such file or directory: 'CODEIE-results/experiment_matrix.csv'"
+      }
+    },
+    {
+      "run": {
+        "run_id": "quen2.5_coarse_pl_reodering",
+        "granularity": "coarse",
+        "style": "pl",
+        "variation": "reodering",
+        "model_id": "quen2.5",
+        "model_name": "qwen2.5:7b",
+        "prompt_path": "/home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/coarse_pl_1shot/reodering.txt",
+        "status": "failed"
+      },
+      "result": {
+        "error": "[Errno 2] No such file or directory: 'CODEIE-results/experiment_matrix.csv'"
+      }
+    },
+    {
+      "run": {
+        "run_id": "quen2.5_coarse_pl_sentence_reordering",
+        "granularity": "coarse",
+        "style": "pl",
+        "variation": "sentence_reordering",
+        "model_id": "quen2.5",
+        "model_name": "qwen2.5:7b",
+        "prompt_path": "/home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/coarse_pl_1shot/sentence_reordering.txt",
+        "status": "failed"
+      },
+      "result": {
+        "error": "[Errno 2] No such file or directory: 'CODEIE-results/experiment_matrix.csv'"
+      }
+    },
+    {
+      "run": {
+        "run_id": "quen2.5_coarse_pl_backtrans_ch",
+        "granularity": "coarse",
+        "style": "pl",
+        "variation": "backtrans_ch",
+        "model_id": "quen2.5",
+        "model_name": "qwen2.5:7b",
+        "prompt_path": "/home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/coarse_pl_1shot/backtrans_ch.txt",
+        "status": "failed"
+      },
+      "result": {
+        "error": "[Errno 2] No such file or directory: 'CODEIE-results/experiment_matrix.csv'"
+      }
+    },
+    {
+      "run": {
+        "run_id": "quen2.5_coarse_pl_backtrans_sp",
+        "granularity": "coarse",
+        "style": "pl",
+        "variation": "backtrans_sp",
+        "model_id": "quen2.5",
+        "model_name": "qwen2.5:7b",
+        "prompt_path": "/home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/coarse_pl_1shot/backtrans_sp.txt",
+        "status": "failed"
+      },
+      "result": {
+        "error": "[Errno 2] No such file or directory: 'CODEIE-results/experiment_matrix.csv'"
+      }
+    },
+    {
+      "run": {
+        "run_id": "quen2.5_coarse_pl_backtrans_tu",
+        "granularity": "coarse",
+        "style": "pl",
+        "variation": "backtrans_tu",
+        "model_id": "quen2.5",
+        "model_name": "qwen2.5:7b",
+        "prompt_path": "/home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/coarse_pl_1shot/backtrans_tu.txt",
+        "status": "failed"
+      },
+      "result": {
+        "error": "[Errno 2] No such file or directory: 'CODEIE-results/experiment_matrix.csv'"
+      }
+    },
+    {
+      "run": {
+        "run_id": "quen2.5_coarse_nl_base",
+        "granularity": "coarse",
+        "style": "nl",
+        "variation": "base",
+        "model_id": "quen2.5",
+        "model_name": "qwen2.5:7b",
+        "prompt_path": "/home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/base/coarse_nl_1shot.txt",
+        "status": "failed"
+      },
+      "result": {
+        "error": "[Errno 2] No such file or directory: 'CODEIE-results/experiment_matrix.csv'"
+      }
+    },
+    {
+      "run": {
+        "run_id": "quen2.5_coarse_nl_lexical_substitution",
+        "granularity": "coarse",
+        "style": "nl",
+        "variation": "lexical_substitution",
+        "model_id": "quen2.5",
+        "model_name": "qwen2.5:7b",
+        "prompt_path": "/home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/coarse_nl_1shot/lexical_substitution.txt",
+        "status": "failed"
+      },
+      "result": {
+        "error": "[Errno 2] No such file or directory: 'CODEIE-results/experiment_matrix.csv'"
+      }
+    },
+    {
+      "run": {
+        "run_id": "quen2.5_coarse_nl_reodering",
+        "granularity": "coarse",
+        "style": "nl",
+        "variation": "reodering",
+        "model_id": "quen2.5",
+        "model_name": "qwen2.5:7b",
+        "prompt_path": "/home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/coarse_nl_1shot/reodering.txt",
+        "status": "failed"
+      },
+      "result": {
+        "error": "[Errno 2] No such file or directory: 'CODEIE-results/experiment_matrix.csv'"
+      }
+    },
+    {
+      "run": {
+        "run_id": "quen2.5_coarse_nl_sentence_reordering",
+        "granularity": "coarse",
+        "style": "nl",
+        "variation": "sentence_reordering",
+        "model_id": "quen2.5",
+        "model_name": "qwen2.5:7b",
+        "prompt_path": "/home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/coarse_nl_1shot/sentence_reordering.txt",
+        "status": "failed"
+      },
+      "result": {
+        "error": "[Errno 2] No such file or directory: 'CODEIE-results/experiment_matrix.csv'"
+      }
+    },
+    {
+      "run": {
+        "run_id": "quen2.5_coarse_nl_backtrans_ch",
+        "granularity": "coarse",
+        "style": "nl",
+        "variation": "backtrans_ch",
+        "model_id": "quen2.5",
+        "model_name": "qwen2.5:7b",
+        "prompt_path": "/home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/coarse_nl_1shot/backtrans_ch.txt",
+        "status": "failed"
+      },
+      "result": {
+        "error": "[Errno 2] No such file or directory: 'CODEIE-results/experiment_matrix.csv'"
+      }
+    },
+    {
+      "run": {
+        "run_id": "quen2.5_coarse_nl_backtrans_sp",
+        "granularity": "coarse",
+        "style": "nl",
+        "variation": "backtrans_sp",
+        "model_id": "quen2.5",
+        "model_name": "qwen2.5:7b",
+        "prompt_path": "/home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/coarse_nl_1shot/backtrans_sp.txt",
+        "status": "failed"
+      },
+      "result": {
+        "error": "[Errno 2] No such file or directory: 'CODEIE-results/experiment_matrix.csv'"
+      }
+    },
+    {
+      "run": {
+        "run_id": "quen2.5_coarse_nl_backtrans_tu",
+        "granularity": "coarse",
+        "style": "nl",
+        "variation": "backtrans_tu",
+        "model_id": "quen2.5",
+        "model_name": "qwen2.5:7b",
+        "prompt_path": "/home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/coarse_nl_1shot/backtrans_tu.txt",
+        "status": "failed"
+      },
+      "result": {
+        "error": "[Errno 2] No such file or directory: 'CODEIE-results/experiment_matrix.csv'"
+      }
+    },
+    {
+      "run": {
+        "run_id": "quen2.5_fine_pl_base",
+        "granularity": "fine",
+        "style": "pl",
+        "variation": "base",
+        "model_id": "quen2.5",
+        "model_name": "qwen2.5:7b",
+        "prompt_path": "/home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/base/fine_pl_1shot.txt",
+        "status": "failed"
+      },
+      "result": {
+        "error": "[Errno 2] No such file or directory: 'CODEIE-results/experiment_matrix.csv'"
+      }
+    }
+  ]
+}
