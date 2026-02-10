@@ -468,46 +468,44 @@ def parse_code_style_output(output: str, entity_types: List[str]) -> List[Dict]:
 
     # Regex patterns to match entity_list.append(...)
     # Improved patterns: handles varying whitespace, quote types, and key order
-    # 1. Standard: {"text": "...", "type": "..."}
-    pattern = r'entity_list\.append\(\s*\{\s*["\']text["\']\s*:\s*["\'](.*?)["\']\s*,\s*["\']type["\']\s*:\s*["\'](.*?)["\']\s*(?:,\s*.*?)?\}\s*\)'
-    
-    # 2. Reverse: {"type": "...", "text": "..."}
-    pattern_alt = r'entity_list\.append\(\s*\{\s*["\']type["\']\s*:\s*["\'](.*?)["\']\s*,\s*["\']text["\']\s*:\s*["\'](.*?)["\']\s*(?:,\s*.*?)?\}\s*\)'
+    patterns = [
+        # Standard: {"text": "...", "type": "..."}
+        r'entity_list\.append\(\s*\{\s*["\']text["\']\s*:\s*["\'](.*?)["\']\s*,\s*["\']type["\']\s*:\s*["\'](.*?)["\']\s*\}\s*\)',
+        # Reverse: {"type": "...", "text": "..."}
+        r'entity_list\.append\(\s*\{\s*["\']type["\']\s*:\s*["\'](.*?)["\']\s*,\s*["\']text["\']\s*:\s*["\'](.*?)["\']\s*\}\s*\)',
+        # Simple dict: dict(text="...", type="...")
+        r'entity_list\.append\(\s*dict\(\s*text\s*=\s*["\'](.*?)["\']\s*,\s*type\s*=\s*["\'](.*?)["\']\s*\)\s*\)',
+        # Simple dict reverse: dict(type="...", text="...")
+        r'entity_list\.append\(\s*dict\(\s*type\s*=\s*["\'](.*?)["\']\s*,\s*text\s*=\s*["\'](.*?)["\']\s*\)\s*\)',
+        # Even more robust JSON-like: {"text": "...", "type": "..."}
+        r'\{\s*["\']text["\']\s*:\s*["\'](.*?)["\']\s*,\s*["\']type["\']\s*:\s*["\'](.*?)["\']\s*\}',
+        r'\{\s*["\']type["\']\s*:\s*["\'](.*?)["\']\s*,\s*["\']text["\']\s*:\s*["\'](.*?)["\']\s*\}'
+    ]
 
-    # 3. Handle dict() constructor if it appears
-    pattern_dict = r'entity_list\.append\(\s*dict\(\s*text\s*=\s*["\'](.*?)["\']\s*,\s*type\s*=\s*["\'](.*?)["\']\s*\)\s*\)'
-    pattern_dict_alt = r'entity_list\.append\(\s*dict\(\s*type\s*=\s*["\'](.*?)["\']\s*,\s*text\s*=\s*["\'](.*?)["\']\s*\)\s*\)'
-
-    # Find matches in the cleaned output
-    # Using finditer allows us to process them in order
-    for match in re.finditer(pattern, clean_output):
-        text, entity_type = match.groups()
-        if entity_type in entity_types and text:
-            entities.append({'text': text, 'type': entity_type})
+    for p in patterns:
+        for match in re.finditer(p, clean_output):
+            groups = match.groups()
+            # Determine which group is text and which is type based on pattern structure
+            if "type" in p.split("text")[0]: # type comes first
+                etype, text = groups
+            else: # text comes first
+                text, etype = groups
             
-    # Also check for the alternative format
-    for match in re.finditer(pattern_alt, clean_output):
-        entity_type, text = match.groups()
-        if entity_type in entity_types and text:
-             # Check if this exact entity was already added
-            found = False
-            for e in entities:
-                if e['text'] == text and e['type'] == entity_type:
-                    found = True
+            # Normalize and check type
+            etype = etype.strip().lower()
+            text = text.strip()
+            
+            # Find closest matching entity type
+            matched_type = None
+            for t in entity_types:
+                if t.lower() == etype or t.lower() == etype.replace("_", "-") or t.lower() == etype.replace("-", "_"):
+                    matched_type = t
                     break
-            if not found:
-                entities.append({'text': text, 'type': entity_type})
-
-    # Add dict matches
-    for match in re.finditer(pattern_dict, clean_output):
-        text, entity_type = match.groups()
-        if entity_type in entity_types and text:
-            entities.append({'text': text, 'type': entity_type})
-
-    for match in re.finditer(pattern_dict_alt, clean_output):
-        entity_type, text = match.groups()
-        if entity_type in entity_types and text:
-            entities.append({'text': text, 'type': entity_type})
+            
+            if matched_type and text:
+                # Avoid duplicates
+                if not any(e['text'] == text and e['type'] == matched_type for e in entities):
+                    entities.append({'text': text, 'type': matched_type})
 
     return entities
 
@@ -516,45 +514,62 @@ def parse_nl_style_output(output: str, text: str, entity_types: List[str]) -> Li
     """Parse NL-style output to extract entities. Supports both SEL (<0> type <5> text) and (type: text) formats."""
     entities = []
     
-    # 1. Try parsing (type: text) format (New CodeIE format)
-    # The model may output entities on multiple lines or with extra content
-    # Pattern matches (type: text) where text can contain anything except unbalanced parens
-    # We process line by line to handle multi-line outputs better
-    
-    # More robust pattern: Find all (key: value) patterns
-    # This pattern allows for entity types with hyphens and captures text until closing paren
-    pattern_new = r'\(([a-zA-Z][a-zA-Z0-9\-/]+):\s*([^)]+)\)'
-    
-    matches_new = list(re.finditer(pattern_new, output))
-    if matches_new:
-        for match in matches_new:
-            entity_type = match.group(1).strip()
-            entity_text = match.group(2).strip()
+    # 1. Try parsing bullet list or line-based format (New CodeIE format)
+    # Handles: "* type: text", "- type: text", "type: text", etc.
+    lines = output.split('\n')
+    for line in lines:
+        line = line.strip()
+        if not line: continue
+        
+        # Match "type: text" or "* type: text"
+        # Handles optional leading symbols like *, -, •
+        m = re.search(r'(?:^[*•-]\s*)?([a-zA-Z0-9\-/]+):\s*(.*)', line)
+        if m:
+            etype_raw = m.group(1).strip()
+            etext = m.group(2).strip()
             
-            # Normalize: match entity type case-insensitively
+            # Normalize etype
             matched_type = None
-            for et in entity_types:
-                if et.lower() == entity_type.lower():
-                    matched_type = et
+            for t in entity_types:
+                if t.lower() == etype_raw.lower() or t.lower() == etype_raw.lower().replace("_", "-"):
+                    matched_type = t
                     break
             
-            if matched_type:
-                entities.append({'text': entity_text, 'type': matched_type})
-        
-        if entities:
-            return entities
-
-    # 2. Fallback to parsing SEL format: <0> type <5> span <1> (Old format)
-    # Clean up output
-    output_clean = output.replace('<extra_id_', '<').replace('>', '>')
-    pattern = r'<0>\s*(\w+(?:\s+\w+)*)\s*<5>\s*([^<]+?)\s*<1>'
+            if matched_type and etext:
+                entities.append({'text': etext, 'type': matched_type})
     
-    for match in re.finditer(pattern, output_clean):
-        entity_type = match.group(1).strip().lower().replace(' ', '-')
-        entity_text = match.group(2).strip()
-        
-        if entity_type in entity_types and entity_text:
-            entities.append({'text': entity_text, 'type': entity_type})
+    if entities:
+        return entities
+
+    # 2. Try parsing (type: text) format
+    pattern_paren = r'\(([a-zA-Z][a-zA-Z0-9\-/]+):\s*([^)]+)\)'
+    for match in re.finditer(pattern_paren, output):
+        etype_raw = match.group(1).strip()
+        etext = match.group(2).strip()
+        matched_type = None
+        for t in entity_types:
+            if t.lower() == etype_raw.lower():
+                matched_type = t
+                break
+        if matched_type:
+            entities.append({'text': etext, 'type': matched_type})
+            
+    if entities:
+        return entities
+
+    # 3. Fallback to SEL format: <0> type <5> span <1>
+    output_clean = output.replace('<extra_id_', '<').replace('>', '>')
+    pattern_sel = r'<0>\s*([^<]+)\s*<5>\s*([^<]+)\s*<1>'
+    for match in re.finditer(pattern_sel, output_clean):
+        etype_raw = match.group(1).strip().replace(' ', '-')
+        etext = match.group(2).strip()
+        matched_type = None
+        for t in entity_types:
+            if t.lower() == etype_raw.lower():
+                matched_type = t
+                break
+        if matched_type:
+            entities.append({'text': etext, 'type': matched_type})
     
     return entities
 
