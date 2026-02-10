@@ -46,8 +46,8 @@ class TestOllamaModel(unittest.TestCase):
         if is_chat:
             logger.info(f"Testing {self.model_name} using ChatOllama (Chat API)")
             llm = ChatOllama(model=self.model_name, base_url=self.base_url)
-            messages = [HumanMessage(content="Hello!")]
-            response = llm.invoke(messages).content
+            response_obj = llm.invoke(messages)
+            response = response_obj.content if hasattr(response_obj, 'content') else str(response_obj)
         else:
             logger.info(f"Testing {self.model_name} using OllamaLLM (Completion API)")
             llm = OllamaLLM(model=self.model_name, base_url=self.base_url)
