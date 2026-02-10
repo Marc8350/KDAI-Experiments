@@ -9,11 +9,8 @@ TEST: Coarse NL Inference (Natural Language Style)
 ============================================================
 HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
 Model Response:
-* location: New York
-* building: Grill Room
-* organization: George Hall and His Hotel Taft Orchestra
-* product: George Hall and His Hotel Taft Orchestra...
-Parsed Entities: []
+(location: New York)...
+Parsed Entities: [{'text': 'New York)', 'type': 'location'}]
 Using OllamaLLM (Completion API) for falcon3:latest
 
 ============================================================
@@ -22,9 +19,8 @@ TEST: Coarse PL Inference (Code Style)
 HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
 Model Response:
     entity_list.append({"text": "Taft Hotel", "type": "building"})
-    entity_list.append({"text": "New York", "type": "location"})
     entity_list.append({"text": "George Hall and His Hotel Taft Orchestra", "type": "organization"})...
-Parsed Entities: [{'text': 'Taft Hotel', 'type': 'building'}, {'text': 'New York', 'type': 'location'}, {'text': 'George Hall and His Hotel Taft Orchestra', 'type': 'organization'}]
+Parsed Entities: [{'text': 'Taft Hotel', 'type': 'building'}, {'text': 'George Hall and His Hotel Taft Orchestra', 'type': 'organization'}]
 Using OllamaLLM (Completion API) for falcon3:latest
 
 ============================================================
@@ -35,7 +31,7 @@ Model Response:
 * art-other: Grill Room
 * building-hotel: Taft Hotel
 * organization-showorganization: George Hall and His Hotel Taft Orchestra...
-Parsed Entities: []
+Parsed Entities: [{'text': 'Grill Room', 'type': 'art-other'}, {'text': 'Taft Hotel', 'type': 'building-hotel'}, {'text': 'George Hall and His Hotel Taft Orchestra', 'type': 'organization-showorganization'}]
 Using OllamaLLM (Completion API) for falcon3:latest
 
 ============================================================
@@ -60,14 +56,14 @@ Parsed Entities: []
 
 Test Name                                Status     Details
 ----------------------------------------------------------------------
-Coarse NL (Natural Language)             ❌ FAILED   False is not true : Expected a...
+Coarse NL (Natural Language)             ✅ PASSED   None
 Coarse PL (Python Code)                  ✅ PASSED   None
-Fine NL (Natural Language)               ❌ FAILED   False is not true : Expected a...
+Fine NL (Natural Language)               ✅ PASSED   None
 Fine PL (Python Code)                    ❌ FAILED   False is not true : Expected a...
 ----------------------------------------------------------------------
 
-Total: 4 | Passed: 1 | Failed: 3
+Total: 4 | Passed: 3 | Failed: 1
 
-⚠️  3 test(s) failed. See details above.
+⚠️  1 test(s) failed. See details above.
 ======================================================================
 
