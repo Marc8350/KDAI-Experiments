@@ -14,6 +14,7 @@
 # - person: Specific individuals, covering celebrities, historical figures, common people, and fictional characters.
 # - product: Commercial items with names, such as software, vehicles, or branded goods.
 # DO NOT tell me how to adjust the code. Simply complete it with Just output the entity_list.append() lines.
+# STICK EXACTLY to the entity-types do not define your own entity types.
 # Examples:
 def named_entity_recognition(input_text):
     """ Identify and classify named entities in the input_text . """

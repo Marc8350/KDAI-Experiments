@@ -9,6 +9,7 @@
 # other: Other named entities that don't fit into the above categories.
 # person: A named individual, including fictional characters, historical figures, celebrities, and common people.
 # product: A named commercial product, software, vehicle model, or branded item.
+IMPORTANT: Stick to exactly these entity types, do not create your own ones. 
 
 Text: "The album was released on March 25, 2008. It was the first new‑material album the group had released since **Good Content** in 1992."
 Named entities in the text: (art: Good Content)

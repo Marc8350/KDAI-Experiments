@@ -1,7 +1,7 @@
 You are an expert Named Entity Recognition (NER) system specializing in extracting entities from text.
 
 Annotation Guidelines:
-Extract named entities based on the following categories:
+Extract named entities based on the following categories, and stick exactly to these entity types do not create your own more specific ones:
 
 * art: A named work of art including films, books, music, paintings, or other creative works.
 * building: A named structure or building, such as a stadium, museum, or hotel.

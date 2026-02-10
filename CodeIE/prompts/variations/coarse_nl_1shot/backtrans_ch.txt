@@ -9,6 +9,7 @@ You are a named entity recognition (NER) expert system specialized in extracting
 - **other**: other named entities not falling into the above categories.  
 - **person**: a named individual, including fictional characters, historical figures, celebrities, and ordinary people.  
 - **product**: a named commercial product, software, vehicle model, or branded item.
+IMPORTANT: Stick to exactly these entity types, do not create your own ones. 
 
 **Extract named entities according to the following categories:**
 

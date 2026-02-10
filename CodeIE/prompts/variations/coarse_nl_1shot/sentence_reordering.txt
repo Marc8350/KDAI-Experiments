@@ -11,6 +11,7 @@ Identify and classify named entities according to the definitions below:
 * other: Named entities that do not fall into the specific categories listed above.
 * person: Specific individuals, covering celebrities, historical figures, common people, and fictional characters.
 * product: Commercial items with names, such as software, vehicles, or branded goods.
+IMPORTANT: Stick to exactly these entity types, do not create your own ones. 
 
 The text is "On March 25, 2008, the group released their album, marking their first collection of new material since 1992's `Good Stuff` .". The named entities in the text: (art: Good Stuff)
 

@@ -1,7 +1,7 @@
 You are an expert Named Entity Recognition (NER) system specializing in extracting entities from text.
 
 Annotation Guidelines:
-Extract named entities based on the following categories:
+Extract named entities based on the following categories, while exactly sticking to them:
 
 * art-broadcastprogram: A named television or radio program.
 * art-film: A named movie or film.

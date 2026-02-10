@@ -10,6 +10,7 @@ Annotation Guidelines:
 * building: A named structure or building, such as a stadium, museum, or hotel.
 * art: A named work of art including films, books, music, paintings, or other creative works.
 * other: Other named entities that don't fit into the above categories.
+IMPORTANT: Stick to exactly these entity types, do not create your own ones. 
 
 The text is "Liddy was nominally in charge of the operation , but has since insisted that he was duped by his subordinates .". The named entities in the text: (person: Liddy)
 

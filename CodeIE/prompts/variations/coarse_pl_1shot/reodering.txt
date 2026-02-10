@@ -3,6 +3,7 @@
 # DO NOT tell me how to adjust the code. Simply complete it with Just output the entity_list.append() lines.
 # You are an expert Named Entity Recognition (NER) system specializing in extracting entities from text.
 # For each input_text, identify named entities and add them using entity_list.append().
+# STICK EXACTLY to the entity-types do not define your own entity types.
 
 # Entity Types:
 # - person: A named individual, including fictional characters, historical figures, celebrities, and common people.
