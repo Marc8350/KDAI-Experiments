@@ -1,0 +1,294 @@
+{
+  "module": "codeie_coarse_nl_v0_original",
+  "timestamp": "20260210_162335",
+  "config": {
+    "granularity": "coarse",
+    "max_test_samples": 5,
+    "style": "nl",
+    "variation": "v0_original",
+    "api_base_url": null,
+    "api_key": null,
+    "model_name": "qwen2.5-coder:7b",
+    "max_tokens": 512,
+    "temperature": 0.0,
+    "data_dir": "data",
+    "output_dir": "CODEIE-results/batch_20260210_162129",
+    "matrix_dir": "CODEIE-results",
+    "prompt_path": "/home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/base/coarse_nl_1shot.txt",
+    "quiet": true
+  },
+  "entity_types": [
+    "art",
+    "building",
+    "event",
+    "location",
+    "organization",
+    "other",
+    "person",
+    "product"
+  ],
+  "overall_score": {
+    "entities": {
+      "precision": 0.4,
+      "recall": 0.2222222222222222,
+      "micro_f1": 0.2857142857142857,
+      "macro_f1": 0.19444444444444442,
+      "f1-score": 0.2857142857142857,
+      "class_scores": {
+        "building": {
+          "tp": 1,
+          "total_pos": 2,
+          "total_pre": 2,
+          "precision": 0.5,
+          "recall": 0.5,
+          "f1-score": 0.5
+        },
+        "event": {
+          "tp": 0,
+          "total_pos": 1,
+          "total_pre": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "location": {
+          "tp": 0,
+          "total_pos": 2,
+          "total_pre": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "organization": {
+          "tp": 1,
+          "total_pos": 2,
+          "total_pre": 1,
+          "precision": 1.0,
+          "recall": 0.5,
+          "f1-score": 0.6666666666666666
+        },
+        "other": {
+          "tp": 0,
+          "total_pos": 0,
+          "total_pre": 1,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "person": {
+          "tp": 0,
+          "total_pos": 1,
+          "total_pre": 1,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "product": {
+          "tp": 0,
+          "total_pos": 1,
+          "total_pre": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        }
+      }
+    }
+  },
+  "processed_count": 5,
+  "sentences": [
+    {
+      "index": 0,
+      "timestamp": "2026-02-10T16:23:35.718280",
+      "text": "In the early 1930s the band moved to the Grill Room of the Taft Hotel in New York ; the band was renamed `` George Hall and His Hotel Taft Orchestra `` .",
+      "gold": [
+        "building(span='Grill Room')",
+        "building(span='Taft Hotel')",
+        "location(span='New York')",
+        "organization(span='George Hall and His Hotel Taft Orchestra')"
+      ],
+      "prediction": [
+        "building(span='Taft Hotel')"
+      ],
+      "generated_raw": "(building: Taft Hotel)",
+      "elapsed_time": 0.2841191291809082,
+      "score": {
+        "entities": {
+          "precision": 1.0,
+          "recall": 0.25,
+          "f1-score": 0.4,
+          "class_scores": {
+            "building": {
+              "tp": 1,
+              "total_pos": 2,
+              "total_pre": 1,
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1-score": 0.6666666666666666
+            },
+            "location": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "organization": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 1,
+      "timestamp": "2026-02-10T16:23:35.915777",
+      "text": "The final season of minor league play Elkin Memorial Park saw season attendance of 16,322 , an average of 299 per contest .",
+      "gold": [
+        "location(span='Elkin Memorial Park')"
+      ],
+      "prediction": [
+        "building(span='Elkin Memorial Park')"
+      ],
+      "generated_raw": "(building: Elkin Memorial Park)",
+      "elapsed_time": 0.19662261009216309,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "building": {
+              "tp": 0,
+              "total_pos": 0,
+              "total_pre": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "location": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 2,
+      "timestamp": "2026-02-10T16:23:36.074536",
+      "text": "They finished the season 14\u201319 , 9\u20139 in C-USA play to finish in seventh place .",
+      "gold": [
+        "event(span='C-USA play')"
+      ],
+      "prediction": [
+        "other(span='C-USA')"
+      ],
+      "generated_raw": "(other: C-USA)",
+      "elapsed_time": 0.15834498405456543,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "event": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "other": {
+              "tp": 0,
+              "total_pos": 0,
+              "total_pre": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 3,
+      "timestamp": "2026-02-10T16:23:36.271524",
+      "text": "The B-52 pilot , Major Larry G. Messinger , later recalled ,",
+      "gold": [
+        "product(span='B-52')",
+        "person(span='Larry G. Messinger')"
+      ],
+      "prediction": [
+        "person(span='Major Larry G. Messinger')"
+      ],
+      "generated_raw": "(person: Major Larry G. Messinger)",
+      "elapsed_time": 0.19630885124206543,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "person": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "product": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 4,
+      "timestamp": "2026-02-10T16:23:36.461184",
+      "text": "The Austro-Hungarian Navy built and operated two classes of protected cruisers .",
+      "gold": [
+        "organization(span='Austro-Hungarian Navy')"
+      ],
+      "prediction": [
+        "organization(span='Austro-Hungarian Navy')"
+      ],
+      "generated_raw": "(organization: Austro-Hungarian Navy)",
+      "elapsed_time": 0.18895626068115234,
+      "score": {
+        "entities": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "class_scores": {
+            "organization": {
+              "tp": 1,
+              "total_pos": 1,
+              "total_pre": 1,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1-score": 1.0
+            }
+          }
+        }
+      }
+    }
+  ]
+}

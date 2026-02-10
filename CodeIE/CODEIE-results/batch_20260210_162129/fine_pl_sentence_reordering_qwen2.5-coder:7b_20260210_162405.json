@@ -1,0 +1,446 @@
+{
+  "module": "codeie_fine_pl_sentence_reordering",
+  "timestamp": "20260210_162405",
+  "config": {
+    "granularity": "fine",
+    "max_test_samples": 5,
+    "style": "pl",
+    "variation": "sentence_reordering",
+    "api_base_url": null,
+    "api_key": null,
+    "model_name": "qwen2.5-coder:7b",
+    "max_tokens": 512,
+    "temperature": 0.0,
+    "data_dir": "data",
+    "output_dir": "CODEIE-results/batch_20260210_162129",
+    "matrix_dir": "CODEIE-results",
+    "prompt_path": "/home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/fine_pl_1shot/sentence_reordering.txt",
+    "quiet": true
+  },
+  "entity_types": [
+    "art-broadcastprogram",
+    "art-film",
+    "art-music",
+    "art-other",
+    "art-painting",
+    "art-writtenart",
+    "building-airport",
+    "building-hospital",
+    "building-hotel",
+    "building-library",
+    "building-other",
+    "building-restaurant",
+    "building-sportsfacility",
+    "building-theater",
+    "event-attack/battle/war/militaryconflict",
+    "event-disaster",
+    "event-election",
+    "event-other",
+    "event-protest",
+    "event-sportsevent",
+    "location-GPE",
+    "location-bodiesofwater",
+    "location-island",
+    "location-mountain",
+    "location-other",
+    "location-park",
+    "location-road/railway/highway/transit",
+    "organization-company",
+    "organization-education",
+    "organization-government/governmentagency",
+    "organization-media/newspaper",
+    "organization-other",
+    "organization-politicalparty",
+    "organization-religion",
+    "organization-showorganization",
+    "organization-sportsleague",
+    "organization-sportsteam",
+    "other-astronomything",
+    "other-award",
+    "other-biologything",
+    "other-chemicalthing",
+    "other-currency",
+    "other-disease",
+    "other-educationaldegree",
+    "other-god",
+    "other-language",
+    "other-law",
+    "other-livingthing",
+    "other-medical",
+    "person-actor",
+    "person-artist/author",
+    "person-athlete",
+    "person-director",
+    "person-other",
+    "person-politician",
+    "person-scholar",
+    "person-soldier",
+    "product-airplane",
+    "product-car",
+    "product-food",
+    "product-game",
+    "product-other",
+    "product-ship",
+    "product-software",
+    "product-train",
+    "product-weapon"
+  ],
+  "overall_score": {
+    "entities": {
+      "precision": 0.16666666666666666,
+      "recall": 0.2222222222222222,
+      "micro_f1": 0.1904761904761905,
+      "macro_f1": 0.18518518518518517,
+      "f1-score": 0.1904761904761905,
+      "class_scores": {
+        "building-hotel": {
+          "tp": 1,
+          "total_pos": 1,
+          "total_pre": 2,
+          "precision": 0.5,
+          "recall": 1.0,
+          "f1-score": 0.6666666666666666
+        },
+        "building-other": {
+          "tp": 0,
+          "total_pos": 1,
+          "total_pre": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "building-restaurant": {
+          "tp": 0,
+          "total_pos": 0,
+          "total_pre": 2,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "event-sportsevent": {
+          "tp": 0,
+          "total_pos": 1,
+          "total_pre": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "location-GPE": {
+          "tp": 1,
+          "total_pos": 1,
+          "total_pre": 1,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0
+        },
+        "location-park": {
+          "tp": 0,
+          "total_pos": 1,
+          "total_pre": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "organization-other": {
+          "tp": 0,
+          "total_pos": 1,
+          "total_pre": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "organization-showorganization": {
+          "tp": 0,
+          "total_pos": 1,
+          "total_pre": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "organization-sportsleague": {
+          "tp": 0,
+          "total_pos": 0,
+          "total_pre": 2,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "other-astronomything": {
+          "tp": 0,
+          "total_pos": 0,
+          "total_pre": 1,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "person-other": {
+          "tp": 0,
+          "total_pos": 1,
+          "total_pre": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "person-soldier": {
+          "tp": 0,
+          "total_pos": 0,
+          "total_pre": 2,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "product-airplane": {
+          "tp": 0,
+          "total_pos": 0,
+          "total_pre": 2,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "product-other": {
+          "tp": 0,
+          "total_pos": 1,
+          "total_pre": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        }
+      }
+    }
+  },
+  "processed_count": 5,
+  "sentences": [
+    {
+      "index": 0,
+      "timestamp": "2026-02-10T16:24:07.640896",
+      "text": "In the early 1930s the band moved to the Grill Room of the Taft Hotel in New York ; the band was renamed `` George Hall and His Hotel Taft Orchestra `` .",
+      "gold": [
+        "building-other(span='Grill Room')",
+        "building-hotel(span='Taft Hotel')",
+        "location-GPE(span='New York')",
+        "organization-showorganization(span='George Hall and His Hotel Taft Orchestra')"
+      ],
+      "prediction": [
+        "building-restaurant(span='Grill Room')",
+        "building-hotel(span='Taft Hotel')",
+        "location-GPE(span='New York')",
+        "building-restaurant(span='text\": \"Grill Room')",
+        "building-hotel(span='text\": \"Taft Hotel')"
+      ],
+      "generated_raw": "entity_list.append({\"text\": \"Grill Room\", \"type\": \"other-restaurant\"})\nentity_list.append({\"text\": \"Taft Hotel\", \"type\": \"other-hotel\"})\nentity_list.append({\"text\": \"New York\", \"type\": \"location-city\"})",
+      "elapsed_time": 1.6782398223876953,
+      "score": {
+        "entities": {
+          "precision": 0.4,
+          "recall": 0.5,
+          "f1-score": 0.4444444444444445,
+          "class_scores": {
+            "building-hotel": {
+              "tp": 1,
+              "total_pos": 1,
+              "total_pre": 2,
+              "precision": 0.5,
+              "recall": 1.0,
+              "f1-score": 0.6666666666666666
+            },
+            "building-other": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "building-restaurant": {
+              "tp": 0,
+              "total_pos": 0,
+              "total_pre": 2,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "location-GPE": {
+              "tp": 1,
+              "total_pos": 1,
+              "total_pre": 1,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1-score": 1.0
+            },
+            "organization-showorganization": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 1,
+      "timestamp": "2026-02-10T16:24:08.959693",
+      "text": "The final season of minor league play Elkin Memorial Park saw season attendance of 16,322 , an average of 299 per contest .",
+      "gold": [
+        "location-park(span='Elkin Memorial Park')"
+      ],
+      "prediction": [],
+      "generated_raw": "entity_list.append({\"Elkin Memorial Park\", \"type\": \"product-sportfacility\"})",
+      "elapsed_time": 1.317617416381836,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "location-park": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 2,
+      "timestamp": "2026-02-10T16:24:10.294438",
+      "text": "They finished the season 14\u201319 , 9\u20139 in C-USA play to finish in seventh place .",
+      "gold": [
+        "event-sportsevent(span='C-USA play')"
+      ],
+      "prediction": [
+        "organization-sportsleague(span='C-USA')",
+        "organization-sportsleague(span='text\": \"C-USA')"
+      ],
+      "generated_raw": "entity_list.append({\"text\": \"C-USA\", \"type\": \"other-sportsleague\"})",
+      "elapsed_time": 1.333381175994873,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "event-sportsevent": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "organization-sportsleague": {
+              "tp": 0,
+              "total_pos": 0,
+              "total_pre": 2,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 3,
+      "timestamp": "2026-02-10T16:24:11.878245",
+      "text": "The B-52 pilot , Major Larry G. Messinger , later recalled ,",
+      "gold": [
+        "product-other(span='B-52')",
+        "person-other(span='Larry G. Messinger')"
+      ],
+      "prediction": [
+        "product-airplane(span='B-52')",
+        "person-soldier(span='Major Larry G. Messinger')",
+        "product-airplane(span='text\": \"B-52')",
+        "person-soldier(span='text\": \"Major Larry G. Messinger')"
+      ],
+      "generated_raw": "entity_list.append({\"text\": \"B-52\", \"type\": \"product-airplane\"})\nentity_list.append({\"text\": \"Major Larry G. Messinger\", \"type\": \"person-soldier\"})",
+      "elapsed_time": 1.582535982131958,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "person-other": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "person-soldier": {
+              "tp": 0,
+              "total_pos": 0,
+              "total_pre": 2,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "product-airplane": {
+              "tp": 0,
+              "total_pos": 0,
+              "total_pre": 2,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "product-other": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 4,
+      "timestamp": "2026-02-10T16:24:13.239199",
+      "text": "The Austro-Hungarian Navy built and operated two classes of protected cruisers .",
+      "gold": [
+        "organization-other(span='Austro-Hungarian Navy')"
+      ],
+      "prediction": [
+        "other-astronomything(span='Austro-Hungarian Navy')"
+      ],
+      "generated_raw": "entity_list.append({\"text\": \"Austro-Hungarian Navy\", \"type\": \"other-military\"})",
+      "elapsed_time": 1.359834909439087,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "organization-other": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "other-astronomything": {
+              "tp": 0,
+              "total_pos": 0,
+              "total_pre": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    }
+  ]
+}

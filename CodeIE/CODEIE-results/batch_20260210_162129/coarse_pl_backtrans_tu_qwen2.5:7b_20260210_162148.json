@@ -1,0 +1,289 @@
+{
+  "module": "codeie_coarse_pl_backtrans_tu",
+  "timestamp": "20260210_162148",
+  "config": {
+    "granularity": "coarse",
+    "max_test_samples": 5,
+    "style": "pl",
+    "variation": "backtrans_tu",
+    "api_base_url": null,
+    "api_key": null,
+    "model_name": "qwen2.5:7b",
+    "max_tokens": 512,
+    "temperature": 0.0,
+    "data_dir": "data",
+    "output_dir": "CODEIE-results/batch_20260210_162129",
+    "matrix_dir": "CODEIE-results",
+    "prompt_path": "/home/ann/fiz-ddb/notebook/KDAI-Experiments/CodeIE/prompts/variations/coarse_pl_1shot/backtrans_tu.txt",
+    "quiet": true
+  },
+  "entity_types": [
+    "art",
+    "building",
+    "event",
+    "location",
+    "organization",
+    "other",
+    "person",
+    "product"
+  ],
+  "overall_score": {
+    "entities": {
+      "precision": 0.625,
+      "recall": 0.5555555555555556,
+      "micro_f1": 0.5882352941176471,
+      "macro_f1": 0.43333333333333335,
+      "f1-score": 0.5882352941176471,
+      "class_scores": {
+        "building": {
+          "tp": 2,
+          "total_pos": 2,
+          "total_pre": 3,
+          "precision": 0.6666666666666666,
+          "recall": 1.0,
+          "f1-score": 0.8
+        },
+        "event": {
+          "tp": 0,
+          "total_pos": 1,
+          "total_pre": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "location": {
+          "tp": 0,
+          "total_pos": 2,
+          "total_pre": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "organization": {
+          "tp": 2,
+          "total_pos": 2,
+          "total_pre": 3,
+          "precision": 0.6666666666666666,
+          "recall": 1.0,
+          "f1-score": 0.8
+        },
+        "person": {
+          "tp": 0,
+          "total_pos": 1,
+          "total_pre": 1,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0
+        },
+        "product": {
+          "tp": 1,
+          "total_pos": 1,
+          "total_pre": 1,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0
+        }
+      }
+    }
+  },
+  "processed_count": 5,
+  "sentences": [
+    {
+      "index": 0,
+      "timestamp": "2026-02-10T16:21:48.952064",
+      "text": "In the early 1930s the band moved to the Grill Room of the Taft Hotel in New York ; the band was renamed `` George Hall and His Hotel Taft Orchestra `` .",
+      "gold": [
+        "building(span='Grill Room')",
+        "building(span='Taft Hotel')",
+        "location(span='New York')",
+        "organization(span='George Hall and His Hotel Taft Orchestra')"
+      ],
+      "prediction": [
+        "building(span='Grill Room')",
+        "building(span='Taft Hotel')",
+        "organization(span='George Hall and His Hotel Taft Orchestra')"
+      ],
+      "generated_raw": "    entity_list.append({\"text\": \"Grill Room\", \"type\": \"building\"})\n    entity_list.append({\"text\": \"Taft Hotel\", \"type\": \"building\"})\n    entity_list.append({\"text\": \"George Hall and His Hotel Taft Orchestra\", \"type\": \"organization\"})",
+      "elapsed_time": 0.7735326290130615,
+      "score": {
+        "entities": {
+          "precision": 1.0,
+          "recall": 0.75,
+          "f1-score": 0.8571428571428571,
+          "class_scores": {
+            "building": {
+              "tp": 2,
+              "total_pos": 2,
+              "total_pre": 2,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1-score": 1.0
+            },
+            "location": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "organization": {
+              "tp": 1,
+              "total_pos": 1,
+              "total_pre": 1,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1-score": 1.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 1,
+      "timestamp": "2026-02-10T16:21:49.252642",
+      "text": "The final season of minor league play Elkin Memorial Park saw season attendance of 16,322 , an average of 299 per contest .",
+      "gold": [
+        "location(span='Elkin Memorial Park')"
+      ],
+      "prediction": [
+        "building(span='Elkin Memorial Park')"
+      ],
+      "generated_raw": "```python\nentity_list.append({\"text\": \"Elkin Memorial Park\", \"type\": \"building\"})\n```",
+      "elapsed_time": 0.2997703552246094,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "building": {
+              "tp": 0,
+              "total_pos": 0,
+              "total_pre": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "location": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 2,
+      "timestamp": "2026-02-10T16:21:49.554826",
+      "text": "They finished the season 14\u201319 , 9\u20139 in C-USA play to finish in seventh place .",
+      "gold": [
+        "event(span='C-USA play')"
+      ],
+      "prediction": [
+        "organization(span='C-USA')"
+      ],
+      "generated_raw": "```python\nentity_list.append({\"text\": \"C-USA\", \"type\": \"organization\"})\n```",
+      "elapsed_time": 0.301424503326416,
+      "score": {
+        "entities": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "class_scores": {
+            "event": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "organization": {
+              "tp": 0,
+              "total_pos": 0,
+              "total_pre": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 3,
+      "timestamp": "2026-02-10T16:21:50.001189",
+      "text": "The B-52 pilot , Major Larry G. Messinger , later recalled ,",
+      "gold": [
+        "product(span='B-52')",
+        "person(span='Larry G. Messinger')"
+      ],
+      "prediction": [
+        "product(span='B-52')",
+        "person(span='Major Larry G. Messinger')"
+      ],
+      "generated_raw": "    entity_list.append({\"text\": \"B-52\", \"type\": \"product\"})\n    entity_list.append({\"text\": \"Major Larry G. Messinger\", \"type\": \"person\"})",
+      "elapsed_time": 0.44585514068603516,
+      "score": {
+        "entities": {
+          "precision": 0.5,
+          "recall": 0.5,
+          "f1-score": 0.5,
+          "class_scores": {
+            "person": {
+              "tp": 0,
+              "total_pos": 1,
+              "total_pre": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0
+            },
+            "product": {
+              "tp": 1,
+              "total_pos": 1,
+              "total_pre": 1,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1-score": 1.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 4,
+      "timestamp": "2026-02-10T16:21:50.292322",
+      "text": "The Austro-Hungarian Navy built and operated two classes of protected cruisers .",
+      "gold": [
+        "organization(span='Austro-Hungarian Navy')"
+      ],
+      "prediction": [
+        "organization(span='Austro-Hungarian Navy')"
+      ],
+      "generated_raw": "    entity_list.append({\"text\": \"Austro-Hungarian Navy\", \"type\": \"organization\"})",
+      "elapsed_time": 0.29058170318603516,
+      "score": {
+        "entities": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "class_scores": {
+            "organization": {
+              "tp": 1,
+              "total_pos": 1,
+              "total_pre": 1,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1-score": 1.0
+            }
+          }
+        }
+      }
+    }
+  ]
+}
