@@ -989,7 +989,17 @@ def run_experiment(config: ExperimentConfig):
     }
     
     # Use config.matrix_dir if provided, otherwise fallback to output_dir
-    matrix_save_dir = config.matrix_dir if config.matrix_dir else output_dir
+    if config.matrix_dir:
+        if os.path.isabs(config.matrix_dir):
+            matrix_save_dir = config.matrix_dir
+        else:
+            matrix_save_dir = os.path.join(CODEIE_ROOT, config.matrix_dir)
+    else:
+        matrix_save_dir = output_dir
+    
+    # Ensure matrix directory exists
+    os.makedirs(matrix_save_dir, exist_ok=True)
+    
     update_experiment_matrix(matrix_save_dir, config, final_results, result_file)
     
     return final_metrics

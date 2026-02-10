@@ -64,7 +64,7 @@ models:
   
 
   # Qwen2.5:7b via Ollama 
-  quen2.5:
+  qwen2.5:
     type: "ollama"
     name: "qwen2.5:7b"
     base_url: "http://localhost:11434"
