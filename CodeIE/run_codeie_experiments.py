@@ -68,8 +68,8 @@ def update_experiment_matrix(
     """Update the experiment matrix CSV with a new run's results."""
     matrix_path = os.path.join(output_dir, EXPERIMENT_MATRIX_FILE)
     
-    # Define columns
-    columns = [
+    # Base columns
+    base_columns = [
         'datetime',
         'granularity',
         'style', 
@@ -83,13 +83,11 @@ def update_experiment_matrix(
         'result_file'
     ]
     
-    # Check if file exists
-    file_exists = os.path.exists(matrix_path)
-    
     # Extract overall scores
     overall = results.get('overall_score', {}).get('entities', {})
+    class_scores = overall.get('class_scores', {})
     
-    # Prepare row
+    # Prepare row data
     row = {
         'datetime': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         'granularity': config.granularity,
@@ -104,13 +102,73 @@ def update_experiment_matrix(
         'result_file': os.path.basename(result_file)
     }
     
-    # Write to CSV
-    with open(matrix_path, 'a', newline='') as f:
-        writer = csv.DictWriter(f, fieldnames=columns)
-        if not file_exists:
-            writer.writeheader()
-        writer.writerow(row)
+    # Add class scores to row
+    for class_name, scores in class_scores.items():
+        col_name = f"f1_{class_name}"
+        row[col_name] = round(scores.get('f1-score', 0), 4)
+
+    # Determine columns for this run
+    # Start with base columns, then add any class f1 columns found in this run
+    current_class_cols = [k for k in row.keys() if k.startswith('f1_')]
+    current_columns = base_columns + sorted(current_class_cols)
     
+    # Handle CSV file update
+    if os.path.exists(matrix_path):
+        # Read existing header
+        existing_header = []
+        with open(matrix_path, 'r', newline='') as f:
+            reader = csv.reader(f)
+            try:
+                existing_header = next(reader)
+            except StopIteration:
+                pass
+        
+        if not existing_header:
+             # Empty file, treat as new
+             all_columns = current_columns
+             rewrite = True
+             existing_rows = []
+        else:
+            # Determine if we have new columns
+            all_columns = list(existing_header)
+            rewrite = False
+            for col in current_columns:
+                if col not in all_columns:
+                    all_columns.append(col)
+                    rewrite = True
+            
+            if rewrite:
+                logging.info(f"Updating experiment matrix header with new columns...")
+                # Read all existing rows
+                with open(matrix_path, 'r', newline='') as f:
+                    reader = csv.DictReader(f)
+                    existing_rows = list(reader)
+            else:
+                existing_rows = []
+
+        if rewrite:
+             # Write back with new header
+             with open(matrix_path, 'w', newline='') as f:
+                 writer = csv.DictWriter(f, fieldnames=all_columns)
+                 writer.writeheader()
+                 writer.writerows(existing_rows)
+                 writer.writerow(row)
+        else:
+             # Just append
+             with open(matrix_path, 'a', newline='') as f:
+                 writer = csv.DictWriter(f, fieldnames=existing_header, extrasaction='ignore') 
+                 # extrasaction='ignore' is safer if we decided NOT to rewrite, but here we cover all cols.
+                 # However, if row has 'f1_A' and header doesn't (should be covered by rewrite logic), but just in case.
+                 # Actually, if we are NOT rewriting, it means current_columns is subset of existing_header.
+                 writer.writerow(row)
+
+    else:
+        # Create new file
+        with open(matrix_path, 'w', newline='') as f:
+            writer = csv.DictWriter(f, fieldnames=current_columns)
+            writer.writeheader()
+            writer.writerow(row)
+            
     logging.info(f"Updated experiment matrix: {matrix_path}")
 
 
@@ -141,7 +199,9 @@ class ExperimentConfig:
     # Paths
     data_dir: str = "data"
     output_dir: str = "CODEIE-results"
+    matrix_dir: Optional[str] = None  # Directory where experiment_matrix.csv should be saved
     prompt_path: Optional[str] = None  # Path to pre-generated prompt file
+    quiet: bool = False  # Suppress non-critical logging
 
 
 def load_variations(granularity: str, style: str):
@@ -454,6 +514,49 @@ def run_inference(prompt: str, llm_model, config: ExperimentConfig) -> str:
         return ""
 
 
+def match_entity_type(etype_raw: str, entity_types: List[str]) -> Optional[str]:
+    """
+    Robustly match a raw entity type string to a list of allowed types.
+    Handles:
+    1. Exact match (case-insensitive)
+    2. Underscore/Dash normalization
+    3. Suffix matching (e.g. 'product-hotel' -> 'building-hotel')
+    4. Prefix matching (e.g. 'location' -> 'location-GPE')
+    """
+    if not etype_raw:
+        return None
+        
+    etype_norm = etype_raw.strip().lower().replace("_", "-")
+    
+    # 1. Exact or normalized matching
+    for t in entity_types:
+        if t.lower() == etype_norm:
+            return t
+
+    # 2. Suffix Fallback (e.g. 'product-hotel' -> 'building-hotel')
+    # Use only if the raw type has a hyphen (indicating it's trying to be specific)
+    if "-" in etype_norm:
+        suffix = etype_norm.split("-")[-1]
+        for t in entity_types:
+            if t.lower().endswith("-" + suffix):
+                return t
+
+    # 3. Prefix Fallback (e.g. 'location' -> 'location-GPE')
+    # Use if the raw type is just a base category or if above failed
+    # But try to match the base category
+    if "-" not in etype_norm:
+        for t in entity_types:
+            if t.lower().startswith(etype_norm + "-"):
+                return t
+    else:
+        # Also try base category of a hyphenated type
+        base_cat = etype_norm.split("-")[0]
+        for t in entity_types:
+            if t.lower().startswith(base_cat + "-"):
+                return t
+                
+    return None
+
 def parse_code_style_output(output: str, entity_types: List[str]) -> List[Dict]:
     """Parse code-style output to extract entities, handling Markdown blocks."""
     entities = []
@@ -495,33 +598,7 @@ def parse_code_style_output(output: str, entity_types: List[str]) -> List[Dict]:
             etype = etype.strip().lower()
             text = text.strip()
             
-            # Find closest matching entity type with robust fallback
-            matched_type = None
-            etype_norm = etype.lower().replace("_", "-")
-            
-            # 1. Exact or normalized match
-            for t in entity_types:
-                if t.lower() == etype_norm:
-                    matched_type = t
-                    break
-            
-            # 2. Fallback: If model hallucinated the parent (e.g., 'product-hotel' instead of 'building-hotel')
-            # we check if the sub-type suffix matches any valid type suffix
-            if not matched_type and "-" in etype_norm:
-                suffix = etype_norm.split("-")[-1]
-                for t in entity_types:
-                    if t.lower().endswith("-" + suffix):
-                        matched_type = t
-                        break
-            
-            # 3. Final Fallback: Check if the base category alone matches
-            if not matched_type:
-                base_cat = etype_norm.split("-")[0]
-                for t in entity_types:
-                    if t.lower().startswith(base_cat + "-"):
-                         # Pick the first one as a reasonable best-guess if the model was vague
-                        matched_type = t
-                        break
+            matched_type = match_entity_type(etype, entity_types)
             
             if matched_type and text:
                 # Avoid duplicates
@@ -544,17 +621,13 @@ def parse_nl_style_output(output: str, text: str, entity_types: List[str]) -> Li
         
         # Match "type: text" or "* type: text"
         # Handles optional leading symbols like *, -, •
-        m = re.search(r'(?:^[*•-]\s*)?([a-zA-Z0-9\-/]+):\s*(.*)', line)
+        # STRICT ANCHORING: Must match start of line to avoid capturing "(type: val)" inside text
+        m = re.match(r'^(?:[*•-]\s*)?([a-zA-Z0-9\-/]+):\s*(.*)', line)
         if m:
             etype_raw = m.group(1).strip()
             etext = m.group(2).strip()
             
-            # Normalize etype
-            matched_type = None
-            for t in entity_types:
-                if t.lower() == etype_raw.lower() or t.lower() == etype_raw.lower().replace("_", "-"):
-                    matched_type = t
-                    break
+            matched_type = match_entity_type(etype_raw, entity_types)
             
             if matched_type and etext:
                 entities.append({'text': etext, 'type': matched_type})
@@ -568,11 +641,8 @@ def parse_nl_style_output(output: str, text: str, entity_types: List[str]) -> Li
     for match in re.finditer(pattern_paren, output):
         etype_raw = match.group(1).strip()
         etext = match.group(2).strip()
-        matched_type = None
-        for t in entity_types:
-            if t.lower() == etype_raw.lower():
-                matched_type = t
-                break
+        matched_type = match_entity_type(etype_raw, entity_types)
+
         if matched_type:
             entities.append({'text': etext, 'type': matched_type})
             
@@ -585,11 +655,8 @@ def parse_nl_style_output(output: str, text: str, entity_types: List[str]) -> Li
     for match in re.finditer(pattern_sel, output_clean):
         etype_raw = match.group(1).strip().replace(' ', '-')
         etext = match.group(2).strip()
-        matched_type = None
-        for t in entity_types:
-            if t.lower() == etype_raw.lower():
-                matched_type = t
-                break
+        matched_type = match_entity_type(etype_raw, entity_types)
+
         if matched_type:
             entities.append({'text': etext, 'type': matched_type})
     
@@ -609,14 +676,19 @@ from evaluation import evaluate_predictions, evaluate_ner, EvaluationResult
 
 def run_experiment(config: ExperimentConfig):
     """Run a complete NER experiment with CodeIE."""
-    logging.info("="*60)
-    logging.info("CodeIE NER Experiment (Enhanced with Entity Schema)")
-    logging.info("="*60)
-    logging.info(f"Granularity: {config.granularity}")
-    logging.info(f"Style: {config.style}")
-    logging.info(f"Variation: {config.variation}")
-    logging.info(f"Model: {config.model_name}")
-    logging.info("="*60)
+    if config.quiet:
+        # Suppress logging for all loggers except for the root if needed,
+        # but easier to just set level to WARNING for the current module's logger
+        logging.getLogger().setLevel(logging.WARNING)
+    else:
+        logging.info("="*60)
+        logging.info("CodeIE NER Experiment (Enhanced with Entity Schema)")
+        logging.info("="*60)
+        logging.info(f"Granularity: {config.granularity}")
+        logging.info(f"Style: {config.style}")
+        logging.info(f"Variation: {config.variation}")
+        logging.info(f"Model: {config.model_name}")
+        logging.info("="*60)
     
     # Setup output directory
     output_dir = os.path.join(CODEIE_ROOT, config.output_dir)
@@ -890,18 +962,35 @@ def run_experiment(config: ExperimentConfig):
     logging.info("="*60)
     
     # Update experiment matrix CSV (appends to history)
+    # Update experiment matrix CSV (appends to history)
+    
+    # Collect class-wise F1 scores for the matrix
+    class_scores = {}
+    for etype, m in final_eval.per_type_metrics.items():
+        # Include if it has any support or predictions
+        if m.support > 0 or m.tp + m.fp > 0:
+            class_scores[etype] = {
+                'f1-score': m.f1,
+                'precision': m.precision,
+                'recall': m.recall
+            }
+            
     final_results = {
         'overall_score': {
             'entities': {
                 'precision': final_eval.micro_precision,
                 'recall': final_eval.micro_recall,
                 'micro_f1': final_eval.micro_f1,
-                'macro_f1': final_eval.macro_f1
+                'macro_f1': final_eval.macro_f1,
+                'class_scores': class_scores
             }
         },
         'processed_count': len(all_gold)
     }
-    update_experiment_matrix(output_dir, config, final_results, result_file)
+    
+    # Use config.matrix_dir if provided, otherwise fallback to output_dir
+    matrix_save_dir = config.matrix_dir if config.matrix_dir else output_dir
+    update_experiment_matrix(matrix_save_dir, config, final_results, result_file)
     
     return final_metrics
 

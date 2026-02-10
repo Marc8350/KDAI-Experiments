@@ -1,15 +1,76 @@
 
-# Auto-generated placeholder for prompt_variations/fine_prompt_variations.py
-# Using definitions from few-nerd-fine schema (assumed similar structure)
-# This is NOT a complete file but sufficient for CodeIE imports
+# Auto-generated comprehensive list for prompt_variations/fine_prompt_variations.py
+# Using definitions from few-nerd-fine schema
+
 from collections import OrderedDict
 
-# These are placeholders, need real ones if running fine experiments
 ENTITY_DEFINITIONS = OrderedDict({
-    # Common fine-grained types
+    "art-broadcastprogram": "A radio or television program.",
+    "art-film": "A movie or film.",
+    "art-music": "A musical composition or album.",
+    "art-other": "Other artistic works not covered by specific categories.",
+    "art-painting": "A painting or visual artwork.",
+    "art-writtenart": "A book, poem, or other written work.",
+    "building-airport": "An airport facility.",
+    "building-hospital": "A hospital or medical facility.",
+    "building-hotel": "A hotel or lodging facility.",
+    "building-library": "A library.",
+    "building-other": "Other buildings or structures.",
+    "building-restaurant": "A restaurant or dining establishment.",
+    "building-sportsfacility": "A stadium, arena, or sports facility.",
+    "building-theater": "A theater or performance venue.",
+    "event-attack/battle/war/militaryconflict": "A war, battle, or military conflict.",
+    "event-disaster": "A natural or man-made disaster.",
+    "event-election": "A political election.",
+    "event-other": "Other events not covered by specific categories.",
+    "event-protest": "A protest or demonstration.",
+    "event-sportsevent": "A sports competition or event.",
+    "location-GPE": "A geopolitical entity like a country, city, or state.",
+    "location-bodiesofwater": "A river, lake, ocean, or other body of water.",
+    "location-island": "An island.",
+    "location-mountain": "A mountain or hill.",
+    "location-other": "Other locations.",
+    "location-park": "A park or nature reserve.",
+    "location-road/railway/highway/transit": "A street, road, highway, or transit line.",
+    "organization-company": "A business or company.",
+    "organization-education": "An educational institution (school, university).",
+    "organization-government/governmentagency": "A government body or agency.",
+    "organization-media/newspaper": "A media company or newspaper.",
+    "organization-other": "Other organizations.",
+    "organization-politicalparty": "A political party.",
+    "organization-religion": "A religious group or organization.",
+    "organization-showorganization": "An entertainment group (band, troupe).",
+    "organization-sportsleague": "A sports league.",
+    "organization-sportsteam": "A sports team.",
+    "other-astronomything": "Astronomical object (planet, star).",
+    "other-award": "An award or prize.",
+    "other-biologything": "A biological entity.",
+    "other-chemicalthing": "A chemical substance.",
+    "other-currency": "A currency or monetary unit.",
+    "other-disease": "A disease or medical condition.",
+    "other-educationaldegree": "An academic degree.",
+    "other-god": "A deity or mythological figure.",
+    "other-language": "A language.",
+    "other-law": "A law or legal statute.",
+    "other-livingthing": "A living organism (animal, plant).",
+    "other-medical": "Medical treatment or procedure.",
     "person-actor": "An actor or actress.",
-    # ... Add more if needed, for unit test we need the file to exist and imports to work
-    "dummy": "A placeholder entity definition."
+    "person-artist/author": "A writer, painter, or other artist.",
+    "person-athlete": "A sports player or athlete.",
+    "person-director": "A film or theater director.",
+    "person-other": "Other people.",
+    "person-politician": "A politician or government official.",
+    "person-scholar": "A scholar or academic.",
+    "person-soldier": "A soldier or military personnel.",
+    "product-airplane": "An airplane model.",
+    "product-car": "A car model.",
+    "product-food": "A specific food product.",
+    "product-game": "A game (video or board game).",
+    "product-other": "Other products.",
+    "product-ship": "A ship or boat class.",
+    "product-software": "Software or application.",
+    "product-train": "A train model or class.",
+    "product-weapon": "A weapon model."
 })
 
 CODE_STYLE_VARIATIONS = {

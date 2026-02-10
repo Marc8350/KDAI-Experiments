@@ -466,7 +466,7 @@ class Orchestrator:
         logger.info(f"Generated {len(runs)} experiment runs")
         return runs
     
-    def run_single_experiment(self, run: ExperimentRun) -> Dict[str, Any]:
+    def run_single_experiment(self, run: ExperimentRun, output_dir_override: Optional[str] = None, matrix_dir_override: Optional[str] = None, quiet: bool = False) -> Dict[str, Any]:
         """Execute a single experiment run."""
         logger.info(f"\n{'='*60}")
         logger.info(f"Running: {run.run_id}")
@@ -490,6 +490,9 @@ class Orchestrator:
             max_tokens=run.model_config.get("max_tokens", 512),
             temperature=run.model_config.get("temperature", 0.0),
             max_test_samples=self.config["execution"].get("max_samples"),
+            output_dir=output_dir_override or self.config["output"].get("results_dir", "CODEIE-results"),
+            matrix_dir=matrix_dir_override,
+            quiet=quiet
         )
         
         # Set environment variables for API access
@@ -521,7 +524,8 @@ class Orchestrator:
         filter_style: Optional[str] = None,
         filter_variation: Optional[str] = None,
         dry_run: bool = False,
-        skip_generation: bool = False
+        skip_generation: bool = False,
+        quiet: bool = False
     ) -> Dict[str, Any]:
         """
         Run the complete pipeline.
@@ -585,19 +589,38 @@ class Orchestrator:
             }
         
         # Step 3: Run experiments
-        logger.info("\n[Step 3/3] Running experiments...")
+        if quiet:
+            logger.setLevel(logging.WARNING)
+            # Suppress other loggers
+            logging.getLogger("run_codeie_experiments").setLevel(logging.WARNING)
+            print(f"\n[Step 3/3] Running {len(runs)} experiments in quiet mode...")
+        else:
+            logger.info("\n[Step 3/3] Running experiments...")
         
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         batch_results_dir = self.results_dir / f"batch_{timestamp}"
         batch_results_dir.mkdir(parents=True, exist_ok=True)
         
         all_results = []
+        start_time = time.time()
         
         for i, run in enumerate(runs, 1):
-            logger.info(f"\n[{i}/{len(runs)}] Starting: {run.run_id}")
+            if not quiet:
+                logger.info(f"\n[{i}/{len(runs)}] Starting: {run.run_id}")
+            else:
+                elapsed = time.time() - start_time
+                avg_time = elapsed / (i - 1) if i > 1 else 0
+                remaining = (len(runs) - (i - 1)) * avg_time if i > 1 else 0
+                eta_str = time.strftime("%H:%M:%S", time.gmtime(remaining)) if i > 1 else "Estimating..."
+                sys.stdout.write(f"\rProgress: [{i}/{len(runs)}] | Running: {run.run_id[:40]:<40} | ETA: {eta_str}")
+                sys.stdout.flush()
             
             try:
-                result = self.run_single_experiment(run)
+                # Pass the relative path for the current batch to the experiment
+                batch_rel_dir = str(batch_results_dir.relative_to(CODEIE_ROOT))
+                # Central matrix should be in the root results_dir
+                matrix_root_dir = str(self.results_dir.relative_to(CODEIE_ROOT))
+                result = self.run_single_experiment(run, output_dir_override=batch_rel_dir, matrix_dir_override=matrix_root_dir, quiet=quiet)
                 all_results.append({
                     "run": run.to_dict(),
                     "result": result
@@ -627,7 +650,13 @@ class Orchestrator:
         with open(summary_path, 'w') as f:
             json.dump(summary, f, indent=2, default=str)
         
+        if quiet:
+            print("\n") # New line after the progress bar
+            
         # Display results summary
+        if quiet:
+            logger.setLevel(logging.INFO) # Restoration for the final summary
+
         logger.info(f"\n{'='*60}")
         logger.info(f"Pipeline complete!")
         logger.info(f"  Completed: {len(self.completed_runs)}/{len(runs)} runs")
@@ -735,6 +764,11 @@ def main():
         action="store_true",
         help="List all configured models and exit"
     )
+    parser.add_argument(
+        "--quiet",
+        action="store_true",
+        help="Only show critical warnings, progress, and remaining time"
+    )
     
     args = parser.parse_args()
     
@@ -772,7 +806,8 @@ def main():
         filter_style=args.style,
         filter_variation=args.variation,
         dry_run=args.dry_run,
-        skip_generation=args.skip_generation
+        skip_generation=args.skip_generation,
+        quiet=args.quiet
     )
 
 
