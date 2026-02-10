@@ -8,9 +8,11 @@ Using OllamaLLM (Completion API) for falcon3:latest
 TEST: Coarse NL Inference (Natural Language Style)
 ============================================================
 HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
-Inference failed: 'str' object has no attribute 'content'
 Model Response:
-...
+* location: New York
+* building: Grill Room
+* organization: George Hall and His Hotel Taft Orchestra
+* product: George Hall and His Hotel Taft Orchestra...
 Parsed Entities: []
 Using OllamaLLM (Completion API) for falcon3:latest
 
@@ -18,19 +20,21 @@ Using OllamaLLM (Completion API) for falcon3:latest
 TEST: Coarse PL Inference (Code Style)
 ============================================================
 HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
-Inference failed: 'str' object has no attribute 'content'
 Model Response:
-...
-Parsed Entities: []
+    entity_list.append({"text": "Taft Hotel", "type": "building"})
+    entity_list.append({"text": "New York", "type": "location"})
+    entity_list.append({"text": "George Hall and His Hotel Taft Orchestra", "type": "organization"})...
+Parsed Entities: [{'text': 'Taft Hotel', 'type': 'building'}, {'text': 'New York', 'type': 'location'}, {'text': 'George Hall and His Hotel Taft Orchestra', 'type': 'organization'}]
 Using OllamaLLM (Completion API) for falcon3:latest
 
 ============================================================
 TEST: Fine NL Inference (Natural Language Style)
 ============================================================
 HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
-Inference failed: 'str' object has no attribute 'content'
 Model Response:
-...
+* art-other: Grill Room
+* building-hotel: Taft Hotel
+* organization-showorganization: George Hall and His Hotel Taft Orchestra...
 Parsed Entities: []
 Using OllamaLLM (Completion API) for falcon3:latest
 
@@ -38,8 +42,9 @@ Using OllamaLLM (Completion API) for falcon3:latest
 TEST: Fine PL Inference (Code Style)
 ============================================================
 HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
-Inference failed: 'str' object has no attribute 'content'
 Model Response:
+    entity_list.append({"text": "Taft Hotel", "type": "product-hotel"})
+    entity_list.append({"text": "George Hall and His Hotel Taft Orchestra", "type": "product-band"})
 ...
 Parsed Entities: []
 
@@ -56,13 +61,13 @@ Parsed Entities: []
 Test Name                                Status     Details
 ----------------------------------------------------------------------
 Coarse NL (Natural Language)             ❌ FAILED   False is not true : Expected a...
-Coarse PL (Python Code)                  ❌ FAILED   False is not true : Expected a...
+Coarse PL (Python Code)                  ✅ PASSED   None
 Fine NL (Natural Language)               ❌ FAILED   False is not true : Expected a...
 Fine PL (Python Code)                    ❌ FAILED   False is not true : Expected a...
 ----------------------------------------------------------------------
 
-Total: 4 | Passed: 0 | Failed: 4
+Total: 4 | Passed: 1 | Failed: 3
 
-⚠️  4 test(s) failed. See details above.
+⚠️  3 test(s) failed. See details above.
 ======================================================================
 
