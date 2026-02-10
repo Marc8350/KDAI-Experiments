@@ -116,3 +116,7 @@ datetime,granularity,style,variation,model,n_samples,precision,recall,micro_f1,m
 2026-02-08 16:36:49,fine,pl,default,mistral,10,0.0,0.0,0.0,0.0,fine_pl_default_mistral_20260208_163617.json
 2026-02-08 16:37:22,fine,pl,default,mistral,10,0.0,0.0,0.0,0.0,fine_pl_default_mistral_20260208_163649.json
 2026-02-08 16:37:50,fine,pl,default,mistral,10,0.0,0.0,0.0,0.0,fine_pl_default_mistral_20260208_163722.json
+2026-02-10 13:04:41,coarse,pl,default,default,1,0.0,0.0,0.0,0.0,coarse_pl_default_default_model_20260210_130441.json
+2026-02-10 13:05:47,coarse,pl,default,default,1,0.0,0.0,0.0,0.0,coarse_pl_default_default_model_20260210_130547.json
+2026-02-10 13:06:48,coarse,pl,default,mistral,1,0.0,0.0,0.0,0.0,coarse_pl_default_mistral_20260210_130645.json
+2026-02-10 13:07:24,coarse,pl,default,mistral,1,0.0,0.0,0.0,0.0,coarse_pl_default_mistral_20260210_130723.json

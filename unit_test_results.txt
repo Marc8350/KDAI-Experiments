@@ -1,0 +1,75 @@
+Command line override: Model set to mistral
+Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments/few-nerd_test
+Test Sentence: In the early 1930s the band moved to the Grill Room of the Taft Hotel in New York ; the band was renamed `` George Hall and His Hotel Taft Orchestra `` .
+
+Using ChatOllama (Chat API) for mistral
+
+============================================================
+TEST: Coarse NL Inference (Natural Language Style)
+============================================================
+HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+Model Response:
+ (art: George Hall and His Hotel Taft Orchestra)
+(location: New York)
+(building: Taft Hotel)...
+Parsed Entities: [{'text': 'George Hall and His Hotel Taft Orchestra', 'type': 'art'}, {'text': 'New York', 'type': 'location'}, {'text': 'Taft Hotel', 'type': 'building'}]
+Using ChatOllama (Chat API) for mistral
+
+============================================================
+TEST: Coarse PL Inference (Code Style)
+============================================================
+HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+Model Response:
+ ```python
+entity_list.append({"text": "Taft Hotel", "type": "building"})
+entity_list.append({"text": "New York", "type": "location"})
+entity_list.append({"text": "George Hall", "type": "person"})
+```...
+Parsed Entities: [{'text': 'Taft Hotel', 'type': 'building'}, {'text': 'New York', 'type': 'location'}, {'text': 'George Hall', 'type': 'person'}]
+Using ChatOllama (Chat API) for mistral
+
+============================================================
+TEST: Fine NL Inference (Natural Language Style)
+============================================================
+HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+Model Response:
+ (organization-showorganization: George Hall and His Hotel Taft Orchestra)...
+Parsed Entities: [{'text': 'George Hall and His Hotel Taft Orchestra', 'type': 'organization-showorganization'}]
+Using ChatOllama (Chat API) for mistral
+
+============================================================
+TEST: Fine PL Inference (Code Style)
+============================================================
+⚠️  Fine PL test often fails with mistral due to very long prompt
+   Consider using NL style or a code-focused model for fine-grained extraction
+HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+Model Response:
+ ```python
+entity_list.append({"text": "George Hall", "type": "person-musician"})
+entity_list.append({"text": "Taft Hotel", "type": "location"})
+```...
+Parsed Entities: []
+
+======================================================================
+          CODEIE INFERENCE UNIT TESTS
+          Model: mistral
+======================================================================
+
+
+======================================================================
+                        TEST RESULTS SUMMARY
+======================================================================
+
+Test Name                                Status     Details
+----------------------------------------------------------------------
+Coarse NL (Natural Language)             ✅ PASSED   None
+Coarse PL (Python Code)                  ✅ PASSED   None
+Fine NL (Natural Language)               ✅ PASSED   None
+Fine PL (Python Code)                    ❌ FAILED   False is not true : Expected a...
+----------------------------------------------------------------------
+
+Total: 4 | Passed: 3 | Failed: 1
+
+⚠️  1 test(s) failed. See details above.
+======================================================================
+
