@@ -498,9 +498,9 @@ def run_experiment(limit: int = None, enable_git: bool = True, resume: bool = Fa
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Run GoLLIE experiments.")
-    parser.add_argument("--limit", type=int, default=None, help="Limit the number of sentences to process.")
+    parser.add_argument("--limit", type=int, default=3765, help="Limit the number of sentences to process.")
     parser.add_argument("--no-git", action="store_true", help="Disable git automation (branching/pushing).")
-    parser.add_argument("--resume", action="store_true", help="Resume experiment from existing results.")
+    parser.add_argument("--resume", action="store_true",default=False, help="Resume experiment from existing results.")
     parser.add_argument("--workers", type=int, default=2, help="Number of parallel workers.")
     args = parser.parse_args()
     
