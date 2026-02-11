@@ -511,6 +511,15 @@ def run_experiment(limit: int = None, enable_git: bool = True, resume: bool = Fa
     worker_count = min(num_workers, gpu_count) if gpu_count else num_workers
     worker_count = max(1, worker_count)
 
+    # Calculate total sentences BEFORE spawning workers to avoid dataset loading conflicts
+    ds = load_from_disk("./few-nerd_test")
+    if limit:
+        ds = ds.select(range(min(limit, len(ds))))
+    total_sentences = len(ds) * len(guideline_modules)
+    
+    logging.info(f"Starting experiment with {len(guideline_modules)} modules and {len(ds)} sentences per module")
+    logging.info(f"Total sentences to process: {total_sentences}")
+
     ctx = mp.get_context("spawn")
     template_path = os.path.join(GOLLIE_PATH, "templates", "prompt.txt")
     task_queues = [ctx.Queue() for _ in range(worker_count)]
@@ -521,15 +530,6 @@ def run_experiment(limit: int = None, enable_git: bool = True, resume: bool = Fa
     ]
     for p in workers:
         p.start()
-
-    # Calculate total sentences to process
-    ds = load_from_disk("./few-nerd_test")
-    if limit:
-        ds = ds.select(range(min(limit, len(ds))))
-    total_sentences = len(ds) * len(guideline_modules)
-    
-    logging.info(f"Starting experiment with {len(guideline_modules)} modules and {len(ds)} sentences per module")
-    logging.info(f"Total sentences to process: {total_sentences}")
 
     try:
         with tqdm(total=total_sentences, desc="Overall progress", leave=True) as pbar:
