@@ -96,7 +96,7 @@ MODEL_LOAD_PARAMS = {
     "quantization": None, # No quantization (A100) 4 for t4 
     "use_lora": False,
     "force_auto_device_map": True,
-    "use_flash_attention": True, # Enabled for A100 and False to disable flash attention.
+    "use_flash_attention": False, # Enabled for A100 and False to disable flash attention.
     "torch_dtype": "bfloat16",
 }
 
