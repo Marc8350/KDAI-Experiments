@@ -216,10 +216,22 @@ def reconstruct_entities(entity_strings, module):
                 entities.append(entity_class(span=span))
     return entities
 
-def _run_module_experiment(module_name: str, limit: int = None, enable_git: bool = True, resume: bool = False):
+def _run_module_experiment(
+    module_name: str,
+    limit: int = None,
+    enable_git: bool = True,
+    resume: bool = False,
+    gpu_id: int = None
+):
     """
     Runs experiment for a single guideline module (intended for multiprocessing).
     """
+    if gpu_id is not None:
+        os.environ["CUDA_VISIBLE_DEVICES"] = str(gpu_id)
+        try:
+            torch.cuda.set_device(0)
+        except Exception:
+            pass
     RESULTS_DIR = "GOLLIE-results"
     os.makedirs(RESULTS_DIR, exist_ok=True)
 
@@ -288,7 +300,7 @@ def _run_module_experiment(module_name: str, limit: int = None, enable_git: bool
                 logging.error(f"Failed to load previous results for {module_name}: {e}")
 
     # Processing loop
-    for i, sentence in enumerate(tqdm(ds, desc=f"Processing {module_name}", leave=False)):
+    for i, sentence in enumerate(tqdm(ds, desc=f"Processing {module_name}", leave=False, disable=True)):
         sentence_id = sentence.get("id", str(i))
         if resume and sentence_id in processed_ids:
             continue
@@ -444,10 +456,20 @@ def run_experiment(limit: int = None, enable_git: bool = True, resume: bool = Fa
         setup_git_experiment_branch()
 
     # Process modules in parallel
-    with ProcessPoolExecutor(max_workers=num_workers) as executor:
+    gpu_count = torch.cuda.device_count() if torch.cuda.is_available() else 0
+    worker_count = min(num_workers, gpu_count) if gpu_count else num_workers
+    max_workers = worker_count if gpu_count else num_workers
+    with ProcessPoolExecutor(max_workers=max_workers) as executor:
         futures = {
-            executor.submit(_run_module_experiment, module.__name__, limit, enable_git, resume): module.__name__
-            for module in guideline_modules
+            executor.submit(
+                _run_module_experiment,
+                module.__name__,
+                limit,
+                enable_git,
+                resume,
+                (i % worker_count) if worker_count else None
+            ): module.__name__
+            for i, module in enumerate(guideline_modules)
         }
         for future in as_completed(futures):
             module_name = futures[future]
