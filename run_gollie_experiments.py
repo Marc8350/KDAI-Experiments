@@ -32,6 +32,7 @@ import logging
 import inspect
 import black
 from datetime import datetime
+from tqdm import tqdm
 import argparse
 import importlib
 import signal
@@ -351,7 +352,8 @@ def _run_module_experiment(
     enable_git: bool = True,
     resume: bool = False,
     task_queues: List["mp.Queue"] = None,
-    result_queue: "mp.Queue" = None
+    result_queue: "mp.Queue" = None,
+    pbar: tqdm = None
 ):
     """
     Runs experiment for a single guideline module with sentence-level parallelism.
@@ -439,6 +441,8 @@ def _run_module_experiment(
         if result_module != module_name:
             logging.warning(f"[{module_name}] Received results for {result_module}")
         results.extend(result_items)
+        if pbar:
+            pbar.update(len(result_items))
 
     sentence_results.extend(results)
     sentence_results.sort(key=lambda s: s["index"])
@@ -494,20 +498,28 @@ def run_experiment(limit: int = None, enable_git: bool = True, resume: bool = Fa
     for p in workers:
         p.start()
 
+    # Calculate total sentences to process
+    ds = load_from_disk("./few-nerd_test")
+    if limit:
+        ds = ds.select(range(min(limit, len(ds))))
+    total_sentences = len(ds) * len(guideline_modules)
+
     try:
-        for module in guideline_modules:
-            try:
-                result_path = _run_module_experiment(
-                    module,
-                    limit=limit,
-                    enable_git=enable_git,
-                    resume=resume,
-                    task_queues=task_queues,
-                    result_queue=result_queue
-                )
-                logging.info(f"[{module.__name__}] Completed. Results: {result_path}")
-            except Exception as e:
-                logging.error(f"[{module.__name__}] Failed: {e}")
+        with tqdm(total=total_sentences, desc="Overall progress", leave=True) as pbar:
+            for module in guideline_modules:
+                try:
+                    result_path = _run_module_experiment(
+                        module,
+                        limit=limit,
+                        enable_git=enable_git,
+                        resume=resume,
+                        task_queues=task_queues,
+                        result_queue=result_queue,
+                        pbar=pbar
+                    )
+                    logging.info(f"[{module.__name__}] Completed. Results: {result_path}")
+                except Exception as e:
+                    logging.error(f"[{module.__name__}] Failed: {e}")
     except KeyboardInterrupt:
         logging.warning("Received Ctrl+C. Terminating workers...")
         raise
