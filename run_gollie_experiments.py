@@ -75,7 +75,7 @@ MODEL_LOAD_PARAMS = {
     "use_lora": False,
     "force_auto_device_map": True,
     "use_flash_attention": False,
-    "torch_dtype": "bfloat16"
+    "torch_dtype": "float16"
 }
 
 GENERATE_PARAMS = {
