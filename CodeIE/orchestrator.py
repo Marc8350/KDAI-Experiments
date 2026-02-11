@@ -50,8 +50,238 @@ from concurrent.futures import ProcessPoolExecutor, as_completed
 from dataclasses import asdict
 from run_codeie_experiments import run_experiment, ExperimentConfig, update_experiment_matrix
 
-def run_experiment_task(run_config_dict: Dict, run_id: str, progress_queue=None) -> Dict:
-    """Worker task to run experiment in a separate process."""
+# =============================================================================
+# Ollama Configuration for Dual A100 Setup
+# =============================================================================
+# Optimal settings for 2x A100 GPUs:
+# - OLLAMA_NUM_PARALLEL: Number of concurrent requests Ollama handles
+#   With 2x A100 (80GB each), you can run 4-8 parallel requests for 7B models
+# - OLLAMA_MAX_LOADED_MODELS: Can keep multiple model copies in VRAM
+# - Workers in orchestrator should match OLLAMA_NUM_PARALLEL
+
+OLLAMA_RESTART_MAX_ATTEMPTS = 3
+OLLAMA_RESTART_WAIT_SECONDS = 10
+OLLAMA_HEALTH_CHECK_INTERVAL = 50  # Check every N completed runs
+
+# Model size to recommended parallel workers mapping
+# Based on VRAM requirements (bfloat16) and dual A100 80GB setup
+MODEL_SIZE_WORKERS = {
+    "3b": 8,    # ~6GB per model, can run many
+    "7b": 6,    # ~14GB per model
+    "8b": 6,    # ~16GB per model  
+    "13b": 4,   # ~26GB per model
+    "14b": 4,   # ~28GB per model
+    "30b": 2,   # ~60GB per model
+    "32b": 2,   # ~64GB per model
+    "34b": 2,   # ~68GB per model
+    "70b": 1,   # ~140GB, needs both GPUs
+    "72b": 1,   # ~144GB, needs both GPUs
+}
+
+DEFAULT_WORKERS_FALLBACK = 4  # Conservative default if model size unknown
+
+
+def estimate_workers_for_model(model_name: str, gpu_count: int = 2) -> int:
+    """
+    Estimate optimal worker count based on model size.
+    
+    Args:
+        model_name: Model name (e.g., "qwen2.5:7b", "llama3:70b")
+        gpu_count: Number of GPUs available
+        
+    Returns:
+        Recommended number of parallel workers
+    """
+    model_lower = model_name.lower()
+    
+    # Extract size from model name (looks for patterns like "7b", "70b", "3b")
+    import re
+    size_match = re.search(r'(\d+)b', model_lower)
+    
+    if size_match:
+        size_str = size_match.group(1) + "b"
+        if size_str in MODEL_SIZE_WORKERS:
+            base_workers = MODEL_SIZE_WORKERS[size_str]
+            # Scale by GPU count (base is for 2 GPUs)
+            return max(1, int(base_workers * gpu_count / 2))
+    
+    # Check for known small models without explicit size
+    small_models = ["phi3", "phi-3", "gemma:2b", "tinyllama"]
+    if any(m in model_lower for m in small_models):
+        return max(1, int(8 * gpu_count / 2))
+    
+    # Check for known large models
+    large_models = ["mixtral", "command-r", "llama-3.1:405b"]
+    if any(m in model_lower for m in large_models):
+        return 1
+    
+    logger.warning(f"Could not determine size for model '{model_name}', using default {DEFAULT_WORKERS_FALLBACK} workers")
+    return DEFAULT_WORKERS_FALLBACK
+
+
+class OllamaManager:
+    """
+    Manages Ollama server lifecycle with auto-recovery capabilities.
+    
+    For dual A100 setup, this class helps:
+    1. Start Ollama with optimal parallel settings
+    2. Monitor health and restart on failures
+    3. Pre-warm models to avoid first-request latency
+    """
+    
+    def __init__(self, base_url: str = "http://localhost:11434", gpu_count: int = 2):
+        self.base_url = base_url.rstrip("/")
+        self.gpu_count = gpu_count
+        self.restart_count = 0
+        self.last_health_check = time.time()
+        
+    def check_health(self, timeout: int = 10) -> bool:
+        """Check if Ollama server is responsive."""
+        try:
+            resp = requests.get(f"{self.base_url}/api/tags", timeout=timeout)
+            return resp.status_code < 400
+        except Exception as e:
+            logger.warning(f"Ollama health check failed: {e}")
+            return False
+    
+    def get_loaded_models(self) -> List[str]:
+        """Get list of currently loaded models."""
+        try:
+            resp = requests.get(f"{self.base_url}/api/ps", timeout=10)
+            if resp.status_code == 200:
+                data = resp.json()
+                return [m.get("name", "") for m in data.get("models", [])]
+        except Exception:
+            pass
+        return []
+    
+    def preload_model(self, model_name: str) -> bool:
+        """Pre-load a model into VRAM to avoid first-request latency."""
+        logger.info(f"Pre-loading model: {model_name}")
+        try:
+            # Send a minimal request to load the model
+            resp = requests.post(
+                f"{self.base_url}/api/generate",
+                json={"model": model_name, "prompt": "Hi", "stream": False},
+                timeout=120  # Model loading can take time
+            )
+            if resp.status_code == 200:
+                logger.info(f"Model {model_name} pre-loaded successfully")
+                return True
+            else:
+                logger.warning(f"Failed to pre-load {model_name}: HTTP {resp.status_code}")
+                return False
+        except Exception as e:
+            logger.warning(f"Failed to pre-load {model_name}: {e}")
+            return False
+    
+    def stop_ollama(self) -> bool:
+        """Stop Ollama server (via pkill or systemctl)."""
+        logger.info("Stopping Ollama server...")
+        try:
+            # Try graceful shutdown first
+            import subprocess
+            result = subprocess.run(
+                ["pkill", "-f", "ollama serve"],
+                capture_output=True,
+                timeout=10
+            )
+            time.sleep(2)  # Wait for process to terminate
+            return True
+        except Exception as e:
+            logger.warning(f"Failed to stop Ollama: {e}")
+            return False
+    
+    def start_ollama(self, num_parallel: int = None) -> bool:
+        """
+        Start Ollama server with optimal settings for multi-GPU.
+        
+        Environment variables set:
+        - OLLAMA_NUM_PARALLEL: Concurrent request handling
+        - CUDA_VISIBLE_DEVICES: GPU selection (if needed)
+        """
+        if num_parallel is None:
+            num_parallel = DEFAULT_WORKERS_FALLBACK
+            
+        logger.info(f"Starting Ollama server with OLLAMA_NUM_PARALLEL={num_parallel}")
+        
+        try:
+            import subprocess
+            
+            # Set environment for the subprocess
+            env = os.environ.copy()
+            env["OLLAMA_NUM_PARALLEL"] = str(num_parallel)
+            env["OLLAMA_MAX_LOADED_MODELS"] = str(self.gpu_count)  # One model per GPU
+            
+            # Start Ollama in background
+            process = subprocess.Popen(
+                ["ollama", "serve"],
+                env=env,
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+                start_new_session=True  # Detach from parent
+            )
+            
+            # Wait for server to be ready
+            for i in range(30):  # Wait up to 30 seconds
+                time.sleep(1)
+                if self.check_health(timeout=5):
+                    logger.info("Ollama server started successfully")
+                    return True
+                    
+            logger.error("Ollama server failed to start within 30 seconds")
+            return False
+            
+        except FileNotFoundError:
+            logger.error("Ollama binary not found. Please install Ollama first.")
+            return False
+        except Exception as e:
+            logger.error(f"Failed to start Ollama: {e}")
+            return False
+    
+    def restart_ollama(self, num_parallel: int = None) -> bool:
+        """Restart Ollama server with auto-recovery."""
+        if self.restart_count >= OLLAMA_RESTART_MAX_ATTEMPTS:
+            logger.error(f"Max restart attempts ({OLLAMA_RESTART_MAX_ATTEMPTS}) reached. Manual intervention required.")
+            return False
+            
+        self.restart_count += 1
+        logger.warning(f"Restarting Ollama (attempt {self.restart_count}/{OLLAMA_RESTART_MAX_ATTEMPTS})")
+        
+        self.stop_ollama()
+        time.sleep(OLLAMA_RESTART_WAIT_SECONDS)
+        
+        if self.start_ollama(num_parallel):
+            logger.info("Ollama restarted successfully")
+            return True
+        else:
+            logger.error("Ollama restart failed")
+            return False
+    
+    def ensure_healthy(self, num_parallel: int = None) -> bool:
+        """
+        Ensure Ollama is healthy, restart if necessary.
+        
+        Returns:
+            True if Ollama is healthy (possibly after restart), False if unrecoverable
+        """
+        if self.check_health():
+            return True
+            
+        logger.warning("Ollama unhealthy, attempting recovery...")
+        return self.restart_ollama(num_parallel)
+    
+    def reset_restart_count(self):
+        """Reset restart counter (call after successful batch completion)."""
+        self.restart_count = 0
+
+def run_experiment_task(run_config_dict: Dict, run_id: str, progress_queue=None, ollama_base_url: str = None) -> Dict:
+    """
+    Worker task to run experiment in a separate process.
+    
+    Note: Each worker creates its own OllamaManager for health checks.
+    The manager can trigger health checks but NOT restart (that's main process responsibility).
+    """
     try:
         # Reconstruct config
         config = ExperimentConfig(**run_config_dict)
@@ -69,7 +299,12 @@ def run_experiment_task(run_config_dict: Dict, run_id: str, progress_queue=None)
         # Run experiment (skipping matrix update to avoid race conditions)
         config.skip_matrix_update = True
         
-        metrics = run_experiment(config, progress_queue=progress_queue)
+        # Pass Ollama base URL for health checks within the experiment
+        metrics = run_experiment(
+            config, 
+            progress_queue=progress_queue,
+            ollama_base_url=ollama_base_url or config.api_base_url
+        )
         if metrics is None:
             return {
                 "run_id": run_id,
@@ -156,12 +391,25 @@ class Orchestrator:
     1. Checking and generating prompt variations
     2. Running experiments across all configurations
     3. Saving and displaying results
+    4. Ollama auto-recovery and health management
+    
+    Optimization for dual A100:
+    - Recommended max_workers: 4-6 (matches OLLAMA_NUM_PARALLEL)
+    - Pre-loads models to avoid cold start latency
+    - Auto-restarts Ollama on failures
     """
     
-    def __init__(self, config_path: Path):
-        """Initialize orchestrator with configuration."""
+    def __init__(self, config_path: Path, gpu_count: int = 2):
+        """
+        Initialize orchestrator with configuration.
+        
+        Args:
+            config_path: Path to experiment YAML config
+            gpu_count: Number of GPUs available (default 2 for dual A100)
+        """
         self.config_path = config_path
         self.config = self._load_config()
+        self.gpu_count = gpu_count
         
         self.base_prompts_dir = CODEIE_ROOT / "prompts" / "base"
         self.variations_dir = CODEIE_ROOT / "prompts" / "variations"
@@ -175,7 +423,56 @@ class Orchestrator:
         self.runs: List[ExperimentRun] = []
         self.completed_runs: List[str] = []
         
+        # Initialize Ollama manager for auto-recovery
+        self.ollama_manager: Optional[OllamaManager] = None
+        
         logger.info(f"Orchestrator initialized with config: {config_path}")
+        logger.info(f"GPU count: {gpu_count}")
+    
+    def _get_ollama_base_url(self) -> str:
+        """Get Ollama base URL from config or default."""
+        models = self._get_enabled_models()
+        for model_config in models.values():
+            if model_config.get("type") == "ollama":
+                return model_config.get("base_url", "http://localhost:11434")
+        return "http://localhost:11434"
+    
+    def _init_ollama_manager(self) -> OllamaManager:
+        """Initialize Ollama manager if not already done."""
+        if self.ollama_manager is None:
+            base_url = self._get_ollama_base_url()
+            self.ollama_manager = OllamaManager(base_url=base_url, gpu_count=self.gpu_count)
+        return self.ollama_manager
+    
+    def ensure_ollama_ready(self, preload_models: List[str] = None) -> bool:
+        """
+        Ensure Ollama is running and optionally pre-load models.
+        
+        Args:
+            preload_models: List of model names to pre-load into VRAM
+            
+        Returns:
+            True if Ollama is ready, False if unrecoverable
+        """
+        manager = self._init_ollama_manager()
+        
+        # Calculate optimal parallel setting (will be refined based on model size)
+        num_parallel = self.config.get("execution", {}).get(
+            "ollama_num_parallel", 
+            DEFAULT_WORKERS_FALLBACK
+        )
+        
+        # Ensure Ollama is healthy
+        if not manager.ensure_healthy(num_parallel):
+            logger.error("Failed to ensure Ollama is healthy")
+            return False
+        
+        # Pre-load models if requested
+        if preload_models:
+            for model_name in preload_models:
+                manager.preload_model(model_name)
+        
+        return True
     
     def _load_config(self) -> Dict:
         """Load configuration from YAML file."""
@@ -688,10 +985,12 @@ class Orchestrator:
         dry_run: bool = False,
         skip_generation: bool = False,
         quiet: bool = False,
-        max_workers: int = 2 # Default to 2 for the requested "2 models"
+        max_workers: int = None,  # Will auto-calculate if None
+        auto_recover_ollama: bool = True,
+        preload_models: bool = True
     ) -> Dict[str, Any]:
         """
-        Run the complete pipeline.
+        Run the complete pipeline with Ollama auto-recovery.
         
         Args:
             filter_model: Only run this model
@@ -700,14 +999,41 @@ class Orchestrator:
             filter_variation: Only run this variation
             dry_run: If True, only print what would be run
             skip_generation: If True, skip variation generation check
-            max_workers: Number of parallel processes
+            max_workers: Number of parallel processes (auto-calculated if None)
+            auto_recover_ollama: If True, automatically restart Ollama on failures
+            preload_models: If True, pre-load models into VRAM before starting
         
         Returns:
             Summary of all experiment results
+            
+        Optimization Notes for Dual A100:
+        - Default max_workers is set to OLLAMA_NUM_PARALLEL (6 for dual A100)
+        - Ensure Ollama is started with: OLLAMA_NUM_PARALLEL=6 ollama serve
+        - With 2x A100 80GB, you can run ~6-8 parallel 7B model requests
+        - Larger models (13B+) may need fewer parallel workers
         """
+        # Auto-calculate optimal workers based on model size and GPU count
+        if max_workers is None:
+            # Check config first
+            max_workers = self.config.get("execution", {}).get("max_workers")
+            
+            # If not in config, calculate based on largest model being used
+            if max_workers is None:
+                models = self._get_enabled_models()
+                ollama_models = [m["name"] for m in models.values() if m.get("type") == "ollama"]
+                
+                if ollama_models:
+                    # Use the most conservative (lowest) worker count for the largest model
+                    worker_estimates = [estimate_workers_for_model(m, self.gpu_count) for m in ollama_models]
+                    max_workers = min(worker_estimates)
+                    logger.info(f"Auto-calculated max_workers={max_workers} based on model sizes: {ollama_models}")
+                else:
+                    max_workers = DEFAULT_WORKERS_FALLBACK
+        
         logger.info(f"\n{'#'*60}")
         logger.info(f"# CodeIE Experiment Orchestrator")
         logger.info(f"# One-Stop Shop Pipeline (Parallel Execution)")
+        logger.info(f"# GPU Count: {self.gpu_count} | Max Workers: {max_workers}")
         logger.info(f"{'#'*60}")
         
         # Step 1: Check and generate variations
@@ -753,8 +1079,26 @@ class Orchestrator:
                 logger.info("All runs already completed in this batch!")
                 return {"runs": [], "summary": "All runs already completed"}
 
-        # Preflight checks
-        self._check_ollama_servers(self._get_enabled_models())
+        # Preflight checks and Ollama initialization
+        models_dict = self._get_enabled_models()
+        ollama_models = [m["name"] for m in models_dict.values() if m.get("type") == "ollama"]
+        
+        if ollama_models and auto_recover_ollama and not dry_run:
+            logger.info("\n[OLLAMA SETUP] Initializing Ollama with auto-recovery...")
+            
+            # Get unique model names to preload
+            unique_models = list(set(ollama_models))
+            
+            # Ensure Ollama is running and healthy
+            if not self.ensure_ollama_ready(preload_models=unique_models if preload_models else None):
+                logger.error("Failed to initialize Ollama. Aborting.")
+                return {"runs": [], "summary": "Ollama initialization failed"}
+            
+            logger.info(f"  Ollama ready with models: {unique_models}")
+            logger.info(f"  Auto-calculated workers: {max_workers} (based on model size)")
+        else:
+            # Legacy preflight check
+            self._check_ollama_servers(models_dict)
 
         # Estimate total samples (more accurate than max_samples × runs)
         effective_per_run, total_samples_est = self._estimate_total_samples(runs)
@@ -813,10 +1157,16 @@ class Orchestrator:
         def update_pbar(queue, total):
             with tqdm(total=total, desc="Total Progress (Samples)", unit="sample") as pbar:
                 while True:
-                    item = queue.get()
-                    if item is None: # Sentinel
-                        break
-                    pbar.update(item)
+                    try:
+                        # Use timeout to prevent indefinite blocking if main thread crashes
+                        item = queue.get(timeout=300)  # 5 minute timeout
+                        if item is None:  # Sentinel
+                            break
+                        pbar.update(item)
+                    except Exception:
+                        # queue.Empty on timeout - check if we should exit
+                        # If the main process is dead, this daemon thread will be killed anyway
+                        continue
         
         # Start progress thread
         pbar_thread = threading.Thread(target=update_pbar, args=(progress_queue, total_samples))
@@ -859,29 +1209,36 @@ class Orchestrator:
                     "skip_matrix_update": True # Explicitly set true for worker
                 }
                 
-                future = executor.submit(run_experiment_task, config_dict, run.run_id, progress_queue)
+                future = executor.submit(run_experiment_task, config_dict, run.run_id, progress_queue, api_base_url)
                 future_to_run[future] = run
                 
             # Process results as they complete
             completed_count = 0
+            failed_consecutive = 0  # Track consecutive failures for recovery trigger
+            total_failures = 0      # Track total failures for fail-fast
+            
+            # Fail-fast thresholds
+            MAX_CONSECUTIVE_RUN_FAILURES = 5   # Crash if 5 consecutive runs fail
+            MAX_TOTAL_FAILURE_RATIO = 0.8      # Crash if >80% of runs fail
             
             # Process results as they complete
             for future in as_completed(future_to_run, timeout=7200):  # 2-hour timeout per future
                     run = future_to_run[future]
                     completed_count += 1
                     
-                    # Periodic Ollama health check (every 10 runs)
-                    if completed_count % 10 == 0:
-                        models_dict = self._get_enabled_models()
-                        for model_id, model_config in models_dict.items():
-                            if model_config.get("type") == "ollama":
-                                base_url = model_config.get("base_url", "http://localhost:11434")
-                                if not self._check_ollama_health(base_url):
-                                    logger.warning(
-                                        f"ALERT: Ollama health check failed after {completed_count} runs. "
-                                        f"Server may be unresponsive at {base_url}. "
-                                        "Continuing, but future runs may stall."
-                                    )
+                    # Periodic Ollama health check with auto-recovery
+                    if completed_count % OLLAMA_HEALTH_CHECK_INTERVAL == 0 and auto_recover_ollama:
+                        if self.ollama_manager:
+                            if not self.ollama_manager.check_health():
+                                logger.warning(
+                                    f"ALERT: Ollama health check failed after {completed_count} runs. "
+                                    "Attempting auto-recovery..."
+                                )
+                                if self.ollama_manager.ensure_healthy():
+                                    logger.info("Ollama recovered successfully, continuing...")
+                                    self.ollama_manager.reset_restart_count()
+                                else:
+                                    logger.error("Ollama recovery failed. Remaining runs may fail.")
                     
                     try:
                         result_data = future.result(timeout=30)  # Additional timeout for result retrieval
@@ -892,6 +1249,7 @@ class Orchestrator:
                                 raise RuntimeError("Experiment returned empty results")
                             self.completed_runs.append(run.run_id)
                             run.status = "completed"
+                            failed_consecutive = 0  # Reset on success
                             
                             # Log completion even if quiet is not on (verbose logging) 
                             # But if quiet, tqdm handles the UI.
@@ -934,13 +1292,65 @@ class Orchestrator:
                                 "result": {"error": error_msg}
                             })
                             
+                            # Track failures
+                            failed_consecutive += 1
+                            total_failures += 1
+                            
+                            # FAIL-FAST: Check for too many consecutive failures
+                            if failed_consecutive >= MAX_CONSECUTIVE_RUN_FAILURES:
+                                error_msg = (
+                                    f"FATAL: {MAX_CONSECUTIVE_RUN_FAILURES} consecutive run failures. "
+                                    f"Model or Ollama is persistently failing. Aborting to prevent wasted time."
+                                )
+                                logger.error(error_msg)
+                                progress_queue.put(None)  # Stop progress thread
+                                raise RuntimeError(error_msg)
+                            
+                            # Trigger recovery after 3 consecutive failures
+                            if failed_consecutive >= 3 and auto_recover_ollama and self.ollama_manager:
+                                logger.warning(f"{failed_consecutive} consecutive failures detected. Triggering Ollama recovery...")
+                                if not self.ollama_manager.ensure_healthy():
+                                    logger.error("Ollama recovery failed!")
+                                failed_consecutive = 0  # Reset after recovery attempt
+                            
                     except Exception as e:
                         logger.error(f"Exception for {run.run_id}: {e}")
                         all_results.append({
                             "run": run.to_dict(),
                             "result": {"error": str(e)}
                         })
-                    
+                        
+                        # Track failures
+                        failed_consecutive += 1
+                        total_failures += 1
+                        
+                        # FAIL-FAST: Check for too many consecutive failures
+                        if failed_consecutive >= MAX_CONSECUTIVE_RUN_FAILURES:
+                            error_msg = (
+                                f"FATAL: {MAX_CONSECUTIVE_RUN_FAILURES} consecutive run failures. "
+                                f"Model or Ollama is persistently failing. Aborting."
+                            )
+                            logger.error(error_msg)
+                            progress_queue.put(None)  # Stop progress thread
+                            raise RuntimeError(error_msg)
+                        
+                        # Trigger recovery after 3 consecutive failures
+                        if failed_consecutive >= 3 and auto_recover_ollama and self.ollama_manager:
+                            logger.warning(f"{failed_consecutive} consecutive failures. Triggering Ollama recovery...")
+                            self.ollama_manager.ensure_healthy()
+                            failed_consecutive = 0
+            
+            # FAIL-FAST: Check total failure ratio after all runs complete
+            if len(runs) > 0 and total_failures > 0:
+                failure_ratio = total_failures / len(runs)
+                if failure_ratio > MAX_TOTAL_FAILURE_RATIO:
+                    error_msg = (
+                        f"FATAL: {failure_ratio:.1%} of runs failed ({total_failures}/{len(runs)}). "
+                        f"Too many failures to continue. Check Ollama and model configuration."
+                    )
+                    logger.error(error_msg)
+                    progress_queue.put(None)  # Stop progress thread
+                    raise RuntimeError(error_msg)
 
         
         # Signal progress thread to stop
@@ -1082,8 +1492,30 @@ def main():
     parser.add_argument(
         "--max-workers",
         type=int,
+        default=None,
+        help="Number of parallel workers (default: auto-calculated based on model size)"
+    )
+    parser.add_argument(
+        "--gpu-count",
+        type=int,
         default=2,
-        help="Number of parallel workers (default: 2)"
+        help="Number of GPUs available (default: 2 for dual A100)"
+    )
+    parser.add_argument(
+        "--no-auto-recover",
+        action="store_true",
+        help="Disable automatic Ollama restart on failures"
+    )
+    parser.add_argument(
+        "--no-preload",
+        action="store_true",
+        help="Skip pre-loading models into VRAM"
+    )
+    parser.add_argument(
+        "--ollama-parallel",
+        type=int,
+        default=None,
+        help=f"OLLAMA_NUM_PARALLEL setting (default: {DEFAULT_WORKERS_FALLBACK}, auto-adjusted per model)"
     )
     
     args = parser.parse_args()
@@ -1097,7 +1529,7 @@ def main():
         logger.error(f"Config file not found: {config_path}")
         sys.exit(1)
     
-    orchestrator = Orchestrator(config_path)
+    orchestrator = Orchestrator(config_path, gpu_count=args.gpu_count)
     
     # Handle different modes
     if args.status:
@@ -1124,7 +1556,9 @@ def main():
         dry_run=args.dry_run,
         skip_generation=args.skip_generation,
         quiet=args.quiet,
-        max_workers=args.max_workers
+        max_workers=args.max_workers,
+        auto_recover_ollama=not args.no_auto_recover,
+        preload_models=not args.no_preload
     )
 
 

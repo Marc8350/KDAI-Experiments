@@ -439,9 +439,19 @@ def build_base_prompt(
 # Inference & Parsing
 # ============================================================================
 
-def get_llm_model(config: ExperimentConfig):
+# Default timeout for Ollama requests (seconds)
+DEFAULT_OLLAMA_TIMEOUT = 180  # 3 minutes per request
+DEFAULT_RETRY_ATTEMPTS = 3
+DEFAULT_RETRY_BACKOFF = 2.0  # Exponential backoff multiplier
+
+
+def get_llm_model(config: ExperimentConfig, timeout: int = DEFAULT_OLLAMA_TIMEOUT):
     """
     Factory to get the appropriate LangChain chat model based on config.
+    
+    Args:
+        config: Experiment configuration
+        timeout: Request timeout in seconds (for Ollama)
     """
     # Resolve parameters from config or environment variables
     model_name = config.model_name or os.getenv("CUSTOM_MODEL_NAME", "qwen2.5-7b")
@@ -482,66 +492,99 @@ def get_llm_model(config: ExperimentConfig):
     use_chat_api = any(m in model_name.lower() for m in chat_models)
     
     if use_chat_api:
-        logging.info(f"Using ChatOllama (Chat API) for {model_name}")
+        logging.info(f"Using ChatOllama (Chat API) for {model_name} with timeout={timeout}s")
         return ChatOllama(
             model=model_name,
             temperature=config.temperature,
             base_url=api_base_url,
-            num_predict=config.max_tokens
+            num_predict=config.max_tokens,
+            timeout=timeout,  # Request timeout
         )
     else:
-        logging.info(f"Using OllamaLLM (Completion API) for {model_name}")
+        logging.info(f"Using OllamaLLM (Completion API) for {model_name} with timeout={timeout}s")
         return OllamaLLM(
             model=model_name,
             temperature=config.temperature,
             base_url=api_base_url,
-            num_predict=config.max_tokens
+            num_predict=config.max_tokens,
+            timeout=timeout,  # Request timeout
         )
 
-def run_inference(prompt: str, llm_model, config: ExperimentConfig, timeout: int = 120) -> str:
+def run_inference(
+    prompt: str, 
+    llm_model, 
+    config: ExperimentConfig, 
+    timeout: int = DEFAULT_OLLAMA_TIMEOUT,
+    max_retries: int = DEFAULT_RETRY_ATTEMPTS,
+    backoff_factor: float = DEFAULT_RETRY_BACKOFF,
+    health_check_callback=None
+) -> str:
     """
-    Run inference using the LangChain model with timeout protection.
+    Run inference using the LangChain model with thread-based timeout and retry logic.
+    
+    This implementation uses ThreadPoolExecutor for timeouts, which works correctly
+    in subprocess workers (unlike signal.SIGALRM which only works in main thread).
     
     Args:
         prompt: Input prompt
         llm_model: LangChain model instance
         config: Experiment config
-        timeout: Maximum seconds to wait for response (default 120)
+        timeout: Maximum seconds to wait for response
+        max_retries: Number of retry attempts on failure
+        backoff_factor: Multiplier for exponential backoff between retries
+        health_check_callback: Optional callable to check/restart Ollama on failure
     
     Returns:
         Generated text or empty string on failure/timeout
     """
-    import signal
+    from concurrent.futures import ThreadPoolExecutor, TimeoutError as FuturesTimeoutError
     
-    def timeout_handler(signum, frame):
-        raise TimeoutError(f"Inference timeout after {timeout} seconds")
-    
-    # Set up timeout alarm
-    old_handler = signal.signal(signal.SIGALRM, timeout_handler)
-    signal.alarm(timeout)
-    
-    try:
+    def _invoke():
+        """Inner function to run in thread with timeout."""
         messages = [HumanMessage(content=prompt)]
         # Add common stop sequences to keep output clean
         stop = [END, END_LINE, "\ndef ", "\n\ndef "]
+        return llm_model.invoke(messages, stop=stop)
+    
+    last_error = None
+    
+    for attempt in range(max_retries):
+        try:
+            with ThreadPoolExecutor(max_workers=1) as executor:
+                future = executor.submit(_invoke)
+                try:
+                    response = future.result(timeout=timeout)
+                    
+                    if hasattr(response, 'content'):
+                        return response.content
+                    return str(response)
+                    
+                except FuturesTimeoutError:
+                    last_error = f"Inference timeout after {timeout}s (attempt {attempt + 1}/{max_retries})"
+                    logging.warning(last_error)
+                    
+                    # Try health check/recovery if provided
+                    if health_check_callback and attempt < max_retries - 1:
+                        logging.info("Triggering health check after timeout...")
+                        health_check_callback()
+                    
+        except Exception as e:
+            last_error = f"Inference failed (attempt {attempt + 1}/{max_retries}): {e}"
+            logging.warning(last_error)
+            
+            # Try health check/recovery if provided
+            if health_check_callback and attempt < max_retries - 1:
+                logging.info("Triggering health check after error...")
+                health_check_callback()
         
-        response = llm_model.invoke(messages, stop=stop)
-        signal.alarm(0)  # Cancel alarm
-        
-        if hasattr(response, 'content'):
-            return response.content
-        return str(response)
-        
-    except TimeoutError as e:
-        logging.error(f"Inference timeout: {e}")
-        signal.alarm(0)  # Cancel alarm
-        return ""
-    except Exception as e:
-        logging.error(f"Inference failed: {e}")
-        signal.alarm(0)  # Cancel alarm
-        return ""
-    finally:
-        signal.signal(signal.SIGALRM, old_handler)
+        # Exponential backoff before retry (except on last attempt)
+        if attempt < max_retries - 1:
+            wait_time = backoff_factor ** attempt
+            logging.info(f"Retrying in {wait_time:.1f}s...")
+            time.sleep(wait_time)
+    
+    logging.error(f"All {max_retries} inference attempts failed. Last error: {last_error}")
+    return ""
 
 
 def match_entity_type(etype_raw: str, entity_types: List[str]) -> Optional[str]:
@@ -742,8 +785,15 @@ def normalize_nervaluate_by_tag(by_tag: Dict[str, Any]) -> Dict[str, Any]:
 # Main Experiment Loop
 # ============================================================================
 
-def run_experiment(config: ExperimentConfig, progress_queue=None):
-    """Run a complete NER experiment with CodeIE."""
+def run_experiment(config: ExperimentConfig, progress_queue=None, ollama_base_url: str = None):
+    """
+    Run a complete NER experiment with CodeIE.
+    
+    Args:
+        config: Experiment configuration
+        progress_queue: Optional queue for progress updates (multiprocessing)
+        ollama_base_url: Optional Ollama base URL for health checks
+    """
     if config.quiet:
         # Suppress logging for all loggers except for the root if needed,
         # but easier to just set level to WARNING for the current module's logger
@@ -849,6 +899,12 @@ def run_experiment(config: ExperimentConfig, progress_queue=None):
     all_texts = []
     sentence_results = []
     
+    # Fail-fast tracking for empty outputs
+    MAX_CONSECUTIVE_EMPTY_OUTPUTS = 10  # Crash if 10 consecutive empty model outputs
+    MAX_EMPTY_OUTPUT_RATIO = 0.5        # Crash if >50% empty outputs after 20+ samples
+    consecutive_empty_outputs = 0
+    total_empty_outputs = 0
+    
     # Determine test samples to process
     num_samples = len(ds_test)
     if config.max_test_samples:
@@ -904,6 +960,38 @@ def run_experiment(config: ExperimentConfig, progress_queue=None):
         start_time = time.time()
         generated = run_inference(full_prompt, llm_model, config)
         elapsed = time.time() - start_time
+        
+        # =================================================================
+        # FAIL-FAST: Check for empty model outputs
+        # =================================================================
+        if not generated or generated.strip() == "":
+            consecutive_empty_outputs += 1
+            total_empty_outputs += 1
+            logging.warning(f"Empty model output for sample {i} (consecutive: {consecutive_empty_outputs})")
+            
+            # Crash if too many consecutive empty outputs
+            if consecutive_empty_outputs >= MAX_CONSECUTIVE_EMPTY_OUTPUTS:
+                error_msg = (
+                    f"FATAL: {MAX_CONSECUTIVE_EMPTY_OUTPUTS} consecutive empty model outputs. "
+                    f"Model is not generating responses. Check Ollama server and model availability."
+                )
+                logging.error(error_msg)
+                raise RuntimeError(error_msg)
+        else:
+            consecutive_empty_outputs = 0  # Reset on successful output
+        
+        # Check empty output ratio after sufficient samples
+        samples_processed = i + 1
+        if samples_processed >= 20:
+            empty_ratio = total_empty_outputs / samples_processed
+            if empty_ratio > MAX_EMPTY_OUTPUT_RATIO:
+                error_msg = (
+                    f"FATAL: {empty_ratio:.1%} of outputs are empty ({total_empty_outputs}/{samples_processed}). "
+                    f"Model is failing too often. Check Ollama server health."
+                )
+                logging.error(error_msg)
+                raise RuntimeError(error_msg)
+        # =================================================================
         
         # Parse output
         if config.style == "pl":
