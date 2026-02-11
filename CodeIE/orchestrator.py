@@ -24,6 +24,7 @@ import yaml
 import time
 import logging
 import argparse
+import requests
 from datetime import datetime
 from pathlib import Path
 from typing import Dict, List, Optional, Any, Tuple
@@ -69,6 +70,12 @@ def run_experiment_task(run_config_dict: Dict, run_id: str, progress_queue=None)
         config.skip_matrix_update = True
         
         metrics = run_experiment(config, progress_queue=progress_queue)
+        if metrics is None:
+            return {
+                "run_id": run_id,
+                "status": "failed",
+                "error": "run_experiment returned None (likely prompt/variation discovery failure)"
+            }
         return {"run_id": run_id, "status": "completed", "result": metrics}
     except Exception as e:
         # Log the full traceback for debugging
@@ -174,6 +181,128 @@ class Orchestrator:
         """Load configuration from YAML file."""
         with open(self.config_path, 'r') as f:
             return yaml.safe_load(f)
+
+    def _resolve_dataset_path(self) -> Path:
+        """Resolve dataset path from config or default location."""
+        dataset_path = self.config.get("dataset", {}).get("path", "few-nerd_test")
+        return (PROJECT_ROOT / dataset_path).resolve()
+
+    def _get_dataset_size(self) -> Optional[int]:
+        """Return dataset size if available, else None."""
+        try:
+            from datasets import load_from_disk
+            dataset_path = self._resolve_dataset_path()
+            if not dataset_path.exists():
+                logger.warning(f"Dataset path not found: {dataset_path}")
+                return None
+            ds_test = load_from_disk(str(dataset_path))
+            return len(ds_test)
+        except Exception as e:
+            logger.warning(f"Could not load dataset for size check: {e}")
+            return None
+
+    def _estimate_total_samples(self, runs: List[ExperimentRun]) -> Tuple[int, int]:
+        """Estimate total samples based on dataset size and max_samples."""
+        dataset_size = self._get_dataset_size()
+        max_samples_per_run = self.config.get("execution", {}).get("max_samples")
+        if dataset_size is None:
+            effective_per_run = max_samples_per_run or 0
+        else:
+            if max_samples_per_run:
+                effective_per_run = min(dataset_size, max_samples_per_run)
+            else:
+                effective_per_run = dataset_size
+        return effective_per_run, len(runs) * effective_per_run
+
+    def _check_ollama_servers(self, models: Dict[str, Dict[str, Any]]) -> None:
+        """Warn if any Ollama endpoints are unreachable."""
+        for model_id, model_config in models.items():
+            if model_config.get("type") != "ollama":
+                continue
+            base_url = model_config.get("base_url", "http://localhost:11434").rstrip("/")
+            try:
+                resp = requests.get(f"{base_url}/api/tags", timeout=3)
+                if resp.status_code >= 400:
+                    logger.warning(
+                        f"Ollama health check failed for {model_id} at {base_url} "
+                        f"(HTTP {resp.status_code}). Runs may fail or stall."
+                    )
+            except Exception as e:
+                logger.warning(
+                    f"Ollama endpoint unreachable for {model_id} at {base_url}: {e}. "
+                    "Runs may fail or stall."
+                )
+
+    def _check_ollama_health(self, base_url: str = "http://localhost:11434") -> bool:
+        """
+        Check if Ollama server is responsive.
+        
+        Returns:
+            True if healthy, False if unreachable or error
+        """
+        try:
+            resp = requests.get(f"{base_url.rstrip('/')}/api/tags", timeout=5)
+            return resp.status_code < 400
+        except Exception:
+            return False
+
+    def find_incomplete_batch(self) -> Optional[Tuple[Path, Dict, List[str]]]:
+        """
+        Find the most recent incomplete batch and return its metadata.
+        
+        Returns:
+            Tuple of (batch_dir, summary_dict, completed_run_ids) or None if all complete
+        """
+        if not self.results_dir.exists():
+            return None
+        
+        # Find all batches, sorted by timestamp (newest first)
+        batches = sorted(
+            self.results_dir.glob("batch_*"),
+            key=lambda p: p.name,
+            reverse=True
+        )
+        
+        for batch_dir in batches:
+            summary_path = batch_dir / "batch_summary.json"
+            if not summary_path.exists():
+                continue
+            
+            try:
+                with open(summary_path, 'r') as f:
+                    summary = json.load(f)
+                
+                total_runs = summary.get("total_runs", 0)
+                completed_runs = summary.get("completed_runs", 0)
+                
+                if completed_runs < total_runs:
+                    logger.info(f"Found incomplete batch: {batch_dir.name}")
+                    logger.info(f"  Completed: {completed_runs}/{total_runs}")
+                    
+                    # Extract completed run IDs
+                    completed_run_ids = [
+                        r.get("run", {}).get("run_id") 
+                        for r in summary.get("results", [])
+                        if r.get("result") is not None
+                    ]
+                    
+                    return batch_dir, summary, completed_run_ids
+            except Exception as e:
+                logger.warning(f"Could not read batch summary {batch_dir}: {e}")
+                continue
+        
+        return None
+
+    def filter_completed_runs(
+        self, 
+        runs: List[ExperimentRun], 
+        completed_run_ids: List[str]
+    ) -> List[ExperimentRun]:
+        """Filter out already completed runs."""
+        remaining = [r for r in runs if r.run_id not in completed_run_ids]
+        if remaining:
+            logger.info(f"Resuming: {len(remaining)} runs remaining (skipped {len(runs) - len(remaining)})")
+        return remaining
     
     def _get_base_prompts(self) -> List[Tuple[str, Path]]:
         """Get all base prompt files."""
@@ -614,6 +743,27 @@ class Orchestrator:
         
         logger.info(f"  Total experiments: {len(runs)}")
         
+        # Check for incomplete batch to resume
+        incomplete = self.find_incomplete_batch()
+        if incomplete and not dry_run:
+            batch_dir, summary, completed_run_ids = incomplete
+            logger.info("\n[RESUME MODE] Continuing from previous checkpoint...")
+            runs = self.filter_completed_runs(runs, completed_run_ids)
+            if not runs:
+                logger.info("All runs already completed in this batch!")
+                return {"runs": [], "summary": "All runs already completed"}
+
+        # Preflight checks
+        self._check_ollama_servers(self._get_enabled_models())
+
+        # Estimate total samples (more accurate than max_samples × runs)
+        effective_per_run, total_samples_est = self._estimate_total_samples(runs)
+        logger.info(
+            "  Estimated samples per run: "
+            f"{effective_per_run} (max_samples={self.config.get('execution', {}).get('max_samples')})"
+        )
+        logger.info(f"  Estimated total samples: {total_samples_est}")
+        
         if dry_run:
             logger.info("\n[DRY RUN] Experiment matrix:")
             for i, run in enumerate(runs, 1):
@@ -651,9 +801,13 @@ class Orchestrator:
         manager = Manager()
         progress_queue = manager.Queue()
         
-        # Calculate total samples
-        max_samples_per_run = self.config["execution"].get("max_samples", 0)
-        total_samples = len(runs) * max_samples_per_run
+        # Calculate total samples (ensure total reflects expected sample count)
+        effective_per_run, total_samples = self._estimate_total_samples(runs)
+        if total_samples == 0:
+            fallback_max = self.config.get("execution", {}).get("max_samples") or 0
+            if fallback_max > 0:
+                effective_per_run = fallback_max
+                total_samples = len(runs) * fallback_max
         
         # Progress bar updater thread
         def update_pbar(queue, total):
@@ -712,15 +866,30 @@ class Orchestrator:
             completed_count = 0
             
             # Process results as they complete
-            for future in as_completed(future_to_run):
+            for future in as_completed(future_to_run, timeout=7200):  # 2-hour timeout per future
                     run = future_to_run[future]
                     completed_count += 1
                     
+                    # Periodic Ollama health check (every 10 runs)
+                    if completed_count % 10 == 0:
+                        models_dict = self._get_enabled_models()
+                        for model_id, model_config in models_dict.items():
+                            if model_config.get("type") == "ollama":
+                                base_url = model_config.get("base_url", "http://localhost:11434")
+                                if not self._check_ollama_health(base_url):
+                                    logger.warning(
+                                        f"ALERT: Ollama health check failed after {completed_count} runs. "
+                                        f"Server may be unresponsive at {base_url}. "
+                                        "Continuing, but future runs may stall."
+                                    )
+                    
                     try:
-                        result_data = future.result()
+                        result_data = future.result(timeout=30)  # Additional timeout for result retrieval
                         
                         if result_data["status"] == "completed":
                             metrics = result_data["result"]
+                            if not metrics:
+                                raise RuntimeError("Experiment returned empty results")
                             self.completed_runs.append(run.run_id)
                             run.status = "completed"
                             

@@ -498,21 +498,50 @@ def get_llm_model(config: ExperimentConfig):
             num_predict=config.max_tokens
         )
 
-def run_inference(prompt: str, llm_model, config: ExperimentConfig) -> str:
-    """Run inference using the LangChain model."""
+def run_inference(prompt: str, llm_model, config: ExperimentConfig, timeout: int = 120) -> str:
+    """
+    Run inference using the LangChain model with timeout protection.
+    
+    Args:
+        prompt: Input prompt
+        llm_model: LangChain model instance
+        config: Experiment config
+        timeout: Maximum seconds to wait for response (default 120)
+    
+    Returns:
+        Generated text or empty string on failure/timeout
+    """
+    import signal
+    
+    def timeout_handler(signum, frame):
+        raise TimeoutError(f"Inference timeout after {timeout} seconds")
+    
+    # Set up timeout alarm
+    old_handler = signal.signal(signal.SIGALRM, timeout_handler)
+    signal.alarm(timeout)
+    
     try:
         messages = [HumanMessage(content=prompt)]
         # Add common stop sequences to keep output clean
         stop = [END, END_LINE, "\ndef ", "\n\ndef "]
         
         response = llm_model.invoke(messages, stop=stop)
+        signal.alarm(0)  # Cancel alarm
+        
         if hasattr(response, 'content'):
             return response.content
         return str(response)
         
+    except TimeoutError as e:
+        logging.error(f"Inference timeout: {e}")
+        signal.alarm(0)  # Cancel alarm
+        return ""
     except Exception as e:
         logging.error(f"Inference failed: {e}")
+        signal.alarm(0)  # Cancel alarm
         return ""
+    finally:
+        signal.signal(signal.SIGALRM, old_handler)
 
 
 def match_entity_type(etype_raw: str, entity_types: List[str]) -> Optional[str]:
