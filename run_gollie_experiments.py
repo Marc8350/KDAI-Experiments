@@ -6,7 +6,6 @@ import sys
 os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
 os.environ["PYTORCH_ALLOC_CONF"] = "expandable_segments:True"
 
-import torch
 import gc
 import subprocess
 try:
@@ -229,6 +228,8 @@ def _run_module_experiment(
     """
     if gpu_id is not None:
         os.environ["CUDA_VISIBLE_DEVICES"] = str(gpu_id)
+    import torch
+    if gpu_id is not None:
         try:
             torch.cuda.set_device(0)
         except Exception:
@@ -468,6 +469,7 @@ def run_experiment(limit: int = None, enable_git: bool = True, resume: bool = Fa
         setup_git_experiment_branch()
 
     # Process modules in parallel
+    import torch
     gpu_count = torch.cuda.device_count() if torch.cuda.is_available() else 0
     worker_count = min(num_workers, gpu_count) if gpu_count else num_workers
     max_workers = worker_count if gpu_count else num_workers
@@ -498,9 +500,9 @@ def run_experiment(limit: int = None, enable_git: bool = True, resume: bool = Fa
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Run GoLLIE experiments.")
-    parser.add_argument("--limit", type=int, default=3765, help="Limit the number of sentences to process.")
+    parser.add_argument("--limit", type=int, default=None, help="Limit the number of sentences to process.")
     parser.add_argument("--no-git", action="store_true", help="Disable git automation (branching/pushing).")
-    parser.add_argument("--resume", action="store_true",default=False, help="Resume experiment from existing results.")
+    parser.add_argument("--resume", action="store_true", help="Resume experiment from existing results.")
     parser.add_argument("--workers", type=int, default=2, help="Number of parallel workers.")
     args = parser.parse_args()
     
