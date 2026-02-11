@@ -35,6 +35,7 @@ import black
 from datetime import datetime
 from tqdm import tqdm
 import argparse
+import importlib
 from concurrent.futures import ProcessPoolExecutor, as_completed
 from typing import Dict, List, Type, Any
 from datasets import load_from_disk
@@ -215,14 +216,14 @@ def reconstruct_entities(entity_strings, module):
                 entities.append(entity_class(span=span))
     return entities
 
-def _run_module_experiment(module, limit: int = None, enable_git: bool = True, resume: bool = False):
+def _run_module_experiment(module_name: str, limit: int = None, enable_git: bool = True, resume: bool = False):
     """
     Runs experiment for a single guideline module (intended for multiprocessing).
     """
     RESULTS_DIR = "GOLLIE-results"
     os.makedirs(RESULTS_DIR, exist_ok=True)
 
-    module_name = module.__name__
+    module = importlib.import_module(module_name)
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     log_filename = os.path.join(RESULTS_DIR, f"{module_name}_{timestamp}.json")
 
@@ -445,16 +446,16 @@ def run_experiment(limit: int = None, enable_git: bool = True, resume: bool = Fa
     # Process modules in parallel
     with ProcessPoolExecutor(max_workers=num_workers) as executor:
         futures = {
-            executor.submit(_run_module_experiment, module, limit, enable_git, resume): module
+            executor.submit(_run_module_experiment, module.__name__, limit, enable_git, resume): module.__name__
             for module in guideline_modules
         }
         for future in as_completed(futures):
-            module = futures[future]
+            module_name = futures[future]
             try:
                 result_path = future.result()
-                logging.info(f"[{module.__name__}] Completed. Results: {result_path}")
+                logging.info(f"[{module_name}] Completed. Results: {result_path}")
             except Exception as e:
-                logging.error(f"[{module.__name__}] Failed: {e}")
+                logging.error(f"[{module_name}] Failed: {e}")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Run GoLLIE experiments.")
