@@ -1,5 +1,15 @@
+
 import os
 import sys
+import json
+import logging
+import re
+import inspect
+import black
+from datetime import datetime
+from typing import Dict, List, Type, Any
+from datasets import load_from_disk
+from concurrent.futures import ProcessPoolExecutor
 
 # Get the absolute path of the project root
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -10,10 +20,7 @@ if PROJECT_ROOT not in sys.path:
 GOLLIE_PATH = os.path.join(PROJECT_ROOT, "GoLLIE")
 if GOLLIE_PATH not in sys.path:
     sys.path.append(GOLLIE_PATH)
-import json
-from datetime import datetime
-from typing import Dict, List, Type, Any
-from datasets import load_from_disk
+
 from src.model.load_model import load_model
 from src.tasks.utils_typing import Entity, AnnotationList
 from src.tasks.utils_scorer import SpanScorer
@@ -35,24 +42,30 @@ from annotation_guidelines import (
     guidelines_fine_gollie_v3
 )
 
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s'
+)
 
-guideline_modules = [
-    guidelines_coarse_gollie,
-    guidelines_coarse_gollie_detailed_v1,
-    guidelines_coarse_gollie_detailed_v2,
-    guidelines_coarse_gollie_detailed_v3,
-    guidelines_coarse_gollie_v1,
-    guidelines_coarse_gollie_v2,
-    guidelines_coarse_gollie_v3,
-    guidelines_fine_gollie,
-    guidelines_fine_gollie_detailed_v1,
-    guidelines_fine_gollie_detailed_v2,
-    guidelines_fine_gollie_detailed_v3,
-    guidelines_fine_gollie_v1,
-    guidelines_fine_gollie_v2,
-    guidelines_fine_gollie_v3
-]
+# Map string names to module objects for easy lookup
+MODULE_MAP = {
+    m.__name__: m for m in [
+        guidelines_coarse_gollie,
+        guidelines_coarse_gollie_detailed_v1,
+        guidelines_coarse_gollie_detailed_v2,
+        guidelines_coarse_gollie_detailed_v3,
+        guidelines_coarse_gollie_v1,
+        guidelines_coarse_gollie_v2,
+        guidelines_coarse_gollie_v3,
+        guidelines_fine_gollie,
+        guidelines_fine_gollie_detailed_v1,
+        guidelines_fine_gollie_detailed_v2,
+        guidelines_fine_gollie_detailed_v3,
+        guidelines_fine_gollie_v1,
+        guidelines_fine_gollie_v2,
+        guidelines_fine_gollie_v3
+    ]
+}
 
 # Configurable parameters
 MODEL_LOAD_PARAMS = {
@@ -61,7 +74,7 @@ MODEL_LOAD_PARAMS = {
     "quantization": None,
     "use_lora": False,
     "force_auto_device_map": True,
-    "use_flash_attention": True,
+    "use_flash_attention": False,
     "torch_dtype": "bfloat16"
 }
 
@@ -90,36 +103,41 @@ def label_to_classname(label):
     parts = re.split(r'[-/]', label)
     return "".join(p.capitalize() for p in parts)
 
-def run_experiment():
+def process_module(module_name: str, max_examples: int = 3765) -> str:
     """
-    Iterates over guideline modules and processes sentences from few-nerd_test.
+    Process a single guideline module.
+    Runs in a separate process.
     """
-    # Create results directory
-    RESULTS_DIR = "GOLLIE-results"
-    os.makedirs(RESULTS_DIR, exist_ok=True)
+    try:
+        # Re-import or get module from map
+        module = MODULE_MAP.get(module_name)
+        if not module:
+            return f"Error: Module {module_name} not found"
 
-    # Load dataset
-    ds = load_from_disk("./few-nerd_test")
-    coarse_names = ds.features["ner_tags"].feature.names
-    fine_names = ds.features["fine_ner_tags"].feature.names
+        RESULTS_DIR = "GOLLIE-results"
+        os.makedirs(RESULTS_DIR, exist_ok=True)
 
-    # Load model
-    logging.info(f"Loading model with params: {MODEL_LOAD_PARAMS}")
-    model, tokenizer = load_model(**MODEL_LOAD_PARAMS)
-
-    # Read template
-    from jinja2 import Template
-    template_path = os.path.join(GOLLIE_PATH, "templates", "prompt.txt")
-    with open(template_path, "rt") as f:
-        template = Template(f.read())
-
-    for module in guideline_modules:
-        module_name = module.__name__
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         log_filename = os.path.join(RESULTS_DIR, f"{module_name}_{timestamp}.json")
         
-        logging.info(f"Processing module: {module_name}")
+        logging.info(f"[{module_name}] Starting processing...")
+
+        # Load dataset locally in worker
+        ds_path = os.path.join(PROJECT_ROOT, "few-nerd_test")
+        ds = load_from_disk(ds_path)
+        coarse_names = ds.features["ner_tags"].feature.names
+        fine_names = ds.features["fine_ner_tags"].feature.names
+
+        # Load model locally in worker
+        logging.info(f"[{module_name}] Loading model...")
+        model, tokenizer = load_model(**MODEL_LOAD_PARAMS)
         
+        # Determine Jinja template
+        from jinja2 import Template
+        template_path = os.path.join(GOLLIE_PATH, "templates", "prompt.txt")
+        with open(template_path, "rt") as f:
+            template = Template(f.read())
+
         is_coarse = "coarse" in module_name
         tag_key = "ner_tags" if is_coarse else "fine_ner_tags"
         names_ref = coarse_names if is_coarse else fine_names
@@ -131,8 +149,10 @@ def run_experiment():
         predictions_per_module = []
         sentence_results = []
 
-        # We might want to limit sentences for testing, but user said "iterate over the sentences"
         for i, sentence in enumerate(ds):
+            if i >= max_examples:
+                break
+                
             # 1. Prepare sentence text
             tokens = sentence["tokens"]
             text = " ".join(tokens)
@@ -160,7 +180,7 @@ def run_experiment():
             try:
                 formatted_text = black.format_str(formatted_text, mode=black.Mode())
             except Exception as e:
-                logging.error(f"Black formatting failed: {e}")
+                logging.error(f"[{module_name}] Black formatting failed: {e}")
 
             # Prepare prompt by stripping existing result
             prompt, _ = formatted_text.split("result =")
@@ -182,14 +202,12 @@ def run_experiment():
             result_str = decoded_output.split("result =")[-1]
             
             try:
-                # AnnotationList.from_output expects a string that looks like [Entity(span='...'), ...]
-                # and a task_module name (the package where classes are defined)
                 prediction = AnnotationList.from_output(
                     result_str,
                     task_module=module_name
                 )
             except Exception as e:
-                logging.error(f"Parsing failed for sentence {i}: {e}")
+                logging.error(f"[{module_name}] Parsing failed for sentence {i}: {e}")
                 prediction = []
 
             # 6. Score individual sentence
@@ -210,26 +228,57 @@ def run_experiment():
             }
             sentence_results.append(sentence_data)
             
-            # 7. Intermediate Saving (Avoid data loss on long runs)
-            current_overall_score = scorer(reference=gold_per_module, predictions=predictions_per_module)
-            
-            final_results = {
-                "module": module_name,
-                "timestamp": timestamp,
-                "model_load_params": MODEL_LOAD_PARAMS,
-                "generate_params": GENERATE_PARAMS,
-                "overall_score": current_overall_score,
-                "processed_count": len(sentence_results),
-                "sentences": sentence_results
-            }
-            
-            with open(log_filename, "w") as f:
-                json.dump(final_results, f, indent=4)
-            
-            if i % 10 == 0:
-                logging.info(f"[{module_name}] Progress: {i} sentences saved to {log_filename}")
+            # 7. Intermediate Saving
+            if i % 10 == 0 or i == max_examples - 1:
+                current_overall_score = scorer(reference=gold_per_module, predictions=predictions_per_module)
+                
+                final_results = {
+                    "module": module_name,
+                    "timestamp": timestamp,
+                    "model_load_params": MODEL_LOAD_PARAMS,
+                    "generate_params": GENERATE_PARAMS,
+                    "overall_score": current_overall_score,
+                    "processed_count": len(sentence_results),
+                    "sentences": sentence_results
+                }
+                
+                with open(log_filename, "w") as f:
+                    json.dump(final_results, f, indent=4)
+                
+                if i % 50 == 0:
+                     logging.info(f"[{module_name}] Progress: {i}/{max_examples}")
 
-        logging.info(f"Finished module {module_name}. Full results available at {log_filename}")
+        logging.info(f"[{module_name}] Finished! Results matched to {log_filename}")
+        return log_filename
+
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
+        logging.error(f"[{module_name}] Critical failure: {e}")
+        return None
+
+def run_experiment():
+    """
+    Main entry point. Runs modules in parallel.
+    """
+    # Create results directory
+    RESULTS_DIR = "GOLLIE-results"
+    os.makedirs(RESULTS_DIR, exist_ok=True)
+    
+    # List of modules to process
+    job_list = list(MODULE_MAP.keys())
+    
+    logging.info(f"Beginning Parallel Experiment Run on {len(job_list)} modules with 2 workers.")
+    
+    with ProcessPoolExecutor(max_workers=2) as executor:
+        futures = []
+        for mod_name in job_list:
+            # We set max_examples here
+            futures.append(executor.submit(process_module, mod_name, 3765))
+            
+        for future in futures:
+            res = future.result()
+            print(f"Task completed. Result: {res}")
 
 if __name__ == "__main__":
     run_experiment()
