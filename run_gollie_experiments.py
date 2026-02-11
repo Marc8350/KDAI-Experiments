@@ -448,17 +448,22 @@ def _run_module_experiment(
     worker_count = len(task_queues) if task_queues else 1
     chunks = [indices_to_process[i::worker_count] for i in range(worker_count)]
 
+    logging.info(f"[{module_name}] Distributing {len(indices_to_process)} sentences to {worker_count} workers")
+    
     tasks_sent = 0
     for gpu_id, chunk in enumerate(chunks):
         if chunk:
+            logging.info(f"[{module_name}] Sending {len(chunk)} sentences to worker {gpu_id}")
             task_queues[gpu_id].put((module_name, chunk, tag_key, names_ref))
             tasks_sent += 1
 
+    logging.info(f"[{module_name}] Waiting for results from {tasks_sent} workers...")
     results = []
     for _ in range(tasks_sent):
         result_module, result_items = result_queue.get()
         if result_module != module_name:
             logging.warning(f"[{module_name}] Received results for {result_module}")
+        logging.info(f"[{module_name}] Received {len(result_items)} results")
         results.extend(result_items)
         if pbar:
             pbar.update(len(result_items))
@@ -522,10 +527,14 @@ def run_experiment(limit: int = None, enable_git: bool = True, resume: bool = Fa
     if limit:
         ds = ds.select(range(min(limit, len(ds))))
     total_sentences = len(ds) * len(guideline_modules)
+    
+    logging.info(f"Starting experiment with {len(guideline_modules)} modules and {len(ds)} sentences per module")
+    logging.info(f"Total sentences to process: {total_sentences}")
 
     try:
         with tqdm(total=total_sentences, desc="Overall progress", leave=True) as pbar:
             for module in guideline_modules:
+                logging.info(f"Starting module: {module.__name__}")
                 try:
                     result_path = _run_module_experiment(
                         module,
@@ -538,7 +547,7 @@ def run_experiment(limit: int = None, enable_git: bool = True, resume: bool = Fa
                     )
                     logging.info(f"[{module.__name__}] Completed. Results: {result_path}")
                 except Exception as e:
-                    logging.error(f"[{module.__name__}] Failed: {e}")
+                    logging.error(f"[{module.__name__}] Failed: {e}", exc_info=True)
     except KeyboardInterrupt:
         logging.warning("Received Ctrl+C. Terminating workers...")
         raise
