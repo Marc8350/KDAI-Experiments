@@ -681,6 +681,32 @@ def parse_nl_style_output(output: str, text: str, entity_types: List[str]) -> Li
 
 # Import from dedicated evaluation module for macro F1 support
 from evaluation import evaluate_predictions, evaluate_ner, EvaluationResult
+from src.evaluation_nervaluate import evaluate_with_nervaluate
+
+
+def normalize_nervaluate_by_tag(by_tag: Dict[str, Any]) -> Dict[str, Any]:
+    """Convert nervaluate per-tag metrics into JSON-serializable dicts."""
+    normalized: Dict[str, Any] = {}
+    for tag, metrics in by_tag.items():
+        tag_dict: Dict[str, Any] = {}
+        for scheme, scheme_metrics in metrics.items():
+            if isinstance(scheme_metrics, dict):
+                tag_dict[scheme] = scheme_metrics
+            else:
+                tag_dict[scheme] = {
+                    'precision': getattr(scheme_metrics, 'precision', 0.0),
+                    'recall': getattr(scheme_metrics, 'recall', 0.0),
+                    'f1': getattr(scheme_metrics, 'f1', 0.0),
+                    'correct': getattr(scheme_metrics, 'correct', 0),
+                    'incorrect': getattr(scheme_metrics, 'incorrect', 0),
+                    'partial': getattr(scheme_metrics, 'partial', 0),
+                    'missed': getattr(scheme_metrics, 'missed', 0),
+                    'spurious': getattr(scheme_metrics, 'spurious', 0),
+                    'actual': getattr(scheme_metrics, 'actual', 0),
+                    'possible': getattr(scheme_metrics, 'possible', 0)
+                }
+        normalized[tag] = tag_dict
+    return normalized
 
 
 # ============================================================================
@@ -791,6 +817,7 @@ def run_experiment(config: ExperimentConfig, progress_queue=None):
     
     all_gold = []
     all_pred = []
+    all_texts = []
     sentence_results = []
     
     # Determine test samples to process
@@ -873,6 +900,7 @@ def run_experiment(config: ExperimentConfig, progress_queue=None):
         # Store results
         all_gold.append(gold_entities)
         all_pred.append(pred_entities)
+        all_texts.append(text)
         
         # Update progress
         if progress_queue:
@@ -880,6 +908,15 @@ def run_experiment(config: ExperimentConfig, progress_queue=None):
         
         # Calculate per-sentence score
         sentence_eval = evaluate_ner([gold_entities], [pred_entities], entity_types)
+        sentence_nervaluate = evaluate_with_nervaluate(
+            all_gold_entities=[gold_entities],
+            all_pred_entities=[pred_entities],
+            all_texts=[text],
+            entity_types=entity_types
+        )
+        sentence_nervaluate_by_tag = normalize_nervaluate_by_tag(
+            sentence_nervaluate.get('by_tag', {})
+        )
         
         sentence_result = {
             'index': i,
@@ -906,6 +943,11 @@ def run_experiment(config: ExperimentConfig, progress_queue=None):
                         for etype, m in sentence_eval.per_type_metrics.items()
                         if m.support > 0 or m.tp + m.fp > 0  # Only include types with activity
                     }
+                },
+                'nervaluate': {
+                    'overall': sentence_nervaluate.get('overall', {}),
+                    'macro': sentence_nervaluate.get('macro', {}),
+                    'by_tag': sentence_nervaluate_by_tag
                 }
             }
         }
@@ -914,6 +956,15 @@ def run_experiment(config: ExperimentConfig, progress_queue=None):
         # Periodic logging and saving
         if (i + 1) % 10 == 0 or i == num_samples - 1:
             current_eval = evaluate_ner(all_gold, all_pred, entity_types)
+            current_nervaluate = evaluate_with_nervaluate(
+                all_gold_entities=all_gold,
+                all_pred_entities=all_pred,
+                all_texts=all_texts,
+                entity_types=entity_types
+            )
+            current_nervaluate_by_tag = normalize_nervaluate_by_tag(
+                current_nervaluate.get('by_tag', {})
+            )
             logging.info(
                 f"Progress: {i+1}/{num_samples} | "
                 f"P: {current_eval.micro_precision:.4f} | "
@@ -950,6 +1001,11 @@ def run_experiment(config: ExperimentConfig, progress_queue=None):
                         'macro_f1': current_eval.macro_f1,
                         'f1-score': current_eval.micro_f1,  # Alias for compatibility
                         'class_scores': overall_class_scores
+                    },
+                    'nervaluate': {
+                        'overall': current_nervaluate.get('overall', {}),
+                        'macro': current_nervaluate.get('macro', {}),
+                        'by_tag': current_nervaluate_by_tag
                     }
                 },
                 'processed_count': len(sentence_results),
@@ -961,6 +1017,15 @@ def run_experiment(config: ExperimentConfig, progress_queue=None):
     # Final evaluation
     final_eval = evaluate_ner(all_gold, all_pred, entity_types)
     final_metrics = evaluate_predictions(all_gold, all_pred)  # For backwards compatibility
+    final_nervaluate = evaluate_with_nervaluate(
+        all_gold_entities=all_gold,
+        all_pred_entities=all_pred,
+        all_texts=all_texts,
+        entity_types=entity_types
+    )
+    final_nervaluate_by_tag = normalize_nervaluate_by_tag(
+        final_nervaluate.get('by_tag', {})
+    )
     
     logging.info("="*60)
     logging.info("Final Results")
@@ -1000,6 +1065,11 @@ def run_experiment(config: ExperimentConfig, progress_queue=None):
                 'micro_f1': final_eval.micro_f1,
                 'macro_f1': final_eval.macro_f1,
                 'class_scores': class_scores
+            },
+            'nervaluate': {
+                'overall': final_nervaluate.get('overall', {}),
+                'macro': final_nervaluate.get('macro', {}),
+                'by_tag': final_nervaluate_by_tag
             }
         },
         'processed_count': len(all_gold)
