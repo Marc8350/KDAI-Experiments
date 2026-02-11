@@ -36,6 +36,7 @@ from datetime import datetime
 from tqdm import tqdm
 import argparse
 import importlib
+import signal
 from concurrent.futures import ProcessPoolExecutor, as_completed
 from typing import Dict, List, Type, Any
 from datasets import load_from_disk
@@ -299,6 +300,12 @@ def _run_module_experiment(
             except Exception as e:
                 logging.error(f"Failed to load previous results for {module_name}: {e}")
 
+    if limit is not None and len(sentence_results) >= limit:
+        logging.info(
+            f"[{module_name}] Resume has {len(sentence_results)} samples; limit={limit}. Skipping processing."
+        )
+        return log_filename
+
     # Processing loop
     for i, sentence in enumerate(tqdm(ds, desc=f"Processing {module_name}", leave=False, disable=True)):
         sentence_id = sentence.get("id", str(i))
@@ -443,6 +450,11 @@ def _run_module_experiment(
     return log_filename
 
 
+def _init_worker():
+    """Ensure workers ignore SIGINT so the main process can handle Ctrl+C."""
+    signal.signal(signal.SIGINT, signal.SIG_IGN)
+
+
 def run_experiment(limit: int = None, enable_git: bool = True, resume: bool = False, num_workers: int = 2):
     """
     Iterates over guideline modules and processes sentences from few-nerd_test.
@@ -459,7 +471,7 @@ def run_experiment(limit: int = None, enable_git: bool = True, resume: bool = Fa
     gpu_count = torch.cuda.device_count() if torch.cuda.is_available() else 0
     worker_count = min(num_workers, gpu_count) if gpu_count else num_workers
     max_workers = worker_count if gpu_count else num_workers
-    with ProcessPoolExecutor(max_workers=max_workers) as executor:
+    with ProcessPoolExecutor(max_workers=max_workers, initializer=_init_worker) as executor:
         futures = {
             executor.submit(
                 _run_module_experiment,
@@ -471,13 +483,18 @@ def run_experiment(limit: int = None, enable_git: bool = True, resume: bool = Fa
             ): module.__name__
             for i, module in enumerate(guideline_modules)
         }
-        for future in as_completed(futures):
-            module_name = futures[future]
-            try:
-                result_path = future.result()
-                logging.info(f"[{module_name}] Completed. Results: {result_path}")
-            except Exception as e:
-                logging.error(f"[{module_name}] Failed: {e}")
+        try:
+            for future in as_completed(futures):
+                module_name = futures[future]
+                try:
+                    result_path = future.result()
+                    logging.info(f"[{module_name}] Completed. Results: {result_path}")
+                except Exception as e:
+                    logging.error(f"[{module_name}] Failed: {e}")
+        except KeyboardInterrupt:
+            logging.warning("Received Ctrl+C. Terminating workers...")
+            executor.shutdown(wait=False, cancel_futures=True)
+            raise
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Run GoLLIE experiments.")
