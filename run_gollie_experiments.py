@@ -32,11 +32,10 @@ import logging
 import inspect
 import black
 from datetime import datetime
-from tqdm import tqdm
 import argparse
 import importlib
 import signal
-from concurrent.futures import ProcessPoolExecutor, as_completed
+import multiprocessing as mp
 from typing import Dict, List, Type, Any
 from datasets import load_from_disk
 from src.model.load_model import load_model
@@ -216,32 +215,154 @@ def reconstruct_entities(entity_strings, module):
                 entities.append(entity_class(span=span))
     return entities
 
+def _worker_loop(
+    gpu_id: int,
+    task_queue: "mp.Queue",
+    result_queue: "mp.Queue",
+    template_path: str
+):
+    """Worker process that loads the model once and processes tasks."""
+    signal.signal(signal.SIGINT, signal.SIG_IGN)
+    os.environ["CUDA_VISIBLE_DEVICES"] = str(gpu_id)
+
+    import torch
+    try:
+        torch.cuda.set_device(0)
+    except Exception:
+        pass
+
+    ds = load_from_disk("./few-nerd_test")
+    from jinja2 import Template
+    with open(template_path, "rt") as f:
+        template = Template(f.read())
+
+    logging.info(f"[worker:{gpu_id}] Loading GoLLIE model...")
+    model, tokenizer = load_model(**MODEL_LOAD_PARAMS)
+
+    while True:
+        task = task_queue.get()
+        if task is None:
+            break
+
+        module_name, indices, tag_key, names_ref = task
+        module = importlib.import_module(module_name)
+        scorer = MyEntityScorer()
+        scorer.valid_types = module.ENTITY_DEFINITIONS
+
+        results = []
+        for i in indices:
+            sentence = ds[i]
+            sentence_id = sentence.get("id", str(i))
+
+            tokens = sentence["tokens"]
+            text = " ".join(tokens)
+
+            tags = sentence[tag_key]
+            gold = []
+
+            current_class_name = None
+            current_span_tokens = []
+
+            for token, tag_id in zip(tokens, tags):
+                label = names_ref[tag_id]
+                class_name = label_to_classname(label)
+
+                entity_class = getattr(module, class_name, None) if class_name else None
+
+                if entity_class and class_name == current_class_name:
+                    current_span_tokens.append(token)
+                else:
+                    if current_class_name:
+                        prev_entity_class = getattr(module, current_class_name, None)
+                        if prev_entity_class:
+                            gold.append(prev_entity_class(span=" ".join(current_span_tokens)))
+
+                    if entity_class:
+                        current_class_name = class_name
+                        current_span_tokens = [token]
+                    else:
+                        current_class_name = None
+                        current_span_tokens = []
+
+            if current_class_name:
+                prev_entity_class = getattr(module, current_class_name, None)
+                if prev_entity_class:
+                    gold.append(prev_entity_class(span=" ".join(current_span_tokens)))
+
+            formatted_text = template.render(
+                guidelines=[inspect.getsource(definition) for definition in module.ENTITY_DEFINITIONS],
+                text=text,
+                annotations=gold,
+                gold=gold
+            )
+
+            try:
+                formatted_text = black.format_str(formatted_text, mode=black.Mode())
+            except Exception as e:
+                logging.error(f"Black formatting failed: {e}")
+
+            prompt, _ = formatted_text.split("result =")
+            prompt = prompt + "result ="
+
+            model_input = tokenizer(prompt, add_special_tokens=True, return_tensors="pt")
+            model_input["input_ids"] = model_input["input_ids"][:, :-1]
+            model_input["attention_mask"] = model_input["attention_mask"][:, :-1]
+
+            model_output = model.generate(
+                **model_input.to(model.device),
+                **GENERATE_PARAMS
+            )
+
+            decoded_output = tokenizer.decode(model_output[0], skip_special_tokens=True)
+            result_str = decoded_output.split("result =")[-1]
+
+            try:
+                prediction = AnnotationList.from_output(
+                    result_str,
+                    task_module=module_name
+                )
+            except Exception as e:
+                logging.error(f"Parsing failed for sentence {i}: {e}")
+                prediction = []
+
+            sentence_score = scorer(reference=[gold], predictions=[prediction])
+
+            results.append({
+                "index": i,
+                "id": sentence_id,
+                "timestamp": datetime.now().isoformat(),
+                "text": text,
+                "gold": [str(g) for g in gold],
+                "prediction": [str(p) for p in prediction],
+                "score": sentence_score
+            })
+
+            del model_input, model_output
+
+        result_queue.put((module_name, results))
+
+    gc.collect()
+    torch.cuda.empty_cache()
+
+
 def _run_module_experiment(
-    module_name: str,
+    module,
     limit: int = None,
     enable_git: bool = True,
     resume: bool = False,
-    gpu_id: int = None
+    task_queues: List["mp.Queue"] = None,
+    result_queue: "mp.Queue" = None
 ):
     """
-    Runs experiment for a single guideline module (intended for multiprocessing).
+    Runs experiment for a single guideline module with sentence-level parallelism.
     """
-    if gpu_id is not None:
-        os.environ["CUDA_VISIBLE_DEVICES"] = str(gpu_id)
-    import torch
-    if gpu_id is not None:
-        try:
-            torch.cuda.set_device(0)
-        except Exception:
-            pass
     RESULTS_DIR = "GOLLIE-results"
     os.makedirs(RESULTS_DIR, exist_ok=True)
 
-    module = importlib.import_module(module_name)
+    module_name = module.__name__
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     log_filename = os.path.join(RESULTS_DIR, f"{module_name}_{timestamp}.json")
 
-    # Load dataset
     ds = load_from_disk("./few-nerd_test")
     if limit:
         ds = ds.select(range(min(limit, len(ds))))
@@ -250,16 +371,6 @@ def _run_module_experiment(
     coarse_names = ds.features["ner_tags"].feature.names
     fine_names = ds.features["fine_ner_tags"].feature.names
 
-    # Load model
-    logging.info(f"[{module_name}] Loading GoLLIE model ({MODEL_LOAD_PARAMS['model_weights_name_or_path']})...")
-    model, tokenizer = load_model(**MODEL_LOAD_PARAMS)
-
-    # Read template
-    from jinja2 import Template
-    template_path = os.path.join(GOLLIE_PATH, "templates", "prompt.txt")
-    with open(template_path, "rt") as f:
-        template = Template(f.read())
-
     is_coarse = "coarse" in module_name
     tag_key = "ner_tags" if is_coarse else "fine_ner_tags"
     names_ref = coarse_names if is_coarse else fine_names
@@ -267,12 +378,9 @@ def _run_module_experiment(
     scorer = MyEntityScorer()
     scorer.valid_types = module.ENTITY_DEFINITIONS
 
-    gold_per_module = []
-    predictions_per_module = []
     sentence_results = []
-
-    # Resumability: Check for existing results
     processed_ids = set()
+
     if resume:
         existing_files = [
             f for f in os.listdir(RESULTS_DIR)
@@ -290,8 +398,6 @@ def _run_module_experiment(
                     for s in sentence_results:
                         if "id" in s:
                             processed_ids.add(s["id"])
-                        gold_per_module.append(reconstruct_entities(s["gold"], module))
-                        predictions_per_module.append(reconstruct_entities(s["prediction"], module))
 
                     log_filename = latest_path
                     timestamp = prev_results["timestamp"]
@@ -307,159 +413,63 @@ def _run_module_experiment(
         )
         return log_filename
 
-    # Processing loop
-    for i, sentence in enumerate(tqdm(ds, desc=f"Processing {module_name}", leave=False, disable=True)):
+    indices_to_process = []
+    for i, sentence in enumerate(ds):
         sentence_id = sentence.get("id", str(i))
         if resume and sentence_id in processed_ids:
             continue
+        indices_to_process.append(i)
 
-        if limit and len(sentence_results) >= limit:
-            break
+    if not indices_to_process:
+        logging.info(f"[{module_name}] No new sentences to process.")
+        return log_filename
 
-        # 1. Prepare sentence text
-        tokens = sentence["tokens"]
-        text = " ".join(tokens)
+    worker_count = len(task_queues) if task_queues else 1
+    chunks = [indices_to_process[i::worker_count] for i in range(worker_count)]
 
-        # 2. Extract Gold Objects
-        tags = sentence[tag_key]
-        gold = []
+    tasks_sent = 0
+    for gpu_id, chunk in enumerate(chunks):
+        if chunk:
+            task_queues[gpu_id].put((module_name, chunk, tag_key, names_ref))
+            tasks_sent += 1
 
-        current_class_name = None
-        current_span_tokens = []
+    results = []
+    for _ in range(tasks_sent):
+        result_module, result_items = result_queue.get()
+        if result_module != module_name:
+            logging.warning(f"[{module_name}] Received results for {result_module}")
+        results.extend(result_items)
 
-        for token, tag_id in zip(tokens, tags):
-            label = names_ref[tag_id]
-            class_name = label_to_classname(label)
+    sentence_results.extend(results)
+    sentence_results.sort(key=lambda s: s["index"])
 
-            # Check if we have a valid entity class for this tag
-            entity_class = getattr(module, class_name, None) if class_name else None
+    gold_per_module = [reconstruct_entities(s["gold"], module) for s in sentence_results]
+    predictions_per_module = [reconstruct_entities(s["prediction"], module) for s in sentence_results]
+    current_overall_score = scorer(reference=gold_per_module, predictions=predictions_per_module)
 
-            # If same class as strictly previous token, merge
-            if entity_class and class_name == current_class_name:
-                current_span_tokens.append(token)
-            else:
-                # Flush previous span if valid
-                if current_class_name:
-                    prev_entity_class = getattr(module, current_class_name, None)
-                    if prev_entity_class:
-                        gold.append(prev_entity_class(span=" ".join(current_span_tokens)))
+    final_results = {
+        "module": module_name,
+        "timestamp": timestamp,
+        "model_load_params": MODEL_LOAD_PARAMS,
+        "generate_params": GENERATE_PARAMS,
+        "overall_score": current_overall_score,
+        "processed_count": len(sentence_results),
+        "sentences": sentence_results
+    }
 
-                # Start new span if valid class
-                if entity_class:
-                    current_class_name = class_name
-                    current_span_tokens = [token]
-                else:
-                    current_class_name = None
-                    current_span_tokens = []
+    with open(log_filename, "w") as f:
+        json.dump(final_results, f, indent=4)
 
-        # Flush the final span if exists
-        if current_class_name:
-            prev_entity_class = getattr(module, current_class_name, None)
-            if prev_entity_class:
-                gold.append(prev_entity_class(span=" ".join(current_span_tokens)))
-
-        # 3. Format Prompt
-        formatted_text = template.render(
-            guidelines=[inspect.getsource(definition) for definition in module.ENTITY_DEFINITIONS],
-            text=text,
-            annotations=gold,
-            gold=gold
-        )
-
-        # Clean up with black
-        try:
-            formatted_text = black.format_str(formatted_text, mode=black.Mode())
-        except Exception as e:
-            logging.error(f"Black formatting failed: {e}")
-
-        # Prepare prompt by stripping existing result
-        prompt, _ = formatted_text.split("result =")
-        prompt = prompt + "result ="
-
-        # 4. Inference
-        model_input = tokenizer(prompt, add_special_tokens=True, return_tensors="pt")
-        # Remove EOS token
-        model_input["input_ids"] = model_input["input_ids"][:, :-1]
-        model_input["attention_mask"] = model_input["attention_mask"][:, :-1]
-
-        model_output = model.generate(
-            **model_input.to(model.device),
-            **GENERATE_PARAMS
-        )
-
-        # 5. Parse output
-        decoded_output = tokenizer.decode(model_output[0], skip_special_tokens=True)
-        result_str = decoded_output.split("result =")[-1]
-
-        try:
-            prediction = AnnotationList.from_output(
-                result_str,
-                task_module=module_name
-            )
-        except Exception as e:
-            logging.error(f"Parsing failed for sentence {i}: {e}")
-            prediction = []
-
-        # 6. Score individual sentence
-        sentence_score = scorer(reference=[gold], predictions=[prediction])
-
-        # Store for overall
-        gold_per_module.append(gold)
-        predictions_per_module.append(prediction)
-
-        # Log current sentence
-        sentence_data = {
-            "index": i,
-            "id": sentence_id,
-            "timestamp": datetime.now().isoformat(),
-            "text": text,
-            "gold": [str(g) for g in gold],
-            "prediction": [str(p) for p in prediction],
-            "score": sentence_score
-        }
-        sentence_results.append(sentence_data)
-
-        # Explicitly free tensor memory
-        del model_input, model_output
-
-        # 7. Intermediate Saving (Avoid data loss on long runs)
-        current_overall_score = scorer(reference=gold_per_module, predictions=predictions_per_module)
-
-        final_results = {
-            "module": module_name,
-            "timestamp": timestamp,
-            "model_load_params": MODEL_LOAD_PARAMS,
-            "generate_params": GENERATE_PARAMS,
-            "overall_score": current_overall_score,
-            "processed_count": len(sentence_results),
-            "sentences": sentence_results
-        }
-
-        with open(log_filename, "w") as f:
-            json.dump(final_results, f, indent=4)
-
-        if i % 50 == 0 and i > 0:
-            logging.info(f"[{module_name}] Processed {i} sentences...")
-            sync_results_to_git(f"Step {i}: {module_name}", enabled=enable_git)
-
-    # Clear GPU memory before finishing
-    gc.collect()
-    torch.cuda.empty_cache()
     logging.info(f"Finished module {module_name}. Full results available at {log_filename}")
     sync_results_to_git(f"Completed module: {module_name}", enabled=enable_git)
 
     return log_filename
 
 
-def _init_worker():
-    """Ensure workers ignore SIGINT so the main process can handle Ctrl+C."""
-    signal.signal(signal.SIGINT, signal.SIG_IGN)
-
-
 def run_experiment(limit: int = None, enable_git: bool = True, resume: bool = False, num_workers: int = 2):
     """
     Iterates over guideline modules and processes sentences from few-nerd_test.
-    Runs modules in parallel with the specified number of workers.
+    Runs modules sequentially with sentence-level parallelism.
     """
     RESULTS_DIR = "GOLLIE-results"
     os.makedirs(RESULTS_DIR, exist_ok=True)
@@ -468,35 +478,44 @@ def run_experiment(limit: int = None, enable_git: bool = True, resume: bool = Fa
     if enable_git:
         setup_git_experiment_branch()
 
-    # Process modules in parallel
     import torch
     gpu_count = torch.cuda.device_count() if torch.cuda.is_available() else 0
     worker_count = min(num_workers, gpu_count) if gpu_count else num_workers
-    max_workers = worker_count if gpu_count else num_workers
-    with ProcessPoolExecutor(max_workers=max_workers, initializer=_init_worker) as executor:
-        futures = {
-            executor.submit(
-                _run_module_experiment,
-                module.__name__,
-                limit,
-                enable_git,
-                resume,
-                (i % worker_count) if worker_count else None
-            ): module.__name__
-            for i, module in enumerate(guideline_modules)
-        }
-        try:
-            for future in as_completed(futures):
-                module_name = futures[future]
-                try:
-                    result_path = future.result()
-                    logging.info(f"[{module_name}] Completed. Results: {result_path}")
-                except Exception as e:
-                    logging.error(f"[{module_name}] Failed: {e}")
-        except KeyboardInterrupt:
-            logging.warning("Received Ctrl+C. Terminating workers...")
-            executor.shutdown(wait=False, cancel_futures=True)
-            raise
+    worker_count = max(1, worker_count)
+
+    ctx = mp.get_context("spawn")
+    template_path = os.path.join(GOLLIE_PATH, "templates", "prompt.txt")
+    task_queues = [ctx.Queue() for _ in range(worker_count)]
+    result_queue = ctx.Queue()
+    workers = [
+        ctx.Process(target=_worker_loop, args=(gpu_id, task_queues[gpu_id], result_queue, template_path))
+        for gpu_id in range(worker_count)
+    ]
+    for p in workers:
+        p.start()
+
+    try:
+        for module in guideline_modules:
+            try:
+                result_path = _run_module_experiment(
+                    module,
+                    limit=limit,
+                    enable_git=enable_git,
+                    resume=resume,
+                    task_queues=task_queues,
+                    result_queue=result_queue
+                )
+                logging.info(f"[{module.__name__}] Completed. Results: {result_path}")
+            except Exception as e:
+                logging.error(f"[{module.__name__}] Failed: {e}")
+    except KeyboardInterrupt:
+        logging.warning("Received Ctrl+C. Terminating workers...")
+        raise
+    finally:
+        for q in task_queues:
+            q.put(None)
+        for p in workers:
+            p.join()
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Run GoLLIE experiments.")
