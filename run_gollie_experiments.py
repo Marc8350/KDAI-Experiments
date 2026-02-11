@@ -107,6 +107,9 @@ GENERATE_PARAMS = {
     "eos_token_id": 2,
 }
 
+# Batch size for incremental saving (save every N sentences per worker)
+INCREMENTAL_SAVE_BATCH_SIZE = 50
+
 class MyEntityScorer:
     """Compute the F1 score for Named Entity Recognition Tasks"""
     pass  # Will be properly initialized in worker with SpanScorer
@@ -353,8 +356,17 @@ def _worker_loop(
             })
 
             del model_input, model_output
+            
+            # Send batch incrementally
+            if len(results) >= INCREMENTAL_SAVE_BATCH_SIZE:
+                result_queue.put((module_name, results, False))  # False = not final batch
+                results = []
 
-        result_queue.put((module_name, results))
+        # Send remaining results (final batch for this task)
+        if results:
+            result_queue.put((module_name, results, True))  # True = final batch
+        else:
+            result_queue.put((module_name, [], True))  # Empty final to signal completion
 
     gc.collect()
     torch.cuda.empty_cache()
@@ -464,17 +476,40 @@ def _run_module_experiment(
             tasks_sent += 1
 
     logging.info(f"[{module_name}] Waiting for results from {tasks_sent} workers...")
-    results = []
-    for _ in range(tasks_sent):
-        result_module, result_items = result_queue.get()
+    workers_done = 0
+    batches_received = 0
+    
+    while workers_done < tasks_sent:
+        result_module, result_items, is_final = result_queue.get()
         if result_module != module_name:
             logging.warning(f"[{module_name}] Received results for {result_module}")
-        logging.info(f"[{module_name}] Received {len(result_items)} results")
-        results.extend(result_items)
+        
+        batches_received += 1
+        sentence_results.extend(result_items)
+        
         if pbar:
             pbar.update(len(result_items))
-
-    sentence_results.extend(results)
+        
+        if is_final:
+            workers_done += 1
+            logging.info(f"[{module_name}] Worker completed. {workers_done}/{tasks_sent} done. Total results: {len(sentence_results)}")
+        
+        # Save incrementally every few batches
+        if batches_received % 4 == 0 or is_final:  # Save roughly every 200 sentences (4 batches * 50)
+            sentence_results.sort(key=lambda s: s["index"])
+            interim_results = {
+                "module": module_name,
+                "timestamp": timestamp,
+                "model_load_params": MODEL_LOAD_PARAMS,
+                "generate_params": GENERATE_PARAMS,
+                "overall_score": None,  # Will be computed at the end
+                "processed_count": len(sentence_results),
+                "status": "in_progress" if workers_done < tasks_sent else "completed",
+                "sentences": sentence_results
+            }
+            with open(log_filename, "w") as f:
+                json.dump(interim_results, f, indent=4)
+    
     sentence_results.sort(key=lambda s: s["index"])
 
     gold_per_module = [reconstruct_entities(s["gold"], module) for s in sentence_results]
