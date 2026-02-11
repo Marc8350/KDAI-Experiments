@@ -39,9 +39,6 @@ import signal
 import multiprocessing as mp
 from typing import Dict, List, Type, Any
 from datasets import load_from_disk
-from src.model.load_model import load_model
-from src.tasks.utils_typing import Entity, AnnotationList
-from src.tasks.utils_scorer import SpanScorer
 
 from annotation_guidelines import (
     guidelines_coarse_gollie,
@@ -110,15 +107,9 @@ GENERATE_PARAMS = {
     "eos_token_id": 2,
 }
 
-class MyEntityScorer(SpanScorer):
+class MyEntityScorer:
     """Compute the F1 score for Named Entity Recognition Tasks"""
-    
-    # We will set valid_types dynamically per module
-    valid_types: List[Type] = []
-
-    def __call__(self, reference: List[List[Entity]], predictions: List[List[Entity]]) -> Dict[str, Any]:
-        output = super().__call__(reference, predictions)
-        return {"entities": output["spans"]}
+    pass  # Will be properly initialized in worker with SpanScorer
 
 def label_to_classname(label):
     """
@@ -226,6 +217,11 @@ def _worker_loop(
     signal.signal(signal.SIGINT, signal.SIG_IGN)
     os.environ["CUDA_VISIBLE_DEVICES"] = str(gpu_id)
 
+    # Import torch-dependent modules AFTER setting CUDA_VISIBLE_DEVICES
+    from src.model.load_model import load_model
+    from src.tasks.utils_typing import Entity, AnnotationList
+    from src.tasks.utils_scorer import SpanScorer
+    
     import torch
     try:
         torch.cuda.set_device(0)
@@ -247,7 +243,19 @@ def _worker_loop(
 
         module_name, indices, tag_key, names_ref = task
         module = importlib.import_module(module_name)
-        scorer = MyEntityScorer()
+        
+        # Create scorer class dynamically in worker
+        from src.tasks.utils_scorer import SpanScorer
+        
+        class WorkerEntityScorer(SpanScorer):
+            """Compute the F1 score for Named Entity Recognition Tasks"""
+            valid_types: List[Type] = []
+            
+            def __call__(self, reference, predictions):
+                output = super().__call__(reference, predictions)
+                return {"entities": output["spans"]}
+        
+        scorer = WorkerEntityScorer()
         scorer.valid_types = module.ENTITY_DEFINITIONS
 
         results = []
@@ -377,7 +385,18 @@ def _run_module_experiment(
     tag_key = "ner_tags" if is_coarse else "fine_ner_tags"
     names_ref = coarse_names if is_coarse else fine_names
 
-    scorer = MyEntityScorer()
+    # Import scorer here to avoid early torch initialization
+    from src.tasks.utils_scorer import SpanScorer
+    
+    class ModuleEntityScorer(SpanScorer):
+        """Compute the F1 score for Named Entity Recognition Tasks"""
+        valid_types: List[Type] = []
+        
+        def __call__(self, reference, predictions):
+            output = super().__call__(reference, predictions)
+            return {"entities": output["spans"]}
+    
+    scorer = ModuleEntityScorer()
     scorer.valid_types = module.ENTITY_DEFINITIONS
 
     sentence_results = []
