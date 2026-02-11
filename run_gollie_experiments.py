@@ -211,7 +211,8 @@ def _worker_loop(
     gpu_id: int,
     task_queue: "mp.Queue",
     result_queue: "mp.Queue",
-    template_path: str
+    template_path: str,
+    ready_barrier: "mp.Barrier" = None
 ):
     """Worker process that loads the model once and processes tasks."""
     signal.signal(signal.SIGINT, signal.SIG_IGN)
@@ -235,6 +236,11 @@ def _worker_loop(
 
     logging.info(f"[worker:{gpu_id}] Loading GoLLIE model...")
     model, tokenizer = load_model(**MODEL_LOAD_PARAMS)
+    
+    logging.info(f"[worker:{gpu_id}] Model loaded, signaling ready...")
+    if ready_barrier:
+        ready_barrier.wait()  # Signal that this worker is ready
+    logging.info(f"[worker:{gpu_id}] Starting task processing loop...")
 
     while True:
         task = task_queue.get()
@@ -524,15 +530,26 @@ def run_experiment(limit: int = None, enable_git: bool = True, resume: bool = Fa
     template_path = os.path.join(GOLLIE_PATH, "templates", "prompt.txt")
     task_queues = [ctx.Queue() for _ in range(worker_count)]
     result_queue = ctx.Queue()
+    
+    # Create a barrier that waits for all workers + main process
+    ready_barrier = ctx.Barrier(worker_count + 1)
+    
+    logging.info(f"Spawning {worker_count} worker processes...")
     workers = [
-        ctx.Process(target=_worker_loop, args=(gpu_id, task_queues[gpu_id], result_queue, template_path))
+        ctx.Process(target=_worker_loop, args=(gpu_id, task_queues[gpu_id], result_queue, template_path, ready_barrier))
         for gpu_id in range(worker_count)
     ]
     for p in workers:
         p.start()
+    
+    logging.info(f"Workers started, waiting for all {worker_count} workers to load models...")
+    ready_barrier.wait()  # Wait for all workers to signal ready
+    logging.info("All workers ready. Proceeding with experiment...")
 
     try:
-        with tqdm(total=total_sentences, desc="Overall progress", leave=True) as pbar:
+        # Use simple tqdm without multiprocessing features
+        pbar = tqdm(total=total_sentences, desc="Overall progress", leave=True, position=0, disable=False)
+        try:
             for module in guideline_modules:
                 logging.info(f"Starting module: {module.__name__}")
                 try:
@@ -548,6 +565,8 @@ def run_experiment(limit: int = None, enable_git: bool = True, resume: bool = Fa
                     logging.info(f"[{module.__name__}] Completed. Results: {result_path}")
                 except Exception as e:
                     logging.error(f"[{module.__name__}] Failed: {e}", exc_info=True)
+        finally:
+            pbar.close()
     except KeyboardInterrupt:
         logging.warning("Received Ctrl+C. Terminating workers...")
         raise
