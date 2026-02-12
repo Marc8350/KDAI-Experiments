@@ -240,13 +240,31 @@ def evaluate_with_nervaluate(
     has_any_gold = any(g for g in all_gold_spans)
     has_any_pred = any(p for p in all_pred_spans)
     
+    # Helper to create empty metrics structure (consistent with nervaluate output)
+    def _create_empty_metrics(note: str = '', spurious: int = 0, missed: int = 0) -> Dict:
+        empty_scheme = {
+            'precision': 0.0, 'recall': 0.0, 'f1': 0.0,
+            'correct': 0, 'incorrect': 0, 'partial': 0,
+            'missed': missed, 'spurious': spurious,
+            'actual': spurious, 'possible': missed
+        }
+        return {
+            'overall': {
+                'strict': empty_scheme.copy(),
+                'exact': empty_scheme.copy(),
+                'partial': empty_scheme.copy(),
+                'ent_type': empty_scheme.copy()
+            },
+            'macro': {'strict': 0.0, 'exact': 0.0, 'partial': 0.0, 'ent_type': 0.0},
+            'by_tag': {tag: {'strict': empty_scheme.copy(), 'exact': empty_scheme.copy(), 
+                            'partial': empty_scheme.copy(), 'ent_type': empty_scheme.copy()}
+                       for tag in entity_types},
+            '_note': note
+        }
+    
     if not has_any_gold and not has_any_pred:
         # No data at all - return empty metrics
-        return {
-            'overall': {'precision': 0.0, 'recall': 0.0, 'f1': 0.0},
-            'macro': {'precision': 0.0, 'recall': 0.0, 'f1': 0.0},
-            'by_tag': {}
-        }
+        return _create_empty_metrics('No gold or predictions')
     
     # CRITICAL FIX: nervaluate crashes if gold is empty but pred is not (or vice versa)
     # We need to ensure the first sample has at least one entity in BOTH gold and pred
@@ -257,22 +275,12 @@ def evaluate_with_nervaluate(
         # Model predicted but there's nothing to match against
         # Precision = 0 (all predictions are false positives), Recall = undefined (no gold)
         total_pred = sum(len(p) for p in all_pred_spans)
-        return {
-            'overall': {'precision': 0.0, 'recall': 0.0, 'f1': 0.0},
-            'macro': {'precision': 0.0, 'recall': 0.0, 'f1': 0.0},
-            'by_tag': {},
-            '_note': f'No gold entities, {total_pred} predictions (all false positives)'
-        }
+        return _create_empty_metrics(f'No gold entities, {total_pred} predictions (all false positives)', spurious=total_pred)
     
     # Case 2: No predictions at all - precision undefined, recall = 0
     if not has_any_pred:
         total_gold = sum(len(g) for g in all_gold_spans)
-        return {
-            'overall': {'precision': 0.0, 'recall': 0.0, 'f1': 0.0},
-            'macro': {'precision': 0.0, 'recall': 0.0, 'f1': 0.0},
-            'by_tag': {},
-            '_note': f'{total_gold} gold entities, no predictions (all false negatives)'
-        }
+        return _create_empty_metrics(f'{total_gold} gold entities, no predictions (all false negatives)', missed=total_gold)
     
     # nervaluate requires first element to be non-empty list with at least one entity
     # Find a sample where BOTH gold and pred have at least one entity, or gold has entities

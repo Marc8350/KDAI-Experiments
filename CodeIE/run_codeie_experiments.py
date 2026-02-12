@@ -83,11 +83,13 @@ def update_experiment_matrix(
         'result_file'
     ]
     
-    # Extract overall scores
-    overall = results.get('overall_score', {}).get('entities', {})
-    class_scores = overall.get('class_scores', {})
+    # Extract overall scores from nervaluate (strict mode)
+    nervaluate_data = results.get('overall_score', {}).get('nervaluate', {})
+    overall_strict = nervaluate_data.get('overall', {}).get('strict', {})
+    by_tag = nervaluate_data.get('by_tag', {})
+    macro = nervaluate_data.get('macro', {})
     
-    # Prepare row data
+    # Prepare row data using nervaluate strict scores
     row = {
         'datetime': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         'granularity': config.granularity,
@@ -95,17 +97,18 @@ def update_experiment_matrix(
         'variation': config.variation or 'base',
         'model': config.model_name or 'default',
         'n_samples': results.get('processed_count', 0),
-        'precision': round(overall.get('precision', 0), 4),
-        'recall': round(overall.get('recall', 0), 4),
-        'micro_f1': round(overall.get('micro_f1', 0), 4),
-        'macro_f1': round(overall.get('macro_f1', 0), 4),
+        'precision': round(overall_strict.get('precision', 0), 4),
+        'recall': round(overall_strict.get('recall', 0), 4),
+        'micro_f1': round(overall_strict.get('f1', 0), 4),
+        'macro_f1': round(macro.get('strict', 0), 4),
         'result_file': os.path.basename(result_file)
     }
     
-    # Add class scores to row
-    for class_name, scores in class_scores.items():
+    # Add class scores from nervaluate by_tag (strict mode)
+    for class_name, metrics in by_tag.items():
         col_name = f"f1_{class_name}"
-        row[col_name] = round(scores.get('f1-score', 0), 4)
+        strict_metrics = metrics.get('strict', {}) if isinstance(metrics, dict) else {}
+        row[col_name] = round(strict_metrics.get('f1', 0), 4)
 
     # Determine columns for this run
     # Start with base columns, then add any class f1 columns found in this run
@@ -751,8 +754,7 @@ def parse_nl_style_output(output: str, text: str, entity_types: List[str]) -> Li
 # Evaluation
 # ============================================================================
 
-# Import from dedicated evaluation module for macro F1 support
-from evaluation import evaluate_predictions, evaluate_ner, EvaluationResult
+# Import from dedicated evaluation module (nervaluate only)
 from src.evaluation_nervaluate import evaluate_with_nervaluate
 
 
@@ -1023,45 +1025,20 @@ def run_experiment(config: ExperimentConfig, progress_queue=None, ollama_base_ur
         if progress_queue:
             progress_queue.put(1)
         
-        # Calculate per-sentence score
-        sentence_eval = evaluate_ner([gold_entities], [pred_entities], entity_types)
-        
-        # Handle edge cases for nervaluate (it crashes on empty gold)
-        # But we need to properly count FPs when gold is empty!
-        if not gold_entities and not pred_entities:
-            # Both empty - nothing to count, skip
-            sentence_nervaluate = {
-                'overall': {'precision': 1.0, 'recall': 1.0, 'f1': 1.0},  # Perfect: no gold, no pred
-                'macro': {'precision': 1.0, 'recall': 1.0, 'f1': 1.0},
-                'by_tag': {}
-            }
-        elif not gold_entities and pred_entities:
-            # Gold empty but model predicted entities = all predictions are FALSE POSITIVES
-            # Precision = 0 (all predictions wrong), Recall = 1 (nothing to miss), F1 = 0
-            sentence_nervaluate = {
-                'overall': {'precision': 0.0, 'recall': 1.0, 'f1': 0.0},
-                'macro': {'precision': 0.0, 'recall': 1.0, 'f1': 0.0},
-                'by_tag': {}
-            }
-        elif gold_entities and not pred_entities:
-            # Gold has entities but model predicted nothing = all gold are FALSE NEGATIVES
-            # Precision = 1 (no wrong predictions), Recall = 0 (missed everything), F1 = 0
-            sentence_nervaluate = {
-                'overall': {'precision': 1.0, 'recall': 0.0, 'f1': 0.0},
-                'macro': {'precision': 1.0, 'recall': 0.0, 'f1': 0.0},
-                'by_tag': {}
-            }
-        else:
-            # Normal case: both have entities, use nervaluate
-            sentence_nervaluate = evaluate_with_nervaluate(
-                all_gold_entities=[gold_entities],
-                all_pred_entities=[pred_entities],
-                all_texts=[text],
-                entity_types=entity_types
-            )
+        # Calculate per-sentence score using nervaluate
+        # Edge cases are handled inside evaluate_with_nervaluate
+        sentence_nervaluate = evaluate_with_nervaluate(
+            all_gold_entities=[gold_entities],
+            all_pred_entities=[pred_entities],
+            all_texts=[text],
+            entity_types=entity_types
+        )
         sentence_nervaluate_by_tag = normalize_nervaluate_by_tag(
             sentence_nervaluate.get('by_tag', {})
         )
+        
+        # Extract strict metrics for sentence result
+        strict_overall = sentence_nervaluate.get('overall', {}).get('strict', {})
         
         sentence_result = {
             'index': i,
@@ -1072,23 +1049,6 @@ def run_experiment(config: ExperimentConfig, progress_queue=None, ollama_base_ur
             'generated_raw': generated[:500],  # Truncate for logging
             'elapsed_time': elapsed,
             'score': {
-                'entities': {
-                    'precision': sentence_eval.micro_precision,
-                    'recall': sentence_eval.micro_recall,
-                    'f1-score': sentence_eval.micro_f1,
-                    'class_scores': {
-                        etype: {
-                            'tp': m.tp,
-                            'total_pos': m.support,  # Gold count for this type
-                            'total_pre': m.tp + m.fp,  # Predicted count for this type
-                            'precision': m.precision,
-                            'recall': m.recall,
-                            'f1-score': m.f1
-                        }
-                        for etype, m in sentence_eval.per_type_metrics.items()
-                        if m.support > 0 or m.tp + m.fp > 0  # Only include types with activity
-                    }
-                },
                 'nervaluate': {
                     'overall': sentence_nervaluate.get('overall', {}),
                     'macro': sentence_nervaluate.get('macro', {}),
@@ -1100,7 +1060,6 @@ def run_experiment(config: ExperimentConfig, progress_queue=None, ollama_base_ur
         
         # Periodic logging and saving
         if (i + 1) % 10 == 0 or i == num_samples - 1:
-            current_eval = evaluate_ner(all_gold, all_pred, entity_types)
             current_nervaluate = evaluate_with_nervaluate(
                 all_gold_entities=all_gold,
                 all_pred_entities=all_pred,
@@ -1110,43 +1069,26 @@ def run_experiment(config: ExperimentConfig, progress_queue=None, ollama_base_ur
             current_nervaluate_by_tag = normalize_nervaluate_by_tag(
                 current_nervaluate.get('by_tag', {})
             )
+            
+            # Extract strict metrics for logging
+            curr_strict = current_nervaluate.get('overall', {}).get('strict', {})
+            curr_macro = current_nervaluate.get('macro', {}).get('strict', 0.0)
+            
             logging.info(
                 f"Progress: {i+1}/{num_samples} | "
-                f"P: {current_eval.micro_precision:.4f} | "
-                f"R: {current_eval.micro_recall:.4f} | "
-                f"Micro-F1: {current_eval.micro_f1:.4f} | "
-                f"Macro-F1: {current_eval.macro_f1:.4f}"
+                f"P: {curr_strict.get('precision', 0):.4f} | "
+                f"R: {curr_strict.get('recall', 0):.4f} | "
+                f"Micro-F1: {curr_strict.get('f1', 0):.4f} | "
+                f"Macro-F1: {curr_macro:.4f}"
             )
             
-            # Build overall class scores
-            overall_class_scores = {
-                etype: {
-                    'tp': m.tp,
-                    'total_pos': m.support,
-                    'total_pre': m.tp + m.fp,
-                    'precision': m.precision,
-                    'recall': m.recall,
-                    'f1-score': m.f1
-                }
-                for etype, m in current_eval.per_type_metrics.items()
-                if m.support > 0 or m.tp + m.fp > 0
-            }
-            
-            # Save intermediate results (GoLLIE-compatible format)
+            # Save intermediate results (nervaluate only)
             results = {
                 'module': f"codeie_{config.granularity}_{config.style}_{config.variation}",
                 'timestamp': timestamp,
                 'config': asdict(config),
                 'entity_types': entity_types,
                 'overall_score': {
-                    'entities': {
-                        'precision': current_eval.micro_precision,
-                        'recall': current_eval.micro_recall,
-                        'micro_f1': current_eval.micro_f1,
-                        'macro_f1': current_eval.macro_f1,
-                        'f1-score': current_eval.micro_f1,  # Alias for compatibility
-                        'class_scores': overall_class_scores
-                    },
                     'nervaluate': {
                         'overall': current_nervaluate.get('overall', {}),
                         'macro': current_nervaluate.get('macro', {}),
@@ -1159,9 +1101,7 @@ def run_experiment(config: ExperimentConfig, progress_queue=None, ollama_base_ur
             with open(result_file, 'w') as f:
                 json.dump(results, f, indent=2)
     
-    # Final evaluation
-    final_eval = evaluate_ner(all_gold, all_pred, entity_types)
-    final_metrics = evaluate_predictions(all_gold, all_pred)  # For backwards compatibility
+    # Final evaluation using nervaluate only
     final_nervaluate = evaluate_with_nervaluate(
         all_gold_entities=all_gold,
         all_pred_entities=all_pred,
@@ -1172,45 +1112,34 @@ def run_experiment(config: ExperimentConfig, progress_queue=None, ollama_base_ur
         final_nervaluate.get('by_tag', {})
     )
     
+    # Extract strict metrics for logging
+    strict_overall = final_nervaluate.get('overall', {}).get('strict', {})
+    macro_strict = final_nervaluate.get('macro', {}).get('strict', 0.0)
+    
     logging.info("="*60)
-    logging.info("Final Results")
+    logging.info("Final Results (nervaluate strict)")
     logging.info("="*60)
-    logging.info(f"Precision:  {final_eval.micro_precision:.4f}")
-    logging.info(f"Recall:     {final_eval.micro_recall:.4f}")
-    logging.info(f"Micro F1:   {final_eval.micro_f1:.4f}")
-    logging.info(f"Macro F1:   {final_eval.macro_f1:.4f}")
+    logging.info(f"Precision:  {strict_overall.get('precision', 0):.4f}")
+    logging.info(f"Recall:     {strict_overall.get('recall', 0):.4f}")
+    logging.info(f"Micro F1:   {strict_overall.get('f1', 0):.4f}")
+    logging.info(f"Macro F1:   {macro_strict:.4f}")
     logging.info("-"*40)
-    logging.info("Per-Type F1 Scores:")
-    for etype, m in sorted(final_eval.per_type_metrics.items()):
-        if m.support > 0:
-            logging.info(f"  {etype:<30} F1: {m.f1:.4f} (P: {m.precision:.4f}, R: {m.recall:.4f})")
+    logging.info("Per-Type F1 Scores (strict):")
+    for etype, metrics in sorted(final_nervaluate_by_tag.items()):
+        strict = metrics.get('strict', {}) if isinstance(metrics, dict) else {}
+        f1 = strict.get('f1', 0) if isinstance(strict, dict) else 0
+        p = strict.get('precision', 0) if isinstance(strict, dict) else 0
+        r = strict.get('recall', 0) if isinstance(strict, dict) else 0
+        possible = strict.get('possible', 0) if isinstance(strict, dict) else 0
+        if possible > 0 or f1 > 0:
+            logging.info(f"  {etype:<30} F1: {f1:.4f} (P: {p:.4f}, R: {r:.4f})")
     logging.info("-"*40)
     logging.info(f"Results saved to: {result_file}")
     logging.info("="*60)
     
-    # Update experiment matrix CSV (appends to history)
-    # Update experiment matrix CSV (appends to history)
-    
-    # Collect class-wise F1 scores for the matrix
-    class_scores = {}
-    for etype, m in final_eval.per_type_metrics.items():
-        # Include if it has any support or predictions
-        if m.support > 0 or m.tp + m.fp > 0:
-            class_scores[etype] = {
-                'f1-score': m.f1,
-                'precision': m.precision,
-                'recall': m.recall
-            }
-            
+    # Build final_results using nervaluate only
     final_results = {
         'overall_score': {
-            'entities': {
-                'precision': final_eval.micro_precision,
-                'recall': final_eval.micro_recall,
-                'micro_f1': final_eval.micro_f1,
-                'macro_f1': final_eval.macro_f1,
-                'class_scores': class_scores
-            },
             'nervaluate': {
                 'overall': final_nervaluate.get('overall', {}),
                 'macro': final_nervaluate.get('macro', {}),
