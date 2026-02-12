@@ -213,6 +213,13 @@ else
     exit 1
 fi
 
+# Step 2b: Ensure Python dependencies are installed
+log "Step 2b: Installing Python dependencies (requirements.txt)..."
+pip install -r "$PROJECT_DIR/requirements.txt" || {
+    error "Failed to install Python dependencies"
+    exit 1
+}
+
 # Step 3: Check and switch to correct branch
 log "Step 3: Checking git branch..."
 current_branch=$(git branch --show-current)
