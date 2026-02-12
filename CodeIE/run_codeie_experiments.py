@@ -1164,8 +1164,9 @@ def run_experiment(config: ExperimentConfig, progress_queue=None, ollama_base_ur
     if not config.skip_matrix_update:
         update_experiment_matrix(matrix_save_dir, config, final_results, result_file)
     
-    final_metrics['result_file'] = result_file
-    return final_metrics
+    # Return final results with result file path
+    final_results['result_file'] = result_file
+    return final_results
 
 
 def main():
