@@ -1,0 +1,1345 @@
+2026-02-12 08:57:04,025 - INFO - Orchestrator initialized with config: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/config/experiment_config.yaml
+2026-02-12 08:57:04,026 - INFO - GPU count: 2
+2026-02-12 08:57:04,026 - INFO - Auto-calculated max_workers=6 based on model sizes: ['qwen2.5:7b', 'qwen2.5-coder:7b']
+2026-02-12 08:57:04,026 - INFO - 
+############################################################
+2026-02-12 08:57:04,026 - INFO - # CodeIE Experiment Orchestrator
+2026-02-12 08:57:04,026 - INFO - # One-Stop Shop Pipeline (Parallel Execution)
+2026-02-12 08:57:04,026 - INFO - # GPU Count: 2 | Max Workers: 6
+2026-02-12 08:57:04,026 - INFO - ############################################################
+2026-02-12 08:57:04,026 - INFO - 
+[Step 1/3] Skipping variation check
+2026-02-12 08:57:04,026 - INFO - 
+[Step 2/3] Generating experiment matrix...
+2026-02-12 08:57:04,027 - INFO - Generated 56 experiment runs
+2026-02-12 08:57:04,027 - INFO -   Total experiments: 56
+2026-02-12 08:57:04,027 - INFO - 
+[OLLAMA SETUP] Initializing Ollama with auto-recovery...
+2026-02-12 08:57:04,032 - INFO - Pre-loading model: qwen2.5:7b
+2026-02-12 08:57:07,249 - INFO - Model qwen2.5:7b pre-loaded successfully
+2026-02-12 08:57:07,249 - INFO - Pre-loading model: qwen2.5-coder:7b
+2026-02-12 08:57:10,049 - INFO - Model qwen2.5-coder:7b pre-loaded successfully
+2026-02-12 08:57:10,050 - INFO -   Ollama ready with models: ['qwen2.5:7b', 'qwen2.5-coder:7b']
+2026-02-12 08:57:10,050 - INFO -   Auto-calculated workers: 6 (based on model size)
+2026-02-12 08:57:10,050 - WARNING - Dataset path not found: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+2026-02-12 08:57:10,050 - INFO -   Estimated samples per run: 3765 (max_samples=3765)
+2026-02-12 08:57:10,050 - INFO -   Estimated total samples: 210840
+2026-02-12 08:57:10,050 - INFO - 
+[Step 3/3] Running experiments (Parallel workers: 6)...
+2026-02-12 08:57:10,080 - WARNING - Dataset path not found: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+Total Progress (Samples):   0%|          | 0/210840 [00:00<?, ?sample/s]2026-02-12 08:57:10,140 - INFO - ============================================================
+2026-02-12 08:57:10,141 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-12 08:57:10,141 - INFO - ============================================================
+2026-02-12 08:57:10,141 - INFO - Granularity: coarse
+2026-02-12 08:57:10,141 - INFO - Style: pl
+2026-02-12 08:57:10,141 - INFO - Variation: v0_original
+2026-02-12 08:57:10,141 - INFO - Model: qwen2.5:7b
+2026-02-12 08:57:10,141 - INFO - ============================================================
+2026-02-12 08:57:10,141 - INFO - Using ChatOllama (Chat API) for qwen2.5:7b with timeout=180s
+2026-02-12 08:57:10,141 - INFO - ============================================================
+2026-02-12 08:57:10,141 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-12 08:57:10,141 - INFO - ============================================================
+2026-02-12 08:57:10,141 - INFO - ============================================================
+2026-02-12 08:57:10,141 - INFO - Granularity: coarse
+2026-02-12 08:57:10,141 - INFO - Style: pl
+2026-02-12 08:57:10,141 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-12 08:57:10,141 - INFO - Variation: lexical_substitution
+2026-02-12 08:57:10,141 - INFO - ============================================================
+2026-02-12 08:57:10,141 - INFO - Model: qwen2.5-coder:7b
+2026-02-12 08:57:10,141 - INFO - ============================================================
+2026-02-12 08:57:10,141 - INFO - Granularity: coarse
+2026-02-12 08:57:10,141 - INFO - Style: pl
+2026-02-12 08:57:10,141 - INFO - Variation: lexical_substitution
+2026-02-12 08:57:10,142 - INFO - Model: qwen2.5:7b
+2026-02-12 08:57:10,142 - INFO - ============================================================
+2026-02-12 08:57:10,142 - INFO - Using ChatOllama (Chat API) for qwen2.5-coder:7b with timeout=180s
+2026-02-12 08:57:10,142 - INFO - Using ChatOllama (Chat API) for qwen2.5:7b with timeout=180s
+2026-02-12 08:57:10,142 - INFO - ============================================================
+2026-02-12 08:57:10,142 - INFO - ============================================================
+2026-02-12 08:57:10,142 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-12 08:57:10,142 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-12 08:57:10,142 - INFO - ============================================================
+2026-02-12 08:57:10,142 - INFO - ============================================================
+2026-02-12 08:57:10,142 - INFO - Granularity: coarse
+2026-02-12 08:57:10,142 - INFO - Granularity: coarse
+2026-02-12 08:57:10,142 - INFO - Style: pl
+2026-02-12 08:57:10,142 - INFO - Style: pl
+2026-02-12 08:57:10,142 - INFO - Variation: v0_original
+2026-02-12 08:57:10,142 - INFO - Variation: reodering
+2026-02-12 08:57:10,142 - INFO - Model: qwen2.5-coder:7b
+2026-02-12 08:57:10,142 - INFO - ============================================================
+2026-02-12 08:57:10,142 - INFO - Model: qwen2.5-coder:7b
+2026-02-12 08:57:10,142 - INFO - ============================================================
+2026-02-12 08:57:10,142 - INFO - ============================================================
+2026-02-12 08:57:10,142 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-12 08:57:10,142 - INFO - ============================================================
+2026-02-12 08:57:10,142 - INFO - Granularity: coarse
+2026-02-12 08:57:10,142 - INFO - Style: pl
+2026-02-12 08:57:10,142 - INFO - Variation: reodering
+2026-02-12 08:57:10,142 - INFO - Model: qwen2.5:7b
+2026-02-12 08:57:10,142 - INFO - ============================================================
+2026-02-12 08:57:10,142 - INFO - Using ChatOllama (Chat API) for qwen2.5-coder:7b with timeout=180s
+2026-02-12 08:57:10,142 - INFO - Using ChatOllama (Chat API) for qwen2.5-coder:7b with timeout=180s
+2026-02-12 08:57:10,142 - INFO - Using ChatOllama (Chat API) for qwen2.5:7b with timeout=180s
+2026-02-12 08:57:10,195 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+2026-02-12 08:57:10,196 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+2026-02-12 08:57:10,196 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+2026-02-12 08:57:10,196 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+2026-02-12 08:57:10,196 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+2026-02-12 08:57:10,196 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+2026-02-12 08:57:10,196 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+2026-02-12 08:57:10,196 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+2026-02-12 08:57:10,196 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+2026-02-12 08:57:10,196 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+2026-02-12 08:57:10,196 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+2026-02-12 08:57:10,196 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+2026-02-12 08:57:10,196 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+2026-02-12 08:57:10,196 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+2026-02-12 08:57:10,196 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+Traceback (most recent call last):
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/orchestrator.py", line 303, in run_experiment_task
+    metrics = run_experiment(
+              ^^^^^^^^^^^^^^^
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/run_codeie_experiments.py", line 834, in run_experiment
+    ds_test = load_from_disk(test_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ann/anaconda3/envs/CodeIE/lib/python3.12/site-packages/datasets/load.py", line 1562, in load_from_disk
+    raise FileNotFoundError(f"Directory {dataset_path} not found")
+FileNotFoundError: Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,200 - ERROR - Failed: qwen2.5_coarse_pl_base - Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,201 - INFO - ============================================================
+2026-02-12 08:57:10,201 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-12 08:57:10,201 - INFO - ============================================================
+2026-02-12 08:57:10,201 - INFO - Granularity: coarse
+2026-02-12 08:57:10,201 - INFO - Style: pl
+2026-02-12 08:57:10,201 - INFO - Variation: sentence_reordering
+2026-02-12 08:57:10,201 - INFO - Model: qwen2.5:7b
+2026-02-12 08:57:10,201 - INFO - ============================================================
+2026-02-12 08:57:10,201 - INFO - Using ChatOllama (Chat API) for qwen2.5:7b with timeout=180s
+2026-02-12 08:57:10,202 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+2026-02-12 08:57:10,202 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+2026-02-12 08:57:10,202 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/orchestrator.py", line 303, in run_experiment_task
+    metrics = run_experiment(
+              ^^^^^^^^^^^^^^^
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/run_codeie_experiments.py", line 834, in run_experiment
+    ds_test = load_from_disk(test_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ann/anaconda3/envs/CodeIE/lib/python3.12/site-packages/datasets/load.py", line 1562, in load_from_disk
+    raise FileNotFoundError(f"Directory {dataset_path} not found")
+FileNotFoundError: Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/orchestrator.py", line 303, in run_experiment_task
+    metrics = run_experiment(
+              ^^^^^^^^^^^^^^^
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/run_codeie_experiments.py", line 834, in run_experiment
+    ds_test = load_from_disk(test_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ann/anaconda3/envs/CodeIE/lib/python3.12/site-packages/datasets/load.py", line 1562, in load_from_disk
+    raise FileNotFoundError(f"Directory {dataset_path} not found")
+FileNotFoundError: Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/orchestrator.py", line 303, in run_experiment_task
+    metrics = run_experiment(
+              ^^^^^^^^^^^^^^^
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/run_codeie_experiments.py", line 834, in run_experiment
+    ds_test = load_from_disk(test_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ann/anaconda3/envs/CodeIE/lib/python3.12/site-packages/datasets/load.py", line 1562, in load_from_disk
+    raise FileNotFoundError(f"Directory {dataset_path} not found")
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/orchestrator.py", line 303, in run_experiment_task
+    metrics = run_experiment(
+              ^^^^^^^^^^^^^^^
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/run_codeie_experiments.py", line 834, in run_experiment
+    ds_test = load_from_disk(test_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ann/anaconda3/envs/CodeIE/lib/python3.12/site-packages/datasets/load.py", line 1562, in load_from_disk
+    raise FileNotFoundError(f"Directory {dataset_path} not found")
+FileNotFoundError: Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+FileNotFoundError: Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+Traceback (most recent call last):
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/orchestrator.py", line 303, in run_experiment_task
+    metrics = run_experiment(
+              ^^^^^^^^^^^^^^^
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/run_codeie_experiments.py", line 834, in run_experiment
+    ds_test = load_from_disk(test_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ann/anaconda3/envs/CodeIE/lib/python3.12/site-packages/datasets/load.py", line 1562, in load_from_disk
+    raise FileNotFoundError(f"Directory {dataset_path} not found")
+FileNotFoundError: Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,204 - ERROR - Failed: qwen2.5_coarse_pl_lexical_substitution - Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,205 - ERROR - Failed: qwen2.5-coder_coarse_pl_lexical_substitution - Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,205 - WARNING - 3 consecutive failures detected. Triggering Ollama recovery...
+2026-02-12 08:57:10,206 - INFO - ============================================================
+2026-02-12 08:57:10,206 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-12 08:57:10,206 - INFO - ============================================================
+2026-02-12 08:57:10,206 - INFO - Granularity: coarse
+2026-02-12 08:57:10,206 - INFO - Style: pl
+2026-02-12 08:57:10,206 - INFO - Variation: sentence_reordering
+2026-02-12 08:57:10,206 - INFO - Model: qwen2.5-coder:7b
+2026-02-12 08:57:10,206 - INFO - ============================================================
+2026-02-12 08:57:10,207 - INFO - Using ChatOllama (Chat API) for qwen2.5-coder:7b with timeout=180s
+2026-02-12 08:57:10,206 - INFO - ============================================================
+2026-02-12 08:57:10,207 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-12 08:57:10,207 - INFO - ============================================================
+2026-02-12 08:57:10,207 - INFO - Granularity: coarse
+2026-02-12 08:57:10,207 - INFO - Style: pl
+2026-02-12 08:57:10,207 - INFO - Variation: backtrans_ch
+2026-02-12 08:57:10,207 - INFO - Model: qwen2.5-coder:7b
+2026-02-12 08:57:10,207 - INFO - ============================================================
+2026-02-12 08:57:10,207 - INFO - Using ChatOllama (Chat API) for qwen2.5-coder:7b with timeout=180s
+2026-02-12 08:57:10,207 - INFO - ============================================================
+2026-02-12 08:57:10,207 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-12 08:57:10,207 - INFO - ============================================================
+2026-02-12 08:57:10,207 - INFO - Granularity: coarse
+2026-02-12 08:57:10,207 - INFO - Style: pl
+2026-02-12 08:57:10,207 - INFO - Variation: backtrans_ch
+2026-02-12 08:57:10,207 - INFO - Model: qwen2.5:7b
+2026-02-12 08:57:10,207 - INFO - ============================================================
+2026-02-12 08:57:10,207 - INFO - Using ChatOllama (Chat API) for qwen2.5:7b with timeout=180s
+2026-02-12 08:57:10,207 - INFO - ============================================================
+2026-02-12 08:57:10,208 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-12 08:57:10,208 - INFO - ============================================================
+2026-02-12 08:57:10,208 - INFO - Granularity: coarse
+2026-02-12 08:57:10,208 - INFO - Style: pl
+2026-02-12 08:57:10,208 - INFO - Variation: backtrans_sp
+2026-02-12 08:57:10,208 - INFO - Model: qwen2.5:7b
+2026-02-12 08:57:10,208 - INFO - ============================================================
+2026-02-12 08:57:10,208 - INFO - Using ChatOllama (Chat API) for qwen2.5:7b with timeout=180s
+2026-02-12 08:57:10,208 - INFO - ============================================================
+2026-02-12 08:57:10,208 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-12 08:57:10,208 - INFO - ============================================================
+2026-02-12 08:57:10,208 - INFO - Granularity: coarse
+2026-02-12 08:57:10,208 - INFO - Style: pl
+2026-02-12 08:57:10,208 - INFO - Variation: backtrans_sp
+2026-02-12 08:57:10,208 - INFO - Model: qwen2.5-coder:7b
+2026-02-12 08:57:10,208 - INFO - ============================================================
+2026-02-12 08:57:10,208 - INFO - Using ChatOllama (Chat API) for qwen2.5-coder:7b with timeout=180s
+2026-02-12 08:57:10,211 - ERROR - Failed: qwen2.5-coder_coarse_pl_base - Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,211 - ERROR - Failed: qwen2.5_coarse_pl_reodering - Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,211 - ERROR - Failed: qwen2.5-coder_coarse_pl_reodering - Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,211 - WARNING - 3 consecutive failures detected. Triggering Ollama recovery...
+2026-02-12 08:57:10,247 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+2026-02-12 08:57:10,247 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+2026-02-12 08:57:10,247 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+Traceback (most recent call last):
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/orchestrator.py", line 303, in run_experiment_task
+    metrics = run_experiment(
+              ^^^^^^^^^^^^^^^
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/run_codeie_experiments.py", line 834, in run_experiment
+    ds_test = load_from_disk(test_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ann/anaconda3/envs/CodeIE/lib/python3.12/site-packages/datasets/load.py", line 1562, in load_from_disk
+    raise FileNotFoundError(f"Directory {dataset_path} not found")
+FileNotFoundError: Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,253 - ERROR - Failed: qwen2.5_coarse_pl_sentence_reordering - Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,254 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+2026-02-12 08:57:10,254 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+2026-02-12 08:57:10,254 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+Traceback (most recent call last):
+2026-02-12 08:57:10,254 - INFO - ============================================================
+2026-02-12 08:57:10,254 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-12 08:57:10,254 - INFO - ============================================================
+2026-02-12 08:57:10,254 - INFO - Granularity: coarse
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/orchestrator.py", line 303, in run_experiment_task
+    metrics = run_experiment(
+              ^^^^^^^^^^^^^^^
+2026-02-12 08:57:10,254 - INFO - Style: pl
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/run_codeie_experiments.py", line 834, in run_experiment
+    ds_test = load_from_disk(test_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ann/anaconda3/envs/CodeIE/lib/python3.12/site-packages/datasets/load.py", line 1562, in load_from_disk
+    raise FileNotFoundError(f"Directory {dataset_path} not found")
+FileNotFoundError: Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,254 - INFO - Variation: backtrans_tu
+2026-02-12 08:57:10,254 - INFO - Model: qwen2.5:7b
+2026-02-12 08:57:10,254 - INFO - ============================================================
+2026-02-12 08:57:10,254 - INFO - Using ChatOllama (Chat API) for qwen2.5:7b with timeout=180s
+2026-02-12 08:57:10,255 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+2026-02-12 08:57:10,255 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+2026-02-12 08:57:10,255 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+2026-02-12 08:57:10,255 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+2026-02-12 08:57:10,255 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+2026-02-12 08:57:10,255 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+Traceback (most recent call last):
+2026-02-12 08:57:10,255 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/orchestrator.py", line 303, in run_experiment_task
+    metrics = run_experiment(
+              ^^^^^^^^^^^^^^^
+2026-02-12 08:57:10,255 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/run_codeie_experiments.py", line 834, in run_experiment
+    ds_test = load_from_disk(test_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ann/anaconda3/envs/CodeIE/lib/python3.12/site-packages/datasets/load.py", line 1562, in load_from_disk
+    raise FileNotFoundError(f"Directory {dataset_path} not found")
+FileNotFoundError: Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,255 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+Traceback (most recent call last):
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/orchestrator.py", line 303, in run_experiment_task
+    metrics = run_experiment(
+              ^^^^^^^^^^^^^^^
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/run_codeie_experiments.py", line 834, in run_experiment
+    ds_test = load_from_disk(test_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ann/anaconda3/envs/CodeIE/lib/python3.12/site-packages/datasets/load.py", line 1562, in load_from_disk
+    raise FileNotFoundError(f"Directory {dataset_path} not found")
+2026-02-12 08:57:10,255 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+FileNotFoundError: Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,255 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+2026-02-12 08:57:10,255 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+Traceback (most recent call last):
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/orchestrator.py", line 303, in run_experiment_task
+    metrics = run_experiment(
+              ^^^^^^^^^^^^^^^
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/run_codeie_experiments.py", line 834, in run_experiment
+    ds_test = load_from_disk(test_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ann/anaconda3/envs/CodeIE/lib/python3.12/site-packages/datasets/load.py", line 1562, in load_from_disk
+    raise FileNotFoundError(f"Directory {dataset_path} not found")
+FileNotFoundError: Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,256 - ERROR - Failed: qwen2.5-coder_coarse_pl_sentence_reordering - Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+Traceback (most recent call last):
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/orchestrator.py", line 303, in run_experiment_task
+    metrics = run_experiment(
+              ^^^^^^^^^^^^^^^
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/run_codeie_experiments.py", line 834, in run_experiment
+    ds_test = load_from_disk(test_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ann/anaconda3/envs/CodeIE/lib/python3.12/site-packages/datasets/load.py", line 1562, in load_from_disk
+    raise FileNotFoundError(f"Directory {dataset_path} not found")
+FileNotFoundError: Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,256 - ERROR - Failed: qwen2.5_coarse_pl_backtrans_sp - Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,256 - INFO - ============================================================
+2026-02-12 08:57:10,257 - WARNING - 3 consecutive failures detected. Triggering Ollama recovery...
+2026-02-12 08:57:10,257 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-12 08:57:10,257 - INFO - ============================================================
+2026-02-12 08:57:10,257 - INFO - Granularity: coarse
+2026-02-12 08:57:10,257 - INFO - Style: pl
+2026-02-12 08:57:10,257 - INFO - Variation: backtrans_tu
+2026-02-12 08:57:10,257 - INFO - Model: qwen2.5-coder:7b
+2026-02-12 08:57:10,257 - INFO - ============================================================
+2026-02-12 08:57:10,257 - INFO - Using ChatOllama (Chat API) for qwen2.5-coder:7b with timeout=180s
+2026-02-12 08:57:10,259 - INFO - ============================================================
+2026-02-12 08:57:10,259 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-12 08:57:10,259 - INFO - ============================================================
+2026-02-12 08:57:10,260 - INFO - Granularity: coarse
+2026-02-12 08:57:10,260 - INFO - Style: nl
+2026-02-12 08:57:10,260 - INFO - Variation: v0_original
+2026-02-12 08:57:10,260 - INFO - Model: qwen2.5:7b
+2026-02-12 08:57:10,260 - INFO - ============================================================
+2026-02-12 08:57:10,260 - INFO - Using ChatOllama (Chat API) for qwen2.5:7b with timeout=180s
+2026-02-12 08:57:10,260 - INFO - ============================================================
+2026-02-12 08:57:10,260 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-12 08:57:10,260 - INFO - ============================================================
+2026-02-12 08:57:10,260 - INFO - Granularity: coarse
+2026-02-12 08:57:10,260 - INFO - ============================================================
+2026-02-12 08:57:10,260 - INFO - Style: nl
+2026-02-12 08:57:10,260 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-12 08:57:10,260 - INFO - Variation: v0_original
+2026-02-12 08:57:10,260 - INFO - ============================================================
+2026-02-12 08:57:10,260 - INFO - Model: qwen2.5-coder:7b
+2026-02-12 08:57:10,260 - INFO - Granularity: coarse
+2026-02-12 08:57:10,260 - INFO - ============================================================
+2026-02-12 08:57:10,260 - INFO - Style: nl
+2026-02-12 08:57:10,260 - INFO - Variation: lexical_substitution
+2026-02-12 08:57:10,260 - INFO - Model: qwen2.5:7b
+2026-02-12 08:57:10,260 - INFO - Using ChatOllama (Chat API) for qwen2.5-coder:7b with timeout=180s
+2026-02-12 08:57:10,260 - INFO - ============================================================
+2026-02-12 08:57:10,260 - INFO - ============================================================
+2026-02-12 08:57:10,260 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-12 08:57:10,260 - INFO - Using ChatOllama (Chat API) for qwen2.5:7b with timeout=180s
+2026-02-12 08:57:10,260 - INFO - ============================================================
+2026-02-12 08:57:10,260 - INFO - Granularity: coarse
+2026-02-12 08:57:10,260 - INFO - Style: nl
+2026-02-12 08:57:10,260 - INFO - Variation: lexical_substitution
+2026-02-12 08:57:10,260 - INFO - Model: qwen2.5-coder:7b
+2026-02-12 08:57:10,260 - INFO - ============================================================
+2026-02-12 08:57:10,260 - ERROR - Failed: qwen2.5_coarse_pl_backtrans_ch - Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,260 - INFO - Using ChatOllama (Chat API) for qwen2.5-coder:7b with timeout=180s
+2026-02-12 08:57:10,260 - ERROR - Failed: qwen2.5-coder_coarse_pl_backtrans_ch - Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,260 - ERROR - Failed: qwen2.5-coder_coarse_pl_backtrans_sp - Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,260 - WARNING - 3 consecutive failures detected. Triggering Ollama recovery...
+2026-02-12 08:57:10,301 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+2026-02-12 08:57:10,302 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+2026-02-12 08:57:10,302 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+Traceback (most recent call last):
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/orchestrator.py", line 303, in run_experiment_task
+    metrics = run_experiment(
+              ^^^^^^^^^^^^^^^
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/run_codeie_experiments.py", line 834, in run_experiment
+    ds_test = load_from_disk(test_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ann/anaconda3/envs/CodeIE/lib/python3.12/site-packages/datasets/load.py", line 1562, in load_from_disk
+    raise FileNotFoundError(f"Directory {dataset_path} not found")
+FileNotFoundError: Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,303 - ERROR - Failed: qwen2.5_coarse_pl_backtrans_tu - Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,304 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+2026-02-12 08:57:10,304 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+2026-02-12 08:57:10,304 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+2026-02-12 08:57:10,304 - INFO - ============================================================
+2026-02-12 08:57:10,304 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-12 08:57:10,304 - INFO - ============================================================
+2026-02-12 08:57:10,304 - INFO - Granularity: coarse
+2026-02-12 08:57:10,304 - INFO - Style: nl
+2026-02-12 08:57:10,304 - INFO - Variation: reodering
+2026-02-12 08:57:10,304 - INFO - Model: qwen2.5:7b
+2026-02-12 08:57:10,304 - INFO - ============================================================
+2026-02-12 08:57:10,304 - INFO - Using ChatOllama (Chat API) for qwen2.5:7b with timeout=180s
+Traceback (most recent call last):
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/orchestrator.py", line 303, in run_experiment_task
+    metrics = run_experiment(
+              ^^^^^^^^^^^^^^^
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/run_codeie_experiments.py", line 834, in run_experiment
+    ds_test = load_from_disk(test_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ann/anaconda3/envs/CodeIE/lib/python3.12/site-packages/datasets/load.py", line 1562, in load_from_disk
+    raise FileNotFoundError(f"Directory {dataset_path} not found")
+FileNotFoundError: Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,306 - ERROR - Failed: qwen2.5-coder_coarse_pl_backtrans_tu - Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,307 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+2026-02-12 08:57:10,307 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+2026-02-12 08:57:10,307 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+Traceback (most recent call last):
+2026-02-12 08:57:10,307 - INFO - ============================================================
+2026-02-12 08:57:10,307 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+2026-02-12 08:57:10,307 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/orchestrator.py", line 303, in run_experiment_task
+    metrics = run_experiment(
+              ^^^^^^^^^^^^^^^
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/run_codeie_experiments.py", line 834, in run_experiment
+    ds_test = load_from_disk(test_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ann/anaconda3/envs/CodeIE/lib/python3.12/site-packages/datasets/load.py", line 1562, in load_from_disk
+    raise FileNotFoundError(f"Directory {dataset_path} not found")
+FileNotFoundError: Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,307 - INFO - ============================================================
+2026-02-12 08:57:10,307 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+2026-02-12 08:57:10,307 - INFO - Granularity: coarse
+2026-02-12 08:57:10,307 - INFO - Style: nl
+2026-02-12 08:57:10,307 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+2026-02-12 08:57:10,307 - INFO - Variation: reodering
+2026-02-12 08:57:10,307 - INFO - Model: qwen2.5-coder:7b
+2026-02-12 08:57:10,307 - INFO - ============================================================
+2026-02-12 08:57:10,307 - INFO - Using ChatOllama (Chat API) for qwen2.5-coder:7b with timeout=180s
+2026-02-12 08:57:10,307 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+2026-02-12 08:57:10,307 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+Traceback (most recent call last):
+2026-02-12 08:57:10,307 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+2026-02-12 08:57:10,307 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/orchestrator.py", line 303, in run_experiment_task
+    metrics = run_experiment(
+              ^^^^^^^^^^^^^^^
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/run_codeie_experiments.py", line 834, in run_experiment
+    ds_test = load_from_disk(test_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ann/anaconda3/envs/CodeIE/lib/python3.12/site-packages/datasets/load.py", line 1562, in load_from_disk
+    raise FileNotFoundError(f"Directory {dataset_path} not found")
+2026-02-12 08:57:10,307 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+FileNotFoundError: Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,308 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+Traceback (most recent call last):
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/orchestrator.py", line 303, in run_experiment_task
+    metrics = run_experiment(
+              ^^^^^^^^^^^^^^^
+Traceback (most recent call last):
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/run_codeie_experiments.py", line 834, in run_experiment
+    ds_test = load_from_disk(test_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ann/anaconda3/envs/CodeIE/lib/python3.12/site-packages/datasets/load.py", line 1562, in load_from_disk
+    raise FileNotFoundError(f"Directory {dataset_path} not found")
+FileNotFoundError: Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/orchestrator.py", line 303, in run_experiment_task
+    metrics = run_experiment(
+              ^^^^^^^^^^^^^^^
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/run_codeie_experiments.py", line 834, in run_experiment
+    ds_test = load_from_disk(test_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ann/anaconda3/envs/CodeIE/lib/python3.12/site-packages/datasets/load.py", line 1562, in load_from_disk
+    raise FileNotFoundError(f"Directory {dataset_path} not found")
+FileNotFoundError: Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,308 - ERROR - Failed: qwen2.5_coarse_nl_base - Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,309 - WARNING - 3 consecutive failures detected. Triggering Ollama recovery...
+2026-02-12 08:57:10,311 - INFO - ============================================================
+2026-02-12 08:57:10,311 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-12 08:57:10,311 - INFO - ============================================================
+2026-02-12 08:57:10,311 - INFO - Granularity: coarse
+2026-02-12 08:57:10,311 - INFO - Style: nl
+2026-02-12 08:57:10,311 - INFO - Variation: sentence_reordering
+2026-02-12 08:57:10,311 - INFO - Model: qwen2.5:7b
+2026-02-12 08:57:10,311 - INFO - ============================================================
+2026-02-12 08:57:10,311 - INFO - Using ChatOllama (Chat API) for qwen2.5:7b with timeout=180s
+2026-02-12 08:57:10,311 - INFO - ============================================================
+2026-02-12 08:57:10,311 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-12 08:57:10,311 - INFO - ============================================================
+2026-02-12 08:57:10,311 - INFO - Granularity: coarse
+2026-02-12 08:57:10,311 - INFO - ============================================================
+2026-02-12 08:57:10,311 - INFO - Style: nl
+2026-02-12 08:57:10,311 - INFO - Variation: backtrans_ch
+2026-02-12 08:57:10,311 - INFO - Model: qwen2.5:7b
+2026-02-12 08:57:10,311 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-12 08:57:10,311 - INFO - ============================================================
+2026-02-12 08:57:10,311 - INFO - ============================================================
+2026-02-12 08:57:10,311 - INFO - ============================================================
+2026-02-12 08:57:10,311 - INFO - Granularity: coarse
+2026-02-12 08:57:10,311 - INFO - Style: nl
+2026-02-12 08:57:10,311 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-12 08:57:10,311 - INFO - Using ChatOllama (Chat API) for qwen2.5:7b with timeout=180s
+2026-02-12 08:57:10,311 - INFO - Variation: backtrans_ch
+2026-02-12 08:57:10,311 - INFO - Model: qwen2.5-coder:7b
+2026-02-12 08:57:10,311 - INFO - ============================================================
+2026-02-12 08:57:10,311 - INFO - ============================================================
+2026-02-12 08:57:10,311 - INFO - Granularity: coarse
+2026-02-12 08:57:10,311 - INFO - Style: nl
+2026-02-12 08:57:10,312 - INFO - Variation: sentence_reordering
+2026-02-12 08:57:10,312 - INFO - Using ChatOllama (Chat API) for qwen2.5-coder:7b with timeout=180s
+2026-02-12 08:57:10,312 - INFO - Model: qwen2.5-coder:7b
+2026-02-12 08:57:10,312 - INFO - ============================================================
+2026-02-12 08:57:10,312 - INFO - Using ChatOllama (Chat API) for qwen2.5-coder:7b with timeout=180s
+2026-02-12 08:57:10,312 - ERROR - Failed: qwen2.5-coder_coarse_nl_base - Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,312 - ERROR - Failed: qwen2.5-coder_coarse_nl_lexical_substitution - Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,312 - ERROR - Failed: qwen2.5_coarse_nl_lexical_substitution - Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,312 - WARNING - 3 consecutive failures detected. Triggering Ollama recovery...
+2026-02-12 08:57:10,350 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+2026-02-12 08:57:10,350 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+2026-02-12 08:57:10,350 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+Traceback (most recent call last):
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/orchestrator.py", line 303, in run_experiment_task
+    metrics = run_experiment(
+              ^^^^^^^^^^^^^^^
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/run_codeie_experiments.py", line 834, in run_experiment
+    ds_test = load_from_disk(test_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ann/anaconda3/envs/CodeIE/lib/python3.12/site-packages/datasets/load.py", line 1562, in load_from_disk
+    raise FileNotFoundError(f"Directory {dataset_path} not found")
+FileNotFoundError: Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,352 - ERROR - Failed: qwen2.5_coarse_nl_reodering - Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,353 - INFO - ============================================================
+2026-02-12 08:57:10,353 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-12 08:57:10,353 - INFO - ============================================================
+2026-02-12 08:57:10,353 - INFO - Granularity: coarse
+2026-02-12 08:57:10,353 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+2026-02-12 08:57:10,353 - INFO - Style: nl
+2026-02-12 08:57:10,353 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+2026-02-12 08:57:10,353 - INFO - Variation: backtrans_sp
+2026-02-12 08:57:10,353 - INFO - Model: qwen2.5:7b
+2026-02-12 08:57:10,353 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+2026-02-12 08:57:10,353 - INFO - ============================================================
+2026-02-12 08:57:10,353 - INFO - Using ChatOllama (Chat API) for qwen2.5:7b with timeout=180s
+Traceback (most recent call last):
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/orchestrator.py", line 303, in run_experiment_task
+    metrics = run_experiment(
+              ^^^^^^^^^^^^^^^
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/run_codeie_experiments.py", line 834, in run_experiment
+    ds_test = load_from_disk(test_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ann/anaconda3/envs/CodeIE/lib/python3.12/site-packages/datasets/load.py", line 1562, in load_from_disk
+    raise FileNotFoundError(f"Directory {dataset_path} not found")
+FileNotFoundError: Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,354 - ERROR - Failed: qwen2.5-coder_coarse_nl_reodering - Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,356 - INFO - ============================================================
+2026-02-12 08:57:10,356 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-12 08:57:10,356 - INFO - ============================================================
+2026-02-12 08:57:10,356 - INFO - Granularity: coarse
+2026-02-12 08:57:10,356 - INFO - Style: nl
+2026-02-12 08:57:10,356 - INFO - Variation: backtrans_sp
+2026-02-12 08:57:10,356 - INFO - Model: qwen2.5-coder:7b
+2026-02-12 08:57:10,356 - INFO - ============================================================
+2026-02-12 08:57:10,356 - INFO - Using ChatOllama (Chat API) for qwen2.5-coder:7b with timeout=180s
+2026-02-12 08:57:10,358 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+2026-02-12 08:57:10,358 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+2026-02-12 08:57:10,358 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+Traceback (most recent call last):
+2026-02-12 08:57:10,358 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+2026-02-12 08:57:10,358 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+2026-02-12 08:57:10,358 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/orchestrator.py", line 303, in run_experiment_task
+    metrics = run_experiment(
+              ^^^^^^^^^^^^^^^
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/run_codeie_experiments.py", line 834, in run_experiment
+    ds_test = load_from_disk(test_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ann/anaconda3/envs/CodeIE/lib/python3.12/site-packages/datasets/load.py", line 1562, in load_from_disk
+    raise FileNotFoundError(f"Directory {dataset_path} not found")
+FileNotFoundError: Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,358 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+Traceback (most recent call last):
+2026-02-12 08:57:10,358 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+2026-02-12 08:57:10,358 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/orchestrator.py", line 303, in run_experiment_task
+    metrics = run_experiment(
+              ^^^^^^^^^^^^^^^
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/run_codeie_experiments.py", line 834, in run_experiment
+    ds_test = load_from_disk(test_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ann/anaconda3/envs/CodeIE/lib/python3.12/site-packages/datasets/load.py", line 1562, in load_from_disk
+    raise FileNotFoundError(f"Directory {dataset_path} not found")
+FileNotFoundError: Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,359 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+Traceback (most recent call last):
+2026-02-12 08:57:10,359 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+2026-02-12 08:57:10,359 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/orchestrator.py", line 303, in run_experiment_task
+    metrics = run_experiment(
+              ^^^^^^^^^^^^^^^
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/run_codeie_experiments.py", line 834, in run_experiment
+    ds_test = load_from_disk(test_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ann/anaconda3/envs/CodeIE/lib/python3.12/site-packages/datasets/load.py", line 1562, in load_from_disk
+    raise FileNotFoundError(f"Directory {dataset_path} not found")
+FileNotFoundError: Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+Traceback (most recent call last):
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/orchestrator.py", line 303, in run_experiment_task
+    metrics = run_experiment(
+              ^^^^^^^^^^^^^^^
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/run_codeie_experiments.py", line 834, in run_experiment
+    ds_test = load_from_disk(test_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ann/anaconda3/envs/CodeIE/lib/python3.12/site-packages/datasets/load.py", line 1562, in load_from_disk
+    raise FileNotFoundError(f"Directory {dataset_path} not found")
+FileNotFoundError: Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,359 - ERROR - Failed: qwen2.5_coarse_nl_sentence_reordering - Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,360 - WARNING - 3 consecutive failures detected. Triggering Ollama recovery...
+2026-02-12 08:57:10,362 - ERROR - Failed: qwen2.5_coarse_nl_backtrans_ch - Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,362 - INFO - ============================================================
+2026-02-12 08:57:10,362 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-12 08:57:10,362 - ERROR - Failed: qwen2.5-coder_coarse_nl_backtrans_ch - Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,362 - INFO - ============================================================
+2026-02-12 08:57:10,363 - INFO - Granularity: coarse
+2026-02-12 08:57:10,363 - ERROR - Failed: qwen2.5-coder_coarse_nl_sentence_reordering - Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,363 - INFO - Style: nl
+2026-02-12 08:57:10,363 - WARNING - 3 consecutive failures detected. Triggering Ollama recovery...
+2026-02-12 08:57:10,363 - INFO - ============================================================
+2026-02-12 08:57:10,363 - INFO - Variation: backtrans_tu
+2026-02-12 08:57:10,363 - INFO - Model: qwen2.5:7b
+2026-02-12 08:57:10,363 - INFO - ============================================================
+2026-02-12 08:57:10,363 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-12 08:57:10,363 - INFO - ============================================================
+2026-02-12 08:57:10,363 - INFO - Granularity: coarse
+2026-02-12 08:57:10,363 - INFO - Using ChatOllama (Chat API) for qwen2.5:7b with timeout=180s
+2026-02-12 08:57:10,363 - INFO - Style: nl
+2026-02-12 08:57:10,363 - INFO - Variation: backtrans_tu
+2026-02-12 08:57:10,363 - INFO - Model: qwen2.5-coder:7b
+2026-02-12 08:57:10,363 - INFO - ============================================================
+2026-02-12 08:57:10,363 - INFO - Using ChatOllama (Chat API) for qwen2.5-coder:7b with timeout=180s
+2026-02-12 08:57:10,363 - INFO - ============================================================
+2026-02-12 08:57:10,363 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-12 08:57:10,363 - INFO - ============================================================
+2026-02-12 08:57:10,363 - INFO - Granularity: fine
+2026-02-12 08:57:10,363 - INFO - Style: pl
+2026-02-12 08:57:10,363 - INFO - ============================================================
+2026-02-12 08:57:10,363 - INFO - Variation: v0_original
+2026-02-12 08:57:10,363 - INFO - Model: qwen2.5:7b
+2026-02-12 08:57:10,363 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-12 08:57:10,363 - INFO - ============================================================
+2026-02-12 08:57:10,363 - INFO - ============================================================
+2026-02-12 08:57:10,363 - INFO - Granularity: fine
+2026-02-12 08:57:10,363 - INFO - Style: pl
+2026-02-12 08:57:10,363 - INFO - Using ChatOllama (Chat API) for qwen2.5:7b with timeout=180s
+2026-02-12 08:57:10,363 - INFO - Variation: v0_original
+2026-02-12 08:57:10,363 - INFO - Model: qwen2.5-coder:7b
+2026-02-12 08:57:10,363 - INFO - ============================================================
+2026-02-12 08:57:10,363 - INFO - Using ChatOllama (Chat API) for qwen2.5-coder:7b with timeout=180s
+2026-02-12 08:57:10,399 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+2026-02-12 08:57:10,399 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+2026-02-12 08:57:10,399 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+Traceback (most recent call last):
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/orchestrator.py", line 303, in run_experiment_task
+    metrics = run_experiment(
+              ^^^^^^^^^^^^^^^
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/run_codeie_experiments.py", line 834, in run_experiment
+    ds_test = load_from_disk(test_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ann/anaconda3/envs/CodeIE/lib/python3.12/site-packages/datasets/load.py", line 1562, in load_from_disk
+    raise FileNotFoundError(f"Directory {dataset_path} not found")
+FileNotFoundError: Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,400 - ERROR - Failed: qwen2.5_coarse_nl_backtrans_sp - Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,401 - INFO - ============================================================
+2026-02-12 08:57:10,401 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-12 08:57:10,401 - INFO - ============================================================
+2026-02-12 08:57:10,401 - INFO - Granularity: fine
+2026-02-12 08:57:10,401 - INFO - Style: pl
+2026-02-12 08:57:10,401 - INFO - Variation: lexical_substitution
+2026-02-12 08:57:10,401 - INFO - Model: qwen2.5:7b
+2026-02-12 08:57:10,401 - INFO - ============================================================
+2026-02-12 08:57:10,401 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+2026-02-12 08:57:10,401 - INFO - Using ChatOllama (Chat API) for qwen2.5:7b with timeout=180s
+2026-02-12 08:57:10,402 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+2026-02-12 08:57:10,402 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+Traceback (most recent call last):
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/orchestrator.py", line 303, in run_experiment_task
+    metrics = run_experiment(
+              ^^^^^^^^^^^^^^^
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/run_codeie_experiments.py", line 834, in run_experiment
+    ds_test = load_from_disk(test_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ann/anaconda3/envs/CodeIE/lib/python3.12/site-packages/datasets/load.py", line 1562, in load_from_disk
+    raise FileNotFoundError(f"Directory {dataset_path} not found")
+FileNotFoundError: Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,403 - ERROR - Failed: qwen2.5-coder_coarse_nl_backtrans_sp - Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,404 - INFO - ============================================================
+2026-02-12 08:57:10,404 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-12 08:57:10,404 - INFO - ============================================================
+2026-02-12 08:57:10,404 - INFO - Granularity: fine
+2026-02-12 08:57:10,404 - INFO - Style: pl
+2026-02-12 08:57:10,404 - INFO - Variation: lexical_substitution
+2026-02-12 08:57:10,404 - INFO - Model: qwen2.5-coder:7b
+2026-02-12 08:57:10,404 - INFO - ============================================================
+2026-02-12 08:57:10,404 - INFO - Using ChatOllama (Chat API) for qwen2.5-coder:7b with timeout=180s
+2026-02-12 08:57:10,409 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+2026-02-12 08:57:10,409 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+2026-02-12 08:57:10,409 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+Traceback (most recent call last):
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/orchestrator.py", line 303, in run_experiment_task
+    metrics = run_experiment(
+              ^^^^^^^^^^^^^^^
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/run_codeie_experiments.py", line 834, in run_experiment
+    ds_test = load_from_disk(test_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ann/anaconda3/envs/CodeIE/lib/python3.12/site-packages/datasets/load.py", line 1562, in load_from_disk
+    raise FileNotFoundError(f"Directory {dataset_path} not found")
+FileNotFoundError: Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,410 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+2026-02-12 08:57:10,410 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+2026-02-12 08:57:10,410 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+2026-02-12 08:57:10,410 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+2026-02-12 08:57:10,410 - INFO - Entity types (66): ['art-broadcastprogram', 'art-film', 'art-music', 'art-other', 'art-painting', 'art-writtenart', 'building-airport', 'building-hospital', 'building-hotel', 'building-library', 'building-other', 'building-restaurant', 'building-sportsfacility', 'building-theater', 'event-attack/battle/war/militaryconflict', 'event-disaster', 'event-election', 'event-other', 'event-protest', 'event-sportsevent', 'location-GPE', 'location-bodiesofwater', 'location-island', 'location-mountain', 'location-other', 'location-park', 'location-road/railway/highway/transit', 'organization-company', 'organization-education', 'organization-government/governmentagency', 'organization-media/newspaper', 'organization-other', 'organization-politicalparty', 'organization-religion', 'organization-showorganization', 'organization-sportsleague', 'organization-sportsteam', 'other-astronomything', 'other-award', 'other-biologything', 'other-chemicalthing', 'other-currency', 'other-disease', 'other-educationaldegree', 'other-god', 'other-language', 'other-law', 'other-livingthing', 'other-medical', 'person-actor', 'person-artist/author', 'person-athlete', 'person-director', 'person-other', 'person-politician', 'person-scholar', 'person-soldier', 'product-airplane', 'product-car', 'product-food', 'product-game', 'product-other', 'product-ship', 'product-software', 'product-train', 'product-weapon']
+2026-02-12 08:57:10,410 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/orchestrator.py", line 303, in run_experiment_task
+    metrics = run_experiment(
+              ^^^^^^^^^^^^^^^
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/run_codeie_experiments.py", line 834, in run_experiment
+    ds_test = load_from_disk(test_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ann/anaconda3/envs/CodeIE/lib/python3.12/site-packages/datasets/load.py", line 1562, in load_from_disk
+    raise FileNotFoundError(f"Directory {dataset_path} not found")
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/orchestrator.py", line 303, in run_experiment_task
+    metrics = run_experiment(
+              ^^^^^^^^^^^^^^^
+FileNotFoundError: Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/run_codeie_experiments.py", line 834, in run_experiment
+    ds_test = load_from_disk(test_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ann/anaconda3/envs/CodeIE/lib/python3.12/site-packages/datasets/load.py", line 1562, in load_from_disk
+    raise FileNotFoundError(f"Directory {dataset_path} not found")
+FileNotFoundError: Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,410 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+2026-02-12 08:57:10,410 - INFO - Entity types (66): ['art-broadcastprogram', 'art-film', 'art-music', 'art-other', 'art-painting', 'art-writtenart', 'building-airport', 'building-hospital', 'building-hotel', 'building-library', 'building-other', 'building-restaurant', 'building-sportsfacility', 'building-theater', 'event-attack/battle/war/militaryconflict', 'event-disaster', 'event-election', 'event-other', 'event-protest', 'event-sportsevent', 'location-GPE', 'location-bodiesofwater', 'location-island', 'location-mountain', 'location-other', 'location-park', 'location-road/railway/highway/transit', 'organization-company', 'organization-education', 'organization-government/governmentagency', 'organization-media/newspaper', 'organization-other', 'organization-politicalparty', 'organization-religion', 'organization-showorganization', 'organization-sportsleague', 'organization-sportsteam', 'other-astronomything', 'other-award', 'other-biologything', 'other-chemicalthing', 'other-currency', 'other-disease', 'other-educationaldegree', 'other-god', 'other-language', 'other-law', 'other-livingthing', 'other-medical', 'person-actor', 'person-artist/author', 'person-athlete', 'person-director', 'person-other', 'person-politician', 'person-scholar', 'person-soldier', 'product-airplane', 'product-car', 'product-food', 'product-game', 'product-other', 'product-ship', 'product-software', 'product-train', 'product-weapon']
+2026-02-12 08:57:10,410 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+Traceback (most recent call last):
+2026-02-12 08:57:10,411 - ERROR - Failed: qwen2.5-coder_coarse_nl_backtrans_tu - Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,411 - WARNING - 3 consecutive failures detected. Triggering Ollama recovery...
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/orchestrator.py", line 303, in run_experiment_task
+    metrics = run_experiment(
+              ^^^^^^^^^^^^^^^
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/run_codeie_experiments.py", line 834, in run_experiment
+    ds_test = load_from_disk(test_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ann/anaconda3/envs/CodeIE/lib/python3.12/site-packages/datasets/load.py", line 1562, in load_from_disk
+    raise FileNotFoundError(f"Directory {dataset_path} not found")
+FileNotFoundError: Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,412 - INFO - ============================================================
+2026-02-12 08:57:10,412 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-12 08:57:10,412 - INFO - ============================================================
+2026-02-12 08:57:10,412 - INFO - Granularity: fine
+2026-02-12 08:57:10,412 - INFO - Style: pl
+2026-02-12 08:57:10,412 - INFO - Variation: reodering
+2026-02-12 08:57:10,412 - INFO - Model: qwen2.5:7b
+2026-02-12 08:57:10,412 - INFO - ============================================================
+2026-02-12 08:57:10,412 - INFO - Using ChatOllama (Chat API) for qwen2.5:7b with timeout=180s
+2026-02-12 08:57:10,414 - INFO - ============================================================
+2026-02-12 08:57:10,414 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-12 08:57:10,414 - INFO - ============================================================
+2026-02-12 08:57:10,414 - INFO - Granularity: fine
+2026-02-12 08:57:10,414 - INFO - Style: pl
+2026-02-12 08:57:10,414 - INFO - Variation: sentence_reordering
+2026-02-12 08:57:10,414 - INFO - Model: qwen2.5:7b
+2026-02-12 08:57:10,414 - INFO - ============================================================
+2026-02-12 08:57:10,414 - INFO - ============================================================
+2026-02-12 08:57:10,414 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-12 08:57:10,414 - INFO - ============================================================
+2026-02-12 08:57:10,414 - INFO - Using ChatOllama (Chat API) for qwen2.5:7b with timeout=180s
+2026-02-12 08:57:10,414 - INFO - Granularity: fine
+2026-02-12 08:57:10,414 - INFO - Style: pl
+2026-02-12 08:57:10,414 - INFO - Variation: reodering
+2026-02-12 08:57:10,414 - INFO - Model: qwen2.5-coder:7b
+2026-02-12 08:57:10,414 - INFO - ============================================================
+2026-02-12 08:57:10,414 - INFO - ============================================================
+2026-02-12 08:57:10,414 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-12 08:57:10,414 - INFO - ============================================================
+2026-02-12 08:57:10,414 - INFO - Using ChatOllama (Chat API) for qwen2.5-coder:7b with timeout=180s
+2026-02-12 08:57:10,414 - INFO - Granularity: fine
+2026-02-12 08:57:10,414 - INFO - Style: pl
+2026-02-12 08:57:10,414 - INFO - Variation: sentence_reordering
+2026-02-12 08:57:10,414 - INFO - Model: qwen2.5-coder:7b
+2026-02-12 08:57:10,414 - INFO - ============================================================
+2026-02-12 08:57:10,414 - INFO - Using ChatOllama (Chat API) for qwen2.5-coder:7b with timeout=180s
+2026-02-12 08:57:10,414 - ERROR - Failed: qwen2.5_coarse_nl_backtrans_tu - Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,414 - ERROR - Failed: qwen2.5-coder_fine_pl_base - Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,414 - ERROR - Failed: qwen2.5_fine_pl_base - Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,414 - WARNING - 3 consecutive failures detected. Triggering Ollama recovery...
+2026-02-12 08:57:10,447 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+2026-02-12 08:57:10,447 - INFO - Entity types (66): ['art-broadcastprogram', 'art-film', 'art-music', 'art-other', 'art-painting', 'art-writtenart', 'building-airport', 'building-hospital', 'building-hotel', 'building-library', 'building-other', 'building-restaurant', 'building-sportsfacility', 'building-theater', 'event-attack/battle/war/militaryconflict', 'event-disaster', 'event-election', 'event-other', 'event-protest', 'event-sportsevent', 'location-GPE', 'location-bodiesofwater', 'location-island', 'location-mountain', 'location-other', 'location-park', 'location-road/railway/highway/transit', 'organization-company', 'organization-education', 'organization-government/governmentagency', 'organization-media/newspaper', 'organization-other', 'organization-politicalparty', 'organization-religion', 'organization-showorganization', 'organization-sportsleague', 'organization-sportsteam', 'other-astronomything', 'other-award', 'other-biologything', 'other-chemicalthing', 'other-currency', 'other-disease', 'other-educationaldegree', 'other-god', 'other-language', 'other-law', 'other-livingthing', 'other-medical', 'person-actor', 'person-artist/author', 'person-athlete', 'person-director', 'person-other', 'person-politician', 'person-scholar', 'person-soldier', 'product-airplane', 'product-car', 'product-food', 'product-game', 'product-other', 'product-ship', 'product-software', 'product-train', 'product-weapon']
+2026-02-12 08:57:10,447 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+Traceback (most recent call last):
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/orchestrator.py", line 303, in run_experiment_task
+    metrics = run_experiment(
+              ^^^^^^^^^^^^^^^
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/run_codeie_experiments.py", line 834, in run_experiment
+    ds_test = load_from_disk(test_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ann/anaconda3/envs/CodeIE/lib/python3.12/site-packages/datasets/load.py", line 1562, in load_from_disk
+    raise FileNotFoundError(f"Directory {dataset_path} not found")
+FileNotFoundError: Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,449 - ERROR - Failed: qwen2.5_fine_pl_lexical_substitution - Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,450 - INFO - ============================================================
+2026-02-12 08:57:10,450 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-12 08:57:10,450 - INFO - ============================================================
+2026-02-12 08:57:10,450 - INFO - Granularity: fine
+2026-02-12 08:57:10,450 - INFO - Style: pl
+2026-02-12 08:57:10,450 - INFO - Variation: backtrans_ch
+2026-02-12 08:57:10,450 - INFO - Model: qwen2.5:7b
+2026-02-12 08:57:10,450 - INFO - ============================================================
+2026-02-12 08:57:10,450 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+2026-02-12 08:57:10,450 - INFO - Using ChatOllama (Chat API) for qwen2.5:7b with timeout=180s
+2026-02-12 08:57:10,450 - INFO - Entity types (66): ['art-broadcastprogram', 'art-film', 'art-music', 'art-other', 'art-painting', 'art-writtenart', 'building-airport', 'building-hospital', 'building-hotel', 'building-library', 'building-other', 'building-restaurant', 'building-sportsfacility', 'building-theater', 'event-attack/battle/war/militaryconflict', 'event-disaster', 'event-election', 'event-other', 'event-protest', 'event-sportsevent', 'location-GPE', 'location-bodiesofwater', 'location-island', 'location-mountain', 'location-other', 'location-park', 'location-road/railway/highway/transit', 'organization-company', 'organization-education', 'organization-government/governmentagency', 'organization-media/newspaper', 'organization-other', 'organization-politicalparty', 'organization-religion', 'organization-showorganization', 'organization-sportsleague', 'organization-sportsteam', 'other-astronomything', 'other-award', 'other-biologything', 'other-chemicalthing', 'other-currency', 'other-disease', 'other-educationaldegree', 'other-god', 'other-language', 'other-law', 'other-livingthing', 'other-medical', 'person-actor', 'person-artist/author', 'person-athlete', 'person-director', 'person-other', 'person-politician', 'person-scholar', 'person-soldier', 'product-airplane', 'product-car', 'product-food', 'product-game', 'product-other', 'product-ship', 'product-software', 'product-train', 'product-weapon']
+2026-02-12 08:57:10,450 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+Traceback (most recent call last):
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/orchestrator.py", line 303, in run_experiment_task
+    metrics = run_experiment(
+              ^^^^^^^^^^^^^^^
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/run_codeie_experiments.py", line 834, in run_experiment
+    ds_test = load_from_disk(test_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ann/anaconda3/envs/CodeIE/lib/python3.12/site-packages/datasets/load.py", line 1562, in load_from_disk
+    raise FileNotFoundError(f"Directory {dataset_path} not found")
+FileNotFoundError: Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,452 - ERROR - Failed: qwen2.5-coder_fine_pl_lexical_substitution - Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,453 - INFO - ============================================================
+2026-02-12 08:57:10,453 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-12 08:57:10,453 - INFO - ============================================================
+2026-02-12 08:57:10,453 - INFO - Granularity: fine
+2026-02-12 08:57:10,453 - INFO - Style: pl
+2026-02-12 08:57:10,453 - INFO - Variation: backtrans_ch
+2026-02-12 08:57:10,453 - INFO - Model: qwen2.5-coder:7b
+2026-02-12 08:57:10,453 - INFO - ============================================================
+2026-02-12 08:57:10,453 - INFO - Using ChatOllama (Chat API) for qwen2.5-coder:7b with timeout=180s
+2026-02-12 08:57:10,458 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+2026-02-12 08:57:10,458 - INFO - Entity types (66): ['art-broadcastprogram', 'art-film', 'art-music', 'art-other', 'art-painting', 'art-writtenart', 'building-airport', 'building-hospital', 'building-hotel', 'building-library', 'building-other', 'building-restaurant', 'building-sportsfacility', 'building-theater', 'event-attack/battle/war/militaryconflict', 'event-disaster', 'event-election', 'event-other', 'event-protest', 'event-sportsevent', 'location-GPE', 'location-bodiesofwater', 'location-island', 'location-mountain', 'location-other', 'location-park', 'location-road/railway/highway/transit', 'organization-company', 'organization-education', 'organization-government/governmentagency', 'organization-media/newspaper', 'organization-other', 'organization-politicalparty', 'organization-religion', 'organization-showorganization', 'organization-sportsleague', 'organization-sportsteam', 'other-astronomything', 'other-award', 'other-biologything', 'other-chemicalthing', 'other-currency', 'other-disease', 'other-educationaldegree', 'other-god', 'other-language', 'other-law', 'other-livingthing', 'other-medical', 'person-actor', 'person-artist/author', 'person-athlete', 'person-director', 'person-other', 'person-politician', 'person-scholar', 'person-soldier', 'product-airplane', 'product-car', 'product-food', 'product-game', 'product-other', 'product-ship', 'product-software', 'product-train', 'product-weapon']
+2026-02-12 08:57:10,458 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+Traceback (most recent call last):
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/orchestrator.py", line 303, in run_experiment_task
+    metrics = run_experiment(
+              ^^^^^^^^^^^^^^^
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/run_codeie_experiments.py", line 834, in run_experiment
+    ds_test = load_from_disk(test_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ann/anaconda3/envs/CodeIE/lib/python3.12/site-packages/datasets/load.py", line 1562, in load_from_disk
+    raise FileNotFoundError(f"Directory {dataset_path} not found")
+FileNotFoundError: Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,459 - ERROR - Failed: qwen2.5_fine_pl_reodering - Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,459 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+2026-02-12 08:57:10,460 - INFO - Entity types (66): ['art-broadcastprogram', 'art-film', 'art-music', 'art-other', 'art-painting', 'art-writtenart', 'building-airport', 'building-hospital', 'building-hotel', 'building-library', 'building-other', 'building-restaurant', 'building-sportsfacility', 'building-theater', 'event-attack/battle/war/militaryconflict', 'event-disaster', 'event-election', 'event-other', 'event-protest', 'event-sportsevent', 'location-GPE', 'location-bodiesofwater', 'location-island', 'location-mountain', 'location-other', 'location-park', 'location-road/railway/highway/transit', 'organization-company', 'organization-education', 'organization-government/governmentagency', 'organization-media/newspaper', 'organization-other', 'organization-politicalparty', 'organization-religion', 'organization-showorganization', 'organization-sportsleague', 'organization-sportsteam', 'other-astronomything', 'other-award', 'other-biologything', 'other-chemicalthing', 'other-currency', 'other-disease', 'other-educationaldegree', 'other-god', 'other-language', 'other-law', 'other-livingthing', 'other-medical', 'person-actor', 'person-artist/author', 'person-athlete', 'person-director', 'person-other', 'person-politician', 'person-scholar', 'person-soldier', 'product-airplane', 'product-car', 'product-food', 'product-game', 'product-other', 'product-ship', 'product-software', 'product-train', 'product-weapon']
+2026-02-12 08:57:10,460 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+2026-02-12 08:57:10,460 - WARNING - 3 consecutive failures detected. Triggering Ollama recovery...
+Traceback (most recent call last):
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/orchestrator.py", line 303, in run_experiment_task
+    metrics = run_experiment(
+              ^^^^^^^^^^^^^^^
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/run_codeie_experiments.py", line 834, in run_experiment
+    ds_test = load_from_disk(test_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ann/anaconda3/envs/CodeIE/lib/python3.12/site-packages/datasets/load.py", line 1562, in load_from_disk
+    raise FileNotFoundError(f"Directory {dataset_path} not found")
+FileNotFoundError: Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,460 - INFO - ============================================================
+2026-02-12 08:57:10,460 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-12 08:57:10,460 - INFO - ============================================================
+2026-02-12 08:57:10,460 - INFO - Granularity: fine
+2026-02-12 08:57:10,460 - INFO - Style: pl
+2026-02-12 08:57:10,460 - INFO - Variation: backtrans_sp
+2026-02-12 08:57:10,460 - INFO - Model: qwen2.5:7b
+2026-02-12 08:57:10,460 - INFO - ============================================================
+2026-02-12 08:57:10,461 - INFO - Using ChatOllama (Chat API) for qwen2.5:7b with timeout=180s
+2026-02-12 08:57:10,461 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+2026-02-12 08:57:10,461 - INFO - Entity types (66): ['art-broadcastprogram', 'art-film', 'art-music', 'art-other', 'art-painting', 'art-writtenart', 'building-airport', 'building-hospital', 'building-hotel', 'building-library', 'building-other', 'building-restaurant', 'building-sportsfacility', 'building-theater', 'event-attack/battle/war/militaryconflict', 'event-disaster', 'event-election', 'event-other', 'event-protest', 'event-sportsevent', 'location-GPE', 'location-bodiesofwater', 'location-island', 'location-mountain', 'location-other', 'location-park', 'location-road/railway/highway/transit', 'organization-company', 'organization-education', 'organization-government/governmentagency', 'organization-media/newspaper', 'organization-other', 'organization-politicalparty', 'organization-religion', 'organization-showorganization', 'organization-sportsleague', 'organization-sportsteam', 'other-astronomything', 'other-award', 'other-biologything', 'other-chemicalthing', 'other-currency', 'other-disease', 'other-educationaldegree', 'other-god', 'other-language', 'other-law', 'other-livingthing', 'other-medical', 'person-actor', 'person-artist/author', 'person-athlete', 'person-director', 'person-other', 'person-politician', 'person-scholar', 'person-soldier', 'product-airplane', 'product-car', 'product-food', 'product-game', 'product-other', 'product-ship', 'product-software', 'product-train', 'product-weapon']
+2026-02-12 08:57:10,461 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+Traceback (most recent call last):
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/orchestrator.py", line 303, in run_experiment_task
+    metrics = run_experiment(
+              ^^^^^^^^^^^^^^^
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/run_codeie_experiments.py", line 834, in run_experiment
+    ds_test = load_from_disk(test_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ann/anaconda3/envs/CodeIE/lib/python3.12/site-packages/datasets/load.py", line 1562, in load_from_disk
+    raise FileNotFoundError(f"Directory {dataset_path} not found")
+FileNotFoundError: Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,461 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+2026-02-12 08:57:10,461 - INFO - Entity types (66): ['art-broadcastprogram', 'art-film', 'art-music', 'art-other', 'art-painting', 'art-writtenart', 'building-airport', 'building-hospital', 'building-hotel', 'building-library', 'building-other', 'building-restaurant', 'building-sportsfacility', 'building-theater', 'event-attack/battle/war/militaryconflict', 'event-disaster', 'event-election', 'event-other', 'event-protest', 'event-sportsevent', 'location-GPE', 'location-bodiesofwater', 'location-island', 'location-mountain', 'location-other', 'location-park', 'location-road/railway/highway/transit', 'organization-company', 'organization-education', 'organization-government/governmentagency', 'organization-media/newspaper', 'organization-other', 'organization-politicalparty', 'organization-religion', 'organization-showorganization', 'organization-sportsleague', 'organization-sportsteam', 'other-astronomything', 'other-award', 'other-biologything', 'other-chemicalthing', 'other-currency', 'other-disease', 'other-educationaldegree', 'other-god', 'other-language', 'other-law', 'other-livingthing', 'other-medical', 'person-actor', 'person-artist/author', 'person-athlete', 'person-director', 'person-other', 'person-politician', 'person-scholar', 'person-soldier', 'product-airplane', 'product-car', 'product-food', 'product-game', 'product-other', 'product-ship', 'product-software', 'product-train', 'product-weapon']
+2026-02-12 08:57:10,461 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+Traceback (most recent call last):
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/orchestrator.py", line 303, in run_experiment_task
+    metrics = run_experiment(
+              ^^^^^^^^^^^^^^^
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/run_codeie_experiments.py", line 834, in run_experiment
+    ds_test = load_from_disk(test_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ann/anaconda3/envs/CodeIE/lib/python3.12/site-packages/datasets/load.py", line 1562, in load_from_disk
+    raise FileNotFoundError(f"Directory {dataset_path} not found")
+FileNotFoundError: Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,462 - INFO - ============================================================
+2026-02-12 08:57:10,462 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-12 08:57:10,462 - INFO - ============================================================
+2026-02-12 08:57:10,462 - INFO - Granularity: fine
+2026-02-12 08:57:10,462 - ERROR - Failed: qwen2.5-coder_fine_pl_sentence_reordering - Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,462 - INFO - Style: pl
+2026-02-12 08:57:10,462 - INFO - Variation: backtrans_sp
+2026-02-12 08:57:10,462 - INFO - Model: qwen2.5-coder:7b
+2026-02-12 08:57:10,462 - INFO - ============================================================
+2026-02-12 08:57:10,462 - INFO - Using ChatOllama (Chat API) for qwen2.5-coder:7b with timeout=180s
+2026-02-12 08:57:10,462 - ERROR - Failed: qwen2.5_fine_pl_sentence_reordering - Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,463 - ERROR - Failed: qwen2.5-coder_fine_pl_reodering - Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,463 - WARNING - 3 consecutive failures detected. Triggering Ollama recovery...
+2026-02-12 08:57:10,463 - INFO - ============================================================
+2026-02-12 08:57:10,463 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-12 08:57:10,463 - INFO - ============================================================
+2026-02-12 08:57:10,463 - INFO - Granularity: fine
+2026-02-12 08:57:10,464 - INFO - Style: pl
+2026-02-12 08:57:10,464 - INFO - Variation: backtrans_tu
+2026-02-12 08:57:10,464 - INFO - Model: qwen2.5:7b
+2026-02-12 08:57:10,464 - INFO - ============================================================
+2026-02-12 08:57:10,464 - INFO - Using ChatOllama (Chat API) for qwen2.5:7b with timeout=180s
+2026-02-12 08:57:10,464 - INFO - ============================================================
+2026-02-12 08:57:10,464 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-12 08:57:10,464 - INFO - ============================================================
+2026-02-12 08:57:10,464 - INFO - Granularity: fine
+2026-02-12 08:57:10,464 - INFO - Style: pl
+2026-02-12 08:57:10,464 - INFO - Variation: backtrans_tu
+2026-02-12 08:57:10,464 - INFO - Model: qwen2.5-coder:7b
+2026-02-12 08:57:10,464 - INFO - ============================================================
+2026-02-12 08:57:10,464 - INFO - Using ChatOllama (Chat API) for qwen2.5-coder:7b with timeout=180s
+2026-02-12 08:57:10,496 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+2026-02-12 08:57:10,496 - INFO - Entity types (66): ['art-broadcastprogram', 'art-film', 'art-music', 'art-other', 'art-painting', 'art-writtenart', 'building-airport', 'building-hospital', 'building-hotel', 'building-library', 'building-other', 'building-restaurant', 'building-sportsfacility', 'building-theater', 'event-attack/battle/war/militaryconflict', 'event-disaster', 'event-election', 'event-other', 'event-protest', 'event-sportsevent', 'location-GPE', 'location-bodiesofwater', 'location-island', 'location-mountain', 'location-other', 'location-park', 'location-road/railway/highway/transit', 'organization-company', 'organization-education', 'organization-government/governmentagency', 'organization-media/newspaper', 'organization-other', 'organization-politicalparty', 'organization-religion', 'organization-showorganization', 'organization-sportsleague', 'organization-sportsteam', 'other-astronomything', 'other-award', 'other-biologything', 'other-chemicalthing', 'other-currency', 'other-disease', 'other-educationaldegree', 'other-god', 'other-language', 'other-law', 'other-livingthing', 'other-medical', 'person-actor', 'person-artist/author', 'person-athlete', 'person-director', 'person-other', 'person-politician', 'person-scholar', 'person-soldier', 'product-airplane', 'product-car', 'product-food', 'product-game', 'product-other', 'product-ship', 'product-software', 'product-train', 'product-weapon']
+2026-02-12 08:57:10,496 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+Traceback (most recent call last):
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/orchestrator.py", line 303, in run_experiment_task
+    metrics = run_experiment(
+              ^^^^^^^^^^^^^^^
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/run_codeie_experiments.py", line 834, in run_experiment
+    ds_test = load_from_disk(test_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ann/anaconda3/envs/CodeIE/lib/python3.12/site-packages/datasets/load.py", line 1562, in load_from_disk
+    raise FileNotFoundError(f"Directory {dataset_path} not found")
+FileNotFoundError: Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,498 - ERROR - Failed: qwen2.5_fine_pl_backtrans_ch - Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,498 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+2026-02-12 08:57:10,498 - INFO - Entity types (66): ['art-broadcastprogram', 'art-film', 'art-music', 'art-other', 'art-painting', 'art-writtenart', 'building-airport', 'building-hospital', 'building-hotel', 'building-library', 'building-other', 'building-restaurant', 'building-sportsfacility', 'building-theater', 'event-attack/battle/war/militaryconflict', 'event-disaster', 'event-election', 'event-other', 'event-protest', 'event-sportsevent', 'location-GPE', 'location-bodiesofwater', 'location-island', 'location-mountain', 'location-other', 'location-park', 'location-road/railway/highway/transit', 'organization-company', 'organization-education', 'organization-government/governmentagency', 'organization-media/newspaper', 'organization-other', 'organization-politicalparty', 'organization-religion', 'organization-showorganization', 'organization-sportsleague', 'organization-sportsteam', 'other-astronomything', 'other-award', 'other-biologything', 'other-chemicalthing', 'other-currency', 'other-disease', 'other-educationaldegree', 'other-god', 'other-language', 'other-law', 'other-livingthing', 'other-medical', 'person-actor', 'person-artist/author', 'person-athlete', 'person-director', 'person-other', 'person-politician', 'person-scholar', 'person-soldier', 'product-airplane', 'product-car', 'product-food', 'product-game', 'product-other', 'product-ship', 'product-software', 'product-train', 'product-weapon']
+2026-02-12 08:57:10,498 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+2026-02-12 08:57:10,499 - INFO - ============================================================
+2026-02-12 08:57:10,499 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-12 08:57:10,499 - INFO - ============================================================
+2026-02-12 08:57:10,499 - INFO - Granularity: fine
+2026-02-12 08:57:10,499 - INFO - Style: nl
+Traceback (most recent call last):
+2026-02-12 08:57:10,499 - INFO - Variation: v0_original
+2026-02-12 08:57:10,499 - INFO - Model: qwen2.5:7b
+2026-02-12 08:57:10,499 - INFO - ============================================================
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/orchestrator.py", line 303, in run_experiment_task
+    metrics = run_experiment(
+              ^^^^^^^^^^^^^^^
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/run_codeie_experiments.py", line 834, in run_experiment
+    ds_test = load_from_disk(test_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ann/anaconda3/envs/CodeIE/lib/python3.12/site-packages/datasets/load.py", line 1562, in load_from_disk
+    raise FileNotFoundError(f"Directory {dataset_path} not found")
+2026-02-12 08:57:10,499 - INFO - Using ChatOllama (Chat API) for qwen2.5:7b with timeout=180s
+FileNotFoundError: Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,500 - ERROR - Failed: qwen2.5-coder_fine_pl_backtrans_ch - Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,501 - INFO - ============================================================
+2026-02-12 08:57:10,501 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-12 08:57:10,501 - INFO - ============================================================
+2026-02-12 08:57:10,501 - INFO - Granularity: fine
+2026-02-12 08:57:10,501 - INFO - Style: nl
+2026-02-12 08:57:10,501 - INFO - Variation: v0_original
+2026-02-12 08:57:10,501 - INFO - Model: qwen2.5-coder:7b
+2026-02-12 08:57:10,501 - INFO - ============================================================
+2026-02-12 08:57:10,501 - INFO - Using ChatOllama (Chat API) for qwen2.5-coder:7b with timeout=180s
+2026-02-12 08:57:10,507 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+2026-02-12 08:57:10,507 - INFO - Entity types (66): ['art-broadcastprogram', 'art-film', 'art-music', 'art-other', 'art-painting', 'art-writtenart', 'building-airport', 'building-hospital', 'building-hotel', 'building-library', 'building-other', 'building-restaurant', 'building-sportsfacility', 'building-theater', 'event-attack/battle/war/militaryconflict', 'event-disaster', 'event-election', 'event-other', 'event-protest', 'event-sportsevent', 'location-GPE', 'location-bodiesofwater', 'location-island', 'location-mountain', 'location-other', 'location-park', 'location-road/railway/highway/transit', 'organization-company', 'organization-education', 'organization-government/governmentagency', 'organization-media/newspaper', 'organization-other', 'organization-politicalparty', 'organization-religion', 'organization-showorganization', 'organization-sportsleague', 'organization-sportsteam', 'other-astronomything', 'other-award', 'other-biologything', 'other-chemicalthing', 'other-currency', 'other-disease', 'other-educationaldegree', 'other-god', 'other-language', 'other-law', 'other-livingthing', 'other-medical', 'person-actor', 'person-artist/author', 'person-athlete', 'person-director', 'person-other', 'person-politician', 'person-scholar', 'person-soldier', 'product-airplane', 'product-car', 'product-food', 'product-game', 'product-other', 'product-ship', 'product-software', 'product-train', 'product-weapon']
+2026-02-12 08:57:10,507 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+Traceback (most recent call last):
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/orchestrator.py", line 303, in run_experiment_task
+    metrics = run_experiment(
+              ^^^^^^^^^^^^^^^
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/run_codeie_experiments.py", line 834, in run_experiment
+    ds_test = load_from_disk(test_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ann/anaconda3/envs/CodeIE/lib/python3.12/site-packages/datasets/load.py", line 1562, in load_from_disk
+    raise FileNotFoundError(f"Directory {dataset_path} not found")
+FileNotFoundError: Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,508 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+2026-02-12 08:57:10,508 - INFO - Entity types (66): ['art-broadcastprogram', 'art-film', 'art-music', 'art-other', 'art-painting', 'art-writtenart', 'building-airport', 'building-hospital', 'building-hotel', 'building-library', 'building-other', 'building-restaurant', 'building-sportsfacility', 'building-theater', 'event-attack/battle/war/militaryconflict', 'event-disaster', 'event-election', 'event-other', 'event-protest', 'event-sportsevent', 'location-GPE', 'location-bodiesofwater', 'location-island', 'location-mountain', 'location-other', 'location-park', 'location-road/railway/highway/transit', 'organization-company', 'organization-education', 'organization-government/governmentagency', 'organization-media/newspaper', 'organization-other', 'organization-politicalparty', 'organization-religion', 'organization-showorganization', 'organization-sportsleague', 'organization-sportsteam', 'other-astronomything', 'other-award', 'other-biologything', 'other-chemicalthing', 'other-currency', 'other-disease', 'other-educationaldegree', 'other-god', 'other-language', 'other-law', 'other-livingthing', 'other-medical', 'person-actor', 'person-artist/author', 'person-athlete', 'person-director', 'person-other', 'person-politician', 'person-scholar', 'person-soldier', 'product-airplane', 'product-car', 'product-food', 'product-game', 'product-other', 'product-ship', 'product-software', 'product-train', 'product-weapon']
+2026-02-12 08:57:10,508 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+Traceback (most recent call last):
+2026-02-12 08:57:10,508 - ERROR - Failed: qwen2.5_fine_pl_backtrans_sp - Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/orchestrator.py", line 303, in run_experiment_task
+    metrics = run_experiment(
+              ^^^^^^^^^^^^^^^
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/run_codeie_experiments.py", line 834, in run_experiment
+    ds_test = load_from_disk(test_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ann/anaconda3/envs/CodeIE/lib/python3.12/site-packages/datasets/load.py", line 1562, in load_from_disk
+    raise FileNotFoundError(f"Directory {dataset_path} not found")
+FileNotFoundError: Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,508 - WARNING - 3 consecutive failures detected. Triggering Ollama recovery...
+2026-02-12 08:57:10,509 - INFO - ============================================================
+2026-02-12 08:57:10,509 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-12 08:57:10,509 - INFO - ============================================================
+2026-02-12 08:57:10,509 - INFO - Granularity: fine
+2026-02-12 08:57:10,509 - INFO - Style: nl
+2026-02-12 08:57:10,509 - INFO - Variation: lexical_substitution
+2026-02-12 08:57:10,509 - INFO - Model: qwen2.5:7b
+2026-02-12 08:57:10,509 - INFO - ============================================================
+2026-02-12 08:57:10,509 - INFO - Using ChatOllama (Chat API) for qwen2.5:7b with timeout=180s
+2026-02-12 08:57:10,509 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+2026-02-12 08:57:10,509 - INFO - Entity types (66): ['art-broadcastprogram', 'art-film', 'art-music', 'art-other', 'art-painting', 'art-writtenart', 'building-airport', 'building-hospital', 'building-hotel', 'building-library', 'building-other', 'building-restaurant', 'building-sportsfacility', 'building-theater', 'event-attack/battle/war/militaryconflict', 'event-disaster', 'event-election', 'event-other', 'event-protest', 'event-sportsevent', 'location-GPE', 'location-bodiesofwater', 'location-island', 'location-mountain', 'location-other', 'location-park', 'location-road/railway/highway/transit', 'organization-company', 'organization-education', 'organization-government/governmentagency', 'organization-media/newspaper', 'organization-other', 'organization-politicalparty', 'organization-religion', 'organization-showorganization', 'organization-sportsleague', 'organization-sportsteam', 'other-astronomything', 'other-award', 'other-biologything', 'other-chemicalthing', 'other-currency', 'other-disease', 'other-educationaldegree', 'other-god', 'other-language', 'other-law', 'other-livingthing', 'other-medical', 'person-actor', 'person-artist/author', 'person-athlete', 'person-director', 'person-other', 'person-politician', 'person-scholar', 'person-soldier', 'product-airplane', 'product-car', 'product-food', 'product-game', 'product-other', 'product-ship', 'product-software', 'product-train', 'product-weapon']
+2026-02-12 08:57:10,509 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+Traceback (most recent call last):
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/orchestrator.py", line 303, in run_experiment_task
+    metrics = run_experiment(
+              ^^^^^^^^^^^^^^^
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/run_codeie_experiments.py", line 834, in run_experiment
+    ds_test = load_from_disk(test_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ann/anaconda3/envs/CodeIE/lib/python3.12/site-packages/datasets/load.py", line 1562, in load_from_disk
+    raise FileNotFoundError(f"Directory {dataset_path} not found")
+FileNotFoundError: Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,510 - INFO - ============================================================
+2026-02-12 08:57:10,511 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-12 08:57:10,511 - INFO - ============================================================
+2026-02-12 08:57:10,511 - INFO - Granularity: fine
+2026-02-12 08:57:10,511 - INFO - Style: nl
+2026-02-12 08:57:10,511 - INFO - Variation: lexical_substitution
+2026-02-12 08:57:10,511 - INFO - Model: qwen2.5-coder:7b
+2026-02-12 08:57:10,511 - INFO - ============================================================
+2026-02-12 08:57:10,511 - INFO - Using ChatOllama (Chat API) for qwen2.5-coder:7b with timeout=180s
+2026-02-12 08:57:10,511 - ERROR - Failed: qwen2.5-coder_fine_pl_backtrans_sp - Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,511 - ERROR - Failed: qwen2.5_fine_pl_backtrans_tu - Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,512 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+2026-02-12 08:57:10,512 - INFO - Entity types (66): ['art-broadcastprogram', 'art-film', 'art-music', 'art-other', 'art-painting', 'art-writtenart', 'building-airport', 'building-hospital', 'building-hotel', 'building-library', 'building-other', 'building-restaurant', 'building-sportsfacility', 'building-theater', 'event-attack/battle/war/militaryconflict', 'event-disaster', 'event-election', 'event-other', 'event-protest', 'event-sportsevent', 'location-GPE', 'location-bodiesofwater', 'location-island', 'location-mountain', 'location-other', 'location-park', 'location-road/railway/highway/transit', 'organization-company', 'organization-education', 'organization-government/governmentagency', 'organization-media/newspaper', 'organization-other', 'organization-politicalparty', 'organization-religion', 'organization-showorganization', 'organization-sportsleague', 'organization-sportsteam', 'other-astronomything', 'other-award', 'other-biologything', 'other-chemicalthing', 'other-currency', 'other-disease', 'other-educationaldegree', 'other-god', 'other-language', 'other-law', 'other-livingthing', 'other-medical', 'person-actor', 'person-artist/author', 'person-athlete', 'person-director', 'person-other', 'person-politician', 'person-scholar', 'person-soldier', 'product-airplane', 'product-car', 'product-food', 'product-game', 'product-other', 'product-ship', 'product-software', 'product-train', 'product-weapon']
+2026-02-12 08:57:10,512 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+2026-02-12 08:57:10,512 - INFO - ============================================================
+2026-02-12 08:57:10,512 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+Traceback (most recent call last):
+2026-02-12 08:57:10,512 - INFO - ============================================================
+2026-02-12 08:57:10,512 - INFO - Granularity: fine
+2026-02-12 08:57:10,512 - INFO - Style: nl
+2026-02-12 08:57:10,512 - INFO - Variation: reodering
+2026-02-12 08:57:10,512 - INFO - Model: qwen2.5:7b
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/orchestrator.py", line 303, in run_experiment_task
+    metrics = run_experiment(
+              ^^^^^^^^^^^^^^^
+2026-02-12 08:57:10,512 - INFO - ============================================================
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/run_codeie_experiments.py", line 834, in run_experiment
+    ds_test = load_from_disk(test_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ann/anaconda3/envs/CodeIE/lib/python3.12/site-packages/datasets/load.py", line 1562, in load_from_disk
+    raise FileNotFoundError(f"Directory {dataset_path} not found")
+FileNotFoundError: Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,512 - INFO - Using ChatOllama (Chat API) for qwen2.5:7b with timeout=180s
+2026-02-12 08:57:10,513 - ERROR - Failed: qwen2.5-coder_fine_pl_backtrans_tu - Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,513 - WARNING - 3 consecutive failures detected. Triggering Ollama recovery...
+2026-02-12 08:57:10,514 - INFO - ============================================================
+2026-02-12 08:57:10,514 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-12 08:57:10,514 - INFO - ============================================================
+2026-02-12 08:57:10,514 - INFO - Granularity: fine
+2026-02-12 08:57:10,514 - INFO - Style: nl
+2026-02-12 08:57:10,514 - INFO - Variation: reodering
+2026-02-12 08:57:10,514 - INFO - Model: qwen2.5-coder:7b
+2026-02-12 08:57:10,514 - INFO - ============================================================
+2026-02-12 08:57:10,514 - INFO - Using ChatOllama (Chat API) for qwen2.5-coder:7b with timeout=180s
+2026-02-12 08:57:10,544 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+2026-02-12 08:57:10,544 - INFO - Entity types (66): ['art-broadcastprogram', 'art-film', 'art-music', 'art-other', 'art-painting', 'art-writtenart', 'building-airport', 'building-hospital', 'building-hotel', 'building-library', 'building-other', 'building-restaurant', 'building-sportsfacility', 'building-theater', 'event-attack/battle/war/militaryconflict', 'event-disaster', 'event-election', 'event-other', 'event-protest', 'event-sportsevent', 'location-GPE', 'location-bodiesofwater', 'location-island', 'location-mountain', 'location-other', 'location-park', 'location-road/railway/highway/transit', 'organization-company', 'organization-education', 'organization-government/governmentagency', 'organization-media/newspaper', 'organization-other', 'organization-politicalparty', 'organization-religion', 'organization-showorganization', 'organization-sportsleague', 'organization-sportsteam', 'other-astronomything', 'other-award', 'other-biologything', 'other-chemicalthing', 'other-currency', 'other-disease', 'other-educationaldegree', 'other-god', 'other-language', 'other-law', 'other-livingthing', 'other-medical', 'person-actor', 'person-artist/author', 'person-athlete', 'person-director', 'person-other', 'person-politician', 'person-scholar', 'person-soldier', 'product-airplane', 'product-car', 'product-food', 'product-game', 'product-other', 'product-ship', 'product-software', 'product-train', 'product-weapon']
+2026-02-12 08:57:10,544 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+Traceback (most recent call last):
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/orchestrator.py", line 303, in run_experiment_task
+    metrics = run_experiment(
+              ^^^^^^^^^^^^^^^
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/run_codeie_experiments.py", line 834, in run_experiment
+    ds_test = load_from_disk(test_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ann/anaconda3/envs/CodeIE/lib/python3.12/site-packages/datasets/load.py", line 1562, in load_from_disk
+    raise FileNotFoundError(f"Directory {dataset_path} not found")
+FileNotFoundError: Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,546 - ERROR - Failed: qwen2.5_fine_nl_base - Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,547 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+2026-02-12 08:57:10,547 - INFO - Entity types (66): ['art-broadcastprogram', 'art-film', 'art-music', 'art-other', 'art-painting', 'art-writtenart', 'building-airport', 'building-hospital', 'building-hotel', 'building-library', 'building-other', 'building-restaurant', 'building-sportsfacility', 'building-theater', 'event-attack/battle/war/militaryconflict', 'event-disaster', 'event-election', 'event-other', 'event-protest', 'event-sportsevent', 'location-GPE', 'location-bodiesofwater', 'location-island', 'location-mountain', 'location-other', 'location-park', 'location-road/railway/highway/transit', 'organization-company', 'organization-education', 'organization-government/governmentagency', 'organization-media/newspaper', 'organization-other', 'organization-politicalparty', 'organization-religion', 'organization-showorganization', 'organization-sportsleague', 'organization-sportsteam', 'other-astronomything', 'other-award', 'other-biologything', 'other-chemicalthing', 'other-currency', 'other-disease', 'other-educationaldegree', 'other-god', 'other-language', 'other-law', 'other-livingthing', 'other-medical', 'person-actor', 'person-artist/author', 'person-athlete', 'person-director', 'person-other', 'person-politician', 'person-scholar', 'person-soldier', 'product-airplane', 'product-car', 'product-food', 'product-game', 'product-other', 'product-ship', 'product-software', 'product-train', 'product-weapon']
+2026-02-12 08:57:10,547 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+Traceback (most recent call last):
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/orchestrator.py", line 303, in run_experiment_task
+    metrics = run_experiment(
+              ^^^^^^^^^^^^^^^
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/run_codeie_experiments.py", line 834, in run_experiment
+    ds_test = load_from_disk(test_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ann/anaconda3/envs/CodeIE/lib/python3.12/site-packages/datasets/load.py", line 1562, in load_from_disk
+    raise FileNotFoundError(f"Directory {dataset_path} not found")
+FileNotFoundError: Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,547 - INFO - ============================================================
+2026-02-12 08:57:10,547 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-12 08:57:10,547 - INFO - ============================================================
+2026-02-12 08:57:10,547 - INFO - Granularity: fine
+2026-02-12 08:57:10,547 - INFO - Style: nl
+2026-02-12 08:57:10,547 - INFO - Variation: sentence_reordering
+2026-02-12 08:57:10,547 - INFO - Model: qwen2.5:7b
+2026-02-12 08:57:10,547 - INFO - ============================================================
+2026-02-12 08:57:10,547 - INFO - Using ChatOllama (Chat API) for qwen2.5:7b with timeout=180s
+2026-02-12 08:57:10,548 - ERROR - Failed: qwen2.5-coder_fine_nl_base - Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,549 - INFO - ============================================================
+2026-02-12 08:57:10,549 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-12 08:57:10,549 - INFO - ============================================================
+2026-02-12 08:57:10,549 - INFO - Granularity: fine
+2026-02-12 08:57:10,549 - INFO - Style: nl
+2026-02-12 08:57:10,549 - INFO - Variation: sentence_reordering
+2026-02-12 08:57:10,549 - INFO - Model: qwen2.5-coder:7b
+2026-02-12 08:57:10,550 - INFO - ============================================================
+2026-02-12 08:57:10,550 - INFO - Using ChatOllama (Chat API) for qwen2.5-coder:7b with timeout=180s
+2026-02-12 08:57:10,555 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+2026-02-12 08:57:10,555 - INFO - Entity types (66): ['art-broadcastprogram', 'art-film', 'art-music', 'art-other', 'art-painting', 'art-writtenart', 'building-airport', 'building-hospital', 'building-hotel', 'building-library', 'building-other', 'building-restaurant', 'building-sportsfacility', 'building-theater', 'event-attack/battle/war/militaryconflict', 'event-disaster', 'event-election', 'event-other', 'event-protest', 'event-sportsevent', 'location-GPE', 'location-bodiesofwater', 'location-island', 'location-mountain', 'location-other', 'location-park', 'location-road/railway/highway/transit', 'organization-company', 'organization-education', 'organization-government/governmentagency', 'organization-media/newspaper', 'organization-other', 'organization-politicalparty', 'organization-religion', 'organization-showorganization', 'organization-sportsleague', 'organization-sportsteam', 'other-astronomything', 'other-award', 'other-biologything', 'other-chemicalthing', 'other-currency', 'other-disease', 'other-educationaldegree', 'other-god', 'other-language', 'other-law', 'other-livingthing', 'other-medical', 'person-actor', 'person-artist/author', 'person-athlete', 'person-director', 'person-other', 'person-politician', 'person-scholar', 'person-soldier', 'product-airplane', 'product-car', 'product-food', 'product-game', 'product-other', 'product-ship', 'product-software', 'product-train', 'product-weapon']
+2026-02-12 08:57:10,555 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+Traceback (most recent call last):
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/orchestrator.py", line 303, in run_experiment_task
+    metrics = run_experiment(
+              ^^^^^^^^^^^^^^^
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/run_codeie_experiments.py", line 834, in run_experiment
+    ds_test = load_from_disk(test_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ann/anaconda3/envs/CodeIE/lib/python3.12/site-packages/datasets/load.py", line 1562, in load_from_disk
+    raise FileNotFoundError(f"Directory {dataset_path} not found")
+FileNotFoundError: Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,557 - ERROR - Failed: qwen2.5_fine_nl_lexical_substitution - Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,557 - WARNING - 3 consecutive failures detected. Triggering Ollama recovery...
+2026-02-12 08:57:10,558 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+2026-02-12 08:57:10,558 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+2026-02-12 08:57:10,558 - INFO - Entity types (66): ['art-broadcastprogram', 'art-film', 'art-music', 'art-other', 'art-painting', 'art-writtenart', 'building-airport', 'building-hospital', 'building-hotel', 'building-library', 'building-other', 'building-restaurant', 'building-sportsfacility', 'building-theater', 'event-attack/battle/war/militaryconflict', 'event-disaster', 'event-election', 'event-other', 'event-protest', 'event-sportsevent', 'location-GPE', 'location-bodiesofwater', 'location-island', 'location-mountain', 'location-other', 'location-park', 'location-road/railway/highway/transit', 'organization-company', 'organization-education', 'organization-government/governmentagency', 'organization-media/newspaper', 'organization-other', 'organization-politicalparty', 'organization-religion', 'organization-showorganization', 'organization-sportsleague', 'organization-sportsteam', 'other-astronomything', 'other-award', 'other-biologything', 'other-chemicalthing', 'other-currency', 'other-disease', 'other-educationaldegree', 'other-god', 'other-language', 'other-law', 'other-livingthing', 'other-medical', 'person-actor', 'person-artist/author', 'person-athlete', 'person-director', 'person-other', 'person-politician', 'person-scholar', 'person-soldier', 'product-airplane', 'product-car', 'product-food', 'product-game', 'product-other', 'product-ship', 'product-software', 'product-train', 'product-weapon']
+2026-02-12 08:57:10,558 - INFO - Entity types (66): ['art-broadcastprogram', 'art-film', 'art-music', 'art-other', 'art-painting', 'art-writtenart', 'building-airport', 'building-hospital', 'building-hotel', 'building-library', 'building-other', 'building-restaurant', 'building-sportsfacility', 'building-theater', 'event-attack/battle/war/militaryconflict', 'event-disaster', 'event-election', 'event-other', 'event-protest', 'event-sportsevent', 'location-GPE', 'location-bodiesofwater', 'location-island', 'location-mountain', 'location-other', 'location-park', 'location-road/railway/highway/transit', 'organization-company', 'organization-education', 'organization-government/governmentagency', 'organization-media/newspaper', 'organization-other', 'organization-politicalparty', 'organization-religion', 'organization-showorganization', 'organization-sportsleague', 'organization-sportsteam', 'other-astronomything', 'other-award', 'other-biologything', 'other-chemicalthing', 'other-currency', 'other-disease', 'other-educationaldegree', 'other-god', 'other-language', 'other-law', 'other-livingthing', 'other-medical', 'person-actor', 'person-artist/author', 'person-athlete', 'person-director', 'person-other', 'person-politician', 'person-scholar', 'person-soldier', 'product-airplane', 'product-car', 'product-food', 'product-game', 'product-other', 'product-ship', 'product-software', 'product-train', 'product-weapon']
+2026-02-12 08:57:10,558 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+2026-02-12 08:57:10,558 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+Traceback (most recent call last):
+Traceback (most recent call last):
+2026-02-12 08:57:10,558 - INFO - ============================================================
+2026-02-12 08:57:10,558 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-12 08:57:10,558 - INFO - ============================================================
+2026-02-12 08:57:10,558 - INFO - Granularity: fine
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/orchestrator.py", line 303, in run_experiment_task
+    metrics = run_experiment(
+              ^^^^^^^^^^^^^^^
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/run_codeie_experiments.py", line 834, in run_experiment
+    ds_test = load_from_disk(test_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ann/anaconda3/envs/CodeIE/lib/python3.12/site-packages/datasets/load.py", line 1562, in load_from_disk
+    raise FileNotFoundError(f"Directory {dataset_path} not found")
+2026-02-12 08:57:10,558 - INFO - Style: nl
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/orchestrator.py", line 303, in run_experiment_task
+    metrics = run_experiment(
+              ^^^^^^^^^^^^^^^
+FileNotFoundError: Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/run_codeie_experiments.py", line 834, in run_experiment
+    ds_test = load_from_disk(test_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ann/anaconda3/envs/CodeIE/lib/python3.12/site-packages/datasets/load.py", line 1562, in load_from_disk
+    raise FileNotFoundError(f"Directory {dataset_path} not found")
+2026-02-12 08:57:10,558 - INFO - Variation: backtrans_ch
+FileNotFoundError: Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,558 - INFO - Model: qwen2.5:7b
+2026-02-12 08:57:10,558 - INFO - ============================================================
+2026-02-12 08:57:10,558 - INFO - Using ChatOllama (Chat API) for qwen2.5:7b with timeout=180s
+2026-02-12 08:57:10,560 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+2026-02-12 08:57:10,560 - ERROR - Failed: qwen2.5_fine_nl_reodering - Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,560 - INFO - Entity types (66): ['art-broadcastprogram', 'art-film', 'art-music', 'art-other', 'art-painting', 'art-writtenart', 'building-airport', 'building-hospital', 'building-hotel', 'building-library', 'building-other', 'building-restaurant', 'building-sportsfacility', 'building-theater', 'event-attack/battle/war/militaryconflict', 'event-disaster', 'event-election', 'event-other', 'event-protest', 'event-sportsevent', 'location-GPE', 'location-bodiesofwater', 'location-island', 'location-mountain', 'location-other', 'location-park', 'location-road/railway/highway/transit', 'organization-company', 'organization-education', 'organization-government/governmentagency', 'organization-media/newspaper', 'organization-other', 'organization-politicalparty', 'organization-religion', 'organization-showorganization', 'organization-sportsleague', 'organization-sportsteam', 'other-astronomything', 'other-award', 'other-biologything', 'other-chemicalthing', 'other-currency', 'other-disease', 'other-educationaldegree', 'other-god', 'other-language', 'other-law', 'other-livingthing', 'other-medical', 'person-actor', 'person-artist/author', 'person-athlete', 'person-director', 'person-other', 'person-politician', 'person-scholar', 'person-soldier', 'product-airplane', 'product-car', 'product-food', 'product-game', 'product-other', 'product-ship', 'product-software', 'product-train', 'product-weapon']
+2026-02-12 08:57:10,560 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+2026-02-12 08:57:10,560 - ERROR - Failed: qwen2.5-coder_fine_nl_lexical_substitution - Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+Traceback (most recent call last):
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/orchestrator.py", line 303, in run_experiment_task
+    metrics = run_experiment(
+              ^^^^^^^^^^^^^^^
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/run_codeie_experiments.py", line 834, in run_experiment
+    ds_test = load_from_disk(test_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ann/anaconda3/envs/CodeIE/lib/python3.12/site-packages/datasets/load.py", line 1562, in load_from_disk
+    raise FileNotFoundError(f"Directory {dataset_path} not found")
+FileNotFoundError: Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,561 - INFO - ============================================================
+2026-02-12 08:57:10,561 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-12 08:57:10,561 - INFO - ============================================================
+2026-02-12 08:57:10,561 - INFO - Granularity: fine
+2026-02-12 08:57:10,561 - INFO - ============================================================
+2026-02-12 08:57:10,561 - INFO - Style: nl
+2026-02-12 08:57:10,561 - INFO - Variation: backtrans_ch
+2026-02-12 08:57:10,561 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-12 08:57:10,561 - INFO - Model: qwen2.5-coder:7b
+2026-02-12 08:57:10,561 - INFO - ============================================================
+2026-02-12 08:57:10,561 - INFO - ============================================================
+2026-02-12 08:57:10,561 - INFO - Granularity: fine
+2026-02-12 08:57:10,561 - INFO - Style: nl
+2026-02-12 08:57:10,561 - INFO - Variation: backtrans_sp
+2026-02-12 08:57:10,561 - INFO - Model: qwen2.5:7b
+2026-02-12 08:57:10,561 - INFO - ============================================================
+2026-02-12 08:57:10,561 - INFO - Using ChatOllama (Chat API) for qwen2.5-coder:7b with timeout=180s
+2026-02-12 08:57:10,561 - INFO - Using ChatOllama (Chat API) for qwen2.5:7b with timeout=180s
+2026-02-12 08:57:10,562 - ERROR - Failed: qwen2.5-coder_fine_nl_reodering - Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,562 - WARNING - 3 consecutive failures detected. Triggering Ollama recovery...
+2026-02-12 08:57:10,563 - INFO - ============================================================
+2026-02-12 08:57:10,563 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-12 08:57:10,563 - INFO - ============================================================
+2026-02-12 08:57:10,563 - INFO - Granularity: fine
+2026-02-12 08:57:10,563 - INFO - Style: nl
+2026-02-12 08:57:10,563 - INFO - Variation: backtrans_sp
+2026-02-12 08:57:10,563 - INFO - Model: qwen2.5-coder:7b
+2026-02-12 08:57:10,563 - INFO - ============================================================
+2026-02-12 08:57:10,563 - INFO - Using ChatOllama (Chat API) for qwen2.5-coder:7b with timeout=180s
+2026-02-12 08:57:10,593 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+2026-02-12 08:57:10,593 - INFO - Entity types (66): ['art-broadcastprogram', 'art-film', 'art-music', 'art-other', 'art-painting', 'art-writtenart', 'building-airport', 'building-hospital', 'building-hotel', 'building-library', 'building-other', 'building-restaurant', 'building-sportsfacility', 'building-theater', 'event-attack/battle/war/militaryconflict', 'event-disaster', 'event-election', 'event-other', 'event-protest', 'event-sportsevent', 'location-GPE', 'location-bodiesofwater', 'location-island', 'location-mountain', 'location-other', 'location-park', 'location-road/railway/highway/transit', 'organization-company', 'organization-education', 'organization-government/governmentagency', 'organization-media/newspaper', 'organization-other', 'organization-politicalparty', 'organization-religion', 'organization-showorganization', 'organization-sportsleague', 'organization-sportsteam', 'other-astronomything', 'other-award', 'other-biologything', 'other-chemicalthing', 'other-currency', 'other-disease', 'other-educationaldegree', 'other-god', 'other-language', 'other-law', 'other-livingthing', 'other-medical', 'person-actor', 'person-artist/author', 'person-athlete', 'person-director', 'person-other', 'person-politician', 'person-scholar', 'person-soldier', 'product-airplane', 'product-car', 'product-food', 'product-game', 'product-other', 'product-ship', 'product-software', 'product-train', 'product-weapon']
+2026-02-12 08:57:10,593 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+Traceback (most recent call last):
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/orchestrator.py", line 303, in run_experiment_task
+    metrics = run_experiment(
+              ^^^^^^^^^^^^^^^
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/run_codeie_experiments.py", line 834, in run_experiment
+    ds_test = load_from_disk(test_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ann/anaconda3/envs/CodeIE/lib/python3.12/site-packages/datasets/load.py", line 1562, in load_from_disk
+    raise FileNotFoundError(f"Directory {dataset_path} not found")
+FileNotFoundError: Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,594 - ERROR - Failed: qwen2.5_fine_nl_sentence_reordering - Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,595 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+2026-02-12 08:57:10,595 - INFO - Entity types (66): ['art-broadcastprogram', 'art-film', 'art-music', 'art-other', 'art-painting', 'art-writtenart', 'building-airport', 'building-hospital', 'building-hotel', 'building-library', 'building-other', 'building-restaurant', 'building-sportsfacility', 'building-theater', 'event-attack/battle/war/militaryconflict', 'event-disaster', 'event-election', 'event-other', 'event-protest', 'event-sportsevent', 'location-GPE', 'location-bodiesofwater', 'location-island', 'location-mountain', 'location-other', 'location-park', 'location-road/railway/highway/transit', 'organization-company', 'organization-education', 'organization-government/governmentagency', 'organization-media/newspaper', 'organization-other', 'organization-politicalparty', 'organization-religion', 'organization-showorganization', 'organization-sportsleague', 'organization-sportsteam', 'other-astronomything', 'other-award', 'other-biologything', 'other-chemicalthing', 'other-currency', 'other-disease', 'other-educationaldegree', 'other-god', 'other-language', 'other-law', 'other-livingthing', 'other-medical', 'person-actor', 'person-artist/author', 'person-athlete', 'person-director', 'person-other', 'person-politician', 'person-scholar', 'person-soldier', 'product-airplane', 'product-car', 'product-food', 'product-game', 'product-other', 'product-ship', 'product-software', 'product-train', 'product-weapon']
+2026-02-12 08:57:10,595 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+Traceback (most recent call last):
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/orchestrator.py", line 303, in run_experiment_task
+    metrics = run_experiment(
+              ^^^^^^^^^^^^^^^
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/run_codeie_experiments.py", line 834, in run_experiment
+    ds_test = load_from_disk(test_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ann/anaconda3/envs/CodeIE/lib/python3.12/site-packages/datasets/load.py", line 1562, in load_from_disk
+    raise FileNotFoundError(f"Directory {dataset_path} not found")
+FileNotFoundError: Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,596 - INFO - ============================================================
+2026-02-12 08:57:10,596 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-12 08:57:10,596 - INFO - ============================================================
+2026-02-12 08:57:10,596 - INFO - Granularity: fine
+2026-02-12 08:57:10,596 - INFO - Style: nl
+2026-02-12 08:57:10,596 - INFO - Variation: backtrans_tu
+2026-02-12 08:57:10,596 - INFO - Model: qwen2.5:7b
+2026-02-12 08:57:10,596 - INFO - ============================================================
+2026-02-12 08:57:10,596 - INFO - Using ChatOllama (Chat API) for qwen2.5:7b with timeout=180s
+2026-02-12 08:57:10,598 - INFO - ============================================================
+2026-02-12 08:57:10,598 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-12 08:57:10,598 - INFO - ============================================================
+2026-02-12 08:57:10,598 - INFO - Granularity: fine
+2026-02-12 08:57:10,598 - INFO - Style: nl
+2026-02-12 08:57:10,598 - INFO - Variation: backtrans_tu
+2026-02-12 08:57:10,598 - INFO - Model: qwen2.5-coder:7b
+2026-02-12 08:57:10,598 - INFO - ============================================================
+2026-02-12 08:57:10,598 - INFO - Using ChatOllama (Chat API) for qwen2.5-coder:7b with timeout=180s
+2026-02-12 08:57:10,599 - ERROR - Failed: qwen2.5-coder_fine_nl_sentence_reordering - Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,604 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+2026-02-12 08:57:10,604 - INFO - Entity types (66): ['art-broadcastprogram', 'art-film', 'art-music', 'art-other', 'art-painting', 'art-writtenart', 'building-airport', 'building-hospital', 'building-hotel', 'building-library', 'building-other', 'building-restaurant', 'building-sportsfacility', 'building-theater', 'event-attack/battle/war/militaryconflict', 'event-disaster', 'event-election', 'event-other', 'event-protest', 'event-sportsevent', 'location-GPE', 'location-bodiesofwater', 'location-island', 'location-mountain', 'location-other', 'location-park', 'location-road/railway/highway/transit', 'organization-company', 'organization-education', 'organization-government/governmentagency', 'organization-media/newspaper', 'organization-other', 'organization-politicalparty', 'organization-religion', 'organization-showorganization', 'organization-sportsleague', 'organization-sportsteam', 'other-astronomything', 'other-award', 'other-biologything', 'other-chemicalthing', 'other-currency', 'other-disease', 'other-educationaldegree', 'other-god', 'other-language', 'other-law', 'other-livingthing', 'other-medical', 'person-actor', 'person-artist/author', 'person-athlete', 'person-director', 'person-other', 'person-politician', 'person-scholar', 'person-soldier', 'product-airplane', 'product-car', 'product-food', 'product-game', 'product-other', 'product-ship', 'product-software', 'product-train', 'product-weapon']
+2026-02-12 08:57:10,604 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+Traceback (most recent call last):
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/orchestrator.py", line 303, in run_experiment_task
+    metrics = run_experiment(
+              ^^^^^^^^^^^^^^^
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/run_codeie_experiments.py", line 834, in run_experiment
+    ds_test = load_from_disk(test_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ann/anaconda3/envs/CodeIE/lib/python3.12/site-packages/datasets/load.py", line 1562, in load_from_disk
+    raise FileNotFoundError(f"Directory {dataset_path} not found")
+FileNotFoundError: Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,605 - ERROR - Failed: qwen2.5_fine_nl_backtrans_ch - Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,606 - WARNING - 3 consecutive failures detected. Triggering Ollama recovery...
+2026-02-12 08:57:10,608 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+2026-02-12 08:57:10,608 - INFO - Entity types (66): ['art-broadcastprogram', 'art-film', 'art-music', 'art-other', 'art-painting', 'art-writtenart', 'building-airport', 'building-hospital', 'building-hotel', 'building-library', 'building-other', 'building-restaurant', 'building-sportsfacility', 'building-theater', 'event-attack/battle/war/militaryconflict', 'event-disaster', 'event-election', 'event-other', 'event-protest', 'event-sportsevent', 'location-GPE', 'location-bodiesofwater', 'location-island', 'location-mountain', 'location-other', 'location-park', 'location-road/railway/highway/transit', 'organization-company', 'organization-education', 'organization-government/governmentagency', 'organization-media/newspaper', 'organization-other', 'organization-politicalparty', 'organization-religion', 'organization-showorganization', 'organization-sportsleague', 'organization-sportsteam', 'other-astronomything', 'other-award', 'other-biologything', 'other-chemicalthing', 'other-currency', 'other-disease', 'other-educationaldegree', 'other-god', 'other-language', 'other-law', 'other-livingthing', 'other-medical', 'person-actor', 'person-artist/author', 'person-athlete', 'person-director', 'person-other', 'person-politician', 'person-scholar', 'person-soldier', 'product-airplane', 'product-car', 'product-food', 'product-game', 'product-other', 'product-ship', 'product-software', 'product-train', 'product-weapon']
+2026-02-12 08:57:10,608 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+2026-02-12 08:57:10,608 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+2026-02-12 08:57:10,608 - INFO - Entity types (66): ['art-broadcastprogram', 'art-film', 'art-music', 'art-other', 'art-painting', 'art-writtenart', 'building-airport', 'building-hospital', 'building-hotel', 'building-library', 'building-other', 'building-restaurant', 'building-sportsfacility', 'building-theater', 'event-attack/battle/war/militaryconflict', 'event-disaster', 'event-election', 'event-other', 'event-protest', 'event-sportsevent', 'location-GPE', 'location-bodiesofwater', 'location-island', 'location-mountain', 'location-other', 'location-park', 'location-road/railway/highway/transit', 'organization-company', 'organization-education', 'organization-government/governmentagency', 'organization-media/newspaper', 'organization-other', 'organization-politicalparty', 'organization-religion', 'organization-showorganization', 'organization-sportsleague', 'organization-sportsteam', 'other-astronomything', 'other-award', 'other-biologything', 'other-chemicalthing', 'other-currency', 'other-disease', 'other-educationaldegree', 'other-god', 'other-language', 'other-law', 'other-livingthing', 'other-medical', 'person-actor', 'person-artist/author', 'person-athlete', 'person-director', 'person-other', 'person-politician', 'person-scholar', 'person-soldier', 'product-airplane', 'product-car', 'product-food', 'product-game', 'product-other', 'product-ship', 'product-software', 'product-train', 'product-weapon']
+2026-02-12 08:57:10,608 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+2026-02-12 08:57:10,609 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+2026-02-12 08:57:10,609 - INFO - Entity types (66): ['art-broadcastprogram', 'art-film', 'art-music', 'art-other', 'art-painting', 'art-writtenart', 'building-airport', 'building-hospital', 'building-hotel', 'building-library', 'building-other', 'building-restaurant', 'building-sportsfacility', 'building-theater', 'event-attack/battle/war/militaryconflict', 'event-disaster', 'event-election', 'event-other', 'event-protest', 'event-sportsevent', 'location-GPE', 'location-bodiesofwater', 'location-island', 'location-mountain', 'location-other', 'location-park', 'location-road/railway/highway/transit', 'organization-company', 'organization-education', 'organization-government/governmentagency', 'organization-media/newspaper', 'organization-other', 'organization-politicalparty', 'organization-religion', 'organization-showorganization', 'organization-sportsleague', 'organization-sportsteam', 'other-astronomything', 'other-award', 'other-biologything', 'other-chemicalthing', 'other-currency', 'other-disease', 'other-educationaldegree', 'other-god', 'other-language', 'other-law', 'other-livingthing', 'other-medical', 'person-actor', 'person-artist/author', 'person-athlete', 'person-director', 'person-other', 'person-politician', 'person-scholar', 'person-soldier', 'product-airplane', 'product-car', 'product-food', 'product-game', 'product-other', 'product-ship', 'product-software', 'product-train', 'product-weapon']
+Traceback (most recent call last):
+2026-02-12 08:57:10,609 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/orchestrator.py", line 303, in run_experiment_task
+    metrics = run_experiment(
+              ^^^^^^^^^^^^^^^
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/run_codeie_experiments.py", line 834, in run_experiment
+    ds_test = load_from_disk(test_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ann/anaconda3/envs/CodeIE/lib/python3.12/site-packages/datasets/load.py", line 1562, in load_from_disk
+    raise FileNotFoundError(f"Directory {dataset_path} not found")
+Traceback (most recent call last):
+FileNotFoundError: Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/orchestrator.py", line 303, in run_experiment_task
+    metrics = run_experiment(
+              ^^^^^^^^^^^^^^^
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/run_codeie_experiments.py", line 834, in run_experiment
+    ds_test = load_from_disk(test_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ann/anaconda3/envs/CodeIE/lib/python3.12/site-packages/datasets/load.py", line 1562, in load_from_disk
+    raise FileNotFoundError(f"Directory {dataset_path} not found")
+FileNotFoundError: Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+Traceback (most recent call last):
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/orchestrator.py", line 303, in run_experiment_task
+    metrics = run_experiment(
+              ^^^^^^^^^^^^^^^
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/run_codeie_experiments.py", line 834, in run_experiment
+    ds_test = load_from_disk(test_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ann/anaconda3/envs/CodeIE/lib/python3.12/site-packages/datasets/load.py", line 1562, in load_from_disk
+    raise FileNotFoundError(f"Directory {dataset_path} not found")
+FileNotFoundError: Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,610 - ERROR - Failed: qwen2.5-coder_fine_nl_backtrans_sp - Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,610 - ERROR - Failed: qwen2.5_fine_nl_backtrans_sp - Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,610 - ERROR - Failed: qwen2.5-coder_fine_nl_backtrans_ch - Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,610 - WARNING - 3 consecutive failures detected. Triggering Ollama recovery...
+2026-02-12 08:57:10,642 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+2026-02-12 08:57:10,642 - INFO - Entity types (66): ['art-broadcastprogram', 'art-film', 'art-music', 'art-other', 'art-painting', 'art-writtenart', 'building-airport', 'building-hospital', 'building-hotel', 'building-library', 'building-other', 'building-restaurant', 'building-sportsfacility', 'building-theater', 'event-attack/battle/war/militaryconflict', 'event-disaster', 'event-election', 'event-other', 'event-protest', 'event-sportsevent', 'location-GPE', 'location-bodiesofwater', 'location-island', 'location-mountain', 'location-other', 'location-park', 'location-road/railway/highway/transit', 'organization-company', 'organization-education', 'organization-government/governmentagency', 'organization-media/newspaper', 'organization-other', 'organization-politicalparty', 'organization-religion', 'organization-showorganization', 'organization-sportsleague', 'organization-sportsteam', 'other-astronomything', 'other-award', 'other-biologything', 'other-chemicalthing', 'other-currency', 'other-disease', 'other-educationaldegree', 'other-god', 'other-language', 'other-law', 'other-livingthing', 'other-medical', 'person-actor', 'person-artist/author', 'person-athlete', 'person-director', 'person-other', 'person-politician', 'person-scholar', 'person-soldier', 'product-airplane', 'product-car', 'product-food', 'product-game', 'product-other', 'product-ship', 'product-software', 'product-train', 'product-weapon']
+2026-02-12 08:57:10,642 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+Traceback (most recent call last):
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/orchestrator.py", line 303, in run_experiment_task
+    metrics = run_experiment(
+              ^^^^^^^^^^^^^^^
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/run_codeie_experiments.py", line 834, in run_experiment
+    ds_test = load_from_disk(test_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ann/anaconda3/envs/CodeIE/lib/python3.12/site-packages/datasets/load.py", line 1562, in load_from_disk
+    raise FileNotFoundError(f"Directory {dataset_path} not found")
+FileNotFoundError: Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,643 - ERROR - Failed: qwen2.5_fine_nl_backtrans_tu - Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,644 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+2026-02-12 08:57:10,644 - INFO - Entity types (66): ['art-broadcastprogram', 'art-film', 'art-music', 'art-other', 'art-painting', 'art-writtenart', 'building-airport', 'building-hospital', 'building-hotel', 'building-library', 'building-other', 'building-restaurant', 'building-sportsfacility', 'building-theater', 'event-attack/battle/war/militaryconflict', 'event-disaster', 'event-election', 'event-other', 'event-protest', 'event-sportsevent', 'location-GPE', 'location-bodiesofwater', 'location-island', 'location-mountain', 'location-other', 'location-park', 'location-road/railway/highway/transit', 'organization-company', 'organization-education', 'organization-government/governmentagency', 'organization-media/newspaper', 'organization-other', 'organization-politicalparty', 'organization-religion', 'organization-showorganization', 'organization-sportsleague', 'organization-sportsteam', 'other-astronomything', 'other-award', 'other-biologything', 'other-chemicalthing', 'other-currency', 'other-disease', 'other-educationaldegree', 'other-god', 'other-language', 'other-law', 'other-livingthing', 'other-medical', 'person-actor', 'person-artist/author', 'person-athlete', 'person-director', 'person-other', 'person-politician', 'person-scholar', 'person-soldier', 'product-airplane', 'product-car', 'product-food', 'product-game', 'product-other', 'product-ship', 'product-software', 'product-train', 'product-weapon']
+2026-02-12 08:57:10,644 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+Traceback (most recent call last):
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/orchestrator.py", line 303, in run_experiment_task
+    metrics = run_experiment(
+              ^^^^^^^^^^^^^^^
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/run_codeie_experiments.py", line 834, in run_experiment
+    ds_test = load_from_disk(test_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ann/anaconda3/envs/CodeIE/lib/python3.12/site-packages/datasets/load.py", line 1562, in load_from_disk
+    raise FileNotFoundError(f"Directory {dataset_path} not found")
+FileNotFoundError: Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,645 - ERROR - Failed: qwen2.5-coder_fine_nl_backtrans_tu - Directory /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test not found
+2026-02-12 08:57:10,645 - ERROR - FATAL: 100.0% of runs failed (56/56). Too many failures to continue. Check Ollama and model configuration.
+Total Progress (Samples):   0%|          | 0/210840 [00:00<?, ?sample/s]
+Traceback (most recent call last):
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/orchestrator.py", line 1566, in <module>
+    main()
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/orchestrator.py", line 1551, in main
+    orchestrator.run_all(
+  File "/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/orchestrator.py", line 1353, in run_all
+    raise RuntimeError(error_msg)
+RuntimeError: FATAL: 100.0% of runs failed (56/56). Too many failures to continue. Check Ollama and model configuration.
