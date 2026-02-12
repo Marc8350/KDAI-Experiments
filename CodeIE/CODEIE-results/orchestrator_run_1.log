@@ -1,363 +1,0 @@
-2026-02-12 09:29:48,932 - INFO - Orchestrator initialized with config: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/config/experiment_config.yaml
-2026-02-12 09:29:48,932 - INFO - GPU count: 2
-2026-02-12 09:29:48,932 - INFO - Auto-calculated max_workers=6 based on model sizes: ['qwen2.5:7b', 'qwen2.5-coder:7b']
-2026-02-12 09:29:48,932 - INFO - 
-############################################################
-2026-02-12 09:29:48,932 - INFO - # CodeIE Experiment Orchestrator
-2026-02-12 09:29:48,932 - INFO - # One-Stop Shop Pipeline (Parallel Execution)
-2026-02-12 09:29:48,932 - INFO - # GPU Count: 2 | Max Workers: 6
-2026-02-12 09:29:48,932 - INFO - ############################################################
-2026-02-12 09:29:48,932 - INFO - 
-[Step 1/3] Skipping variation check
-2026-02-12 09:29:48,932 - INFO - 
-[Step 2/3] Generating experiment matrix...
-2026-02-12 09:29:48,933 - INFO - Generated 56 experiment runs
-2026-02-12 09:29:48,933 - INFO -   Total experiments: 56
-2026-02-12 09:29:48,933 - INFO - 
-[OLLAMA SETUP] Initializing Ollama with auto-recovery...
-2026-02-12 09:29:48,938 - INFO - Pre-loading model: qwen2.5:7b
-2026-02-12 09:29:52,130 - INFO - Model qwen2.5:7b pre-loaded successfully
-2026-02-12 09:29:52,130 - INFO - Pre-loading model: qwen2.5-coder:7b
-2026-02-12 09:29:54,875 - INFO - Model qwen2.5-coder:7b pre-loaded successfully
-2026-02-12 09:29:54,875 - INFO -   Ollama ready with models: ['qwen2.5:7b', 'qwen2.5-coder:7b']
-2026-02-12 09:29:54,875 - INFO -   Auto-calculated workers: 6 (based on model size)
-2026-02-12 09:29:54,884 - INFO -   Estimated samples per run: 3765 (max_samples=3765)
-2026-02-12 09:29:54,884 - INFO -   Estimated total samples: 210840
-2026-02-12 09:29:54,884 - INFO - 
-[Step 3/3] Running experiments (Parallel workers: 6)...
-Total Progress (Samples):   0%|          | 0/210840 [00:00<?, ?sample/s]2026-02-12 09:29:54,979 - INFO - ============================================================
-2026-02-12 09:29:54,979 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
-2026-02-12 09:29:54,979 - INFO - ============================================================
-2026-02-12 09:29:54,980 - INFO - Granularity: coarse
-2026-02-12 09:29:54,980 - INFO - Style: pl
-2026-02-12 09:29:54,980 - INFO - Variation: v0_original
-2026-02-12 09:29:54,980 - INFO - Model: qwen2.5:7b
-2026-02-12 09:29:54,980 - INFO - ============================================================
-2026-02-12 09:29:54,980 - INFO - Using ChatOllama (Chat API) for qwen2.5:7b with timeout=180s
-2026-02-12 09:29:54,980 - INFO - ============================================================
-2026-02-12 09:29:54,980 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
-2026-02-12 09:29:54,980 - INFO - ============================================================
-2026-02-12 09:29:54,980 - INFO - Granularity: coarse
-2026-02-12 09:29:54,980 - INFO - Style: pl
-2026-02-12 09:29:54,980 - INFO - Variation: v0_original
-2026-02-12 09:29:54,980 - INFO - Model: qwen2.5-coder:7b
-2026-02-12 09:29:54,980 - INFO - ============================================================
-2026-02-12 09:29:54,980 - INFO - ============================================================
-2026-02-12 09:29:54,980 - INFO - Using ChatOllama (Chat API) for qwen2.5-coder:7b with timeout=180s
-2026-02-12 09:29:54,980 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
-2026-02-12 09:29:54,980 - INFO - ============================================================
-2026-02-12 09:29:54,980 - INFO - Granularity: coarse
-2026-02-12 09:29:54,980 - INFO - Style: pl
-2026-02-12 09:29:54,980 - INFO - Variation: lexical_substitution
-2026-02-12 09:29:54,980 - INFO - Model: qwen2.5:7b
-2026-02-12 09:29:54,980 - INFO - ============================================================
-2026-02-12 09:29:54,981 - INFO - Using ChatOllama (Chat API) for qwen2.5:7b with timeout=180s
-2026-02-12 09:29:54,981 - INFO - ============================================================
-2026-02-12 09:29:54,981 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
-2026-02-12 09:29:54,981 - INFO - ============================================================
-2026-02-12 09:29:54,981 - INFO - Granularity: coarse
-2026-02-12 09:29:54,981 - INFO - Style: pl
-2026-02-12 09:29:54,981 - INFO - Variation: reodering
-2026-02-12 09:29:54,981 - INFO - Model: qwen2.5-coder:7b
-2026-02-12 09:29:54,981 - INFO - ============================================================
-2026-02-12 09:29:54,981 - INFO - ============================================================
-2026-02-12 09:29:54,981 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
-2026-02-12 09:29:54,981 - INFO - ============================================================
-2026-02-12 09:29:54,981 - INFO - Using ChatOllama (Chat API) for qwen2.5-coder:7b with timeout=180s
-2026-02-12 09:29:54,981 - INFO - Granularity: coarse
-2026-02-12 09:29:54,981 - INFO - Style: pl
-2026-02-12 09:29:54,981 - INFO - Variation: reodering
-2026-02-12 09:29:54,981 - INFO - Model: qwen2.5:7b
-2026-02-12 09:29:54,981 - INFO - ============================================================
-2026-02-12 09:29:54,981 - INFO - Using ChatOllama (Chat API) for qwen2.5:7b with timeout=180s
-2026-02-12 09:29:54,981 - INFO - ============================================================
-2026-02-12 09:29:54,981 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
-2026-02-12 09:29:54,981 - INFO - ============================================================
-2026-02-12 09:29:54,981 - INFO - Granularity: coarse
-2026-02-12 09:29:54,981 - INFO - Style: pl
-2026-02-12 09:29:54,981 - INFO - Variation: lexical_substitution
-2026-02-12 09:29:54,981 - INFO - Model: qwen2.5-coder:7b
-2026-02-12 09:29:54,982 - INFO - ============================================================
-2026-02-12 09:29:54,982 - INFO - Using ChatOllama (Chat API) for qwen2.5-coder:7b with timeout=180s
-2026-02-12 09:29:55,033 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
-2026-02-12 09:29:55,033 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
-2026-02-12 09:29:55,033 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
-2026-02-12 09:29:55,034 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
-2026-02-12 09:29:55,034 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
-2026-02-12 09:29:55,034 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
-2026-02-12 09:29:55,034 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
-2026-02-12 09:29:55,034 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
-2026-02-12 09:29:55,034 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
-2026-02-12 09:29:55,034 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
-2026-02-12 09:29:55,034 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
-2026-02-12 09:29:55,034 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
-2026-02-12 09:29:55,035 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
-2026-02-12 09:29:55,035 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
-2026-02-12 09:29:55,035 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
-2026-02-12 09:29:55,039 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
-2026-02-12 09:29:55,039 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
-2026-02-12 09:29:55,039 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
-2026-02-12 09:29:55,040 - INFO - Loading custom prompt from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/prompts/base/coarse_pl_1shot.txt
-2026-02-12 09:29:55,040 - INFO - Base prompt loaded (Length: 3810)
-2026-02-12 09:29:55,040 - INFO - Sample base prompt (first 1000 chars):
-2026-02-12 09:29:55,040 - INFO - ----------------------------------------
-2026-02-12 09:29:55,040 - INFO - # TASK: Complete the Python code by adding entity_list.append() statements.
-2026-02-12 09:29:55,040 - INFO - # DO NOT explain the code. Just output the entity_list.append() lines.
-2026-02-12 09:29:55,040 - INFO - # DO NOT tell me how to adjust the code. Simply complete it with Just output the entity_list.append() lines.
-2026-02-12 09:29:55,040 - INFO - # STICK EXACTLY to the entity-types do not define your own entity types.
-2026-02-12 09:29:55,040 - INFO - 
-2026-02-12 09:29:55,040 - INFO - # You are an expert Named Entity Recognition (NER) system specializing in extracting entities from text.
-2026-02-12 09:29:55,040 - INFO - # For each input_text, identify named entities and add them using entity_list.append().
-2026-02-12 09:29:55,040 - INFO - 
-2026-02-12 09:29:55,040 - INFO - # Entity Types:
-2026-02-12 09:29:55,040 - INFO - # - art: A work of art including films, books, music, paintings, or other creative works.
-2026-02-12 09:29:55,040 - INFO - # - building: A named structure or building, such as a stadium, museum, or hotel.
-2026-02-12 09:29:55,040 - INFO - # - event: A named event such as a war, sports event, festival, or historical occurrence.
-2026-02-12 09:29:55,040 - INFO - # - location: A geographical location such as a city, country, continent, region, or landmark.
-2026-02-12 09:29:55,040 - INFO - # - organization: A named organization, institution, company, or group.
-2026-02-12 09:29:55,040 - INFO - # - other: Other named entities
-2026-02-12 09:29:55,040 - INFO - ----------------------------------------
-2026-02-12 09:29:55,041 - INFO - Processing 3765 test samples...
-2026-02-12 09:29:55,041 - INFO - Loading custom prompt from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/prompts/variations/coarse_pl_1shot/reodering.txt
-2026-02-12 09:29:55,041 - INFO - Base prompt loaded (Length: 3735)
-2026-02-12 09:29:55,041 - INFO - Sample base prompt (first 1000 chars):
-2026-02-12 09:29:55,041 - INFO - ----------------------------------------
-2026-02-12 09:29:55,041 - INFO - # TASK: Complete the Python code by adding entity_list.append() statements.
-2026-02-12 09:29:55,041 - INFO - # DO NOT explain the code. Just output the entity_list.append() lines.
-2026-02-12 09:29:55,041 - INFO - # DO NOT tell me how to adjust the code. Simply complete it with Just output the entity_list.append() lines.
-2026-02-12 09:29:55,041 - INFO - # You are an expert Named Entity Recognition (NER) system specializing in extracting entities from text.
-2026-02-12 09:29:55,041 - INFO - # For each input_text, identify named entities and add them using entity_list.append().
-2026-02-12 09:29:55,041 - INFO - # STICK EXACTLY to the entity-types do not define your own entity types.
-2026-02-12 09:29:55,041 - INFO - 
-2026-02-12 09:29:55,041 - INFO - # Entity Types:
-2026-02-12 09:29:55,041 - INFO - # - person: A named individual, including fictional characters, historical figures, celebrities, and common people.
-2026-02-12 09:29:55,041 - INFO - # - organization: A named organization, institution, company, or group.
-2026-02-12 09:29:55,041 - INFO - # - location: A geographical location such as a city, country, continent, region, or landmark.
-2026-02-12 09:29:55,041 - INFO - # - event: A named event such as a war, sports event, festival, or historical occurrence.
-2026-02-12 09:29:55,041 - INFO - # - product: A named commercial product, software, vehicle model, or branded item.
-2026-02-12 09:29:55,041 - INFO - # - b
-2026-02-12 09:29:55,041 - INFO - ----------------------------------------
-2026-02-12 09:29:55,041 - INFO - Processing 3765 test samples...
-2026-02-12 09:29:55,041 - INFO - Loading custom prompt from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/prompts/variations/coarse_pl_1shot/reodering.txt
-2026-02-12 09:29:55,041 - INFO - Base prompt loaded (Length: 3735)
-2026-02-12 09:29:55,041 - INFO - Sample base prompt (first 1000 chars):
-2026-02-12 09:29:55,041 - INFO - ----------------------------------------
-2026-02-12 09:29:55,041 - INFO - # TASK: Complete the Python code by adding entity_list.append() statements.
-2026-02-12 09:29:55,042 - INFO - # DO NOT explain the code. Just output the entity_list.append() lines.
-2026-02-12 09:29:55,042 - INFO - # DO NOT tell me how to adjust the code. Simply complete it with Just output the entity_list.append() lines.
-2026-02-12 09:29:55,042 - INFO - # You are an expert Named Entity Recognition (NER) system specializing in extracting entities from text.
-2026-02-12 09:29:55,042 - INFO - # For each input_text, identify named entities and add them using entity_list.append().
-2026-02-12 09:29:55,042 - INFO - # STICK EXACTLY to the entity-types do not define your own entity types.
-2026-02-12 09:29:55,042 - INFO - 
-2026-02-12 09:29:55,042 - INFO - # Entity Types:
-2026-02-12 09:29:55,042 - INFO - # - person: A named individual, including fictional characters, historical figures, celebrities, and common people.
-2026-02-12 09:29:55,042 - INFO - # - organization: A named organization, institution, company, or group.
-2026-02-12 09:29:55,042 - INFO - Loading custom prompt from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/prompts/variations/coarse_pl_1shot/lexical_substitution.txt
-2026-02-12 09:29:55,042 - INFO - # - location: A geographical location such as a city, country, continent, region, or landmark.
-2026-02-12 09:29:55,042 - INFO - # - event: A named event such as a war, sports event, festival, or historical occurrence.
-2026-02-12 09:29:55,042 - INFO - # - product: A named commercial product, software, vehicle model, or branded item.
-2026-02-12 09:29:55,042 - INFO - # - b
-2026-02-12 09:29:55,042 - INFO - ----------------------------------------
-2026-02-12 09:29:55,042 - INFO - Base prompt loaded (Length: 3884)
-2026-02-12 09:29:55,042 - INFO - Sample base prompt (first 1000 chars):
-2026-02-12 09:29:55,042 - INFO - ----------------------------------------
-2026-02-12 09:29:55,042 - INFO - Processing 3765 test samples...
-2026-02-12 09:29:55,042 - INFO - # OBJECTIVE: Finish the Python script by inserting entity_list.append() commands.
-2026-02-12 09:29:55,042 - INFO - # NO explanations. Only print the entity_list.append() lines.
-2026-02-12 09:29:55,042 - INFO - # DO NOT tell me how to adjust the code. Simply complete it with Just output the entity_list.append() lines.
-2026-02-12 09:29:55,042 - INFO - # You are a skilled Named Entity Recognition (NER) tool focused on mining entities from text.
-2026-02-12 09:29:55,042 - INFO - # For every input_text, detect named entities and append them to the entity_list.
-2026-02-12 09:29:55,042 - INFO - # STICK EXACTLY to the entity-types do not define your own entity types.
-2026-02-12 09:29:55,042 - INFO - 
-2026-02-12 09:29:55,042 - INFO - # Classification Categories:
-2026-02-12 09:29:55,042 - INFO - # - art: A titled creative piece such as movies, literature, songs, artwork, or other artistic productions.
-2026-02-12 09:29:55,042 - INFO - # - building: A specific edifice or construction, like a stadium, gallery, or inn.
-2026-02-12 09:29:55,042 - INFO - # - event: A specific occasion like a conflict, athletic competition, gala, or historic incident.
-2026-02-12 09:29:55,042 - INFO - # - location: A geographic place like a town, nation, landmass, area, or point of interest.
-2026-02-12 09:29:55,042 - INFO - # - organization: A specific association, institute, enterprise, or team.
-2026-02-12 09:29:55,042 - INFO - # - other: Mi
-2026-02-12 09:29:55,042 - INFO - ----------------------------------------
-2026-02-12 09:29:55,042 - INFO - Loading custom prompt from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/prompts/variations/coarse_pl_1shot/lexical_substitution.txt
-2026-02-12 09:29:55,042 - INFO - Processing 3765 test samples...
-2026-02-12 09:29:55,042 - INFO - Base prompt loaded (Length: 3884)
-2026-02-12 09:29:55,042 - INFO - Sample base prompt (first 1000 chars):
-2026-02-12 09:29:55,042 - INFO - ----------------------------------------
-2026-02-12 09:29:55,042 - INFO - # OBJECTIVE: Finish the Python script by inserting entity_list.append() commands.
-2026-02-12 09:29:55,042 - INFO - # NO explanations. Only print the entity_list.append() lines.
-2026-02-12 09:29:55,042 - INFO - # DO NOT tell me how to adjust the code. Simply complete it with Just output the entity_list.append() lines.
-2026-02-12 09:29:55,042 - INFO - # You are a skilled Named Entity Recognition (NER) tool focused on mining entities from text.
-2026-02-12 09:29:55,042 - INFO - # For every input_text, detect named entities and append them to the entity_list.
-2026-02-12 09:29:55,042 - INFO - # STICK EXACTLY to the entity-types do not define your own entity types.
-2026-02-12 09:29:55,042 - INFO - 
-2026-02-12 09:29:55,042 - INFO - # Classification Categories:
-2026-02-12 09:29:55,042 - INFO - # - art: A titled creative piece such as movies, literature, songs, artwork, or other artistic productions.
-2026-02-12 09:29:55,042 - INFO - # - building: A specific edifice or construction, like a stadium, gallery, or inn.
-2026-02-12 09:29:55,042 - INFO - # - event: A specific occasion like a conflict, athletic competition, gala, or historic incident.
-2026-02-12 09:29:55,042 - INFO - # - location: A geographic place like a town, nation, landmass, area, or point of interest.
-2026-02-12 09:29:55,042 - INFO - # - organization: A specific association, institute, enterprise, or team.
-2026-02-12 09:29:55,042 - INFO - # - other: Mi
-2026-02-12 09:29:55,043 - INFO - ----------------------------------------
-2026-02-12 09:29:55,043 - INFO - Processing 3765 test samples...
-2026-02-12 09:29:55,047 - INFO - Loading custom prompt from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/prompts/base/coarse_pl_1shot.txt
-2026-02-12 09:29:55,047 - INFO - Base prompt loaded (Length: 3810)
-2026-02-12 09:29:55,047 - INFO - Sample base prompt (first 1000 chars):
-2026-02-12 09:29:55,047 - INFO - ----------------------------------------
-2026-02-12 09:29:55,047 - INFO - # TASK: Complete the Python code by adding entity_list.append() statements.
-2026-02-12 09:29:55,047 - INFO - # DO NOT explain the code. Just output the entity_list.append() lines.
-2026-02-12 09:29:55,047 - INFO - # DO NOT tell me how to adjust the code. Simply complete it with Just output the entity_list.append() lines.
-2026-02-12 09:29:55,047 - INFO - # STICK EXACTLY to the entity-types do not define your own entity types.
-2026-02-12 09:29:55,047 - INFO - 
-2026-02-12 09:29:55,047 - INFO - # You are an expert Named Entity Recognition (NER) system specializing in extracting entities from text.
-2026-02-12 09:29:55,047 - INFO - # For each input_text, identify named entities and add them using entity_list.append().
-2026-02-12 09:29:55,047 - INFO - 
-2026-02-12 09:29:55,047 - INFO - # Entity Types:
-2026-02-12 09:29:55,047 - INFO - # - art: A work of art including films, books, music, paintings, or other creative works.
-2026-02-12 09:29:55,047 - INFO - # - building: A named structure or building, such as a stadium, museum, or hotel.
-2026-02-12 09:29:55,047 - INFO - # - event: A named event such as a war, sports event, festival, or historical occurrence.
-2026-02-12 09:29:55,047 - INFO - # - location: A geographical location such as a city, country, continent, region, or landmark.
-2026-02-12 09:29:55,047 - INFO - # - organization: A named organization, institution, company, or group.
-2026-02-12 09:29:55,047 - INFO - # - other: Other named entities
-2026-02-12 09:29:55,047 - INFO - ----------------------------------------
-2026-02-12 09:29:55,047 - INFO - Processing 3765 test samples...
-2026-02-12 09:29:55,341 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-2026-02-12 09:29:55,347 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 1/210840 [00:00<52:48:59,  1.11sample/s]Total Progress (Samples):   0%|          | 2/210840 [00:01<27:18:01,  2.15sample/s]2026-02-12 09:29:56,045 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-2026-02-12 09:29:56,220 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 3/210840 [00:01<29:34:58,  1.98sample/s]2026-02-12 09:29:56,796 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 4/210840 [00:01<25:02:38,  2.34sample/s]2026-02-12 09:29:57,072 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 5/210840 [00:02<25:36:29,  2.29sample/s]Total Progress (Samples):   0%|          | 6/210840 [00:02<20:42:42,  2.83sample/s]2026-02-12 09:29:57,550 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-2026-02-12 09:29:57,707 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 7/210840 [00:02<18:41:47,  3.13sample/s]Total Progress (Samples):   0%|          | 8/210840 [00:02<15:32:27,  3.77sample/s]2026-02-12 09:29:57,968 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-2026-02-12 09:29:58,120 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 9/210840 [00:03<14:56:41,  3.92sample/s]Total Progress (Samples):   0%|          | 10/210840 [00:03<13:57:11,  4.20sample/s]2026-02-12 09:29:58,359 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 11/210840 [00:03<13:41:30,  4.28sample/s]2026-02-12 09:29:58,563 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 12/210840 [00:03<12:24:50,  4.72sample/s]2026-02-12 09:29:58,776 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-2026-02-12 09:29:58,918 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 13/210840 [00:03<12:24:31,  4.72sample/s]2026-02-12 09:29:59,146 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 14/210840 [00:04<14:10:20,  4.13sample/s]2026-02-12 09:29:59,473 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-2026-02-12 09:29:59,525 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 16/210840 [00:04<13:11:47,  4.44sample/s]2026-02-12 09:29:59,876 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-2026-02-12 09:29:59,894 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 18/210840 [00:05<12:39:10,  4.63sample/s]Total Progress (Samples):   0%|          | 19/210840 [00:05<12:18:55,  4.76sample/s]2026-02-12 09:30:00,257 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-2026-02-12 09:30:00,472 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 20/210840 [00:05<15:18:17,  3.83sample/s]Total Progress (Samples):   0%|          | 21/210840 [00:05<13:29:14,  4.34sample/s]2026-02-12 09:30:00,884 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-2026-02-12 09:30:01,039 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 22/210840 [00:06<16:38:25,  3.52sample/s]Total Progress (Samples):   0%|          | 23/210840 [00:06<14:22:17,  4.07sample/s]2026-02-12 09:30:01,456 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-2026-02-12 09:30:01,603 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 24/210840 [00:06<17:27:08,  3.36sample/s]Total Progress (Samples):   0%|          | 25/210840 [00:07<15:07:42,  3.87sample/s]2026-02-12 09:30:02,009 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-2026-02-12 09:30:02,195 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 26/210840 [00:07<18:05:22,  3.24sample/s]Total Progress (Samples):   0%|          | 27/210840 [00:07<15:38:15,  3.74sample/s]2026-02-12 09:30:02,622 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-2026-02-12 09:30:02,796 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 28/210840 [00:08<18:51:20,  3.11sample/s]Total Progress (Samples):   0%|          | 29/210840 [00:08<15:53:14,  3.69sample/s]2026-02-12 09:30:03,236 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-2026-02-12 09:30:03,403 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 30/210840 [00:08<15:39:32,  3.74sample/s]Total Progress (Samples):   0%|          | 31/210840 [00:08<13:49:35,  4.24sample/s]2026-02-12 09:30:03,630 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 32/210840 [00:08<13:25:04,  4.36sample/s]2026-02-12 09:30:03,810 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 33/210840 [00:09<12:55:56,  4.53sample/s]2026-02-12 09:30:04,027 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-2026-02-12 09:30:04,226 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 34/210840 [00:09<18:21:33,  3.19sample/s]2026-02-12 09:30:04,750 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-2026-02-12 09:30:04,814 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 36/210840 [00:10<17:16:17,  3.39sample/s]2026-02-12 09:30:05,294 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-2026-02-12 09:30:05,368 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 38/210840 [00:10<17:39:10,  3.32sample/s]Total Progress (Samples):   0%|          | 39/210840 [00:10<15:09:50,  3.86sample/s]2026-02-12 09:30:05,934 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-2026-02-12 09:30:06,047 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 40/210840 [00:11<17:55:25,  3.27sample/s]2026-02-12 09:30:06,506 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 41/210840 [00:11<18:11:27,  3.22sample/s]2026-02-12 09:30:06,818 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 42/210840 [00:12<25:05:31,  2.33sample/s]2026-02-12 09:30:07,558 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 43/210840 [00:13<28:12:58,  2.08sample/s]2026-02-12 09:30:08,186 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 44/210840 [00:14<37:18:45,  1.57sample/s]2026-02-12 09:30:09,228 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 45/210840 [00:14<37:39:41,  1.55sample/s]2026-02-12 09:30:09,885 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 46/210840 [00:15<44:01:59,  1.33sample/s]2026-02-12 09:30:10,895 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 47/210840 [00:16<42:45:12,  1.37sample/s]2026-02-12 09:30:11,573 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 48/210840 [00:16<37:40:54,  1.55sample/s]2026-02-12 09:30:12,006 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 49/210840 [00:17<33:12:26,  1.76sample/s]Total Progress (Samples):   0%|          | 50/210840 [00:17<25:41:16,  2.28sample/s]2026-02-12 09:30:12,405 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-2026-02-12 09:30:12,514 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 51/210840 [00:17<22:30:39,  2.60sample/s]Total Progress (Samples):   0%|          | 52/210840 [00:17<18:15:40,  3.21sample/s]2026-02-12 09:30:12,805 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-2026-02-12 09:30:12,926 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 53/210840 [00:18<19:58:47,  2.93sample/s]2026-02-12 09:30:13,343 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 54/210840 [00:18<20:39:42,  2.83sample/s]2026-02-12 09:30:13,714 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 55/210840 [00:18<18:33:35,  3.15sample/s]2026-02-12 09:30:13,741 - INFO - Progress: 10/3765 | P: 0.5556 | R: 0.5172 | Micro-F1: 0.5357 | Macro-F1: 0.5392
-2026-02-12 09:30:13,954 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 56/210840 [00:19<31:36:05,  1.85sample/s]2026-02-12 09:30:14,801 - INFO - Progress: 10/3765 | P: 0.6129 | R: 0.6552 | Micro-F1: 0.6333 | Macro-F1: 0.5541
-Total Progress (Samples):   0%|          | 57/210840 [00:20<24:35:27,  2.38sample/s]2026-02-12 09:30:14,941 - INFO - Progress: 10/3765 | P: 0.6296 | R: 0.5862 | Micro-F1: 0.6071 | Macro-F1: 0.5429
-2026-02-12 09:30:15,025 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-2026-02-12 09:30:15,166 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 58/210840 [00:21<38:37:41,  1.52sample/s]2026-02-12 09:30:16,161 - INFO - Progress: 10/3765 | P: 0.5625 | R: 0.6207 | Micro-F1: 0.5902 | Macro-F1: 0.5477
-2026-02-12 09:30:16,257 - INFO - Progress: 10/3765 | P: 0.5862 | R: 0.5862 | Micro-F1: 0.5862 | Macro-F1: 0.5855
-2026-02-12 09:30:16,378 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-2026-02-12 09:30:16,468 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 60/210840 [00:22<31:49:43,  1.84sample/s]2026-02-12 09:30:17,194 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 61/210840 [00:22<28:42:08,  2.04sample/s]2026-02-12 09:30:17,305 - INFO - Progress: 10/3765 | P: 0.5357 | R: 0.5172 | Micro-F1: 0.5263 | Macro-F1: 0.4569
-2026-02-12 09:30:17,516 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 62/210840 [00:22<24:47:27,  2.36sample/s]2026-02-12 09:30:17,759 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 63/210840 [00:22<22:58:33,  2.55sample/s]2026-02-12 09:30:18,063 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 64/210840 [00:23<21:25:58,  2.73sample/s]2026-02-12 09:30:18,359 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 65/210840 [00:23<20:04:40,  2.92sample/s]2026-02-12 09:30:18,652 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 66/210840 [00:24<23:37:50,  2.48sample/s]2026-02-12 09:30:19,195 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 67/210840 [00:24<20:39:15,  2.83sample/s]2026-02-12 09:30:19,424 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 68/210840 [00:25<28:25:01,  2.06sample/s]2026-02-12 09:30:20,233 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 69/210840 [00:25<24:33:28,  2.38sample/s]2026-02-12 09:30:20,507 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 70/210840 [00:26<31:24:30,  1.86sample/s]2026-02-12 09:30:21,307 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 71/210840 [00:26<26:49:29,  2.18sample/s]2026-02-12 09:30:21,585 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 72/210840 [00:27<32:26:50,  1.80sample/s]2026-02-12 09:30:22,340 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-2026-02-12 09:30:22,448 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 74/210840 [00:28<28:44:27,  2.04sample/s]2026-02-12 09:30:23,201 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-2026-02-12 09:30:23,227 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 76/210840 [00:28<23:52:21,  2.45sample/s]2026-02-12 09:30:23,756 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 77/210840 [00:28<23:08:29,  2.53sample/s]2026-02-12 09:30:24,107 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 78/210840 [00:29<20:53:33,  2.80sample/s]2026-02-12 09:30:24,343 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 79/210840 [00:29<24:19:59,  2.41sample/s]2026-02-12 09:30:24,940 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-2026-02-12 09:30:24,979 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 81/210840 [00:30<21:19:56,  2.74sample/s]2026-02-12 09:30:25,515 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-2026-02-12 09:30:25,606 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-2026-02-12 09:30:25,741 - WARNING - nervaluate initialization failed: list index out of range. Diagnostic: first_gold_empty=True, first_pred_empty=False, total_samples=1, non_empty_gold=0, non_empty_pred=1. Returning zero metrics.
-Total Progress (Samples):   0%|          | 83/210840 [00:30<18:09:34,  3.22sample/s]2026-02-12 09:30:25,961 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 84/210840 [00:31<17:37:16,  3.32sample/s]Total Progress (Samples):   0%|          | 85/210840 [00:31<15:27:51,  3.79sample/s]2026-02-12 09:30:26,150 - WARNING - nervaluate initialization failed: list index out of range. Diagnostic: first_gold_empty=True, first_pred_empty=False, total_samples=1, non_empty_gold=0, non_empty_pred=1. Returning zero metrics.
-2026-02-12 09:30:26,226 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-2026-02-12 09:30:26,374 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-2026-02-12 09:30:26,560 - WARNING - nervaluate initialization failed: list index out of range. Diagnostic: first_gold_empty=True, first_pred_empty=False, total_samples=1, non_empty_gold=0, non_empty_pred=1. Returning zero metrics.
-Total Progress (Samples):   0%|          | 86/210840 [00:31<17:35:35,  3.33sample/s]2026-02-12 09:30:26,777 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-2026-02-12 09:30:26,784 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-2026-02-12 09:30:26,953 - WARNING - nervaluate initialization failed: list index out of range. Diagnostic: first_gold_empty=True, first_pred_empty=False, total_samples=1, non_empty_gold=0, non_empty_pred=1. Returning zero metrics.
-Total Progress (Samples):   0%|          | 88/210840 [00:32<15:03:44,  3.89sample/s]2026-02-12 09:30:27,167 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-2026-02-12 09:30:27,316 - WARNING - nervaluate initialization failed: list index out of range. Diagnostic: first_gold_empty=True, first_pred_empty=False, total_samples=1, non_empty_gold=0, non_empty_pred=1. Returning zero metrics.
-Total Progress (Samples):   0%|          | 89/210840 [00:32<16:28:37,  3.55sample/s]2026-02-12 09:30:27,499 - WARNING - nervaluate initialization failed: list index out of range. Diagnostic: first_gold_empty=True, first_pred_empty=False, total_samples=1, non_empty_gold=0, non_empty_pred=1. Returning zero metrics.
-Total Progress (Samples):   0%|          | 90/210840 [00:32<15:03:47,  3.89sample/s]2026-02-12 09:30:27,532 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-2026-02-12 09:30:27,725 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-2026-02-12 09:30:27,902 - WARNING - nervaluate initialization failed: list index out of range. Diagnostic: first_gold_empty=True, first_pred_empty=False, total_samples=1, non_empty_gold=0, non_empty_pred=1. Returning zero metrics.
-Total Progress (Samples):   0%|          | 91/210840 [00:32<17:16:15,  3.39sample/s]2026-02-12 09:30:28,066 - WARNING - nervaluate initialization failed: list index out of range. Diagnostic: first_gold_empty=True, first_pred_empty=False, total_samples=1, non_empty_gold=0, non_empty_pred=1. Returning zero metrics.
-Total Progress (Samples):   0%|          | 92/210840 [00:33<15:12:07,  3.85sample/s]2026-02-12 09:30:28,117 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-2026-02-12 09:30:28,283 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-2026-02-12 09:30:28,284 - WARNING - nervaluate initialization failed: list index out of range. Diagnostic: first_gold_empty=True, first_pred_empty=False, total_samples=1, non_empty_gold=0, non_empty_pred=1. Returning zero metrics.
-Total Progress (Samples):   0%|          | 93/210840 [00:33<14:30:56,  4.03sample/s]2026-02-12 09:30:28,499 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-2026-02-12 09:30:28,667 - WARNING - nervaluate initialization failed: list index out of range. Diagnostic: first_gold_empty=True, first_pred_empty=False, total_samples=1, non_empty_gold=0, non_empty_pred=1. Returning zero metrics.
-Total Progress (Samples):   0%|          | 94/210840 [00:33<16:45:48,  3.49sample/s]2026-02-12 09:30:28,824 - WARNING - nervaluate initialization failed: list index out of range. Diagnostic: first_gold_empty=True, first_pred_empty=False, total_samples=1, non_empty_gold=0, non_empty_pred=1. Returning zero metrics.
-Total Progress (Samples):   0%|          | 95/210840 [00:33<14:34:19,  4.02sample/s]2026-02-12 09:30:28,896 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-2026-02-12 09:30:29,032 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-2026-02-12 09:30:29,063 - WARNING - nervaluate initialization failed: list index out of range. Diagnostic: first_gold_empty=True, first_pred_empty=False, total_samples=1, non_empty_gold=0, non_empty_pred=1. Returning zero metrics.
-Total Progress (Samples):   0%|          | 96/210840 [00:34<14:24:06,  4.06sample/s]2026-02-12 09:30:29,239 - WARNING - nervaluate initialization failed: list index out of range. Diagnostic: first_gold_empty=True, first_pred_empty=False, total_samples=1, non_empty_gold=0, non_empty_pred=1. Returning zero metrics.
-Total Progress (Samples):   0%|          | 97/210840 [00:34<13:11:51,  4.44sample/s]2026-02-12 09:30:29,279 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-2026-02-12 09:30:29,457 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-2026-02-12 09:30:29,663 - WARNING - nervaluate initialization failed: list index out of range. Diagnostic: first_gold_empty=True, first_pred_empty=False, total_samples=1, non_empty_gold=0, non_empty_pred=1. Returning zero metrics.
-Total Progress (Samples):   0%|          | 98/210840 [00:34<16:38:20,  3.52sample/s]2026-02-12 09:30:29,888 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 99/210840 [00:34<15:49:51,  3.70sample/s]2026-02-12 09:30:30,116 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-2026-02-12 09:30:30,238 - WARNING - nervaluate initialization failed: list index out of range. Diagnostic: first_gold_empty=True, first_pred_empty=False, total_samples=1, non_empty_gold=0, non_empty_pred=1. Returning zero metrics.
-Total Progress (Samples):   0%|          | 100/210840 [00:35<16:59:54,  3.44sample/s]2026-02-12 09:30:30,449 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 101/210840 [00:35<20:45:38,  2.82sample/s]2026-02-12 09:30:30,967 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-2026-02-12 09:30:31,290 - WARNING - nervaluate initialization failed: list index out of range. Diagnostic: first_gold_empty=True, first_pred_empty=False, total_samples=1, non_empty_gold=0, non_empty_pred=1. Returning zero metrics.
-Total Progress (Samples):   0%|          | 102/210840 [00:36<24:06:49,  2.43sample/s]2026-02-12 09:30:31,516 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 103/210840 [00:36<22:54:30,  2.56sample/s]2026-02-12 09:30:31,856 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-2026-02-12 09:30:32,235 - WARNING - nervaluate initialization failed: list index out of range. Diagnostic: first_gold_empty=True, first_pred_empty=False, total_samples=1, non_empty_gold=0, non_empty_pred=1. Returning zero metrics.
-Total Progress (Samples):   0%|          | 104/210840 [00:37<26:36:55,  2.20sample/s]2026-02-12 09:30:32,453 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 105/210840 [00:37<25:06:30,  2.33sample/s]2026-02-12 09:30:32,833 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-2026-02-12 09:30:33,184 - WARNING - nervaluate initialization failed: list index out of range. Diagnostic: first_gold_empty=True, first_pred_empty=False, total_samples=1, non_empty_gold=0, non_empty_pred=1. Returning zero metrics.
-Total Progress (Samples):   0%|          | 106/210840 [00:38<27:44:50,  2.11sample/s]Total Progress (Samples):   0%|          | 107/210840 [00:38<22:50:21,  2.56sample/s]2026-02-12 09:30:33,392 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-2026-02-12 09:30:33,610 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 108/210840 [00:39<26:52:56,  2.18sample/s]2026-02-12 09:30:34,216 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 109/210840 [00:39<25:52:30,  2.26sample/s]2026-02-12 09:30:34,614 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-2026-02-12 09:30:34,771 - WARNING - nervaluate initialization failed: list index out of range. Diagnostic: first_gold_empty=True, first_pred_empty=False, total_samples=1, non_empty_gold=0, non_empty_pred=1. Returning zero metrics.
-Total Progress (Samples):   0%|          | 110/210840 [00:39<24:37:51,  2.38sample/s]2026-02-12 09:30:34,780 - INFO - Progress: 20/3765 | P: 0.5472 | R: 0.6042 | Micro-F1: 0.5743 | Macro-F1: 0.5268
-2026-02-12 09:30:34,984 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-2026-02-12 09:30:35,080 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
-Total Progress (Samples):   0%|          | 112/210840 [00:40<18:20:24,  3.19sample/s]2026-02-12 09:30:35,147 - WARNING - nervaluate initialization failed: list index out of range. Diagnostic: first_gold_empty=True, first_pred_empty=False, total_samples=1, non_empty_gold=0, non_empty_pred=1. Returning zero metrics.
-2026-02-12 09:30:35,155 - INFO - Progress: 20/3765 | P: 0.5882 | R: 0.6250 | Micro-F1: 0.6061 | Macro-F1: 0.5441
-2026-02-12 09:30:35,371 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
