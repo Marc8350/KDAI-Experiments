@@ -248,20 +248,52 @@ def evaluate_with_nervaluate(
             'by_tag': {}
         }
     
-    # nervaluate requires first element to be non-empty list
-    # Reorder to put a non-empty sample first if needed
-    if (not all_gold_spans[0]) and (not all_pred_spans[0]):
-        # Find first non-empty index
-        non_empty_idx = None
-        for i, (g, p) in enumerate(zip(all_gold_spans, all_pred_spans)):
-            if g or p:
-                non_empty_idx = i
-                break
-        
-        if non_empty_idx is not None:
-            # Swap first with non-empty
-            all_gold_spans[0], all_gold_spans[non_empty_idx] = all_gold_spans[non_empty_idx], all_gold_spans[0]
-            all_pred_spans[0], all_pred_spans[non_empty_idx] = all_pred_spans[non_empty_idx], all_pred_spans[0]
+    # CRITICAL FIX: nervaluate crashes if gold is empty but pred is not (or vice versa)
+    # We need to ensure the first sample has at least one entity in BOTH gold and pred
+    # OR skip nervaluate entirely for degenerate cases
+    
+    # Case 1: No gold entities at all - can't compute recall meaningfully
+    if not has_any_gold:
+        # Model predicted but there's nothing to match against
+        # Precision = 0 (all predictions are false positives), Recall = undefined (no gold)
+        total_pred = sum(len(p) for p in all_pred_spans)
+        return {
+            'overall': {'precision': 0.0, 'recall': 0.0, 'f1': 0.0},
+            'macro': {'precision': 0.0, 'recall': 0.0, 'f1': 0.0},
+            'by_tag': {},
+            '_note': f'No gold entities, {total_pred} predictions (all false positives)'
+        }
+    
+    # Case 2: No predictions at all - precision undefined, recall = 0
+    if not has_any_pred:
+        total_gold = sum(len(g) for g in all_gold_spans)
+        return {
+            'overall': {'precision': 0.0, 'recall': 0.0, 'f1': 0.0},
+            'macro': {'precision': 0.0, 'recall': 0.0, 'f1': 0.0},
+            'by_tag': {},
+            '_note': f'{total_gold} gold entities, no predictions (all false negatives)'
+        }
+    
+    # nervaluate requires first element to be non-empty list with at least one entity
+    # Find a sample where BOTH gold and pred have at least one entity, or gold has entities
+    first_valid_idx = None
+    for i, (g, p) in enumerate(zip(all_gold_spans, all_pred_spans)):
+        if g:  # Gold must have entities for nervaluate to work
+            first_valid_idx = i
+            break
+    
+    if first_valid_idx is None:
+        # Shouldn't happen given the checks above, but safety fallback
+        return {
+            'overall': {'precision': 0.0, 'recall': 0.0, 'f1': 0.0},
+            'macro': {'precision': 0.0, 'recall': 0.0, 'f1': 0.0},
+            'by_tag': {}
+        }
+    
+    # Swap to put valid sample first if needed
+    if first_valid_idx > 0:
+        all_gold_spans[0], all_gold_spans[first_valid_idx] = all_gold_spans[first_valid_idx], all_gold_spans[0]
+        all_pred_spans[0], all_pred_spans[first_valid_idx] = all_pred_spans[first_valid_idx], all_pred_spans[0]
     
     try:
         evaluator = Evaluator(all_gold_spans, all_pred_spans, tags=entity_types, loader="default")

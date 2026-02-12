@@ -1025,12 +1025,40 @@ def run_experiment(config: ExperimentConfig, progress_queue=None, ollama_base_ur
         
         # Calculate per-sentence score
         sentence_eval = evaluate_ner([gold_entities], [pred_entities], entity_types)
-        sentence_nervaluate = evaluate_with_nervaluate(
-            all_gold_entities=[gold_entities],
-            all_pred_entities=[pred_entities],
-            all_texts=[text],
-            entity_types=entity_types
-        )
+        
+        # Handle edge cases for nervaluate (it crashes on empty gold)
+        # But we need to properly count FPs when gold is empty!
+        if not gold_entities and not pred_entities:
+            # Both empty - nothing to count, skip
+            sentence_nervaluate = {
+                'overall': {'precision': 1.0, 'recall': 1.0, 'f1': 1.0},  # Perfect: no gold, no pred
+                'macro': {'precision': 1.0, 'recall': 1.0, 'f1': 1.0},
+                'by_tag': {}
+            }
+        elif not gold_entities and pred_entities:
+            # Gold empty but model predicted entities = all predictions are FALSE POSITIVES
+            # Precision = 0 (all predictions wrong), Recall = 1 (nothing to miss), F1 = 0
+            sentence_nervaluate = {
+                'overall': {'precision': 0.0, 'recall': 1.0, 'f1': 0.0},
+                'macro': {'precision': 0.0, 'recall': 1.0, 'f1': 0.0},
+                'by_tag': {}
+            }
+        elif gold_entities and not pred_entities:
+            # Gold has entities but model predicted nothing = all gold are FALSE NEGATIVES
+            # Precision = 1 (no wrong predictions), Recall = 0 (missed everything), F1 = 0
+            sentence_nervaluate = {
+                'overall': {'precision': 1.0, 'recall': 0.0, 'f1': 0.0},
+                'macro': {'precision': 1.0, 'recall': 0.0, 'f1': 0.0},
+                'by_tag': {}
+            }
+        else:
+            # Normal case: both have entities, use nervaluate
+            sentence_nervaluate = evaluate_with_nervaluate(
+                all_gold_entities=[gold_entities],
+                all_pred_entities=[pred_entities],
+                all_texts=[text],
+                entity_types=entity_types
+            )
         sentence_nervaluate_by_tag = normalize_nervaluate_by_tag(
             sentence_nervaluate.get('by_tag', {})
         )
