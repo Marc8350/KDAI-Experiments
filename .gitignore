@@ -7,10 +7,4 @@ few-nerd_test/
 __pycache__/
 createpormpts.ipynb
 
-# CodeIE results (generated at runtime)
-CodeIE/CODEIE-results/
-CodeIE/CODEIE-results.backup_*/
-CodeIE/experiment_matrix.csv
-*.log
-
 
