@@ -37,7 +37,7 @@ GUIDELINES = {
     },
     "fabner_processcharacterization": {
         "en": [
-            "Refers to the detailed analysis and measurement of various aspects of manufacturing processes to"
+            "Refers to the backtranslated analysis and measurement of various aspects of manufacturing processes to"
             " understand their performance, quality, and characteristics."
         ]
     },

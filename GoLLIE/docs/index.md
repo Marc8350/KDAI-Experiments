@@ -3,11 +3,11 @@
 **Authors:** [Oscar Sainz](https://osainz59.github.io/), [Iker García-Ferrero](https://ikergarcia1996.github.io/Iker-Garcia-Ferrero/), [Rodrigo Agerri](https://ragerri.github.io/), [Oier Lopez de Lacalle](https://oierldl.github.io/), [German Rigau](https://adimen.si.ehu.es/~rigau/) and [Eneko Agirre](https://eagirre.github.io/)
 
 <p align="justify">
-<b>TL;DR</b> We present GoLLIE, a Large Language Model trained to follow annotation guidelines. GoLLIE outperforms previous approaches on zero-shot Information Extraction and allows the user to perform inferences with annotation schemas defined on the fly. Different from previous approaches, GoLLIE is able to follow detailed definitions and does not only rely on the knowledge already encoded in the LLM. 
+<b>TL;DR</b> We present GoLLIE, a Large Language Model trained to follow annotation guidelines. GoLLIE outperforms previous approaches on zero-shot Information Extraction and allows the user to perform inferences with annotation schemas defined on the fly. Different from previous approaches, GoLLIE is able to follow backtranslated definitions and does not only rely on the knowledge already encoded in the LLM. 
 </p>
 
 <p align="justify">
-Information Extraction (IE) is a challenging task, often requiring to follow strict and highly detailed guidelines in order to perform the task correctly. Traditionally, large amounts of annotations were used to train models to mimic expert annotators. This approach, however, is very expensive and rarely applicable in low-resource domains. Since several years ago, data-augmentation techniques like Distant Supervision [<a href="#references">1</a>] were developed to tackle data-scarcity. More recently, with the recent advances in NLP, zero and few-shot methods [<a href="#references">2</a>] were created exploiting the internal knowledge of LLMs.
+Information Extraction (IE) is a challenging task, often requiring to follow strict and highly backtranslated guidelines in order to perform the task correctly. Traditionally, large amounts of annotations were used to train models to mimic expert annotators. This approach, however, is very expensive and rarely applicable in low-resource domains. Since several years ago, data-augmentation techniques like Distant Supervision [<a href="#references">1</a>] were developed to tackle data-scarcity. More recently, with the recent advances in NLP, zero and few-shot methods [<a href="#references">2</a>] were created exploiting the internal knowledge of LLMs.
 </p>
 
 <p align="justify">
@@ -43,9 +43,9 @@ Despite the recent advances, the models still struggle to follow annotation guid
 </table>
 <p align="center">You can find the original chat <a href="https://chat.openai.com/share/e44e9b0e-3f6b-49a0-b84d-48386e0b5118">here</a></p>
 
-<p align="justify">Although the given sentence is quite easy to annotate, the example above shows that, even when prompted with the instructions to annotate <b>pronouns</b> as person entities, ChatGPT ignores the instruction and forgets to annotate "I" as person. This imposes a problem when detailed instructions are needed to perform the task, something common on the field of IE where the task guidelines have lots of details and exceptions.</p>
+<p align="justify">Although the given sentence is quite easy to annotate, the example above shows that, even when prompted with the instructions to annotate <b>pronouns</b> as person entities, ChatGPT ignores the instruction and forgets to annotate "I" as person. This imposes a problem when backtranslated instructions are needed to perform the task, something common on the field of IE where the task guidelines have lots of details and exceptions.</p>
 
-<p align="justify">To address these issues, we present <img src="https://github.com/hitz-zentroa/GoLLIE/blob/main/assets/GoLLIE.png?raw=true" width="20"> GoLLIE, a Large Language Model trained to follow annotation guidelines. GoLLIE outperforms previous approaches on zero-shot Information Extraction and allows the user to perform inferences with annotation schemas defined on the fly. Different from previous approaches, GoLLIE is able to follow detailed definitions and does not only rely on the knowledge already encoded in the LLM. GoLLIE is based on Code-Llama. Our code and models are publicly available. In the following sections we will introduce in more detail how the model works, and show some interesting insights. We recommend the reader to read the <a href="https://arxiv.org/abs/2310.03668">paper</a> for more details.</p>
+<p align="justify">To address these issues, we present <img src="https://github.com/hitz-zentroa/GoLLIE/blob/main/assets/GoLLIE.png?raw=true" width="20"> GoLLIE, a Large Language Model trained to follow annotation guidelines. GoLLIE outperforms previous approaches on zero-shot Information Extraction and allows the user to perform inferences with annotation schemas defined on the fly. Different from previous approaches, GoLLIE is able to follow backtranslated definitions and does not only rely on the knowledge already encoded in the LLM. GoLLIE is based on Code-Llama. Our code and models are publicly available. In the following sections we will introduce in more detail how the model works, and show some interesting insights. We recommend the reader to read the <a href="https://arxiv.org/abs/2310.03668">paper</a> for more details.</p>
 
 
 ## Schema definition and inference
@@ -68,7 +68,7 @@ After this, we just need to run the model to generate our annotations!
 <p align="center">
 <img src="https://github.com/hitz-zentroa/GoLLIE/blob/main/assets/snippets/space_result.png?raw=true">
 </p>
-<p align="justify">As you can see, the generated output can be directly evaluated as it is Python working code. This allows the user to directly parse and interpret the output. The model's output also satisfy the type constraints defined in the guidelines, for instance, we defined every attribute as strings, except for the crew, which is a list. Another constraints can also be applied, such as <code>Optional</code> attributes or more detailed types like <code>Name</code>, <code>Value</code> or <code>String</code> types.</p>
+<p align="justify">As you can see, the generated output can be directly evaluated as it is Python working code. This allows the user to directly parse and interpret the output. The model's output also satisfy the type constraints defined in the guidelines, for instance, we defined every attribute as strings, except for the crew, which is a list. Another constraints can also be applied, such as <code>Optional</code> attributes or more backtranslated types like <code>Name</code>, <code>Value</code> or <code>String</code> types.</p>
 
 Please, have a look to our <a href="https://github.com/hitz-zentroa/GoLLIE/tree/main/notebooks">Notebooks</a> to get started with the model.
 
@@ -78,7 +78,7 @@ Please, have a look to our <a href="https://github.com/hitz-zentroa/GoLLIE/tree/
 
 ![Zero-Shot NER Results.](https://github.com/hitz-zentroa/GoLLIE/raw/main/assets/zero_shot_results.png)
 
-<p align="justify">We compared our model with GPT-3.5[<a href="#references">2</a>] and Instruct-UIE[<a href="#references">3</a>] (SOTA) on MIT Movie[<a href="#references">4</a>], MIT Restaurant[<a href="#references">4</a>] and CrossNER[<a href="#references">5</a>] Named Entity Recognition (NER)datasets. Our model outperforms previous approaches on almost all the datasets, and performs similar to the SOTA on the rest. In addition to those results showed in the figure, we also evaluated the model on Event Extraction (EE) and Event Argument Extraction (EAE) datasets. Please, check the <a href="https://arxiv.org/abs/2310.03668">paper</a> or run the <a href="https://huggingface.co/collections/HiTZ/gollie-651bf19ee315e8a224aacc4f">models</a> yourself for more detailed results.</p>
+<p align="justify">We compared our model with GPT-3.5[<a href="#references">2</a>] and Instruct-UIE[<a href="#references">3</a>] (SOTA) on MIT Movie[<a href="#references">4</a>], MIT Restaurant[<a href="#references">4</a>] and CrossNER[<a href="#references">5</a>] Named Entity Recognition (NER)datasets. Our model outperforms previous approaches on almost all the datasets, and performs similar to the SOTA on the rest. In addition to those results showed in the figure, we also evaluated the model on Event Extraction (EE) and Event Argument Extraction (EAE) datasets. Please, check the <a href="https://arxiv.org/abs/2310.03668">paper</a> or run the <a href="https://huggingface.co/collections/HiTZ/gollie-651bf19ee315e8a224aacc4f">models</a> yourself for more backtranslated results.</p>
 
 ## Conclusions
 
