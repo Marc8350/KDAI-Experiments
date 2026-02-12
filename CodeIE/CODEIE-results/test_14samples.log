@@ -1,0 +1,69 @@
+2026-02-12 09:48:43,797 - INFO - ============================================================
+2026-02-12 09:48:43,797 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-12 09:48:43,797 - INFO - ============================================================
+2026-02-12 09:48:43,797 - INFO - Granularity: coarse
+2026-02-12 09:48:43,797 - INFO - Style: pl
+2026-02-12 09:48:43,797 - INFO - Variation: default
+2026-02-12 09:48:43,797 - INFO - Model: qwen2.5:7b
+2026-02-12 09:48:43,797 - INFO - ============================================================
+2026-02-12 09:48:43,797 - INFO - Using ChatOllama (Chat API) for qwen2.5:7b with timeout=180s
+2026-02-12 09:48:43,837 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+2026-02-12 09:48:43,837 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+2026-02-12 09:48:43,837 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+2026-02-12 09:48:43,843 - INFO - Using base prompt: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/prompts/base/coarse_pl_1shot.txt
+2026-02-12 09:48:43,843 - INFO - Base prompt loaded (Length: 3810)
+2026-02-12 09:48:43,843 - INFO - Sample base prompt (first 1000 chars):
+2026-02-12 09:48:43,843 - INFO - ----------------------------------------
+2026-02-12 09:48:43,844 - INFO - # TASK: Complete the Python code by adding entity_list.append() statements.
+2026-02-12 09:48:43,844 - INFO - # DO NOT explain the code. Just output the entity_list.append() lines.
+2026-02-12 09:48:43,844 - INFO - # DO NOT tell me how to adjust the code. Simply complete it with Just output the entity_list.append() lines.
+2026-02-12 09:48:43,844 - INFO - # STICK EXACTLY to the entity-types do not define your own entity types.
+2026-02-12 09:48:43,844 - INFO - 
+2026-02-12 09:48:43,844 - INFO - # You are an expert Named Entity Recognition (NER) system specializing in extracting entities from text.
+2026-02-12 09:48:43,844 - INFO - # For each input_text, identify named entities and add them using entity_list.append().
+2026-02-12 09:48:43,844 - INFO - 
+2026-02-12 09:48:43,844 - INFO - # Entity Types:
+2026-02-12 09:48:43,844 - INFO - # - art: A work of art including films, books, music, paintings, or other creative works.
+2026-02-12 09:48:43,844 - INFO - # - building: A named structure or building, such as a stadium, museum, or hotel.
+2026-02-12 09:48:43,844 - INFO - # - event: A named event such as a war, sports event, festival, or historical occurrence.
+2026-02-12 09:48:43,844 - INFO - # - location: A geographical location such as a city, country, continent, region, or landmark.
+2026-02-12 09:48:43,844 - INFO - # - organization: A named organization, institution, company, or group.
+2026-02-12 09:48:43,844 - INFO - # - other: Other named entities
+2026-02-12 09:48:43,844 - INFO - ----------------------------------------
+2026-02-12 09:48:43,844 - INFO - Processing 14 test samples...
+2026-02-12 09:48:47,039 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-12 09:48:47,649 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-12 09:48:47,918 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-12 09:48:48,171 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-12 09:48:48,634 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-12 09:48:48,948 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-12 09:48:49,224 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-12 09:48:49,641 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-12 09:48:51,029 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-12 09:48:51,295 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-12 09:48:52,120 - INFO - Progress: 10/14 | P: 0.6538 | R: 0.5862 | Micro-F1: 0.6182 | Macro-F1: 0.5531
+2026-02-12 09:48:52,244 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-12 09:48:52,694 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-12 09:48:53,565 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-12 09:48:54,126 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2026-02-12 09:48:54,451 - INFO - Progress: 14/14 | P: 0.6316 | R: 0.5854 | Micro-F1: 0.6076 | Macro-F1: 0.5621
+2026-02-12 09:48:54,465 - INFO - ============================================================
+2026-02-12 09:48:54,465 - INFO - Final Results
+2026-02-12 09:48:54,465 - INFO - ============================================================
+2026-02-12 09:48:54,465 - INFO - Precision:  0.6316
+2026-02-12 09:48:54,465 - INFO - Recall:     0.5854
+2026-02-12 09:48:54,465 - INFO - Micro F1:   0.6076
+2026-02-12 09:48:54,465 - INFO - Macro F1:   0.5621
+2026-02-12 09:48:54,465 - INFO - ----------------------------------------
+2026-02-12 09:48:54,465 - INFO - Per-Type F1 Scores:
+2026-02-12 09:48:54,465 - INFO -   building                       F1: 0.8000 (P: 0.6667, R: 1.0000)
+2026-02-12 09:48:54,465 - INFO -   event                          F1: 0.2857 (P: 0.3333, R: 0.2500)
+2026-02-12 09:48:54,465 - INFO -   location                       F1: 0.8235 (P: 1.0000, R: 0.7000)
+2026-02-12 09:48:54,466 - INFO -   organization                   F1: 0.6207 (P: 0.6923, R: 0.5625)
+2026-02-12 09:48:54,466 - INFO -   other                          F1: 0.3333 (P: 0.2000, R: 1.0000)
+2026-02-12 09:48:54,466 - INFO -   person                         F1: 0.5000 (P: 0.5000, R: 0.5000)
+2026-02-12 09:48:54,466 - INFO -   product                        F1: 0.5714 (P: 0.6667, R: 0.5000)
+2026-02-12 09:48:54,466 - INFO - ----------------------------------------
+2026-02-12 09:48:54,466 - INFO - Results saved to: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/CODEIE-results/coarse_pl_default_qwen2.5:7b_20260212_094843.json
+2026-02-12 09:48:54,466 - INFO - ============================================================
+2026-02-12 09:48:54,466 - INFO - Updated experiment matrix: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/CODEIE-results/experiment_matrix.csv

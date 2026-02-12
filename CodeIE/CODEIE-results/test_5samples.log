@@ -1,0 +1,13 @@
+2026-02-12 09:47:42,728 - INFO - ============================================================
+2026-02-12 09:47:42,728 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-12 09:47:42,728 - INFO - ============================================================
+2026-02-12 09:47:42,728 - INFO - Granularity: coarse
+2026-02-12 09:47:42,728 - INFO - Style: pl
+2026-02-12 09:47:42,728 - INFO - Variation: base
+2026-02-12 09:47:42,728 - INFO - Model: qwen2.5:7b
+2026-02-12 09:47:42,728 - INFO - ============================================================
+2026-02-12 09:47:42,729 - INFO - Using ChatOllama (Chat API) for qwen2.5:7b with timeout=180s
+2026-02-12 09:47:42,768 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+2026-02-12 09:47:42,768 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+2026-02-12 09:47:42,768 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+2026-02-12 09:47:42,775 - ERROR - Variation 'base' not found in discovery.
