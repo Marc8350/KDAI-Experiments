@@ -234,8 +234,57 @@ def evaluate_with_nervaluate(
         
         all_gold_spans.append(gold_spans)
         all_pred_spans.append(pred_spans)
+    
+    # Handle edge case: nervaluate crashes if lists are empty or first sample is empty
+    # Check if we have any data at all
+    has_any_gold = any(g for g in all_gold_spans)
+    has_any_pred = any(p for p in all_pred_spans)
+    
+    if not has_any_gold and not has_any_pred:
+        # No data at all - return empty metrics
+        return {
+            'overall': {'precision': 0.0, 'recall': 0.0, 'f1': 0.0},
+            'macro': {'precision': 0.0, 'recall': 0.0, 'f1': 0.0},
+            'by_tag': {}
+        }
+    
+    # nervaluate requires first element to be non-empty list
+    # Reorder to put a non-empty sample first if needed
+    if (not all_gold_spans[0]) and (not all_pred_spans[0]):
+        # Find first non-empty index
+        non_empty_idx = None
+        for i, (g, p) in enumerate(zip(all_gold_spans, all_pred_spans)):
+            if g or p:
+                non_empty_idx = i
+                break
         
-    evaluator = Evaluator(all_gold_spans, all_pred_spans, tags=entity_types, loader="default")
+        if non_empty_idx is not None:
+            # Swap first with non-empty
+            all_gold_spans[0], all_gold_spans[non_empty_idx] = all_gold_spans[non_empty_idx], all_gold_spans[0]
+            all_pred_spans[0], all_pred_spans[non_empty_idx] = all_pred_spans[non_empty_idx], all_pred_spans[0]
+    
+    try:
+        evaluator = Evaluator(all_gold_spans, all_pred_spans, tags=entity_types, loader="default")
+    except (IndexError, ValueError) as e:
+        # Fallback if nervaluate still crashes
+        # Provide detailed diagnostic info
+        first_gold_empty = not all_gold_spans[0] if all_gold_spans else True
+        first_pred_empty = not all_pred_spans[0] if all_pred_spans else True
+        total_samples = len(all_gold_spans)
+        non_empty_gold = sum(1 for g in all_gold_spans if g)
+        non_empty_pred = sum(1 for p in all_pred_spans if p)
+        
+        logging.warning(
+            f"nervaluate initialization failed: {e}. "
+            f"Diagnostic: first_gold_empty={first_gold_empty}, first_pred_empty={first_pred_empty}, "
+            f"total_samples={total_samples}, non_empty_gold={non_empty_gold}, non_empty_pred={non_empty_pred}. "
+            f"Returning zero metrics."
+        )
+        return {
+            'overall': {'precision': 0.0, 'recall': 0.0, 'f1': 0.0},
+            'macro': {'precision': 0.0, 'recall': 0.0, 'f1': 0.0},
+            'by_tag': {}
+        }
     
     # Support both dict and tuple return signatures from nervaluate
     full_output = evaluator.evaluate()
