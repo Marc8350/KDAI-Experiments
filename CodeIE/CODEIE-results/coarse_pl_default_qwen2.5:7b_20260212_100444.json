@@ -1,0 +1,3420 @@
+{
+  "module": "codeie_coarse_pl_default",
+  "timestamp": "20260212_100444",
+  "config": {
+    "granularity": "coarse",
+    "max_test_samples": 15,
+    "style": "pl",
+    "variation": "default",
+    "api_base_url": null,
+    "api_key": null,
+    "model_name": "qwen2.5:7b",
+    "max_tokens": 256,
+    "temperature": 0.0,
+    "data_dir": "data",
+    "output_dir": "CODEIE-results",
+    "matrix_dir": null,
+    "prompt_path": null,
+    "quiet": false,
+    "skip_matrix_update": false
+  },
+  "entity_types": [
+    "art",
+    "building",
+    "event",
+    "location",
+    "organization",
+    "other",
+    "person",
+    "product"
+  ],
+  "overall_score": {
+    "nervaluate": {
+      "overall": {
+        "strict": {
+          "precision": 0.6153846153846154,
+          "recall": 0.5853658536585366,
+          "f1": 0.6,
+          "correct": 24,
+          "incorrect": 12,
+          "partial": 0,
+          "missed": 5,
+          "spurious": 3,
+          "actual": 39,
+          "possible": 41
+        },
+        "exact": {
+          "precision": 0.7692307692307693,
+          "recall": 0.7317073170731707,
+          "f1": 0.7499999999999999,
+          "correct": 30,
+          "incorrect": 6,
+          "partial": 0,
+          "missed": 5,
+          "spurious": 3,
+          "actual": 39,
+          "possible": 41
+        },
+        "partial": {
+          "precision": 0.7692307692307693,
+          "recall": 0.7317073170731707,
+          "f1": 0.7499999999999999,
+          "correct": 30,
+          "incorrect": 0,
+          "partial": 6,
+          "missed": 5,
+          "spurious": 3,
+          "actual": 39,
+          "possible": 41
+        },
+        "ent_type": {
+          "precision": 0.7435897435897436,
+          "recall": 0.7073170731707317,
+          "f1": 0.725,
+          "correct": 29,
+          "incorrect": 7,
+          "partial": 0,
+          "missed": 5,
+          "spurious": 3,
+          "actual": 39,
+          "possible": 41
+        }
+      },
+      "macro": {
+        "strict": 0.0,
+        "exact": 0.0,
+        "partial": 0.0,
+        "ent_type": 0.0
+      },
+      "by_tag": {
+        "other": {
+          "strict": {
+            "precision": 0.2,
+            "recall": 1.0,
+            "f1": 0.33333333333333337,
+            "correct": 1,
+            "incorrect": 0,
+            "partial": 0,
+            "missed": 0,
+            "spurious": 4,
+            "actual": 5,
+            "possible": 1
+          },
+          "partial": {
+            "precision": 0.2,
+            "recall": 1.0,
+            "f1": 0.33333333333333337,
+            "correct": 1,
+            "incorrect": 0,
+            "partial": 0,
+            "missed": 0,
+            "spurious": 4,
+            "actual": 5,
+            "possible": 1
+          },
+          "ent_type": {
+            "precision": 0.2,
+            "recall": 1.0,
+            "f1": 0.33333333333333337,
+            "correct": 1,
+            "incorrect": 0,
+            "partial": 0,
+            "missed": 0,
+            "spurious": 4,
+            "actual": 5,
+            "possible": 1
+          },
+          "exact": {
+            "precision": 0.2,
+            "recall": 1.0,
+            "f1": 0.33333333333333337,
+            "correct": 1,
+            "incorrect": 0,
+            "partial": 0,
+            "missed": 0,
+            "spurious": 4,
+            "actual": 5,
+            "possible": 1
+          }
+        },
+        "location": {
+          "strict": {
+            "precision": 1.0,
+            "recall": 0.7,
+            "f1": 0.8235294117647058,
+            "correct": 7,
+            "incorrect": 0,
+            "partial": 0,
+            "missed": 3,
+            "spurious": 0,
+            "actual": 7,
+            "possible": 10
+          },
+          "partial": {
+            "precision": 1.0,
+            "recall": 0.7,
+            "f1": 0.8235294117647058,
+            "correct": 7,
+            "incorrect": 0,
+            "partial": 0,
+            "missed": 3,
+            "spurious": 0,
+            "actual": 7,
+            "possible": 10
+          },
+          "ent_type": {
+            "precision": 1.0,
+            "recall": 0.7,
+            "f1": 0.8235294117647058,
+            "correct": 7,
+            "incorrect": 0,
+            "partial": 0,
+            "missed": 3,
+            "spurious": 0,
+            "actual": 7,
+            "possible": 10
+          },
+          "exact": {
+            "precision": 1.0,
+            "recall": 0.7,
+            "f1": 0.8235294117647058,
+            "correct": 7,
+            "incorrect": 0,
+            "partial": 0,
+            "missed": 3,
+            "spurious": 0,
+            "actual": 7,
+            "possible": 10
+          }
+        },
+        "event": {
+          "strict": {
+            "precision": 0.3333333333333333,
+            "recall": 0.25,
+            "f1": 0.28571428571428575,
+            "correct": 1,
+            "incorrect": 1,
+            "partial": 0,
+            "missed": 2,
+            "spurious": 1,
+            "actual": 3,
+            "possible": 4
+          },
+          "partial": {
+            "precision": 0.3333333333333333,
+            "recall": 0.25,
+            "f1": 0.28571428571428575,
+            "correct": 1,
+            "incorrect": 0,
+            "partial": 1,
+            "missed": 2,
+            "spurious": 1,
+            "actual": 3,
+            "possible": 4
+          },
+          "ent_type": {
+            "precision": 0.6666666666666666,
+            "recall": 0.5,
+            "f1": 0.5714285714285715,
+            "correct": 2,
+            "incorrect": 0,
+            "partial": 0,
+            "missed": 2,
+            "spurious": 1,
+            "actual": 3,
+            "possible": 4
+          },
+          "exact": {
+            "precision": 0.3333333333333333,
+            "recall": 0.25,
+            "f1": 0.28571428571428575,
+            "correct": 1,
+            "incorrect": 1,
+            "partial": 0,
+            "missed": 2,
+            "spurious": 1,
+            "actual": 3,
+            "possible": 4
+          }
+        },
+        "organization": {
+          "strict": {
+            "precision": 0.6923076923076923,
+            "recall": 0.5625,
+            "f1": 0.6206896551724138,
+            "correct": 9,
+            "incorrect": 2,
+            "partial": 0,
+            "missed": 5,
+            "spurious": 2,
+            "actual": 13,
+            "possible": 16
+          },
+          "partial": {
+            "precision": 0.6923076923076923,
+            "recall": 0.5625,
+            "f1": 0.6206896551724138,
+            "correct": 9,
+            "incorrect": 0,
+            "partial": 2,
+            "missed": 5,
+            "spurious": 2,
+            "actual": 13,
+            "possible": 16
+          },
+          "ent_type": {
+            "precision": 0.8461538461538461,
+            "recall": 0.6875,
+            "f1": 0.7586206896551724,
+            "correct": 11,
+            "incorrect": 0,
+            "partial": 0,
+            "missed": 5,
+            "spurious": 2,
+            "actual": 13,
+            "possible": 16
+          },
+          "exact": {
+            "precision": 0.6923076923076923,
+            "recall": 0.5625,
+            "f1": 0.6206896551724138,
+            "correct": 9,
+            "incorrect": 2,
+            "partial": 0,
+            "missed": 5,
+            "spurious": 2,
+            "actual": 13,
+            "possible": 16
+          }
+        },
+        "product": {
+          "strict": {
+            "precision": 0.6666666666666666,
+            "recall": 0.5,
+            "f1": 0.5714285714285715,
+            "correct": 2,
+            "incorrect": 1,
+            "partial": 0,
+            "missed": 1,
+            "spurious": 0,
+            "actual": 3,
+            "possible": 4
+          },
+          "partial": {
+            "precision": 0.6666666666666666,
+            "recall": 0.5,
+            "f1": 0.5714285714285715,
+            "correct": 2,
+            "incorrect": 0,
+            "partial": 1,
+            "missed": 1,
+            "spurious": 0,
+            "actual": 3,
+            "possible": 4
+          },
+          "ent_type": {
+            "precision": 1.0,
+            "recall": 0.75,
+            "f1": 0.8571428571428571,
+            "correct": 3,
+            "incorrect": 0,
+            "partial": 0,
+            "missed": 1,
+            "spurious": 0,
+            "actual": 3,
+            "possible": 4
+          },
+          "exact": {
+            "precision": 0.6666666666666666,
+            "recall": 0.5,
+            "f1": 0.5714285714285715,
+            "correct": 2,
+            "incorrect": 1,
+            "partial": 0,
+            "missed": 1,
+            "spurious": 0,
+            "actual": 3,
+            "possible": 4
+          }
+        },
+        "building": {
+          "strict": {
+            "precision": 0.5,
+            "recall": 1.0,
+            "f1": 0.6666666666666666,
+            "correct": 2,
+            "incorrect": 0,
+            "partial": 0,
+            "missed": 0,
+            "spurious": 2,
+            "actual": 4,
+            "possible": 2
+          },
+          "partial": {
+            "precision": 0.5,
+            "recall": 1.0,
+            "f1": 0.6666666666666666,
+            "correct": 2,
+            "incorrect": 0,
+            "partial": 0,
+            "missed": 0,
+            "spurious": 2,
+            "actual": 4,
+            "possible": 2
+          },
+          "ent_type": {
+            "precision": 0.5,
+            "recall": 1.0,
+            "f1": 0.6666666666666666,
+            "correct": 2,
+            "incorrect": 0,
+            "partial": 0,
+            "missed": 0,
+            "spurious": 2,
+            "actual": 4,
+            "possible": 2
+          },
+          "exact": {
+            "precision": 0.5,
+            "recall": 1.0,
+            "f1": 0.6666666666666666,
+            "correct": 2,
+            "incorrect": 0,
+            "partial": 0,
+            "missed": 0,
+            "spurious": 2,
+            "actual": 4,
+            "possible": 2
+          }
+        },
+        "person": {
+          "strict": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5,
+            "correct": 2,
+            "incorrect": 1,
+            "partial": 0,
+            "missed": 1,
+            "spurious": 1,
+            "actual": 4,
+            "possible": 4
+          },
+          "partial": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5,
+            "correct": 2,
+            "incorrect": 0,
+            "partial": 1,
+            "missed": 1,
+            "spurious": 1,
+            "actual": 4,
+            "possible": 4
+          },
+          "ent_type": {
+            "precision": 0.75,
+            "recall": 0.75,
+            "f1": 0.75,
+            "correct": 3,
+            "incorrect": 0,
+            "partial": 0,
+            "missed": 1,
+            "spurious": 1,
+            "actual": 4,
+            "possible": 4
+          },
+          "exact": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5,
+            "correct": 2,
+            "incorrect": 1,
+            "partial": 0,
+            "missed": 1,
+            "spurious": 1,
+            "actual": 4,
+            "possible": 4
+          }
+        }
+      }
+    }
+  },
+  "processed_count": 15,
+  "sentences": [
+    {
+      "index": 0,
+      "timestamp": "2026-02-12T10:04:44.644532",
+      "text": "In the early 1930s the band moved to the Grill Room of the Taft Hotel in New York ; the band was renamed `` George Hall and His Hotel Taft Orchestra `` .",
+      "gold": [
+        "building(span='Grill Room')",
+        "building(span='Taft Hotel')",
+        "location(span='New York')",
+        "organization(span='George Hall and His Hotel Taft Orchestra')"
+      ],
+      "prediction": [
+        "building(span='Grill Room')",
+        "building(span='Taft Hotel')",
+        "other(span='George Hall and His Hotel Taft Orchestra')"
+      ],
+      "generated_raw": "entity_list.append({\"text\": \"Grill Room\", \"type\": \"building\"})\nentity_list.append({\"text\": \"Taft Hotel\", \"type\": \"building\"})\nentity_list.append({\"text\": \"George Hall and His Hotel Taft Orchestra\", \"type\": \"other\"})",
+      "elapsed_time": 0.6032552719116211,
+      "score": {
+        "nervaluate": {
+          "overall": {
+            "strict": {
+              "precision": 0.6666666666666666,
+              "recall": 0.5,
+              "f1": 0.5714285714285715,
+              "correct": 2,
+              "incorrect": 1,
+              "partial": 0,
+              "missed": 1,
+              "spurious": 0,
+              "actual": 3,
+              "possible": 4
+            },
+            "exact": {
+              "precision": 1.0,
+              "recall": 0.75,
+              "f1": 0.8571428571428571,
+              "correct": 3,
+              "incorrect": 0,
+              "partial": 0,
+              "missed": 1,
+              "spurious": 0,
+              "actual": 3,
+              "possible": 4
+            },
+            "partial": {
+              "precision": 1.0,
+              "recall": 0.75,
+              "f1": 0.8571428571428571,
+              "correct": 3,
+              "incorrect": 0,
+              "partial": 0,
+              "missed": 1,
+              "spurious": 0,
+              "actual": 3,
+              "possible": 4
+            },
+            "ent_type": {
+              "precision": 0.6666666666666666,
+              "recall": 0.5,
+              "f1": 0.5714285714285715,
+              "correct": 2,
+              "incorrect": 1,
+              "partial": 0,
+              "missed": 1,
+              "spurious": 0,
+              "actual": 3,
+              "possible": 4
+            }
+          },
+          "macro": {
+            "strict": 0.0,
+            "exact": 0.0,
+            "partial": 0.0,
+            "ent_type": 0.0
+          },
+          "by_tag": {
+            "building": {
+              "strict": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "correct": 2,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 0,
+                "actual": 2,
+                "possible": 2
+              },
+              "partial": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "correct": 2,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 0,
+                "actual": 2,
+                "possible": 2
+              },
+              "ent_type": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "correct": 2,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 0,
+                "actual": 2,
+                "possible": 2
+              },
+              "exact": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "correct": 2,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 0,
+                "actual": 2,
+                "possible": 2
+              }
+            },
+            "organization": {
+              "strict": {
+                "precision": 0,
+                "recall": 0.0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 1,
+                "spurious": 0,
+                "actual": 0,
+                "possible": 1
+              },
+              "partial": {
+                "precision": 0,
+                "recall": 0.0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 1,
+                "spurious": 0,
+                "actual": 0,
+                "possible": 1
+              },
+              "ent_type": {
+                "precision": 0,
+                "recall": 0.0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 1,
+                "spurious": 0,
+                "actual": 0,
+                "possible": 1
+              },
+              "exact": {
+                "precision": 0,
+                "recall": 0.0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 1,
+                "spurious": 0,
+                "actual": 0,
+                "possible": 1
+              }
+            },
+            "other": {
+              "strict": {
+                "precision": 0.0,
+                "recall": 0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 1,
+                "possible": 0
+              },
+              "partial": {
+                "precision": 0.0,
+                "recall": 0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 1,
+                "possible": 0
+              },
+              "ent_type": {
+                "precision": 0.0,
+                "recall": 0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 1,
+                "possible": 0
+              },
+              "exact": {
+                "precision": 0.0,
+                "recall": 0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 1,
+                "possible": 0
+              }
+            },
+            "location": {
+              "strict": {
+                "precision": 0,
+                "recall": 0.0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 1,
+                "spurious": 0,
+                "actual": 0,
+                "possible": 1
+              },
+              "partial": {
+                "precision": 0,
+                "recall": 0.0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 1,
+                "spurious": 0,
+                "actual": 0,
+                "possible": 1
+              },
+              "ent_type": {
+                "precision": 0,
+                "recall": 0.0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 1,
+                "spurious": 0,
+                "actual": 0,
+                "possible": 1
+              },
+              "exact": {
+                "precision": 0,
+                "recall": 0.0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 1,
+                "spurious": 0,
+                "actual": 0,
+                "possible": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 1,
+      "timestamp": "2026-02-12T10:04:44.896678",
+      "text": "The final season of minor league play Elkin Memorial Park saw season attendance of 16,322 , an average of 299 per contest .",
+      "gold": [
+        "location(span='Elkin Memorial Park')"
+      ],
+      "prediction": [
+        "building(span='Elkin Memorial Park')"
+      ],
+      "generated_raw": "entity_list.append({\"text\": \"Elkin Memorial Park\", \"type\": \"building\"})",
+      "elapsed_time": 0.251497745513916,
+      "score": {
+        "nervaluate": {
+          "overall": {
+            "strict": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0,
+              "correct": 0,
+              "incorrect": 1,
+              "partial": 0,
+              "missed": 0,
+              "spurious": 0,
+              "actual": 1,
+              "possible": 1
+            },
+            "exact": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "correct": 1,
+              "incorrect": 0,
+              "partial": 0,
+              "missed": 0,
+              "spurious": 0,
+              "actual": 1,
+              "possible": 1
+            },
+            "partial": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "correct": 1,
+              "incorrect": 0,
+              "partial": 0,
+              "missed": 0,
+              "spurious": 0,
+              "actual": 1,
+              "possible": 1
+            },
+            "ent_type": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0,
+              "correct": 0,
+              "incorrect": 1,
+              "partial": 0,
+              "missed": 0,
+              "spurious": 0,
+              "actual": 1,
+              "possible": 1
+            }
+          },
+          "macro": {
+            "strict": 0.0,
+            "exact": 0.0,
+            "partial": 0.0,
+            "ent_type": 0.0
+          },
+          "by_tag": {
+            "building": {
+              "strict": {
+                "precision": 0.0,
+                "recall": 0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 1,
+                "possible": 0
+              },
+              "partial": {
+                "precision": 0.0,
+                "recall": 0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 1,
+                "possible": 0
+              },
+              "ent_type": {
+                "precision": 0.0,
+                "recall": 0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 1,
+                "possible": 0
+              },
+              "exact": {
+                "precision": 0.0,
+                "recall": 0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 1,
+                "possible": 0
+              }
+            },
+            "location": {
+              "strict": {
+                "precision": 0,
+                "recall": 0.0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 1,
+                "spurious": 0,
+                "actual": 0,
+                "possible": 1
+              },
+              "partial": {
+                "precision": 0,
+                "recall": 0.0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 1,
+                "spurious": 0,
+                "actual": 0,
+                "possible": 1
+              },
+              "ent_type": {
+                "precision": 0,
+                "recall": 0.0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 1,
+                "spurious": 0,
+                "actual": 0,
+                "possible": 1
+              },
+              "exact": {
+                "precision": 0,
+                "recall": 0.0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 1,
+                "spurious": 0,
+                "actual": 0,
+                "possible": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 2,
+      "timestamp": "2026-02-12T10:04:45.143925",
+      "text": "They finished the season 14\u201319 , 9\u20139 in C-USA play to finish in seventh place .",
+      "gold": [
+        "event(span='C-USA play')"
+      ],
+      "prediction": [
+        "organization(span='C-USA')"
+      ],
+      "generated_raw": "entity_list.append({\"text\": \"C-USA\", \"type\": \"organization\"})",
+      "elapsed_time": 0.24650907516479492,
+      "score": {
+        "nervaluate": {
+          "overall": {
+            "strict": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0,
+              "correct": 0,
+              "incorrect": 1,
+              "partial": 0,
+              "missed": 0,
+              "spurious": 0,
+              "actual": 1,
+              "possible": 1
+            },
+            "exact": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0,
+              "correct": 0,
+              "incorrect": 1,
+              "partial": 0,
+              "missed": 0,
+              "spurious": 0,
+              "actual": 1,
+              "possible": 1
+            },
+            "partial": {
+              "precision": 0.5,
+              "recall": 0.5,
+              "f1": 0.5,
+              "correct": 0,
+              "incorrect": 0,
+              "partial": 1,
+              "missed": 0,
+              "spurious": 0,
+              "actual": 1,
+              "possible": 1
+            },
+            "ent_type": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0,
+              "correct": 0,
+              "incorrect": 1,
+              "partial": 0,
+              "missed": 0,
+              "spurious": 0,
+              "actual": 1,
+              "possible": 1
+            }
+          },
+          "macro": {
+            "strict": 0.0,
+            "exact": 0.0,
+            "partial": 0.0,
+            "ent_type": 0.0
+          },
+          "by_tag": {
+            "event": {
+              "strict": {
+                "precision": 0,
+                "recall": 0.0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 1,
+                "spurious": 0,
+                "actual": 0,
+                "possible": 1
+              },
+              "partial": {
+                "precision": 0,
+                "recall": 0.0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 1,
+                "spurious": 0,
+                "actual": 0,
+                "possible": 1
+              },
+              "ent_type": {
+                "precision": 0,
+                "recall": 0.0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 1,
+                "spurious": 0,
+                "actual": 0,
+                "possible": 1
+              },
+              "exact": {
+                "precision": 0,
+                "recall": 0.0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 1,
+                "spurious": 0,
+                "actual": 0,
+                "possible": 1
+              }
+            },
+            "organization": {
+              "strict": {
+                "precision": 0.0,
+                "recall": 0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 1,
+                "possible": 0
+              },
+              "partial": {
+                "precision": 0.0,
+                "recall": 0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 1,
+                "possible": 0
+              },
+              "ent_type": {
+                "precision": 0.0,
+                "recall": 0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 1,
+                "possible": 0
+              },
+              "exact": {
+                "precision": 0.0,
+                "recall": 0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 1,
+                "possible": 0
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 3,
+      "timestamp": "2026-02-12T10:04:45.582721",
+      "text": "The B-52 pilot , Major Larry G. Messinger , later recalled ,",
+      "gold": [
+        "product(span='B-52')",
+        "person(span='Larry G. Messinger')"
+      ],
+      "prediction": [
+        "product(span='B-52')",
+        "person(span='Major Larry G. Messinger')"
+      ],
+      "generated_raw": "entity_list.append({\"text\": \"B-52\", \"type\": \"product\"})\nentity_list.append({\"text\": \"Major Larry G. Messinger\", \"type\": \"person\"})",
+      "elapsed_time": 0.43799757957458496,
+      "score": {
+        "nervaluate": {
+          "overall": {
+            "strict": {
+              "precision": 0.5,
+              "recall": 0.5,
+              "f1": 0.5,
+              "correct": 1,
+              "incorrect": 1,
+              "partial": 0,
+              "missed": 0,
+              "spurious": 0,
+              "actual": 2,
+              "possible": 2
+            },
+            "exact": {
+              "precision": 0.5,
+              "recall": 0.5,
+              "f1": 0.5,
+              "correct": 1,
+              "incorrect": 1,
+              "partial": 0,
+              "missed": 0,
+              "spurious": 0,
+              "actual": 2,
+              "possible": 2
+            },
+            "partial": {
+              "precision": 0.75,
+              "recall": 0.75,
+              "f1": 0.75,
+              "correct": 1,
+              "incorrect": 0,
+              "partial": 1,
+              "missed": 0,
+              "spurious": 0,
+              "actual": 2,
+              "possible": 2
+            },
+            "ent_type": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "correct": 2,
+              "incorrect": 0,
+              "partial": 0,
+              "missed": 0,
+              "spurious": 0,
+              "actual": 2,
+              "possible": 2
+            }
+          },
+          "macro": {
+            "strict": 0.0,
+            "exact": 0.0,
+            "partial": 0.0,
+            "ent_type": 0.0
+          },
+          "by_tag": {
+            "product": {
+              "strict": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "correct": 1,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 0,
+                "actual": 1,
+                "possible": 1
+              },
+              "partial": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "correct": 1,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 0,
+                "actual": 1,
+                "possible": 1
+              },
+              "ent_type": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "correct": 1,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 0,
+                "actual": 1,
+                "possible": 1
+              },
+              "exact": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "correct": 1,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 0,
+                "actual": 1,
+                "possible": 1
+              }
+            },
+            "person": {
+              "strict": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 1,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 0,
+                "actual": 1,
+                "possible": 1
+              },
+              "partial": {
+                "precision": 0.5,
+                "recall": 0.5,
+                "f1": 0.5,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 1,
+                "missed": 0,
+                "spurious": 0,
+                "actual": 1,
+                "possible": 1
+              },
+              "ent_type": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "correct": 1,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 0,
+                "actual": 1,
+                "possible": 1
+              },
+              "exact": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 1,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 0,
+                "actual": 1,
+                "possible": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 4,
+      "timestamp": "2026-02-12T10:04:45.878603",
+      "text": "The Austro-Hungarian Navy built and operated two classes of protected cruisers .",
+      "gold": [
+        "organization(span='Austro-Hungarian Navy')"
+      ],
+      "prediction": [
+        "organization(span='Austro-Hungarian Navy')"
+      ],
+      "generated_raw": "entity_list.append({\"text\": \"Austro-Hungarian Navy\", \"type\": \"organization\"})",
+      "elapsed_time": 0.2952084541320801,
+      "score": {
+        "nervaluate": {
+          "overall": {
+            "strict": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "correct": 1,
+              "incorrect": 0,
+              "partial": 0,
+              "missed": 0,
+              "spurious": 0,
+              "actual": 1,
+              "possible": 1
+            },
+            "exact": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "correct": 1,
+              "incorrect": 0,
+              "partial": 0,
+              "missed": 0,
+              "spurious": 0,
+              "actual": 1,
+              "possible": 1
+            },
+            "partial": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "correct": 1,
+              "incorrect": 0,
+              "partial": 0,
+              "missed": 0,
+              "spurious": 0,
+              "actual": 1,
+              "possible": 1
+            },
+            "ent_type": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "correct": 1,
+              "incorrect": 0,
+              "partial": 0,
+              "missed": 0,
+              "spurious": 0,
+              "actual": 1,
+              "possible": 1
+            }
+          },
+          "macro": {
+            "strict": 0.0,
+            "exact": 0.0,
+            "partial": 0.0,
+            "ent_type": 0.0
+          },
+          "by_tag": {
+            "organization": {
+              "strict": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "correct": 1,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 0,
+                "actual": 1,
+                "possible": 1
+              },
+              "partial": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "correct": 1,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 0,
+                "actual": 1,
+                "possible": 1
+              },
+              "ent_type": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "correct": 1,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 0,
+                "actual": 1,
+                "possible": 1
+              },
+              "exact": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "correct": 1,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 0,
+                "actual": 1,
+                "possible": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 5,
+      "timestamp": "2026-02-12T10:04:46.150937",
+      "text": "Elin Hilderbrand is an American writer mostly of romance novels .",
+      "gold": [
+        "person(span='Elin Hilderbrand')",
+        "location(span='American')"
+      ],
+      "prediction": [
+        "person(span='Elin Hilderbrand')"
+      ],
+      "generated_raw": "entity_list.append({\"text\": \"Elin Hilderbrand\", \"type\": \"person\"})",
+      "elapsed_time": 0.2715761661529541,
+      "score": {
+        "nervaluate": {
+          "overall": {
+            "strict": {
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1": 0.6666666666666666,
+              "correct": 1,
+              "incorrect": 0,
+              "partial": 0,
+              "missed": 1,
+              "spurious": 0,
+              "actual": 1,
+              "possible": 2
+            },
+            "exact": {
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1": 0.6666666666666666,
+              "correct": 1,
+              "incorrect": 0,
+              "partial": 0,
+              "missed": 1,
+              "spurious": 0,
+              "actual": 1,
+              "possible": 2
+            },
+            "partial": {
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1": 0.6666666666666666,
+              "correct": 1,
+              "incorrect": 0,
+              "partial": 0,
+              "missed": 1,
+              "spurious": 0,
+              "actual": 1,
+              "possible": 2
+            },
+            "ent_type": {
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1": 0.6666666666666666,
+              "correct": 1,
+              "incorrect": 0,
+              "partial": 0,
+              "missed": 1,
+              "spurious": 0,
+              "actual": 1,
+              "possible": 2
+            }
+          },
+          "macro": {
+            "strict": 0.0,
+            "exact": 0.0,
+            "partial": 0.0,
+            "ent_type": 0.0
+          },
+          "by_tag": {
+            "location": {
+              "strict": {
+                "precision": 0,
+                "recall": 0.0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 1,
+                "spurious": 0,
+                "actual": 0,
+                "possible": 1
+              },
+              "partial": {
+                "precision": 0,
+                "recall": 0.0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 1,
+                "spurious": 0,
+                "actual": 0,
+                "possible": 1
+              },
+              "ent_type": {
+                "precision": 0,
+                "recall": 0.0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 1,
+                "spurious": 0,
+                "actual": 0,
+                "possible": 1
+              },
+              "exact": {
+                "precision": 0,
+                "recall": 0.0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 1,
+                "spurious": 0,
+                "actual": 0,
+                "possible": 1
+              }
+            },
+            "person": {
+              "strict": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "correct": 1,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 0,
+                "actual": 1,
+                "possible": 1
+              },
+              "partial": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "correct": 1,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 0,
+                "actual": 1,
+                "possible": 1
+              },
+              "ent_type": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "correct": 1,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 0,
+                "actual": 1,
+                "possible": 1
+              },
+              "exact": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "correct": 1,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 0,
+                "actual": 1,
+                "possible": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 6,
+      "timestamp": "2026-02-12T10:04:46.590389",
+      "text": "A prototype was fitted in the mid-'60s in a one-off DB5 extended 4 '' after the doors and driven by Marek personally , and a normally 6-cylinder Aston Martin DB7 was equipped with a V8 unit in 1998 .",
+      "gold": [
+        "product(span='DB5 extended 4 ''')",
+        "person(span='Marek')",
+        "product(span='Aston Martin DB7')",
+        "product(span='V8 unit')"
+      ],
+      "prediction": [
+        "product(span='DB5')",
+        "product(span='Aston Martin DB7')"
+      ],
+      "generated_raw": "entity_list.append({\"text\": \"DB5\", \"type\": \"product\"})\nentity_list.append({\"text\": \"Aston Martin DB7\", \"type\": \"product\"})",
+      "elapsed_time": 0.4385223388671875,
+      "score": {
+        "nervaluate": {
+          "overall": {
+            "strict": {
+              "precision": 0.5,
+              "recall": 0.25,
+              "f1": 0.3333333333333333,
+              "correct": 1,
+              "incorrect": 1,
+              "partial": 0,
+              "missed": 2,
+              "spurious": 0,
+              "actual": 2,
+              "possible": 4
+            },
+            "exact": {
+              "precision": 0.5,
+              "recall": 0.25,
+              "f1": 0.3333333333333333,
+              "correct": 1,
+              "incorrect": 1,
+              "partial": 0,
+              "missed": 2,
+              "spurious": 0,
+              "actual": 2,
+              "possible": 4
+            },
+            "partial": {
+              "precision": 0.75,
+              "recall": 0.375,
+              "f1": 0.5,
+              "correct": 1,
+              "incorrect": 0,
+              "partial": 1,
+              "missed": 2,
+              "spurious": 0,
+              "actual": 2,
+              "possible": 4
+            },
+            "ent_type": {
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1": 0.6666666666666666,
+              "correct": 2,
+              "incorrect": 0,
+              "partial": 0,
+              "missed": 2,
+              "spurious": 0,
+              "actual": 2,
+              "possible": 4
+            }
+          },
+          "macro": {
+            "strict": 0.0,
+            "exact": 0.0,
+            "partial": 0.0,
+            "ent_type": 0.0
+          },
+          "by_tag": {
+            "product": {
+              "strict": {
+                "precision": 0.5,
+                "recall": 0.3333333333333333,
+                "f1": 0.4,
+                "correct": 1,
+                "incorrect": 1,
+                "partial": 0,
+                "missed": 1,
+                "spurious": 0,
+                "actual": 2,
+                "possible": 3
+              },
+              "partial": {
+                "precision": 0.75,
+                "recall": 0.5,
+                "f1": 0.6,
+                "correct": 1,
+                "incorrect": 0,
+                "partial": 1,
+                "missed": 1,
+                "spurious": 0,
+                "actual": 2,
+                "possible": 3
+              },
+              "ent_type": {
+                "precision": 1.0,
+                "recall": 0.6666666666666666,
+                "f1": 0.8,
+                "correct": 2,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 1,
+                "spurious": 0,
+                "actual": 2,
+                "possible": 3
+              },
+              "exact": {
+                "precision": 0.5,
+                "recall": 0.3333333333333333,
+                "f1": 0.4,
+                "correct": 1,
+                "incorrect": 1,
+                "partial": 0,
+                "missed": 1,
+                "spurious": 0,
+                "actual": 2,
+                "possible": 3
+              }
+            },
+            "person": {
+              "strict": {
+                "precision": 0,
+                "recall": 0.0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 1,
+                "spurious": 0,
+                "actual": 0,
+                "possible": 1
+              },
+              "partial": {
+                "precision": 0,
+                "recall": 0.0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 1,
+                "spurious": 0,
+                "actual": 0,
+                "possible": 1
+              },
+              "ent_type": {
+                "precision": 0,
+                "recall": 0.0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 1,
+                "spurious": 0,
+                "actual": 0,
+                "possible": 1
+              },
+              "exact": {
+                "precision": 0,
+                "recall": 0.0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 1,
+                "spurious": 0,
+                "actual": 0,
+                "possible": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 7,
+      "timestamp": "2026-02-12T10:04:48.010852",
+      "text": "He has caught the attention of major publications and media outlets such as CNN , The Huffington Post , Hypebeast , The Guardian , Juxtapoz Magazine , Daily Mail , NRDC , Aljazeera and Hi-Fructose Magazine .",
+      "gold": [
+        "organization(span='CNN')",
+        "organization(span='The Huffington Post')",
+        "organization(span='Hypebeast')",
+        "organization(span='The Guardian')",
+        "organization(span='Juxtapoz Magazine')",
+        "organization(span='Daily Mail , NRDC')",
+        "organization(span='Aljazeera')",
+        "organization(span='Hi-Fructose Magazine')"
+      ],
+      "prediction": [
+        "organization(span='CNN')",
+        "organization(span='The Huffington Post')",
+        "organization(span='Hypebeast')",
+        "organization(span='The Guardian')",
+        "organization(span='Juxtapoz Magazine')",
+        "organization(span='Daily Mail')",
+        "organization(span='NRDC')",
+        "organization(span='Aljazeera')",
+        "organization(span='Hi-Fructose Magazine')"
+      ],
+      "generated_raw": "entity_list.append({\"text\": \"CNN\", \"type\": \"organization\"})\nentity_list.append({\"text\": \"The Huffington Post\", \"type\": \"organization\"})\nentity_list.append({\"text\": \"Hypebeast\", \"type\": \"organization\"})\nentity_list.append({\"text\": \"The Guardian\", \"type\": \"organization\"})\nentity_list.append({\"text\": \"Juxtapoz Magazine\", \"type\": \"organization\"})\nentity_list.append({\"text\": \"Daily Mail\", \"type\": \"organization\"})\nentity_list.append({\"text\": \"NRDC\", \"type\": \"organization\"})\nentity_list.append({\"text\":",
+      "elapsed_time": 1.419215202331543,
+      "score": {
+        "nervaluate": {
+          "overall": {
+            "strict": {
+              "precision": 0.7777777777777778,
+              "recall": 0.875,
+              "f1": 0.823529411764706,
+              "correct": 7,
+              "incorrect": 1,
+              "partial": 0,
+              "missed": 0,
+              "spurious": 1,
+              "actual": 9,
+              "possible": 8
+            },
+            "exact": {
+              "precision": 0.7777777777777778,
+              "recall": 0.875,
+              "f1": 0.823529411764706,
+              "correct": 7,
+              "incorrect": 1,
+              "partial": 0,
+              "missed": 0,
+              "spurious": 1,
+              "actual": 9,
+              "possible": 8
+            },
+            "partial": {
+              "precision": 0.8333333333333334,
+              "recall": 0.9375,
+              "f1": 0.8823529411764706,
+              "correct": 7,
+              "incorrect": 0,
+              "partial": 1,
+              "missed": 0,
+              "spurious": 1,
+              "actual": 9,
+              "possible": 8
+            },
+            "ent_type": {
+              "precision": 0.8888888888888888,
+              "recall": 1.0,
+              "f1": 0.9411764705882353,
+              "correct": 8,
+              "incorrect": 0,
+              "partial": 0,
+              "missed": 0,
+              "spurious": 1,
+              "actual": 9,
+              "possible": 8
+            }
+          },
+          "macro": {
+            "strict": 0.0,
+            "exact": 0.0,
+            "partial": 0.0,
+            "ent_type": 0.0
+          },
+          "by_tag": {
+            "organization": {
+              "strict": {
+                "precision": 0.7777777777777778,
+                "recall": 0.875,
+                "f1": 0.823529411764706,
+                "correct": 7,
+                "incorrect": 1,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 9,
+                "possible": 8
+              },
+              "partial": {
+                "precision": 0.8333333333333334,
+                "recall": 0.9375,
+                "f1": 0.8823529411764706,
+                "correct": 7,
+                "incorrect": 0,
+                "partial": 1,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 9,
+                "possible": 8
+              },
+              "ent_type": {
+                "precision": 0.8888888888888888,
+                "recall": 1.0,
+                "f1": 0.9411764705882353,
+                "correct": 8,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 9,
+                "possible": 8
+              },
+              "exact": {
+                "precision": 0.7777777777777778,
+                "recall": 0.875,
+                "f1": 0.823529411764706,
+                "correct": 7,
+                "incorrect": 1,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 9,
+                "possible": 8
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 8,
+      "timestamp": "2026-02-12T10:04:48.271215",
+      "text": "The Cnidaria are a group of animals found exclusively in aquatic and mostly marine environments .",
+      "gold": [
+        "other(span='Cnidaria')"
+      ],
+      "prediction": [
+        "other(span='Cnidaria')"
+      ],
+      "generated_raw": "entity_list.append({\"text\": \"Cnidaria\", \"type\": \"other\"})",
+      "elapsed_time": 0.25959062576293945,
+      "score": {
+        "nervaluate": {
+          "overall": {
+            "strict": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "correct": 1,
+              "incorrect": 0,
+              "partial": 0,
+              "missed": 0,
+              "spurious": 0,
+              "actual": 1,
+              "possible": 1
+            },
+            "exact": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "correct": 1,
+              "incorrect": 0,
+              "partial": 0,
+              "missed": 0,
+              "spurious": 0,
+              "actual": 1,
+              "possible": 1
+            },
+            "partial": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "correct": 1,
+              "incorrect": 0,
+              "partial": 0,
+              "missed": 0,
+              "spurious": 0,
+              "actual": 1,
+              "possible": 1
+            },
+            "ent_type": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "correct": 1,
+              "incorrect": 0,
+              "partial": 0,
+              "missed": 0,
+              "spurious": 0,
+              "actual": 1,
+              "possible": 1
+            }
+          },
+          "macro": {
+            "strict": 0.0,
+            "exact": 0.0,
+            "partial": 0.0,
+            "ent_type": 0.0
+          },
+          "by_tag": {
+            "other": {
+              "strict": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "correct": 1,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 0,
+                "actual": 1,
+                "possible": 1
+              },
+              "partial": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "correct": 1,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 0,
+                "actual": 1,
+                "possible": 1
+              },
+              "ent_type": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "correct": 1,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 0,
+                "actual": 1,
+                "possible": 1
+              },
+              "exact": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "correct": 1,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 0,
+                "actual": 1,
+                "possible": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 9,
+      "timestamp": "2026-02-12T10:04:49.226255",
+      "text": "The Ninth suffered a serious defeat at the Battle of Camulodunum under Quintus Petillius Cerialis in the rebellion of Boudica ( 61 ) , when most of the foot-soldiers were killed in a disastrous attempt to relieve the besieged city of Camulodunum ( Colchester ) .",
+      "gold": [
+        "event(span='Camulodunum')",
+        "person(span='Quintus Petillius Cerialis')",
+        "event(span='Boudica')",
+        "location(span='Camulodunum')",
+        "location(span='Colchester')"
+      ],
+      "prediction": [
+        "event(span='Battle of Camulodunum')",
+        "person(span='Quintus Petillius Cerialis')",
+        "person(span='Boudica')",
+        "location(span='Camulodunum')",
+        "location(span='Colchester')"
+      ],
+      "generated_raw": "entity_list.append({\"text\": \"Battle of Camulodunum\", \"type\": \"event\"})\nentity_list.append({\"text\": \"Quintus Petillius Cerialis\", \"type\": \"person\"})\nentity_list.append({\"text\": \"Boudica\", \"type\": \"person\"})\nentity_list.append({\"text\": \"Camulodunum\", \"type\": \"location\"})\nentity_list.append({\"text\": \"Colchester\", \"type\": \"location\"})",
+      "elapsed_time": 0.9538743495941162,
+      "score": {
+        "nervaluate": {
+          "overall": {
+            "strict": {
+              "precision": 0.6,
+              "recall": 0.6,
+              "f1": 0.6,
+              "correct": 3,
+              "incorrect": 2,
+              "partial": 0,
+              "missed": 0,
+              "spurious": 0,
+              "actual": 5,
+              "possible": 5
+            },
+            "exact": {
+              "precision": 0.8,
+              "recall": 0.8,
+              "f1": 0.8000000000000002,
+              "correct": 4,
+              "incorrect": 1,
+              "partial": 0,
+              "missed": 0,
+              "spurious": 0,
+              "actual": 5,
+              "possible": 5
+            },
+            "partial": {
+              "precision": 0.9,
+              "recall": 0.9,
+              "f1": 0.9,
+              "correct": 4,
+              "incorrect": 0,
+              "partial": 1,
+              "missed": 0,
+              "spurious": 0,
+              "actual": 5,
+              "possible": 5
+            },
+            "ent_type": {
+              "precision": 0.8,
+              "recall": 0.8,
+              "f1": 0.8000000000000002,
+              "correct": 4,
+              "incorrect": 1,
+              "partial": 0,
+              "missed": 0,
+              "spurious": 0,
+              "actual": 5,
+              "possible": 5
+            }
+          },
+          "macro": {
+            "strict": 0.0,
+            "exact": 0.0,
+            "partial": 0.0,
+            "ent_type": 0.0
+          },
+          "by_tag": {
+            "event": {
+              "strict": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 1,
+                "partial": 0,
+                "missed": 1,
+                "spurious": 0,
+                "actual": 1,
+                "possible": 2
+              },
+              "partial": {
+                "precision": 0.5,
+                "recall": 0.25,
+                "f1": 0.3333333333333333,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 1,
+                "missed": 1,
+                "spurious": 0,
+                "actual": 1,
+                "possible": 2
+              },
+              "ent_type": {
+                "precision": 1.0,
+                "recall": 0.5,
+                "f1": 0.6666666666666666,
+                "correct": 1,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 1,
+                "spurious": 0,
+                "actual": 1,
+                "possible": 2
+              },
+              "exact": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 1,
+                "partial": 0,
+                "missed": 1,
+                "spurious": 0,
+                "actual": 1,
+                "possible": 2
+              }
+            },
+            "location": {
+              "strict": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "correct": 2,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 0,
+                "actual": 2,
+                "possible": 2
+              },
+              "partial": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "correct": 2,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 0,
+                "actual": 2,
+                "possible": 2
+              },
+              "ent_type": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "correct": 2,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 0,
+                "actual": 2,
+                "possible": 2
+              },
+              "exact": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "correct": 2,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 0,
+                "actual": 2,
+                "possible": 2
+              }
+            },
+            "person": {
+              "strict": {
+                "precision": 0.5,
+                "recall": 1.0,
+                "f1": 0.6666666666666666,
+                "correct": 1,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 2,
+                "possible": 1
+              },
+              "partial": {
+                "precision": 0.5,
+                "recall": 1.0,
+                "f1": 0.6666666666666666,
+                "correct": 1,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 2,
+                "possible": 1
+              },
+              "ent_type": {
+                "precision": 0.5,
+                "recall": 1.0,
+                "f1": 0.6666666666666666,
+                "correct": 1,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 2,
+                "possible": 1
+              },
+              "exact": {
+                "precision": 0.5,
+                "recall": 1.0,
+                "f1": 0.6666666666666666,
+                "correct": 1,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 2,
+                "possible": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 10,
+      "timestamp": "2026-02-12T10:04:49.670070",
+      "text": "He is a Congressman representing Cajamarca for the period 2006\u20132011 , and belongs to the Union for Peru party .",
+      "gold": [
+        "location(span='Cajamarca')",
+        "organization(span='Peru party')"
+      ],
+      "prediction": [
+        "location(span='Cajamarca')",
+        "organization(span='Union for Peru')"
+      ],
+      "generated_raw": "entity_list.append({\"text\": \"Cajamarca\", \"type\": \"location\"})\nentity_list.append({\"text\": \"Union for Peru\", \"type\": \"organization\"})",
+      "elapsed_time": 0.4334070682525635,
+      "score": {
+        "nervaluate": {
+          "overall": {
+            "strict": {
+              "precision": 0.5,
+              "recall": 0.5,
+              "f1": 0.5,
+              "correct": 1,
+              "incorrect": 1,
+              "partial": 0,
+              "missed": 0,
+              "spurious": 0,
+              "actual": 2,
+              "possible": 2
+            },
+            "exact": {
+              "precision": 0.5,
+              "recall": 0.5,
+              "f1": 0.5,
+              "correct": 1,
+              "incorrect": 1,
+              "partial": 0,
+              "missed": 0,
+              "spurious": 0,
+              "actual": 2,
+              "possible": 2
+            },
+            "partial": {
+              "precision": 0.75,
+              "recall": 0.75,
+              "f1": 0.75,
+              "correct": 1,
+              "incorrect": 0,
+              "partial": 1,
+              "missed": 0,
+              "spurious": 0,
+              "actual": 2,
+              "possible": 2
+            },
+            "ent_type": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "correct": 2,
+              "incorrect": 0,
+              "partial": 0,
+              "missed": 0,
+              "spurious": 0,
+              "actual": 2,
+              "possible": 2
+            }
+          },
+          "macro": {
+            "strict": 0.0,
+            "exact": 0.0,
+            "partial": 0.0,
+            "ent_type": 0.0
+          },
+          "by_tag": {
+            "organization": {
+              "strict": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 1,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 0,
+                "actual": 1,
+                "possible": 1
+              },
+              "partial": {
+                "precision": 0.5,
+                "recall": 0.5,
+                "f1": 0.5,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 1,
+                "missed": 0,
+                "spurious": 0,
+                "actual": 1,
+                "possible": 1
+              },
+              "ent_type": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "correct": 1,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 0,
+                "actual": 1,
+                "possible": 1
+              },
+              "exact": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 1,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 0,
+                "actual": 1,
+                "possible": 1
+              }
+            },
+            "location": {
+              "strict": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "correct": 1,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 0,
+                "actual": 1,
+                "possible": 1
+              },
+              "partial": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "correct": 1,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 0,
+                "actual": 1,
+                "possible": 1
+              },
+              "ent_type": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "correct": 1,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 0,
+                "actual": 1,
+                "possible": 1
+              },
+              "exact": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "correct": 1,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 0,
+                "actual": 1,
+                "possible": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 11,
+      "timestamp": "2026-02-12T10:04:50.559223",
+      "text": "He was born in Wellingborough , Northamptonshire , where he attended Victoria Junior School , Westfield Boys School and Sir Christopher Hatton School .",
+      "gold": [
+        "location(span='Wellingborough')",
+        "location(span='Northamptonshire')",
+        "organization(span='Victoria Junior School')",
+        "organization(span='Westfield Boys School')",
+        "organization(span='Sir Christopher Hatton School')"
+      ],
+      "prediction": [
+        "location(span='Wellingborough')",
+        "location(span='Northamptonshire')",
+        "other(span='Victoria Junior School')",
+        "other(span='Westfield Boys School')",
+        "other(span='Sir Christopher Hatton School')"
+      ],
+      "generated_raw": "entity_list.append({\"text\": \"Wellingborough\", \"type\": \"location\"})\nentity_list.append({\"text\": \"Northamptonshire\", \"type\": \"location\"})\nentity_list.append({\"text\": \"Victoria Junior School\", \"type\": \"other\"})\nentity_list.append({\"text\": \"Westfield Boys School\", \"type\": \"other\"})\nentity_list.append({\"text\": \"Sir Christopher Hatton School\", \"type\": \"other\"})",
+      "elapsed_time": 0.8880503177642822,
+      "score": {
+        "nervaluate": {
+          "overall": {
+            "strict": {
+              "precision": 0.4,
+              "recall": 0.4,
+              "f1": 0.4000000000000001,
+              "correct": 2,
+              "incorrect": 3,
+              "partial": 0,
+              "missed": 0,
+              "spurious": 0,
+              "actual": 5,
+              "possible": 5
+            },
+            "exact": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "correct": 5,
+              "incorrect": 0,
+              "partial": 0,
+              "missed": 0,
+              "spurious": 0,
+              "actual": 5,
+              "possible": 5
+            },
+            "partial": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "correct": 5,
+              "incorrect": 0,
+              "partial": 0,
+              "missed": 0,
+              "spurious": 0,
+              "actual": 5,
+              "possible": 5
+            },
+            "ent_type": {
+              "precision": 0.4,
+              "recall": 0.4,
+              "f1": 0.4000000000000001,
+              "correct": 2,
+              "incorrect": 3,
+              "partial": 0,
+              "missed": 0,
+              "spurious": 0,
+              "actual": 5,
+              "possible": 5
+            }
+          },
+          "macro": {
+            "strict": 0.0,
+            "exact": 0.0,
+            "partial": 0.0,
+            "ent_type": 0.0
+          },
+          "by_tag": {
+            "location": {
+              "strict": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "correct": 2,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 0,
+                "actual": 2,
+                "possible": 2
+              },
+              "partial": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "correct": 2,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 0,
+                "actual": 2,
+                "possible": 2
+              },
+              "ent_type": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "correct": 2,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 0,
+                "actual": 2,
+                "possible": 2
+              },
+              "exact": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "correct": 2,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 0,
+                "actual": 2,
+                "possible": 2
+              }
+            },
+            "organization": {
+              "strict": {
+                "precision": 0,
+                "recall": 0.0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 3,
+                "spurious": 0,
+                "actual": 0,
+                "possible": 3
+              },
+              "partial": {
+                "precision": 0,
+                "recall": 0.0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 3,
+                "spurious": 0,
+                "actual": 0,
+                "possible": 3
+              },
+              "ent_type": {
+                "precision": 0,
+                "recall": 0.0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 3,
+                "spurious": 0,
+                "actual": 0,
+                "possible": 3
+              },
+              "exact": {
+                "precision": 0,
+                "recall": 0.0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 3,
+                "spurious": 0,
+                "actual": 0,
+                "possible": 3
+              }
+            },
+            "other": {
+              "strict": {
+                "precision": 0.0,
+                "recall": 0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 3,
+                "actual": 3,
+                "possible": 0
+              },
+              "partial": {
+                "precision": 0.0,
+                "recall": 0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 3,
+                "actual": 3,
+                "possible": 0
+              },
+              "ent_type": {
+                "precision": 0.0,
+                "recall": 0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 3,
+                "actual": 3,
+                "possible": 0
+              },
+              "exact": {
+                "precision": 0.0,
+                "recall": 0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 3,
+                "actual": 3,
+                "possible": 0
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 12,
+      "timestamp": "2026-02-12T10:04:51.157535",
+      "text": "The lowest match aggregate in ODI history for England is 91 scored at the 1979 Cricket World Cup against Canada .",
+      "gold": [
+        "organization(span='England')",
+        "event(span='Cricket World Cup')",
+        "organization(span='Canada')"
+      ],
+      "prediction": [
+        "organization(span='England')",
+        "event(span='Cricket World Cup')",
+        "event(span='1979 Cricket World Cup')"
+      ],
+      "generated_raw": "entity_list.append({\"text\": \"England\", \"type\": \"organization\"})\nentity_list.append({\"text\": \"Cricket World Cup\", \"type\": \"event\"})\nentity_list.append({\"text\": \"1979 Cricket World Cup\", \"type\": \"event\"})",
+      "elapsed_time": 0.5973920822143555,
+      "score": {
+        "nervaluate": {
+          "overall": {
+            "strict": {
+              "precision": 0.6666666666666666,
+              "recall": 0.6666666666666666,
+              "f1": 0.6666666666666666,
+              "correct": 2,
+              "incorrect": 0,
+              "partial": 0,
+              "missed": 1,
+              "spurious": 1,
+              "actual": 3,
+              "possible": 3
+            },
+            "exact": {
+              "precision": 0.6666666666666666,
+              "recall": 0.6666666666666666,
+              "f1": 0.6666666666666666,
+              "correct": 2,
+              "incorrect": 0,
+              "partial": 0,
+              "missed": 1,
+              "spurious": 1,
+              "actual": 3,
+              "possible": 3
+            },
+            "partial": {
+              "precision": 0.6666666666666666,
+              "recall": 0.6666666666666666,
+              "f1": 0.6666666666666666,
+              "correct": 2,
+              "incorrect": 0,
+              "partial": 0,
+              "missed": 1,
+              "spurious": 1,
+              "actual": 3,
+              "possible": 3
+            },
+            "ent_type": {
+              "precision": 0.6666666666666666,
+              "recall": 0.6666666666666666,
+              "f1": 0.6666666666666666,
+              "correct": 2,
+              "incorrect": 0,
+              "partial": 0,
+              "missed": 1,
+              "spurious": 1,
+              "actual": 3,
+              "possible": 3
+            }
+          },
+          "macro": {
+            "strict": 0.0,
+            "exact": 0.0,
+            "partial": 0.0,
+            "ent_type": 0.0
+          },
+          "by_tag": {
+            "event": {
+              "strict": {
+                "precision": 0.5,
+                "recall": 1.0,
+                "f1": 0.6666666666666666,
+                "correct": 1,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 2,
+                "possible": 1
+              },
+              "partial": {
+                "precision": 0.5,
+                "recall": 1.0,
+                "f1": 0.6666666666666666,
+                "correct": 1,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 2,
+                "possible": 1
+              },
+              "ent_type": {
+                "precision": 0.5,
+                "recall": 1.0,
+                "f1": 0.6666666666666666,
+                "correct": 1,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 2,
+                "possible": 1
+              },
+              "exact": {
+                "precision": 0.5,
+                "recall": 1.0,
+                "f1": 0.6666666666666666,
+                "correct": 1,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 2,
+                "possible": 1
+              }
+            },
+            "organization": {
+              "strict": {
+                "precision": 1.0,
+                "recall": 0.5,
+                "f1": 0.6666666666666666,
+                "correct": 1,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 1,
+                "spurious": 0,
+                "actual": 1,
+                "possible": 2
+              },
+              "partial": {
+                "precision": 1.0,
+                "recall": 0.5,
+                "f1": 0.6666666666666666,
+                "correct": 1,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 1,
+                "spurious": 0,
+                "actual": 1,
+                "possible": 2
+              },
+              "ent_type": {
+                "precision": 1.0,
+                "recall": 0.5,
+                "f1": 0.6666666666666666,
+                "correct": 1,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 1,
+                "spurious": 0,
+                "actual": 1,
+                "possible": 2
+              },
+              "exact": {
+                "precision": 1.0,
+                "recall": 0.5,
+                "f1": 0.6666666666666666,
+                "correct": 1,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 1,
+                "spurious": 0,
+                "actual": 1,
+                "possible": 2
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 13,
+      "timestamp": "2026-02-12T10:04:51.612539",
+      "text": "Somewhat hidden away by the Ben Cruachan range , it is usually climbed in conjunction with its neighbour Beinn Eunaich .",
+      "gold": [
+        "location(span='Ben Cruachan')",
+        "location(span='Beinn Eunaich')"
+      ],
+      "prediction": [
+        "location(span='Ben Cruachan')",
+        "location(span='Beinn Eunaich')"
+      ],
+      "generated_raw": "entity_list.append({\"text\": \"Ben Cruachan\", \"type\": \"location\"})\nentity_list.append({\"text\": \"Beinn Eunaich\", \"type\": \"location\"})",
+      "elapsed_time": 0.4542429447174072,
+      "score": {
+        "nervaluate": {
+          "overall": {
+            "strict": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "correct": 2,
+              "incorrect": 0,
+              "partial": 0,
+              "missed": 0,
+              "spurious": 0,
+              "actual": 2,
+              "possible": 2
+            },
+            "exact": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "correct": 2,
+              "incorrect": 0,
+              "partial": 0,
+              "missed": 0,
+              "spurious": 0,
+              "actual": 2,
+              "possible": 2
+            },
+            "partial": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "correct": 2,
+              "incorrect": 0,
+              "partial": 0,
+              "missed": 0,
+              "spurious": 0,
+              "actual": 2,
+              "possible": 2
+            },
+            "ent_type": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "correct": 2,
+              "incorrect": 0,
+              "partial": 0,
+              "missed": 0,
+              "spurious": 0,
+              "actual": 2,
+              "possible": 2
+            }
+          },
+          "macro": {
+            "strict": 0.0,
+            "exact": 0.0,
+            "partial": 0.0,
+            "ent_type": 0.0
+          },
+          "by_tag": {
+            "location": {
+              "strict": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "correct": 2,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 0,
+                "actual": 2,
+                "possible": 2
+              },
+              "partial": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "correct": 2,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 0,
+                "actual": 2,
+                "possible": 2
+              },
+              "ent_type": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "correct": 2,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 0,
+                "actual": 2,
+                "possible": 2
+              },
+              "exact": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "correct": 2,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 0,
+                "actual": 2,
+                "possible": 2
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "index": 14,
+      "timestamp": "2026-02-12T10:04:51.879793",
+      "text": "The 117-bed facility entirely comprised individual rooms , each with its own en-suite bathroom facilities .",
+      "gold": [],
+      "prediction": [
+        "building(span='117-bed facility')"
+      ],
+      "generated_raw": "entity_list.append({\"text\": \"117-bed facility\", \"type\": \"building\"})",
+      "elapsed_time": 0.26675915718078613,
+      "score": {
+        "nervaluate": {
+          "overall": {
+            "strict": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "correct": 0,
+              "incorrect": 0,
+              "partial": 0,
+              "missed": 0,
+              "spurious": 1,
+              "actual": 1,
+              "possible": 0
+            },
+            "exact": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "correct": 0,
+              "incorrect": 0,
+              "partial": 0,
+              "missed": 0,
+              "spurious": 1,
+              "actual": 1,
+              "possible": 0
+            },
+            "partial": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "correct": 0,
+              "incorrect": 0,
+              "partial": 0,
+              "missed": 0,
+              "spurious": 1,
+              "actual": 1,
+              "possible": 0
+            },
+            "ent_type": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "correct": 0,
+              "incorrect": 0,
+              "partial": 0,
+              "missed": 0,
+              "spurious": 1,
+              "actual": 1,
+              "possible": 0
+            }
+          },
+          "macro": {
+            "strict": 0.0,
+            "exact": 0.0,
+            "partial": 0.0,
+            "ent_type": 0.0
+          },
+          "by_tag": {
+            "art": {
+              "strict": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 1,
+                "possible": 0
+              },
+              "exact": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 1,
+                "possible": 0
+              },
+              "partial": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 1,
+                "possible": 0
+              },
+              "ent_type": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 1,
+                "possible": 0
+              }
+            },
+            "building": {
+              "strict": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 1,
+                "possible": 0
+              },
+              "exact": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 1,
+                "possible": 0
+              },
+              "partial": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 1,
+                "possible": 0
+              },
+              "ent_type": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 1,
+                "possible": 0
+              }
+            },
+            "event": {
+              "strict": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 1,
+                "possible": 0
+              },
+              "exact": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 1,
+                "possible": 0
+              },
+              "partial": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 1,
+                "possible": 0
+              },
+              "ent_type": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 1,
+                "possible": 0
+              }
+            },
+            "location": {
+              "strict": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 1,
+                "possible": 0
+              },
+              "exact": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 1,
+                "possible": 0
+              },
+              "partial": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 1,
+                "possible": 0
+              },
+              "ent_type": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 1,
+                "possible": 0
+              }
+            },
+            "organization": {
+              "strict": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 1,
+                "possible": 0
+              },
+              "exact": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 1,
+                "possible": 0
+              },
+              "partial": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 1,
+                "possible": 0
+              },
+              "ent_type": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 1,
+                "possible": 0
+              }
+            },
+            "other": {
+              "strict": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 1,
+                "possible": 0
+              },
+              "exact": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 1,
+                "possible": 0
+              },
+              "partial": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 1,
+                "possible": 0
+              },
+              "ent_type": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 1,
+                "possible": 0
+              }
+            },
+            "person": {
+              "strict": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 1,
+                "possible": 0
+              },
+              "exact": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 1,
+                "possible": 0
+              },
+              "partial": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 1,
+                "possible": 0
+              },
+              "ent_type": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 1,
+                "possible": 0
+              }
+            },
+            "product": {
+              "strict": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 1,
+                "possible": 0
+              },
+              "exact": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 1,
+                "possible": 0
+              },
+              "partial": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 1,
+                "possible": 0
+              },
+              "ent_type": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 1,
+                "possible": 0
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}
