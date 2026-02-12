@@ -21,9 +21,9 @@ set -e  # Exit on error (will be handled gracefully in the main loop)
 # =============================================================================
 # CONFIGURATION - EDIT THESE FOR YOUR SERVER
 # =============================================================================
-PROJECT_DIR="/home/your_user/KDAI-Experiments"  # <-- CHANGE THIS to your server path
-BRANCH_NAME="codeie-experiments"                 # <-- CHANGE THIS to your branch name
-VENV_NAME=".venv"                                # Virtual environment folder name
+PROJECT_DIR="/home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE"  # <-- CHANGE THIS to your server path
+BRANCH_NAME="feature/codeie-integration"                 # <-- CHANGE THIS to your branch name
+CONDA_ENV_NAME="CodeIE"                           # <-- CHANGE THIS to your conda env name
 GPU_COUNT=2                                      # Number of A100 GPUs
 OLLAMA_URL="http://localhost:11434"              # Ollama server URL
 
