@@ -1,6 +1,6 @@
 {
   "module": "codeie_coarse_pl_default",
-  "timestamp": "20260212_100318",
+  "timestamp": "20260212_101207",
   "config": {
     "granularity": "coarse",
     "max_test_samples": 15,
@@ -81,58 +81,58 @@
         }
       },
       "macro": {
-        "strict": 0.0,
-        "exact": 0.0,
-        "partial": 0.0,
-        "ent_type": 0.0
+        "strict": 0.5430517034399968,
+        "exact": 0.5430517034399968,
+        "partial": 0.5430517034399968,
+        "ent_type": 0.6801030757130437
       },
       "by_tag": {
-        "product": {
+        "event": {
           "strict": {
-            "precision": 0.6666666666666666,
-            "recall": 0.5,
-            "f1": 0.5714285714285715,
-            "correct": 2,
+            "precision": 0.3333333333333333,
+            "recall": 0.25,
+            "f1": 0.28571428571428575,
+            "correct": 1,
             "incorrect": 1,
             "partial": 0,
-            "missed": 1,
-            "spurious": 0,
+            "missed": 2,
+            "spurious": 1,
             "actual": 3,
             "possible": 4
           },
           "partial": {
-            "precision": 0.6666666666666666,
-            "recall": 0.5,
-            "f1": 0.5714285714285715,
-            "correct": 2,
+            "precision": 0.3333333333333333,
+            "recall": 0.25,
+            "f1": 0.28571428571428575,
+            "correct": 1,
             "incorrect": 0,
             "partial": 1,
-            "missed": 1,
-            "spurious": 0,
+            "missed": 2,
+            "spurious": 1,
             "actual": 3,
             "possible": 4
           },
           "ent_type": {
-            "precision": 1.0,
-            "recall": 0.75,
-            "f1": 0.8571428571428571,
-            "correct": 3,
-            "incorrect": 0,
-            "partial": 0,
-            "missed": 1,
-            "spurious": 0,
-            "actual": 3,
-            "possible": 4
-          },
-          "exact": {
             "precision": 0.6666666666666666,
             "recall": 0.5,
             "f1": 0.5714285714285715,
             "correct": 2,
+            "incorrect": 0,
+            "partial": 0,
+            "missed": 2,
+            "spurious": 1,
+            "actual": 3,
+            "possible": 4
+          },
+          "exact": {
+            "precision": 0.3333333333333333,
+            "recall": 0.25,
+            "f1": 0.28571428571428575,
+            "correct": 1,
             "incorrect": 1,
             "partial": 0,
-            "missed": 1,
-            "spurious": 0,
+            "missed": 2,
+            "spurious": 1,
             "actual": 3,
             "possible": 4
           }
@@ -187,54 +187,104 @@
             "possible": 1
           }
         },
-        "event": {
+        "person": {
           "strict": {
-            "precision": 0.3333333333333333,
-            "recall": 0.25,
-            "f1": 0.28571428571428575,
-            "correct": 1,
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5,
+            "correct": 2,
             "incorrect": 1,
             "partial": 0,
-            "missed": 2,
+            "missed": 1,
             "spurious": 1,
-            "actual": 3,
+            "actual": 4,
             "possible": 4
           },
           "partial": {
-            "precision": 0.3333333333333333,
-            "recall": 0.25,
-            "f1": 0.28571428571428575,
-            "correct": 1,
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5,
+            "correct": 2,
             "incorrect": 0,
             "partial": 1,
-            "missed": 2,
+            "missed": 1,
             "spurious": 1,
-            "actual": 3,
+            "actual": 4,
             "possible": 4
           },
           "ent_type": {
-            "precision": 0.6666666666666666,
-            "recall": 0.5,
-            "f1": 0.5714285714285715,
-            "correct": 2,
+            "precision": 0.75,
+            "recall": 0.75,
+            "f1": 0.75,
+            "correct": 3,
             "incorrect": 0,
             "partial": 0,
-            "missed": 2,
+            "missed": 1,
             "spurious": 1,
-            "actual": 3,
+            "actual": 4,
             "possible": 4
           },
           "exact": {
-            "precision": 0.3333333333333333,
-            "recall": 0.25,
-            "f1": 0.28571428571428575,
-            "correct": 1,
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5,
+            "correct": 2,
             "incorrect": 1,
             "partial": 0,
-            "missed": 2,
+            "missed": 1,
             "spurious": 1,
-            "actual": 3,
+            "actual": 4,
             "possible": 4
+          }
+        },
+        "location": {
+          "strict": {
+            "precision": 1.0,
+            "recall": 0.7,
+            "f1": 0.8235294117647058,
+            "correct": 7,
+            "incorrect": 0,
+            "partial": 0,
+            "missed": 3,
+            "spurious": 0,
+            "actual": 7,
+            "possible": 10
+          },
+          "partial": {
+            "precision": 1.0,
+            "recall": 0.7,
+            "f1": 0.8235294117647058,
+            "correct": 7,
+            "incorrect": 0,
+            "partial": 0,
+            "missed": 3,
+            "spurious": 0,
+            "actual": 7,
+            "possible": 10
+          },
+          "ent_type": {
+            "precision": 1.0,
+            "recall": 0.7,
+            "f1": 0.8235294117647058,
+            "correct": 7,
+            "incorrect": 0,
+            "partial": 0,
+            "missed": 3,
+            "spurious": 0,
+            "actual": 7,
+            "possible": 10
+          },
+          "exact": {
+            "precision": 1.0,
+            "recall": 0.7,
+            "f1": 0.8235294117647058,
+            "correct": 7,
+            "incorrect": 0,
+            "partial": 0,
+            "missed": 3,
+            "spurious": 0,
+            "actual": 7,
+            "possible": 10
           }
         },
         "building": {
@@ -337,103 +387,53 @@
             "possible": 16
           }
         },
-        "location": {
+        "product": {
           "strict": {
-            "precision": 1.0,
-            "recall": 0.7,
-            "f1": 0.8235294117647058,
-            "correct": 7,
-            "incorrect": 0,
-            "partial": 0,
-            "missed": 3,
-            "spurious": 0,
-            "actual": 7,
-            "possible": 10
-          },
-          "partial": {
-            "precision": 1.0,
-            "recall": 0.7,
-            "f1": 0.8235294117647058,
-            "correct": 7,
-            "incorrect": 0,
-            "partial": 0,
-            "missed": 3,
-            "spurious": 0,
-            "actual": 7,
-            "possible": 10
-          },
-          "ent_type": {
-            "precision": 1.0,
-            "recall": 0.7,
-            "f1": 0.8235294117647058,
-            "correct": 7,
-            "incorrect": 0,
-            "partial": 0,
-            "missed": 3,
-            "spurious": 0,
-            "actual": 7,
-            "possible": 10
-          },
-          "exact": {
-            "precision": 1.0,
-            "recall": 0.7,
-            "f1": 0.8235294117647058,
-            "correct": 7,
-            "incorrect": 0,
-            "partial": 0,
-            "missed": 3,
-            "spurious": 0,
-            "actual": 7,
-            "possible": 10
-          }
-        },
-        "person": {
-          "strict": {
-            "precision": 0.5,
+            "precision": 0.6666666666666666,
             "recall": 0.5,
-            "f1": 0.5,
+            "f1": 0.5714285714285715,
             "correct": 2,
             "incorrect": 1,
             "partial": 0,
             "missed": 1,
-            "spurious": 1,
-            "actual": 4,
+            "spurious": 0,
+            "actual": 3,
             "possible": 4
           },
           "partial": {
-            "precision": 0.5,
+            "precision": 0.6666666666666666,
             "recall": 0.5,
-            "f1": 0.5,
+            "f1": 0.5714285714285715,
             "correct": 2,
             "incorrect": 0,
             "partial": 1,
             "missed": 1,
-            "spurious": 1,
-            "actual": 4,
+            "spurious": 0,
+            "actual": 3,
             "possible": 4
           },
           "ent_type": {
-            "precision": 0.75,
+            "precision": 1.0,
             "recall": 0.75,
-            "f1": 0.75,
+            "f1": 0.8571428571428571,
             "correct": 3,
             "incorrect": 0,
             "partial": 0,
             "missed": 1,
-            "spurious": 1,
-            "actual": 4,
+            "spurious": 0,
+            "actual": 3,
             "possible": 4
           },
           "exact": {
-            "precision": 0.5,
+            "precision": 0.6666666666666666,
             "recall": 0.5,
-            "f1": 0.5,
+            "f1": 0.5714285714285715,
             "correct": 2,
             "incorrect": 1,
             "partial": 0,
             "missed": 1,
-            "spurious": 1,
-            "actual": 4,
+            "spurious": 0,
+            "actual": 3,
             "possible": 4
           }
         }
@@ -444,7 +444,7 @@
   "sentences": [
     {
       "index": 0,
-      "timestamp": "2026-02-12T10:03:21.861475",
+      "timestamp": "2026-02-12T10:12:11.420557",
       "text": "In the early 1930s the band moved to the Grill Room of the Taft Hotel in New York ; the band was renamed `` George Hall and His Hotel Taft Orchestra `` .",
       "gold": [
         "building(span='Grill Room')",
@@ -458,7 +458,7 @@
         "other(span='George Hall and His Hotel Taft Orchestra')"
       ],
       "generated_raw": "entity_list.append({\"text\": \"Grill Room\", \"type\": \"building\"})\nentity_list.append({\"text\": \"Taft Hotel\", \"type\": \"building\"})\nentity_list.append({\"text\": \"George Hall and His Hotel Taft Orchestra\", \"type\": \"other\"})",
-      "elapsed_time": 3.6515936851501465,
+      "elapsed_time": 3.6049280166625977,
       "score": {
         "nervaluate": {
           "overall": {
@@ -512,12 +512,62 @@
             }
           },
           "macro": {
-            "strict": 0.0,
-            "exact": 0.0,
-            "partial": 0.0,
-            "ent_type": 0.0
+            "strict": 0.3333333333333333,
+            "exact": 0.3333333333333333,
+            "partial": 0.3333333333333333,
+            "ent_type": 0.3333333333333333
           },
           "by_tag": {
+            "location": {
+              "strict": {
+                "precision": 0,
+                "recall": 0.0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 1,
+                "spurious": 0,
+                "actual": 0,
+                "possible": 1
+              },
+              "partial": {
+                "precision": 0,
+                "recall": 0.0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 1,
+                "spurious": 0,
+                "actual": 0,
+                "possible": 1
+              },
+              "ent_type": {
+                "precision": 0,
+                "recall": 0.0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 1,
+                "spurious": 0,
+                "actual": 0,
+                "possible": 1
+              },
+              "exact": {
+                "precision": 0,
+                "recall": 0.0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 1,
+                "spurious": 0,
+                "actual": 0,
+                "possible": 1
+              }
+            },
             "other": {
               "strict": {
                 "precision": 0.0,
@@ -667,56 +717,6 @@
                 "actual": 0,
                 "possible": 1
               }
-            },
-            "location": {
-              "strict": {
-                "precision": 0,
-                "recall": 0.0,
-                "f1": 0,
-                "correct": 0,
-                "incorrect": 0,
-                "partial": 0,
-                "missed": 1,
-                "spurious": 0,
-                "actual": 0,
-                "possible": 1
-              },
-              "partial": {
-                "precision": 0,
-                "recall": 0.0,
-                "f1": 0,
-                "correct": 0,
-                "incorrect": 0,
-                "partial": 0,
-                "missed": 1,
-                "spurious": 0,
-                "actual": 0,
-                "possible": 1
-              },
-              "ent_type": {
-                "precision": 0,
-                "recall": 0.0,
-                "f1": 0,
-                "correct": 0,
-                "incorrect": 0,
-                "partial": 0,
-                "missed": 1,
-                "spurious": 0,
-                "actual": 0,
-                "possible": 1
-              },
-              "exact": {
-                "precision": 0,
-                "recall": 0.0,
-                "f1": 0,
-                "correct": 0,
-                "incorrect": 0,
-                "partial": 0,
-                "missed": 1,
-                "spurious": 0,
-                "actual": 0,
-                "possible": 1
-              }
             }
           }
         }
@@ -724,7 +724,7 @@
     },
     {
       "index": 1,
-      "timestamp": "2026-02-12T10:03:22.145125",
+      "timestamp": "2026-02-12T10:12:11.686174",
       "text": "The final season of minor league play Elkin Memorial Park saw season attendance of 16,322 , an average of 299 per contest .",
       "gold": [
         "location(span='Elkin Memorial Park')"
@@ -733,7 +733,7 @@
         "building(span='Elkin Memorial Park')"
       ],
       "generated_raw": "entity_list.append({\"text\": \"Elkin Memorial Park\", \"type\": \"building\"})",
-      "elapsed_time": 0.28291797637939453,
+      "elapsed_time": 0.26490139961242676,
       "score": {
         "nervaluate": {
           "overall": {
@@ -793,56 +793,6 @@
             "ent_type": 0.0
           },
           "by_tag": {
-            "building": {
-              "strict": {
-                "precision": 0.0,
-                "recall": 0,
-                "f1": 0,
-                "correct": 0,
-                "incorrect": 0,
-                "partial": 0,
-                "missed": 0,
-                "spurious": 1,
-                "actual": 1,
-                "possible": 0
-              },
-              "partial": {
-                "precision": 0.0,
-                "recall": 0,
-                "f1": 0,
-                "correct": 0,
-                "incorrect": 0,
-                "partial": 0,
-                "missed": 0,
-                "spurious": 1,
-                "actual": 1,
-                "possible": 0
-              },
-              "ent_type": {
-                "precision": 0.0,
-                "recall": 0,
-                "f1": 0,
-                "correct": 0,
-                "incorrect": 0,
-                "partial": 0,
-                "missed": 0,
-                "spurious": 1,
-                "actual": 1,
-                "possible": 0
-              },
-              "exact": {
-                "precision": 0.0,
-                "recall": 0,
-                "f1": 0,
-                "correct": 0,
-                "incorrect": 0,
-                "partial": 0,
-                "missed": 0,
-                "spurious": 1,
-                "actual": 1,
-                "possible": 0
-              }
-            },
             "location": {
               "strict": {
                 "precision": 0,
@@ -892,6 +842,56 @@
                 "actual": 0,
                 "possible": 1
               }
+            },
+            "building": {
+              "strict": {
+                "precision": 0.0,
+                "recall": 0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 1,
+                "possible": 0
+              },
+              "partial": {
+                "precision": 0.0,
+                "recall": 0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 1,
+                "possible": 0
+              },
+              "ent_type": {
+                "precision": 0.0,
+                "recall": 0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 1,
+                "possible": 0
+              },
+              "exact": {
+                "precision": 0.0,
+                "recall": 0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 1,
+                "possible": 0
+              }
             }
           }
         }
@@ -899,7 +899,7 @@
     },
     {
       "index": 2,
-      "timestamp": "2026-02-12T10:03:22.426924",
+      "timestamp": "2026-02-12T10:12:11.978987",
       "text": "They finished the season 14\u201319 , 9\u20139 in C-USA play to finish in seventh place .",
       "gold": [
         "event(span='C-USA play')"
@@ -908,7 +908,7 @@
         "organization(span='C-USA')"
       ],
       "generated_raw": "entity_list.append({\"text\": \"C-USA\", \"type\": \"organization\"})",
-      "elapsed_time": 0.28104519844055176,
+      "elapsed_time": 0.2920646667480469,
       "score": {
         "nervaluate": {
           "overall": {
@@ -968,56 +968,6 @@
             "ent_type": 0.0
           },
           "by_tag": {
-            "organization": {
-              "strict": {
-                "precision": 0.0,
-                "recall": 0,
-                "f1": 0,
-                "correct": 0,
-                "incorrect": 0,
-                "partial": 0,
-                "missed": 0,
-                "spurious": 1,
-                "actual": 1,
-                "possible": 0
-              },
-              "partial": {
-                "precision": 0.0,
-                "recall": 0,
-                "f1": 0,
-                "correct": 0,
-                "incorrect": 0,
-                "partial": 0,
-                "missed": 0,
-                "spurious": 1,
-                "actual": 1,
-                "possible": 0
-              },
-              "ent_type": {
-                "precision": 0.0,
-                "recall": 0,
-                "f1": 0,
-                "correct": 0,
-                "incorrect": 0,
-                "partial": 0,
-                "missed": 0,
-                "spurious": 1,
-                "actual": 1,
-                "possible": 0
-              },
-              "exact": {
-                "precision": 0.0,
-                "recall": 0,
-                "f1": 0,
-                "correct": 0,
-                "incorrect": 0,
-                "partial": 0,
-                "missed": 0,
-                "spurious": 1,
-                "actual": 1,
-                "possible": 0
-              }
-            },
             "event": {
               "strict": {
                 "precision": 0,
@@ -1067,6 +1017,56 @@
                 "actual": 0,
                 "possible": 1
               }
+            },
+            "organization": {
+              "strict": {
+                "precision": 0.0,
+                "recall": 0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 1,
+                "possible": 0
+              },
+              "partial": {
+                "precision": 0.0,
+                "recall": 0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 1,
+                "possible": 0
+              },
+              "ent_type": {
+                "precision": 0.0,
+                "recall": 0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 1,
+                "possible": 0
+              },
+              "exact": {
+                "precision": 0.0,
+                "recall": 0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 1,
+                "actual": 1,
+                "possible": 0
+              }
             }
           }
         }
@@ -1074,7 +1074,7 @@
     },
     {
       "index": 3,
-      "timestamp": "2026-02-12T10:03:22.864737",
+      "timestamp": "2026-02-12T10:12:12.415123",
       "text": "The B-52 pilot , Major Larry G. Messinger , later recalled ,",
       "gold": [
         "product(span='B-52')",
@@ -1085,7 +1085,7 @@
         "person(span='Major Larry G. Messinger')"
       ],
       "generated_raw": "entity_list.append({\"text\": \"B-52\", \"type\": \"product\"})\nentity_list.append({\"text\": \"Major Larry G. Messinger\", \"type\": \"person\"})",
-      "elapsed_time": 0.43689417839050293,
+      "elapsed_time": 0.4352891445159912,
       "score": {
         "nervaluate": {
           "overall": {
@@ -1139,10 +1139,10 @@
             }
           },
           "macro": {
-            "strict": 0.0,
-            "exact": 0.0,
-            "partial": 0.0,
-            "ent_type": 0.0
+            "strict": 0.5,
+            "exact": 0.5,
+            "partial": 0.75,
+            "ent_type": 1.0
           },
           "by_tag": {
             "product": {
@@ -1251,7 +1251,7 @@
     },
     {
       "index": 4,
-      "timestamp": "2026-02-12T10:03:23.163130",
+      "timestamp": "2026-02-12T10:12:12.694052",
       "text": "The Austro-Hungarian Navy built and operated two classes of protected cruisers .",
       "gold": [
         "organization(span='Austro-Hungarian Navy')"
@@ -1260,7 +1260,7 @@
         "organization(span='Austro-Hungarian Navy')"
       ],
       "generated_raw": "entity_list.append({\"text\": \"Austro-Hungarian Navy\", \"type\": \"organization\"})",
-      "elapsed_time": 0.29768824577331543,
+      "elapsed_time": 0.2782478332519531,
       "score": {
         "nervaluate": {
           "overall": {
@@ -1314,10 +1314,10 @@
             }
           },
           "macro": {
-            "strict": 0.0,
-            "exact": 0.0,
-            "partial": 0.0,
-            "ent_type": 0.0
+            "strict": 1.0,
+            "exact": 1.0,
+            "partial": 1.0,
+            "ent_type": 1.0
           },
           "by_tag": {
             "organization": {
@@ -1376,7 +1376,7 @@
     },
     {
       "index": 5,
-      "timestamp": "2026-02-12T10:03:23.461064",
+      "timestamp": "2026-02-12T10:12:12.994525",
       "text": "Elin Hilderbrand is an American writer mostly of romance novels .",
       "gold": [
         "person(span='Elin Hilderbrand')",
@@ -1386,7 +1386,7 @@
         "person(span='Elin Hilderbrand')"
       ],
       "generated_raw": "entity_list.append({\"text\": \"Elin Hilderbrand\", \"type\": \"person\"})",
-      "elapsed_time": 0.29715609550476074,
+      "elapsed_time": 0.2996985912322998,
       "score": {
         "nervaluate": {
           "overall": {
@@ -1440,10 +1440,10 @@
             }
           },
           "macro": {
-            "strict": 0.0,
-            "exact": 0.0,
-            "partial": 0.0,
-            "ent_type": 0.0
+            "strict": 0.5,
+            "exact": 0.5,
+            "partial": 0.5,
+            "ent_type": 0.5
           },
           "by_tag": {
             "location": {
@@ -1552,7 +1552,7 @@
     },
     {
       "index": 6,
-      "timestamp": "2026-02-12T10:03:23.866342",
+      "timestamp": "2026-02-12T10:12:13.413330",
       "text": "A prototype was fitted in the mid-'60s in a one-off DB5 extended 4 '' after the doors and driven by Marek personally , and a normally 6-cylinder Aston Martin DB7 was equipped with a V8 unit in 1998 .",
       "gold": [
         "product(span='DB5 extended 4 ''')",
@@ -1565,7 +1565,7 @@
         "product(span='Aston Martin DB7')"
       ],
       "generated_raw": "entity_list.append({\"text\": \"DB5\", \"type\": \"product\"})\nentity_list.append({\"text\": \"Aston Martin DB7\", \"type\": \"product\"})",
-      "elapsed_time": 0.40435171127319336,
+      "elapsed_time": 0.4178898334503174,
       "score": {
         "nervaluate": {
           "overall": {
@@ -1619,10 +1619,10 @@
             }
           },
           "macro": {
-            "strict": 0.0,
-            "exact": 0.0,
-            "partial": 0.0,
-            "ent_type": 0.0
+            "strict": 0.2,
+            "exact": 0.2,
+            "partial": 0.3,
+            "ent_type": 0.4
           },
           "by_tag": {
             "product": {
@@ -1731,7 +1731,7 @@
     },
     {
       "index": 7,
-      "timestamp": "2026-02-12T10:03:25.282547",
+      "timestamp": "2026-02-12T10:12:14.858198",
       "text": "He has caught the attention of major publications and media outlets such as CNN , The Huffington Post , Hypebeast , The Guardian , Juxtapoz Magazine , Daily Mail , NRDC , Aljazeera and Hi-Fructose Magazine .",
       "gold": [
         "organization(span='CNN')",
@@ -1755,7 +1755,7 @@
         "organization(span='Hi-Fructose Magazine')"
       ],
       "generated_raw": "entity_list.append({\"text\": \"CNN\", \"type\": \"organization\"})\nentity_list.append({\"text\": \"The Huffington Post\", \"type\": \"organization\"})\nentity_list.append({\"text\": \"Hypebeast\", \"type\": \"organization\"})\nentity_list.append({\"text\": \"The Guardian\", \"type\": \"organization\"})\nentity_list.append({\"text\": \"Juxtapoz Magazine\", \"type\": \"organization\"})\nentity_list.append({\"text\": \"Daily Mail\", \"type\": \"organization\"})\nentity_list.append({\"text\": \"NRDC\", \"type\": \"organization\"})\nentity_list.append({\"text\":",
-      "elapsed_time": 1.4149508476257324,
+      "elapsed_time": 1.4436190128326416,
       "score": {
         "nervaluate": {
           "overall": {
@@ -1809,10 +1809,10 @@
             }
           },
           "macro": {
-            "strict": 0.0,
-            "exact": 0.0,
-            "partial": 0.0,
-            "ent_type": 0.0
+            "strict": 0.823529411764706,
+            "exact": 0.823529411764706,
+            "partial": 0.8823529411764706,
+            "ent_type": 0.9411764705882353
           },
           "by_tag": {
             "organization": {
@@ -1871,7 +1871,7 @@
     },
     {
       "index": 8,
-      "timestamp": "2026-02-12T10:03:25.531271",
+      "timestamp": "2026-02-12T10:12:15.106554",
       "text": "The Cnidaria are a group of animals found exclusively in aquatic and mostly marine environments .",
       "gold": [
         "other(span='Cnidaria')"
@@ -1880,7 +1880,7 @@
         "other(span='Cnidaria')"
       ],
       "generated_raw": "entity_list.append({\"text\": \"Cnidaria\", \"type\": \"other\"})",
-      "elapsed_time": 0.2479565143585205,
+      "elapsed_time": 0.24760150909423828,
       "score": {
         "nervaluate": {
           "overall": {
@@ -1934,10 +1934,10 @@
             }
           },
           "macro": {
-            "strict": 0.0,
-            "exact": 0.0,
-            "partial": 0.0,
-            "ent_type": 0.0
+            "strict": 1.0,
+            "exact": 1.0,
+            "partial": 1.0,
+            "ent_type": 1.0
           },
           "by_tag": {
             "other": {
@@ -1996,7 +1996,7 @@
     },
     {
       "index": 9,
-      "timestamp": "2026-02-12T10:03:26.517079",
+      "timestamp": "2026-02-12T10:12:16.067911",
       "text": "The Ninth suffered a serious defeat at the Battle of Camulodunum under Quintus Petillius Cerialis in the rebellion of Boudica ( 61 ) , when most of the foot-soldiers were killed in a disastrous attempt to relieve the besieged city of Camulodunum ( Colchester ) .",
       "gold": [
         "event(span='Camulodunum')",
@@ -2013,7 +2013,7 @@
         "location(span='Colchester')"
       ],
       "generated_raw": "entity_list.append({\"text\": \"Battle of Camulodunum\", \"type\": \"event\"})\nentity_list.append({\"text\": \"Quintus Petillius Cerialis\", \"type\": \"person\"})\nentity_list.append({\"text\": \"Boudica\", \"type\": \"person\"})\nentity_list.append({\"text\": \"Camulodunum\", \"type\": \"location\"})\nentity_list.append({\"text\": \"Colchester\", \"type\": \"location\"})",
-      "elapsed_time": 0.9846787452697754,
+      "elapsed_time": 0.9602148532867432,
       "score": {
         "nervaluate": {
           "overall": {
@@ -2067,10 +2067,10 @@
             }
           },
           "macro": {
-            "strict": 0.0,
-            "exact": 0.0,
-            "partial": 0.0,
-            "ent_type": 0.0
+            "strict": 0.5555555555555555,
+            "exact": 0.5555555555555555,
+            "partial": 0.6666666666666666,
+            "ent_type": 0.7777777777777777
           },
           "by_tag": {
             "event": {
@@ -2123,56 +2123,6 @@
                 "possible": 2
               }
             },
-            "location": {
-              "strict": {
-                "precision": 1.0,
-                "recall": 1.0,
-                "f1": 1.0,
-                "correct": 2,
-                "incorrect": 0,
-                "partial": 0,
-                "missed": 0,
-                "spurious": 0,
-                "actual": 2,
-                "possible": 2
-              },
-              "partial": {
-                "precision": 1.0,
-                "recall": 1.0,
-                "f1": 1.0,
-                "correct": 2,
-                "incorrect": 0,
-                "partial": 0,
-                "missed": 0,
-                "spurious": 0,
-                "actual": 2,
-                "possible": 2
-              },
-              "ent_type": {
-                "precision": 1.0,
-                "recall": 1.0,
-                "f1": 1.0,
-                "correct": 2,
-                "incorrect": 0,
-                "partial": 0,
-                "missed": 0,
-                "spurious": 0,
-                "actual": 2,
-                "possible": 2
-              },
-              "exact": {
-                "precision": 1.0,
-                "recall": 1.0,
-                "f1": 1.0,
-                "correct": 2,
-                "incorrect": 0,
-                "partial": 0,
-                "missed": 0,
-                "spurious": 0,
-                "actual": 2,
-                "possible": 2
-              }
-            },
             "person": {
               "strict": {
                 "precision": 0.5,
@@ -2222,6 +2172,56 @@
                 "actual": 2,
                 "possible": 1
               }
+            },
+            "location": {
+              "strict": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "correct": 2,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 0,
+                "actual": 2,
+                "possible": 2
+              },
+              "partial": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "correct": 2,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 0,
+                "actual": 2,
+                "possible": 2
+              },
+              "ent_type": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "correct": 2,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 0,
+                "actual": 2,
+                "possible": 2
+              },
+              "exact": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "correct": 2,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 0,
+                "actual": 2,
+                "possible": 2
+              }
             }
           }
         }
@@ -2229,7 +2229,7 @@
     },
     {
       "index": 10,
-      "timestamp": "2026-02-12T10:03:26.977354",
+      "timestamp": "2026-02-12T10:12:16.488255",
       "text": "He is a Congressman representing Cajamarca for the period 2006\u20132011 , and belongs to the Union for Peru party .",
       "gold": [
         "location(span='Cajamarca')",
@@ -2240,7 +2240,7 @@
         "organization(span='Union for Peru')"
       ],
       "generated_raw": "entity_list.append({\"text\": \"Cajamarca\", \"type\": \"location\"})\nentity_list.append({\"text\": \"Union for Peru\", \"type\": \"organization\"})",
-      "elapsed_time": 0.4505157470703125,
+      "elapsed_time": 0.40993165969848633,
       "score": {
         "nervaluate": {
           "overall": {
@@ -2294,62 +2294,12 @@
             }
           },
           "macro": {
-            "strict": 0.0,
-            "exact": 0.0,
-            "partial": 0.0,
-            "ent_type": 0.0
+            "strict": 0.5,
+            "exact": 0.5,
+            "partial": 0.75,
+            "ent_type": 1.0
           },
           "by_tag": {
-            "organization": {
-              "strict": {
-                "precision": 0.0,
-                "recall": 0.0,
-                "f1": 0,
-                "correct": 0,
-                "incorrect": 1,
-                "partial": 0,
-                "missed": 0,
-                "spurious": 0,
-                "actual": 1,
-                "possible": 1
-              },
-              "partial": {
-                "precision": 0.5,
-                "recall": 0.5,
-                "f1": 0.5,
-                "correct": 0,
-                "incorrect": 0,
-                "partial": 1,
-                "missed": 0,
-                "spurious": 0,
-                "actual": 1,
-                "possible": 1
-              },
-              "ent_type": {
-                "precision": 1.0,
-                "recall": 1.0,
-                "f1": 1.0,
-                "correct": 1,
-                "incorrect": 0,
-                "partial": 0,
-                "missed": 0,
-                "spurious": 0,
-                "actual": 1,
-                "possible": 1
-              },
-              "exact": {
-                "precision": 0.0,
-                "recall": 0.0,
-                "f1": 0,
-                "correct": 0,
-                "incorrect": 1,
-                "partial": 0,
-                "missed": 0,
-                "spurious": 0,
-                "actual": 1,
-                "possible": 1
-              }
-            },
             "location": {
               "strict": {
                 "precision": 1.0,
@@ -2399,6 +2349,56 @@
                 "actual": 1,
                 "possible": 1
               }
+            },
+            "organization": {
+              "strict": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 1,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 0,
+                "actual": 1,
+                "possible": 1
+              },
+              "partial": {
+                "precision": 0.5,
+                "recall": 0.5,
+                "f1": 0.5,
+                "correct": 0,
+                "incorrect": 0,
+                "partial": 1,
+                "missed": 0,
+                "spurious": 0,
+                "actual": 1,
+                "possible": 1
+              },
+              "ent_type": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "correct": 1,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 0,
+                "actual": 1,
+                "possible": 1
+              },
+              "exact": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0,
+                "correct": 0,
+                "incorrect": 1,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 0,
+                "actual": 1,
+                "possible": 1
+              }
             }
           }
         }
@@ -2406,7 +2406,7 @@
     },
     {
       "index": 11,
-      "timestamp": "2026-02-12T10:03:27.880632",
+      "timestamp": "2026-02-12T10:12:17.324679",
       "text": "He was born in Wellingborough , Northamptonshire , where he attended Victoria Junior School , Westfield Boys School and Sir Christopher Hatton School .",
       "gold": [
         "location(span='Wellingborough')",
@@ -2423,7 +2423,7 @@
         "other(span='Sir Christopher Hatton School')"
       ],
       "generated_raw": "entity_list.append({\"text\": \"Wellingborough\", \"type\": \"location\"})\nentity_list.append({\"text\": \"Northamptonshire\", \"type\": \"location\"})\nentity_list.append({\"text\": \"Victoria Junior School\", \"type\": \"other\"})\nentity_list.append({\"text\": \"Westfield Boys School\", \"type\": \"other\"})\nentity_list.append({\"text\": \"Sir Christopher Hatton School\", \"type\": \"other\"})",
-      "elapsed_time": 0.9022202491760254,
+      "elapsed_time": 0.8353629112243652,
       "score": {
         "nervaluate": {
           "overall": {
@@ -2477,12 +2477,62 @@
             }
           },
           "macro": {
-            "strict": 0.0,
-            "exact": 0.0,
-            "partial": 0.0,
-            "ent_type": 0.0
+            "strict": 0.5,
+            "exact": 0.5,
+            "partial": 0.5,
+            "ent_type": 0.5
           },
           "by_tag": {
+            "location": {
+              "strict": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "correct": 2,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 0,
+                "actual": 2,
+                "possible": 2
+              },
+              "partial": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "correct": 2,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 0,
+                "actual": 2,
+                "possible": 2
+              },
+              "ent_type": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "correct": 2,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 0,
+                "actual": 2,
+                "possible": 2
+              },
+              "exact": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "correct": 2,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 0,
+                "spurious": 0,
+                "actual": 2,
+                "possible": 2
+              }
+            },
             "other": {
               "strict": {
                 "precision": 0.0,
@@ -2582,56 +2632,6 @@
                 "actual": 0,
                 "possible": 3
               }
-            },
-            "location": {
-              "strict": {
-                "precision": 1.0,
-                "recall": 1.0,
-                "f1": 1.0,
-                "correct": 2,
-                "incorrect": 0,
-                "partial": 0,
-                "missed": 0,
-                "spurious": 0,
-                "actual": 2,
-                "possible": 2
-              },
-              "partial": {
-                "precision": 1.0,
-                "recall": 1.0,
-                "f1": 1.0,
-                "correct": 2,
-                "incorrect": 0,
-                "partial": 0,
-                "missed": 0,
-                "spurious": 0,
-                "actual": 2,
-                "possible": 2
-              },
-              "ent_type": {
-                "precision": 1.0,
-                "recall": 1.0,
-                "f1": 1.0,
-                "correct": 2,
-                "incorrect": 0,
-                "partial": 0,
-                "missed": 0,
-                "spurious": 0,
-                "actual": 2,
-                "possible": 2
-              },
-              "exact": {
-                "precision": 1.0,
-                "recall": 1.0,
-                "f1": 1.0,
-                "correct": 2,
-                "incorrect": 0,
-                "partial": 0,
-                "missed": 0,
-                "spurious": 0,
-                "actual": 2,
-                "possible": 2
-              }
             }
           }
         }
@@ -2639,7 +2639,7 @@
     },
     {
       "index": 12,
-      "timestamp": "2026-02-12T10:03:28.462203",
+      "timestamp": "2026-02-12T10:12:17.926435",
       "text": "The lowest match aggregate in ODI history for England is 91 scored at the 1979 Cricket World Cup against Canada .",
       "gold": [
         "organization(span='England')",
@@ -2652,7 +2652,7 @@
         "event(span='1979 Cricket World Cup')"
       ],
       "generated_raw": "entity_list.append({\"text\": \"England\", \"type\": \"organization\"})\nentity_list.append({\"text\": \"Cricket World Cup\", \"type\": \"event\"})\nentity_list.append({\"text\": \"1979 Cricket World Cup\", \"type\": \"event\"})",
-      "elapsed_time": 0.580674409866333,
+      "elapsed_time": 0.6008658409118652,
       "score": {
         "nervaluate": {
           "overall": {
@@ -2706,62 +2706,12 @@
             }
           },
           "macro": {
-            "strict": 0.0,
-            "exact": 0.0,
-            "partial": 0.0,
-            "ent_type": 0.0
+            "strict": 0.6666666666666666,
+            "exact": 0.6666666666666666,
+            "partial": 0.6666666666666666,
+            "ent_type": 0.6666666666666666
           },
           "by_tag": {
-            "organization": {
-              "strict": {
-                "precision": 1.0,
-                "recall": 0.5,
-                "f1": 0.6666666666666666,
-                "correct": 1,
-                "incorrect": 0,
-                "partial": 0,
-                "missed": 1,
-                "spurious": 0,
-                "actual": 1,
-                "possible": 2
-              },
-              "partial": {
-                "precision": 1.0,
-                "recall": 0.5,
-                "f1": 0.6666666666666666,
-                "correct": 1,
-                "incorrect": 0,
-                "partial": 0,
-                "missed": 1,
-                "spurious": 0,
-                "actual": 1,
-                "possible": 2
-              },
-              "ent_type": {
-                "precision": 1.0,
-                "recall": 0.5,
-                "f1": 0.6666666666666666,
-                "correct": 1,
-                "incorrect": 0,
-                "partial": 0,
-                "missed": 1,
-                "spurious": 0,
-                "actual": 1,
-                "possible": 2
-              },
-              "exact": {
-                "precision": 1.0,
-                "recall": 0.5,
-                "f1": 0.6666666666666666,
-                "correct": 1,
-                "incorrect": 0,
-                "partial": 0,
-                "missed": 1,
-                "spurious": 0,
-                "actual": 1,
-                "possible": 2
-              }
-            },
             "event": {
               "strict": {
                 "precision": 0.5,
@@ -2811,6 +2761,56 @@
                 "actual": 2,
                 "possible": 1
               }
+            },
+            "organization": {
+              "strict": {
+                "precision": 1.0,
+                "recall": 0.5,
+                "f1": 0.6666666666666666,
+                "correct": 1,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 1,
+                "spurious": 0,
+                "actual": 1,
+                "possible": 2
+              },
+              "partial": {
+                "precision": 1.0,
+                "recall": 0.5,
+                "f1": 0.6666666666666666,
+                "correct": 1,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 1,
+                "spurious": 0,
+                "actual": 1,
+                "possible": 2
+              },
+              "ent_type": {
+                "precision": 1.0,
+                "recall": 0.5,
+                "f1": 0.6666666666666666,
+                "correct": 1,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 1,
+                "spurious": 0,
+                "actual": 1,
+                "possible": 2
+              },
+              "exact": {
+                "precision": 1.0,
+                "recall": 0.5,
+                "f1": 0.6666666666666666,
+                "correct": 1,
+                "incorrect": 0,
+                "partial": 0,
+                "missed": 1,
+                "spurious": 0,
+                "actual": 1,
+                "possible": 2
+              }
             }
           }
         }
@@ -2818,7 +2818,7 @@
     },
     {
       "index": 13,
-      "timestamp": "2026-02-12T10:03:28.916066",
+      "timestamp": "2026-02-12T10:12:18.373821",
       "text": "Somewhat hidden away by the Ben Cruachan range , it is usually climbed in conjunction with its neighbour Beinn Eunaich .",
       "gold": [
         "location(span='Ben Cruachan')",
@@ -2829,7 +2829,7 @@
         "location(span='Beinn Eunaich')"
       ],
       "generated_raw": "entity_list.append({\"text\": \"Ben Cruachan\", \"type\": \"location\"})\nentity_list.append({\"text\": \"Beinn Eunaich\", \"type\": \"location\"})",
-      "elapsed_time": 0.4531059265136719,
+      "elapsed_time": 0.4466097354888916,
       "score": {
         "nervaluate": {
           "overall": {
@@ -2883,10 +2883,10 @@
             }
           },
           "macro": {
-            "strict": 0.0,
-            "exact": 0.0,
-            "partial": 0.0,
-            "ent_type": 0.0
+            "strict": 1.0,
+            "exact": 1.0,
+            "partial": 1.0,
+            "ent_type": 1.0
           },
           "by_tag": {
             "location": {
@@ -2945,14 +2945,14 @@
     },
     {
       "index": 14,
-      "timestamp": "2026-02-12T10:03:29.197457",
+      "timestamp": "2026-02-12T10:12:18.649797",
       "text": "The 117-bed facility entirely comprised individual rooms , each with its own en-suite bathroom facilities .",
       "gold": [],
       "prediction": [
         "building(span='117-bed facility')"
       ],
       "generated_raw": "entity_list.append({\"text\": \"117-bed facility\", \"type\": \"building\"})",
-      "elapsed_time": 0.28087401390075684,
+      "elapsed_time": 0.27544307708740234,
       "score": {
         "nervaluate": {
           "overall": {
