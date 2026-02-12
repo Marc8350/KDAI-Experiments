@@ -176,18 +176,40 @@ fi
 cd "$PROJECT_DIR"
 log "Working directory: $(pwd)"
 
-# Step 2: Activate virtual environment
-log "Step 2: Activating virtual environment..."
-if [ -d "$VENV_NAME" ]; then
-    source "$VENV_NAME/bin/activate"
-    log "✅ Activated: $VENV_NAME"
-    log "   Python: $(which python)"
-elif [ -d "venv" ]; then
-    source "venv/bin/activate"
-    log "✅ Activated: venv"
+# Step 2: Activate conda environment
+log "Step 2: Activating conda environment..."
+
+# Try to locate conda.sh in common locations
+CONDA_SH=""
+for CANDIDATE in \
+    "$HOME/anaconda3/etc/profile.d/conda.sh" \
+    "$HOME/miniconda3/etc/profile.d/conda.sh" \
+    "/opt/conda/etc/profile.d/conda.sh" \
+    "/usr/local/anaconda3/etc/profile.d/conda.sh" \
+    "/usr/local/miniconda3/etc/profile.d/conda.sh"; do
+    if [ -f "$CANDIDATE" ]; then
+        CONDA_SH="$CANDIDATE"
+        break
+    fi
+done
+
+if [ -n "$CONDA_SH" ]; then
+    source "$CONDA_SH"
+else
+    if command -v conda >/dev/null 2>&1; then
+        eval "$(conda shell.bash hook)"
+    else
+        error "Conda not found. Please install Anaconda/Miniconda or update CONDA_SH path."
+        exit 1
+    fi
+fi
+
+if [ -n "$CONDA_ENV_NAME" ]; then
+    conda activate "$CONDA_ENV_NAME"
+    log "✅ Activated conda env: $CONDA_ENV_NAME"
     log "   Python: $(which python)"
 else
-    error "No virtual environment found"
+    error "CONDA_ENV_NAME is not set. Please set it in the CONFIGURATION section."
     exit 1
 fi
 
