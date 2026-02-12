@@ -363,10 +363,13 @@ def evaluate_with_nervaluate(
         overall_output = normalized
     
     def _get_f1(metrics: Any, scheme: str) -> float:
+        """Extract F1 score from metrics for a given scheme."""
         if isinstance(metrics, dict):
             scheme_metrics = metrics.get(scheme)
             if isinstance(scheme_metrics, dict):
                 return scheme_metrics.get('f1', 0.0)
+            elif hasattr(scheme_metrics, 'f1'):
+                return getattr(scheme_metrics, 'f1', 0.0)
             return 0.0
 
         scheme_metrics = getattr(metrics, scheme, None)
@@ -375,6 +378,23 @@ def evaluate_with_nervaluate(
         if isinstance(scheme_metrics, dict):
             return scheme_metrics.get('f1', 0.0)
         return getattr(scheme_metrics, 'f1', 0.0)
+    
+    def _get_possible(metrics: Any, scheme: str) -> int:
+        """Extract 'possible' (gold count) from metrics for a given scheme."""
+        if isinstance(metrics, dict):
+            scheme_metrics = metrics.get(scheme)
+            if isinstance(scheme_metrics, dict):
+                return scheme_metrics.get('possible', 0)
+            elif hasattr(scheme_metrics, 'possible'):
+                return getattr(scheme_metrics, 'possible', 0)
+            return 0
+
+        scheme_metrics = getattr(metrics, scheme, None)
+        if scheme_metrics is None:
+            return 0
+        if isinstance(scheme_metrics, dict):
+            return scheme_metrics.get('possible', 0)
+        return getattr(scheme_metrics, 'possible', 0)
 
     # Calculate Macro F1 for each scheme (Strict, Exact, Partial, Type)
     macro_metrics = {}
@@ -384,11 +404,10 @@ def evaluate_with_nervaluate(
         f1_sum = 0.0
         count = 0
         for tag, metrics in results_by_tag.items():
-            # Support check? Nervaluate might return 0 if no support.
-            # We assume all tags in entity_types are present in results_by_tag?
-            # nervaluate usually includes all tags passed to __init__
-            f1_value = _get_f1(metrics, scheme)
-            if f1_value > 0.0 or scheme in getattr(metrics, '__dict__', {}) or (isinstance(metrics, dict) and scheme in metrics):
+            # Only include tags with support (possible > 0)
+            possible = _get_possible(metrics, scheme)
+            if possible > 0:
+                f1_value = _get_f1(metrics, scheme)
                 f1_sum += f1_value
                 count += 1
         
