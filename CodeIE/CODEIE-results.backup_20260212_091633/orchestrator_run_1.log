@@ -1,0 +1,87 @@
+2026-02-12 09:06:26,509 - INFO - Orchestrator initialized with config: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/CodeIE/config/experiment_config.yaml
+2026-02-12 09:06:26,509 - INFO - GPU count: 2
+2026-02-12 09:06:26,509 - INFO - Auto-calculated max_workers=6 based on model sizes: ['qwen2.5:7b', 'qwen2.5-coder:7b']
+2026-02-12 09:06:26,509 - INFO - 
+############################################################
+2026-02-12 09:06:26,509 - INFO - # CodeIE Experiment Orchestrator
+2026-02-12 09:06:26,509 - INFO - # One-Stop Shop Pipeline (Parallel Execution)
+2026-02-12 09:06:26,509 - INFO - # GPU Count: 2 | Max Workers: 6
+2026-02-12 09:06:26,509 - INFO - ############################################################
+2026-02-12 09:06:26,509 - INFO - 
+[Step 1/3] Skipping variation check
+2026-02-12 09:06:26,509 - INFO - 
+[Step 2/3] Generating experiment matrix...
+2026-02-12 09:06:26,510 - INFO - Generated 56 experiment runs
+2026-02-12 09:06:26,510 - INFO -   Total experiments: 56
+2026-02-12 09:06:26,510 - INFO - 
+[OLLAMA SETUP] Initializing Ollama with auto-recovery...
+2026-02-12 09:06:26,517 - INFO - Pre-loading model: qwen2.5-coder:7b
+2026-02-12 09:06:29,600 - INFO - Model qwen2.5-coder:7b pre-loaded successfully
+2026-02-12 09:06:29,600 - INFO - Pre-loading model: qwen2.5:7b
+2026-02-12 09:06:32,616 - INFO - Model qwen2.5:7b pre-loaded successfully
+2026-02-12 09:06:32,616 - INFO -   Ollama ready with models: ['qwen2.5-coder:7b', 'qwen2.5:7b']
+2026-02-12 09:06:32,616 - INFO -   Auto-calculated workers: 6 (based on model size)
+2026-02-12 09:06:32,627 - INFO -   Estimated samples per run: 3765 (max_samples=3765)
+2026-02-12 09:06:32,627 - INFO -   Estimated total samples: 210840
+2026-02-12 09:06:32,627 - INFO - 
+[Step 3/3] Running experiments (Parallel workers: 6)...
+Total Progress (Samples):   0%|          | 0/210840 [00:00<?, ?sample/s]2026-02-12 09:06:32,724 - INFO - ============================================================
+2026-02-12 09:06:32,724 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-12 09:06:32,724 - INFO - ============================================================
+2026-02-12 09:06:32,724 - INFO - Granularity: coarse
+2026-02-12 09:06:32,724 - INFO - Style: pl
+2026-02-12 09:06:32,724 - INFO - Variation: v0_original
+2026-02-12 09:06:32,724 - INFO - Model: qwen2.5:7b
+2026-02-12 09:06:32,724 - INFO - ============================================================
+2026-02-12 09:06:32,724 - INFO - Using ChatOllama (Chat API) for qwen2.5:7b with timeout=180s
+2026-02-12 09:06:32,724 - INFO - ============================================================
+2026-02-12 09:06:32,725 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-12 09:06:32,725 - INFO - ============================================================
+2026-02-12 09:06:32,725 - INFO - Granularity: coarse
+2026-02-12 09:06:32,725 - INFO - Style: pl
+2026-02-12 09:06:32,725 - INFO - Variation: lexical_substitution
+2026-02-12 09:06:32,725 - INFO - Model: qwen2.5:7b
+2026-02-12 09:06:32,725 - INFO - ============================================================
+2026-02-12 09:06:32,725 - INFO - Using ChatOllama (Chat API) for qwen2.5:7b with timeout=180s
+2026-02-12 09:06:32,725 - INFO - ============================================================
+2026-02-12 09:06:32,725 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-12 09:06:32,725 - INFO - ============================================================
+2026-02-12 09:06:32,725 - INFO - Granularity: coarse
+2026-02-12 09:06:32,725 - INFO - Style: pl
+2026-02-12 09:06:32,725 - INFO - Variation: lexical_substitution
+2026-02-12 09:06:32,725 - INFO - Model: qwen2.5-coder:7b
+2026-02-12 09:06:32,725 - INFO - ============================================================
+2026-02-12 09:06:32,725 - INFO - Using ChatOllama (Chat API) for qwen2.5-coder:7b with timeout=180s
+2026-02-12 09:06:32,725 - INFO - ============================================================
+2026-02-12 09:06:32,725 - INFO - ============================================================
+2026-02-12 09:06:32,726 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-12 09:06:32,726 - INFO - CodeIE NER Experiment (Enhanced with Entity Schema)
+2026-02-12 09:06:32,726 - INFO - ============================================================
+2026-02-12 09:06:32,726 - INFO - ============================================================
+2026-02-12 09:06:32,726 - INFO - Granularity: coarse
+2026-02-12 09:06:32,726 - INFO - Granularity: coarse
+2026-02-12 09:06:32,726 - INFO - Style: pl
+2026-02-12 09:06:32,726 - INFO - Style: pl
+2026-02-12 09:06:32,726 - INFO - Variation: reodering
+2026-02-12 09:06:32,726 - INFO - Variation: reodering
+2026-02-12 09:06:32,726 - INFO - Model: qwen2.5:7b
+2026-02-12 09:06:32,726 - INFO - Model: qwen2.5-coder:7b
+2026-02-12 09:06:32,726 - INFO - ============================================================
+2026-02-12 09:06:32,726 - INFO - ============================================================
+2026-02-12 09:06:32,726 - INFO - Using ChatOllama (Chat API) for qwen2.5-coder:7b with timeout=180s
+2026-02-12 09:06:32,726 - INFO - Using ChatOllama (Chat API) for qwen2.5:7b with timeout=180s
+2026-02-12 09:06:32,775 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+2026-02-12 09:06:32,776 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+2026-02-12 09:06:32,776 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+2026-02-12 09:06:32,777 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+2026-02-12 09:06:32,777 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+2026-02-12 09:06:32,777 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+2026-02-12 09:06:32,777 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+2026-02-12 09:06:32,777 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+2026-02-12 09:06:32,777 - INFO - Discovered variations: ['default', 'sentence_reordering', 'backtrans_tu', 'backtrans_ch', 'reodering', 'lexical_substitution', 'backtrans_sp']
+2026-02-12 09:06:32,777 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+2026-02-12 09:06:32,777 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+2026-02-12 09:06:32,777 - INFO - Entity types (8): ['art', 'building', 'event', 'location', 'organization', 'other', 'person', 'product']
+2026-02-12 09:06:32,778 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+2026-02-12 09:06:32,778 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
+2026-02-12 09:06:32,778 - INFO - Loading test data from: /home/ann/fiz-ddb/notebook/KDAI-Experiments-CodeIE/few-nerd_test
