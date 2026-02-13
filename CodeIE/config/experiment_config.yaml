@@ -70,12 +70,21 @@ models:
     base_url: "http://localhost:11434"
     temperature: 0.0
     max_tokens: 512
-    enabled: true
+    enabled: false
 
   # Qwen2.5-Coder:7b via Ollama
   qwen2.5-coder:
     type: "ollama"
     name: "qwen2.5-coder:7b"
+    base_url: "http://localhost:11434"
+    temperature: 0.0
+    max_tokens: 512
+    enabled: false
+
+  # ServiceNow Apriel 1.6 15B Thinker via Ollama
+  apriel_1_6_15b_thinker_q4_k_m:
+    type: "ollama"
+    name: "ServiceNow-AI/Apriel-1.6-15b-Thinker:Q4_K_M"
     base_url: "http://localhost:11434"
     temperature: 0.0
     max_tokens: 512
