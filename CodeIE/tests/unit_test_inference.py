@@ -149,7 +149,7 @@ def named_entity_recognition(input_text):
         
         # 3. Run Inference
         response = run_inference(full_prompt, self.llm_model, self.config)
-        logger.info(f"Model Response:\n{response[:500]}...")
+        logger.info(f"Model Response (FULL):\n{response}")
 
         # 4. Parse & Validate
         full_output = test_query + response 
@@ -185,7 +185,7 @@ def named_entity_recognition(input_text):
 
         # 3. Run Inference
         response = run_inference(full_prompt, self.llm_model, self.config)
-        logger.info(f"Model Response:\n{response[:500]}...")
+        logger.info(f"Model Response (FULL):\n{response}")
 
         # 4. Parse & Validate
         parsed_entities = parse_nl_style_output(response, self.text, entity_types)
@@ -237,7 +237,7 @@ def named_entity_recognition(input_text):
         
         # 3. Run Inference
         response = run_inference(full_prompt, self.llm_model, self.config)
-        logger.info(f"Model Response:\n{response[:500]}...")
+        logger.info(f"Model Response (FULL):\n{response}")
 
         # 4. Parse & Validate
         full_output = test_query + response 
@@ -273,7 +273,7 @@ def named_entity_recognition(input_text):
 
         # 3. Run Inference
         response = run_inference(full_prompt, self.llm_model, self.config)
-        logger.info(f"Model Response:\n{response[:500]}...")
+        logger.info(f"Model Response (FULL):\n{response}")
 
         # 4. Parse & Validate
         parsed_entities = parse_nl_style_output(response, self.text, entity_types)

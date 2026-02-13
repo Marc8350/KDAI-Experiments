@@ -6,5 +6,7 @@ few-nerd_test/
 *.pyc
 __pycache__/
 createpormpts.ipynb
+CodeIE/CODEIE-results/
+inference_test_output.log
 
 
