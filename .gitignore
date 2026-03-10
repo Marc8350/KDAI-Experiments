@@ -10,3 +10,7 @@ CodeIE/CODEIE-results/
 inference_test_output.log
 
 
+.DS_Store
+
+# Large experiment artifacts
+CodeIE/batch_*/

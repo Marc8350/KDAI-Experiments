@@ -1,0 +1,101 @@
+\begin{figure}[htbp]
+\centering
+\definecolor{commentgreen}{rgb}{0,0.6,0}
+\definecolor{keywordblue}{rgb}{0,0,1}
+\definecolor{stringred}{rgb}{0.5,0,0.5}
+\definecolor{typepurple}{rgb}{0.5,0.2,0.6}
+\definecolor{classbrown}{rgb}{0.6,0.3,0.1}
+
+% Custom command for highlighted code snippets
+\newcommand{\code}[1]{{\small\ttfamily #1}}
+\newcommand{\mcomment}[1]{\code{#1}}
+\newcommand{\mkeyword}[1]{\textcolor{keywordblue}{\code{#1}}}
+\newcommand{\mstring}[1]{\textcolor{stringred}{\code{#1}}}
+\newcommand{\mclass}[1]{\textcolor{classbrown}{\code{#1}}}
+\newcommand{\mtype}[1]{\textcolor{typepurple}{\code{#1}}}
+
+\small
+\begin{tabular}{p{0.32\textwidth} | p{0.63\textwidth}}
+Role & \mcomment{You are a professional Named Entity Recognition (NER) system, focusing on extracting entities from text.}\\
+\hline
+Instruction & \mcomment{Task: Complete the Python code by adding entity\_list.append() statements. Do not explain the code; simply output the entity\_list.append() line. Stick exactly to the entity types.}\\
+& \mcomment{\# Do not explain the code; simply output the entity\_list.append() line.}\\
+& \mcomment{\# DO NOT tell me how to adjust the code. Simply complete it with Just output the entity\_list.append() lines.}\\
+& \mcomment{\# STICK EXACTLY to the entity-types do not define your own entity types.}\\
+& \mcomment{\# For each input\_text, identify the named entities and add them using entity\_list.append().}\\
+\hline
+Schema definition & \code{- art: Includes movies, books, music, paintings, or other creative works.}\\
+& \code{- building, event, location, organization, other, person, product}\\
+\hline
+Shot examples & \mkeyword{def} \code{named\_entity\_recognition(input\_text):}\;\mstring{input\_text = "This album was released on March 25, 2008. It is the first new material album released by the band since the 1992 release of 'Good Things'."}\;\code{entity\_list.append(}\{\code{"text": }\mstring{"Good Things"}\code{, "type": }\mtype{art}\code{\}\,)}\\
+& \mkeyword{def} \code{named\_entity\_recognition(input\_text):}\;\mstring{input\_text = "In 1136, the castle was donated to the Knights Templar."}\;\code{entity\_list.append(}\{\code{"text": }\mstring{"Knights Templar"}\code{, "type": building}\code{\}\,)}\\
+\hline
+Input text & \code{input\_text = }\mstring{"This album was released on March 25, 2008. It is the first new material album released by the band since the 1992 release of 'Good Things'."}\\
+Output & \code{entity\_list.append(}\{\code{"text": }\mstring{"Good Things"}\code{, "type": }\mtype{art}\code{\}\,)}\\
+\end{tabular}
+
+\caption{Coarse code-style prompt (class art) from the backtrans\_ch 1-shot variation.}
+\label{fig:coarse-code-art}
+\vspace{2pt}
+\end{figure}
+
+% ---------- Figure 2: Coarse natural-language prompt (art) ----------
+\begin{figure}[htbp]
+\centering
+\definecolor{commentgreen}{rgb}{0,0.6,0}
+\definecolor{keywordblue}{rgb}{0,0,1}
+\definecolor{stringred}{rgb}{0.5,0,0.5}
+\definecolor{typepurple}{rgb}{0.5,0.2,0.6}
+\definecolor{classbrown}{rgb}{0.6,0.3,0.1}
+
+\newcommand{\codeb}[1]{{\small\ttfamily #1}}
+\newcommand{\mcommentb}[1]{\codeb{#1}}
+\newcommand{\mkeywordb}[1]{\textcolor{keywordblue}{\codeb{#1}}}
+\newcommand{\mstringb}[1]{\textcolor{stringred}{\codeb{#1}}}
+\newcommand{\mclassb}[1]{\textcolor{classbrown}{\codeb{#1}}}
+\newcommand{\mtypeb}[1]{\textcolor{typepurple}{\codeb{#1}}}
+
+\small
+\begin{tabular}{p{0.32\textwidth} | p{0.63\textwidth}}
+Role & \mcommentb{You are a named entity recognition (NER) expert system specialized in extracting entities from text.}\\
+\hline
+Instruction & \mcommentb{Stick to exactly these entity types; do not create new ones.}\\
+& \mcommentb{Complete instruction set from prompt:}\\
+& \mcommentb{IMPORTANT: Stick to exactly these entity types, do not create your own ones.}\\
+\hline
+Input text line & \codeb{Text is }\mstringb{"This album was released on March 25, 2008. It is the group's first new album since the 1992 release of 'Good Things'."}\\
+Shot examples & \codeb{Text is }\mstringb{"This album was released on March 25, 2008. It is the group's first new album since the 1992 release of 'Good Things'."}\;\codeb{ Entities: (}\mtypeb{art}\codeb{: }\mstringb{Good Things}\codeb{)}\\
+& \codeb{Text is }\mstringb{"In 1136, the castle was donated to the Hospital Knights."}\;\codeb{ Entities: (building: Hospital Knights)}\\
+\hline
+Schema definition & \mtypeb{art}\codeb{: a named work of art, including movies, books, music, paintings, or other creative works.}\\
+& \codeb{building, event, location, organization, other, person, product}\\
+\hline
+Input text line & \codeb{Text is }\mstringb{"This album was released on March 25, 2008. It is the group's first new album since the 1992 release of 'Good Things'."}\\
+Output example & \codeb{Entities: (}\mtypeb{art}\codeb{: }\mstringb{Good Things}\codeb{)}\\
+\end{tabular}
+\small
+\begin{tabular}{p{0.32\textwidth} | p{0.63\textwidth}}
+Role & \mcommentb{You are a named entity recognition (NER) expert system specialized in extracting entities from text.}\\
+\hline
+Instruction & \mcommentb{Stick to exactly these entity types; do not create new ones.}\\
+& \mcommentb{IMPORTANT: Stick to exactly these entity types, do not create your own ones.}\\
+\hline
+Schema definition & \mtypeb{art}\codeb{: a named work of art, including movies, books, music, paintings, or other creative works.}\\
+& \codeb{building, event, location, organization, other, person, product}\\
+\hline
+Shot examples & \codeb{Text is }
+\mstringb{"This album was released on March 25, 2008. It is the group's first new album since the 1992 release of 'Good Things'."}\;\codeb{ Entities: (}\mtypeb{art}\codeb{: }
+\mstringb{Good Things}\codeb{)}\\
+& \codeb{Text is }
+\mstringb{"In 1136, the castle was donated to the Hospital Knights."}\;\codeb{ Entities: (building: Hospital Knights)}\\
+\hline
+Input text & \codeb{Text is }
+\mstringb{"This album was released on March 25, 2008. It is the group's first new album since the 1992 release of 'Good Things'."}\\
+Output & \codeb{Entities: (}\mtypeb{art}\codeb{: }
+\mstringb{Good Things}\codeb{)}\\
+\end{tabular}
+
+\caption{Coarse natural-language prompt (class art) from the backtrans\_ch 1-shot variation.}
+\label{fig:coarse-nl-art}
+\vspace{2pt}
+\end{figure}
